@@ -8,6 +8,12 @@ body
 	margin-left: 10px;
 }
 
+html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
 footer, footer a
 {
 	background-color: black;
@@ -20,7 +26,8 @@ footer, footer a
     margin-top: 20px;
 }
 
-#vignette_espace_mini
+#map
 {
-	
+	height: 50%;
+    width: 50%;
 }
