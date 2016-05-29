@@ -17,10 +17,9 @@ class HomeController extends Controller
   	$repo = $em->getRepository('BecowoCoreBundle:Workspace');
   	$workspaces = $repo->findActiveWorkspaces();
 
-  	// Tous les members
-  	//TO DO : récupérer que les 5 derniers membre inscrits
+  	// Les x derniers membres inscrits et actifs
   	$repo = $em->getRepository('BecowoCoreBundle:Member');
-  	$members = $repo->findAll();
+  	$members = $repo->findNewMembers(5);
 
   	//TO DO : récupérer que les 3 derniers espaces inscrits
 
