@@ -70,18 +70,25 @@
 
 	<br><br>
 
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
 {############################################ Derniers inscrits ##############################################}
 
-<h2>Ils ont rejoint la communauté</h2>
-
-<div class="container">
-	<div class="row">
-		{% for member in members %}
-			<img src="{{ app.request.basepath }}/images/{{member.ProfilePicture.url}}" alt="member.ProfilePicture.alt" width="115px" height="115px" class="img-circle" title="{{member.pseudo}}, {{member.city}}">
-
-		{% endfor %}
+			<h2>Ils ont rejoint la communauté</h2>
+			{% for member in members %}
+				<img src="{{ app.request.basepath }}/images/{{member.ProfilePicture.url}}" alt="member.ProfilePicture.alt" width="115px" height="115px" class="img-circle" title="{{member.pseudo}}, {{member.city}}">
+			{% endfor %}
+		</div>
+		<div class="col-md-6">
+{############################################ Barre Instagram ##############################################}
+			<h2>Suivez-nous sur Instagram</h2>
+			{% include 'BecowoCoreBundle:RS:instagram.html.twig' %}
+		</div>
 	</div>
 </div>
+
+
 
 	<br><br>
 
@@ -133,5 +140,8 @@
 
 
 	<br><br><br><br>
+
+
+	
 
 {% endblock %}
