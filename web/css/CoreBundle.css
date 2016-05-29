@@ -3,16 +3,10 @@ header
 	margin-top: 15px;
 }
 
-body
+body 
 {
-	margin-left: 10px;
+    margin-left: 10px;
 }
-
-html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
 
 footer, footer a
 {
@@ -24,10 +18,4 @@ footer, footer a
 {
     display: inline-block;
     margin-top: 20px;
-}
-
-#map
-{
-	height: 50%;
-    width: 50%;
 }
