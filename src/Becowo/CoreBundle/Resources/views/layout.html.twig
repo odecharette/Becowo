@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}Becowo{% endblock %}</title>
+	{% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {# CSS Perso#}
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/CoreBundle.css">
+  {% endblock %}
+</head>
+<body>
+
+	<div class="container-fluid">
+		<div class="row text-center">
+			<header>
+				<div class="row">
+					<div id="logo" class="col-lg-2">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Becowo" width="100px" height="80px">
+					</div>
+					<div id="btn_manager" class="col-lg-2">
+						<a href="#" class="btn btn-lg btn-info">Manager <br> Découvrez nos offres</a>
+					</div>
+					<div id="title" class="col-lg-4">
+						<h1>Becowo</h1>
+						<h3>Enfin une bonne raison d'aller au travail !</h3>
+					</div>
+					<div id="btn_coworker" class="col-lg-2">
+						<a href="#" class="btn btn-lg btn-info">Coworker <br> Déclarez un espace</a>
+					</div>
+					<div class="row">
+						<div id="login" class="col-lg-2" >Ici menu de login</div>
+						<div id="RS" class="col-lg-2"> Ici barre de RS</div>
+					</div>
+				</div>
+				<div class="row">
+					<h5><a href="#">Devenez ambassadeur !</a></h5>
+				</div>
+			</header>
+		</div>
+	</div>
+
+	{% block body %}
+    {% endblock %}
+
+    
+	<footer class="navbar navbar-bottom">
+		<div class="container-fluid">
+		<div class="row">
+		<div id="footer_menu" class="col-lg-3">
+			<ul>
+			    <li><a href="#">Contactez-nous</a></li>
+			    <li><a href="#">A propos</a></li>
+			    <li><a href="#">FAQ</a></li>
+			</ul>
+		</div>
+		<div id="footer_menu" class="col-lg-3">
+			<ul>
+			    <li><a href="#">CGV</a></li>
+			    <li><a href="#">Mentions légales</a></li>
+			    <li><a href="#">Paiement en ligne</a></li>
+			</ul>
+		</div>
+		<div id="footer_menu" class="col-lg-3">
+			<ul>
+			    <li><a href="http://coworkingeverywhere.com/" target="_blank">Blog</a></li>
+			    <li><a href="#">Manager, declarez votre espace</a></li>
+			    <li><a href="#">Coworker, devenez ambassadeur</a></li>
+			</ul>
+		</div>
+		<div id="footer_menu" class="col-lg-3">
+			Ici barre de RS
+		</div>
+		</div>
+	</div>
+	</footer>
+
+	{% block javascripts %}
+	    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  	{% endblock %}
+</body>
+</html>

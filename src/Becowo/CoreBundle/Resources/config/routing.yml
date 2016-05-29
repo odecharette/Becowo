@@ -1,0 +1,3 @@
+becowo_core_homepage:
+    path:     /
+    defaults: { _controller: BecowoCoreBundle:Home:home }

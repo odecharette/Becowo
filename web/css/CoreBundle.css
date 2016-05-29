@@ -1,0 +1,26 @@
+header
+{
+	margin-top: 15px;
+}
+
+body
+{
+	margin-left: 10px;
+}
+
+footer, footer a
+{
+	background-color: black;
+	color: white;
+}
+
+.gallery
+{
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#vignette_espace_mini
+{
+	
+}

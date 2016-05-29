@@ -1,0 +1,3 @@
+becowo_core:
+    resource: "@BecowoCoreBundle/Resources/config/routing.yml"
+    prefix:   /
