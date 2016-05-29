@@ -19,3 +19,14 @@ footer, footer a
     display: inline-block;
     margin-top: 20px;
 }
+
+#Vignettes-image
+{
+	margin-left: -30px;
+    margin-right: -30px;
+}
+
+/*.row
+{
+	background-color: yellow;
+}*/
