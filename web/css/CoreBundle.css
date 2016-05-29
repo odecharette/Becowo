@@ -30,3 +30,12 @@ footer, footer a
 {
 	background-color: yellow;
 }*/
+
+#liensRS
+{
+	background-color: rgb(46,49,56);
+	width: 160px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 20px;
+}
