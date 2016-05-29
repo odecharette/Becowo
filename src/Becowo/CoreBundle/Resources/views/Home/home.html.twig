@@ -84,18 +84,18 @@
 	<h2>Les nouveaux espaces</h2>
 	<div id="vignette_espace_mini" class="container">
 	 		<div class="row">
-	{% for ws in workspaces %}
+	{% for newWs in newWorkspaces %}
 		<div class="col-md-4">
 	 		<div class="well">
 	 			<div class="row text-center"><div class="col-md-12">
-				  	<h2>{{ws.name}}</h2>
+				  	<h2>{{newWs.name}}</h2>
 			  	</div></div>
 			  	<div class="row"><div class="col-md-12">
 			  		{# TO DO : récupérer et stocker les images en BDD#}
 			  		<img src="{{ app.request.basepath }}/images/yelloworking-1.jpg" alt="Yellow Working" width="200px" height="120px">
 			  	</div></div>
 			  	<div class="row"><div class="col-md-12">
-			  		{{ws.street|capitalize}}, {{ws.postcode}} {{ws.city}}
+			  		{{newWs.street|capitalize}}, {{newWs.postcode}} {{newWs.city}}
 			  	</div></div>
 		</div></div>
 	{% endfor %}
