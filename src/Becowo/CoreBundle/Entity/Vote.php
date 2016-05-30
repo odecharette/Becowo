@@ -74,9 +74,9 @@ class Vote
     private $workspace;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\Member
+     * @var \Becowo\MemberBundle\Entity\Member
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Member")
+     * @ORM\ManyToOne(targetEntity="Becowo\MemberBundle\Entity\Member")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="member_id", referencedColumnName="id")
      * })
@@ -266,11 +266,11 @@ class Vote
     /**
      * Set member
      *
-     * @param \Becowo\CoreBundle\Entity\Member $member
+     * @param \Becowo\MemberBundle\Entity\Member $member
      *
      * @return Vote
      */
-    public function setMember(\Becowo\CoreBundle\Entity\Member $member = null)
+    public function setMember(\Becowo\MemberBundle\Entity\Member $member = null)
     {
         $this->member = $member;
 
@@ -280,7 +280,7 @@ class Vote
     /**
      * Get member
      *
-     * @return \Becowo\CoreBundle\Entity\Member
+     * @return \Becowo\MemberBundle\Entity\Member
      */
     public function getMember()
     {

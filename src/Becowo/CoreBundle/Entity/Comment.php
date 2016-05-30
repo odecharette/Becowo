@@ -48,7 +48,7 @@ class Comment
     /**
      * @var \Becowo\CoreBundle\Entity\Member
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Member")
+     * @ORM\ManyToOne(targetEntity="Becowo\MemberBundle\Entity\Member")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="member_id", referencedColumnName="id")
      * })
@@ -142,7 +142,7 @@ class Comment
     /**
      * Set member
      *
-     * @param \Becowo\CoreBundle\Entity\Member $member
+     * @param \Becowo\MemberBundle\Entity\Member $member
      *
      * @return Comment
      */
@@ -156,7 +156,7 @@ class Comment
     /**
      * Get member
      *
-     * @return \Becowo\CoreBundle\Entity\Member
+     * @return \Becowo\MemberBundle\Entity\Member
      */
     public function getMember()
     {

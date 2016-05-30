@@ -893,11 +893,11 @@ class Workspace
     /**
      * Add member
      *
-     * @param \Becowo\CoreBundle\Entity\Member $member
+     * @param \Becowo\MemberBundle\Entity\Member $member
      *
      * @return Workspace
      */
-    public function addMember(\Becowo\CoreBundle\Entity\Member $member)
+    public function addMember(\Becowo\MemberBundle\Entity\Member $member)
     {
         $this->member[] = $member;
 
@@ -907,9 +907,9 @@ class Workspace
     /**
      * Remove member
      *
-     * @param \Becowo\CoreBundle\Entity\Member $member
+     * @param \Becowo\MemberBundle\Entity\Member $member
      */
-    public function removeMember(\Becowo\CoreBundle\Entity\Member $member)
+    public function removeMember(\Becowo\MemberBundle\Entity\Member $member)
     {
         $this->member->removeElement($member);
     }

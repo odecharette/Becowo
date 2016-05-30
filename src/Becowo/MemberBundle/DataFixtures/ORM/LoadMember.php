@@ -1,13 +1,13 @@
 <?php
 
-namespace Becowo\CoreBundle\DataFixtures\ORM;
+namespace Becowo\MemberBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Becowo\CoreBundle\Entity\Member;
-use Becowo\CoreBundle\Entity\Origin;
+use Becowo\MemberBundle\Entity\Member;
+use Becowo\CoreBundle\Entity\Origin;            // TO DO : deplacer vers MemberBundle
 use Becowo\CoreBundle\Entity\Country;
-use Becowo\CoreBundle\Entity\ProfilePicture;
+use Becowo\CoreBundle\Entity\ProfilePicture;    // TO DO : deplacer vers MemberBundle
 
 class LoadMember implements FixtureInterface
 {
@@ -17,8 +17,10 @@ class LoadMember implements FixtureInterface
 
     $member = new Member();
     $member->setEmail('odecharette@gmail.com');
-    $member->setPseudo('Olivia');
+    $member->setUsername('Olivia');
     $member->setPassword('olivia');	// TO DO : a changer par un pwd en hash
+    $member->setSalt('');
+    $member->setRoles(array('ROLE_ADMIN'));
     $member->setFirstName('Olivia');
     $member->setName('de Charette');
     $member->setSex(1);
@@ -61,8 +63,10 @@ class LoadMember implements FixtureInterface
 
     $member = new Member();
     $member->setEmail('fiona_delannoy@hotmail.fr');
-    $member->setPseudo('Fiona');
+    $member->setUsername('Fiona');
     $member->setPassword('fiona');	// TO DO : a changer par un pwd en hash
+    $member->setSalt('');
+    $member->setRoles(array('ROLE_USER'));
     $member->setFirstName('Fiona');
     $member->setName('Delannoy');
     $member->setSex(1);
