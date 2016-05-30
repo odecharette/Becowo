@@ -1,6 +1,6 @@
 <?php
 
-namespace Becowo\CoreBundle\Repository;
+namespace Becowo\MemberBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;

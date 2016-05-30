@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Becowo\CoreBundle\Entity\Workspace;
+use Becowo\MemberBundle\Entity\Member;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,7 @@ class HomeController extends Controller
   	$workspaceFavorite = $repo->findOneBy(array(), array('createdOn' => 'desc'));
 
   	// Les x derniers membres inscrits et actifs
-  	$repo = $em->getRepository('BecowoCoreBundle:Member');
+  	$repo = $em->getRepository('BecowoMemberBundle:Member');
   	$members = $repo->findNewMembers(5);
 
   	return $this->render('BecowoCoreBundle:Home:home.html.twig', array(

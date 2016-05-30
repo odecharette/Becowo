@@ -1,6 +1,6 @@
 <?php
 
-namespace Becowo\CoreBundle\Entity;
+namespace Becowo\MemberBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Member
  *
  * @ORM\Table(name="member", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"}), @ORM\UniqueConstraint(name="pseudo_UNIQUE", columns={"pseudo"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_origin_id_idx", columns={"origin_id"}), @ORM\Index(name="fk_member_profile_picture1_idx", columns={"profile_picture_id"})})
- * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\MemberRepository")
+ * @ORM\Entity(repositoryClass="Becowo\MemberBundle\Repository\MemberRepository")
  */
 class Member
 {

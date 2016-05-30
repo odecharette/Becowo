@@ -13,6 +13,14 @@
 </head>
 <body>
 
+{% if is_granted('ROLE_MANAGER') %}
+  <li><a href="{{ path('becowo_core_manager') }}">Espace Manager</a></li>
+{% endif %}
+
+{% if is_granted('ROLE_ADMIN') %}
+  <li><a href="{{ path('becowo_core_admin') }}">Espace Admin</a></li>
+{% endif %}
+
 <header>
 	<div class="container-fluid">
 		<div class="row text-center">
@@ -32,6 +40,7 @@
 			<div class="col-lg-2 col-centered">
 				<div class="row">
 					<div id="login" class="col-lg-12">Ici menu de login</div>
+					{# Bonjour {{ app.user.username }} #}
 					<div class="col-lg-12">{% include 'BecowoCoreBundle:RS:all_RS_small.html.twig' %}</div>
 				</div>
 			</div>

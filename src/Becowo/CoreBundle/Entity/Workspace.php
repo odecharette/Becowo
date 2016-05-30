@@ -230,7 +230,7 @@ class Workspace
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Member", mappedBy="workspace")
+     * @ORM\ManyToMany(targetEntity="Becowo\MemberBundle\Entity\Member", mappedBy="workspace")
      */
     private $member;
 

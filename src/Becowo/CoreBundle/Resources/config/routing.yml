@@ -5,3 +5,22 @@ becowo_core_homepage:
 becowo_core_contact:
     path:     /contact
     defaults: { _controller: BecowoCoreBundle:Contact:Contact }
+
+becowo_core_manager:
+    path:     /manager
+    defaults: { _controller: BecowoCoreBundle:Manager:home }
+
+becowo_core_admin:
+    path:     /admin
+    defaults: { _controller: BecowoCoreBundle:Admin:home }
+
+becowo_member_login:
+    path: /login
+    defaults:
+        _controller: BecowoMemberBundle:Security:login
+
+becowo_member_login_check:
+    path: /login_check
+
+becowo_member_logout:
+    path: /logout
