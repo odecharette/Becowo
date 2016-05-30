@@ -77,7 +77,7 @@
 
 			<h2>Ils ont rejoint la communauté</h2>
 			{% for member in members %}
-				<img src="{{ app.request.basepath }}/images/{{member.ProfilePicture.url}}" alt="member.ProfilePicture.alt" width="115px" height="115px" class="img-circle" title="{{member.pseudo}}, {{member.city}}">
+				<img src="{{ app.request.basepath }}/images/{{member.ProfilePicture.url}}" alt="member.ProfilePicture.alt" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.city}}">
 			{% endfor %}
 		</div>
 		<div class="col-lg-6">
