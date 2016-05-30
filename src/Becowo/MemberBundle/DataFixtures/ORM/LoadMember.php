@@ -34,7 +34,7 @@ class LoadMember implements FixtureInterface
     $member->setWebsite('http://www.becowo.com');
     $member->setDescription('');
     $member->setSignUpDate(new \DateTime('2016-05-28'));
-    $member->setIsActivated(true);
+    $member->setEnabled(true);
 
     //Origin
     $origin = new Origin();
@@ -80,7 +80,7 @@ class LoadMember implements FixtureInterface
     $member->setWebsite('http://www.becowo.com');
     $member->setDescription('');
     $member->setSignUpDate(new \DateTime('2016-05-28'));
-    $member->setIsActivated(true);
+    $member->setEnabled(true);
 
     //Origin
     $origin = new Origin();

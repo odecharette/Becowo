@@ -3,7 +3,7 @@
 namespace Becowo\MemberBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Member
@@ -11,42 +11,30 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="member", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"}), @ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_origin_id_idx", columns={"origin_id"}), @ORM\Index(name="fk_member_profile_picture1_idx", columns={"profile_picture_id"})})
  * @ORM\Entity(repositoryClass="Becowo\MemberBundle\Repository\MemberRepository")
  */
-class Member implements UserInterface
+class Member extends BaseUser
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
-     */
-    private $email;
+    
+/***** Liste des attributs déjà hérités/gérés par FOSUserBundle
+username : nom d'utilisateur avec lequel l'utilisateur va s'identifier ;
+email : l'adresse e-mail ;
+enabled : true ou false suivant que l'inscription de l'utilisateur a été validée ou non (dans le cas d'une confirmation par e-mail par exemple) ;
+password : le mot de passe de l'utilisateur ;
+lastLogin : la date de la dernière connexion ;
+locked : si vous voulez désactiver des comptes ;
+expired : si vous voulez que les comptes expirent au-delà d'une certaine durée.
++ roles
++ salt
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=55, nullable=true, unique=true)
-     */
-    private $username;
+**************/
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=40, nullable=false)
-     */
-    private $password;
+     /**
+       * @ORM\Column(name="id", type="integer")
+       * @ORM\Id
+       * @ORM\GeneratedValue(strategy="AUTO")
+       */
+      protected $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="salt", type="string", length=255)
-     */
-    private $salt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="roles", type="array")
-     */
-    private $roles = array();
+   
 
     /**
      * @var string
@@ -133,25 +121,11 @@ class Member implements UserInterface
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="url_profile_picture", type="string", length=255, nullable=true)
-     */
-    private $urlProfilePicture;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="sign_up_date", type="datetime", nullable=true)
      */
     private $signUpDate;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="last_sign_in", type="datetime", nullable=true)
-     */
-    private $lastSignIn;
 
     /**
      * @var \DateTime
@@ -182,13 +156,6 @@ class Member implements UserInterface
     private $signedUpWith;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="is_activated", type="integer", nullable=false)
-     */
-    private $isActivated = '0';
-
-    /**
      * @var string
      *
      * @ORM\Column(name="facebook_link", type="string", length=255, nullable=true)
@@ -215,15 +182,6 @@ class Member implements UserInterface
      * @ORM\Column(name="linkedin_link", type="string", length=255, nullable=true)
      */
     private $linkedinLink;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \Becowo\CoreBundle\Entity\ProfilePicture
@@ -275,87 +233,16 @@ class Member implements UserInterface
      */
     public function __construct()
     {
+        parent::__construct();
         $this->workspace = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
     }
 
 
     /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Member
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return Member
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return Member
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
      * Set salt
      *
-     * @param string $password
+     * @param string $salt
      *
      * @return Member
      */
@@ -379,11 +266,11 @@ class Member implements UserInterface
     /**
      * Set roles
      *
-     * @param string $password
+     * @param array $roles
      *
      * @return Member
      */
-    public function setRoles($roles)
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
 
@@ -689,30 +576,6 @@ class Member implements UserInterface
     }
 
     /**
-     * Set urlProfilePicture
-     *
-     * @param string $urlProfilePicture
-     *
-     * @return Member
-     */
-    public function setUrlProfilePicture($urlProfilePicture)
-    {
-        $this->urlProfilePicture = $urlProfilePicture;
-
-        return $this;
-    }
-
-    /**
-     * Get urlProfilePicture
-     *
-     * @return string
-     */
-    public function getUrlProfilePicture()
-    {
-        return $this->urlProfilePicture;
-    }
-
-    /**
      * Set signUpDate
      *
      * @param \DateTime $signUpDate
@@ -736,29 +599,7 @@ class Member implements UserInterface
         return $this->signUpDate;
     }
 
-    /**
-     * Set lastSignIn
-     *
-     * @param \DateTime $lastSignIn
-     *
-     * @return Member
-     */
-    public function setLastSignIn($lastSignIn)
-    {
-        $this->lastSignIn = $lastSignIn;
-
-        return $this;
-    }
-
-    /**
-     * Get lastSignIn
-     *
-     * @return \DateTime
-     */
-    public function getLastSignIn()
-    {
-        return $this->lastSignIn;
-    }
+    
 
     /**
      * Set createdOn
@@ -856,30 +697,7 @@ class Member implements UserInterface
         return $this->signedUpWith;
     }
 
-    /**
-     * Set isActivated
-     *
-     * @param integer $isActivated
-     *
-     * @return Member
-     */
-    public function setIsActivated($isActivated)
-    {
-        $this->isActivated = $isActivated;
-
-        return $this;
-    }
-
-    /**
-     * Get isActivated
-     *
-     * @return integer
-     */
-    public function getIsActivated()
-    {
-        return $this->isActivated;
-    }
-
+    
     /**
      * Set facebookLink
      *

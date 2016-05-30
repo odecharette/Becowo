@@ -14,7 +14,7 @@ class MemberRepository extends EntityRepository
 	{
 		// Récupère uniquement les derniers inscrits actifs, non supprimés limité à $nb résultats
 		$qb = $this->createQueryBuilder('m');
-		$qb->where('m.isActivated = true')
+		$qb->where('m.enabled = true')
 			->andWhere('m.isDeleted = false')
 			->orderBy('m.createdOn', 'DESC')
 			->setFirstResult(0)
