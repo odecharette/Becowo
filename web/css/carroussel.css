@@ -49,6 +49,9 @@
 	/*padding: 50px 40px 50px 0px;*/
 }
 
+.pull-left {
+	float: none!important;
+}
 /*.carousel-control {
 	left: 107px;
 }
@@ -133,6 +136,12 @@
   -webkit-transition: all 0.2s ease-in-out;
           transition: all 0.2s ease-in-out;
 }
+
+.small-thumbnail img{
+	max-width:100%;
+    margin-bottom: 10px;
+}
+
 .custom-carousel-inner{
 	overflow: hidden;
     position: relative;
