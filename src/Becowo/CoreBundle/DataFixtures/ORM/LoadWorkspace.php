@@ -7,8 +7,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Becowo\CoreBundle\Entity\Workspace;
 use Becowo\CoreBundle\Entity\WorkspaceCategory;
 use Becowo\CoreBundle\Entity\Country;
+use Becowo\CoreBundle\Entity\Amenities;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class LoadWorkspace implements FixtureInterface
+class LoadWorkspace extends Controller implements FixtureInterface
 {
   public function load(ObjectManager $manager)
   {
@@ -42,11 +44,26 @@ class LoadWorkspace implements FixtureInterface
     $manager->persist($country);
     $workspace->setCountry($country);
 
+    // Amenities
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Amenities');
+    $amenities = $repo->findAll();
+
+    foreach ($amenities as $amenity) {
+        $workspace->addAmenity($amenity);
+    }
+
+    //Offices
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Office');
+    $offices = $repo->findAll();
+
+    // TO DO gérer les relations ManytoMany pour saisir le nombre d'offices (par défaut 1 ds la BDD)
+
+    foreach ($offices as $office) {
+        $workspace->addOffice($office);
+    }
 
     //addPoi
     //addTeamMember
-    //addOffice
-    //addAmenity
     //addOffer
 
     // On la persiste
@@ -82,11 +99,24 @@ class LoadWorkspace implements FixtureInterface
     $manager->persist($country);
     $workspace->setCountry($country);
 
+    // Amenities
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Amenities');
+    $amenities = $repo->findAll();
+
+    foreach ($amenities as $amenity) {
+        $workspace->addAmenity($amenity);
+    }
+
+    //Offices
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Office');
+    $offices = $repo->findAll();
+
+    foreach ($offices as $office) {
+        $workspace->addOffice($office);
+    }
 
     //addPoi
     //addTeamMember
-    //addOffice
-    //addAmenity
     //addOffer
 
     // On la persiste
