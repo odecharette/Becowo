@@ -17,7 +17,11 @@ class WorkspaceController extends Controller
   	$repo = $em->getRepository('BecowoCoreBundle:Workspace');
   	$ws = $repo->findOneByName($name);
 
-  	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', array('ws' => $ws));
+    //On récupère les events liés à ce WS
+    $repo = $em->getRepository('BecowoCoreBundle:Event');
+    $listEvents = $repo->findBy(array('workspace' => $ws));
+
+  	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', array('ws' => $ws, 'listEvents' => $listEvents));
   }
 
 }
