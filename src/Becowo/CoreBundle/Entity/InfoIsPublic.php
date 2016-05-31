@@ -29,7 +29,7 @@ class InfoIsPublic
     private $id;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\Member
+     * @var \Becowo\MemberBundle\Entity\Member
      *
      * @ORM\ManyToOne(targetEntity="Becowo\MemberBundle\Entity\Member")
      * @ORM\JoinColumns({
@@ -81,7 +81,7 @@ class InfoIsPublic
      *
      * @return InfoIsPublic
      */
-    public function setMember(\Becowo\CoreBundle\Entity\Member $member = null)
+    public function setMember(\Becowo\MemberBundle\Entity\Member $member = null)
     {
         $this->member = $member;
 

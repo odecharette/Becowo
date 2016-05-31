@@ -46,7 +46,7 @@ class Comment
     private $workspace;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\Member
+     * @var \Becowo\MemberBundle\Entity\Member
      *
      * @ORM\ManyToOne(targetEntity="Becowo\MemberBundle\Entity\Member")
      * @ORM\JoinColumns({
@@ -146,7 +146,7 @@ class Comment
      *
      * @return Comment
      */
-    public function setMember(\Becowo\CoreBundle\Entity\Member $member = null)
+    public function setMember(\Becowo\MemberBundle\Entity\Member $member = null)
     {
         $this->member = $member;
 

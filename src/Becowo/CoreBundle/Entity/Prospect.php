@@ -208,7 +208,7 @@ class Prospect
      *
      * @return Prospect
      */
-    public function setMember(\Becowo\CoreBundle\Entity\Member $member = null)
+    public function setMember(\Becowo\MemberBundle\Entity\Member $member = null)
     {
         $this->member = $member;
 
