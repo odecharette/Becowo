@@ -5,8 +5,9 @@ namespace Becowo\CoreBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Becowo\CoreBundle\Entity\WorkspaceFavorite;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadWorkspaceFavorite implements FixtureInterface
+class LoadWorkspaceFavorite implements FixtureInterface, OrderedFixtureInterface
 {
   public function load(ObjectManager $manager)
   {
@@ -24,4 +25,9 @@ class LoadWorkspaceFavorite implements FixtureInterface
     // On flush tout ce qu'on vient de créer
     $manager->flush();
   }
+
+  public function getOrder()
+    {
+        return 3;
+    }
 }

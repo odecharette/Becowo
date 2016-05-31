@@ -9,8 +9,9 @@ use Becowo\CoreBundle\Entity\WorkspaceCategory;
 use Becowo\CoreBundle\Entity\Country;
 use Becowo\CoreBundle\Entity\Amenities;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadWorkspace extends Controller implements FixtureInterface
+class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtureInterface
 {
   public function load(ObjectManager $manager)
   {
@@ -126,4 +127,11 @@ class LoadWorkspace extends Controller implements FixtureInterface
     // On flush tout ce qu'on vient de créer
     $manager->flush();
   }
+
+  public function getOrder()
+    {
+        // the order in which fixtures will be loaded
+        // the lower the number, the sooner that this fixture is loaded
+        return 1;
+    }
 }

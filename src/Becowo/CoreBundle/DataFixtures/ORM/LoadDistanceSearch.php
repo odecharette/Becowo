@@ -37,4 +37,6 @@ class LoadDistanceSearch implements FixtureInterface
     // On flush tout ce qu'on vient de créer
     $manager->flush();
   }
+
+
 }
