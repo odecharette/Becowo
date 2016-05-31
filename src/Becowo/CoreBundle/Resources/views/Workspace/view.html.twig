@@ -59,11 +59,29 @@
 				</ul>
 			</div>
 			<div class="col-lg-3">
+				<div class="well">
 				Panel Map
+				</div>
 			</div>
 		</div>
 		<hr>
-
+{############################################# Offices #########################################}
+		<div class="row">
+			<div class="col-lg-9">
+				<h4>Les Bureaux</h4>
+				<ul>
+					{% for office in ws.office %}
+						<li>{{office.name}}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-lg-3">
+				<div class="well">
+				Panel Event
+				</div>
+			</div>
+		</div>
+		<hr>
 
 	</div>
 
