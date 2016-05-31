@@ -1,15 +1,15 @@
-              {# On définit ce block, dans lequel vont venir s'insérer les autres vues du bundle #}
-              {% block fos_user_content %}
-             {% endblock fos_user_content %} 
-
-
-  {# On affiche les messages flash que définissent les contrôleurs du bundle #}
-  {# {% for key, messages in app.session.flashbag.all() %}
-    {% for message in messages %}
-      <div class="alert alert-{{ key }}">
-        {{ message|trans({}, 'FOSUserBundle') }}
-      </div>
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{label}} alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">X</span>
+        </button>
+            {{ flash|trans({}, 'FOSUserBundle') }}
+        </div>
     {% endfor %}
-  {% endfor %} #}
+{% endfor %}
 
-  
+{# On définit ce block, dans lequel vont venir s'insérer les autres vues du bundle #}
+{% block fos_user_content %}
+{% endblock fos_user_content %} 

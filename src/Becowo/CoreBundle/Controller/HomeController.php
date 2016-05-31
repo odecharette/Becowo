@@ -36,5 +36,4 @@ class HomeController extends Controller
   		'newWorkspaces' => $newWorkspaces));
   }
 
-
 }
