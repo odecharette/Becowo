@@ -2,9 +2,21 @@ becowo_core_homepage:
     path:     /
     defaults: { _controller: BecowoCoreBundle:Home:home }
 
+becowo_core_workspace:
+    path:     /{name}
+    defaults: { _controller: BecowoCoreBundle:Workspace:view }
+
 becowo_core_contact:
     path:     /contact
-    defaults: { _controller: BecowoCoreBundle:Contact:Contact }
+    defaults: { _controller: BecowoCoreBundle:Footer:Contact }
+
+becowo_core_apropos:
+    path:     /apropos
+    defaults: { _controller: BecowoCoreBundle:Footer:Apropos }
+
+becowo_core_faq:
+    path:     /faq
+    defaults: { _controller: BecowoCoreBundle:Footer:Faq }
 
 becowo_core_manager:
     path:     /manager

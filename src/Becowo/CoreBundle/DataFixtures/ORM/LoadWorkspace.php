@@ -56,7 +56,7 @@ class LoadWorkspace implements FixtureInterface
     $workspace = new Workspace();
     $workspace->setName('Mutualab');
     $workspace->setDescription('CoworkingLille est une communauté de gens, de talents, d\'indépendants, de tous bords, de tous horizons, qui se rassemblent autour d\'un lieu (Mutualab) pour travailler, collaborer, échanger et innover.');
-    $workspace->setDescriptionBonus('');
+    $workspace->setDescriptionBonus('Ceci est la phrase bonus !!!');
     $workspace->setWebsite('http://www.mutualab.org/');
     $workspace->setIsAlwaysOpen(false);
     $workspace->setStreet('19 rue Nicolas Leblanc');

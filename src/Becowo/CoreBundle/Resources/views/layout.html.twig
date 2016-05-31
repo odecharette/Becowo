@@ -74,8 +74,8 @@
 		<div id="footer_menu" class="col-lg-3">
 			<ul>
 			    <li><a href="{{ path('becowo_core_contact') }}">Contactez-nous</a></li>
-			    <li><a href="#">A propos</a></li>
-			    <li><a href="#">FAQ</a></li>
+			    <li><a href="{{ path('becowo_core_apropos') }}">A propos</a></li>
+			    <li><a href="{{ path('becowo_core_faq') }}">FAQ</a></li>
 			</ul>
 		</div>
 		<div id="footer_menu" class="col-lg-3">
@@ -93,7 +93,7 @@
 			</ul>
 		</div>
 		<div id="footer_menu" class="col-lg-3">
-			Ici barre de RS
+			<div class="col-lg-12">{% include 'BecowoCoreBundle:RS:all_RS_small.html.twig' %}</div>
 		</div>
 		</div>
 	</div>

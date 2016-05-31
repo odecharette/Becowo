@@ -9,7 +9,7 @@ use Becowo\CoreBundle\Form\ContactType;
 use Becowo\CoreBundle\Entity\Contact;
 
 
-class ContactController extends Controller
+class FooterController extends Controller
 {
   public function contactAction(Request $request)
   {
@@ -46,5 +46,15 @@ class ContactController extends Controller
       'form' => $form->createView(),
     ));
   
+  }
+
+  public function AproposAction()
+  {
+    return $this->render('BecowoCoreBundle:Footer:apropos.html.twig');
+  }
+
+  public function FaqAction()
+  {
+    return $this->render('BecowoCoreBundle:Footer:faq.html.twig');
   }
 }
