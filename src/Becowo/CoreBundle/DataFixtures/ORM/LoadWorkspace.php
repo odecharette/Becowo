@@ -57,14 +57,21 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Office');
     $offices = $repo->findAll();
 
-    // TO DO gérer les relations ManytoMany pour saisir le nombre d'offices (par défaut 1 ds la BDD)
+    // TO DO gérer le nombre d'offices (par défaut 1 ds la BDD)
 
     foreach ($offices as $office) {
         $workspace->addOffice($office);
     }
 
+    //TeamMembers
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:TeamMember');
+    $members = $repo->findAll();
+
+    foreach ($members as $member) {
+        $workspace->addTeamMember($member);
+    }
+
     //addPoi
-    //addTeamMember
     //addOffer
 
     // On la persiste
@@ -116,8 +123,15 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
         $workspace->addOffice($office);
     }
 
+    //TeamMembers
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:TeamMember');
+    $members = $repo->findAll();
+
+    foreach ($members as $member) {
+        $workspace->addTeamMember($member);
+    }
+
     //addPoi
-    //addTeamMember
     //addOffer
 
     // On la persiste

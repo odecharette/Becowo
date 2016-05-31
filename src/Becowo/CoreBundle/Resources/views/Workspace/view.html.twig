@@ -91,6 +91,19 @@
 			</div>
 		</div>
 		<hr>
+{############################################# Team #########################################}
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="well">
+					<h4>L'équipe à votre service</h4>
+					<ul>
+						{% for teamMember in ws.teamMember %}
+							<li>{{teamMember.firstname}} {{teamMember.name}}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
 
 	</div>
 
