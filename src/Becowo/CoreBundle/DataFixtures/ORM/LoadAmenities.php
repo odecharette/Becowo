@@ -5,9 +5,8 @@ namespace Becowo\CoreBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Becowo\CoreBundle\Entity\Amenities;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadAmenities implements FixtureInterface, OrderedFixtureInterface
+class LoadAmenities implements FixtureInterface
 {
   public function load(ObjectManager $manager)
   {
@@ -36,8 +35,5 @@ class LoadAmenities implements FixtureInterface, OrderedFixtureInterface
     $manager->flush();
   }
 
-  public function getOrder()
-    {
-        return 2;
-    }
+
 }
