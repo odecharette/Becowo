@@ -37,10 +37,11 @@
 			  	</div></div>
 			  	<br>
 			  	<div class="row" id="Vignettes-image"><div class="col-lg-12">
-			  		{# TO DO : récupérer et stocker les images en BDD#}
-			  		<img src="{{ app.request.basepath }}/images/Workspaces/01.jpg" alt="Yellow Working" width="200px" height="120px">
-			  		<img src="{{ app.request.basepath }}/images/Workspaces/yelloworking-2.jpg" alt="Yellow Working" width="200px" height="120px">
-			  		<img src="{{ app.request.basepath }}/images/Workspaces/yelloworking-3.jpg" alt="Yellow Working" width="200px" height="120px">
+			  		{% for picture in picturesByWs[ws.name] %}
+			  			{% if loop.index <= 3 %} {# On limite l'affichage à 3 images#}	
+			  				<img src="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" width="200px" height="120px">
+			  			{% endif %}
+			  		{% endfor %}
 			  	</div></div>
 			  	<br>
 			  	<div class="row"><div class="col-lg-3">
