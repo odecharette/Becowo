@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Picture
  *
  * @ORM\Table(name="picture", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\PictureRepository")
  */
 class Picture
 {

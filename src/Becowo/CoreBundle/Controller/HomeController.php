@@ -25,7 +25,7 @@ class HomeController extends Controller
     foreach ($workspaces as $ws) {
       //On récupère les pictures liées à chaque WS
       $repo = $em->getRepository('BecowoCoreBundle:Picture');
-      $pictures = $repo->findBy(array('workspace' => $ws));
+      $pictures = $repo->findByWsNoLogo($ws->getName());
 
       $picturesByWs[$ws->getName()] = $pictures;
     }
