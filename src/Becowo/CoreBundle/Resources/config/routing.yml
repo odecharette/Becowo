@@ -7,7 +7,7 @@ becowo_core_workspace:
     defaults: { _controller: BecowoCoreBundle:Workspace:view }
 
 becowo_core_workspace_vote:
-    path:     /vote/{vote}{ws}{member}
+    path:     /vote/{vote}{name}{member}
     defaults: { _controller: BecowoCoreBundle:Workspace:vote }
     requirements:
         vote: \d+

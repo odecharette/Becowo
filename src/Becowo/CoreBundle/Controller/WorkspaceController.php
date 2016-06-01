@@ -27,7 +27,7 @@ class WorkspaceController extends Controller
   	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', array('ws' => $ws, 'listEvents' => $listEvents));
   }
 
-  public function voteAction($vote, $ws, $member)
+  public function voteAction($vote, $name, $member)
   {
     // TO DO IMPORTANT : revoir tout car ici je charge en dur le vote pour un WS et un membre
     $em = $this->getDoctrine()->getManager();
@@ -46,7 +46,9 @@ class WorkspaceController extends Controller
     $em->persist($newVote);
     $em->flush();
 
-    return $this->redirectToRoute('becowo_core_workspace', array('name' => $w->getName()));
+    
+
+    return $this->redirectToRoute('becowo_core_workspace', array('name' => $name));
   }
 
 }

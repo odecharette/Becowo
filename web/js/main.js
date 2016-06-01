@@ -7,8 +7,12 @@ var q=encodeURIComponent($('#address_ws').text());
 $('#vote1').on('rating.change', function(event, value, caption) {
     //console.log(value); // Number(value)
 
+    //var ws_name = "{{ ws.name|json_encode() }}";
+    var ws_name = "Mutualab";
+    // TO DO récupérer en dynamique le name du WS en cours + le membre qui vote s'il est connecté
+    console.log(ws_name);
     Routing.generate('becowo_core_workspace_vote', {vote: value});
     $.ajax({
-   			url: Routing.generate('becowo_core_workspace_vote', {vote: Number(value), ws: 1, member: 1})
+   			url: Routing.generate('becowo_core_workspace_vote', {vote: Number(value), name: ws_name, member: 1})
 			});
 });
