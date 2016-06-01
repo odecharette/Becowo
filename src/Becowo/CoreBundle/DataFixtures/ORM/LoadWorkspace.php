@@ -71,6 +71,7 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
         $workspace->addTeamMember($member);
     }
 
+
     //addPoi
     //addOffer
 

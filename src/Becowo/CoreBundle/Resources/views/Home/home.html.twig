@@ -38,9 +38,9 @@
 			  	<br>
 			  	<div class="row" id="Vignettes-image"><div class="col-lg-12">
 			  		{# TO DO : récupérer et stocker les images en BDD#}
-			  		<img src="{{ app.request.basepath }}/images/yelloworking-1.jpg" alt="Yellow Working" width="200px" height="120px">
-			  		<img src="{{ app.request.basepath }}/images/yelloworking-2.jpg" alt="Yellow Working" width="200px" height="120px">
-			  		<img src="{{ app.request.basepath }}/images/yelloworking-3.jpg" alt="Yellow Working" width="200px" height="120px">
+			  		<img src="{{ app.request.basepath }}/images/Workspaces/01.jpg" alt="Yellow Working" width="200px" height="120px">
+			  		<img src="{{ app.request.basepath }}/images/Workspaces/yelloworking-2.jpg" alt="Yellow Working" width="200px" height="120px">
+			  		<img src="{{ app.request.basepath }}/images/Workspaces/yelloworking-3.jpg" alt="Yellow Working" width="200px" height="120px">
 			  	</div></div>
 			  	<br>
 			  	<div class="row"><div class="col-lg-3">
@@ -78,7 +78,7 @@
 			<h2>Ils ont rejoint la communauté</h2>
 			{% for member in members %}
 				{% if member.ProfilePicture.url is defined %}
-					<a href="{{ path('becowo_member_public_profile', {'username' : member.username}) }}"><img src="{{ app.request.basepath }}/images/{{member.ProfilePicture.url}}" alt="member.ProfilePicture.alt" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.job}} @{{member.city}}"></a>
+					<a href="{{ path('becowo_member_public_profile', {'username' : member.username}) }}"><img src="{{ app.request.basepath }}/images/ProfilePictures/{{member.ProfilePicture.url}}" alt="{{member.ProfilePicture.alt}}" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.job}} @{{member.city}}"></a>
 				{% endif %}
 			{% endfor %}
 		</div>
