@@ -21,6 +21,15 @@ class HomeController extends Controller
     // Les x derniers WS crées et actifs
     $newWorkspaces = $repo->findNewWorkspaces(3);
 
+    $picturesByNewWs = array();
+    foreach ($newWorkspaces as $ws) {
+      //On récupère la picture favorite liée à chaque WS
+      $repo = $em->getRepository('BecowoCoreBundle:Picture');
+      $picture = $repo->findByWsFavorite($ws->getName());
+
+      $pictureFavoriteByWs[$ws->getName()] = $picture;
+    }
+
     $picturesByWs = array();
     foreach ($workspaces as $ws) {
       //On récupère les pictures liées à chaque WS
@@ -43,7 +52,8 @@ class HomeController extends Controller
   		'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
   		'newWorkspaces' => $newWorkspaces,
-      'picturesByWs' => $picturesByWs));
+      'picturesByWs' => $picturesByWs,
+      'pictureFavoriteByWs' => $pictureFavoriteByWs));
   }
 
 }

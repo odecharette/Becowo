@@ -109,8 +109,7 @@
 				  	<h2>{{newWs.name}}</h2>
 			  	</div></div>
 			  	<div class="row"><div class="col-lg-12">
-			  		{# TO DO : récupérer et stocker les images en BDD#}
-			  		<img src="{{ app.request.basepath }}/images/yelloworking-1.jpg" alt="Yellow Working" width="200px" height="120px">
+			  		<img src="{{ app.request.basepath }}/images/Workspaces/{{newWs.name}}/{{pictureFavoriteByWs[newWs.name][0].url}}" alt="{{pictureFavoriteByWs[newWs.name][0].alt}}" width="200px" height="120px">
 			  	</div></div>
 			  	<div class="row"><div class="col-lg-12">
 			  		{{newWs.street|capitalize}}, {{newWs.postcode}} {{newWs.city}}
@@ -131,7 +130,7 @@
 			  	</div></div>
 			  	<div class="row"><div class="col-lg-12">
 			  		{# TO DO : récupérer et stocker les images en BDD#}
-			  		<img src="{{ app.request.basepath }}/images/yelloworking-1.jpg" alt="Yellow Working" width="200px" height="120px">
+			  		<img src="{{ app.request.basepath }}/images/Workspaces/{{workspaceFavorite.workspace.name}}/{{pictureFavoriteByWs[workspaceFavorite.workspace.name][0].url}}" alt="{{pictureFavoriteByWs[workspaceFavorite.workspace.name][0].alt}}" width="200px" height="120px">
 			  	</div></div>
 			  	<div class="row"><div class="col-lg-12">
 			  		{{workspaceFavorite.workspace.street|capitalize}}, {{workspaceFavorite.workspace.postcode}} {{workspaceFavorite.workspace.city}}

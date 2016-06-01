@@ -24,4 +24,18 @@ class PictureRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findByWsFavorite($wsName)
+	{
+		//retourne la picture favorite d'un WS
+
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->leftJoin('p.workspace', 'w')
+			->where('w.name = :name')
+			->andWhere('p.isFavorite = true')
+			->setParameter('name', $wsName);
+
+		return $qb->getQuery()->getResult();
+	}
 }
