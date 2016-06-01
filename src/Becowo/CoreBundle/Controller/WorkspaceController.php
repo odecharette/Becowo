@@ -4,6 +4,7 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Becowo\CoreBundle\Entity\Workspace;
 
@@ -21,7 +22,10 @@ class WorkspaceController extends Controller
     $repo = $em->getRepository('BecowoCoreBundle:Event');
     $listEvents = $repo->findBy(array('workspace' => $ws));
 
+
   	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', array('ws' => $ws, 'listEvents' => $listEvents));
   }
+
+  
 
 }
