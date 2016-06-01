@@ -38,4 +38,18 @@ class PictureRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findByWsLogo($wsName)
+	{
+		//retourne le logo d'un WS
+
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->leftJoin('p.workspace', 'w')
+			->where('w.name = :name')
+			->andWhere('p.isLogo = true')
+			->setParameter('name', $wsName);
+
+		return $qb->getQuery()->getResult();
+	}
 }
