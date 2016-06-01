@@ -60,14 +60,14 @@
 			</div>
 {############################################# Panel Map #########################################}
 			<div class="col-lg-3">
+				{# La taille de la carte joue sur les options affichées : itinéraire... #}
 				<div class="well">
 					<div class="embed-responsive embed-responsive-16by9">
-						<span id="address_ws"> {{ws.street}} {{ws.postcode}} {{ws.city}}</span>
+						<span id="address_ws"> {{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}</span>
 				    	<iframe id="map_ws" class="embed-responsive-item" allowfullscreen></iframe>
 					</div><br>
 					{{ws.street|capitalize}} <br>
-			  		{{ws.postcode}} {{ws.city}} <br><br>
-			  		<button type="button" class="btn btn-primary">Calculer mon itinéraire</button>
+			  		{{ws.postcode}} {{ws.city}} <br>
 				</div>
 			</div>
 		</div>
