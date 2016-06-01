@@ -6,6 +6,14 @@ becowo_core_workspace:
     path:     /{name}
     defaults: { _controller: BecowoCoreBundle:Workspace:view }
 
+becowo_core_workspace_vote:
+    path:     /vote/{vote}{ws}{member}
+    defaults: { _controller: BecowoCoreBundle:Workspace:vote }
+    requirements:
+        vote: \d+
+    options:
+        expose: true
+
 becowo_core_contact:
     path:     /contact
     defaults: { _controller: BecowoCoreBundle:Footer:Contact }

@@ -5,6 +5,10 @@ var q=encodeURIComponent($('#address_ws').text());
 
 //récupérer le vote saisie dans la page d'un WS
 $('#vote1').on('rating.change', function(event, value, caption) {
-    console.log(value); // Number(value)
+    //console.log(value); // Number(value)
 
+    Routing.generate('becowo_core_workspace_vote', {vote: value});
+    $.ajax({
+   			url: Routing.generate('becowo_core_workspace_vote', {vote: Number(value), ws: 1, member: 1})
+			});
 });

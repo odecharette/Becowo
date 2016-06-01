@@ -15,9 +15,9 @@ class Vote
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="vote_date", type="datetime", nullable=false)
+     * @ORM\Column(name="vote_date", type="datetime")
      */
-    private $voteDate = 'CURRENT_TIMESTAMP';
+    private $voteDate;
 
     /**
      * @var integer
@@ -50,9 +50,10 @@ class Vote
     /**
      * @var string
      *
-     * @ORM\Column(name="score_avg", type="decimal", precision=2, scale=2, nullable=false)
+     * @ORM\Column(name="score_avg", type="decimal", precision=2, scale=2)
      */
     private $scoreAvg;
+    
 
     /**
      * @var integer
@@ -83,6 +84,14 @@ class Vote
      */
     private $member;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->voteDate = new \DateTime();
+        // TO DO calculer la moyenne en auto
+    }
 
 
     /**
@@ -286,4 +295,12 @@ class Vote
     {
         return $this->member;
     }
+
+    /**
+    * @ORM\PostPersist
+    */
+    // public function calculeAvg()
+    // {
+    //     $this->setScoreAvg((score1+score2+score3+score4)/4);
+    // }
 }

@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Becowo\CoreBundle\BecowoCoreBundle(),
             new Becowo\MemberBundle\BecowoMemberBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
