@@ -34,6 +34,10 @@ becowo_core_admin:
     path:     /admin
     defaults: { _controller: BecowoCoreBundle:Admin:home }
 
+becowo_member_public_profile:
+    path:     /profile/{username}
+    defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

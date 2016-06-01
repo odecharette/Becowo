@@ -78,7 +78,7 @@
 			<h2>Ils ont rejoint la communauté</h2>
 			{% for member in members %}
 				{% if member.ProfilePicture.url is defined %}
-					<img src="{{ app.request.basepath }}/images/{{member.ProfilePicture.url}}" alt="member.ProfilePicture.alt" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.city}}">
+					<a href="{{ path('becowo_member_public_profile', {'username' : member.username}) }}"><img src="{{ app.request.basepath }}/images/{{member.ProfilePicture.url}}" alt="member.ProfilePicture.alt" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.job}} @{{member.city}}"></a>
 				{% endif %}
 			{% endfor %}
 		</div>
