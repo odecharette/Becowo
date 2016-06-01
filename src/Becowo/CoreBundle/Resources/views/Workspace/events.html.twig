@@ -10,7 +10,22 @@
       <div class="panel-collapse in" id="collapseOne">
         <div class="panel-body">
           De {{event.startDate|date("H:i")}} à {{event.endDate|date("H:i")}}
-          <p>{{event.description}}</p></div>
+          <p>{{event.description}}</p>
+        </div>
+        <div title="Add to Calendar" class="addthisevent">
+          Ajouter à mon calendrier
+          <span class="start">{{event.startDate|date("d/m/Y H:i:s")}}</span>
+          <span class="end">{{event.endDate|date("d/m/Y H:i:s")}}</span>
+          <span class="timezone">Europe/Paris</span>
+          <span class="title">{{event.title}}</span>
+          <span class="description">{{event.description}}</span>
+          <span class="location">{{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}</span>
+          <span class="organizer">Organizer</span>
+          <span class="organizer_email">Organizer e-mail</span>
+          <span class="all_day_event">false</span>
+          <span class="date_format">DD/MM/YYYY</span>
+        </div>
+        
       </div>
     </div>
   {% endfor %}
