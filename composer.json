@@ -1,6 +1,7 @@
 {
     "name": "olivia/becowo",
     "license": "proprietary",
+    "description": "Symfony3 website for Becowo",
     "type": "project",
     "autoload": {
         "psr-4": {
