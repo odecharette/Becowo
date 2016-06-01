@@ -94,14 +94,12 @@
 		<hr>
 {############################################# Team #########################################}
 		<div class="row">
-			<div class="col-lg-3">
+			<div class="col-lg-2">
 				<div class="well">
+					<center>
 					<h4>L'équipe à votre service</h4>
-					<ul>
-						{% for teamMember in ws.teamMember %}
-							<li>{{teamMember.firstname}} {{teamMember.name}}</li>
-						{% endfor %}
-					</ul>
+					{% include 'BecowoCoreBundle:Workspace:teamMembers.html.twig' %}
+					</center>
 				</div>
 			</div>
 		</div>

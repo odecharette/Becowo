@@ -1,0 +1,26 @@
+<div id="myCarouselTeam" class="carousel slide" data-interval="false">
+  <div class="carousel-inner">
+    {% for teamMember in ws.teamMember %}     
+      
+      <div class={% if loop.first %}"item active"{% else %}"item"{% endif %}>       
+      <div class="card">
+        <img class="card-img-top" src="{{ app.request.basepath }}/images/olivia.png" alt="Card image cap" width="100px" height="100px">
+        <div class="card-block">
+          <h4 class="card-title">{{teamMember.firstname}} {{teamMember.name}}</h4>
+          <span class="label label-info">{{teamMember.job}}</span>
+          <p class="card-text">{{teamMember.description}}</p>
+        </div>
+      </div>
+      </div>
+
+    {% endfor %}
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarouselTeam" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarouselTeam" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+    </a>
+  </div>
+</div>

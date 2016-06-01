@@ -15,7 +15,17 @@ class LoadTeamMember implements FixtureInterface
     $teamMember->setName('Toutatoi');
     $teamMember->setEmail('toutatoi@gmail.com');
     $teamMember->setUrlProfilePicture('');
-    $teamMember->setDescription('');
+    $teamMember->setDescription('description de Sophie');
+    $teamMember->setPhone('0000000000');
+    $teamMember->setJob('Assistante');
+    $manager->persist($teamMember);
+
+    $teamMember = new TeamMember();
+    $teamMember->setFirstname('Marc');
+    $teamMember->setName('PouToi');
+    $teamMember->setEmail('marc@gmail.com');
+    $teamMember->setUrlProfilePicture('');
+    $teamMember->setDescription('description de Marc');
     $teamMember->setPhone('0000000000');
     $teamMember->setJob('Manager');
     $manager->persist($teamMember);
