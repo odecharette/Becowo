@@ -3,7 +3,7 @@ becowo_core_homepage:
     defaults: { _controller: BecowoCoreBundle:Home:home }
 
 becowo_core_workspace:
-    path:     /{name}
+    path:     /ws/{name}
     defaults: { _controller: BecowoCoreBundle:Workspace:view }
 
 becowo_core_workspace_vote:
