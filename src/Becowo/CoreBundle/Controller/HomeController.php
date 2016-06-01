@@ -3,10 +3,6 @@
 namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Becowo\CoreBundle\Entity\Workspace;
-use Becowo\MemberBundle\Entity\Member;
 
 class HomeController extends Controller
 {
@@ -21,7 +17,6 @@ class HomeController extends Controller
     // Les x derniers WS crées et actifs
     $newWorkspaces = $repo->findNewWorkspaces(3);
 
-    $picturesByNewWs = array();
     foreach ($newWorkspaces as $ws) {
       //On récupère la picture favorite liée à chaque WS
       $repo = $em->getRepository('BecowoCoreBundle:Picture');

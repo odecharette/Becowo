@@ -4,7 +4,6 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Becowo\CoreBundle\Form\ContactType;
 use Becowo\CoreBundle\Entity\Contact;
 
