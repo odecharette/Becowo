@@ -19,12 +19,20 @@ class WorkspaceController extends Controller
   	$repo = $em->getRepository('BecowoCoreBundle:Workspace');
   	$ws = $repo->findOneByName($name);
 
+    //On récupère les pictures liées au WS, sauf le logo
+    $repo = $em->getRepository('BecowoCoreBundle:Picture');
+    $pictures = $repo->findByWsNoLogo($name);
+
+    // on récupère la photo favorite liée au WS
+    $pictureFavorite = $repo->findByWsFavorite($name);
+
     //On récupère les events liés à ce WS
     $repo = $em->getRepository('BecowoCoreBundle:Event');
     $listEvents = $repo->findBy(array('workspace' => $ws));
 
 
-  	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', array('ws' => $ws, 'listEvents' => $listEvents));
+  	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', 
+      array('ws' => $ws, 'listEvents' => $listEvents, 'pictures' => $pictures, 'pictureFavorite' => $pictureFavorite));
   }
 
   public function voteAction($vote, $name, $member)
