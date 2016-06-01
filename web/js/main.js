@@ -16,3 +16,10 @@ $('#vote1').on('rating.change', function(event, value, caption) {
    			url: Routing.generate('becowo_core_workspace_vote', {vote: Number(value), name: ws_name, member: 1})
 			});
 });
+
+//Charger l'AVG de vote du WS
+$( document ).ready(function() {
+    //TO DO récupérer le vote AVG en dynamique
+    $('#voteAvg').rating('update', 3);
+});
+
