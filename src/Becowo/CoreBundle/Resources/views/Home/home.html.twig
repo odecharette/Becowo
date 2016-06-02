@@ -44,11 +44,10 @@
 			  		{% endfor %}
 			  	</div></div>
 			  	<br>
-			  	<div class="row"><div class="col-lg-3">
-			  		{# TO DO #}
-			  		Office 1 <br>
-			  		Office 2 <br>
-			  		Office 3 <br>
+			  	<div class="row"><div class="col-lg-6">
+			  		{% for office in ws.office %}
+			  			{{office.name}} {% if office.description %} : {{office.description}} {% endif %} <br>
+			  		{% endfor %}
 			  	</div></div>
 			  	<br>
 			  	<div class="row"><div class="col-lg-9">

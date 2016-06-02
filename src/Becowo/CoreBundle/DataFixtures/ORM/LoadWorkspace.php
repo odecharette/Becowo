@@ -8,6 +8,7 @@ use Becowo\CoreBundle\Entity\Workspace;
 use Becowo\CoreBundle\Entity\WorkspaceCategory;
 use Becowo\CoreBundle\Entity\Country;
 use Becowo\CoreBundle\Entity\Amenities;
+use Becowo\CoreBundle\Entity\workspaceHasOffice;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
@@ -60,7 +61,12 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     // TO DO gérer le nombre d'offices (par défaut 1 ds la BDD)
 
     foreach ($offices as $office) {
-        $workspace->addOffice($office);
+        //$workspace->addOffice($office);
+        $workspaceHasOffice = new workspaceHasOffice();
+        $workspaceHasOffice->setWorkspace($workspace);
+        $workspaceHasOffice->setOffice($office);
+        $workspaceHasOffice->setDeskQty(2);
+        $manager->persist($workspaceHasOffice);
     }
 
     //TeamMembers
@@ -121,7 +127,11 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     $offices = $repo->findAll();
 
     foreach ($offices as $office) {
-        $workspace->addOffice($office);
+        $workspaceHasOffice = new workspaceHasOffice();
+        $workspaceHasOffice->setWorkspace($workspace);
+        $workspaceHasOffice->setOffice($office);
+        $workspaceHasOffice->setDeskQty(3);
+        $manager->persist($workspaceHasOffice);
     }
 
     //TeamMembers

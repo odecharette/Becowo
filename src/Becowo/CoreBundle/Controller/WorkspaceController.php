@@ -29,9 +29,17 @@ class WorkspaceController extends Controller
     $repo = $em->getRepository('BecowoCoreBundle:Event');
     $listEvents = $repo->findBy(array('workspace' => $ws));
 
+    // On récupère les offices et leur quantité
+    $repo = $em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
+    $listOffices = $repo->findBy(array('workspace' => $ws));
 
   	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', 
-      array('ws' => $ws, 'listEvents' => $listEvents, 'pictures' => $pictures, 'pictureFavorite' => $pictureFavorite, 'pictureLogo' => $pictureLogo));
+      array('ws' => $ws, 
+        'listEvents' => $listEvents, 
+        'pictures' => $pictures, 
+        'pictureFavorite' => $pictureFavorite, 
+        'pictureLogo' => $pictureLogo,
+        'listOffices' => $listOffices));
   }
 
   public function voteAction($vote, $name, $member)

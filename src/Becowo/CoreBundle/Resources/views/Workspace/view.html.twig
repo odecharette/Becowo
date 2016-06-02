@@ -81,8 +81,8 @@
 			<div class="col-lg-9">
 				<h4>Les Bureaux</h4>
 				<ul>
-					{% for office in ws.office %}
-						<li>{{office.name}}</li>
+					{% for office in listOffices %}
+						<li>{{office.office.name}} ({{office.DeskQty}} bureaux)</li>
 					{% endfor %}
 				</ul>
 			</div>
