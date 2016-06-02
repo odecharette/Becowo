@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{ app.request.basepath }}/css/CoreBundle.css">
     {# Star rating #}
     <link rel="stylesheet" href="{{ app.request.basepath }}/css/star-rating.min.css">
+    {# Contact And Social Widget #}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ app.request.basepath }}/css/SocialMediaWidget.css" type="text/css" media="all" />
   {% endblock %}
 </head>
 <body>
@@ -69,6 +72,8 @@
 	{% block body %}
     {% endblock %}
 
+
+{######################################################Footer ######################################################}
     
 	<footer class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -115,6 +120,8 @@
 		{# pour le bundle friendsofsymfony/jsrouting-bundle #}
 		<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+		{# COntact and social widget #}
+		<script type="text/javascript" src="{{ app.request.basepath }}/js/SocialMediaWidget.js"></script>
 
 	<script>
 
