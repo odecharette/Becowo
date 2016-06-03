@@ -38,3 +38,8 @@ footer, footer a
 	padding-bottom: 5px;
 	border-radius: 20px;
 }
+
+#NewMembers a
+{
+	display: inline-block;
+}
