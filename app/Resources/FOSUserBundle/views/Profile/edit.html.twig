@@ -21,7 +21,7 @@
 
 	<h2>Mes coordonnées</h2>
 
-    {{ form_row(form.username) }}
+    {{ form_row(form.username) }}   
     {{ form_row(form.firstname) }}
     {{ form_row(form.name) }}
     {{ form_row(form.sex) }}
@@ -56,9 +56,10 @@
 
   </div></div>
 
-  <div>
-      <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+  <div class="row text-center">
+      <input type="submit" class="btn btn-success" value="Mettre à jour mon profil">
   </div>
+  <br>
   {{ form_rest(form) }}
   {{ form_end(form) }}
 

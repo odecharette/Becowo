@@ -16,33 +16,34 @@ class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-    	$builder->add('firstname', TextType::class);
-    	$builder->add('name', TextType::class);
+    	$builder->add('firstname', TextType::class, array('required' => false));
+    	$builder->add('name', TextType::class, array('required' => false));
     	$builder->add('sex', ChoiceType::class, array(
     		'choices' => array(
-    			'Homme' => false,
-    			'Femme' => true),
+    			'Male' => false,
+    			'Female' => true),
     		'expanded'=> true,
-    		'multiple' => false));
-    	$builder->add('birthDate', DateType::class);
-    	$builder->add('phone', TextType::class);
-    	$builder->add('street', TextType::class);
-    	$builder->add('postcode', TextType::class);
-    	$builder->add('city', TextType::class);
+    		'multiple' => false,
+    		'required' => false));
+    	$builder->add('birthDate', DateType::class, array('required' => false));
+    	$builder->add('phone', TextType::class, array('required' => false));
+    	$builder->add('street', TextType::class, array('required' => false));
+    	$builder->add('postcode', TextType::class, array('required' => false));
+    	$builder->add('city', TextType::class, array('required' => false));
     	$builder->add('country', EntityType::class, array(
 				    'class'        => 'BecowoCoreBundle:Country',
 				    'choice_label' => 'name',
 				    'multiple'     => false,
 				    'expanded'	   => false));
 
-        $builder->add('job', TextType::class);
-    	$builder->add('society', TextType::class);
-    	$builder->add('website', TextType::class);
-    	$builder->add('description', TextareaType::class);
-    	$builder->add('facebookLink', UrlType::class);
-    	$builder->add('twitterLink', UrlType::class);
-    	$builder->add('instagramLink', UrlType::class);
-    	$builder->add('linkedinLink', UrlType::class);
+        $builder->add('job', TextType::class, array('required' => false));
+    	$builder->add('society', TextType::class, array('required' => false));
+    	$builder->add('website', TextType::class, array('required' => false));
+    	$builder->add('description', TextareaType::class, array('required' => false));
+    	$builder->add('facebookLink', UrlType::class, array('required' => false));
+    	$builder->add('twitterLink', UrlType::class, array('required' => false));
+    	$builder->add('instagramLink', UrlType::class, array('required' => false));
+    	$builder->add('linkedinLink', UrlType::class, array('required' => false));
     	// TO DO
     	//$builder->add('profilePicture');
 

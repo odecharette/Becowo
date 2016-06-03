@@ -17,7 +17,7 @@ security:
         submit: Connexion
 profile:
     show:
-        username: 'Nom d''utilisateur'
+        username: 'Pseudo'
         email: 'Adresse e-mail'
     edit:
         submit: 'Mettre à jour'
@@ -58,10 +58,10 @@ layout:
     logged_in_as: 'Connecté en tant que %username%'
 form:
     group_name: 'Nom du groupe'
-    username: 'Nom d''utilisateur'
+    username: 'Pseudo'
     email: 'Adresse e-mail'
     current_password: 'Mot de passe actuel'
     password: 'Mot de passe'
-    password_confirmation: Confirmer le mot de passe
+    password_confirmation: 'Confirmer le mot de passe'
     new_password: 'Nouveau mot de passe'
-    new_password_confirmation: Vérification
+    new_password_confirmation: 'Confirmer le mot de passe'
