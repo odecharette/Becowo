@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -17,7 +18,12 @@ class ProfileType extends AbstractType
     {
     	$builder->add('firstname', TextType::class);
     	$builder->add('name', TextType::class);
-    	$builder->add('sex', RadioType::class);
+    	$builder->add('sex', ChoiceType::class, array(
+    		'choices' => array(
+    			'Homme' => false,
+    			'Femme' => true),
+    		'expanded'=> true,
+    		'multiple' => false));
     	$builder->add('birthDate', DateType::class);
     	$builder->add('phone', TextType::class);
     	$builder->add('street', TextType::class);
