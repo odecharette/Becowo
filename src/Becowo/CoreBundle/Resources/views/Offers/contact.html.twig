@@ -1,0 +1,28 @@
+{% extends "BecowoCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Nos offres
+{% endblock %}
+
+{% block body %}
+
+Vous avez sélectionné l'offre <strong>{{name}}</strong>
+
+<p>
+Nous allons prendre contact avec vous sous 48h afin d'établir un devis et d'effectuer une première visite de votre espace.
+</p>
+<p>
+Pour celà, veuillez remplir le formulaire ci-dessous</p>
+<p>Merci</p>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-2">
+            <div class="well">
+                {{ form(form)}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

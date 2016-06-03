@@ -1,4 +1,30 @@
-New message from {{ name }}
-Sent from Becowo/contact
-
-{{ message|raw }}
+{% if name is defined %}
+	Nom : {{ name }}
+{% endif %}
+{% if message is defined %}
+	Message : {{ message|raw }}
+{% endif %}
+{% if wsName is defined %}
+	Nom de l'espace : {{ wsName }}
+{% endif %}
+{% if street is defined %}
+	street : {{ street }}
+{% endif %}
+{% if postCode is defined %}
+	Post Code : {{ postCode }}
+{% endif %}
+{% if city is defined %}
+	Ville : {{ city }}
+{% endif %}
+{% if name is defined %}
+	Nom : {{ name }}
+{% endif %}
+{% if phone is defined %}
+	phone : {{ phone }}
+{% endif %}
+{% if nbDesk is defined %}
+	nbDesk : {{ nbDesk }}
+{% endif %}
+{% if comments is defined %}
+	comments : {{ comments }}
+{% endif %}

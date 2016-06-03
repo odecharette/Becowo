@@ -18,6 +18,10 @@ becowo_core_offers:
     path:     /offres
     defaults: { _controller: BecowoCoreBundle:Offer:view }
 
+becowo_core_offers_contact:
+    path:     /offres/{name}
+    defaults: { _controller: BecowoCoreBundle:Offer:contact }
+
 becowo_core_contact:
     path:     /contact
     defaults: { _controller: BecowoCoreBundle:Footer:Contact }

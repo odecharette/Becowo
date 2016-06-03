@@ -6,6 +6,18 @@
 
 {% block body %}
 
+{% for label, flashes in app.session.flashbag.all %}
+  {% for flash in flashes %}
+      <div class="alert alert-{{label}} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">X</span>
+      </button>
+          {{ flash }}
+      </div>
+  {% endfor %}
+{% endfor %}
+
 <div class="container-fluid">
   <div class="row text-center">
     <h1>Nos offres</h1>
@@ -23,7 +35,7 @@
             <li>Statistiques sur les coworkers</li>
             <br>
         </ul>
-        <center><button type="button" class="btn btn-success">Je suis intéressé</button></center>
+        <center><a href="{{ path('becowo_core_offers_contact', { 'name': 'Zen' }) }}"><button type="button" class="btn btn-success">Je suis intéressé</button></a></center>
         <br>
         <h5>Conditions</h5>
         <ul>
@@ -43,7 +55,7 @@
             <li>Statistiques sur les pages vues</li>
             <br><br>
         </ul>
-        <center><button type="button" class="btn btn-success">Je suis intéressé</button></center>
+        <center><a href="{{ path('becowo_core_offers_contact', { 'name': 'Link' }) }}"><button type="button" class="btn btn-success">Je suis intéressé</button></a></center>
         <br>
         <h5>Conditions</h5>
         <ul>
@@ -62,7 +74,7 @@
             <li>Visite virtuelle de l'espace à 360°</li>
             <br>
         </ul>
-        <center><button type="button" class="btn btn-success">Je suis intéressé</button></center>
+        <center><a href="{{ path('becowo_core_offers_contact', { 'name': 'Zen +' }) }}"><button type="button" class="btn btn-success">Je suis intéressé</button></a></center>
         <br>
         <h5>Conditions</h5>
         <ul>
@@ -78,7 +90,7 @@
             <li>Mise en avant sponsorisée de votre annonce</li>
             <br>
         </ul>
-        <center><button type="button" class="btn btn-success">Je suis intéressé</button></center>
+        <center><a href="{{ path('becowo_core_offers_contact', { 'name': 'Link +' }) }}"><button type="button" class="btn btn-success">Je suis intéressé</button></a></center>
         <br>
         <h5>Conditions</h5>
         <ul>
