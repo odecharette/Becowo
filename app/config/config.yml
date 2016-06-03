@@ -76,3 +76,6 @@ fos_user:
     db_driver:     orm                              # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
     firewall_name: main                             # Le nom du firewall derrière lequel on utilisera ces utilisateurs
     user_class:    Becowo\MemberBundle\Entity\Member # La classe de l'entité User que nous utilisons
+    profile:
+        form:
+            type: Becowo\MemberBundle\Form\ProfileType

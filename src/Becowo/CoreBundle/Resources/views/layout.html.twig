@@ -48,7 +48,7 @@
 				<div class="row">
 					<div id="login" class="col-lg-12">
 						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-					    	Bonjour <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a>
+					    	Bonjour <a href="{{ path('fos_user_profile_edit') }}">{{ app.user.username }}</a>
 					    	<a href="{{ path('fos_user_security_logout') }}"><button type="button" class="btn btn-danger">Déconnexion</button></a>
 						{% else %}
 						    <button type="button" class="btn btn-primary" onclick="my_modal('Connexion')">Connexion</button>
