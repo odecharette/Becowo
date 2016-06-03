@@ -48,8 +48,17 @@
 				<div class="row">
 					<div id="login" class="col-lg-12">
 						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-					    	Bonjour <a href="{{ path('fos_user_profile_edit') }}">{{ app.user.username }}</a>
-					    	<a href="{{ path('fos_user_security_logout') }}"><button type="button" class="btn btn-danger">Déconnexion</button></a>
+					    	<div class="dropdown">
+							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							    Bonjour {{ app.user.username }}
+							    <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							    <li><a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
+							    <li><a href="#">Mes réservations</a></li>
+							    <li><a href="{{ path('fos_user_security_logout') }}">Me déconnecter</a></li>
+							  </ul>
+							</div>
 						{% else %}
 						    <button type="button" class="btn btn-primary" onclick="my_modal('Connexion')">Connexion</button>
 						    <button type="button" class="btn btn-primary" onclick="my_modal('Inscription')">Inscription</button>
