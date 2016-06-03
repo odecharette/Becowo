@@ -14,6 +14,10 @@ becowo_core_workspace_vote:
     options:
         expose: true
 
+becowo_core_offers:
+    path:     /offres
+    defaults: { _controller: BecowoCoreBundle:Offer:view }
+
 becowo_core_contact:
     path:     /contact
     defaults: { _controller: BecowoCoreBundle:Footer:Contact }
