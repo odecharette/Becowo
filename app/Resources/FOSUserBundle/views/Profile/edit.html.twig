@@ -17,6 +17,11 @@
     {# Les erreurs générales du formulaire. #}
     {{ form_errors(form) }}
 
+  <div class="row">
+    <img src="{{ app.request.basepath }}/images/ProfilePictures/{{form.children.profilePicture.children.url.vars.value}}" alt="{{form.children.profilePicture.children.alt.vars.value}}">
+  </div>
+
+
   <div class="row"><div class="col-lg-6">
 
 	<h2>Mes coordonnées</h2>
@@ -56,13 +61,13 @@
 
   </div></div>
 
-  <div class="row text-center">
-      <input type="submit" class="btn btn-success" value="Mettre à jour mon profil">
-  </div>
   <br>
   {{ form_rest(form) }}
-  {{ form_end(form) }}
 
+<div class="row text-center">
+      <input type="submit" class="btn btn-success" value="Mettre à jour mon profil">
+  </div>
+  {{ form_end(form) }}
 </div>
 </div></div>
 

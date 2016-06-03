@@ -186,7 +186,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @var \Becowo\CoreBundle\Entity\ProfilePicture
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\ProfilePicture")
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\ProfilePicture", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="profile_picture_id", referencedColumnName="id")
      * })

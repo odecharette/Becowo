@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Becowo\CoreBundle\Form\ProfilePictureType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class ProfileType extends AbstractType
@@ -44,6 +45,10 @@ class ProfileType extends AbstractType
     	$builder->add('twitterLink', UrlType::class, array('required' => false));
     	$builder->add('instagramLink', UrlType::class, array('required' => false));
     	$builder->add('linkedinLink', UrlType::class, array('required' => false));
+    	$builder->add('profilePicture', ProfilePictureType::class);
+    	// $builder->add('profilePicture', EntityType::class, array(
+    	// 			'class' 	=> 'BecowoCoreBundle:ProfilePicture',
+    	// 			'choice_label' => 'url'));
     	// TO DO
     	//$builder->add('profilePicture');
 
