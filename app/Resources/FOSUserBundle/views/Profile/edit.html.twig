@@ -8,16 +8,58 @@
 	
 <div class="container-fluid">
 <div class="row">
-<div class="col-lg-6">
-	<h2>Mes coordonnées</h2>
+<div class="col-lg-12">
 
-  {% trans_default_domain 'FOSUserBundle' %}
+{% trans_default_domain 'FOSUserBundle' %}
 
   {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-      {{ form_widget(form) }}
-      <div>
-          <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-      </div>
+
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+  <div class="row"><div class="col-lg-6">
+
+	<h2>Mes coordonnées</h2>
+
+    {{ form_row(form.username) }}
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.sex) }}
+    {{ form_row(form.birthDate) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.phone) }}
+
+    <hr>
+
+    {{ form_row(form.street) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.postcode) }}
+    {{ form_row(form.country) }}
+
+  </div>
+
+  <div class="col-lg-6">
+
+    <h2>Mon CV</h2>
+
+    {{ form_row(form.job) }}
+    {{ form_row(form.society) }}
+    {{ form_row(form.website) }}
+    {{ form_row(form.description) }}
+
+    <h2>Mes réseaux</h2>
+
+    {{ form_row(form.facebookLink) }}
+    {{ form_row(form.twitterLink) }}
+    {{ form_row(form.instagramLink) }}
+    {{ form_row(form.linkedinLink) }}
+
+  </div></div>
+
+  <div>
+      <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+  </div>
+  {{ form_rest(form) }}
   {{ form_end(form) }}
 
 </div>

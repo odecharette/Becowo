@@ -45,6 +45,8 @@ class ProfileType extends AbstractType
     	$builder->add('linkedinLink', UrlType::class);
     	// TO DO
     	//$builder->add('profilePicture');
+
+    	$builder->remove('current_password');
     }
 
     public function getParent()
