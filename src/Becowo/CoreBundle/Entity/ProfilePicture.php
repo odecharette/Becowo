@@ -66,7 +66,7 @@ class ProfilePicture
       return;
     }
 
-    // On récupère le nom original du fichier de l'internaute
+    // On récupère le nom original du fichier de l'internaute et on ajoute l'id pour que l'image soit unique
     $name = $this->file->getClientOriginalName();
 
     // On déplace le fichier envoyé dans le répertoire de notre choix
