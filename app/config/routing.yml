@@ -4,3 +4,18 @@ becowo_core:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+# -> from @FOSUserBundle/Resources/routing/profile.xml
+# je surcharge pour ne pas utiliser la view show, mais uniquement edit
+
+fos_user_profile_show:
+    path: /profile/show
+    defaults: { _controller: FOSUserBundle:Profile:edit }
+    requirements:
+        _method: GET|POST
+
+fos_user_profile_edit:
+    path: /profile/edit
+    defaults: { _controller: FOSUserBundle:Profile:edit }
+    requirements:
+        _method: GET|POST
