@@ -129,12 +129,16 @@
 
 	   	if ($url == 'Connexion') {
         	BootstrapDialog.show({
-            	message: $('<div></div>').load('{{ path('fos_user_security_login') }}')
+        		title: 'Connexion',
+            	message: $('<div></div>').load('{{ path('fos_user_security_login') }}'),
+            	draggable: true
         	});
     	}
     	else if ($url == 'Inscription') {
     		BootstrapDialog.show({
-            	message: $('<div></div>').load('{{ path('fos_user_registration_register') }}')
+    			title: 'Inscription',
+            	message: $('<div></div>').load('{{ path('fos_user_registration_register') }}'),
+            	draggable: true
         	});
     	}
       };

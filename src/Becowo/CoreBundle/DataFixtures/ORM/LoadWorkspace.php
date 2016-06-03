@@ -58,8 +58,6 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Office');
     $offices = $repo->findAll();
 
-    // TO DO gérer le nombre d'offices (par défaut 1 ds la BDD)
-
     foreach ($offices as $office) {
         //$workspace->addOffice($office);
         $workspaceHasOffice = new workspaceHasOffice();
