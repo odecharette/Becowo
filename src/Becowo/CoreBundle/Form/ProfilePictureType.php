@@ -17,9 +17,9 @@ class ProfilePictureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', FileType::class)
-            ->add('url', HiddenType::class)
-            ->add('alt', HiddenType::class)
+            ->add('file', FileType::class, array('required' => false))
+            ->add('url', HiddenType::class, array('required' => false))
+            ->add('alt', HiddenType::class, array('required' => false))
         ;
     }
     

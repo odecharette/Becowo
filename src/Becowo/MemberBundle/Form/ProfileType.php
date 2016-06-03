@@ -46,11 +46,6 @@ class ProfileType extends AbstractType
     	$builder->add('instagramLink', UrlType::class, array('required' => false));
     	$builder->add('linkedinLink', UrlType::class, array('required' => false));
     	$builder->add('profilePicture', ProfilePictureType::class);
-    	// $builder->add('profilePicture', EntityType::class, array(
-    	// 			'class' 	=> 'BecowoCoreBundle:ProfilePicture',
-    	// 			'choice_label' => 'url'));
-    	// TO DO
-    	//$builder->add('profilePicture');
 
     	$builder->remove('current_password');
     }
