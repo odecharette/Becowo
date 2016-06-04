@@ -32,7 +32,9 @@
     {{ form_errors(form) }}
 
   <div class="row text-center">
-    <img src="{{ app.request.basepath }}/images/ProfilePictures/{{form.children.profilePicture.children.url.vars.value}}" alt="{{form.children.profilePicture.children.alt.vars.value}}">
+    {% if form.children.profilePicture.children.url.vars.value != '' %}
+      <img src="{{ app.request.basepath }}/images/ProfilePictures/{{form.children.profilePicture.children.url.vars.value}}" alt="{{form.children.profilePicture.children.alt.vars.value}}" width="70px" height="70px">
+    {% endif %}
   </div>
 
 
@@ -51,8 +53,8 @@
     <hr>
 
     {{ form_row(form.street) }}
-    {{ form_row(form.city) }}
     {{ form_row(form.postcode) }}
+    {{ form_row(form.city) }}
     {{ form_row(form.country) }}
 
   </div>
