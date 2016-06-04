@@ -4,10 +4,16 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Becowo\CoreBundle\Entity\Vote;
+use Becowo\CoreBundle\Entity\Comment;
+use Becowo\CoreBundle\Form\CommentType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 class WorkspaceController extends Controller
 {
-  public function viewAction($name)
+  public function viewAction($name, Request $request)
   {
   	$em = $this->getDoctrine()->getManager();
 
@@ -33,13 +39,35 @@ class WorkspaceController extends Controller
     $repo = $em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
     $listOffices = $repo->findBy(array('workspace' => $ws));
 
+    // Création du formulaire de commentaires
+    $comment = new Comment();
+    // on attache le commentaire au WS et member en cours
+    //TO DO : le member doit etre connecté pour voir la partie commentaire
+    $comment->setWorkspace($ws);
+    $comment->setMember($this->getUser());
+    // $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $comment);
+    // $formBuilder->add('post', TextareaType::class);
+    // $formBuilder->add('send', SubmitType::class);
+    $form = $this->get('form.factory')->create(CommentType::class, $comment);
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        $em->persist($comment);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('notice', 'Commentaire bien enregistré.');
+
+        // On redirige vers la page de visualisation de l'annonce nouvellement créée
+        return $this->redirectToRoute('becowo_core_workspace', array('name' => $name));
+    }
+
   	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', 
       array('ws' => $ws, 
         'listEvents' => $listEvents, 
         'pictures' => $pictures, 
         'pictureFavorite' => $pictureFavorite, 
         'pictureLogo' => $pictureLogo,
-        'listOffices' => $listOffices));
+        'listOffices' => $listOffices,
+        'form' => $form->createView()));
   }
 
   public function voteAction($vote, $name, $member)

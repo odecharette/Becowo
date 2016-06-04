@@ -5,6 +5,7 @@ becowo_core_homepage:
 becowo_core_workspace:
     path:     /ws/{name}
     defaults: { _controller: BecowoCoreBundle:Workspace:view }
+    methods: GET|POST
 
 becowo_core_workspace_vote:
     path:     /vote/{vote}{name}{member}

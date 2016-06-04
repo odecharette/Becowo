@@ -1,0 +1,6 @@
+ {# Visible uniquement si le membre est connecté #}
+ {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+ 	{{ form(form) }}
+ {% else %}
+ 	<p>Pour saisir des commentaires, vous devez être connecté.</p>
+ {% endif %}

@@ -22,9 +22,9 @@ class Comment
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="posted_on", type="datetime", nullable=false)
+     * @ORM\Column(name="posted_on", type="datetime")
      */
-    private $postedOn = 'CURRENT_TIMESTAMP';
+    private $postedOn;
 
     /**
      * @var integer
@@ -55,7 +55,13 @@ class Comment
      */
     private $member;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->postedOn = new \DateTime();
+    }
 
     /**
      * Set post
