@@ -47,7 +47,11 @@ class WorkspaceController extends Controller
 
     //on récupère les commentaires existants
     $repo = $em->getRepository('BecowoCoreBundle:Comment');
-    $listComments = $repo->findAll();
+    $listComments = $repo->findBy(
+      array('workspace' => $ws),
+      array('postedOn' => 'DESC'),
+      null,
+      null);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $em->persist($comment);
