@@ -41,20 +41,19 @@ class WorkspaceController extends Controller
 
     // Création du formulaire de commentaires
     $comment = new Comment();
-    // on attache le commentaire au WS et member en cours
-    //TO DO : le member doit etre connecté pour voir la partie commentaire
     $comment->setWorkspace($ws);
     $comment->setMember($this->getUser());
-    // $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $comment);
-    // $formBuilder->add('post', TextareaType::class);
-    // $formBuilder->add('send', SubmitType::class);
     $form = $this->get('form.factory')->create(CommentType::class, $comment);
+
+    //on récupère les commentaires existants
+    $repo = $em->getRepository('BecowoCoreBundle:Comment');
+    $listComments = $repo->findAll();
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $em->persist($comment);
         $em->flush();
 
-        $request->getSession()->getFlashBag()->add('notice', 'Commentaire bien enregistré.');
+        $request->getSession()->getFlashBag()->add('success', 'Commentaire bien enregistré.');
 
         // On redirige vers la page de visualisation de l'annonce nouvellement créée
         return $this->redirectToRoute('becowo_core_workspace', array('name' => $name));
@@ -67,7 +66,8 @@ class WorkspaceController extends Controller
         'pictureFavorite' => $pictureFavorite, 
         'pictureLogo' => $pictureLogo,
         'listOffices' => $listOffices,
-        'form' => $form->createView()));
+        'form' => $form->createView(),
+        'listComments' => $listComments));
   }
 
   public function voteAction($vote, $name, $member)
