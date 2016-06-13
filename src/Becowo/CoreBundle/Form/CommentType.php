@@ -25,9 +25,4 @@ class CommentType extends AbstractType
             'data_class' => 'Becowo\CoreBundle\Entity\Comment'
         ));
     }
-
-    public function getName()
-    {
-        return 'comment';
-    }
 }

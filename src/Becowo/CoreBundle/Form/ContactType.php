@@ -35,9 +35,4 @@ class ContactType extends AbstractType
             'data_class' => 'Becowo\CoreBundle\Entity\Contact'
         ));
     }
-
-    public function getName()
-    {
-        return 'contact';
-    }
 }

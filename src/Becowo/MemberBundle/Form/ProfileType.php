@@ -60,10 +60,4 @@ class ProfileType extends AbstractType
     {
         return 'app_user_profile';
     }
-
-    // For Symfony 2.x
-    // public function getName()
-    // {
-    //     return $this->getBlockPrefix();
-    // }
 }
