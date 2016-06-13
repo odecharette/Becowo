@@ -42,7 +42,7 @@ class HomeController extends Controller
   	$repo = $em->getRepository('BecowoMemberBundle:Member');
   	$members = $repo->findNewMembers(5);
 
-  	return $this->render('BecowoCoreBundle:Home:home.html.twig', array(
+  	return $this->render('Home/home.html.twig', array(
   		'workspaces' => $workspaces, 
   		'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
