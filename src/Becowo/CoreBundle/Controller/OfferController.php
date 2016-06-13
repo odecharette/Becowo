@@ -11,7 +11,7 @@ class OfferController extends Controller
 {
   public function viewAction()
   {
-  	return $this->render('BecowoCoreBundle:Offers:offers.html.twig');
+  	return $this->render('Offer/view.html.twig');
   }
 
   public function contactAction($name, Request $request)
@@ -49,7 +49,7 @@ class OfferController extends Controller
     }
 
 
-    return $this->render('BecowoCoreBundle:Offers:contact.html.twig', array(
+    return $this->render('Offer/contact.html.twig', array(
       'form' => $form->createView(), 'name' => $name
     ));
 
