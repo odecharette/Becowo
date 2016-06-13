@@ -24,7 +24,7 @@ class FooterController extends Controller
                 ->setTo('webmaster@becowo.com')
                 ->setBody(
                     $this->renderView(
-                        'BecowoCoreBundle:Mail:contact.html.twig',
+                        'CommonViews/Mail/contact.html.twig',
                         array(
                             'ip' => $request->getClientIp(),
                             'name' => $form->get('name')->getData(),

@@ -28,7 +28,7 @@ class OfferController extends Controller
                 ->setTo('webmaster@becowo.com')
                 ->setBody(
                     $this->renderView(
-                        'BecowoCoreBundle:Mail:contact.html.twig',
+                        'CommonViews/Mail/contact.html.twig',
                         array(
                             'wsName' => $form->get('wsName')->getData(),
                             'street' => $form->get('street')->getData(),
