@@ -5,11 +5,67 @@
 {% block body %}
 
 	<h2> Historique de mes réservations</h2>
+<br>
+	<table class="table table-striped">
+	    <thead>
+	        <tr>
+	            <th>Espace</th>
+	            <th>Date de début</th>
+	            <th>Date de fin</th>
+	            <th>Statut</th>
+	            <th>Total € HT</th>
+	            <th>Total € TTC</th>
+	            <th>Actions</th>
+	        </tr>
+	    </thead>
+	    <tbody>
 
-	{% for booking in bookings %}
-		{{booking.id}}
-	{% else %}
-		<p>Vous n'avez encore aucune réservation.</p>
-	{% endfor %}
+			{% for booking in bookings %}
+				
+				        <tr>
+				            <td><a href="{{ path('becowo_core_workspace', { 'name': booking.workspace.name }) }}">{{booking.workspace.name}}</a></td>
+				            <td>{{booking.startDate|date("d/m/Y")}}</td>
+				            <td>{{booking.endDate|date("d/m/Y")}}</td>
+				            <td>{{booking.status.name}}</td>
+				            <td>{{booking.priceExclTax}}</td>
+				            <td>{{booking.priceInclTax}}</td>
+				            <td>
+				            	<button type="button" class="btn btn-primary">Contacter le Manager</button>
+				            	{% if booking.status.name != 'Terminée' and booking.status.name != 'Annulée' %}
+				            		<button type="button" class="btn btn-danger" onclick="deleteAction({{booking.id}})"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+				            		{# TO DO bouton delete #}
+				            	{% endif %}
+				            </td>
+				        </tr>
+			{% else %}
+				<p>Vous n'avez encore aucune réservation.</p>
+			{% endfor %}
 
-{% endblock %}
+	    </tbody>
+	</table>
+
+{# {% block javascripts %}
+	<script>
+
+  	function deleteAction($id)
+    {
+	   	BootstrapDialog.show({
+    		title: 'Annulation',
+        	message: 'Etes vous sûre de vouloir annuler cette réservation ?',
+        	buttons: [{
+                label: 'Confirmer',
+                cssClass: 'btn-danger'
+            	},
+            	{
+                label: 'Annuler',
+                cssClass: 'btn-default'
+            	}],
+        	draggable: true
+        	});
+	}
+    </script>
+
+{% endblock javascripts %} #}
+
+<br><br><br>
+{% endblock body %}

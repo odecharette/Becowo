@@ -19,6 +19,10 @@ class LoadStatus implements FixtureInterface
     $manager->persist($status);
 
     $status = new Status();
+    $status->setName('Terminée');
+    $manager->persist($status);
+
+    $status = new Status();
     $status->setName('Annulée');
     $manager->persist($status);
 

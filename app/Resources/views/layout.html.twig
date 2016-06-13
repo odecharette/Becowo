@@ -121,7 +121,6 @@
 	</footer>
 
 	{% block javascripts %}
-	    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
 	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
@@ -134,7 +133,7 @@
 		{# pour le bundle friendsofsymfony/jsrouting-bundle #}
 		<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-		{# COntact and social widget #}
+		{# Contact and social widget #}
 		<script type="text/javascript" src="{{ asset('js/SocialMediaWidget.js') }}"></script>
 
 	<script>
@@ -155,7 +154,7 @@
             	draggable: true
         	});
     	}
-      };
+      }
     </script>
 
   	{% endblock %}
