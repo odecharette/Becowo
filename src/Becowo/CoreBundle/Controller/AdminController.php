@@ -8,7 +8,7 @@ class AdminController extends Controller
 {
   public function homeAction()
   {
-  	return $this->render('BecowoCoreBundle:Admin:home.html.twig');
+  	return $this->render('Admin/home.html.twig');
   }
 
 
