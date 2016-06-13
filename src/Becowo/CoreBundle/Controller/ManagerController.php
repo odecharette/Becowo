@@ -8,7 +8,7 @@ class ManagerController extends Controller
 {
   public function homeAction()
   {
-  	return $this->render('BecowoCoreBundle:Manager:home.html.twig');
+  	return $this->render('Manager/home.html.twig');
   }
 
 
