@@ -236,6 +236,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         parent::__construct();
         $this->workspace = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
+        $this->roles = ['ROLE_USER'];
     }
 
 
