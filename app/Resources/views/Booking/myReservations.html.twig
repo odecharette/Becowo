@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ parent() }} - Mes réservations {% endblock %}
+
+{% block body %}
+
+	<h2> Historique de mes réservations</h2>
+
+	{% for booking in bookings %}
+		{{booking.id}}
+	{% else %}
+		<p>Vous n'avez encore aucune réservation.</p>
+	{% endfor %}
+
+{% endblock %}

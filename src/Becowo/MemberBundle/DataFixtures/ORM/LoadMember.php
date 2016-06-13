@@ -8,18 +8,24 @@ use Becowo\MemberBundle\Entity\Member;
 use Becowo\CoreBundle\Entity\Origin;            // TO DO : deplacer vers MemberBundle
 use Becowo\CoreBundle\Entity\Country;
 use Becowo\CoreBundle\Entity\ProfilePicture;    // TO DO : deplacer vers MemberBundle
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadMember implements FixtureInterface
+class LoadMember implements FixtureInterface, ContainerAwareInterface
 {
+
+    private $container;
+    
   public function load(ObjectManager $manager)
   {
+    $userManager = $this->container->get('fos_user.user_manager');
+
   	/******************************** Olivia ****************************/
 
-    $member = new Member();
+    $member = $userManager->createUser();
     $member->setEmail('odecharette@gmail.com');
-    $member->setUsername('Olivia');
-    $member->setPassword('olivia');	// TO DO : a changer par un pwd en hash
-    $member->setSalt('');
+    $member->setUsername('olivia');
+    $member->setPlainPassword('olivia');
     $member->setRoles(array('ROLE_ADMIN'));
     $member->setFirstName('Olivia');
     $member->setName('de Charette');
@@ -57,15 +63,15 @@ class LoadMember implements FixtureInterface
    
 
     // On la persiste
-    $manager->persist($member);
+    //$manager->persist($member);
+    $userManager->updateUser($member, true);
 
     /********************** Fiona *************************/
 
-    $member = new Member();
+    $member = $userManager->createUser();
     $member->setEmail('fiona_delannoy@hotmail.fr');
-    $member->setUsername('Fiona');
-    $member->setPassword('fiona');	// TO DO : a changer par un pwd en hash
-    $member->setSalt('');
+    $member->setUsername('fiona');
+    $member->setPlainPassword('fiona');
     $member->setRoles(array('ROLE_USER'));
     $member->setFirstName('Fiona');
     $member->setName('Delannoy');
@@ -103,9 +109,15 @@ class LoadMember implements FixtureInterface
    
 
     // On la persiste
-    $manager->persist($member);
+    //$manager->persist($member);
+    $userManager->updateUser($member, true);
 
     // On flush tout ce qu'on vient de créer
     $manager->flush();
+  }
+
+  public function setContainer(ContainerInterface $container = null)
+  {
+    $this->container = $container;
   }
 }

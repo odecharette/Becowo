@@ -15,6 +15,10 @@ becowo_core_workspace_vote:
     options:
         expose: true
 
+becowo_core_booking_myreservations:
+    path: /booking
+    defaults: { _controller: BecowoCoreBundle:Booking:myReservations }
+
 becowo_core_offers:
     path:     /offres
     defaults: { _controller: BecowoCoreBundle:Offer:view }
