@@ -9,14 +9,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="workspace_has_office")
+ * @ORM\Table(name="workspace_has_office", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
  */
 class WorkspaceHasOffice
 {
   /**
    * @ORM\Column(name="id", type="integer")
    * @ORM\Id
-   * @ORM\GeneratedValue(strategy="AUTO")
+   * @ORM\GeneratedValue(strategy="IDENTITY")
    */
   private $id;
 

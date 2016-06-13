@@ -22,23 +22,9 @@ class Booking
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_time", type="time", nullable=true)
-     */
-    private $startTime;
-
-    /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="end_date", type="date", nullable=true)
      */
     private $endDate;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="end_time", type="time", nullable=true)
-     */
-    private $endTime;
 
     /**
      * @var boolean
@@ -52,7 +38,7 @@ class Booking
      *
      * @ORM\Column(name="created_on", type="datetime", nullable=false)
      */
-    private $createdOn = 'CURRENT_TIMESTAMP';
+    private $createdOn;
 
     /**
      * @var string
@@ -117,7 +103,13 @@ class Booking
      */
     private $member;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->createdOn = new \DateTime();
+    }
 
     /**
      * Set startDate
@@ -144,30 +136,6 @@ class Booking
     }
 
     /**
-     * Set startTime
-     *
-     * @param \DateTime $startTime
-     *
-     * @return Booking
-     */
-    public function setStartTime($startTime)
-    {
-        $this->startTime = $startTime;
-
-        return $this;
-    }
-
-    /**
-     * Get startTime
-     *
-     * @return \DateTime
-     */
-    public function getStartTime()
-    {
-        return $this->startTime;
-    }
-
-    /**
      * Set endDate
      *
      * @param \DateTime $endDate
@@ -189,30 +157,6 @@ class Booking
     public function getEndDate()
     {
         return $this->endDate;
-    }
-
-    /**
-     * Set endTime
-     *
-     * @param \DateTime $endTime
-     *
-     * @return Booking
-     */
-    public function setEndTime($endTime)
-    {
-        $this->endTime = $endTime;
-
-        return $this;
-    }
-
-    /**
-     * Get endTime
-     *
-     * @return \DateTime
-     */
-    public function getEndTime()
-    {
-        return $this->endTime;
     }
 
     /**

@@ -42,13 +42,18 @@ class HomeController extends Controller
   	$repo = $em->getRepository('BecowoMemberBundle:Member');
   	$members = $repo->findNewMembers(5);
 
+    // On récupère les offices et leur quantité
+    $repo = $em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
+    $listOffices = $repo->findBy(array('workspace' => $ws));
+
   	return $this->render('Home/home.html.twig', array(
   		'workspaces' => $workspaces, 
   		'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
   		'newWorkspaces' => $newWorkspaces,
       'picturesByWs' => $picturesByWs,
-      'pictureFavoriteByWs' => $pictureFavoriteByWs));
+      'pictureFavoriteByWs' => $pictureFavoriteByWs,
+      'listOffices' => $listOffices));
   }
 
 }

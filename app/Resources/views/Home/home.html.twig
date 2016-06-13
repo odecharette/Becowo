@@ -45,9 +45,11 @@
 			  	</div></div>
 			  	<br>
 			  	<div class="row"><div class="col-lg-6">
-			  		{% for office in ws.office %}
-			  			{{office.name}} {% if office.description %} : {{office.description}} {% endif %} <br>
-			  		{% endfor %}
+			  		<ul>
+					{% for office in listOffices %}
+						<li>{{office.office.name}} ({{office.DeskQty}} bureaux)</li>
+					{% endfor %}
+				</ul>
 			  	</div></div>
 			  	<br>
 			  	<div class="row"><div class="col-lg-9">

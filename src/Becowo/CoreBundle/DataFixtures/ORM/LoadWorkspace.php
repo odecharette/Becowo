@@ -59,7 +59,6 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     $offices = $repo->findAll();
 
     foreach ($offices as $office) {
-        //$workspace->addOffice($office);
         $workspaceHasOffice = new workspaceHasOffice();
         $workspaceHasOffice->setWorkspace($workspace);
         $workspaceHasOffice->setOffice($office);

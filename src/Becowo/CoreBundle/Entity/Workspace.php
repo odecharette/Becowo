@@ -200,21 +200,6 @@ class Workspace
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Office", inversedBy="workspace")
-     * @ORM\JoinTable(name="workspace_has_office",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="office_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $office;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Amenities", inversedBy="workspace")
      * @ORM\JoinTable(name="workspace_has_amenities",
      *   joinColumns={
@@ -256,7 +241,7 @@ class Workspace
     {
         $this->poi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->teamMember = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->office = new \Doctrine\Common\Collections\ArrayCollection();
+       // $this->office = new \Doctrine\Common\Collections\ArrayCollection();
         $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->member = new \Doctrine\Common\Collections\ArrayCollection();
         $this->offer = new \Doctrine\Common\Collections\ArrayCollection();
@@ -820,40 +805,6 @@ class Workspace
     public function getTeamMember()
     {
         return $this->teamMember;
-    }
-
-    /**
-     * Add office
-     *
-     * @param \Becowo\CoreBundle\Entity\Office $office
-     *
-     * @return Workspace
-     */
-    public function addOffice(\Becowo\CoreBundle\Entity\Office $office)
-    {
-        $this->office[] = $office;
-
-        return $this;
-    }
-
-    /**
-     * Remove office
-     *
-     * @param \Becowo\CoreBundle\Entity\Office $office
-     */
-    public function removeOffice(\Becowo\CoreBundle\Entity\Office $office)
-    {
-        $this->office->removeElement($office);
-    }
-
-    /**
-     * Get office
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOffice()
-    {
-        return $this->office;
     }
 
     /**
