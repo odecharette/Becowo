@@ -14,19 +14,9 @@ class HomeController extends Controller
   	$repo = $em->getRepository('BecowoCoreBundle:Workspace');
   	$workspaces = $repo->findActiveWorkspaces();
 
-    // Les x derniers WS crées et actifs
-    $newWorkspaces = $repo->findNewWorkspaces(3);
-
-    //On récupère la picture favorite liée à chaque WS
-    $repo = $em->getRepository('BecowoCoreBundle:Picture');
-    foreach ($newWorkspaces as $ws) {
-      $picture = $repo->findByWsFavorite($ws->getName());
-      $pictureFavoriteByWs[$ws->getName()] = $picture;
-    }
-
     //On récupère les pictures liées à chaque WS
     $picturesByWs = array();
-    //$repo = $em->getRepository('BecowoCoreBundle:Picture');
+    $repo = $em->getRepository('BecowoCoreBundle:Picture');
     foreach ($workspaces as $ws) {
       $pictures = $repo->findByWsNoLogo($ws->getName());
       $picturesByWs[$ws->getName()] = $pictures;
@@ -52,9 +42,7 @@ class HomeController extends Controller
   		'workspaces' => $workspaces, 
   		'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
-  		'newWorkspaces' => $newWorkspaces,
       'picturesByWs' => $picturesByWs,
-      'pictureFavoriteByWs' => $pictureFavoriteByWs,
       'officesByWS' => $officesByWS));
   }
 

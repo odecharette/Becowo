@@ -32,7 +32,7 @@ class WorkspaceHasOffice
   private $workspace;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Office")
+   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Office", fetch="EAGER")
    * @ORM\JoinColumn(nullable=false)
    */
   private $office;
