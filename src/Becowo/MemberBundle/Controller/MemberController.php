@@ -12,7 +12,7 @@ class MemberController extends Controller
   	$repo = $em->getRepository('BecowoMemberBundle:Member');
   	$member = $repo->findOneByUsername($username);
 
-  	return $this->render('BecowoMemberBundle::publicProfile.html.twig', array('member' => $member));
+  	return $this->render('Member/ViewPublicProfile.html.twig', array('member' => $member));
   }
 
 
