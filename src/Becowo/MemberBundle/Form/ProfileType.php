@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Becowo\CoreBundle\Form\ProfilePictureType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +27,7 @@ class ProfileType extends AbstractType
     		'expanded'=> true,
     		'multiple' => false,
     		'required' => false));
-    	$builder->add('birthDate', DateType::class, array('required' => false));
+    	$builder->add('birthDate', BirthdayType::class, array('required' => false));
     	$builder->add('phone', TextType::class, array('required' => false));
     	$builder->add('street', TextType::class, array('required' => false));
     	$builder->add('postcode', TextType::class, array('required' => false));

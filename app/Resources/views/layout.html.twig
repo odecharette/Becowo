@@ -20,11 +20,11 @@
 <body>
 
 {% if is_granted('ROLE_MANAGER') %}
-  <li><a href="{{ path('becowo_core_manager') }}">Espace Manager</a></li>
+  <a href="{{ path('becowo_core_manager') }}">Espace Manager</a>
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') %}
-  <li><a href="{{ path('becowo_core_admin') }}">Espace Admin</a></li>
+  <a href="{{ path('becowo_core_admin') }}">Espace Admin</a>
 {% endif %}
 
 <header>
