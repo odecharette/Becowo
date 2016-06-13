@@ -63,7 +63,7 @@ class WorkspaceController extends Controller
         return $this->redirectToRoute('becowo_core_workspace', array('name' => $name));
     }
 
-  	return $this->render('BecowoCoreBundle:Workspace:view.html.twig', 
+  	return $this->render('Workspace/view.html.twig', 
       array('ws' => $ws, 
         'listEvents' => $listEvents, 
         'pictures' => $pictures, 
