@@ -1,4 +1,4 @@
-<link href="{{ app.request.basepath }}/css/carroussel.css" rel="stylesheet" type="text/css">
+<link href="{{ asset('css/carroussel.css') }}" rel="stylesheet" type="text/css">
 
 <div data-twttr-rendered="true" data-spy="scroll" data-target=".bs-docs-sidebar">
     <div class="container">
@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-lg-9 col-top">
             <div class="pull-left single-container">
-              <img src="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{pictureFavorite[0].url}}" alt="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{pictureFavorite[0].alt}}" id="DataDisplay"/>
+              <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureFavorite[0].url}}" alt="{{pictureFavorite[0].alt}}" id="DataDisplay"/>
             </div>
 
           </div>
@@ -15,7 +15,7 @@
             <div id="myCarousel" class="carousel vertical slide pull-left" >
               <div class="row">
                 <div class="col-lg-12 col-lg-offset-5">
-                  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="{{ app.request.basepath }}/images/up.png"></a>
+                  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="{{ asset('images/up.png') }}" alt="Up"></a>
                 </div>
               </div>
               
@@ -27,7 +27,7 @@
                     <div class="row"><div class="col-lg-12">
                       {% for picture in pictures %}
                         {% if loop.index <= 3 %} {# On limite l'affichage à 3 images#}
-                          <a href="#x" class="small-thumbnail"><img src="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{picture.url}}" ></a>
+                          <a href="#x" class="small-thumbnail"><img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" ></a>
                         {% endif %}
                       {% endfor %}
                       </div></div>
@@ -38,7 +38,7 @@
                     <div class="row"><div class="col-lg-12">
                       {% for picture in pictures %}
                         {% if loop.index >= 4 and loop.index <= 6 %} {# On limite l'affichage aux images 3 à 6#}
-                          <a href="#x" class="small-thumbnail"><img src="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{picture.url}}" ></a>
+                          <a href="#x" class="small-thumbnail"><img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" ></a>
                         {% endif %}
                       {% endfor %}
                     </div></div>  
@@ -48,7 +48,7 @@
 
               </div><!--/carousel-inner-->  
               <div class="row"><div class="col-lg-12 col-lg-offset-5">
-                <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="{{ app.request.basepath }}/images/down.png"></a>  
+                <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="{{ asset('images/down.png') }}" alt="Down"></a>  
               </div></div>  
             </div><!--/myCarousel-->
             

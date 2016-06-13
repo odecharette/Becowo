@@ -9,7 +9,7 @@
 	<div class="container-fluid">
 		<div class="row text-center">
 			<div class="col-lg-3">
-				<img src="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{pictureLogo[0].url}}" alt="{{ app.request.basepath }}/images/Workspaces/{{ws.name}}/{{pictureLogo[0].alt}}">
+				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
 			</div>
 			<div class="col-lg-6">
 				<h1>{{ws.name}}</h1>

@@ -22,7 +22,7 @@
 {% for comment in listComments %}
 	<div class="row">
 		<div class="col-lg-2">
-			<img src="{{ app.request.basepath }}/images/ProfilePictures/{{comment.member.profilePicture.url}}", alt="{{comment.member.profilePicture.alt}}" width="50px", height="50px"><br>
+			<img src="{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}", alt="{{comment.member.profilePicture.alt}}" width="50px", height="50px"><br>
 			<a href="{{ path('becowo_member_public_profile', {'username' : comment.member.username}) }}">{{comment.member.username}}</a>
 		</div>
 		<div class="col-lg-10">

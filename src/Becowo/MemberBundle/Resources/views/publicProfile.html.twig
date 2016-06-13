@@ -10,7 +10,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-1 col-lg-offset-5">
-		<img src="{{ app.request.basepath }}/images/ProfilePictures/{{member.profilepicture.url}}" alt="{{member.profilepicture.alt}}" width="100px" height="100px">
+		<img src="{{ asset('images/ProfilePictures/') }}{{member.profilepicture.url}}" alt="{{member.profilepicture.alt}}" width="100px" height="100px">
 		</div>
 		<div class="col-lg-6">
 		{{member.firstname}} {{member.name}}<br>
