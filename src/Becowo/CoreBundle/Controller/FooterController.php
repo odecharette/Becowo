@@ -41,7 +41,7 @@ class FooterController extends Controller
     }
 
 
-    return $this->render('BecowoCoreBundle:Footer:contact.html.twig', array(
+    return $this->render('Footer/contact.html.twig', array(
       'form' => $form->createView(),
     ));
   
@@ -49,11 +49,11 @@ class FooterController extends Controller
 
   public function AproposAction()
   {
-    return $this->render('BecowoCoreBundle:Footer:apropos.html.twig');
+    return $this->render('Footer/apropos.html.twig');
   }
 
   public function FaqAction()
   {
-    return $this->render('BecowoCoreBundle:Footer:faq.html.twig');
+    return $this->render('Footer/faq.html.twig');
   }
 }
