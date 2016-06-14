@@ -31,7 +31,7 @@
         "doctrine/doctrine-fixtures-bundle": "~2.3",
         "friendsofsymfony/user-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "2.0.0-alpha1",
-        "friendsofsymfony/elastica-bundle": "3.2.x-dev",
+        "friendsofsymfony/elastica-bundle": "dev-master",
         "jms/serializer-bundle": "1.1.0",
         "symfony/form": "3.1.0"
     },

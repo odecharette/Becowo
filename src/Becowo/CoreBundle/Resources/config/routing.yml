@@ -1,6 +1,7 @@
 becowo_core_homepage:
     path:     /
     defaults: { _controller: BecowoCoreBundle:Home:home }
+    methods: GET
 
 becowo_core_workspace:
     path:     /ws/{name}
@@ -50,6 +51,11 @@ becowo_core_admin:
 becowo_member_public_profile:
     path:     /profile/public/{username}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
+
+recherche:
+    path:   /search
+    defaults: { _controller: BecowoCoreBundle:Search:search }
+    methods: GET
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -16,6 +16,14 @@
 {############################################ Moteur de recherche ##############################################}
  	<h2>Ici moteur de recherche </h2>
 	
+	<div class="moteur-recherche">
+	    <form method="get" name="form-recherche" >
+	        <input type="text" id="recherche" name="recherche" placeholder="Rechercher" autocomplete="off" />
+	    </form>
+	</div>
+	<br><br>
+		{# {{ render(controller('BecowoCoreBundle:Search:search', { 'query': 'toto' } )) }} #}
+	<br><br>
 	 	<div id="vignette_espace" class="container-fluid">
 	 		<div class="row">
 			
@@ -149,7 +157,7 @@
 </div>
 
 {# Social Media Widget #}
-
+{#
 <div class="vertical-nav-holder">
 	<a href="#" class="vertical-nav-btn"><i class="fa fa-share-alt"></i></a>
 
@@ -165,10 +173,20 @@
 </div><!-- /.vertical-nav-holder -->
 
 <div class="vertical-nav-overlay"></div>
-
+#}
 	<br><br><br><br>
 
-
+{% block javascripts %}
+	
+    <script type="text/javascript">
+        $(function() {
+            $('#recherche').instantSearch({
+                minQueryLength: {{ constant('Becowo\\CoreBundle\\Services\\SearchEngine::MIN_CHAR_MDR_CATEGORIE') }},
+                noItemsFoundMessage: 'Aucun workspace trouvé !'
+            });
+        });
+    </script>
+{% endblock javascripts %}
 	
 
-{% endblock %}
+{% endblock body %}

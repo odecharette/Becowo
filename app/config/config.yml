@@ -71,7 +71,7 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# FOSUnser configuration
+# FOSUser configuration
 fos_user:
     db_driver:     orm                              # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
     firewall_name: main                             # Le nom du firewall derrière lequel on utilisera ces utilisateurs
@@ -79,3 +79,38 @@ fos_user:
     profile:
         form:
             type: Becowo\MemberBundle\Form\ProfileType
+
+# Elastic search configuration
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    serializer:
+        callback_class: FOS\ElasticaBundle\Serializer\Callback
+        serializer: serializer
+    indexes:
+        becowo:
+            index-name: becowo_%kernel.environment%
+            settings:
+                index:
+                    analysis:
+                        analyzer:
+                            autocomplete_analyzer:
+                                type: custom
+                                tokenizer: autocomplete_tokenizer
+                                filter: [lowercase, asciifolding]
+                        tokenizer:
+                            autocomplete_tokenizer:
+                                type: nGram
+                                min_gram: 3
+                                max_gram: 20
+            types:
+                workspace:
+                    mappings:
+                        name: { type: string, analyzer: autocomplete_analyzer }
+                    persistence:
+                        driver: orm
+                        model: Becowo\CoreBundle\Entity\Workspace
+                        provider:
+                            query_builder_method : findActiveWorkspaces
+                        listener: ~
+                        finder: ~
