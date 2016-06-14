@@ -32,13 +32,14 @@ class SearchController extends Controller
   {
     $moteurRecherche = $this->get('app.search');  // déclaré dans services.yml
     $recherche = $request->query->get('recherche', '');
-$WS = [];
+
     //if ($request->isXmlHttpRequest()) {
     if ($request->isMethod('GET')) {
       
         if (strlen($recherche) >= SearchEngine::MIN_CHAR_MDR_CATEGORIE) {
             $resultats = $moteurRecherche->rechercheWorkspace($recherche);
-            //$WS[] = ['result' => 'Workspaces', 'url' => null]; // met un titre au dessus des suggestions
+            //dump($resultats);
+            $WS[] = ['result' => 'Workspaces', 'url' => null];
 
             foreach ($resultats as $result) {
                 $WS[] = ['result' => $result->getName(),

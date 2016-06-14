@@ -30,9 +30,8 @@ class SearchEngine
     public function rechercheWorkspace($recherche)
     {
         $query = new Match();
-        $query->setFieldQuery('name', $recherche);
-        $query->setFieldOperator('name', 'AND');
-        dump($query);
+        $query->setField('name', $recherche);
+        //$query->setFieldOperator('name', 'AND');
 
         return $this->finderWS->find($query, self::LIMIT_MDR_CATEGORIE);
     }
