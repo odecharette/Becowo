@@ -3,6 +3,13 @@ becowo_core_homepage:
     defaults: { _controller: BecowoCoreBundle:Home:home }
     methods: GET
 
+becowo_core_test:
+    path: /test
+    defaults: { _controller: BecowoCoreBundle:Test:test }
+
+becowo_locations:
+    path: /data/locations.xml
+
 becowo_core_workspace:
     path:     /ws/{name}
     defaults: { _controller: BecowoCoreBundle:Workspace:view }

@@ -38,7 +38,7 @@ class SearchController extends Controller
       
         if (strlen($recherche) >= SearchEngine::MIN_CHAR_MDR_CATEGORIE) {
             $resultats = $moteurRecherche->rechercheWorkspace($recherche);
-            //$WS[] = ['result' => 'Workspaces', 'url' => null];
+            //$WS[] = ['result' => 'Workspaces', 'url' => null]; // titre au dessus des résultats
 
             foreach ($resultats as $result) {
                 $WS[] = ['result' => $result->getName(),
