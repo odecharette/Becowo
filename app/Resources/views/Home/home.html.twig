@@ -32,13 +32,9 @@
 		{# {{ render(controller('BecowoCoreBundle:Search:search', { 'query': 'toto' } )) }} #}
 	<br><br>
 	 	<div id="vignette_espace" class="container-fluid">
-{############################################ ?? ##############################################}
+{############################################ MapBox ##############################################}
 	 		<div class="row">
-				<div class="col-lg-4">
-					<div id='listings' class='listings'></div>
-
-				</div>
-				<div class="col-lg-8">
+				<div class="col-lg-7">
 					<div id='map' class='map'> </div>
 					{# on prépare 2 variable à envoyer au my-mapbox.js #}
 					{# TO DO changer icone des markers #}
@@ -47,22 +43,21 @@
 					{# <input id='search' class='search-ui' placeholder='Enter state code' />
 					<button id='btn_search' type="button" class="btn btn-primary" onclick="search()">Search</button> #}
 				</div>
+				<div class="col-lg-5">
+					<div id='listings' class='listings'></div>
+
+				</div>
 			</div>
 
-	 		<div class="row">
-			
-{############################################ ?? ##############################################}
-		<div class="col-lg-7">
-			
-vide
 
-	</div></div>
-{############################################ Vignettes Workspaces ##############################################}
+{############################################ Vignettes Workspaces (inclus via JS) ##############################################}
+	<div class="row">
 		<div class="col-lg-5">
 			{% for ws in workspaces %}
-	 		<div class="well">
+			<div id="vignette-{{ws.id}}">
+	 			<div class="well">
 	 			<div class="row text-center"><div class="col-lg-12">
-				  	<h3>{{ws.name}}</h3>
+	 				<a href="#" id = "link-{{ws.id}}"><h3>{{ws.name}}</h3></a>
 			  	</div></div>
 			  	<div class="row"><div class="col-lg-6">
 			  		{{ws.street|capitalize}} <br>
@@ -97,9 +92,10 @@ vide
 			  	</div>
 			  	</div>
 		  	</div>
-		  	
-	{% endfor %}</div>
-	
+		  </div>
+			{% endfor %}
+		</div>
+	</div>
 </div>
 		</div>
 

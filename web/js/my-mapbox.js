@@ -26,46 +26,35 @@ $(document).ready(function() {
 	    el.className += ' active';
 	  }
 
+console.log(locations);
+
 	    locations.eachLayer(function(locale) {
 
 	      // Shorten locale.feature.properties to just `prop` so we're not
 	      // writing this long form over and over again.
-	      var prop = locale.feature.properties;
+	    var prop = locale.feature.properties;
 
 	      // Each marker on the map.
-	      var popup = '<h3>' + prop.name + '</h3><div>' + prop.street + '<br>' + prop.city;
+	    var popup = '<h3>' + prop.name + '</h3><div>' + prop.street + '<br>' + prop.city;
 
-	      var listing = listings.appendChild(document.createElement('div'));
-	          listing.className = 'item';
+	    // inlus la div 'vignette' construite ds home.html.twig
+	    var listing = listings.appendChild(document.getElementById('vignette-'+prop.id));
+	    var link = document.getElementById('link-'+prop.id);
 
-	      var link = listing.appendChild(document.createElement('a'));
-	          link.href = '#';
-	          link.className = 'title';
-
-      	link.innerHTML = prop.name;
-        
-        
-
-	      var details = listing.appendChild(document.createElement('div'));
-	      details.innerHTML += '<br /><small class="quiet">' + prop.street + '</small>';
-	      details.innerHTML += '<br />' + prop.city;
-
-
-	      link.onclick = function() {
+	    link.onclick = function clickVignette() {
 	        setActive(listing);
 
-	        // When a menu item is clicked, animate the map to center
-	        // its associated locale and open its popup.
-	        map.setView(locale.getLatLng(), 16);
-	        locale.openPopup();
-	        return false;
-	      };
+	        // When a menu item is clicked, animate the map to center its associated locale and open its popup.
+		    map.setView(locale.getLatLng(), 16);
+		    locale.openPopup();
+		    return false;
+		    };
+		    
 
 	      // Marker interaction
 	      locale.on('click', function(e) {
 	          // 1. center the map on the selected marker.
 	          map.panTo(locale.getLatLng());
-
 	          // 2. Set active the markers associated listing.
 	          setActive(listing);
 	      });
