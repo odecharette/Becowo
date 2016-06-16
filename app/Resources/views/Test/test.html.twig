@@ -34,21 +34,20 @@
   <script>
 
   $(document).ready(function() {
-	  L.mapbox.accessToken = 'pk.eyJ1Ijoib2RlY2hhcmV0dGUiLCJhIjoiY2lwZ3dkeWVxMDAweHZia3dmeXY4amVrMyJ9.GR0tD6XtoQjSfe3M4C2NrA';
+	L.mapbox.accessToken = 'pk.eyJ1Ijoib2RlY2hhcmV0dGUiLCJhIjoiY2lwZ3dkeWVxMDAweHZia3dmeXY4amVrMyJ9.GR0tD6XtoQjSfe3M4C2NrA';
 	  
-	 var g = {{workspacesInJson|raw}};
+	var g = {{workspacesInJson|raw}};
 
-	  var map = L.mapbox.map('map', 'odecharette.0dg2cjol')
-	        .setView([48.8534100, 2.3488000], 16)
-	        .featureLayer.setGeoJSON(g);
+	var map = L.mapbox.map('map', 'odecharette.0dg2cjol')
+        .setView([48.8534100, 2.3488000], 16);
 
-	  var listings = document.getElementById('listings');
-	 //  var locations = L.mapbox.featureLayer().addTo(map);
+	map.scrollWheelZoom.disable();	// disabled zoom avec la roulette de la souris
+       
 
+  	var listings = document.getElementById('listings');
+  	var locations = L.mapbox.featureLayer().addTo(map);
 	 //locations.loadURL("{{ asset('data/address.json') }}");
-
-
-
+	 locations.setGeoJSON(g);
 
 	  function setActive(el) {
 	    var siblings = listings.getElementsByTagName('div');
@@ -59,9 +58,6 @@
 
 	    el.className += ' active';
 	  }
-
-	  	var locations = L.mapbox.featureLayer().addTo(map);
-		locations.setGeoJSON(g);
 
 	    locations.eachLayer(function(locale) {
 
