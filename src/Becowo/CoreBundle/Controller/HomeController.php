@@ -38,12 +38,36 @@ class HomeController extends Controller
   	$repo = $em->getRepository('BecowoMemberBundle:Member');
   	$members = $repo->findNewMembers(5);
 
+    // Construction du GeoJson pour la MapBox
+
+    $geojson = array( 'type' => 'FeatureCollection', 'features' => array());
+
+    foreach ($workspaces as $w) {
+      $feature = array(
+        'id' => $w->getId(),
+        'type' => 'Feature', 
+        'geometry' => array(
+            'type' => 'Point',
+            'coordinates' => array($w->getLongitude(), $w->getLatitude())
+        ),
+        'properties' => array(
+            'name' => $w->getName(),
+            'street' => $w->getStreet(),
+            'city' => $w->getCity()
+            )
+        );
+    array_push($geojson['features'], $feature);
+    }
+
+  $workspacesInJson = json_encode($geojson);
+
   	return $this->render('Home/home.html.twig', array(
   		'workspaces' => $workspaces, 
   		'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
       'picturesByWs' => $picturesByWs,
-      'officesByWS' => $officesByWS));
+      'officesByWS' => $officesByWS,
+      'workspacesInJson' => $workspacesInJson));
   }
 
 
