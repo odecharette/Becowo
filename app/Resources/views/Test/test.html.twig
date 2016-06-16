@@ -3,7 +3,6 @@
 
 {% block stylesheets %}
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
-  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
   <link rel="stylesheet" href="{{ asset('css/map.css') }}">
 {% endblock stylesheets %}
@@ -18,96 +17,124 @@
 </div>
 <div class="col-lg-8">
 	<div id='map' class='map'> </div>
+	<input id='search' class='search-ui' placeholder='Enter state code' />
+	<button id='btn_search' type="button" class="btn btn-primary" onclick="search()">Search</button>
 </div>
 </div></div>
 
 <br><br><br>
 
+<script>
+
+ 
+</script>
 
 {% block javascripts %}
-
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
   <script>
-   L.mapbox.accessToken = 'pk.eyJ1Ijoib2RlY2hhcmV0dGUiLCJhIjoiY2lwZ3dkeWVxMDAweHZia3dmeXY4amVrMyJ9.GR0tD6XtoQjSfe3M4C2NrA';
-  var map = L.mapbox.map('map', 'odecharette.0dg2cjol')
-        .setView([38.909671288923, -77.034084142948], 16);
 
-  var listings = document.getElementById('listings');
-  var locations = L.mapbox.featureLayer().addTo(map);
+  $(document).ready(function() {
+	  L.mapbox.accessToken = 'pk.eyJ1Ijoib2RlY2hhcmV0dGUiLCJhIjoiY2lwZ3dkeWVxMDAweHZia3dmeXY4amVrMyJ9.GR0tD6XtoQjSfe3M4C2NrA';
+	  var map = L.mapbox.map('map', 'odecharette.0dg2cjol')
+	        .setView([38.909671288923, -77.034084142948], 16);
 
-  locations.loadURL("{{ asset('data/address.json') }}");
+	  var listings = document.getElementById('listings');
+	  var locations = L.mapbox.featureLayer().addTo(map);
 
-  function setActive(el) {
-    var siblings = listings.getElementsByTagName('div');
-    for (var i = 0; i < siblings.length; i++) {
-      siblings[i].className = siblings[i].className
-        .replace(/active/, '').replace(/\s\s*$/, '');
-    }
+	  locations.loadURL("{{ asset('data/address.json') }}");
 
-    el.className += ' active';
-  }
+	  function setActive(el) {
+	    var siblings = listings.getElementsByTagName('div');
+	    for (var i = 0; i < siblings.length; i++) {
+	      siblings[i].className = siblings[i].className
+	        .replace(/active/, '').replace(/\s\s*$/, '');
+	    }
 
-  locations.on('ready', function() {
-    locations.eachLayer(function(locale) {
+	    el.className += ' active';
+	  }
 
-      // Shorten locale.feature.properties to just `prop` so we're not
-      // writing this long form over and over again.
-      var prop = locale.feature.properties;
+	  locations.on('ready', function() {
+	    locations.eachLayer(function(locale) {
 
-      // Each marker on the map.
-      var popup = '<h3>Sweetgreen</h3><div>' + prop.address;
+	      // Shorten locale.feature.properties to just `prop` so we're not
+	      // writing this long form over and over again.
+	      var prop = locale.feature.properties;
 
-      var listing = listings.appendChild(document.createElement('div'));
-          listing.className = 'item';
+	      // Each marker on the map.
+	      var popup = '<h3>Sweetgreen</h3><div>' + prop.address;
 
-      var link = listing.appendChild(document.createElement('a'));
-          link.href = '#';
-          link.className = 'title';
+	      var listing = listings.appendChild(document.createElement('div'));
+	          listing.className = 'item';
 
-      link.innerHTML = prop.address;
-      if (prop.crossStreet) {
-        link.innerHTML += '<br /><small class="quiet">' + prop.crossStreet + '</small>';
-        popup += '<br /><small class="quiet">' + prop.crossStreet + '</small>';
-      }
+	      var link = listing.appendChild(document.createElement('a'));
+	          link.href = '#';
+	          link.className = 'title';
 
-      var details = listing.appendChild(document.createElement('div'));
-      details.innerHTML = prop.city;
-      if (prop.phone) {
-        details.innerHTML += ' &middot; ' + prop.phoneFormatted;
-      }
+	      link.innerHTML = prop.address;
+	      if (prop.crossStreet) {
+	        link.innerHTML += '<br /><small class="quiet">' + prop.crossStreet + '</small>';
+	        popup += '<br /><small class="quiet">' + prop.crossStreet + '</small>';
+	      }
 
-      link.onclick = function() {
-        setActive(listing);
+	      var details = listing.appendChild(document.createElement('div'));
+	      details.innerHTML = prop.city;
+	      if (prop.phone) {
+	        details.innerHTML += ' &middot; ' + prop.phoneFormatted;
+	      }
 
-        // When a menu item is clicked, animate the map to center
-        // its associated locale and open its popup.
-        map.setView(locale.getLatLng(), 16);
-        locale.openPopup();
-        return false;
-      };
+	      link.onclick = function() {
+	        setActive(listing);
 
-      // Marker interaction
-      locale.on('click', function(e) {
-          // 1. center the map on the selected marker.
-          map.panTo(locale.getLatLng());
+	        // When a menu item is clicked, animate the map to center
+	        // its associated locale and open its popup.
+	        map.setView(locale.getLatLng(), 16);
+	        locale.openPopup();
+	        return false;
+	      };
 
-          // 2. Set active the markers associated listing.
-          setActive(listing);
-      });
+	      // Marker interaction
+	      locale.on('click', function(e) {
+	          // 1. center the map on the selected marker.
+	          map.panTo(locale.getLatLng());
 
-      popup += '</div>';
-      locale.bindPopup(popup);
-    });
-  });
+	          // 2. Set active the markers associated listing.
+	          setActive(listing);
+	      });
 
-  locations.on('layeradd', function(e) {
-    var marker = e.layer;
-    marker.setIcon(L.icon({
-      iconUrl: "{{ asset('images/marker.png') }}",
-      iconSize: [56, 56],
-      iconAnchor: [28, 28],
-      popupAnchor: [0, -34]
-    }));
-  });
+	      popup += '</div>';
+	      locale.bindPopup(popup);
+	    });
+	  });
+
+	  locations.on('layeradd', function(e) {
+	    var marker = e.layer;
+	    marker.setIcon(L.icon({
+	      iconUrl: "{{ asset('images/marker.png') }}",
+	      iconSize: [56, 56],
+	      iconAnchor: [28, 28],
+	      popupAnchor: [0, -34]
+	    }));
+	  });
+
+
+	  // Search box
+
+		function search() {
+
+		    // get the value of the search input field
+		    var searchString = $('#search').val().toLowerCase();
+
+		    locations.setFilter(showState);
+
+		    // here we're simply comparing the 'state' property of each marker
+		    // to the search string, seeing whether the former contains the latter.
+		    function showState(feature) {
+		        return feature.properties.state
+		            .toLowerCase()
+		            .indexOf(searchString) !== -1;
+		    }
+		}
+});
   </script>
 
 {% endblock javascripts %}
