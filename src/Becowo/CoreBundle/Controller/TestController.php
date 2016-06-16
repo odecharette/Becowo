@@ -23,22 +23,20 @@ class TestController extends Controller
         'type' => 'Feature', 
         'geometry' => array(
             'type' => 'Point',
-            # Pass Longitude and Latitude Columns here
             'coordinates' => array($w->getLongitude(), $w->getLatitude())
         ),
-        # Pass other attribute columns here
         'properties' => array(
-            'address' => $w->getStreet(),
+            'name' => $w->getName(),
+            'street' => $w->getStreet(),
             'city' => $w->getCity()
             )
         );
-    # Add feature arrays to feature collection array
     array_push($geojson['features'], $feature);
     }
 
  $workspacesInJson = json_encode($geojson);
   	
-  	return $this->render('Test/test.html.twig', array('workspacesInJson' => $workspacesInJson, 'geojson' => $geojson));
+  	return $this->render('Test/test.html.twig', array('workspacesInJson' => $workspacesInJson));
   }
 
 }
