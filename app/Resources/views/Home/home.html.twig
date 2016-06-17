@@ -39,6 +39,7 @@
 					<div class="panel-heading">
 				    	<div class="panel-title">Choisir les filtres à appliquer
 							<button id='geolocate' type="button" class="btn btn-primary">Find me</button>
+							<input id='search' class='search-ui' placeholder='Chercher' />
 						</div>
 					</div>
 					<div class="panel-body" id='filters'> {# l'id est important car utilisé dans my-mapbox.js#}
@@ -53,8 +54,7 @@
 					{# on prépare 2 variable à envoyer au my-mapbox.js #}
 					{# TO DO changer icone des markers #}
 					<div id='map-geojson' data-json='{{workspacesInJson|raw}}'></div> 
-					{# <input id='search' class='search-ui' placeholder='Enter state code' />
-					<button id='btn_search' type="button" class="btn btn-primary" onclick="search()">Search</button> #}
+					
 				</div>
 				<div class="col-lg-5">
 					<div id='listings' class='listings'></div>

@@ -106,7 +106,7 @@ $(document).ready(function() {
 		});
 
 
-	    // Géolocalise l'utilisateur
+	    ///////////////////// Géolocalise l'utilisateur
 
 	    if (!navigator.geolocation) {
 	    	geolocate.innerHTML = 'Geolocation is not available';	// ne marche pas sous IE
@@ -119,15 +119,31 @@ $(document).ready(function() {
 		}
 
 		map.on('locationfound', function(e) {
-	    //map.fitBounds(e.bounds);
-	    map.setView([e.latlng.lat, e.latlng.lng], 13);
-	    L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-
-	});
+		    map.setView([e.latlng.lat, e.latlng.lng], 13);
+		    L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+		});
 
 		// If the user chooses not to allow their location to be shared, display an error message.
 		map.on('locationerror', function() {
 		    geolocate.innerHTML = 'Position could not be found';
 		});
+
+		//////////////////// Moteur de recherche
+
+		$('#search').keyup(search);
+
+		function search() {
+		    var searchString = $('#search').val().toLowerCase();
+			locations.eachLayer(function(locale) {
+			var f = locale.feature;
+			
+		    if(f.properties.name.toLowerCase().indexOf(searchString) !== -1)
+		    {
+		    	//Il faut inverser les coordonnées pour la fonction setView...
+		    	map.setView([f.geometry.coordinates[1], f.geometry.coordinates[0]], 13);
+		    	locale.openPopup();
+		    }
+			});
+		}
 
 });
