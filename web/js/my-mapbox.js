@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	L.mapbox.accessToken = 'pk.eyJ1Ijoib2RlY2hhcmV0dGUiLCJhIjoiY2lwZ3dkeWVxMDAweHZia3dmeXY4amVrMyJ9.GR0tD6XtoQjSfe3M4C2NrA';
-	  
 	var mapdiv = document.getElementById('map-geojson');
 	var g = JSON.parse(mapdiv.getAttribute('data-json'));
 
@@ -27,56 +26,47 @@ $(document).ready(function() {
 
 	  	//////////// Génération des markers
 	    locations.eachLayer(function(locale) {
+		var prop = locale.feature.properties;
+	    
+	    // on ne charge que les marker de type Workspace
+	    if (prop.type == 'workspace') {
+	    
+		    /////////////// Pop-up
+		    var popup = '<a href = ' + Routing.generate('becowo_core_workspace', {name: prop.name}) + '><h3>' 
+		    			+ prop.name + '</h3>' 
+		    			+ prop.street + '<br>' 
+		    			+ prop.city + '</a>';
 
-	    var prop = locale.feature.properties;
+		    /////////////// inlus la div 'vignette' construite ds home.html.twig
+		    var listing = listings.appendChild(document.getElementById('vignette-'+prop.id));
+		    var link = document.getElementById('link-'+prop.id);
 
-	    /////////////// Pop-up
-	    var popup = '<a href = ' + Routing.generate('becowo_core_workspace', {name: prop.name}) + '><h3>' 
-	    			+ prop.name + '</h3>' 
-	    			+ prop.street + '<br>' 
-	    			+ prop.city + '</a>';
+		    link.onclick = function clickVignette() {
+		        setActive(listing);
 
-	    /////////////// inlus la div 'vignette' construite ds home.html.twig
-	    var listing = listings.appendChild(document.getElementById('vignette-'+prop.id));
-	    var link = document.getElementById('link-'+prop.id);
+		        // When a menu item is clicked, animate the map to center its associated locale and open its popup.
+			    map.setView(locale.getLatLng(), 16);
+			    locale.openPopup();
+			    return false;
+			    };
+			    
 
-	    link.onclick = function clickVignette() {
-	        setActive(listing);
+		      // Marker interaction
+		      locale.on('click', function(e) {
+		          map.panTo(locale.getLatLng());
+		          setActive(listing);
+		      });
 
-	        // When a menu item is clicked, animate the map to center its associated locale and open its popup.
-		    map.setView(locale.getLatLng(), 16);
-		    locale.openPopup();
-		    return false;
-		    };
-		    
+		      popup += '</div>';
+		      locale.bindPopup(popup);
 
-	      // Marker interaction
-	      locale.on('click', function(e) {
-	          // 1. center the map on the selected marker.
-	          map.panTo(locale.getLatLng());
-	          // 2. Set active the markers associated listing.
-	          setActive(listing);
-	      });
-
-	      popup += '</div>';
-	      locale.bindPopup(popup);
-
-	 //    var mapmarker = document.getElementById('map-marker');
-		// var icon = mapmarker.getAttribute('data-path');
-
-	 //      locale.setIcon(L.icon({
-		// 	  iconUrl: icon,	
-		// 	  iconSize: [56, 56],
-		// 	  iconAnchor: [28, 28],
-		// 	  popupAnchor: [0, -34]
-		// 	}));
-	    });
+	    }});
 
 	    ///////////////////////////////// Filters
 	    var filters = document.getElementById('filters');
 
 	    map.featureLayer.on('ready', function() {
-	  var types = ['poi', 'poi2'];
+	  var types = ['Creche collective', 'Creche familiale'];
 
 	  var checkboxes = [];
 	  // Create a filter interface.

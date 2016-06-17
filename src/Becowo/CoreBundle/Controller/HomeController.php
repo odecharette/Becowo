@@ -64,37 +64,45 @@ class HomeController extends Controller
     }
     
 
-    // test ajout de POI
+    // Ajout des POI
     // TO DO : importer les POI depuis la BDD
-    $feature = array(
-        'type' => 'Feature', 
-        'geometry' => array(
-            'type' => 'Point',
-            'coordinates' => array(2.3522219000000177, 48.856614)
-        ),
-        'properties' => array(
-            'type' => 'poi',
-            'id' => $w->getId(),
-            'name' => 'Paris',
-            'marker-symbol' => 'bus'
-            )
-        );
-    array_push($geojson['features'], $feature);
 
-    $feature = array(
-        'type' => 'Feature', 
-        'geometry' => array(
-            'type' => 'Point',
-            'coordinates' => array(3.504639, 47.338823)
-        ),
-        'properties' => array(
-            'type' => 'poi2',
-            'id' => $w->getId(),
-            'name' => 'La roche',
-            'marker-symbol' => 'bus'
-            )
-        );
-    array_push($geojson['features'], $feature);
+    $repo = $em->getRepository('BecowoCoreBundle:Poi');  
+    $poi = $repo->findPoiWithCategory();
+
+    foreach ($poi as $poi) {
+
+      $feature = array(
+          'type' => 'Feature', 
+          'geometry' => array(
+              'type' => 'Point',
+              'coordinates' => array($poi->getLongitude(), $poi->getLatitude())
+          ),
+          'properties' => array(
+              'type' => $poi->getPoiCategory()->getName(),
+              'id' => $poi->getId(),
+              'name' => str_replace("'"," ",$poi->getName()), // enleve les apostrophes
+              'marker-symbol' => $poi->getMarkerSymbol(),
+              'marker-color' => '#FA9EEE'
+              )
+          );
+      array_push($geojson['features'], $feature);
+    }
+
+    // $feature = array(
+    //     'type' => 'Feature', 
+    //     'geometry' => array(
+    //         'type' => 'Point',
+    //         'coordinates' => array(3.504639, 47.338823)
+    //     ),
+    //     'properties' => array(
+    //         'type' => 'poi2',
+    //         'id' => $w->getId(),
+    //         'name' => 'La roche',
+    //         'marker-symbol' => 'bus'
+    //         )
+    //     );
+    // array_push($geojson['features'], $feature);
 
     // fin test POI
 

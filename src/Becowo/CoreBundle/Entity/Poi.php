@@ -8,14 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
  * Poi
  *
  * @ORM\Table(name="poi", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_poi_category_id_idx", columns={"poi_category_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\PoiRepository")
  */
 class Poi
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=55, nullable=true)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
@@ -62,6 +62,13 @@ class Poi
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="marker_symbol", type="string", length=45, nullable=true)
+     */
+    private $marker_symbol;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Country
@@ -241,6 +248,30 @@ class Poi
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set marker_symbol
+     *
+     * @param string $marker_symbol
+     *
+     * @return Poi
+     */
+    public function setMarkerSymbol($marker_symbol)
+    {
+        $this->marker_symbol = $marker_symbol;
+
+        return $this;
+    }
+
+    /**
+     * Get marker_symbol
+     *
+     * @return string
+     */
+    public function getMarkerSymbol()
+    {
+        return $this->marker_symbol;
     }
 
     /**
