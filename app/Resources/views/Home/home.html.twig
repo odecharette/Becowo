@@ -21,7 +21,7 @@
 	</div>
 </div></div></div>
 {############################################ Moteur de recherche ##############################################}
- 	<h2>Ici moteur de recherche </h2>
+ {#	<h2>Ici moteur de recherche </h2>
 	
 	<div class="moteur-recherche">
 	    <form method="get" name="form-recherche" >
@@ -29,10 +29,11 @@
 	    </form>
 	</div>
 	<br><br>
-		{# {{ render(controller('BecowoCoreBundle:Search:search', { 'query': 'toto' } )) }} #}
+		 {{ render(controller('BecowoCoreBundle:Search:search', { 'query': 'toto' } )) }} #}
+
+{############################################ MapBox ##############################################}
 	<br><br>
 	 	<div id="vignette_espace" class="container-fluid">
-{############################################ MapBox ##############################################}
 			<div class="row">{# Liste des POI #}
 				<div class="col-lg-7">
 				<div class="panel panel-default">
