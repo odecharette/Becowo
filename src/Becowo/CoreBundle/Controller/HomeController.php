@@ -65,7 +65,6 @@ class HomeController extends Controller
     
 
     // Ajout des POI
-    // TO DO : importer les POI depuis la BDD
 
     $repo = $em->getRepository('BecowoCoreBundle:Poi');  
     $poi = $repo->findPoiWithCategory();

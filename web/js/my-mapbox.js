@@ -66,7 +66,7 @@ $(document).ready(function() {
 	    var filters = document.getElementById('filters');
 
 	    map.featureLayer.on('ready', function() {
-	  var types = ['Creche collective', 'Creche familiale'];
+	  var types = ['Creche', 'Salle de musculation'];
 
 	  var checkboxes = [];
 	  // Create a filter interface.
@@ -106,6 +106,28 @@ $(document).ready(function() {
 		});
 
 
+	    // Géolocalise l'utilisateur
 
+	    if (!navigator.geolocation) {
+	    	geolocate.innerHTML = 'Geolocation is not available';	// ne marche pas sous IE
+		} else {
+		    geolocate.onclick = function (e) {
+		        e.preventDefault();
+		        e.stopPropagation();
+		        map.locate();
+		    };
+		}
+
+		map.on('locationfound', function(e) {
+	    //map.fitBounds(e.bounds);
+	    map.setView([e.latlng.lat, e.latlng.lng], 13);
+	    L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+
+	});
+
+		// If the user chooses not to allow their location to be shared, display an error message.
+		map.on('locationerror', function() {
+		    geolocate.innerHTML = 'Position could not be found';
+		});
 
 });
