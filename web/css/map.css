@@ -121,7 +121,7 @@
         }
       .leaflet-container .leaflet-marker-icon { cursor:pointer; }*/
 
-.filter-ui {
+/*.filter-ui {
   background:#fff;
   position:absolute;
   top:10px;
@@ -129,5 +129,5 @@
   z-index:100;
   padding:10px;
   border-radius:3px;
-  }
-  
+  }*/
+

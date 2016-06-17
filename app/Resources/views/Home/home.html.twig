@@ -33,10 +33,20 @@
 	<br><br>
 	 	<div id="vignette_espace" class="container-fluid">
 {############################################ MapBox ##############################################}
+			<div class="row">{# Liste des POI #}
+				<div class="col-lg-7">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    	<h3 class="panel-title">Choisir les filtres à appliquer</h3>
+					</div>
+					<div class="panel-body" id='filters'> {# l'id est important car utilisé dans my-mapbox.js#}
+						<div id='filters-div1'></div>
+					</div>
+				</div>
+				</div>
+			</div>
 	 		<div class="row">
 				<div class="col-lg-7">
-					{# Liste des POI #}
-					<nav id='filters' class='filter-ui'></nav>
 					<div id='map' class='map'> </div>
 					{# on prépare 2 variable à envoyer au my-mapbox.js #}
 					{# TO DO changer icone des markers #}

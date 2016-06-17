@@ -72,7 +72,7 @@ $(document).ready(function() {
 	  // Create a filter interface.
 	  for (var i = 0; i < types.length; i++) {
 	    // Create an input checkbox and label inside.
-	    var item = filters.appendChild(document.createElement('div'));
+	    var item = filters.appendChild(document.getElementById('filters-div1'));
 	    var checkbox = item.appendChild(document.createElement('input'));
 	    var label = item.appendChild(document.createElement('label'));
 	    checkbox.type = 'checkbox';

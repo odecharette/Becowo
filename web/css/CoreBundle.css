@@ -43,3 +43,8 @@ footer, footer a
 {
 	display: inline-block;
 }
+
+#filters, label {
+    padding-left: 5px;
+    padding-right: 10px;
+}
