@@ -39,6 +39,7 @@ class HomeController extends Controller
   	$members = $repo->findNewMembers(5);
 
     // Construction du GeoJson pour la MapBox
+    // marker-symbol : https://www.mapbox.com/maki-icons/
 
     $geojson = array( 'type' => 'FeatureCollection', 'features' => array());
 
@@ -54,7 +55,9 @@ class HomeController extends Controller
             'id' => $w->getId(),
             'name' => $w->getName(),
             'street' => $w->getStreet(),
-            'city' => $w->getCity()
+            'city' => $w->getCity(),
+            'marker-symbol' => 'water',
+            'marker-color' => '#3bb2d0'
             )
         );
     array_push($geojson['features'], $feature);
@@ -72,7 +75,8 @@ class HomeController extends Controller
         'properties' => array(
             'type' => 'poi',
             'id' => $w->getId(),
-            'name' => 'Paris'
+            'name' => 'Paris',
+            'marker-symbol' => 'bus'
             )
         );
     array_push($geojson['features'], $feature);
@@ -86,7 +90,8 @@ class HomeController extends Controller
         'properties' => array(
             'type' => 'poi2',
             'id' => $w->getId(),
-            'name' => 'La roche'
+            'name' => 'La roche',
+            'marker-symbol' => 'bus'
             )
         );
     array_push($geojson['features'], $feature);
