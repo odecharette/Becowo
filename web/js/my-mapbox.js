@@ -26,12 +26,8 @@ $(document).ready(function() {
 	    el.className += ' active';
 	  }
 
-console.log(locations);
-
 	    locations.eachLayer(function(locale) {
 
-	      // Shorten locale.feature.properties to just `prop` so we're not
-	      // writing this long form over and over again.
 	    var prop = locale.feature.properties;
 
 	      // Each marker on the map.
@@ -75,6 +71,61 @@ console.log(locations);
 			  popupAnchor: [0, -34]
 			}));
 	    });
+
+	    // Filters
+
+	    var filters = document.getElementById('filters');
+
+	    map.featureLayer.on('ready', function() {
+  // Collect the types of symbols in this layer. you can also just
+  // hardcode an array of types if you know what you want to filter on,
+  // like var types = ['foo', 'bar'];
+  // var typesObj = {}, types = [];
+  // var features = map.featureLayer.getGeoJSON().features;
+  // for (var i = 0; i < features.length; i++) {
+  //   typesObj[features[i].properties['marker-symbol']] = true;
+  // }
+  // for (var k in typesObj) types.push(k);
+  var types = ['poi', 'poi2'];
+
+  var checkboxes = [];
+  // Create a filter interface.
+  for (var i = 0; i < types.length; i++) {
+    // Create an input checkbox and label inside.
+    var item = filters.appendChild(document.createElement('div'));
+    var checkbox = item.appendChild(document.createElement('input'));
+    var label = item.appendChild(document.createElement('label'));
+    checkbox.type = 'checkbox';
+    checkbox.id = types[i];
+    checkbox.checked = true;
+    // create a label to the right of the checkbox with explanatory text
+    label.innerHTML = types[i];
+    label.setAttribute('for', types[i]);
+    // Whenever a person clicks on this checkbox, call the update().
+    checkbox.addEventListener('change', update);
+    checkboxes.push(checkbox);
+  	}
+
+	  // This function is called whenever someone clicks on a checkbox and changes
+	  // the selection of markers to be displayed.
+	  function update() {
+	    var enabled = {};
+	    // Run through each checkbox and record whether it is checked. If it is,
+	    // add it to the object of types to display, otherwise do not.
+	    for (var i = 0; i < checkboxes.length; i++) {
+	      if (checkboxes[i].checked) enabled[checkboxes[i].id] = true;
+	    }
+	    // on ajoute tjs les WS pour qu'ils restent affichés
+	    enabled['workspace'] = true
+
+	    locations.setFilter(function(feature) {
+	      // If this symbol is in the list, return true. if not, return false.
+	      return (feature.properties.type in enabled);
+	    });
+	  }
+	});
+
+
 
    // Search box
   //  	var searchBtn = document.getElementById('btn_search');

@@ -50,6 +50,7 @@ class HomeController extends Controller
             'coordinates' => array($w->getLongitude(), $w->getLatitude())
         ),
         'properties' => array(
+            'type' => 'workspace',
             'id' => $w->getId(),
             'name' => $w->getName(),
             'street' => $w->getStreet(),
@@ -58,6 +59,39 @@ class HomeController extends Controller
         );
     array_push($geojson['features'], $feature);
     }
+    
+
+    // test ajout de POI
+    // TO DO : importer les POI depuis la BDD
+    $feature = array(
+        'type' => 'Feature', 
+        'geometry' => array(
+            'type' => 'Point',
+            'coordinates' => array(2.3522219000000177, 48.856614)
+        ),
+        'properties' => array(
+            'type' => 'poi',
+            'id' => $w->getId(),
+            'name' => 'Paris'
+            )
+        );
+    array_push($geojson['features'], $feature);
+
+    $feature = array(
+        'type' => 'Feature', 
+        'geometry' => array(
+            'type' => 'Point',
+            'coordinates' => array(3.504639, 47.338823)
+        ),
+        'properties' => array(
+            'type' => 'poi2',
+            'id' => $w->getId(),
+            'name' => 'La roche'
+            )
+        );
+    array_push($geojson['features'], $feature);
+
+    // fin test POI
 
   $workspacesInJson = json_encode($geojson);
 
