@@ -35,7 +35,10 @@ console.log(locations);
 	    var prop = locale.feature.properties;
 
 	      // Each marker on the map.
-	    var popup = '<h3>' + prop.name + '</h3><div>' + prop.street + '<br>' + prop.city;
+	    var popup = '<a href = ' + Routing.generate('becowo_core_workspace', {name: prop.name}) + '><h3>' 
+	    			+ prop.name + '</h3>' 
+	    			+ prop.street + '<br>' 
+	    			+ prop.city + '</a>';
 
 	    // inlus la div 'vignette' construite ds home.html.twig
 	    var listing = listings.appendChild(document.getElementById('vignette-'+prop.id));
