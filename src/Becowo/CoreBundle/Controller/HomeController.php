@@ -3,24 +3,31 @@
 namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Becowo\CoreBundle\Services\Workspace;
 
 class HomeController extends Controller
 {
   public function homeAction()
   {
-  	$em = $this->getDoctrine()->getManager();
+  	$em = $this->getDoctrine()->getManager();  // A supprimer qd tt remplacé par service
 
   	// Tous les workspaces
-  	$repo = $em->getRepository('BecowoCoreBundle:Workspace');
-  	$workspaces = $repo->findActiveWorkspaces();
+  	// $repo = $em->getRepository('BecowoCoreBundle:Workspace');
+  	// $workspaces = $repo->findActiveWorkspaces();
+
+    // Tous les workspaces (via service)
+    $WsService = $this->get('app.workspace');
+    $workspaces = $WsService->getActiveWorkspaces(); 
 
     //On récupère les pictures liées à chaque WS
-    $picturesByWs = array();
-    $repo = $em->getRepository('BecowoCoreBundle:Picture');
-    foreach ($workspaces as $ws) {
-      $pictures = $repo->findByWsNoLogo($ws->getName());
-      $picturesByWs[$ws->getName()] = $pictures;
-    }
+    // $picturesByWs = array();
+    // $repo = $em->getRepository('BecowoCoreBundle:Picture');
+    // foreach ($workspaces as $ws) {
+    //   $pictures = $repo->findByWsNoLogo($ws->getName());
+    //   $picturesByWs[$ws->getName()] = $pictures;
+    // }
+
+    $picturesByWs = $WsService->getPicturesByWorkspaces($workspaces);
 
     // On récupère les offices et leur quantité
     $officesByWS = array();

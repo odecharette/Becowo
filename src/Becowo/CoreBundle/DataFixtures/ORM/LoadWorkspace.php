@@ -35,16 +35,13 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     $workspace->setIsVisible(true);
 
     // Category
-    $category = new WorkspaceCategory();
-    $category->setName('coworking');
-    $manager->persist($category);
-    $workspace->setCategory($category);
+
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:WorkspaceCategory');
+    $workspace->setCategory($repo->findOneByName('Coworking'));
 
     //country
-    $country = new Country();
-    $country->setName('France');
-    $manager->persist($country);
-    $workspace->setCountry($country);
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Country');
+    $workspace->setCountry($repo->findOneByName('France'));
 
     // Amenities
     $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Amenities');
@@ -100,16 +97,74 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     $workspace->setIsVisible(true);
 
     // Category
-    $category = new WorkspaceCategory();
-    $category->setName('coworking');
-    $manager->persist($category);
-    $workspace->setCategory($category);
+
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:WorkspaceCategory');
+    $workspace->setCategory($repo->findOneByName('Coworking'));
 
     //country
-    $country = new Country();
-    $country->setName('France');
-    $manager->persist($country);
-    $workspace->setCountry($country);
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Country');
+    $workspace->setCountry($repo->findOneByName('France'));
+
+    // Amenities
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Amenities');
+    $amenities = $repo->findAll();
+
+    foreach ($amenities as $amenity) {
+        $workspace->addAmenity($amenity);
+    }
+
+    //Offices
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Office');
+    $offices = $repo->findAll();
+
+    foreach ($offices as $office) {
+        $workspaceHasOffice = new workspaceHasOffice();
+        $workspaceHasOffice->setWorkspace($workspace);
+        $workspaceHasOffice->setOffice($office);
+        $workspaceHasOffice->setDeskQty(3);
+        $manager->persist($workspaceHasOffice);
+    }
+
+    //TeamMembers
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:TeamMember');
+    $members = $repo->findAll();
+
+    foreach ($members as $member) {
+        $workspace->addTeamMember($member);
+    }
+
+    //addPoi
+    //addOffer
+
+    // On la persiste
+    $manager->persist($workspace);
+
+/************************** Other **************************************/
+/*    $workspace = new Workspace();
+    $workspace->setName('Espace');
+    $workspace->setDescription('Ceci est la description d\'un espace de coworking');
+    $workspace->setDescriptionBonus('Ceci est la phrase bonus !!!');
+    $workspace->setWebsite('http://www.google.fr/');
+    $workspace->setIsAlwaysOpen(false);
+    $workspace->setStreet('rue d amsterdam');
+    $workspace->setPostCode('75015');
+    $workspace->setCity('Paris');
+    $workspace->setLongitude(2.3270241);
+    $workspace->setLatitude(48.879543);
+    $workspace->setFirstBookingFree(false);
+    $workspace->setFacebookLink('https://www.facebook.com');
+    $workspace->setTwitterLink('https://twitter.com');
+    $workspace->setInstagramLink('');
+    $workspace->setIsVisible(true);
+
+    // Category
+
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:WorkspaceCategory');
+    $workspace->setCategory($repo->findOneByName('Coworking'));
+
+    //country
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Country');
+    $workspace->setCountry($repo->findOneByName('France'));
 
     // Amenities
     $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Amenities');
@@ -145,9 +200,10 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     // On la persiste
     $manager->persist($workspace);
     
-
+*/
     // On flush tout ce qu'on vient de créer
     $manager->flush();
+    
   }
 
   public function getOrder()

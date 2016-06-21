@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * WorkspaceCategory
  *
  * @ORM\Table(name="workspace_category", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\WorkspaceCategoryRepository")
  */
 class WorkspaceCategory
 {

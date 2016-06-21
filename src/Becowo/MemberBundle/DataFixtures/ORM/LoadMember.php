@@ -10,11 +10,13 @@ use Becowo\CoreBundle\Entity\Country;
 use Becowo\CoreBundle\Entity\ProfilePicture;    // TO DO : deplacer vers MemberBundle
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadMember implements FixtureInterface, ContainerAwareInterface
+class LoadMember extends Controller implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
 
-    private $container;
+    protected $container;
     
   public function load(ObjectManager $manager)
   {
@@ -43,16 +45,12 @@ class LoadMember implements FixtureInterface, ContainerAwareInterface
     $member->setEnabled(true);
 
     //Origin
-    $origin = new Origin();
-    $origin->setName('Manuel');
-    $manager->persist($origin);
-    $member->setOrigin($origin);
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Origin');
+    $member->setOrigin($repo->findOneByName('Manuel'));
 
     //Country
-    $country = new Country();
-    $country->setName('France');
-    $manager->persist($country);
-    $member->setCountry($country);
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Country');
+    $member->setCountry($repo->findOneByName('France'));
 
     //Profile Picture
     $profile_picture = new ProfilePicture();
@@ -61,9 +59,6 @@ class LoadMember implements FixtureInterface, ContainerAwareInterface
     $manager->persist($profile_picture);
     $member->setProfilePicture($profile_picture);
    
-
-    // On la persiste
-    //$manager->persist($member);
     $userManager->updateUser($member, true);
 
     /********************** Fiona *************************/
@@ -89,16 +84,12 @@ class LoadMember implements FixtureInterface, ContainerAwareInterface
     $member->setEnabled(true);
 
     //Origin
-    $origin = new Origin();
-    $origin->setName('Manuel');
-    $manager->persist($origin);
-    $member->setOrigin($origin);
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Origin');
+    $member->setOrigin($repo->findOneByName('Manuel'));
 
     //Country
-    $country = new Country();
-    $country->setName('France');
-    $manager->persist($country);
-    $member->setCountry($country);
+    $repo = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Country');
+    $member->setCountry($repo->findOneByName('France'));
 
     //Profile Picture
     $profile_picture = new ProfilePicture();
@@ -108,8 +99,6 @@ class LoadMember implements FixtureInterface, ContainerAwareInterface
     $member->setProfilePicture($profile_picture);
    
 
-    // On la persiste
-    //$manager->persist($member);
     $userManager->updateUser($member, true);
 
     // On flush tout ce qu'on vient de créer
@@ -120,4 +109,11 @@ class LoadMember implements FixtureInterface, ContainerAwareInterface
   {
     $this->container = $container;
   }
+
+  public function getOrder()
+    {
+        // the order in which fixtures will be loaded
+        // the lower the number, the sooner that this fixture is loaded
+        return 1;
+    }
 }

@@ -50,7 +50,6 @@ $(document).ready(function() {
 			    return false;
 			    };
 			    
-
 		      // Marker interaction
 		      locale.on('click', function(e) {
 		          map.panTo(locale.getLatLng());

@@ -11,11 +11,11 @@ class LoadPoiCategory implements FixtureInterface
   public function load(ObjectManager $manager)
   {
     $category = new PoiCategory();
-    $category->setName('Crèche collective');
+    $category->setName('Creche');
     $manager->persist($category);
 
     $category = new PoiCategory();
-    $category->setName('Crèche familiale');
+    $category->setName('Salle de musculation');
     $manager->persist($category);
 
     // On flush tout ce qu'on vient de créer

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Country
  *
  * @ORM\Table(name="country", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\CountryRepository")
  */
 class Country
 {

@@ -13,3 +13,6 @@ services:
         class: Becowo\CoreBundle\Services\SearchEngine
         arguments:    ['@fos_elastica.finder.becowo.workspace']
 
+    app.workspace:
+        class: Becowo\CoreBundle\Services\Workspace
+        arguments: ['@doctrine.orm.entity_manager']
