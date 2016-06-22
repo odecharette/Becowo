@@ -26,39 +26,13 @@ class WorkspaceController extends Controller
     $listEvents = $WsService->getEventsByWorkspace($ws);
     $listOffices = $WsService->getOfficesByWorkspace($ws);
 
-    // Création du formulaire de commentaires
-    $comment = new Comment();
-    $comment->setWorkspace($ws);
-    $comment->setMember($this->getUser());
-    $form = $this->get('form.factory')->create(CommentType::class, $comment);
-
-    //on récupère les commentaires existants
-    $repo = $em->getRepository('BecowoCoreBundle:Comment');
-    $listComments = $repo->findBy(
-      array('workspace' => $ws),
-      array('postedOn' => 'DESC'),
-      null,
-      null);
-
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-        $em->persist($comment);
-        $em->flush();
-
-        $request->getSession()->getFlashBag()->add('success', 'Commentaire bien enregistré.');
-
-        // On redirige vers la page de visualisation de l'annonce nouvellement créée
-        return $this->redirectToRoute('becowo_core_workspace', array('name' => $name));
-    }
-
   	return $this->render('Workspace/view.html.twig', 
       array('ws' => $ws, 
         'listEvents' => $listEvents, 
         'pictures' => $pictures, 
         'pictureFavorite' => $pictureFavorite, 
         'pictureLogo' => $pictureLogo,
-        'listOffices' => $listOffices,
-        'form' => $form->createView(),
-        'listComments' => $listComments));
+        'listOffices' => $listOffices));
   }
 
   public function voteAction($vote, $name, $member)

@@ -111,7 +111,8 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="well">
-					{% include 'Workspace/comments.html.twig' %}
+					{{ render(controller('BecowoCoreBundle:Comment:view', {request: app.request})) }}
+					{# {% include 'Workspace/comments.html.twig' %} #}
 				</div>
 			</div>
 		</div>
@@ -119,3 +120,4 @@
 
 	</div>
 {% endblock %}
+

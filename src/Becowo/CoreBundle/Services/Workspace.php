@@ -95,4 +95,14 @@ class Workspace
         return $repo->findBy(array('workspace' => $ws));
     }
 
+    public function getCommentsByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
+        return $repo->findBy(
+          array('workspace' => $ws),
+          array('postedOn' => 'DESC'),
+          null,
+          null);
+    }
+
 }

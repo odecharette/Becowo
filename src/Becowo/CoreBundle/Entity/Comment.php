@@ -58,9 +58,11 @@ class Comment
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($workspace, $member)
     {
         $this->postedOn = new \DateTime();
+        $this->workspace = $workspace;
+        $this->member = $member;
     }
 
     /**

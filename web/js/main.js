@@ -23,3 +23,4 @@ $( document ).ready(function() {
     $('#voteAvg').rating('update', 3);
 });
 
+

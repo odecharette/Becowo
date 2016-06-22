@@ -24,3 +24,4 @@ services:
     app.map:
         class: Becowo\CoreBundle\Services\Map
         arguments: ['@doctrine.orm.entity_manager'] 
+
