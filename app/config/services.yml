@@ -16,3 +16,7 @@ services:
     app.workspace:
         class: Becowo\CoreBundle\Services\Workspace
         arguments: ['@doctrine.orm.entity_manager']
+
+    app.member:
+        class: Becowo\MemberBundle\Services\Member
+        arguments: ['@doctrine.orm.entity_manager']        
