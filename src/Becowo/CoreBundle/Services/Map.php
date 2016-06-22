@@ -13,13 +13,23 @@ class Map
         $this->em = $em;
     }
 
-    public function prepareGeoJson()
+    public function getWsAndPoiInGeoJson(array $workspaces)
+    {
+        $data = $this->prepareGeoJson();
+        $data = $this->addWorkspaces($workspaces, $data);
+        $data = $this->addPoi($data);
+        $data = $this->createGeoJson($data);
+
+        return $data;
+    }
+
+    private function prepareGeoJson()
     {
         return array( 'type' => 'FeatureCollection', 'features' => array());
     }
 
 
-    public function addWorkspaces(array $Workspaces, $geojson)
+    private function addWorkspaces(array $Workspaces, $geojson)
     {
         //$geojson = array( 'type' => 'FeatureCollection', 'features' => array());
 
@@ -47,7 +57,7 @@ class Map
         
     }
 
-    public function addPoi(array $geojson)
+    private function addPoi(array $geojson)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Poi');  
         $poi = $repo->findPoiWithCategory();
@@ -74,7 +84,7 @@ class Map
         return $geojson;
     }
 
-    public function createGeoJson(array $data)
+    private function createGeoJson(array $data)
     {
         return json_encode($data);
     }
