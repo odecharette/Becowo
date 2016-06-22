@@ -140,7 +140,7 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     $manager->persist($workspace);
 
 /************************** Other **************************************/
-/*    $workspace = new Workspace();
+    $workspace = new Workspace();
     $workspace->setName('Espace');
     $workspace->setDescription('Ceci est la description d\'un espace de coworking');
     $workspace->setDescriptionBonus('Ceci est la phrase bonus !!!');
@@ -200,7 +200,7 @@ class LoadWorkspace extends Controller implements FixtureInterface, OrderedFixtu
     // On la persiste
     $manager->persist($workspace);
     
-*/
+
     // On flush tout ce qu'on vient de créer
     $manager->flush();
     

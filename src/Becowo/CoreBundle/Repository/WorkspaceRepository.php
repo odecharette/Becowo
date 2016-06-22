@@ -20,6 +20,7 @@ class WorkspaceRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+
 	// public function findNewWorkspaces($nb)
 	// {
 	// 	// Récupère uniquement les X nouveaux WS actifs

@@ -11,35 +11,18 @@ class HomeController extends Controller
   {
   	$em = $this->getDoctrine()->getManager();  // A supprimer qd tt remplacé par service
 
-  	// Tous les workspaces
-  	// $repo = $em->getRepository('BecowoCoreBundle:Workspace');
-  	// $workspaces = $repo->findActiveWorkspaces();
-
-    // Tous les workspaces (via service)
+    // Récupération du service workspace
     $WsService = $this->get('app.workspace');
+
+    // Tous les WS actifs
     $workspaces = $WsService->getActiveWorkspaces(); 
-
-    //On récupère les pictures liées à chaque WS
-    // $picturesByWs = array();
-    // $repo = $em->getRepository('BecowoCoreBundle:Picture');
-    // foreach ($workspaces as $ws) {
-    //   $pictures = $repo->findByWsNoLogo($ws->getName());
-    //   $picturesByWs[$ws->getName()] = $pictures;
-    // }
-
+    // Les photos par WS sauf logo
     $picturesByWs = $WsService->getPicturesByWorkspaces($workspaces);
-
     // On récupère les offices et leur quantité
-    $officesByWS = array();
-    $repo = $em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
-    foreach ($workspaces as $ws) {
-      $offices = $repo->findBy(array('workspace' => $ws));
-      $officesByWS[$ws->getName()] = $offices;
-    }
+    $officesByWS = $WsService->getOfficesByWorkspaces($workspaces);
+	  // WS coup de coeur
+    $workspaceFavorite = $WsService->getFavoriteWorkspace();
 
-	  // WS coup de coeur  	
-  	$repo = $em->getRepository('BecowoCoreBundle:WorkspaceFavorite');
-  	$workspaceFavorite = $repo->findOneBy(array(), array('createdOn' => 'desc'));
 
   	// Les x derniers membres inscrits et actifs
   	$repo = $em->getRepository('BecowoMemberBundle:Member');
@@ -94,23 +77,6 @@ class HomeController extends Controller
           );
       array_push($geojson['features'], $feature);
     }
-
-    // $feature = array(
-    //     'type' => 'Feature', 
-    //     'geometry' => array(
-    //         'type' => 'Point',
-    //         'coordinates' => array(3.504639, 47.338823)
-    //     ),
-    //     'properties' => array(
-    //         'type' => 'poi2',
-    //         'id' => $w->getId(),
-    //         'name' => 'La roche',
-    //         'marker-symbol' => 'bus'
-    //         )
-    //     );
-    // array_push($geojson['features'], $feature);
-
-    // fin test POI
 
   $workspacesInJson = json_encode($geojson);
 

@@ -49,4 +49,6 @@ class PictureRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	
 }
