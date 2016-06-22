@@ -59,4 +59,40 @@ class Workspace
         
     }
 
+    public function getWorkspaceByName($name)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Workspace');
+        return $repo->findOneByName($name);
+    }
+
+    public function getPicturesByWorkspace($name)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Picture');
+        return $repo->findByWsNoLogo($name);
+    }
+
+    public function getFavoritePictureByWorkspace($name)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Picture');
+        return $repo->findByWsFavorite($name);
+    }
+
+    public function getLogoByWorkspace($name)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Picture');
+        return $repo->findByWsLogo($name);
+    }
+
+    public function getEventsByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Event');
+        return $repo->findBy(array('workspace' => $ws));
+    }
+
+    public function getOfficesByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
+        return $repo->findBy(array('workspace' => $ws));
+    }
+
 }

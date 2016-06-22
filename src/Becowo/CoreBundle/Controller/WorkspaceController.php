@@ -15,29 +15,16 @@ class WorkspaceController extends Controller
 {
   public function viewAction($name, Request $request)
   {
-  	$em = $this->getDoctrine()->getManager();
+  	$em = $this->getDoctrine()->getManager();  // a enlever qd tt en service
 
-  	// on récupère le WS selon le name passé en paramètres dans l'URL
-  	$repo = $em->getRepository('BecowoCoreBundle:Workspace');
-  	$ws = $repo->findOneByName($name);
+    $WsService = $this->get('app.workspace');
 
-    //On récupère les pictures liées au WS, sauf le logo
-    $repo = $em->getRepository('BecowoCoreBundle:Picture');
-    $pictures = $repo->findByWsNoLogo($name);
-
-    // on récupère la photo favorite liée au WS
-    $pictureFavorite = $repo->findByWsFavorite($name);
-
-    // on récupère le logo du WS
-    $pictureLogo = $repo->findByWsLogo($name);
-
-    //On récupère les events liés à ce WS
-    $repo = $em->getRepository('BecowoCoreBundle:Event');
-    $listEvents = $repo->findBy(array('workspace' => $ws));
-
-    // On récupère les offices et leur quantité
-    $repo = $em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
-    $listOffices = $repo->findBy(array('workspace' => $ws));
+    $ws = $WsService->getWorkspaceByName($name);
+    $pictures = $WsService->getPicturesByWorkspace($name);
+    $pictureFavorite = $WsService->getFavoritePictureByWorkspace($name);
+    $pictureLogo = $WsService->getLogoByWorkspace($name);
+    $listEvents = $WsService->getEventsByWorkspace($ws);
+    $listOffices = $WsService->getOfficesByWorkspace($ws);
 
     // Création du formulaire de commentaires
     $comment = new Comment();
