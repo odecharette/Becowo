@@ -23,10 +23,12 @@ class HomeController extends Controller
 	  // WS coup de coeur
     $workspaceFavorite = $WsService->getFavoriteWorkspace();
 
+    // Récupération du service Membre
+    $WsService = $this->get('app.member');
 
   	// Les x derniers membres inscrits et actifs
-  	$repo = $em->getRepository('BecowoMemberBundle:Member');
-  	$members = $repo->findNewMembers(5);
+    $members = $WsService->getLastActiveMembers(5);
+
 
     // Construction du GeoJson pour la MapBox
     // marker-symbol : https://www.mapbox.com/maki-icons/

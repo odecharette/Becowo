@@ -1,6 +1,6 @@
 <?php
 
-namespace Becowo\CoreBundle\Services;
+namespace Becowo\MemberBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Becowo\MemberBundle\Entity\Member;
@@ -14,7 +14,16 @@ class Member
         $this->em = $em;
     }
 
-    
+    public function getLastActiveMembers($nb)
+    {
+        $repo = $this->em->getRepository('BecowoMemberBundle:Member');
+     
+        try {
+            return $repo->findNewMembers($nb);
+        } catch (DoctrineORMNoResultException $e) {
+            return false;
+        }
+    }
 
 
 }
