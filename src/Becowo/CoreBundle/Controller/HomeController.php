@@ -28,7 +28,4 @@ class HomeController extends Controller
       'officesByWS' => $officesByWS,
       'mapGeoJson' => $mapGeoJson));
   }
-
-
-
 }
