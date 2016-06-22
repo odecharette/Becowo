@@ -19,4 +19,8 @@ services:
 
     app.member:
         class: Becowo\MemberBundle\Services\Member
-        arguments: ['@doctrine.orm.entity_manager']        
+        arguments: ['@doctrine.orm.entity_manager']      
+
+    app.map:
+        class: Becowo\CoreBundle\Services\Map
+        arguments: ['@doctrine.orm.entity_manager'] 
