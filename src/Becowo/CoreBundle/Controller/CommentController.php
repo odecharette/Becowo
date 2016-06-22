@@ -14,7 +14,7 @@ class CommentController extends Controller
   public function viewAction(Request $request)
   {
     $WsService = $this->get('app.workspace');
-    $ws = $WsService->getWorkspaceByName('YellowWorking');
+    $ws = $WsService->getWorkspaceByName($request->get('name'));
     $listComments = $WsService->getCommentsByWorkspace($ws);
 
     // Création du formulaire de commentaires
@@ -28,7 +28,8 @@ class CommentController extends Controller
 
         $this->addFlash('success', 'Commentaire bien enregistré.');
 
-        return new JsonResponse(array('message' => 'Success!'), 200);
+        // TO DO important, traiter le submit en AJAX pour rafraichir que la partie commentaire... ???
+       // return new JsonResponse(array('message' => 'Success!'), 200);
      }
 
     return $this->render('Workspace/comments.html.twig', array('form' => $form->createView(), 'listComments' => $listComments));
