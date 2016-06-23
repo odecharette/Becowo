@@ -116,6 +116,79 @@ fos_elastica:
                         finder: ~
 # EasyAdmin bundle
 easy_admin:
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
     entities:
-        - Becowo\CoreBundle\Entity\Workspace
-        - Becowo\CoreBundle\Entity\Booking
+        Workspace:
+            class: Becowo\CoreBundle\Entity\Workspace
+            list:
+                fields: ['id', 'name', 'description', 'descriptionBonus', { property: 'website', type: 'url' }, 'isAlwaysOpen', 'longitude', 'latitude', 'isVisible', 'isDeleted']
+        Workspace_Category:
+            class: Becowo\CoreBundle\Entity\WorkspaceCategory
+        Workspace_Favorite:
+            class: Becowo\CoreBundle\Entity\WorkspaceFavorite
+        Picture:
+            class: Becowo\CoreBundle\Entity\Picture
+        Office:
+            class: Becowo\CoreBundle\Entity\Office
+        Booking:
+            class: Becowo\CoreBundle\Entity\Booking
+        Booking_Status:
+            class: Becowo\CoreBundle\Entity\Status
+        Member:
+            class: Becowo\MemberBundle\Entity\Member
+            list:
+                fields: ['id', 'username', 'firstName', 'name', { property: 'email', type: 'email' }, 'lastLogin', 'enabled', 'locked']
+            form:
+                fields: ['username', { property: 'firstName', type: 'text' }, 'name', 'email', 'roles']
+        ProfilePicture:
+            class: Becowo\CoreBundle\Entity\ProfilePicture
+        Poi:
+            class: Becowo\CoreBundle\Entity\Poi
+        Poi_Category:
+            class: Becowo\CoreBundle\Entity\PoiCategory
+        Amenities:
+            class: Becowo\CoreBundle\Entity\Amenities
+        TeamMember:
+            class: Becowo\CoreBundle\Entity\TeamMember
+        Vote:
+            class: Becowo\CoreBundle\Entity\Vote
+        Comment:
+            class: Becowo\CoreBundle\Entity\Comment
+            list:
+                fields: ['id', 'post', { property: 'Workspace.name', label: 'Workspace' }, { property: 'Member.username', label: 'Member' }, { property: 'PostedOn', type: 'date' }]
+        Price:
+            class: Becowo\CoreBundle\Entity\Price
+        FAQ:
+            class: Becowo\CoreBundle\Entity\Faq
+        FAQ_Category:
+            class: Becowo\CoreBundle\Entity\FaqCategory
+        Country:
+            class: Becowo\CoreBundle\Entity\Country
+        DistanceSearch:
+            class: Becowo\CoreBundle\Entity\DistanceSearch
+        Origin:
+            class: Becowo\CoreBundle\Entity\Origin
+        Prospect:
+            class: Becowo\CoreBundle\Entity\Prospect
+        WeekDay:
+            class: Becowo\CoreBundle\Entity\WeekDay
+            disabled_actions: ['new', 'edit', 'delete']
+    design:
+        menu:
+            - label: 'Workspaces'
+              children: ['Workspace', 'Workspace_Category', 'Workspace_Favorite', 'Picture', 'Office', 'Amenities', 'TeamMember', 'Price']
+            - label: 'Booking'
+              children: ['Booking', 'Booking_Status']
+            - label: 'Members'
+              children: ['Member', 'ProfilePicture', 'Prospect']
+            - label: 'POI'
+              children: ['Poi', 'Poi_Category']
+            - label: 'Members input'
+              children: ['Vote', 'Comment']
+            - label: 'FAQ'
+              children: ['FAQ', 'FAQ_Category']
+            - label: 'Config'
+              children: ['Country', 'DistanceSearch', 'Origin', 'WeekDay']

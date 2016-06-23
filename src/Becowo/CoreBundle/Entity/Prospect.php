@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Prospect
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
@@ -39,15 +48,6 @@ class Prospect
      * @ORM\Column(name="created_on", type="datetime", nullable=false)
      */
     private $createdOn = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Origin

@@ -908,4 +908,9 @@ class Workspace
     {
         return $this->offer;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

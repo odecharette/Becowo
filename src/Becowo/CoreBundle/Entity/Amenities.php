@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Amenities
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=55, nullable=true)
-     */
-    private $name;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +20,13 @@ class Amenities
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=55, nullable=true)
+     */
+    private $name;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -110,5 +110,10 @@ class Amenities
     public function getWorkspace()
     {
         return $this->workspace;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

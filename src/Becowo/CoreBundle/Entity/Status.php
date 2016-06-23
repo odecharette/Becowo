@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Status
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=45, nullable=false)
-     */
-    private $name;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -28,6 +21,13 @@ class Status
      */
     private $id;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     */
+    private $name;
 
 
     /**
@@ -62,5 +62,10 @@ class Status
     public function getId()
     {
         return $this->id;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

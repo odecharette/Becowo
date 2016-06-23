@@ -13,20 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class WorkspaceFavorite
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_on", type="datetime")
-     */
-    private $createdOn;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -44,6 +30,20 @@ class WorkspaceFavorite
      * })
      */
     private $workspace;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_on", type="datetime")
+     */
+    private $createdOn;
 
     
     /**

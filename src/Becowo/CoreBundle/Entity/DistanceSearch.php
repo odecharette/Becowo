@@ -15,6 +15,15 @@ class DistanceSearch
     /**
      * @var integer
      *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="distance", type="integer", nullable=true)
      */
     private $distance;
@@ -25,15 +34,6 @@ class DistanceSearch
      * @ORM\Column(name="unit", type="string", length=5, nullable=true)
      */
     private $unit;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
 
 

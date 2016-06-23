@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Faq
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="question", type="string", length=255, nullable=true)
@@ -25,15 +34,6 @@ class Faq
      * @ORM\Column(name="answer", type="text", nullable=true)
      */
     private $answer;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \Becowo\CoreBundle\Entity\FaqCategory

@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Origin
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=45, nullable=true)
-     */
-    private $name;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +20,13 @@ class Origin
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     */
+    private $name;
 
 
 

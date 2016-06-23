@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Booking
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="start_date", type="date", nullable=true)
@@ -53,15 +62,6 @@ class Booking
      * @ORM\Column(name="price_incl_tax", type="decimal", precision=5, scale=2, nullable=true)
      */
     private $priceInclTax;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Workspace

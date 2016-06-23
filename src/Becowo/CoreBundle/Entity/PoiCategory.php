@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class PoiCategory
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=45, nullable=true)
-     */
-    private $name;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -28,7 +21,12 @@ class PoiCategory
      */
     private $id;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     */
+    private $name;
 
     /**
      * Set name
@@ -62,5 +60,10 @@ class PoiCategory
     public function getId()
     {
         return $this->id;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

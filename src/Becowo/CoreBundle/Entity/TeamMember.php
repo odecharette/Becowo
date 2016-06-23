@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class TeamMember
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=45, nullable=true)
@@ -34,6 +43,20 @@ class TeamMember
     private $email;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace", mappedBy="teamMember")
+     */
+    private $workspace;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="job", type="string", length=55, nullable=true)
+     */
+    private $job;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="url_profile_picture", type="string", length=255, nullable=true)
@@ -53,29 +76,6 @@ class TeamMember
      * @ORM\Column(name="phone", type="string", length=10, nullable=true)
      */
     private $phone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="job", type="string", length=55, nullable=true)
-     */
-    private $job;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace", mappedBy="teamMember")
-     */
-    private $workspace;
 
     /**
      * Constructor
@@ -296,5 +296,10 @@ class TeamMember
     public function getWorkspace()
     {
         return $this->workspace;
+    }
+
+    public function __toString()
+    {
+        return $this->email;
     }
 }

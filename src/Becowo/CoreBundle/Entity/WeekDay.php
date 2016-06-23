@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class WeekDay
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=8, nullable=false)
@@ -25,15 +34,6 @@ class WeekDay
      * @ORM\Column(name="is_weekend", type="boolean", nullable=false)
      */
     private $isWeekend;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
 
 

@@ -15,6 +15,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class ProfilePicture
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255, nullable=false)
@@ -27,15 +36,6 @@ class ProfilePicture
      * @ORM\Column(name="alt", type="string", length=255, nullable=false)
      */
     private $alt;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
 
     // Permet la gestion d'un champ FileType pour uploader un fichier

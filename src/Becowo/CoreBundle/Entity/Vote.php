@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Vote
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="vote_date", type="datetime")
@@ -54,15 +63,6 @@ class Vote
      */
     private $scoreAvg;
     
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Workspace

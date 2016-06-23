@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Price
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="price_hour", type="decimal", precision=5, scale=2, nullable=true)
@@ -46,15 +55,6 @@ class Price
      * @ORM\Column(name="price_month", type="decimal", precision=5, scale=2, nullable=true)
      */
     private $priceMonth;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Workspace

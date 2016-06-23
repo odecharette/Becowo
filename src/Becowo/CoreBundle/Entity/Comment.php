@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="post", type="text", nullable=true)
@@ -25,15 +34,6 @@ class Comment
      * @ORM\Column(name="posted_on", type="datetime")
      */
     private $postedOn;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Workspace

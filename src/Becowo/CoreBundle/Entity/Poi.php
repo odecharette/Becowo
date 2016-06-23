@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Poi
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
@@ -53,15 +62,6 @@ class Poi
      * @ORM\Column(name="city", type="string", length=45, nullable=true)
      */
     private $city;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var string
@@ -364,5 +364,10 @@ class Poi
     public function getWorkspace()
     {
         return $this->workspace;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
