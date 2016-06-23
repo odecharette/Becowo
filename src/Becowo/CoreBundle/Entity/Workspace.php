@@ -115,7 +115,7 @@ class Workspace
      *
      * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
      */
-    private $isDeleted = '0';
+    private $isDeleted;
 
     /**
      * @var \DateTime
@@ -136,7 +136,7 @@ class Workspace
      *
      * @ORM\Column(name="is_visible", type="boolean", nullable=false)
      */
-    private $isVisible = '0';
+    private $isVisible;
 
     /**
      * @var integer

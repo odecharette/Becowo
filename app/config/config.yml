@@ -145,6 +145,11 @@ easy_admin:
                 fields: ['username', { property: 'firstName', type: 'text' }, 'name', 'email', 'roles']
         ProfilePicture:
             class: Becowo\CoreBundle\Entity\ProfilePicture
+            # image_base_path: 'Becowo/Web/images/ProfilePictures/'
+            list:
+                fields: ['id', { property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt']
+            form:
+                fields: [{ property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt']
         Poi:
             class: Becowo\CoreBundle\Entity\Poi
         Poi_Category:
