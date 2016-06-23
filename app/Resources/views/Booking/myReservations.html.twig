@@ -44,7 +44,9 @@
 	    </tbody>
 	</table>
 
-{# {% block javascripts %}
+<br><br><br>
+
+{% block javascripts %}
 	<script>
 
   	function deleteAction($id)
@@ -54,18 +56,24 @@
         	message: 'Etes vous sûre de vouloir annuler cette réservation ?',
         	buttons: [{
                 label: 'Confirmer',
-                cssClass: 'btn-danger'
+                cssClass: 'btn-danger',
+                action: function(){
+                    alert('confirmer');
+                    // http://stackoverflow.com/questions/13835579/what-is-the-best-way-to-add-a-confirm-option-to-a-delete-form-in-symfony2
+                	}
             	},
             	{
                 label: 'Annuler',
-                cssClass: 'btn-default'
+                cssClass: 'btn-default',
+                action: function(dialogItself){
+                    dialogItself.close();
+                	}
             	}],
         	draggable: true
         	});
 	}
     </script>
 
-{% endblock javascripts %} #}
+{% endblock javascripts %}
 
-<br><br><br>
 {% endblock body %}
