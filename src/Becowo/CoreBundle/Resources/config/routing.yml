@@ -46,9 +46,9 @@ becowo_core_manager:
     path:     /manager
     defaults: { _controller: BecowoCoreBundle:Manager:home }
 
-becowo_core_admin:
-    path:     /admin
-    defaults: { _controller: BecowoCoreBundle:Admin:home }
+# becowo_core_admin:
+#     path:     /admin
+#     defaults: { _controller: BecowoCoreBundle:Admin:home }
 
 becowo_member_public_profile:
     path:     /profile/public/{username}

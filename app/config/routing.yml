@@ -19,3 +19,9 @@ fos_user_profile_edit:
     defaults: { _controller: FOSUserBundle:Profile:edit }
     requirements:
         _method: GET|POST
+
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+    

@@ -114,3 +114,8 @@ fos_elastica:
                             query_builder_method : findActiveWorkspaces
                         listener: ~
                         finder: ~
+# EasyAdmin bundle
+easy_admin:
+    entities:
+        - Becowo\CoreBundle\Entity\Workspace
+        - Becowo\CoreBundle\Entity\Booking
