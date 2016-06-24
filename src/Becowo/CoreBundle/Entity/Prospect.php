@@ -47,7 +47,7 @@ class Prospect
      *
      * @ORM\Column(name="created_on", type="datetime", nullable=false)
      */
-    private $createdOn = 'CURRENT_TIMESTAMP';
+    private $createdOn;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Origin
@@ -69,7 +69,13 @@ class Prospect
      */
     private $member;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->createdOn = new \DateTime();
+    }
 
     /**
      * Set email

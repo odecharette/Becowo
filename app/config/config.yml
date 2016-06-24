@@ -140,25 +140,38 @@ easy_admin:
             class: Becowo\CoreBundle\Entity\WorkspaceCategory
         Workspace_Favorite:
             class: Becowo\CoreBundle\Entity\WorkspaceFavorite
+            form:
+                fields: ['workspace']
         Picture:
             class: Becowo\CoreBundle\Entity\Picture
         Office:
             class: Becowo\CoreBundle\Entity\Office
         Booking:
             class: Becowo\CoreBundle\Entity\Booking
+            list:
+                fields:
+                    - 'id'
+                    - { property: 'workspace.name', label: 'Workspace' }
+                    - { property: 'member.username', label: 'Member' }
+                    - 'startDate'
+                    - 'endDate'
+                    - 'priceInclTax'
+                    - 'priceExclTax'
+                    - 'isFirstBook'
+                    - { property: 'CreatedOn', type: 'datetime'}
         Booking_Status:
             class: Becowo\CoreBundle\Entity\Status
         Member:
             class: Becowo\MemberBundle\Entity\Member
             list:
-                fields: ['id', 'username', 'firstName', 'name', { property: 'email', type: 'email' }, 'lastLogin', 'enabled', 'locked']
+                fields: ['id', 'username', 'firstName', 'name', { property: 'email', type: 'email' }, 'profilePicture', 'lastLogin', 'enabled', 'locked']
             form:
                 fields: 
                     - { property: 'username', type: 'text' }
                     - { property: 'firstName', type: 'text' }
                     - { property: 'name', type: 'text' }
                     - { property: 'email', type: 'email' }
-                    - { property: 'plainPassword', type: 'password', label: 'Password', help: 'Passwords must have at least 8 characters' }
+                    - { property: 'plainPassword', type: 'password', label: 'Password' }
                     - { property: 'enabled', type: 'checkbox' }
                     - { property: 'locked', type: 'checkbox' }
                     - { property: 'roles' }
@@ -175,6 +188,8 @@ easy_admin:
             class: Becowo\CoreBundle\Entity\PoiCategory
         Amenities:
             class: Becowo\CoreBundle\Entity\Amenities
+            form:
+                fields: ['name']
         TeamMember:
             class: Becowo\CoreBundle\Entity\TeamMember
         Vote:

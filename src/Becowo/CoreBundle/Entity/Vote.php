@@ -59,7 +59,7 @@ class Vote
     /**
      * @var string
      *
-     * @ORM\Column(name="score_avg", type="decimal", precision=2, scale=2)
+     * @ORM\Column(name="score_avg", type="decimal", precision=4, scale=2)
      */
     private $scoreAvg;
     
