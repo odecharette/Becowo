@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new \JMS\SerializerBundle\JMSSerializerBundle(),
             new \FOS\ElasticaBundle\FOSElasticaBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

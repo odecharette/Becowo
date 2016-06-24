@@ -149,7 +149,7 @@ easy_admin:
             list:
                 fields: ['id', { property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt']
             form:
-                fields: [{ property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt']
+                fields: [{ property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt', { property: 'file', type: 'file', label: 'Upload Picture', help: 'Select file to upload / change logo' }]
         Poi:
             class: Becowo\CoreBundle\Entity\Poi
         Poi_Category:
@@ -197,3 +197,11 @@ easy_admin:
               children: ['FAQ', 'FAQ_Category']
             - label: 'Config'
               children: ['Country', 'DistanceSearch', 'Origin', 'WeekDay']
+
+# vich/uploader-bundle / Easy to upload pictures
+vich_uploader:
+    db_driver: orm
+    mappings:
+        member_profile_picture:
+            uri_prefix:         /images/ProfilePictures
+            upload_destination: %kernel.root_dir%/../web/images/ProfilePictures
