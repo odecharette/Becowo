@@ -14,7 +14,7 @@ class MemberRepository extends EntityRepository
 		$qb = $this->createQueryBuilder('m');
 		$qb->where('m.enabled = true')
 			->andWhere('m.isDeleted = false')
-			->orderBy('m.createdOn', 'DESC')
+			->orderBy('m.createdAt', 'DESC')
 			->setFirstResult(0)
 			->setMaxResults($nb);
 

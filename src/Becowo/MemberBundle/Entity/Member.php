@@ -130,16 +130,16 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_on", type="datetime", nullable=true)
+     * @ORM\Column(name="created_at", type="datetime")
      */
-    private $createdOn;
+    private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated_on", type="datetime", nullable=true)
+     * @ORM\Column(name="updated_at", type="datetime")
      */
-    private $updatedOn;
+    private $updatedAt;
 
     /**
      * @var boolean
@@ -235,7 +235,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     {
         parent::__construct();
         $this->workspace = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->createdOn = new \DateTime();
+        $this->createdAt = new \DateTime();
         $this->roles = ['ROLE_USER'];
     }
 
@@ -603,51 +603,51 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     
 
     /**
-     * Set createdOn
+     * Set createdAt
      *
-     * @param \DateTime $createdOn
+     * @param \DateTime $createdAt
      *
      * @return Member
      */
-    public function setCreatedOn($createdOn)
+    public function setCreatedAt($createdAt)
     {
-        $this->createdOn = $createdOn;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get createdOn
+     * Get createdAt
      *
      * @return \DateTime
      */
-    public function getCreatedOn()
+    public function getCreatedAt()
     {
-        return $this->createdOn;
+        return $this->createdAt;
     }
 
     /**
-     * Set updatedOn
+     * Set updatedAt
      *
-     * @param \DateTime $updatedOn
+     * @param \DateTime $updatedAt
      *
      * @return Member
      */
-    public function setUpdatedOn($updatedOn)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->updatedOn = $updatedOn;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get updatedOn
+     * Get updatedAt
      *
      * @return \DateTime
      */
-    public function getUpdatedOn()
+    public function getUpdatedAt()
     {
-        return $this->updatedOn;
+        return $this->updatedAt;
     }
 
     /**
@@ -915,4 +915,19 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     public function eraseCredentials()
   {
   }
+
+    /**
+     * Set PlainPassword
+     *
+     * @param $password
+     *
+     * @return Member
+     */
+      public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+        $this->updatedAt = new \DateTime();
+
+        return $this;
+    }
 }

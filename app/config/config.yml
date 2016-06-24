@@ -153,7 +153,15 @@ easy_admin:
             list:
                 fields: ['id', 'username', 'firstName', 'name', { property: 'email', type: 'email' }, 'lastLogin', 'enabled', 'locked']
             form:
-                # fields: ['username', { property: 'firstName', type: 'text' }, 'name', 'email', 'roles']
+                fields: 
+                    - { property: 'username', type: 'text' }
+                    - { property: 'firstName', type: 'text' }
+                    - { property: 'name', type: 'text' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'plainPassword', type: 'password', label: 'Password', help: 'Passwords must have at least 8 characters' }
+                    - { property: 'enabled', type: 'checkbox' }
+                    - { property: 'locked', type: 'checkbox' }
+                    - { property: 'roles' }
         ProfilePicture:
             class: Becowo\CoreBundle\Entity\ProfilePicture
             # TO DO corriger affichage image
