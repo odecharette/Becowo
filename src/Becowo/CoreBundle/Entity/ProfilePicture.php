@@ -45,7 +45,7 @@ class ProfilePicture
     /**
      * @Vich\UploadableField(mapping="member_profile_picture", fileNameProperty="ProfilePicture")
      * 
-     * @var File $logoFile
+     * @var File $file
      */
     private $file;
   

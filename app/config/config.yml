@@ -114,12 +114,23 @@ fos_elastica:
                             query_builder_method : findActiveWorkspaces
                         listener: ~
                         finder: ~
+
+# vich/uploader-bundle / Easy to upload pictures
+vich_uploader:
+    db_driver: orm
+    mappings:
+        member_profile_picture:
+            uri_prefix:         /images/ProfilePictures
+            upload_destination: %kernel.root_dir%/../web/images/ProfilePictures
+
 # EasyAdmin bundle
 easy_admin:
     formats:
         date:     'd/m/Y'
         time:     'H:i'
         datetime: 'd/m/Y H:i:s'
+    list:
+        actions: ['show']
     entities:
         Workspace:
             class: Becowo\CoreBundle\Entity\Workspace
@@ -142,14 +153,14 @@ easy_admin:
             list:
                 fields: ['id', 'username', 'firstName', 'name', { property: 'email', type: 'email' }, 'lastLogin', 'enabled', 'locked']
             form:
-                fields: ['username', { property: 'firstName', type: 'text' }, 'name', 'email', 'roles']
+                # fields: ['username', { property: 'firstName', type: 'text' }, 'name', 'email', 'roles']
         ProfilePicture:
             class: Becowo\CoreBundle\Entity\ProfilePicture
-            # image_base_path: 'Becowo/Web/images/ProfilePictures/'
+            # TO DO corriger affichage image
             list:
-                fields: ['id', { property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt']
+                fields: ['id', { property: 'file', type: 'image', base_path: "% vich_uploader.mappings.member_profile_picture%"}, 'url', 'alt']
             form:
-                fields: [{ property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt', { property: 'file', type: 'file', label: 'Upload Picture', help: 'Select file to upload / change logo' }]
+                fields: [{ property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt', { property: 'file', type: 'file', label: 'Upload Picture', help: 'Select file to upload' }]
         Poi:
             class: Becowo\CoreBundle\Entity\Poi
         Poi_Category:
@@ -198,10 +209,4 @@ easy_admin:
             - label: 'Config'
               children: ['Country', 'DistanceSearch', 'Origin', 'WeekDay']
 
-# vich/uploader-bundle / Easy to upload pictures
-vich_uploader:
-    db_driver: orm
-    mappings:
-        member_profile_picture:
-            uri_prefix:         /images/ProfilePictures
-            upload_destination: %kernel.root_dir%/../web/images/ProfilePictures
+
