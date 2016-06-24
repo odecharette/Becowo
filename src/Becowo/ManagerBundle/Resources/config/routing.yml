@@ -1,0 +1,3 @@
+becowo_manager_profile:
+    path:     /profile
+    defaults: { _controller: BecowoManagerBundle:Profile:view }

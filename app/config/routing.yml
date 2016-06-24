@@ -1,3 +1,7 @@
+becowo_manager:
+    resource: "@BecowoManagerBundle/Resources/config/routing.yml"
+    prefix:   /manager/
+
 becowo_core:
     resource: "@BecowoCoreBundle/Resources/config/routing.yml"
     prefix:   /

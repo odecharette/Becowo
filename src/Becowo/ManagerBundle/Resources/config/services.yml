@@ -1,0 +1,4 @@
+services:
+#    becowo_manager.example:
+#        class: Becowo\ManagerBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

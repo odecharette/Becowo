@@ -23,7 +23,7 @@
 <body>
 
 {% if is_granted('ROLE_MANAGER') %}
-  <a href="{{ path('becowo_core_manager') }}">Espace Manager</a>
+  <a href="{{ path('becowo_manager_profile') }}">Espace Manager</a>
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') %}
