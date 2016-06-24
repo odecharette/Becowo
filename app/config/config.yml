@@ -130,7 +130,10 @@ easy_admin:
         time:     'H:i'
         datetime: 'd/m/Y H:i:s'
     list:
-        actions: ['show']
+        actions:
+            - { name: 'show', icon: 'search', label: '' }
+            - { name: 'edit', icon: 'pencil', label: '' }
+            - { name: 'delete', icon: 'remove', label: '' }            
     entities:
         Workspace:
             class: Becowo\CoreBundle\Entity\Workspace
