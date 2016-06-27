@@ -11,8 +11,12 @@ class ProfileController extends Controller
 {
   public function viewAction(Request $request)
   {
-
   	$workspace = $this->getUser()->getWorkspace();	// current WS of connected manager
+
+  	$WsService = $this->get('app.workspace');
+  	$pictureLogo = $WsService->getLogoByWorkspace($workspace->getName());
+
+  	
   	$form = $this->get('form.factory')->create(WorkspaceType::class, $workspace);
 
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
@@ -25,7 +29,9 @@ class ProfileController extends Controller
       return $this->redirectToRoute('becowo_manager_profile');
     }
 
-  	return $this->render('Manager/workspace_profile.html.twig', array('form' => $form->createView()));
+  	return $this->render('Manager/workspace_profile.html.twig', array(
+  		'form' => $form->createView(),
+  		'pictureLogo' => $pictureLogo));
   }
 
 

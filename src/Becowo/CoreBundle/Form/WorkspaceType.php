@@ -18,7 +18,7 @@ class WorkspaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('name')
+            ->add('name',   TextType::class)
             ->add('description',   TextareaType::class)
             ->add('descriptionBonus',   TextType::class)
             // ->add('website')
