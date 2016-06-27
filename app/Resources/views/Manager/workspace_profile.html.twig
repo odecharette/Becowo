@@ -1,7 +1,7 @@
 {% extends 'manager/manager-layout.html.twig' %}
 
 {% block page %}
-
+<div class="container-fluid">
 
 <div class="row">
     <div class="col-lg-12">
@@ -10,6 +10,70 @@
         </h1>
     </div>
 </div><!-- /.row -->
-	
 
+{% include "CommonViews/flashMessage.html.twig" %}
+
+<div class="row">
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+	<div class="col-lg-12">
+    	{{ form_errors(form) }}
+	</div>
+    <div class="col-lg-6">
+    	<div class="read">
+    		{{app.user.workspace.description}}
+    	</div>
+    	<div class="write">
+		    {{ form_errors(form.description) }}
+		    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+		</div>
+	</div>
+	<div class="col-lg-1">
+		<div class="read">
+			<button type="button" class="btn btn-primary" onclick="goWrite()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+		</div>
+		<div class="write">
+			<button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+			<button type="submit" class="btn btn-danger" onclick="goRead()"><i class="fa fa-times" aria-hidden="true"></i></button>    
+		</div>
+	</div>
+	{{ form_end(form) }}
+</div>
+	
+</div>
 {% endblock page%}
+
+{% block javascripts %}
+	<script>
+
+	goRead();
+
+	function goWrite()
+	{
+		var x = document.getElementsByClassName("read");
+		var i;
+		for (i = 0; i < x.length; i++) {
+		    x[i].style.display = "none";
+		}
+		var x = document.getElementsByClassName("write");
+		var i;
+		for (i = 0; i < x.length; i++) {
+		    x[i].style.display = "block";
+		}
+	}
+
+	function goRead()
+	{
+		var x = document.getElementsByClassName("read");
+		var i;
+		for (i = 0; i < x.length; i++) {
+		    x[i].style.display = "block";
+		}
+		var x = document.getElementsByClassName("write");
+		var i;
+		for (i = 0; i < x.length; i++) {
+		    x[i].style.display = "none";
+		}
+	}
+
+	</script>
+{% endblock %}

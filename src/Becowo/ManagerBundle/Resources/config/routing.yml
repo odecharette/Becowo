@@ -1,6 +1,7 @@
 becowo_manager_profile:
     path:     /profile
     defaults: { _controller: BecowoManagerBundle:Profile:view }
+    methods: GET|POST
 
 becowo_manager_dashboard:
     path:     /dashboard
