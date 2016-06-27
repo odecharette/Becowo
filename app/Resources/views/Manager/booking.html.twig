@@ -1,5 +1,51 @@
 {% extends 'manager/manager-layout.html.twig' %}
 
 {% block page %}
-	Réservations
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Réservations
+        </h1>
+    </div>
+</div><!-- /.row -->
+
+<table class="table table-striped">
+
+	<tbody>
+
+	{% for booking in bookings %}
+		<thead>
+		    <tr>
+		        <th>Espace</th>
+		        <th>Date de début</th>
+		        <th>Date de fin</th>
+		        <th>Statut</th>
+		        <th>Total € HT</th>
+		        <th>Total € TTC</th>
+		        <th>Actions</th>
+		    </tr>
+		</thead>
+        <tr>
+            <td><a href="{{ path('becowo_core_workspace', { 'name': booking.workspace.name }) }}">{{booking.workspace.name}}</a></td>
+            <td>{{booking.startDate|date("d/m/Y")}}</td>
+            <td>{{booking.endDate|date("d/m/Y")}}</td>
+            <td>{{booking.status.name}}</td>
+            <td>{{booking.priceExclTax}}</td>
+            <td>{{booking.priceInclTax}}</td>
+            <td>
+            	<button type="button" class="btn btn-primary">Contacter le Manager</button>
+            	{% if booking.status.name != 'Terminée' and booking.status.name != 'Annulée' %}
+            		<button type="button" class="btn btn-danger" onclick="deleteAction({{booking.id}})"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            		{# TO DO bouton delete #}
+            	{% endif %}
+            </td>
+        </tr>
+	{% else %}
+		<p>Vous n'avez encore aucune réservation.</p>
+	{% endfor %}
+
+	</tbody>
+</table>
+
 {% endblock page%}

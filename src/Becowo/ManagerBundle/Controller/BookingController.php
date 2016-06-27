@@ -8,7 +8,7 @@ class BookingController extends Controller
 {
   public function viewAction()
   {
-  	return $this->render('Manager/booking.html.twig');
+  	return $this->render('Manager/booking.html.twig', array('bookings' => null));
   }
 
 

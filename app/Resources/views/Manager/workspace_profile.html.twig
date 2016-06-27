@@ -1,5 +1,19 @@
 {% extends 'manager/manager-layout.html.twig' %}
 
 {% block page %}
-	Page Worspace profile
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Profil de 
+        </h1>
+    </div>
+</div><!-- /.row -->
+
+{{dump(u)}}
+
+{% for u in u %}
+	{{dump(u)}}
+{% endfor %}
+
 {% endblock page%}

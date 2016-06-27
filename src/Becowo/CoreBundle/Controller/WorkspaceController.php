@@ -15,7 +15,7 @@ class WorkspaceController extends Controller
 {
   public function viewAction($name, Request $request)
   {
-  	$em = $this->getDoctrine()->getManager();  // a enlever qd tt en service
+  	// $em = $this->getDoctrine()->getManager();  // a enlever qd tt en service
 
     $WsService = $this->get('app.workspace');
 

@@ -41,60 +41,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Becowo</a>
+                <a class="navbar-brand" href="{{ path('becowo_core_homepage') }}">Becowo</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.user.username }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Me déconnecter</a>
                         </li>
                     </ul>
                 </li>
@@ -102,20 +61,20 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="{{ path('becowo_manager_profile') }}"><i class="fa fa-fw fa-dashboard"></i> Profil de l'espace</a>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_profile' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_profile') }}"><i class="fa fa-fw fa-user"></i> Profil de l'espace</a>
                     </li>
-                    <li>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_dashboard' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_dashboard') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a href="{{ path('becowo_manager_booking') }}"><i class="fa fa-fw fa-dashboard"></i> Réservations</a>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_booking' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_booking') }}"><i class="fa fa-fw fa-calendar"></i> Réservations</a>
                     </li>
-                    <li>
-                        <a href="{{ path('becowo_manager_contracts') }}"><i class="fa fa-fw fa-dashboard"></i> Contrats</a>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_contracts' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_contracts') }}"><i class="fa fa-fw fa-paperclip"></i> Contrats</a>
                     </li>
-                    <li>
-                        <a href="{{ path('becowo_manager_bills') }}"><i class="fa fa-fw fa-dashboard"></i> Factures</a>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_bills' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_bills') }}"><i class="fa fa-fw fa-credit-card"></i> Factures</a>
                     </li>
                 </ul>
             </div>
