@@ -217,7 +217,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="member")
-     * @ORM\JoinTable(name="ambassador_submission",
+     * @ORM\JoinTable(name="member_manage_workspace",
      *   joinColumns={
      *     @ORM\JoinColumn(name="member_id", referencedColumnName="id")
      *   },
