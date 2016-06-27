@@ -25,14 +25,14 @@
 		<div class="read-name">
 			<h1>
 				{{app.user.workspace.name}}
-				<button type="button" class="btn btn-primary btn-xs" onclick="goWrite('name')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+				<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('name')"></button>
 			</h1>
 		</div>
 		<div class="write-name">
 		    {{ form_errors(form.name) }}
 		    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
-			<button type="submit" class="btn btn-success btn-xs"><i class="fa fa-check" aria-hidden="true"></i></button>
-			<button type="button" class="btn btn-danger btn-xs" onclick="goRead('name')"><i class="fa fa-times" aria-hidden="true"></i></button>    
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('name')"></button>    
 		</div>
 	</div>
 </div>
@@ -43,25 +43,25 @@
     	<h4>A propos de cet espace</h4>
     	<div class="read-description">
     		{{app.user.workspace.description}}
-    		<button type="button" class="btn btn-primary btn-xs" onclick="goWrite('description')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    		<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('description')"></button>
     	</div>
     	<div class="write-description">
 		    {{ form_errors(form.description) }}
 		    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-		    <button type="submit" class="btn btn-success btn-xs"><i class="fa fa-check" aria-hidden="true"></i></button>
-			<button type="button" class="btn btn-danger btn-xs" onclick="goRead('description')"><i class="fa fa-times" aria-hidden="true"></i></button>   
+		    <button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('description')"></button>   
 		</div>
 	</div>
 	<div class="col-lg-10">
     	<div class="read-descriptionBonus"><div class="well well-sm">
     		{{app.user.workspace.descriptionBonus}}
-    		<button type="button" class="btn btn-primary btn-xs" onclick="goWrite('descriptionBonus')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    		<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('descriptionBonus')"></button>
     	</div></div>
     	<div class="write-descriptionBonus">
 		    {{ form_errors(form.descriptionBonus) }}
 		    {{ form_widget(form.descriptionBonus, {'attr': {'class': 'form-control'}}) }}
-		    <button type="submit" class="btn btn-success btn-xs"><i class="fa fa-check" aria-hidden="true"></i></button>
-			<button type="button" class="btn btn-danger btn-xs" onclick="goRead('descriptionBonus')"><i class="fa fa-times" aria-hidden="true"></i></button>  
+		    <button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('descriptionBonus')"></button>  
 		</div>
 	</div>
 
