@@ -14,9 +14,9 @@
 {% include "CommonViews/flashMessage.html.twig" %}
 
 <div class="row">
-	{{ form_start(formDesc, {'attr': {'class': 'form-horizontal'}}) }}
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 	<div class="col-lg-12">
-    	{{ form_errors(formDesc) }}
+    	{{ form_errors(form) }}
 	</div>
     <div class="col-lg-10">
     	<h4>A propos de cet espace</h4> 
@@ -24,8 +24,8 @@
     		{{app.user.workspace.description}}
     	</div>
     	<div class="write">
-		    {{ form_errors(formDesc.description) }}
-		    {{ form_widget(formDesc.description, {'attr': {'class': 'form-control'}}) }}
+		    {{ form_errors(form.description) }}
+		    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
 		</div>
 	</div>
 	<div class="col-lg-1">
@@ -42,11 +42,8 @@
     		{{app.user.workspace.descriptionBonus}}
     	</div></div>
     	<div class="write">
-    		{{ form_start(formDescBonus, {'attr': {'class': 'form-horizontal'}}) }}
-    		{{ form_errors(formDescBonus) }}
-		    {{ form_errors(formDescBonus.descriptionBonus) }}
-		    {{ form_widget(formDescBonus.descriptionBonus, {'attr': {'class': 'form-control'}}) }}
-		    {{ form_end(formDescBonus) }}
+		    {{ form_errors(form.descriptionBonus) }}
+		    {{ form_widget(form.descriptionBonus, {'attr': {'class': 'form-control'}}) }}
 		</div>
 	</div>
 	<div class="col-lg-1">
@@ -60,11 +57,9 @@
 	</div>
 
 
-	{{ form_end(formDesc) }}
+	{{ form_end(form) }}
 </div>
 
-{# {{form(formDesc)}}
-{{form(formDescBonus)}} #}
 	
 </div>
 {% endblock page%}
