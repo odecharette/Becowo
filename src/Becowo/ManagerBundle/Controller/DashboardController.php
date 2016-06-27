@@ -11,8 +11,11 @@ class DashboardController extends Controller
   	$WsService = $this->get('app.workspace');
 
   	$NbBookings = count($WsService->getReservationsByWorkspace($this->getUser()->getWorkspace()));
+  	$TotInclTax = $WsService->getTotalInclTaxReservationsByWorkspace($this->getUser()->getWorkspace());
 
-  	return $this->render('Manager/dashboard.html.twig', array('NbBookings' => $NbBookings));
+  	return $this->render('Manager/dashboard.html.twig', array(
+  		'NbBookings' => $NbBookings,
+  		'TotInclTax' => $TotInclTax));
   }
 
 

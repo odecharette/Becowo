@@ -21,7 +21,6 @@
 		        <th>Statut</th>
 		        <th>Total € HT</th>
 		        <th>Total € TTC</th>
-		        <th>Actions</th>
 		    </tr>
 		</thead>
 
@@ -33,13 +32,6 @@
             <td>{{booking.status.name}}</td>
             <td>{{booking.priceExclTax}}</td>
             <td>{{booking.priceInclTax}}</td>
-            <td>
-            	<button type="button" class="btn btn-primary">Contacter le Manager</button>
-            	{% if booking.status.name != 'Terminée' and booking.status.name != 'Annulée' %}
-            		<button type="button" class="btn btn-danger" onclick="deleteAction({{booking.id}})"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-            		{# TO DO bouton delete #}
-            	{% endif %}
-            </td>
         </tr>
 	{% else %}
 		<p>Vous n'avez encore aucune réservation.</p>
