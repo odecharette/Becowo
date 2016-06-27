@@ -3,21 +3,13 @@
 {% block page %}
 
 
-
-
-{% for ws in managed_WS %}
-	{% if loop.length == 1 %}
-		<div class="row">
-		    <div class="col-lg-12">
-		        <h1 class="page-header">
-		            Profil de {{ws.name}}
-		        </h1>
-		    </div>
-		</div><!-- /.row -->
-	{% else %}
-		Vous gérez plusieurs espaces. Cette fonctionnalités n'est pas encore prévue
-		{# TO DO gérant de multi espaces #}
-	{% endif %}
-{% endfor %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Profil de {{app.user.workspace.name}}
+        </h1>
+    </div>
+</div><!-- /.row -->
+	
 
 {% endblock page%}

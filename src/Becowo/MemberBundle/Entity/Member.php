@@ -216,15 +216,10 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="member")
-     * @ORM\JoinTable(name="member_manage_workspace",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="member_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
+     * })
      */
     private $workspace;
 
@@ -234,7 +229,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     public function __construct()
     {
         parent::__construct();
-        $this->workspace = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->roles = ['ROLE_USER'];
     }
@@ -877,29 +871,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this->country;
     }
 
-    /**
-     * Add workspace
-     *
-     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
-     *
-     * @return Member
-     */
-    public function addWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace)
-    {
-        $this->workspace[] = $workspace;
-
-        return $this;
-    }
-
-    /**
-     * Remove workspace
-     *
-     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
-     */
-    public function removeWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace)
-    {
-        $this->workspace->removeElement($workspace);
-    }
 
     /**
      * Get workspace
@@ -911,6 +882,19 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this->workspace;
     }
 
+    /**
+     * Set workspace
+     *
+     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
+     *
+     * @return Member
+     */
+    public function setWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace = null)
+    {
+        $this->workspace = $workspace;
+
+        return $this;
+    }
 
     public function eraseCredentials()
   {

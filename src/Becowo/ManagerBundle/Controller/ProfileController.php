@@ -9,9 +9,9 @@ class ProfileController extends Controller
   public function viewAction()
   {
 
-  	$managed_WS = $this->getUser()->getWorkspace();
-  	
-  	return $this->render('Manager/workspace_profile.html.twig', array('managed_WS' => $managed_WS));
+  	//$ws = $this->getUser()->getWorkspace();
+
+  	return $this->render('Manager/workspace_profile.html.twig');
   }
 
 
