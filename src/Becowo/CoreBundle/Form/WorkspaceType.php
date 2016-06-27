@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class WorkspaceType extends AbstractType
 {
@@ -40,7 +41,10 @@ class WorkspaceType extends AbstractType
             // ->add('country')
             // ->add('poi')
             // ->add('teamMember')
-            // ->add('amenities')
+            ->add('amenities', EntityType::class, array(
+                'class' => 'BecowoCoreBundle:Amenities',
+                'multiple' => true,
+                'expanded' => true))
             // ->add('offer')
             // ->add('save',      SubmitType::class)
         ;
