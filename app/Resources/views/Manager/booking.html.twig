@@ -14,10 +14,8 @@
 
 	<tbody>
 
-	{% for booking in bookings %}
 		<thead>
 		    <tr>
-		        <th>Espace</th>
 		        <th>Date de début</th>
 		        <th>Date de fin</th>
 		        <th>Statut</th>
@@ -26,8 +24,10 @@
 		        <th>Actions</th>
 		    </tr>
 		</thead>
+
+	{% for booking in bookings %}
+		
         <tr>
-            <td><a href="{{ path('becowo_core_workspace', { 'name': booking.workspace.name }) }}">{{booking.workspace.name}}</a></td>
             <td>{{booking.startDate|date("d/m/Y")}}</td>
             <td>{{booking.endDate|date("d/m/Y")}}</td>
             <td>{{booking.status.name}}</td>

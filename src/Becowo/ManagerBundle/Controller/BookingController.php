@@ -8,7 +8,11 @@ class BookingController extends Controller
 {
   public function viewAction()
   {
-  	return $this->render('Manager/booking.html.twig', array('bookings' => null));
+  	$WsService = $this->get('app.workspace');
+
+  	$bookings = $WsService->getReservationsByWorkspace($this->getUser()->getWorkspace());
+
+  	return $this->render('Manager/booking.html.twig', array('bookings' => $bookings));
   }
 
 

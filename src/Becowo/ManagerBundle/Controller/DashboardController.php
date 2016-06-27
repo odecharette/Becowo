@@ -8,7 +8,11 @@ class DashboardController extends Controller
 {
   public function viewAction()
   {
-  	return $this->render('Manager/dashboard.html.twig');
+  	$WsService = $this->get('app.workspace');
+
+  	$NbBookings = count($WsService->getReservationsByWorkspace($this->getUser()->getWorkspace()));
+
+  	return $this->render('Manager/dashboard.html.twig', array('NbBookings' => $NbBookings));
   }
 
 

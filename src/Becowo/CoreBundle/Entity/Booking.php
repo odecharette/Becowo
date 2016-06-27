@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Booking
  *
  * @ORM\Table(name="booking", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}), @ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"}), @ORM\Index(name="fk_office_id_idx", columns={"office_id"}), @ORM\Index(name="fk_status_id_idx", columns={"status_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\BookingRepository")
  */
 class Booking
 {

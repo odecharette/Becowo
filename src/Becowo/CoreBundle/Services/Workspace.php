@@ -105,4 +105,10 @@ class Workspace
           null);
     }
 
+    public function getReservationsByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        return $repo->findBy(array('workspace' => $ws));
+    }
+
 }
