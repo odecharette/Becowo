@@ -212,12 +212,6 @@ class Workspace
      */
     private $amenities;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Becowo\MemberBundle\Entity\Member", mappedBy="workspace")
-     */
-    private $member;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -243,7 +237,6 @@ class Workspace
         $this->teamMember = new \Doctrine\Common\Collections\ArrayCollection();
        // $this->office = new \Doctrine\Common\Collections\ArrayCollection();
         $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->member = new \Doctrine\Common\Collections\ArrayCollection();
         $this->offer = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
     }
@@ -839,40 +832,6 @@ class Workspace
     public function getAmenities()
     {
         return $this->amenities;
-    }
-
-    /**
-     * Add member
-     *
-     * @param \Becowo\MemberBundle\Entity\Member $member
-     *
-     * @return Workspace
-     */
-    public function addMember(\Becowo\MemberBundle\Entity\Member $member)
-    {
-        $this->member[] = $member;
-
-        return $this;
-    }
-
-    /**
-     * Remove member
-     *
-     * @param \Becowo\MemberBundle\Entity\Member $member
-     */
-    public function removeMember(\Becowo\MemberBundle\Entity\Member $member)
-    {
-        $this->member->removeElement($member);
-    }
-
-    /**
-     * Get member
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMember()
-    {
-        return $this->member;
     }
 
     /**
