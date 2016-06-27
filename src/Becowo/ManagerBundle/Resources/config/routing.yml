@@ -1,3 +1,19 @@
 becowo_manager_profile:
     path:     /profile
     defaults: { _controller: BecowoManagerBundle:Profile:view }
+
+becowo_manager_dashboard:
+    path:     /dashboard
+    defaults: { _controller: BecowoManagerBundle:Dashboard:view }
+
+becowo_manager_booking:
+    path:     /booking
+    defaults: { _controller: BecowoManagerBundle:Booking:view }
+
+becowo_manager_contracts:
+    path:     /contracts
+    defaults: { _controller: BecowoManagerBundle:Contracts:view }
+
+becowo_manager_bills:
+    path:     /bills
+    defaults: { _controller: BecowoManagerBundle:Bills:view }
