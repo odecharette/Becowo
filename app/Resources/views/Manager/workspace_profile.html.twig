@@ -20,39 +20,39 @@
 	</div>
     <div class="col-lg-10">
     	<h4>A propos de cet espace</h4> 
-    	<div class="read">
+    	<div class="read-description">
     		{{app.user.workspace.description}}
     	</div>
-    	<div class="write">
+    	<div class="write-description">
 		    {{ form_errors(form.description) }}
 		    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
 		</div>
 	</div>
 	<div class="col-lg-1">
-		<div class="read">
-			<button type="button" class="btn btn-primary" onclick="goWrite()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+		<div class="read-description">
+			<button type="button" class="btn btn-primary" onclick="goWrite('description')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 		</div>
-		<div class="write">
+		<div class="write-description">
 			<button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
-			<button type="submit" class="btn btn-danger" onclick="goRead()"><i class="fa fa-times" aria-hidden="true"></i></button>    
+			<button type="submit" class="btn btn-danger" onclick="goRead('description')"><i class="fa fa-times" aria-hidden="true"></i></button>    
 		</div>
 	</div>
 	<div class="col-lg-10">
-    	<div class="read"><div class="well well-sm">
+    	<div class="read-descriptionBonus"><div class="well well-sm">
     		{{app.user.workspace.descriptionBonus}}
     	</div></div>
-    	<div class="write">
+    	<div class="write-descriptionBonus">
 		    {{ form_errors(form.descriptionBonus) }}
 		    {{ form_widget(form.descriptionBonus, {'attr': {'class': 'form-control'}}) }}
 		</div>
 	</div>
 	<div class="col-lg-1">
-		<div class="read">
-			<button type="button" class="btn btn-primary" onclick="goWrite()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+		<div class="read-descriptionBonus">
+			<button type="button" class="btn btn-primary" onclick="goWrite('descriptionBonus')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 		</div>
-		<div class="write">
+		<div class="write-descriptionBonus">
 			<button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
-			<button type="submit" class="btn btn-danger" onclick="goRead()"><i class="fa fa-times" aria-hidden="true"></i></button>    
+			<button type="submit" class="btn btn-danger" onclick="goRead('descriptionBonus')"><i class="fa fa-times" aria-hidden="true"></i></button>    
 		</div>
 	</div>
 
@@ -67,30 +67,31 @@
 {% block javascripts %}
 	<script>
 
-	goRead();
+	goRead("description");
+	goRead("descriptionBonus");
 
-	function goWrite()
+	function goWrite($element)
 	{
-		var x = document.getElementsByClassName("read");
+		var x = document.getElementsByClassName("read-"+$element);
 		var i;
 		for (i = 0; i < x.length; i++) {
 		    x[i].style.display = "none";
 		}
-		var x = document.getElementsByClassName("write");
+		var x = document.getElementsByClassName("write-"+$element);
 		var i;
 		for (i = 0; i < x.length; i++) {
 		    x[i].style.display = "block";
 		}
 	}
 
-	function goRead()
+	function goRead($element)
 	{
-		var x = document.getElementsByClassName("read");
+		var x = document.getElementsByClassName("read-"+$element);
 		var i;
 		for (i = 0; i < x.length; i++) {
 		    x[i].style.display = "block";
 		}
-		var x = document.getElementsByClassName("write");
+		var x = document.getElementsByClassName("write-"+$element);
 		var i;
 		for (i = 0; i < x.length; i++) {
 		    x[i].style.display = "none";
