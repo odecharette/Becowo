@@ -20,7 +20,7 @@ class WorkspaceType extends AbstractType
         $builder
             // ->add('name')
             ->add('description',   TextareaType::class)
-            // ->add('descriptionBonus',   TextType::class)
+            ->add('descriptionBonus',   TextType::class)
             // ->add('website')
             // ->add('isAlwaysOpen')
             // ->add('street')
