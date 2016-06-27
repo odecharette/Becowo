@@ -17,6 +17,8 @@
     <link href="{{ asset('css/manager/morris.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    {# https://datatables.net/  Sort & filter HTML tables #}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -97,7 +99,11 @@
     <script src="{{ asset('js/manager/raphael.min.js') }}"></script>
     <script src="{{ asset('js/manager/morris.min.js') }}"></script>
     <script src="{{ asset('js/manager/morris-data.js') }}"></script>
+    {# https://datatables.net/  Sort & filter HTML tables #}
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
+    {% block javascripts %}
+    {% endblock %}
 </body>
 
 </html>
