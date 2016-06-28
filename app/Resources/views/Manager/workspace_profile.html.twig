@@ -116,28 +116,50 @@
 
 {############################################# Team #########################################}
 <div class="row">
-	<div class="col-lg-6">
-		<h4>L'équipe à votre service</h4>
-		<div class="read-team">
-			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('team')"></button>
-			{% for teamMember in app.user.workspace.teamMember %}    
-				<div class="well"> <center>
-	      			{# TO DO mettre image en dynamique #}
-	        		<img src="{{ asset('images/olivia.png') }}" alt="TO DO" width="100px" height="100px">
-	          		<h4>{{teamMember.firstname}} {{teamMember.name}}</h4>
-	          		<span class="label label-info">{{teamMember.job}}</span>
-	          		<p >{{teamMember.description}}</p>
-				</center></div>
+	<div class="read-team">
+	<div class="col-lg-2">
+		<div class="well">
+		<center>
+		<h4>L'équipe <button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('team')"></button></h4>
+		
+			<div id="myCarouselTeam" class="carousel slide" data-interval="false">
+  			<div class="carousel-inner">
+			{% for teamMember in app.user.workspace.teamMember %}    				
+					<div class={% if loop.first %}"item active"{% else %}"item"{% endif %}>       
+	      				<div class="card">
+			      			{# TO DO mettre image en dynamique #}
+			        		<img class="card-img-top" src="{{ asset('images/olivia.png') }}" alt="TO DO" width="100px" height="100px">
+			        		<div class="card-block">
+			          			<h4 class="card-title">{{teamMember.firstname}} {{teamMember.name}}</h4>
+			          			<span class="label label-info">{{teamMember.job}}</span>
+			          			<p class="card-text" >{{teamMember.description}}</p>
+							</div>
+				      	</div>
+			        </div>
     		{% endfor %}
+ 			</div> 
+    		<a class="left carousel-control" href="#myCarouselTeam" role="button" data-slide="prev">
+      		<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+    		</a>
+    		<a class="right carousel-control" href="#myCarouselTeam" role="button" data-slide="next">
+      		<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+    		</a>
+			</div>
 		</div>
-		<div class="write-team" id="formTeamMember">
+	</center>
+		</div>
+	</div>
+	<div class="write-team" id="formTeamMember">
+		<div class="col-lg-6">
+			<h4>L'équipe </h4>
 			{{ form_errors(form.teamMember) }}
 		    {{ form_widget(form.teamMember, {'attr': {'class': 'form-control'}}) }} 
-		    <a href="#" id="add_teamMember" class="btn btn-default">Ajouter</a>
+		    <a href="#" id="add_teamMember" class="btn btn-primary fa fa-plus"></a>
 			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
 			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('team')"></button>
 		</div>
-	</div>
+	
+</div>
 </div>
 {#########################################################################}		
 {# {{dump(app.user.workspace)}} #}
@@ -188,24 +210,31 @@
 	}
 
 	
+	////////////////////// Formulaire add/delete TeamMember ////////////////////////////////////////
 
-
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    // On récupère la balise <div> qui contient l'attribut « data-prototype » qui nous intéresse.
     var $container = $('div#workspace_teamMember');
-
+    
+    
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;
 
+    //on supprime la nnumérotation des labels qui prend trop de place
+	var list = document.getElementsByClassName("col-sm-2 control-label required");
+	for(var i = list.length - 1; 0 <= i; i--)
+	if(list[i] && list[i].parentElement)
+	list[i].parentElement.removeChild(list[i]);
+
+
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#add_teamMember').click(function(e) {
-    	console.log("ajouter");
       addTeamMember($container);
 
       e.preventDefault(); // évite qu'un # apparaisse dans l'URL
       return false;
     });
 
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un
     if (index == 0) {
       addTeamMember($container);
     } else {
@@ -224,29 +253,20 @@
 
       // On crée un objet jquery qui contient ce template
       var $prototype = $(template);
-
       // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
       addDeleteLink($prototype);
-
       // On ajoute le prototype modifié à la fin de la balise <div>
       $container.append($prototype);
-
-      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
     }
 
     // La fonction qui ajoute un lien de suppression d'une catégorie
     function addDeleteLink($prototype) {
-      // Création du lien
-      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-
-      // Ajout du lien
+      var $deleteLink = $('<a href="#" class="btn btn-danger fa fa-trash-o"></a>');
       $prototype.append($deleteLink);
-
       // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
       $deleteLink.click(function(e) {
         $prototype.remove();
-
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
       });
