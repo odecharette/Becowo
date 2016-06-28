@@ -18,6 +18,11 @@ becowo_manager_profile_amenities:
     defaults: { _controller: BecowoManagerBundle:Profile:amenities }
     methods: GET|POST
 
+becowo_manager_profile_offices:
+    path:     /profile/bureaux
+    defaults: { _controller: BecowoManagerBundle:Profile:offices }
+    methods: GET|POST
+
 becowo_manager_dashboard:
     path:     /dashboard
     defaults: { _controller: BecowoManagerBundle:Dashboard:view }

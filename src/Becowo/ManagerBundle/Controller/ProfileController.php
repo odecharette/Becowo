@@ -6,8 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Entity\Workspace;
 use Becowo\CoreBundle\Entity\Picture;
+use Becowo\CoreBundle\Entity\WorkspaceHasOffice;
 use Becowo\CoreBundle\Form\WorkspaceType;
 use Becowo\CoreBundle\Form\PictureType;
+use Becowo\CoreBundle\Form\WorkspaceHasOfficeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -119,6 +121,24 @@ class ProfileController extends Controller
   	return $this->render('Manager/profile/amenities.html.twig', array(
   		'form' => $form->createView()));
   }
+
+  	public function officesAction(Request $request)
+  	{
+  		$WsService = $this->get('app.workspace');
+  		$offices = $WsService->getOfficesByWorkspace($this->getUser()->getWorkspace());
+
+  		// $WHO = new WorkspaceHasOffice();
+  		// foreach ($offices as $offices) {
+  		// 	$WHO->setOffice($offices);
+  		// }
+
+  		$form = $this->get('form.factory')->create(WorkspaceHasOfficeType::class, $offices[0]);
+
+  		return $this->render('Manager/profile/offices.html.twig', array(
+  		'form' => $form->createView(),
+  		'offices' => $offices));
+
+  	}
 
 
 }

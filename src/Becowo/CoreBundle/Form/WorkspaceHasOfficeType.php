@@ -16,7 +16,7 @@ class WorkspaceHasOfficeType extends AbstractType
     {
         $builder
             ->add('desk_qty')
-            ->add('workspace')
+        //    ->add('workspace')
             ->add('office', OfficeType::class)
         ;
     }
