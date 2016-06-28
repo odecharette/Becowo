@@ -3,6 +3,16 @@ becowo_manager_profile:
     defaults: { _controller: BecowoManagerBundle:Profile:view }
     methods: GET|POST
 
+becowo_manager_profile_desc:
+    path:     /profile/desc
+    defaults: { _controller: BecowoManagerBundle:Profile:desc }
+    methods: GET|POST
+
+becowo_manager_profile_pictures:
+    path:     /profile/pictures
+    defaults: { _controller: BecowoManagerBundle:Profile:pictures }
+    methods: GET|POST
+
 becowo_manager_dashboard:
     path:     /dashboard
     defaults: { _controller: BecowoManagerBundle:Dashboard:view }

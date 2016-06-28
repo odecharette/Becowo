@@ -151,12 +151,11 @@
 	</div>
 	<div class="write-team" id="formTeamMember">
 		<div class="col-lg-6">
-			<h4>L'équipe </h4>
+			<h4>L'équipe <a href="#" id="add_teamMember" class="btn btn-primary fa fa-plus"></a>
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('team')"></button></h4>
 			{{ form_errors(form.teamMember) }}
 		    {{ form_widget(form.teamMember, {'attr': {'class': 'form-control'}}) }} 
-		    <a href="#" id="add_teamMember" class="btn btn-primary fa fa-plus"></a>
-			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
-			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('team')"></button>
 		</div>
 	
 </div>
@@ -181,33 +180,34 @@
 	goRead("offices");
 	goRead("team");
 
-	function goWrite($element)
-	{
-		var x = document.getElementsByClassName("read-"+$element);
-		var i;
-		for (i = 0; i < x.length; i++) {
-		    x[i].style.display = "none";
-		}
-		var x = document.getElementsByClassName("write-"+$element);
-		var i;
-		for (i = 0; i < x.length; i++) {
-		    x[i].style.display = "block";
-		}
-	}
 
-	function goRead($element)
-	{
-		var x = document.getElementsByClassName("read-"+$element);
-		var i;
-		for (i = 0; i < x.length; i++) {
-		    x[i].style.display = "block";
-		}
-		var x = document.getElementsByClassName("write-"+$element);
-		var i;
-		for (i = 0; i < x.length; i++) {
-		    x[i].style.display = "none";
-		}
-	}
+	// function goWrite($element)
+	// {
+	// 	var x = document.getElementsByClassName("read-"+$element);
+	// 	var i;
+	// 	for (i = 0; i < x.length; i++) {
+	// 	    x[i].style.display = "none";
+	// 	}
+	// 	var x = document.getElementsByClassName("write-"+$element);
+	// 	var i;
+	// 	for (i = 0; i < x.length; i++) {
+	// 	    x[i].style.display = "block";
+	// 	}
+	// }
+
+	// function goRead($element)
+	// {
+	// 	var x = document.getElementsByClassName("read-"+$element);
+	// 	var i;
+	// 	for (i = 0; i < x.length; i++) {
+	// 	    x[i].style.display = "block";
+	// 	}
+	// 	var x = document.getElementsByClassName("write-"+$element);
+	// 	var i;
+	// 	for (i = 0; i < x.length; i++) {
+	// 	    x[i].style.display = "none";
+	// 	}
+	// }
 
 	
 	////////////////////// Formulaire add/delete TeamMember ////////////////////////////////////////
@@ -229,6 +229,12 @@
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#add_teamMember').click(function(e) {
       addTeamMember($container);
+
+      //on supprime la nnumérotation des labels qui prend trop de place
+	var list = document.getElementsByClassName("col-sm-2 control-label required");
+	for(var i = list.length - 1; 0 <= i; i--)
+	if(list[i] && list[i].parentElement)
+	list[i].parentElement.removeChild(list[i]);
 
       e.preventDefault(); // évite qu'un # apparaisse dans l'URL
       return false;

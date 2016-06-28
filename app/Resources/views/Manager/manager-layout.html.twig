@@ -68,6 +68,17 @@
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_profile') }}"><i class="fa fa-fw fa-user"></i> Profil de l'espace</a>
                     </li>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_profile' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="javascript:;" data-toggle="collapse" data-target="#submenu"><i class="fa fa-fw fa-user"></i> Profil<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="submenu" class="collapse">
+                            <li>
+                                <a href="{{ path('becowo_manager_profile_desc') }}">Identité</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('becowo_manager_profile_pictures') }}">Les photos</a>
+                            </li>
+                        </ul>
+                    </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_dashboard' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_dashboard') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
@@ -103,6 +114,8 @@
     <script src="{{ asset('js/manager/morris-data.js') }}"></script>
     {# https://datatables.net/  Sort & filter HTML tables #}
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    {# Pour gérer affichage des form en lecture/edition #}
+    <script src="{{ asset('js/manager/readWrite.js') }}"></script>
 
     {% block javascripts %}
     {% endblock %}
