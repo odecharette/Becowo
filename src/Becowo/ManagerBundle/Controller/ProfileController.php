@@ -7,9 +7,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Entity\Workspace;
 use Becowo\CoreBundle\Entity\Picture;
 use Becowo\CoreBundle\Entity\WorkspaceHasOffice;
+use Becowo\CoreBundle\Entity\Event;
 use Becowo\CoreBundle\Form\WorkspaceType;
 use Becowo\CoreBundle\Form\PictureType;
 use Becowo\CoreBundle\Form\WorkspaceHasOfficeType;
+use Becowo\CoreBundle\Form\EventType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -147,5 +149,28 @@ class ProfileController extends Controller
 
   	}
 
+  	public function eventsAction(Request $request)
+  	{
+  		$WsService = $this->get('app.workspace');
+  		$events = $WsService->getEventsByWorkspace($this->getUser()->getWorkspace());
+
+  		$event = new Event();
+  		$event->setWorkspace($this->getUser()->getWorkspace());
+  		$form = $this->get('form.factory')->create(EventType::class, $event);
+
+  		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+	      $em = $this->getDoctrine()->getManager();
+	      $em->persist($event);
+	      $em->flush();
+
+	      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+	      return $this->redirectToRoute('becowo_manager_profile_events');
+	    }
+
+	    return $this->render('Manager/profile/events.html.twig', array(
+  		'form' => $form->createView(),
+  		'events' => $events));
+  	}
 
 }

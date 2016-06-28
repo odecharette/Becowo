@@ -22,5 +22,20 @@ class DeleteController extends Controller
     return $this->redirectToRoute('becowo_manager_profile_offices');
   }
 
+  public function deleteEventAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $event = $em->getRepository('BecowoCoreBundle:Event')->find($id);
+
+    if (!$event) {
+        throw $this->createNotFoundException('No event found for id '.$id);
+    }
+
+    $em->remove($event);
+    $em->flush();
+
+    return $this->redirectToRoute('becowo_manager_profile_events');
+  }
+
 
 }
