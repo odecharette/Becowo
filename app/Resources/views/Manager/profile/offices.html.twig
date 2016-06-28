@@ -24,7 +24,6 @@
 			<th>Type de bureau</th>
 			<th>Quantité</th>
 			<th>Public ?</th>
-			<th>Description</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -34,7 +33,6 @@
 			 	<td>{{office.office.name}}</td>
 				<td>{{office.deskQty}}</td>
 				<td>{% if office.office.isPublic %}<i class="fa fa-check" aria-hidden="true"></i>{% endif %}</td>
-				<td>{{office.office.description}}</td> 
 				<td><a href="{{ path('becowo_manager_profile_offices_delete', { 'id': office.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td> 
 			</tr>
 		{% endfor %}
@@ -42,18 +40,25 @@
 </table>
 
 
-	
-
-
 {#########################################################################################################}
-{{ form_rest(form) }}
-{{ form_end(form) }}
-
+<div class="row">
+    <div class="col-lg-12">
+    	<div class="read-offices">
+    		<button type="button" class="btn btn-primary" onclick="goWrite('offices')">Ajouter un bureau</button>
+    	</div>
+    	<div class="write-offices">
+			{{ form_rest(form) }}
+			{{ form_end(form) }}
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('offices')"></button> 
+		</div>
+	</div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
 	<script>
 
-	goRead("amenities");
+	goRead("offices");
 	</script>
 {% endblock %}

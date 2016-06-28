@@ -5,6 +5,7 @@ namespace Becowo\CoreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class WorkspaceHasOfficeType extends AbstractType
 {
@@ -16,8 +17,10 @@ class WorkspaceHasOfficeType extends AbstractType
     {
         $builder
             ->add('desk_qty')
+            ->add('office', EntityType::class, array(
+                'class' => 'BecowoCoreBundle:Office',
+                'choice_label' => 'name'))
         //    ->add('workspace')
-            ->add('office', OfficeType::class)
         ;
     }
     

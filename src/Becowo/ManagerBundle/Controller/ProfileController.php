@@ -127,12 +127,19 @@ class ProfileController extends Controller
   		$WsService = $this->get('app.workspace');
   		$offices = $WsService->getOfficesByWorkspace($this->getUser()->getWorkspace());
 
-  		// $WHO = new WorkspaceHasOffice();
-  		// foreach ($offices as $offices) {
-  		// 	$WHO->setOffice($offices);
-  		// }
+  		$office = new WorkspaceHasOffice();
+  		$office->setWorkspace($this->getUser()->getWorkspace());
+  		$form = $this->get('form.factory')->create(WorkspaceHasOfficeType::class, $office);
 
-  		$form = $this->get('form.factory')->create(WorkspaceHasOfficeType::class, $offices[0]);
+  		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+	      $em = $this->getDoctrine()->getManager();
+	      $em->persist($office);
+	      $em->flush();
+
+	      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+	      return $this->redirectToRoute('becowo_manager_profile_offices');
+	    }
 
   		return $this->render('Manager/profile/offices.html.twig', array(
   		'form' => $form->createView(),
