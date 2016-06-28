@@ -36,6 +36,15 @@ becowo_manager_profile_events_delete:
     path:     /profile/events/delete/{id}
     defaults: { _controller: BecowoManagerBundle:Delete:deleteEvent }
 
+becowo_manager_profile_team:
+    path:     /profile/team
+    defaults: { _controller: BecowoManagerBundle:Profile:team }
+    methods: GET|POST
+
+becowo_manager_profile_team_delete:
+    path:     /profile/team/delete/{id}
+    defaults: { _controller: BecowoManagerBundle:Delete:deleteTeam }
+
 becowo_manager_dashboard:
     path:     /dashboard
     defaults: { _controller: BecowoManagerBundle:Dashboard:view }

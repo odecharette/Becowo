@@ -37,5 +37,21 @@ class DeleteController extends Controller
     return $this->redirectToRoute('becowo_manager_profile_events');
   }
 
+  public function deleteTeamAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $team = $em->getRepository('BecowoCoreBundle:Team')->find($id);
+
+    if (!$team) {
+        throw $this->createNotFoundException('No team member found for id '.$id);
+    }
+
+    $em->remove($team);
+    $em->flush();
+
+    return $this->redirectToRoute('becowo_manager_profile_team');
+  }
+
+
 
 }

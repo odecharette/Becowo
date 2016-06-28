@@ -1,0 +1,74 @@
+{% extends 'manager/manager-layout.html.twig' %}
+
+{% block page %}
+<div class="container-fluid">
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Profil de {{app.user.workspace.name}}
+        </h1>
+    </div>
+</div><!-- /.row -->
+
+{% include "CommonViews/flashMessage.html.twig" %}
+
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(form) }}
+
+{####################################################### Team #####################################################}
+
+ <table class="table">
+	<thead>
+		<tr>
+			<th>Prénom</th>
+			<th>Nom</th>
+			<th>Email</th>
+			<th>Fonction</th>
+			<th>Photo</th>
+			<th>Description</th>
+			<th>Téléphone</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for teamMember in app.user.workspace.teamMember %}
+			<tr>
+				<td>{{teamMember.firstname}}</td>
+				<td>{{teamMember.name}}</td>
+				<td>{{teamMember.email}}</td>
+				<td>{{teamMember.job}}</td>
+				<td>{{teamMember.urlProfilePicture}}</td>
+				<td>{{teamMember.description}}</td>
+				<td>{{teamMember.phone}}</td>
+				<td><a href="{{ path('becowo_manager_profile_team_delete', { 'id': 1 }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table> 
+
+il y a une ligne vide qui bloque le fonctionnement / remettre la DBB à zéro
+et changer le param 'id' : 1 par teamMember.id ds lien de suppression
+{{dump(app.user.workspace.teamMember)}}
+
+{#########################################################################################################}
+<div class="row">
+    <div class="col-lg-5">
+    	<div class="read-events">
+    		<button type="button" class="btn btn-primary" onclick="goWrite('events')">Ajouter un membre à l'équipe</button>
+    	</div>
+    	<div class="write-events">
+			{{ form_rest(form) }}
+			{{ form_end(form) }}
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('events')"></button> 
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+
+	goRead("events");
+	</script>
+{% endblock %}
