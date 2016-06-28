@@ -5,10 +5,14 @@ namespace Becowo\ManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Entity\Workspace;
+use Becowo\CoreBundle\Entity\Picture;
 use Becowo\CoreBundle\Form\WorkspaceType;
+use Becowo\CoreBundle\Form\PictureType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProfileController extends Controller
 {
@@ -69,9 +73,51 @@ class ProfileController extends Controller
   		'form' => $form->createView()));
   }
 
-  public function picturesAction()
+  public function picturesAction(Request $request)
   {
-  	return $this->render('Manager/profile/picture.html.twig');
+  	/////////// TO DO : à finir load logo et les autres images
+  	$WsService = $this->get('app.workspace');
+  	$logo = $WsService->getLogoByWorkspace($this->getUser()->getWorkspace()->getName());
+
+  	$form = $this->get('form.factory')->create(PictureType::class, $logo[0]);
+
+  	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($workspace);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      return $this->redirectToRoute('becowo_manager_profile_pictures');
+    }
+  	return $this->render('Manager/profile/picture.html.twig', array(
+  		'form' => $form->createView(),
+  		'logo' => $logo[0]));
+  }
+
+  public function amenitiesAction(Request $request)
+  {
+  	$workspace = $this->getUser()->getWorkspace();
+  	$formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
+  	$formBuilder
+        ->add('amenities', EntityType::class, array(
+            'class' => 'BecowoCoreBundle:Amenities',
+            'multiple' => true,
+            'expanded' => true));
+    $form = $formBuilder->getForm();
+
+  	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($workspace);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      return $this->redirectToRoute('becowo_manager_profile_amenities');
+    }
+
+  	return $this->render('Manager/profile/amenities.html.twig', array(
+  		'form' => $form->createView()));
   }
 
 

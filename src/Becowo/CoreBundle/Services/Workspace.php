@@ -37,6 +37,13 @@ class Workspace
 
     }
 
+    public function getAllPicturesByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Picture');
+        return $repo->findBy(array('workspace' => $ws));
+
+    }
+
     public function getOfficesByWorkspaces(array $Workspaces)
     {
         $OfficesByWs = array();

@@ -40,14 +40,14 @@ class Picture
      *
      * @ORM\Column(name="is_favorite", type="boolean", nullable=true)
      */
-    private $isFavorite = '0';
+    private $isFavorite;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="is_logo", type="boolean", nullable=true)
      */
-    private $isLogo = '0';
+    private $isLogo;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Workspace

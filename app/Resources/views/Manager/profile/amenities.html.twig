@@ -1,0 +1,59 @@
+{% extends 'manager/manager-layout.html.twig' %}
+
+{% block page %}
+<div class="container-fluid">
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Profil de {{app.user.workspace.name}}
+        </h1>
+    </div>
+</div><!-- /.row -->
+
+{% include "CommonViews/flashMessage.html.twig" %}
+
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(form) }}
+
+{####################################################### Ammenities #####################################################}
+
+<div class="row">
+	<div class="col-lg-9">
+		<div class="read-amenities">
+		<h4>Les services
+		<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('amenities')"></button></h4>
+			<ul>
+				{% for amenity in app.user.workspace.amenities %}
+					<li>{{amenity.name}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="write-amenities">
+			<h4>Les services
+		    <button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('amenities')"></button> </h4>
+		    {{ form_errors(form.amenities) }}
+		    {{ form_widget(form.amenities, {'attr': {'class': 'form-control'}}) }} 
+		    <br><br>
+		    <i>Vous proposez un service qui n'est pas référencé ? Veuillez nous le signaler par email. Merci</i>
+		</div>
+	</div>
+</div>
+<br>
+
+{####################################################### Bureaux #####################################################}
+
+
+{#########################################################################################################}
+{{ form_rest(form) }}
+{{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+
+	goRead("amenities");
+	</script>
+{% endblock %}

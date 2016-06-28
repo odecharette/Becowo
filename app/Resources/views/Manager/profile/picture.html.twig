@@ -13,22 +13,40 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
-{# {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 {{ form_errors(form) }}
 
+{########################################### Logo ######################################################}
 
-#######################################################################################################
+<div class="row">
+	<div class="col-lg-12">
+		<div class="read-logo">
+		<h4>Logo
+			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('logo')"></button>
+		</h4>
+			<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{logo.url}}" alt="{{logo.alt}}">
+		</div>
+		<div class="write-logo">
+		<h4>Logo
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('logo')"></button>
+		</h4>  
+		    {{ form_row(form.url) }}  
+		    {{ form_row(form.alt) }}  
+		</div>
+	</div>
+</div>
+<br>
+
+{#######################################################################################################}
 {{ form_rest(form) }}
-{{ form_end(form) }} #}
+{{ form_end(form) }}
 
 {% endblock %}
 
 {% block javascripts %}
 	<script>
 
-	goRead("name");
-	goRead("description");
-	goRead("descriptionBonus");
-	goRead("adresse");
+	goRead("logo");
 	</script>
 {% endblock %}
