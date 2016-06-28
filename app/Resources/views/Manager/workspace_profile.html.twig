@@ -90,8 +90,58 @@
 		</div>
 	</div>
 </div>
+{############################################# Offices #########################################}
+{#<div class="row">
+	<div class="col-lg-9">
+		<div class="read-offices">
+			<h4>Les Bureaux
+				<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('offices')"></button></h4>
+			<ul>
+				{% for office in listOffices %}
+					<li>{{office.office.name}} ({{office.DeskQty}} bureaux)</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="write-offices">
+			<h4>Les Bureaux
+		    <button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('offices')"></button> </h4>
+		     {{ form_errors(form.workspaceHasOffice) }} 
+		    {{ form_widget(form.workspaceHasOffice, {'attr': {'class': 'form-control'}}) }}  
+		    <br><br>
+		</div>
+	</div>
+</div>
+#}
 
-{#########################################################################}
+{############################################# Team #########################################}
+<div class="row">
+	<div class="col-lg-6">
+		<h4>L'équipe à votre service</h4>
+		<div class="read-team">
+			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('team')"></button>
+			{% for teamMember in app.user.workspace.teamMember %}    
+				<div class="well"> <center>
+	      			{# TO DO mettre image en dynamique #}
+	        		<img src="{{ asset('images/olivia.png') }}" alt="TO DO" width="100px" height="100px">
+	          		<h4>{{teamMember.firstname}} {{teamMember.name}}</h4>
+	          		<span class="label label-info">{{teamMember.job}}</span>
+	          		<p >{{teamMember.description}}</p>
+				</center></div>
+    		{% endfor %}
+		</div>
+		<div class="write-team" id="formTeamMember">
+			{{ form_errors(form.teamMember) }}
+		    {{ form_widget(form.teamMember, {'attr': {'class': 'form-control'}}) }} 
+		    <a href="#" id="add_teamMember" class="btn btn-default">Ajouter</a>
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('team')"></button>
+		</div>
+	</div>
+</div>
+{#########################################################################}		
+{# {{dump(app.user.workspace)}} #}
+	{{ form_rest(form) }}
 	{{ form_end(form) }}
 </div>
 
@@ -106,6 +156,8 @@
 	goRead("description");
 	goRead("descriptionBonus");
 	goRead("amenities");
+	goRead("offices");
+	goRead("team");
 
 	function goWrite($element)
 	{
@@ -135,5 +187,70 @@
 		}
 	}
 
-	</script>
+	
+
+
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $('div#workspace_teamMember');
+
+    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+    var index = $container.find(':input').length;
+
+    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    $('#add_teamMember').click(function(e) {
+    	console.log("ajouter");
+      addTeamMember($container);
+
+      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+      return false;
+    });
+
+    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+    if (index == 0) {
+      addTeamMember($container);
+    } else {
+      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+      $container.children('div').each(function() {
+        addDeleteLink($(this));
+      });
+    }
+
+    // La fonction qui ajoute un formulaire CategoryType
+    function addTeamMember($container) {
+      // Dans le contenu de l'attribut « data-prototype », on remplace :
+      // - le texte "__name__label__" qu'il contient par le label du champ
+      // - le texte "__name__" qu'il contient par le numéro du champ
+      var template = $container.attr('data-prototype').replace(/__name__label__/g, '');
+
+      // On crée un objet jquery qui contient ce template
+      var $prototype = $(template);
+
+      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+      addDeleteLink($prototype);
+
+      // On ajoute le prototype modifié à la fin de la balise <div>
+      $container.append($prototype);
+
+      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+      index++;
+    }
+
+    // La fonction qui ajoute un lien de suppression d'une catégorie
+    function addDeleteLink($prototype) {
+      // Création du lien
+      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+      // Ajout du lien
+      $prototype.append($deleteLink);
+
+      // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+      $deleteLink.click(function(e) {
+        $prototype.remove();
+
+        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        return false;
+      });
+    }
+
+</script>
 {% endblock %}

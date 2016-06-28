@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Becowo\CoreBundle\Form\TeamMemberType;
 
 class WorkspaceType extends AbstractType
 {
@@ -40,13 +42,17 @@ class WorkspaceType extends AbstractType
             // ->add('category')
             // ->add('country')
             // ->add('poi')
-            // ->add('teamMember')
+            ->add('teamMember', CollectionType::class, array(
+                'entry_type' => TeamMemberType::class,
+                'allow_add' => true,
+                'allow_delete' => true))
             ->add('amenities', EntityType::class, array(
                 'class' => 'BecowoCoreBundle:Amenities',
                 'multiple' => true,
                 'expanded' => true))
             // ->add('offer')
             // ->add('save',      SubmitType::class)
+           // ->add('workspaceHasOffice', WorkspaceHasOfficeType::class)
         ;
     }
     

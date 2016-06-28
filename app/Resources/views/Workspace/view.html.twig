@@ -9,7 +9,11 @@
 	<div class="container-fluid">
 		<div class="row text-center">
 			<div class="col-lg-3">
-				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
+				{% if pictureLogo[0] is defined %}
+					<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
+				{% else %}
+					Pas de logo
+				{% endif %}
 			</div>
 			<div class="col-lg-6">
 				<h1>{{ws.name}}</h1>

@@ -15,7 +15,7 @@ class ProfileController extends Controller
 
   	$WsService = $this->get('app.workspace');
   	$pictureLogo = $WsService->getLogoByWorkspace($workspace->getName());
-
+  	$listOffices = $WsService->getOfficesByWorkspace($workspace);
   	
   	$form = $this->get('form.factory')->create(WorkspaceType::class, $workspace);
 
@@ -31,7 +31,8 @@ class ProfileController extends Controller
 
   	return $this->render('Manager/workspace_profile.html.twig', array(
   		'form' => $form->createView(),
-  		'pictureLogo' => $pictureLogo));
+  		'pictureLogo' => $pictureLogo,
+  		'listOffices' => $listOffices));
   }
 
 

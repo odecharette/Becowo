@@ -185,7 +185,7 @@ class Workspace
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\TeamMember", inversedBy="workspace")
+     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\TeamMember", inversedBy="workspace", cascade={"persist"})
      * @ORM\JoinTable(name="workspace_has_team_member",
      *   joinColumns={
      *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")

@@ -6,7 +6,9 @@
         <div class="row">
           <div class="col-lg-9 col-top">
             <div class="pull-left single-container">
-              <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureFavorite[0].url}}" alt="{{pictureFavorite[0].alt}}" id="DataDisplay"/>
+              {% if pictureFavorite[0] is defined %}
+                <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureFavorite[0].url}}" alt="{{pictureFavorite[0].alt}}" id="DataDisplay"/>
+              {% endif %}
             </div>
 
           </div>
