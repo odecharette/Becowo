@@ -92,51 +92,70 @@
     </div>
 </div><!-- /.row -->
 
-<div class="row">
-    <div class="col-lg-5">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-user fa-fw"></i> Répartition des membres de Becowo par âge</h3>
+<div id="tab-content">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+      <li class="active"><a href="#chart-Becowo" data-toggle="tab">Becowo</a></li>
+      <li><a href="#chart-WS" data-toggle="tab">{{ app.user.workspace.name }}</a></li>
+    </ul>
+
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="chart-Becowo">
+        <br>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-user fa-fw"></i> Répartition des membres par âge</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="chart_age"></div>
+                        </div>
+                    </div>    
+                </div>
+                <div class="col-lg-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-male fa-fw"></i> Répartition des membres par sexe</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="chart_sex"></div>
+                        </div>
+                    </div>    
+                </div>
             </div>
-            <div class="panel-body">
-                <div id="chart_age"></div>
+
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-usd fa-fw"></i> Réservations confirmées par type de Bureau</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="chart_booking_office"></div>
+                        </div>
+                    </div>    
+                </div>
+                <div class="col-lg-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-usd fa-fw"></i> Réservations confirmées par durée</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="chart_booking_duration"></div>
+                        </div>
+                    </div>    
+                </div>
             </div>
-        </div>    
-    </div>
-    <div class="col-lg-5">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-male fa-fw"></i> Répartition des membres de Becowo par sexe</h3>
-            </div>
-            <div class="panel-body">
-                <div id="chart_sex"></div>
-            </div>
-        </div>    
+
+        </div>
+        <div class="tab-pane" id="chart-WS">
+            contenu tab WS
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-5">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-usd fa-fw"></i> Réservations confirmées par type de Bureau / chez Becowo</h3>
-            </div>
-            <div class="panel-body">
-                <div id="chart_booking_office"></div>
-            </div>
-        </div>    
-    </div>
-    <div class="col-lg-5">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-usd fa-fw"></i> Réservations confirmées par durée / chez Becowo</h3>
-            </div>
-            <div class="panel-body">
-                <div id="chart_booking_duration"></div>
-            </div>
-        </div>    
-    </div>
-</div>
+
+
 
 </div>
 
