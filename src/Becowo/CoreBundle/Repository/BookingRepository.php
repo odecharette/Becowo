@@ -32,5 +32,25 @@ class BookingRepository extends EntityRepository
 
 		return $this->getEntityManager()->createNativeQuery($sql, $rsm)->getScalarResult();
 	}
+
+	public function getBookingByDuration()
+	{
+		$rsm = new ResultSetMapping();
+		$sql = "SELECT (case when duration < 5 then 'Journée' 
+				when duration >=5 and duration <= 9 then 'Semaine' 
+				else 'Mois' end) bucket, 
+				count(*) AS count 
+				FROM(SELECT  ABS(CEIL(DATEDIFF(b.end_date, b.start_date)))+1 AS duration 
+					FROM Booking b
+					WHERE b.status_id IN (SELECT id FROM status WHERE name = 'Confirmée')) request 
+				GROUP BY (case when duration < 5 then 'Journée' 
+				when duration >=5 and duration <= 9 then 'Semaine' 
+				else 'Mois' end)";
+
+		$rsm->addScalarResult('bucket', 'bucket');
+		$rsm->addScalarResult('count', 'count');
+
+		return $this->getEntityManager()->createNativeQuery($sql, $rsm)->getScalarResult();
+	}
 	
 }

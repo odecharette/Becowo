@@ -57,6 +57,19 @@ class Dashboard
 	    return $chart;
     }
 
+    public function getBookingByDurationChart()
+    {
+    	$chart = new BarChart();
+
+    	$res = $this->em->getRepository('BecowoCoreBundle:Booking')->getBookingByDuration();
+
+     	$data = $this->transformData($res, 'bucket', 'count');
+
+		$chart->getData()->setArrayToDataTable($data);
+
+	    return $chart;
+    }
+
     private function transformData($res, $col1, $col2)
     {
     	$data[] = array([$col1], [$col2]);

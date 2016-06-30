@@ -19,13 +19,15 @@ class DashboardController extends Controller
   	$ageChart = $DashboardService->getAgeChart();
   	$sexChart = $DashboardService->getSexChart();
   	$bookingByOfficeChart = $DashboardService->getBookingByOfficeChart();
+  	$bookingByDurationChart = $DashboardService->getBookingByDurationChart();
 
   	return $this->render('Manager/dashboard.html.twig', array(
   		'NbBookings' => $NbBookings,
   		'TotInclTax' => $TotInclTax,
   		'ageChart' => $ageChart,
   		'sexChart' => $sexChart,
-  		'bookingByOfficeChart' => $bookingByOfficeChart));
+  		'bookingByOfficeChart' => $bookingByOfficeChart,
+  		'bookingByDurationChart' => $bookingByDurationChart));
   }
 
 
