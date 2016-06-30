@@ -3,7 +3,7 @@
 	height: 100%;
 }
 
-#chart_age{
+#chart_age #chart_sex{
 	height: 300px;
 	width: 500px;
 }

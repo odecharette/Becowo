@@ -115,6 +115,19 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-usd fa-fw"></i> Réservations confirmées par type de Bureau / chez Becowo</h3>
+            </div>
+            <div class="panel-body">
+                <div id="chart_booking_office"></div>
+            </div>
+        </div>    
+    </div>
+</div>
+
 </div>
 
 {% endblock page %}
@@ -122,6 +135,6 @@
 {% block javascripts %}
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-        {{ gc_draw([ageChart, sexChart], ['chart_age', 'chart_sex']) }}
+        {{ gc_draw([ageChart, sexChart, bookingByOfficeChart], ['chart_age', 'chart_sex', 'chart_booking_office']) }}
     </script>
 {% endblock %}

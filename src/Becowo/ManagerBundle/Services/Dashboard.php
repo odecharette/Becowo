@@ -4,6 +4,7 @@ namespace Becowo\ManagerBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
 
 class Dashboard
 {
@@ -26,7 +27,6 @@ class Dashboard
 	    $chart->getOptions()->setIs3D(true);
 
 	    return $chart;
-
     }
 
     public function getSexChart()
@@ -41,7 +41,20 @@ class Dashboard
 	    $chart->getOptions()->setIs3D(true);
 
 	    return $chart;
+    }
 
+    public function getBookingByOfficeChart()
+    {
+    	$chart = new BarChart();
+
+    	$res = $this->em->getRepository('BecowoCoreBundle:Booking')->getBookingByOfficeType();
+
+     	$data = $this->transformData($res, 'office', 'count');
+
+		$chart->getData()->setArrayToDataTable($data);
+	   // $chart->getOptions()->setIs3D(true);
+
+	    return $chart;
     }
 
     private function transformData($res, $col1, $col2)
