@@ -40,15 +40,12 @@
 				<td>{{teamMember.urlProfilePicture}}</td>
 				<td>{{teamMember.description}}</td>
 				<td>{{teamMember.phone}}</td>
-				<td><a href="{{ path('becowo_manager_profile_team_delete', { 'id': 1 }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td>
+				<td><a href="{{ path('becowo_manager_profile_team_delete', { 'id': teamMember.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td>
 			</tr>
 		{% endfor %}
 	</tbody>
 </table> 
 
-il y a une ligne vide qui bloque le fonctionnement / remettre la DBB à zéro
-et changer le param 'id' : 1 par teamMember.id ds lien de suppression
-{{dump(app.user.workspace.teamMember)}}
 
 {#########################################################################################################}
 <div class="row">

@@ -40,7 +40,7 @@ class DeleteController extends Controller
   public function deleteTeamAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->getRepository('BecowoCoreBundle:Team')->find($id);
+    $team = $em->getRepository('BecowoCoreBundle:TeamMember')->find($id);
 
     if (!$team) {
         throw $this->createNotFoundException('No team member found for id '.$id);

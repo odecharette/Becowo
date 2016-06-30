@@ -179,12 +179,12 @@ class ProfileController extends Controller
   	{
   		$teamMember = new TeamMember();
   		$teamMember->addWorkspace($this->getUser()->getWorkspace());
-  		$this->getUser()->getWorkspace()->addTeamMember($teamMember);	// pour la relation Many-to-many
   		$form = $this->get('form.factory')->create(TeamMemberType::class, $teamMember);
 
   		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 	      $em = $this->getDoctrine()->getManager();
 	      $em->persist($teamMember);
+	      $this->getUser()->getWorkspace()->addTeamMember($teamMember);	// pour la relation Many-to-many
 	      $em->flush();
 
 	      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');

@@ -22,7 +22,7 @@ class LoadTeamMember implements FixtureInterface
 
     $teamMember = new TeamMember();
     $teamMember->setFirstname('Marc');
-    $teamMember->setName('PouToi');
+    $teamMember->setName('PourToi');
     $teamMember->setEmail('marc@gmail.com');
     $teamMember->setUrlProfilePicture('');
     $teamMember->setDescription('description de Marc');

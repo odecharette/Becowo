@@ -239,6 +239,7 @@ class Workspace
         $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->offer = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
+        $this->isDeleted = false;
     }
 
 
