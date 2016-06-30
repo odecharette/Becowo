@@ -5,9 +5,9 @@ namespace Becowo\MemberBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Becowo\MemberBundle\Entity\Member;
-use Becowo\CoreBundle\Entity\Origin;            // TO DO : deplacer vers MemberBundle
+use Becowo\CoreBundle\Entity\Origin;
 use Becowo\CoreBundle\Entity\Country;
-use Becowo\CoreBundle\Entity\ProfilePicture;    // TO DO : deplacer vers MemberBundle
+use Becowo\CoreBundle\Entity\ProfilePicture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,7 +31,7 @@ class LoadMember extends Controller implements FixtureInterface, ContainerAwareI
     $member->setRoles(array('ROLE_ADMIN'));
     $member->setFirstName('Olivia');
     $member->setName('de Charette');
-    $member->setSex(1);
+    $member->setSex('F');
     $member->setBirthDate(new \DateTime('1985-10-01'));
     $member->setPhone('0650225827');
     $member->setStreet('10 rue de Prony');
@@ -70,7 +70,7 @@ class LoadMember extends Controller implements FixtureInterface, ContainerAwareI
     $member->setRoles(array('ROLE_USER'));
     $member->setFirstName('Fiona');
     $member->setName('Delannoy');
-    $member->setSex(1);
+    $member->setSex('F');
     $member->setBirthDate(new \DateTime('1985-10-01'));
     $member->setPhone('');
     $member->setStreet('');

@@ -51,5 +51,23 @@ class MemberRepository extends EntityRepository
 
 		return $this->getEntityManager()->createNativeQuery($sql, $rsm)->getScalarResult();
 	}
+
+	public function getSexFromMembers()
+	{
+		$rsm = new ResultSetMapping();
+		$sql = "SELECT (case when sex = 'F' then 'Femme' 
+			when sex = 'H' then 'Homme' 
+			else 'undefined' end) sex, 
+			count(*) AS count 
+			FROM( SELECT sex from Member m) request
+			GROUP BY (case when sex = 'F' then 'Femme' 
+			when sex = 'H' then 'Homme' 
+			else 'undefined' end)";
+
+		$rsm->addScalarResult('sex', 'sex');
+		$rsm->addScalarResult('count', 'count');
+
+		return $this->getEntityManager()->createNativeQuery($sql, $rsm)->getScalarResult();
+	}
 	
 }

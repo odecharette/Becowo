@@ -53,7 +53,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @var boolean
      *
-     * @ORM\Column(name="sex", type="boolean", nullable=true)
+     * @ORM\Column(name="sex", type="string", length=1, nullable=true)
      */
     private $sex;
 

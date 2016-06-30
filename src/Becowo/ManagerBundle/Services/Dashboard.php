@@ -16,16 +16,31 @@ class Dashboard
 
     public function getAgeChart()
     {
-    	$ageChart = new PieChart();
+    	$chart = new PieChart();
      
      	$res = $this->em->getRepository('BecowoMemberBundle:Member')->getAgeByRangeFromMembers();
 
      	$data = $this->transformData($res, 'bucket', 'count');
 
-		$ageChart->getData()->setArrayToDataTable($data);
-	    $ageChart->getOptions()->setIs3D(true);
+		$chart->getData()->setArrayToDataTable($data);
+	    $chart->getOptions()->setIs3D(true);
 
-	    return $ageChart;
+	    return $chart;
+
+    }
+
+    public function getSexChart()
+    {
+    	$chart = new PieChart();
+     
+     	$res = $this->em->getRepository('BecowoMemberBundle:Member')->getSexFromMembers();
+
+     	$data = $this->transformData($res, 'sex', 'count');
+
+		$chart->getData()->setArrayToDataTable($data);
+	    $chart->getOptions()->setIs3D(true);
+
+	    return $chart;
 
     }
 
