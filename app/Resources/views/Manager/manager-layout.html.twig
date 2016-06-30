@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link href="{{ asset('css/manager/sb-admin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/manager/morris.css') }}" rel="stylesheet">
+    {# Graphiques morris.js #}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <!-- Fonts -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
     {# https://datatables.net/  Sort & filter HTML tables #}
@@ -122,9 +123,8 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- Morris Charts JavaScript -->
-    <script src="{{ asset('js/manager/raphael.min.js') }}"></script>
-    <script src="{{ asset('js/manager/morris.min.js') }}"></script>
-    <script src="{{ asset('js/manager/morris-data.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     {# https://datatables.net/  Sort & filter HTML tables #}
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     {# Pour gérer affichage des form en lecture/edition #}
