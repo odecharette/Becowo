@@ -237,4 +237,7 @@ easy_admin:
             - label: 'Config'
               children: ['Country', 'DistanceSearch', 'Origin', 'WeekDay']
 
-
+# Google chart / CMENGoogleChartsBundle 
+cmen_google_charts:
+    version: "1"
+    language: 'fr'
