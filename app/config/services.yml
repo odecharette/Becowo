@@ -25,3 +25,7 @@ services:
         class: Becowo\CoreBundle\Services\Map
         arguments: ['@doctrine.orm.entity_manager'] 
 
+    app.manager.dashboard:
+        class: Becowo\ManagerBundle\Services\Dashboard
+        arguments: ['@doctrine.orm.entity_manager'] 
+

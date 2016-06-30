@@ -3,6 +3,7 @@
 	height: 100%;
 }
 
-#chart-age{
-	height: 200px;
+#chart_age{
+	height: 300px;
+	width: 500px;
 }
