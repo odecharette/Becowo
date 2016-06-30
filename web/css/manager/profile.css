@@ -2,3 +2,7 @@
 	/* corrige l'affichage des checkbox Amenities*/
 	height: 100%;
 }
+
+#chart-age{
+	height: 200px;
+}
