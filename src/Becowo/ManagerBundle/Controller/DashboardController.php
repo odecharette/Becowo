@@ -15,12 +15,12 @@ class DashboardController extends Controller
   	$TotInclTax = $WsService->getTotalInclTaxReservationsByWorkspace($this->getUser()->getWorkspace());
 
   	$DashboardService = $this->get('app.manager.dashboard');
-  	$pieChart = $DashboardService->getAgeChart();
+  	$ageChart = $DashboardService->getAgeChart();
 
   	return $this->render('Manager/dashboard.html.twig', array(
   		'NbBookings' => $NbBookings,
   		'TotInclTax' => $TotInclTax,
-  		'pieChart' => $pieChart));
+  		'ageChart' => $ageChart));
   }
 
 

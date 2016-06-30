@@ -16,19 +16,27 @@ class Dashboard
 
     public function getAgeChart()
     {
-    	$pieChart = new PieChart();
-    	$pieChart->getData()->setArrayToDataTable(
-        [['Age', 'Nb de coworkers'],
-         ['18-24 ans', 60],
-         ['25-34 ans', 20],
-         ['35-44 ans', 10],
-         ['Plus de 45 ans', 10]
-        ]
-	    );
-	    $pieChart->getOptions()->setTitle('Répartition des coworkers par âge');
-	    $pieChart->getOptions()->setIs3D(true);
+    	$ageChart = new PieChart();
+     
+     	$res = $this->em->getRepository('BecowoMemberBundle:Member')->getAgeByRangeFromMembers();
 
-	    return $pieChart;
+     	$data = $this->transformData($res, 'bucket', 'count');
+
+		$ageChart->getData()->setArrayToDataTable($data);
+	    $ageChart->getOptions()->setIs3D(true);
+
+	    return $ageChart;
+
+    }
+
+    private function transformData($res, $col1, $col2)
+    {
+    	$data[] = array([$col1], [$col2]);
+     	foreach ($res as $val)
+        {
+            $data[] = array($val[$col1], (int) $val[$col2]);
+        }
+        return $data;
 
     }
 

@@ -4,7 +4,7 @@ namespace Becowo\MemberBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-
+use Doctrine\ORM\Query\ResultSetMapping;
 
 class MemberRepository extends EntityRepository
 {
@@ -19,6 +19,37 @@ class MemberRepository extends EntityRepository
 			->setMaxResults($nb);
 
 		return $qb->getQuery()->getResult();
+	}
+
+	public function getAgeByRangeFromMembers()
+	{
+		$rsm = new ResultSetMapping();
+		$sql = "SELECT (case when age > 18 and age <= 24
+            	then '18 - 24 ans'
+            	when age > 24 and age <= 34
+            	then '25 - 34 ans'
+            	when age > 34 and age <= 44
+            	then '35 - 44 ans'
+            	when age > 44
+            	then 'Plus de 44 ans'
+            	else 'undefined'
+         		end) bucket,
+       			count(*) AS count
+  				FROM(SELECT ABS(FLOOR(DATEDIFF(m.birth_date, NOW()) / 365.25)) AS age FROM Member m) request
+				GROUP BY (case when age > 18 and age <= 24
+            	then '18 - 24 ans'
+            	when age > 24 and age <= 34
+            	then '25 - 34 ans'
+            	when age > 34 and age <= 44
+            	then '35 - 44 ans'
+            	when age > 44
+            	then 'Plus de 44 ans'
+            	else 'undefined'
+         		end)";
+		$rsm->addScalarResult('bucket', 'bucket');	// colonnes à renvoyer
+		$rsm->addScalarResult('count', 'count');
+
+		return $this->getEntityManager()->createNativeQuery($sql, $rsm)->getScalarResult();
 	}
 	
 }
