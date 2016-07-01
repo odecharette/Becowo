@@ -36,6 +36,13 @@ class Workspace
     /**
      * @var string
      *
+     * @ORM\Column(name="openHoursInfo", type="string", length=255, nullable=true)
+     */
+    private $openHoursInfo;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="website", type="string", length=255, nullable=true)
      */
     private $website;
@@ -313,6 +320,30 @@ class Workspace
     public function getDescriptionBonus()
     {
         return $this->descriptionBonus;
+    }
+
+    /**
+     * Set openHoursInfo
+     *
+     * @param string $openHoursInfo
+     *
+     * @return Workspace
+     */
+    public function setOpenHoursInfo($openHoursInfo)
+    {
+        $this->openHoursInfo = $openHoursInfo;
+
+        return $this;
+    }
+
+    /**
+     * Get openHoursInfo
+     *
+     * @return string
+     */
+    public function getOpenHoursInfo()
+    {
+        return $this->openHoursInfo;
     }
 
     /**

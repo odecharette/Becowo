@@ -150,6 +150,8 @@ easy_admin:
             class: Becowo\CoreBundle\Entity\Picture
         Office:
             class: Becowo\CoreBundle\Entity\Office
+        Timetable:
+            class: Becowo\CoreBundle\Entity\Timetable
         Booking:
             class: Becowo\CoreBundle\Entity\Booking
             list:
@@ -223,7 +225,7 @@ easy_admin:
     design:
         menu:
             - label: 'Workspaces'
-              children: ['Workspace', 'Workspace_Category', 'Workspace_Favorite', 'Picture', 'Office', 'Amenities', 'TeamMember', 'Price']
+              children: ['Workspace', 'Workspace_Category', 'Workspace_Favorite', 'Picture', 'Office', 'Amenities', 'TeamMember', 'Price', 'Timetable']
             - label: 'Booking'
               children: ['Booking', 'Booking_Status']
             - label: 'Members'

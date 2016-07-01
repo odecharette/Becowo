@@ -13,20 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Timetable
 {
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="open_hour", type="time", nullable=true)
-     */
-    private $openHour;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="close_hour", type="time", nullable=true)
-     */
-    private $closeHour;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -55,6 +41,20 @@ class Timetable
      */
     private $weekDay;
 
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="open_hour", type="time", nullable=true)
+     */
+    private $openHour;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="close_hour", type="time", nullable=true)
+     */
+    private $closeHour;
 
 
     /**
@@ -161,5 +161,10 @@ class Timetable
     public function getWeekDay()
     {
         return $this->weekDay;
+    }
+
+    public function __toString()
+    {
+        return $this->openHour;
     }
 }
