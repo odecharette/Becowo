@@ -1,0 +1,58 @@
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/book.css') }}">
+{% endblock %}
+
+<section class="features_table">
+    <div class="container ">
+    	<div class="col-lg-4 no-padding">
+        	<div class="features-table" id="first">
+            	<ul>
+                    <h1>Les bureaux</h1>
+                    {% for office in listOffices %}
+                        <li>{{office.office.name}} ({{office.DeskQty}} bureaux)</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-2 no-padding">
+            <div class="features-table-cell">
+            	<ul>
+                	<h1>Journée</h1>
+                    {% for office in listOffices %}
+                        <li></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+         <div class="col-lg-2 no-padding">
+         	 <div class="features-table-cell">
+            	<ul>
+                	<h1>Semaine</h1>
+                    {% for office in listOffices %}
+                        <li></li>
+                    {% endfor %}
+                </ul>
+            </div>
+         </div>
+         <div class="col-lg-2 no-padding">
+              <div class="features-table-cell">
+            	<ul>
+                	<h1>Mois</h1>
+                    {% for office in listOffices %}
+                        <li></li>
+                    {% endfor %}
+                </ul>
+            </div>
+         </div>
+         <div class="col-lg-2 no-padding">
+              <div class="features-table-cell" id="last">
+                <ul>
+                    <h1>Réserver</h1>
+                    {% for office in listOffices %}
+                        <li><button type="button">Réserver</button></li>
+                    {% endfor %}
+                </ul>
+            </div>
+         </div>
+    </div>
+</section>
