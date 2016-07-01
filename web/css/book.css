@@ -1,8 +1,21 @@
 .features_table h1{
     font-size:22px !important;
 	text-align: center;
+    background: #6b6b6b none repeat scroll 0 0;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+    padding: 19px 21px;
+    text-transform: uppercase;
 }
-li{
+#first h1 {
+    border-top-left-radius: 20px;
+}
+#last h1 {
+    border-top-right-radius: 20px;
+}
+
+.features_table li{
     list-style:none;
     height: 60px;
 }
@@ -38,6 +51,7 @@ li{
 .features-table-cell li {
     background: #efefef none repeat scroll 0 0;
     border-bottom: 2px solid #d4d4d4;
+    border-right: 1px solid #d4d4d4;
 	text-align:center;
     padding: 16.4px 21px;
 	cursor:pointer;
@@ -48,24 +62,6 @@ li{
 	-webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
-}
-
-.features-table h1, .features-table-cell h1 {
-    background: #6b6b6b none repeat scroll 0 0;
-    color: #fff;
-    font-weight: 600;
-    margin: 0;
-    padding: 19px 21px;
-    text-transform: uppercase;
-}
-#first h1 {
-    border-top-left-radius: 20px;
-}
-#last h1 {
-    border-top-right-radius: 20px;
-}
-.features-table-cell li {
-    border-right: 2px solid #d4d4d4;
 }
 
 .no-padding{
