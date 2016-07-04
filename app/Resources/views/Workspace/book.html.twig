@@ -1,5 +1,8 @@
 {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/book.css') }}">
+        {# Theme JqueryUi pour le calendar / il en existe d'autres #}
+        <link rel="stylesheet" href="{{ asset('css/jquery-ui.theme.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
 {% endblock %}
 
 <section class="features_table">
@@ -79,10 +82,72 @@
                 <ul>
                     <h1>Réserver</h1>
                     {% for office in listOffices %}
-                        <li><button type="button">Réserver</button></li>
+                        <li><button type="button" onclick="goBooking('{{office.office.name}}')">Réserver</button></li>
                     {% endfor %}
                 </ul>
             </div>
          </div>
     </div>
 </section>
+
+<section class="booking_table">
+    <h4 id="booking_titre"></h4>
+    
+    <form role="form" name="form" action="" method="post">
+        <label class="radio-inline">Choisir la durée : </label> 
+            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Heure"> Heure
+            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="DemiJournee"> 1/2 journée
+            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Journee"> Journée
+            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Semaine"> Semaine
+            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Mois"> Mois
+        <br>
+        Choisir une date : 
+        <div id="dateHeure" style="display: none;"><label>
+            Le <input type="date" name="choixDate">
+            de <input type="time" name="choixTime"> à 
+            <input type="time" name="choixTime"></label>
+        </div>
+        <div id="dateJournee" style="display: none;"><label>
+            Le <input type="date" name="choixDate"></label>
+        </div>
+        
+    </form>
+    
+    <label for="">Titre datepicker</label>
+    <input type="text" id="datepicker" class ="datepicker">
+    
+</section>
+
+{% block javascripts %}
+    {# JQueryUI pour datepicker / version custome sur jqueryui.com #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/book.js') }}"></script>
+
+    <script type="text/javascript">
+        function goBooking($officeName)
+        {
+            document.getElementById("booking_titre").innerHTML = 'Réservation pour ' + $officeName;
+        }        
+        
+        function radioClick(radioDuree){
+            console.log(radioDuree.value);
+            switch(radioDuree.value)
+            {
+                case "Heure":
+                    document.getElementById("dateHeure").style.display = 'block';
+                    document.getElementById("dateJournee").style.display = 'none';
+                    break;
+                case "Journee":
+                    document.getElementById("dateHeure").style.display = 'none';
+                    document.getElementById("dateJournee").style.display = 'block';
+                    break;
+                default:
+                    document.getElementById("dateHeure").style.display = 'none';
+                    document.getElementById("dateJournee").style.display = 'none';
+            }
+        }
+        
+    </script>
+
+{% endblock %}
