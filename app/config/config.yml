@@ -126,6 +126,7 @@ vich_uploader:
 
 # EasyAdmin bundle
 easy_admin:
+    site_name: 'Becowo - Admin'
     formats:
         date:     'd/m/Y'
         time:     'H:i'
