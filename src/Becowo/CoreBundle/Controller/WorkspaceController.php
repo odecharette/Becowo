@@ -15,7 +15,6 @@ class WorkspaceController extends Controller
 {
   public function viewAction($name, Request $request)
   {
-  	// $em = $this->getDoctrine()->getManager();  // a enlever qd tt en service
 
     $WsService = $this->get('app.workspace');
 
@@ -25,6 +24,7 @@ class WorkspaceController extends Controller
     $pictureLogo = $WsService->getLogoByWorkspace($name);
     $listEvents = $WsService->getEventsByWorkspace($ws);
     $listOffices = $WsService->getOfficesByWorkspace($ws);
+    $prices = $WsService->getPricesByWorkspace($ws);
 
   	return $this->render('Workspace/view.html.twig', 
       array('ws' => $ws, 
@@ -32,7 +32,8 @@ class WorkspaceController extends Controller
         'pictures' => $pictures, 
         'pictureFavorite' => $pictureFavorite, 
         'pictureLogo' => $pictureLogo,
-        'listOffices' => $listOffices));
+        'listOffices' => $listOffices,
+        'prices' => $prices));
   }
 
   public function voteAction($vote, $name, $member)
