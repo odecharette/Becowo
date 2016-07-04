@@ -90,88 +90,98 @@
     </div>
 </section>
 
-<section class="booking_table">
-    <h4 id="booking_titre"></h4>
-    
-    <form role="form" name="form" action="" method="post">
-        <label class="radio-inline">Choisir la durée : </label> 
-            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Heure"> Heure
-            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="DemiJournee"> 1/2 journée
-            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Journee"> Journée
-            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Semaine"> Semaine
-            <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Mois"> Mois
-        <br>
-        <label for="">Choisir une date</label>
-        <div id="dateHeure">
-            <input type="text" id="pickerHeure" class ="datepicker">
-            de 
-            <select id="heure_start">
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-            </select>
-            :
-            <select id="min_start">
-              <option value="00">00</option>
-              <option value="15">15</option>
-              <option value="30">30</option>
-              <option value="45">45</option>
-            </select>
-            à
-            <select id="heure_end">
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-            </select>
-            :
-            <select id="min_end">
-              <option value="00">00</option>
-              <option value="15">15</option>
-              <option value="30">30</option>
-              <option value="45">45</option>
-            </select>
-        </div>
-        <div id="dateDemiJournee">
-            <input type="text" id="pickerJournee" class ="datepicker">
-            <label class="radio-inline"></label>
-            <input type="radio" name="demiJournee" value="Matin"> Matin
-            <input type="radio" name="demiJournee" value="Aprem"> Après-midi
-        </div>
-        <div id="dateJournee">
-            <input type="text" id="pickerJournee" class ="datepicker">
-        </div>
-        <div id="dateSemaine">
-            <div class="pickerSemaine"></div>
-        </div>
-        <div id="dateMois">
-            <div class="pickerMois"></div>
-        </div>
-    </form>
-    
-    
-    
-    
-</section>
+<div class="row">
+<div class="col-lg-6">
+    <section class="booking_table">
+        
+        <form role="form" name="form" action="" method="post">
+            <label class="radio-inline">Choisir la durée : </label> 
+                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Heure"> Heure
+                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="DemiJournee"> 1/2 journée
+                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Journee"> Journée
+                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Semaine"> Semaine
+                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Mois"> Mois
+            <br>
+            <label for="">Choisir une date</label>
+            <div id="dateHeure">
+                <input type="text" id="pickerHeure" class ="datepicker">
+                de 
+                <select id="heure_start" onclick="heureClick(this);">
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
+                :
+                <select id="min_start" onclick="heureClick(this);">
+                  <option value="00">00</option>
+                  <option value="15">15</option>
+                  <option value="30">30</option>
+                  <option value="45">45</option>
+                </select>
+                à
+                <select id="heure_end" onclick="heureClick(this);">
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
+                :
+                <select id="min_end" onclick="heureClick(this);">
+                  <option value="00">00</option>
+                  <option value="15">15</option>
+                  <option value="30">30</option>
+                  <option value="45">45</option>
+                </select>
+            </div>
+            <div id="dateDemiJournee">
+                <input type="text" id="pickerJournee" class ="datepicker">
+                <label class="radio-inline"></label>
+                <input type="radio" name="demiJournee" value="Matin" onclick="radioDemiJourneeClick(this);" > Matin
+                <input type="radio" name="demiJournee" value="Après-midi" onclick="radioDemiJourneeClick(this);" > Après-midi
+            </div>
+            <div id="dateJournee">
+                <input type="text" id="pickerJournee" class ="datepicker">
+            </div>
+            <div id="dateSemaine">
+                <div class="pickerSemaine"></div>
+            </div>
+            <div id="dateMois">
+                <div class="pickerMois"></div>
+            </div>
+        </form>   
+    </section>
+</div>
+<div class="col-lg-6">
+    <div id="booking_recap" class="well">
+
+    Votre sélection : <br>
+    <div id="officeSelected"></div>
+    <div id="durationSelected"></div><div id="durationDetailSelected"></div>
+    </div>
+</div>
+</div>
+
+
+
 
 {% block javascripts %}
     {# JQueryUI pour datepicker / version custome sur jqueryui.com #}
