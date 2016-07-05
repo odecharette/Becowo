@@ -54,6 +54,13 @@ class FooterController extends Controller
 
   public function FaqAction()
   {
-    return $this->render('Footer/faq.html.twig');
+    $em = $this->getDoctrine()->getManager();
+    $repo = $em->getRepository('BecowoCoreBundle:Faq');
+    $faq = $repo->findAll();
+
+    $repo = $em->getRepository('BecowoCoreBundle:FaqCategory');
+    $faqCategory = $repo->findAll();
+
+    return $this->render('Footer/faq.html.twig', array('faq' => $faq, 'faqCategory' => $faqCategory));
   }
 }
