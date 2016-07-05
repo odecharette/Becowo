@@ -1,3 +1,18 @@
+@font-face {
+    font-family: "DIN Alternate";
+    src: url('../css/font/DIN Alternate Regular.otf');
+}
+/*@font-face {
+    font-family: "DIN Alternate";
+    font-style: italic;
+    src: url('MaSuperFonte-Italic.ttf');
+}*/
+@font-face {
+    font-family: "DIN Alternate";
+    font-weight: bold;
+    src: url('../css/font/DIN Alternate Bold.otf');
+}
+
 header
 {
 	margin-top: 15px;
@@ -5,6 +20,7 @@ header
 
 body 
 {
+	font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
     margin-left: 10px;
 }
 
