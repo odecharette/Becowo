@@ -23,7 +23,7 @@
                     <h1>Heure</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li id="price_Heure_{{office.office.name}}" onclick="selectDuree('Heure')">{{price.priceHour}}</li>
+                            <li id="price_Heure_{{office.office.name}}" onclick="selectDuree('Heure', '{{office.office.name}}')">{{price.priceHour}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -35,7 +35,7 @@
                     <h1>1/2 Journée</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li id="price_DemiJournée_{{office.office.name}}" onclick="selectDuree('DemiJournée')">{{price.priceHalfDay}}</li>
+                            <li id="price_DemiJournée_{{office.office.name}}" onclick="selectDuree('DemiJournée', '{{office.office.name}}')">{{price.priceHalfDay}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -47,7 +47,7 @@
                 	<h1>Journée</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li id="price_Journée_{{office.office.name}}" onclick="selectDuree('Journée')">{{price.priceDay}}</li>
+                            <li id="price_Journée_{{office.office.name}}" onclick="selectDuree('Journée', '{{office.office.name}}')">{{price.priceDay}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -59,7 +59,7 @@
                 	<h1>Semaine</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li id="price_Semaine_{{office.office.name}}" onclick="selectDuree('Semaine')">{{price.priceWeek}}</li>
+                            <li id="price_Semaine_{{office.office.name}}" onclick="selectDuree('Semaine', '{{office.office.name}}')">{{price.priceWeek}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -71,7 +71,7 @@
                 	<h1>Mois</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li id="price_Mois_{{office.office.name}}" onclick="selectDuree('Mois')">{{price.priceMonth}}</li>
+                            <li id="price_Mois_{{office.office.name}}" onclick="selectDuree('Mois', '{{office.office.name}}')">{{price.priceMonth}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>

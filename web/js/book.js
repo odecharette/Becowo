@@ -10,9 +10,11 @@
         // document.getElementById("section_features_table").style.display = 'none';
     }        
 
-    function selectDuree(duree)
+    function selectDuree(duree, bureau)
     {
     	document.form.optionsDuree.value = duree;
+    	document.getElementById("officeSelected").innerHTML = bureau;
+    	radioClick(document.form.optionsDuree);
     }
        
     function radioClick(radioDuree){
@@ -26,7 +28,7 @@
                 document.getElementById("dateSemaine").style.display = 'none';
                 document.getElementById("dateMois").style.display = 'none';
                 break;
-            case "DemiJournee":
+            case "DemiJournée":
                 document.getElementById("dateHeure").style.display = 'none';
                 document.getElementById("dateDemiJournee").style.display = 'block';
                 document.getElementById("dateJournee").style.display = 'none';
