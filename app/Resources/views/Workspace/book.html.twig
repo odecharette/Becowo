@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
 {% endblock %}
 
-<section class="features_table">
+<section class="features_table" id="section_features_table">
     <div class="container-fluid">
     	<div class="col-lg-3 no-padding">
         	<div class="features-table" id="first">
@@ -23,7 +23,7 @@
                     <h1>Heure</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li>{{price.priceHour}}</li>
+                            <li id="price_Heure_{{office.office.name}}">{{price.priceHour}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -35,7 +35,7 @@
                     <h1>1/2 Journée</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li>{{price.priceHalfDay}}</li>
+                            <li id="price_DemiJournée_{{office.office.name}}">{{price.priceHalfDay}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -47,7 +47,7 @@
                 	<h1>Journée</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li>{{price.priceDay}}</li>
+                            <li id="price_Journée_{{office.office.name}}">{{price.priceDay}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -59,7 +59,7 @@
                 	<h1>Semaine</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li>{{price.priceWeek}}</li>
+                            <li id="price_Semaine_{{office.office.name}}">{{price.priceWeek}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -71,7 +71,7 @@
                 	<h1>Mois</h1>
                     {% for office in listOffices %}
                         {% for price in prices if price.office.name == office.office.name %}
-                            <li>{{price.priceMonth}}</li>
+                            <li id="price_Mois_{{office.office.name}}">{{price.priceMonth}}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
@@ -97,14 +97,13 @@
         <form role="form" name="form" action="" method="post">
             <label class="radio-inline">Choisir la durée : </label> 
                 <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Heure"> Heure
-                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="DemiJournee"> 1/2 journée
-                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Journee"> Journée
+                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="DemiJournée"> 1/2 journée
+                <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Journée"> Journée
                 <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Semaine"> Semaine
                 <input type="radio" name="optionsDuree" onclick="radioClick(this);" value="Mois"> Mois
             <br>
             <label for="">Choisir une date</label>
             <div id="dateHeure">
-                <input type="text" id="pickerHeure" class ="datepicker">
                 de 
                 <select id="heure_start" onclick="heureClick(this);">
                   <option value="08">08</option>
@@ -130,7 +129,6 @@
                 </select>
                 à
                 <select id="heure_end" onclick="heureClick(this);">
-                  <option value="08">08</option>
                   <option value="09">09</option>
                   <option value="10">10</option>
                   <option value="11">11</option>
@@ -151,31 +149,31 @@
                   <option value="30">30</option>
                   <option value="45">45</option>
                 </select>
+                <div id="error_msg"></div>
             </div>
             <div id="dateDemiJournee">
-                <input type="text" id="pickerJournee" class ="datepicker">
                 <label class="radio-inline"></label>
                 <input type="radio" name="demiJournee" value="Matin" onclick="radioDemiJourneeClick(this);" > Matin
                 <input type="radio" name="demiJournee" value="Après-midi" onclick="radioDemiJourneeClick(this);" > Après-midi
             </div>
             <div id="dateJournee">
-                <input type="text" id="pickerJournee" class ="datepicker">
             </div>
             <div id="dateSemaine">
-                <div class="pickerSemaine"></div>
             </div>
             <div id="dateMois">
-                <div class="pickerMois"></div>
             </div>
         </form>   
     </section>
 </div>
-<div class="col-lg-6">
+<div class="col-lg-2">
     <div id="booking_recap" class="well">
 
     Votre sélection : <br>
     <div id="officeSelected"></div>
+    <input type="text" id="dateSelected" readonly>
     <div id="durationSelected"></div><div id="durationDetailSelected"></div>
+    <div id="nbHeure" style="display:none"></div>
+    <div id="price"></div>
     </div>
 </div>
 </div>

@@ -67,3 +67,7 @@
 .no-padding{
     padding:0;
 }
+
+#error_msg{
+    color: red;
+}
