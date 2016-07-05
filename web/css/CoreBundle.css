@@ -13,6 +13,17 @@
     src: url('../css/font/DIN Alternate Bold.otf');
 }
 
+:root {
+  --my-green: rgb(29, 142, 157);
+  --my-red: rgb(199, 47, 79);
+  --my-orange: rgb(255, 173, 105);
+  --my-blue: rgb(43, 56, 101);
+  --my-pink: rgb(206, 97, 110);
+  --my-yellow: rgb(244, 240, 67);
+  /* to use it : color: var(--my-red); */
+}
+
+
 header
 {
 	margin-top: 15px;
