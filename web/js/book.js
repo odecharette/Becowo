@@ -9,6 +9,11 @@
         document.getElementById("officeSelected").innerHTML = officeName;
         // document.getElementById("section_features_table").style.display = 'none';
     }        
+
+    function selectDuree(duree)
+    {
+    	document.form.optionsDuree.value = duree;
+    }
        
     function radioClick(radioDuree){
         
