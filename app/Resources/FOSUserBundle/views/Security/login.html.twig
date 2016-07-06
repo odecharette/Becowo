@@ -21,9 +21,13 @@
     </div>
 	<div class="form-bottom">
 		{% if error %}
-		    <div class="error">
-		      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{ error.messageKey|trans(error.messageData, 'security') }}<br><br>
-		    </div>
+	    	<span class="help-block">
+	    		<ul class="list-unstyled">
+	    			<li><span class="glyphicon glyphicon-exclamation-sign"></span> 
+	    				{{ error.messageKey|trans(error.messageData, 'security') }}
+	    			</li>
+	    		</ul>
+    		</span>
 		{% endif %}
 		<form action="{{ path("fos_user_security_check") }}" method="post">
 		    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
