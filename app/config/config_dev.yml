@@ -31,5 +31,8 @@ monolog:
         #    level:  info
 
 swiftmailer:
+    # transport: gmail
+    # username:  becowo
+    # password:  Annapurna
     disable_delivery: true
 #    delivery_address: me@example.com

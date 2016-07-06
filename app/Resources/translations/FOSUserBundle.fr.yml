@@ -35,8 +35,8 @@ registration:
     flash:
         user_created: 'L''utilisateur a été créé avec succès'
     email:
-        subject: 'Bienvenue %username% !'
-        message: "Bonjour %username% !\n\nPour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe.\n"
+        subject: '[Becowo] Bienvenue %username% !'
+        message: "Bonjour %username% !\n\nPour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe Becowo.\n"
 resetting:
     password_already_requested: 'Un nouveau mot de passe a déjà été demandé pour cet utilisateur dans les dernières 24 heures.'
     check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.'

@@ -80,6 +80,12 @@ fos_user:
     profile:
         form:
             type: Becowo\MemberBundle\Form\ProfileType
+    from_email:
+        address:        contact@becowo.com
+        sender_name:    Becowo
+    registration:
+        confirmation:
+            enabled:    true
 
 # Elastic search configuration
 fos_elastica:
