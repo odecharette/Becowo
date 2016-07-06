@@ -49,8 +49,8 @@ resetting:
     flash:
         success: 'Le mot de passe a été réinitialisé avec succès'
     email:
-        subject: 'Réinitialisation de votre mot de passe'
-        message: "Bonjour %username% !\n\nPour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe.\n"
+        subject: '[Becowo] Réinitialisation de votre mot de passe'
+        message: "Bonjour %username% !\n\nPour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe Becowo.\n"
 layout:
     logout: Déconnexion
     login: Connexion

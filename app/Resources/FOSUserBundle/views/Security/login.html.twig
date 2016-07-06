@@ -8,11 +8,13 @@
 	<div class="form-top">
 		<div class="form-top-left">
 			<h3>Se connecter à Becowo</h3>
-    		<p>Saisir un login et un mot de passe :</p>
+    		<p>Saisir un login et un mot de passe</p>
     		<br>
     		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
             	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            {% else %}
+            	<a href="{{ path('fos_user_resetting_request') }}">J'ai oublié mon mot de passe</a>
         	{% endif %}
 		</div>
 		<div class="form-top-right">
