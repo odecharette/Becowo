@@ -28,4 +28,19 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
+
+# HWIOAuthBundle : connexion via FB...
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /connect
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+ 
+# We override this part of the routing
+hwi_oauth_connect:
+    resource: "@BecowoMemberBundle/Resources/config/connect.xml"
+    prefix: /connect
     
+facebook_login:
+    path: /connect/check-facebook
