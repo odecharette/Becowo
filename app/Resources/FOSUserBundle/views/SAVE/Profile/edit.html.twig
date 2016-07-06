@@ -1,0 +1,86 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Mon profil
+{% endblock %}
+
+{% block body %}
+
+{% include "CommonViews/flashMessage.html.twig" %}
+
+<br>
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-12">
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+  {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+  <div class="row text-center">
+    {% if form.children.profilePicture.children.url.vars.value != '' %}
+      <img src={{asset('images/ProfilePictures/')}}{{form.children.profilePicture.children.url.vars.value}} alt="{{form.children.profilePicture.children.alt.vars.value}}" width="70px" height="70px">
+    {% endif %}
+  </div>
+
+
+  <div class="row"><div class="col-lg-6">
+
+	<h2>Mes coordonnées</h2>
+
+    {{ form_row(form.username) }}   
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.sex) }}
+    {{ form_row(form.birthDate) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.phone) }}
+
+    <hr>
+
+    {{ form_row(form.street) }}
+    {{ form_row(form.postcode) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.country) }}
+
+  </div>
+
+  <div class="col-lg-6">
+
+    <h2>Mon CV</h2>
+
+    {{ form_row(form.job) }}
+    {{ form_row(form.society) }}
+    {{ form_row(form.website) }}
+    {{ form_row(form.description) }}
+
+    <h2>Mes réseaux</h2>
+
+    {{ form_row(form.facebookLink) }}
+    {{ form_row(form.twitterLink) }}
+    {{ form_row(form.instagramLink) }}
+    {{ form_row(form.linkedinLink) }}
+
+    <h2>Ma photo de profil</h2>
+
+    {{ form_row(form.profilePicture) }}
+
+  </div></div>
+
+  <br>
+  {{ form_rest(form) }}
+
+<div class="row text-center">
+      <input type="submit" class="btn btn-success" value="Mettre à jour mon profil">
+  </div>
+  {{ form_end(form) }}
+</div>
+</div></div>
+
+<br><br>
+
+{% endblock %}
