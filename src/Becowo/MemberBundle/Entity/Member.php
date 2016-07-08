@@ -34,12 +34,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
        */
       protected $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="facebook_id", type="string", nullable=true)
-     */
-    protected $facebook_id;
+   
 
     /**
      * @var string
@@ -238,29 +233,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         $this->roles = ['ROLE_USER'];
     }
 
-    /**
-     * Set facebook_id
-     *
-     * @param string $facebook_id
-     *
-     * @return Member
-     */
-    public function setFacebookId($facebook_id)
-    {
-        $this->facebook_id = $facebook_id;
-
-        return $this;
-    }
-
-    /**
-     * Get facebook_id
-     *
-     * @return string
-     */
-    public function getFacebookId()
-    {
-        return $this->facebook_id;
-    }
 
     /**
      * Set salt

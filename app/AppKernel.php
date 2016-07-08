@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Becowo\ManagerBundle\BecowoManagerBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
-            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
