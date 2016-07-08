@@ -47,7 +47,6 @@ class ProfileType extends AbstractType
     	$builder->add('instagramLink', UrlType::class, array('required' => false));
     	$builder->add('linkedinLink', UrlType::class, array('required' => false));
     	$builder->add('profilePicture', ProfilePictureType::class);
-        $builder->add('facebook_id');
 
     	$builder->remove('current_password');
     }

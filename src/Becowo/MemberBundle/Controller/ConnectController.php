@@ -1,5 +1,5 @@
 <?php
-// Controller surchargé sur la base de C:\wamp64\www\Becowo\vendor\hwi\oauth-bundle\Controller\ConnectController.php
+// COntroller surchargé sur la base de C:\wamp64\www\Becowo\vendor\hwi\oauth-bundle\Controller\ConnectController.php
 
 namespace Becowo\MemberBundle\Controller;
 
@@ -39,6 +39,7 @@ class ConnectController extends ContainerAware
         $session = $request->getSession();
         $error = $session->get('_hwi_oauth.registration_error.'.$key);
         $session->remove('_hwi_oauth.registration_error.'.$key);
+
         if (!$error instanceof AccountNotLinkedException || time() - $key > 300) {
             // todo: fix this
             throw new \Exception('Cannot register an account.');
@@ -59,7 +60,6 @@ class ConnectController extends ContainerAware
         } else {
             $form = $this->container->get('hwi_oauth.registration.form');
         }
-
 
         $formHandler = $this->container->get('hwi_oauth.registration.form.handler');
         if ($formHandler->process($request, $form, $userInformation)) {
