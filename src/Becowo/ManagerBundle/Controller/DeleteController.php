@@ -52,6 +52,20 @@ class DeleteController extends Controller
     return $this->redirectToRoute('becowo_manager_profile_team');
   }
 
+  public function deletePictureAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $pic = $em->getRepository('BecowoCoreBundle:Picture')->find($id);
 
+    if (!$pic) {
+        throw $this->createNotFoundException('No picture found for id '.$id);
+    }
+
+    $em->remove($pic);
+    $em->flush();
+
+    return $this->redirectToRoute('becowo_manager_profile_pictures');
+    
+  }
 
 }

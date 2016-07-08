@@ -22,6 +22,7 @@
 		<h4>Vos photos </h4>
 		{% for pic in pics %}
 			<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{pic.url}}" alt="{{pic.alt}}" width="100" height="100">
+			<a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id}) }}"><button type="button" class="btn btn-primary">Delete</button></a>
 		{% endfor %}
 		<div class="read-pics">
 			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('pics')"></button>

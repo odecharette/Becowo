@@ -18,6 +18,11 @@ becowo_manager_profile_pictures:
     defaults: { _controller: BecowoManagerBundle:Profile:pictures }
     methods: GET|POST
 
+becowo_manager_profile_pictures_delete:
+    path:     /profile/pictures/delete/{id}
+    defaults: { _controller: BecowoManagerBundle:Delete:deletePicture }
+    methods: GET|POST
+
 becowo_manager_profile_amenities:
     path:     /profile/equipements
     defaults: { _controller: BecowoManagerBundle:Profile:amenities }
