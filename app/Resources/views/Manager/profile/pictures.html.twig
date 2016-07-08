@@ -20,21 +20,24 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h4>Vos photos </h4>
-		{% for pic in pics %}
-			<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{pic.url}}" alt="{{pic.alt}}" width="100" height="100">
-			<a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id}) }}"><button type="button" class="btn btn-primary">Delete</button></a>
-		{% endfor %}
-		<div class="read-pics">
-			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('pics')"></button>
-		</div>
-		<div class="write-pics">
-			{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-			{{ form_errors(form) }}
-			{{ form_rest(form) }}
-			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
-			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('pics')"></button>
-			{{ form_end(form) }}
-		</div> 
+			{% for pic in pics %}
+			<div class="show-image">
+				<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{pic.url}}" alt="{{pic.alt}}">
+				<a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a>
+				<br>
+			</div>
+			{% endfor %}
+	</div>
+</div>	
+<br>	
+<div class="row">
+	<div class="col-lg-12">	
+		{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_errors(form) }}
+		{{ form_rest(form) }}
+		<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+		<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('pics')"></button>
+		{{ form_end(form) }} 
 	</div>
 </div>
 <br>
@@ -42,11 +45,4 @@
 {#######################################################################################################}
 
 
-{% endblock %}
-
-{% block javascripts %}
-	<script>
-
-	goRead("pics");
-	</script>
 {% endblock %}

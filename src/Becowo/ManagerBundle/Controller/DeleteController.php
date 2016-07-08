@@ -60,6 +60,7 @@ class DeleteController extends Controller
     if (!$pic) {
         throw $this->createNotFoundException('No picture found for id '.$id);
     }
+    // TO DO : supprimer le fichier de l'image
 
     $em->remove($pic);
     $em->flush();
