@@ -65,14 +65,14 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    {% if app.request.attributes.get('_route') == 'becowo_manager_profile' %}<li class="active">{% else %}<li>{% endif %}
+                    {# {% if app.request.attributes.get('_route') == 'becowo_manager_profile' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_profile') }}"><i class="fa fa-fw fa-user"></i> Profil de l'espace</a>
-                    </li>
+                    </li> #}
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="javascript:;" data-toggle="collapse" data-target="#submenu"><i class="fa fa-fw fa-user"></i> Profil<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="submenu" class="collapse">
                             <li>
-                                <a href="{{ path('becowo_manager_profile_desc') }}">Identité</a>
+                                <a href="{{ path('becowo_manager_profile_identite') }}">Identité</a>
                             </li>
                             <li>
                                 <a href="{{ path('becowo_manager_profile_logo') }}">Le logo</a>

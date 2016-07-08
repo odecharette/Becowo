@@ -49,7 +49,7 @@ class ProfileController extends Controller
   		'listOffices' => $listOffices));
   }
 
-  public function descAction(Request $request)
+  public function identiteAction(Request $request)
   {
   	$workspace = $this->getUser()->getWorkspace();
   	$formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
@@ -72,10 +72,10 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_desc');
+      return $this->redirectToRoute('becowo_manager_profile_identite');
     }
 
-  	return $this->render('Manager/profile/desc.html.twig', array(
+  	return $this->render('Manager/profile/identite.html.twig', array(
   		'form' => $form->createView()));
   }
 

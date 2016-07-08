@@ -60,7 +60,7 @@
 							    <li><a href="{{ path('fos_user_change_password') }}"><i class="fa fa-key"></i> Changer mon mot de passe</a></li>
 							    <li><a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a></li>
 							    {% if is_granted('ROLE_MANAGER') %}
-  								<li><a href="{{ path('becowo_manager_profile') }}"><i class="fa fa-wrench"></i> Espace Manager</a></li>
+  								<li><a href="{{ path('becowo_manager_profile_identite') }}"><i class="fa fa-wrench"></i> Espace Manager</a></li>
 								{% endif %}
 								{% if is_granted('ROLE_ADMIN') %}
 								<li><a href="{{ path('easyadmin') }}"><i class="fa fa-lock"></i> Espace Admin</a></li>
