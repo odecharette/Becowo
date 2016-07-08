@@ -91,7 +91,7 @@ class ProfileController extends Controller
 
     
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $logo->upload();
+      $logo->upload($this->getUser()->getWorkspace()->getName());
       //$picture->setWorkspace($this->getUser()->getWorkspace());
 
       $em = $this->getDoctrine()->getManager();

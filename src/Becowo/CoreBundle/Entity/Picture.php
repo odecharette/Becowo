@@ -202,7 +202,7 @@ class Picture
         return $this->workspace;
     }
 
-    public function upload()
+    public function upload($wsName)
     {
     // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
     if (null === $this->file) {
@@ -213,7 +213,7 @@ class Picture
     $name = $this->file->getClientOriginalName();
 
     // On déplace le fichier envoyé dans le répertoire de notre choix
-    $this->file->move($this->getUploadRootDir(), $name);
+    $this->file->move($this->getUploadRootDir($wsName), $name);
 
     // On sauvegarde le nom de fichier dans notre attribut $url
     $this->url = $name;
@@ -222,15 +222,15 @@ class Picture
     $this->alt = $name;
   }
 
-  public function getUploadDir()
+  public function getUploadDir($wsName)
   {
     // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
-    return 'images/Workspaces';
+    return 'images/Workspaces/' . $wsName;
   }
 
-  protected function getUploadRootDir()
+  protected function getUploadRootDir($wsName)
   {
     // On retourne le chemin relatif vers l'image pour notre code PHP
-    return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    return __DIR__.'/../../../../web/'.$this->getUploadDir($wsName);
   }
 }
