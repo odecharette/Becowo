@@ -84,14 +84,18 @@ class ProfileController extends Controller
   	/////////// TO DO : à finir load logo et les autres images
   	$WsService = $this->get('app.workspace');
   	$logo = $WsService->getLogoByWorkspace($this->getUser()->getWorkspace()->getName());
+    $logo = $logo[0];
+  
+    // $picture = new Picture();
+  	$form = $this->get('form.factory')->create(PictureType::class, $logo);
 
-  	$form = $this->get('form.factory')->create(PictureType::class, $logo[0]);
-
-    $picture = new Picture();
-    $picture->setWorkspace($this->getUser()->getWorkspace());
+    
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $logo->upload();
+      //$picture->setWorkspace($this->getUser()->getWorkspace());
+
       $em = $this->getDoctrine()->getManager();
-      $em->persist($picture);
+      $em->persist($logo);
       $em->flush();
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
@@ -100,7 +104,7 @@ class ProfileController extends Controller
     }
   	return $this->render('Manager/profile/picture.html.twig', array(
   		'form' => $form->createView(),
-  		'logo' => $logo[0]));
+  		'logo' => $logo));
   }
 
   public function amenitiesAction(Request $request)
