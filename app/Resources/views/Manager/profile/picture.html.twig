@@ -13,34 +13,31 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
-{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-{{ form_errors(form) }}
+
 
 {########################################### Logo ######################################################}
 
 <div class="row">
 	<div class="col-lg-12">
+		<h4>Votre logo :</h4>
+		<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{logo.url}}" alt="{{logo.alt}}">
 		<div class="read-logo">
-		<h4>Logo
 			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('logo')"></button>
-		</h4>
-			<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{logo.url}}" alt="{{logo.alt}}">
 		</div>
 		<div class="write-logo">
-		<h4>Logo
+			{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+			{{ form_errors(form) }}
+			{{ form_rest(form) }}
 			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
 			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('logo')"></button>
-		</h4>  
-		   {#  {{ form_row(form.url) }}  
-		    {{ form_row(form.alt) }}   #}
+			{{ form_end(form) }}
 		</div>
 	</div>
 </div>
 <br>
 
 {#######################################################################################################}
-{{ form_rest(form) }}
-{{ form_end(form) }}
+
 
 {% endblock %}
 
