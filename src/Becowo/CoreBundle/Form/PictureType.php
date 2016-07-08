@@ -5,8 +5,6 @@ namespace Becowo\CoreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PictureType extends AbstractType
@@ -18,16 +16,8 @@ class PictureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', FileType::class)
-           // ->add('url',   TextType::class)
-           // ->add('alt',   TextType::class)
-            // ->add('isFavorite', CheckboxType::class, array(
-            //     'label'    => 'Photo favorite ?'
-            // ))
-            // ->add('isLogo', CheckboxType::class, array(
-            //     'label'    => 'Logo ?'
-            // ))
-         //   ->add('workspace')
+            ->add('file', FileType::class, array(
+                'multiple' => false))
         ;
     }
     

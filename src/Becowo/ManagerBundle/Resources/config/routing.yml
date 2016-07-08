@@ -13,6 +13,11 @@ becowo_manager_profile_logo:
     defaults: { _controller: BecowoManagerBundle:Profile:logo }
     methods: GET|POST
 
+becowo_manager_profile_pictures:
+    path:     /profile/pictures
+    defaults: { _controller: BecowoManagerBundle:Profile:pictures }
+    methods: GET|POST
+
 becowo_manager_profile_amenities:
     path:     /profile/equipements
     defaults: { _controller: BecowoManagerBundle:Profile:amenities }

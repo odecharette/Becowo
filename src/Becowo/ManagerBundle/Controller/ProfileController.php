@@ -90,7 +90,6 @@ class ProfileController extends Controller
     
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $logo->upload($this->getUser()->getWorkspace()->getName());
-      //$picture->setWorkspace($this->getUser()->getWorkspace());
 
       $em = $this->getDoctrine()->getManager();
       $em->persist($logo);
@@ -98,36 +97,36 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_pictures');
+      return $this->redirectToRoute('becowo_manager_profile_logo');
     }
-  	return $this->render('Manager/profile/picture.html.twig', array(
+  	return $this->render('Manager/profile/logo.html.twig', array(
   		'form' => $form->createView(),
   		'logo' => $logo));
   }
 
-  public function favoritePictureAction(Request $request)
+  public function picturesAction(Request $request)
   {
     $WsService = $this->get('app.workspace');
-    $favoritePic = $WsService->getFavoritePictureByWorkspace($this->getUser()->getWorkspace()->getName());
-    $favoritePic = $favoritePic[0];
+    $pics = $WsService->getPicturesByWorkspace($this->getUser()->getWorkspace()->getName());
+    //$pics = $pics[0];
   
-    $form = $this->get('form.factory')->create(PictureType::class, $favoritePic);
+    $form = $this->get('form.factory')->create(PictureType::class, $pics[0]);
 
     
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $favoritePic->upload($this->getUser()->getWorkspace()->getName());
+      $pics[0]->upload($this->getUser()->getWorkspace()->getName());
 
       $em = $this->getDoctrine()->getManager();
-      $em->persist($favoritePic);
+      $em->persist($pics[0]);
       $em->flush();
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
       return $this->redirectToRoute('becowo_manager_profile_pictures');
     }
-    return $this->render('Manager/profile/picture.html.twig', array(
+    return $this->render('Manager/profile/pictures.html.twig', array(
       'form' => $form->createView(),
-      'favoritePic' => $favoritePic));
+      'pics' => $pics));
   }
 
   public function amenitiesAction(Request $request)
