@@ -79,14 +79,12 @@ class ProfileController extends Controller
   		'form' => $form->createView()));
   }
 
-  public function picturesAction(Request $request)
+  public function logoAction(Request $request)
   {
-  	/////////// TO DO : à finir load logo et les autres images
   	$WsService = $this->get('app.workspace');
   	$logo = $WsService->getLogoByWorkspace($this->getUser()->getWorkspace()->getName());
     $logo = $logo[0];
   
-    // $picture = new Picture();
   	$form = $this->get('form.factory')->create(PictureType::class, $logo);
 
     
@@ -105,6 +103,31 @@ class ProfileController extends Controller
   	return $this->render('Manager/profile/picture.html.twig', array(
   		'form' => $form->createView(),
   		'logo' => $logo));
+  }
+
+  public function favoritePictureAction(Request $request)
+  {
+    $WsService = $this->get('app.workspace');
+    $favoritePic = $WsService->getFavoritePictureByWorkspace($this->getUser()->getWorkspace()->getName());
+    $favoritePic = $favoritePic[0];
+  
+    $form = $this->get('form.factory')->create(PictureType::class, $favoritePic);
+
+    
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $favoritePic->upload($this->getUser()->getWorkspace()->getName());
+
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($favoritePic);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      return $this->redirectToRoute('becowo_manager_profile_pictures');
+    }
+    return $this->render('Manager/profile/picture.html.twig', array(
+      'form' => $form->createView(),
+      'favoritePic' => $favoritePic));
   }
 
   public function amenitiesAction(Request $request)

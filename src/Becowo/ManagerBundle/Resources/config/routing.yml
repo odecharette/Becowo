@@ -8,9 +8,9 @@ becowo_manager_profile_desc:
     defaults: { _controller: BecowoManagerBundle:Profile:desc }
     methods: GET|POST
 
-becowo_manager_profile_pictures:
-    path:     /profile/pictures
-    defaults: { _controller: BecowoManagerBundle:Profile:pictures }
+becowo_manager_profile_logo:
+    path:     /profile/logo
+    defaults: { _controller: BecowoManagerBundle:Profile:logo }
     methods: GET|POST
 
 becowo_manager_profile_amenities:
