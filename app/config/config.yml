@@ -129,6 +129,9 @@ vich_uploader:
         member_profile_picture:
             uri_prefix:         /images/ProfilePictures
             upload_destination: %kernel.root_dir%/../web/images/ProfilePictures
+        workspace_pictures:
+            uri_prefix: /images/Workspaces
+            upload_destination: %kernel.root_dir%/../web/images/Workspaces
 
 # EasyAdmin bundle
 easy_admin:

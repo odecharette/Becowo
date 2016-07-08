@@ -87,9 +87,11 @@ class ProfileController extends Controller
 
   	$form = $this->get('form.factory')->create(PictureType::class, $logo[0]);
 
+    $picture = new Picture();
+    $picture->setWorkspace($this->getUser()->getWorkspace());
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
-      $em->persist($workspace);
+      $em->persist($picture);
       $em->flush();
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
