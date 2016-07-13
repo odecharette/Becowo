@@ -88,39 +88,39 @@ fos_user:
             enabled:    true
 
 # Elastic search configuration
-fos_elastica:
-    clients:
-        default: { host: localhost, port: 9200 }
-    serializer:
-        callback_class: FOS\ElasticaBundle\Serializer\Callback
-        serializer: serializer
-    indexes:
-        becowo:
-            index-name: becowo_%kernel.environment%
-            settings:
-                index:
-                    analysis:
-                        analyzer:
-                            autocomplete_analyzer:
-                                type: custom
-                                tokenizer: autocomplete_tokenizer
-                                filter: [lowercase, asciifolding]
-                        tokenizer:
-                            autocomplete_tokenizer:
-                                type: nGram
-                                min_gram: 3
-                                max_gram: 20
-            types:
-                workspace:
-                    mappings:
-                        name: { type: string, analyzer: autocomplete_analyzer }
-                    persistence:
-                        driver: orm
-                        model: Becowo\CoreBundle\Entity\Workspace
-                        provider:
-                            query_builder_method : findActiveWorkspaces
-                        listener: ~
-                        finder: ~
+# fos_elastica:
+#     clients:
+#         default: { host: localhost, port: 9200 }
+#     serializer:
+#         callback_class: FOS\ElasticaBundle\Serializer\Callback
+#         serializer: serializer
+#     indexes:
+#         becowo:
+#             index-name: becowo_%kernel.environment%
+#             settings:
+#                 index:
+#                     analysis:
+#                         analyzer:
+#                             autocomplete_analyzer:
+#                                 type: custom
+#                                 tokenizer: autocomplete_tokenizer
+#                                 filter: [lowercase, asciifolding]
+#                         tokenizer:
+#                             autocomplete_tokenizer:
+#                                 type: nGram
+#                                 min_gram: 3
+#                                 max_gram: 20
+#             types:
+#                 workspace:
+#                     mappings:
+#                         name: { type: string, analyzer: autocomplete_analyzer }
+#                     persistence:
+#                         driver: orm
+#                         model: Becowo\CoreBundle\Entity\Workspace
+#                         provider:
+#                             query_builder_method : findActiveWorkspaces
+#                         listener: ~
+#                         finder: ~
 
 # vich/uploader-bundle / Easy to upload pictures
 vich_uploader:

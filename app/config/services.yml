@@ -9,9 +9,9 @@ services:
         tags:
             - { name: form.type, alias: app_user_profile }
 
-    app.search:
-        class: Becowo\CoreBundle\Services\SearchEngine
-        arguments:    ['@fos_elastica.finder.becowo.workspace']
+    # app.search:
+    #     class: Becowo\CoreBundle\Services\SearchEngine
+    #     arguments:    ['@fos_elastica.finder.becowo.workspace']
 
     app.workspace:
         class: Becowo\CoreBundle\Services\Workspace
