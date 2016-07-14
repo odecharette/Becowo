@@ -28,7 +28,8 @@ class SearchController extends Controller
   }
    **/
 
-  public function searchAction(Request $request)
+// Méthode avec elasticSearch
+/*  public function searchAction(Request $request)
   {
     $moteurRecherche = $this->get('app.search');  // déclaré dans services.yml
     $recherche = $request->query->get('recherche', '');
@@ -56,5 +57,20 @@ class SearchController extends Controller
 
     return new JsonResponse($WS);
   }
+*/
 
+  // Méthode de recherche avec Algolia
+  public function searchAction(Request $request)
+  {
+     $data = $request->query->get('tag');
+    // $this->get('algolia.indexer')->rawSearch('Workspace', 'mutualab');
+    $result = $this->get('algolia.indexer')->search(
+    $this->getDoctrine()->getManager(),
+    'BecowoCoreBundle:Workspace',
+    $data
+    );
+
+    return $this->render('Home/search.html.twig', array(
+      'result' => $result));
+  }
 }

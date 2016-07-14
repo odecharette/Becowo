@@ -12,7 +12,7 @@
 {% endblock stylesheets %}
 
 {% block body %}
-	{{dump(result)}}
+
 
 {############################################ Vidéo ##############################################}
 
@@ -50,6 +50,22 @@
 					</div>
 				</div>
 				</div>
+{###################################################### Algolia search ################################################}
+				<div class="col-lg-5">
+					<div class="well">
+						{# <form role="search" id="nav-search-form" method="post" action="{{ path('becowo_search') }}"> #}
+					        <input type="text" placeholder="Search" name ="search">
+					        <button type="submit" class="fa fa-search" onclick="goSearch('mutualab')"></button>
+				        {# </form> #}
+				        <div id="SearchResults">
+				        	{# {{ render(controller('BecowoCoreBundle:Search:search')) }} #}
+				        </div>
+						{# <a href="{{ path('becowo_search', { 'tag': SearchAlgolia }) }}"><button type="button" class="fa fa-search" onclick="goSearch()"></button></a> #}
+						{# Nb de Résultats : {{result.originalResult.nbHits}}
+						{{dump(result)}} #}
+					</div>
+				</div>
+{############################################ MapBox (suite) ##############################################}
 			</div>
 	 		<div class="row">
 				<div class="col-lg-7">
@@ -227,6 +243,30 @@
             });
         });
     </script>#}
+
+    <script>
+
+    function goSearch(textToSearch){
+    	console.log(textToSearch);
+    	$.ajax("{{ path('becowo_search') }}", {
+                    data: { 
+                    	tag: textToSearch
+                            // you can pass some parameters to the controller here
+                    },
+                    success: function(data) {
+                    	console.log("success");
+
+                         //   alert(data);
+                             $('#SearchResults').html(data);
+                    },
+                    error: function() {
+                            alert("error");
+                    }
+                });
+    return false; // this stops normal button behaviour from executing;
+    }
+    </script>
+
 {% endblock javascripts %}
 	
 

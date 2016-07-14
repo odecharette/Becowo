@@ -20,21 +20,13 @@ class HomeController extends Controller
     $WsService = $this->get('app.map');
     $mapGeoJson = $WsService->getWsAndPoiInGeoJson($workspaces);
 
-    // Test Algolia
-    // $this->get('algolia.indexer')->rawSearch('Workspace', 'mutualab');
-    $result = $this->get('algolia.indexer')->search(
-    $this->getDoctrine()->getManager(),
-    'BecowoCoreBundle:Workspace',
-    'mutualab'
-    );
-
   	return $this->render('Home/home.html.twig', array(
   		'workspaces' => $workspaces, 
   		'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
       'picturesByWs' => $picturesByWs,
       'officesByWS' => $officesByWS,
-      'mapGeoJson' => $mapGeoJson,
-      'result' => $result));
+      'mapGeoJson' => $mapGeoJson));
   }
+
 }
