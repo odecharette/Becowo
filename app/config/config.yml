@@ -250,3 +250,6 @@ easy_admin:
 cmen_google_charts:
     version: "1"
     language: 'fr'
+# Algolia / Search engine
+algolia:
+    catch_log_exceptions: true
