@@ -53,16 +53,11 @@
 {###################################################### Algolia search ################################################}
 				<div class="col-lg-5">
 					<div class="well">
-						{# <form role="search" id="nav-search-form" method="post" action="{{ path('becowo_search') }}"> #}
-					        <input type="text" placeholder="Search" name ="search">
-					        <button type="submit" class="fa fa-search" onclick="goSearch('mutualab')"></button>
-				        {# </form> #}
+				        <input type="text" placeholder="Search" id="searchAlgolia">
+				        <button type="submit" class="fa fa-search" onclick="goSearch()"></button>
 				        <div id="SearchResults">
-				        	{# {{ render(controller('BecowoCoreBundle:Search:search')) }} #}
+				        	{# Viendra ici le contenu de Search.html.twig (chargé via JS) #}
 				        </div>
-						{# <a href="{{ path('becowo_search', { 'tag': SearchAlgolia }) }}"><button type="button" class="fa fa-search" onclick="goSearch()"></button></a> #}
-						{# Nb de Résultats : {{result.originalResult.nbHits}}
-						{{dump(result)}} #}
 					</div>
 				</div>
 {############################################ MapBox (suite) ##############################################}
@@ -246,24 +241,19 @@
 
     <script>
 
-    function goSearch(textToSearch){
-    	console.log(textToSearch);
+    function goSearch(){
     	$.ajax("{{ path('becowo_search') }}", {
                     data: { 
-                    	tag: textToSearch
+                    	tag: document.getElementById("searchAlgolia").value
                             // you can pass some parameters to the controller here
                     },
                     success: function(data) {
-                    	console.log("success");
-
-                         //   alert(data);
-                             $('#SearchResults').html(data);
+                        $('#SearchResults').html(data);
                     },
                     error: function() {
-                            alert("error");
                     }
                 });
-    return false; // this stops normal button behaviour from executing;
+    		return false;
     }
     </script>
 

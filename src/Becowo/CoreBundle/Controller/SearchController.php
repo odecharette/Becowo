@@ -62,12 +62,11 @@ class SearchController extends Controller
   // Méthode de recherche avec Algolia
   public function searchAction(Request $request)
   {
-     $data = $request->query->get('tag');
-    // $this->get('algolia.indexer')->rawSearch('Workspace', 'mutualab');
+     $tag = $request->query->get('tag');
     $result = $this->get('algolia.indexer')->search(
     $this->getDoctrine()->getManager(),
     'BecowoCoreBundle:Workspace',
-    $data
+    $tag
     );
 
     return $this->render('Home/search.html.twig', array(
