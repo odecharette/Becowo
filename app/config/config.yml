@@ -252,4 +252,6 @@ cmen_google_charts:
     language: 'fr'
 # Algolia / Search engine
 algolia:
+    application_id: 00DM9QCAA8
+    api_key: b0c4cf24413e5ab11db9e46923c790f4
     catch_log_exceptions: true
