@@ -21,7 +21,8 @@ class CommentController extends Controller
     $comment = new Comment($ws, $this->getUser());
     $form = $this->get('form.factory')->create(CommentType::class, $comment);
 
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+    // if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+     if ($request->isXmlHttpRequest()) {
         $em = $this->getDoctrine()->getManager();
         $em->persist($comment);
         $em->flush();
