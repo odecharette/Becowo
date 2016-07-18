@@ -62,14 +62,20 @@ class SearchController extends Controller
   // Méthode de recherche avec Algolia
   public function searchAction(Request $request)
   {
-     $tag = $request->query->get('tag');
+    $tag = $request->query->get('tag');
     $result = $this->get('algolia.indexer')->search(
     $this->getDoctrine()->getManager(),
-    'BecowoCoreBundle:Workspace',
-    $tag
-    );
+    'BecowoCoreBundle:Workspace', $tag);
+
+    if( $result->getNbHits() == 1)
+    {
+      $hits = $result->getHits();
+      $coor['longitude'] = $hits[0]->getLongitude();
+      $coor['latitude'] = $hits[0]->getLatitude();
+    }
 
     return $this->render('Home/search.html.twig', array(
-      'result' => $result));
+      'result' => $result,
+      'coor' => $coor));
   }
 }

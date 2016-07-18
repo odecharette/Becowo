@@ -146,3 +146,20 @@ $(document).ready(function() {
 		}
 
 });
+
+// This use Algolia for searching
+function goSearch(){
+    	$.ajax(Routing.generate('becowo_search'), {
+                    data: { 
+                    	tag: document.getElementById("searchAlgolia").value
+                            // you can pass some parameters to the controller here
+                    },
+                    success: function(data) {
+                        $('#SearchResults').html(data);
+                        console.log(data);
+                    },
+                    error: function() {
+                    }
+                });
+    		return false;
+    }

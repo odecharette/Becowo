@@ -222,10 +222,10 @@
 <div class="vertical-nav-overlay"></div>
 #}
 	<br><br><br><br>
-
 {% block javascripts %}
 
-	{# Pour la MapBox #}
+	
+{# Pour la MapBox #}
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
 	<script src="{{ asset('js/my-mapbox.js') }}"></script>
  
@@ -239,23 +239,6 @@
         });
     </script>#}
 
-    <script>
-
-    function goSearch(){
-    	$.ajax("{{ path('becowo_search') }}", {
-                    data: { 
-                    	tag: document.getElementById("searchAlgolia").value
-                            // you can pass some parameters to the controller here
-                    },
-                    success: function(data) {
-                        $('#SearchResults').html(data);
-                    },
-                    error: function() {
-                    }
-                });
-    		return false;
-    }
-    </script>
 
 {% endblock javascripts %}
 	

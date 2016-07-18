@@ -50,6 +50,8 @@ becowo_search:
     path:    /search
     defaults: { _controller: BecowoCoreBundle:Search:search }
     methods: GET|POST
+    options:
+        expose: true
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
