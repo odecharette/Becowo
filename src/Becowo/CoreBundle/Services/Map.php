@@ -73,7 +73,9 @@ class Map
               'properties' => array(
                   'type' => $poi->getPoiCategory()->getName(),
                   'id' => $poi->getId(),
-                  'name' => str_replace("'"," ",$poi->getName()), // enleve les apostrophes
+                  'name' => str_replace("'"," ",$poi->getName()), // enleve les apostrophes,
+                  'street' => str_replace("'"," ",$poi->getStreet()),
+                  'city' => str_replace("'"," ",$poi->getCity()),
                   'marker-symbol' => $poi->getMarkerSymbol(),
                   'marker-color' => '#FA9EEE'
                   )

@@ -59,7 +59,11 @@ $(document).ready(function() {
 		      popup += '</div>';
 		      locale.bindPopup(popup);
 
-	    }});
+	    }
+		else{// Marker autre que WS (donc POI)
+			var popup = prop.name + '<br>' + prop.street + ', ' + prop.city;
+			locale.bindPopup(popup);
+		}});
 
 	    ///////////////////////////////// Filters
 	    var filters = document.getElementById('filters');
