@@ -68,4 +68,9 @@ class FooterController extends Controller
   {
     return $this->render('Footer/cgv.html.twig');
   }
+
+  public function MentionsAction()
+  {
+    return $this->render('Footer/mentions-legales.html.twig');
+  }
 }

@@ -46,6 +46,10 @@ becowo_core_cgv:
     path:     /cgv
     defaults: { _controller: BecowoCoreBundle:Footer:Cgv }
 
+becowo_core_mentions:
+    path:     /mentions-legales
+    defaults: { _controller: BecowoCoreBundle:Footer:Mentions }
+
 becowo_member_public_profile:
     path:     /profile/public/{username}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
