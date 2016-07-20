@@ -1,0 +1,30 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Déclarer un espace
+{% endblock %}
+
+{% block body %}
+
+<h2>Coworker - Déclarez un espace</h2>
+
+{% include "CommonViews/flashMessage.html.twig" %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-6">
+			Cher Coworker, <br>
+			vous avez travaillé dans un espace de coworking qui n'est pas référencé sur notre site ? <br>
+			Vous souhaitez nous faire part de votre expérience, alors remplissez ce formulaire <br>
+			<br>
+			Un grand merci de la part de Becowo !
+			<br><br>
+			<div class="well">
+				{{form(form)}}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
