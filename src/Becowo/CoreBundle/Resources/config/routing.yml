@@ -10,14 +10,6 @@ becowo_core_workspace:
     options:
         expose: true
 
-becowo_core_workspace_vote:
-    path:     /vote/{vote}{name}{member}
-    defaults: { _controller: BecowoCoreBundle:Workspace:vote }
-    requirements:
-        vote: \d+
-    options:
-        expose: true
-
 becowo_core_booking_myreservations:
     path: /booking
     defaults: { _controller: BecowoCoreBundle:Booking:myReservations }

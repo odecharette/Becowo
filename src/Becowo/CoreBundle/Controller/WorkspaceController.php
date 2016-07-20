@@ -36,28 +36,5 @@ class WorkspaceController extends Controller
         'prices' => $prices));
   }
 
-  public function voteAction($vote, $name, $member)
-  {
-    // TO DO IMPORTANT : revoir tout car ici je charge en dur le vote pour un WS et un membre
-    $em = $this->getDoctrine()->getManager();
-    $repo = $em->getRepository('BecowoCoreBundle:Workspace');
-    $w = $repo->findOneByName('Mutualab');
-
-    $repo = $em->getRepository('BecowoMemberBundle:Member');
-    $m = $repo->findOneByFirstname('Olivia');
-
-
-    $newVote = new Vote();
-    $newVote->setScore1($vote);
-    $newVote->setWorkspace($w);
-    $newVote->setMember($m);
-
-    $em->persist($newVote);
-    $em->flush();
-
-    
-
-    return $this->redirectToRoute('becowo_core_workspace', array('name' => $name));
-  }
-
+ 
 }
