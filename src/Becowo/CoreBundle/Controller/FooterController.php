@@ -63,4 +63,9 @@ class FooterController extends Controller
 
     return $this->render('Footer/faq.html.twig', array('faq' => $faq, 'faqCategory' => $faqCategory));
   }
+
+  public function CgvAction()
+  {
+    return $this->render('Footer/cgv.html.twig');
+  }
 }

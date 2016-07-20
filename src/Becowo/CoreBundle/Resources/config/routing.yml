@@ -42,6 +42,10 @@ becowo_core_faq:
     path:     /faq
     defaults: { _controller: BecowoCoreBundle:Footer:Faq }
 
+becowo_core_cgv:
+    path:     /cgv
+    defaults: { _controller: BecowoCoreBundle:Footer:Cgv }
+
 becowo_member_public_profile:
     path:     /profile/public/{username}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
