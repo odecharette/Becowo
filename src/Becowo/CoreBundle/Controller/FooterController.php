@@ -78,4 +78,9 @@ class FooterController extends Controller
   {
     return $this->render('Footer/paiement.html.twig');
   }
+
+  public function AmbassadeurAction()
+  {
+    return $this->render('Footer/ambassadeur.html.twig');
+  }
 }
