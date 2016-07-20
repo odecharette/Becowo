@@ -58,6 +58,10 @@ becowo_core_ambassadeur:
     path:     /devenir-ambassadeur
     defaults: { _controller: BecowoCoreBundle:Footer:Ambassadeur }
 
+becowo_core_declare_ws:
+    path:     /declarer-un-espace
+    defaults: { _controller: BecowoCoreBundle:Header:DeclarerEspace }
+
 becowo_member_public_profile:
     path:     /profile/public/{username}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
