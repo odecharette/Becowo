@@ -4,6 +4,11 @@
   {{ parent() }} - {{ws.name}}
 {% endblock %}
 
+{% block stylesheets %}
+	{# blackknight467/star-rating-bundle #}
+     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+{% endblock %}
+
 {% block body %}
 
 	<div class="container-fluid">
@@ -20,7 +25,9 @@
 			</div>
 			<div class="col-lg-3">
 				<div class="well">
-					Star rating here
+					{{ render(controller('BecowoCoreBundle:Vote:vote')) }}
+					<button type="submit" class="fa fa-search" onclick="goVote()">A voter !</button>
+					<div id="VoteResults"></div>
 				</div>
 			</div>
 		</div>
@@ -135,7 +142,7 @@
 
 {% block javascripts %}
 	<script type="text/javascript">
-function goComment(){
+	function goComment(){
     	$.ajax(Routing.generate('becowo_comment'), {
                     data: { 
                     	name: document.getElementById("wsName").value
@@ -149,7 +156,23 @@ function goComment(){
                     }
                 });
     		return false;
-    }</script>
+    }
+
+    function goVote(){
+    	$.ajax(Routing.generate('becowo_core_vote'), {
+    				data: $('#vote-form').serialize(),
+                    type: "POST",
+                    success: function(data) {
+                    	$('#VoteResults').html("Merci, vote comptabilisé !");
+                    },
+                    error: function() {
+                    }
+                });
+    		return false;
+    }
+    </script>
+    {# blackknight467/star-rating-bundle #}
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 {% endblock javascripts %}
 
 {% endblock body %}

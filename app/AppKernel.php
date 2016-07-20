@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Becowo\ManagerBundle\BecowoManagerBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

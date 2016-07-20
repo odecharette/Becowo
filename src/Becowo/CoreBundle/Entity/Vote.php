@@ -296,11 +296,4 @@ class Vote
         return $this->member;
     }
 
-    /**
-    * @ORM\PostPersist
-    */
-    // public function calculeAvg()
-    // {
-    //     $this->setScoreAvg((score1+score2+score3+score4)/4);
-    // }
 }
