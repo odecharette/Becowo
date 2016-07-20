@@ -50,6 +50,10 @@ becowo_core_mentions:
     path:     /mentions-legales
     defaults: { _controller: BecowoCoreBundle:Footer:Mentions }
 
+becowo_core_paiement:
+    path:     /paiement-en-ligne
+    defaults: { _controller: BecowoCoreBundle:Footer:Paiement }
+
 becowo_member_public_profile:
     path:     /profile/public/{username}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }

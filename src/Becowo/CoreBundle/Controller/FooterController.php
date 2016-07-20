@@ -73,4 +73,9 @@ class FooterController extends Controller
   {
     return $this->render('Footer/mentions-legales.html.twig');
   }
+
+  public function PaiementAction()
+  {
+    return $this->render('Footer/paiement.html.twig');
+  }
 }
