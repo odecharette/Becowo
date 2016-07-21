@@ -6,7 +6,7 @@
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     {{ form(form) }}
 {% else %}
-	<p>Pour saisir des commentaires, vous devez être connecté</p>
+	<p>Pour saisir des commentaires, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
 {% endif %}
 
 {% for comment in listComments %}

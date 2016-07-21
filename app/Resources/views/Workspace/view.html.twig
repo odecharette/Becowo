@@ -30,7 +30,7 @@
 						<button type="submit" class="btn btn-primary" onclick="goVote()">Voter !</button>
 						<div id="VoteResults"></div>
 					{% else %}
-					Vous devez être connecté pour voter
+					Vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a> pour voter
 					{% endif %}
 				</div>
 			</div>
