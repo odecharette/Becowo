@@ -4,6 +4,7 @@ namespace Becowo\CoreBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Becowo\CoreBundle\Entity\Workspace;
+use Doctrine\ORM\NoResultException;
 
 class Workspace
 {
