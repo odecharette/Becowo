@@ -4,7 +4,6 @@ namespace Becowo\CoreBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Becowo\CoreBundle\Entity\Workspace;
-use Doctrine\ORM\NoResultException;
 
 class Workspace
 {
@@ -21,7 +20,7 @@ class Workspace
      
         try {
             return $repo->findActiveWorkspaces();
-        } catch (DoctrineORMNoResultException $e) {
+        } catch (\Doctrine\ORM\NoResultException $e) {
             return false;
         }
         
