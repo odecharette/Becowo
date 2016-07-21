@@ -2,15 +2,19 @@
 
 namespace Becowo\CoreBundle\Entity;
 
+Use Symfony\Component\Validator\Constraints as Assert;
 
 class Contact
 {
     private $name;
+
+    /**
+    * @Assert\Email()
+    */
     private $email;
+    
     private $subject;
     private $message;
-
-
 
     /**
      * Gets the value of name.
