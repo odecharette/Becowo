@@ -4,7 +4,6 @@ namespace Becowo\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * ProfilePicture
@@ -22,7 +21,6 @@ class ProfilePicture
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      *
-     * @Vich\Uploadable
      */
     private $id;
 
@@ -41,12 +39,6 @@ class ProfilePicture
     private $alt;
 
 
-    // Permet la gestion d'un champ FileType pour uploader un fichier + VicUploadBundle
-    /**
-     * @Vich\UploadableField(mapping="member_profile_picture", fileNameProperty="ProfilePicture")
-     * 
-     * @var File $file
-     */
     private $file;
   
   /**
