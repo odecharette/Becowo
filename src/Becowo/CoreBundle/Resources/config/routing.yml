@@ -6,7 +6,7 @@ becowo_core_homepage:
 becowo_core_workspace:
     path:     /ws/{name}
     defaults: { _controller: BecowoCoreBundle:Workspace:view }
-    methods: GET|POST
+    methods: GET
     options:
         expose: true
 
