@@ -21,17 +21,15 @@ class CommentController extends Controller
     $comment = new Comment($ws, $this->getUser());
     $form = $this->get('form.factory')->create(CommentType::class, $comment);
 
-    // if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-     if ($request->isXmlHttpRequest()) {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($comment);
-        $em->flush();
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($comment);
+      $em->flush();
 
-        $this->addFlash('success', 'Commentaire bien enregistré.');
+      $this->addFlash('success', 'Commentaire bien enregistré.');
 
-        // TO DO important, traiter le submit en AJAX pour rafraichir que la partie commentaire... ???
-       // return new JsonResponse(array('message' => 'Success!'), 200);
-     }
+      return $this->redirectToRoute('becowo_comment', array('name' => $request->get('name')));
+    }
 
     return $this->render('Workspace/comments.html.twig', array('form' => $form->createView(), 'listComments' => $listComments));
   }

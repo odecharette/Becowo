@@ -73,7 +73,7 @@ becowo_search:
         expose: true
 
 becowo_comment:
-    path:    /comment
+    path:    /comment/{name}
     defaults: { _controller: BecowoCoreBundle:Comment:view }
     methods: GET|POST
     options:

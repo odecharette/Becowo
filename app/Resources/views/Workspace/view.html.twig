@@ -131,11 +131,11 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="well">
-					<button type="submit" class="fa fa-search" onclick="goComment()">RefreshComment</button>
+					{# <button type="submit" class="btn btn-primary" id="btnComment" >Envoyer</button> #}
 					
 					<input type="hidden" id="wsName" value="{{ws.name}}">
 					<div id="CommentResults">
-						{{ render(controller('BecowoCoreBundle:Comment:view', {request: app.request})) }}
+						{{ render(controller('BecowoCoreBundle:Comment:view', {name: ws.name})) }}
 					</div>
 				</div>
 			</div>
@@ -146,21 +146,22 @@
 
 {% block javascripts %}
 	<script type="text/javascript">
-	function goComment(){
-    	$.ajax(Routing.generate('becowo_comment'), {
-                    data: { 
-                    	name: document.getElementById("wsName").value
-                            // you can pass some parameters to the controller here
-                    },
+
+$(function () {
+    $("#comment_Envoyer").unbind("click").click(function(){
+    	$.ajax(Routing.generate('becowo_comment', {name: document.getElementById('wsName').innerHTML}), {
+                    data: $('#comment-form').serialize(),
                     type: "POST",
                     success: function(data) {
                         $('#CommentResults').html(data);
                     },
                     error: function() {
+                    	$('#CommentResults').html("Une erreur est survenue, veuillez réessayer plus tard");
                     }
                 });
     		return false;
-    }
+    });
+});
 
     function goVote(){
     	$.ajax(Routing.generate('becowo_core_vote', {name: document.getElementById('wsName').innerHTML}), {

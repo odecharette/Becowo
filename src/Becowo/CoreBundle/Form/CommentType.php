@@ -13,7 +13,7 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('post', TextareaType::class);
-        $builder->add('send', SubmitType::class);
+        $builder->add('Envoyer', SubmitType::class); // ID auto : comment_Envoyer
     }
 
     /**
@@ -22,7 +22,8 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Becowo\CoreBundle\Entity\Comment'
+            'data_class' => 'Becowo\CoreBundle\Entity\Comment',
+            'attr' => ['id' => 'comment-form']
         ));
     }
 }
