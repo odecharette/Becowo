@@ -18,35 +18,37 @@ class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-    	$builder->add('firstname', TextType::class, array('required' => false));
-    	$builder->add('name', TextType::class, array('required' => false));
-    	$builder->add('sex', ChoiceType::class, array(
-    		'choices' => array(
-    			'Male' => false,
-    			'Female' => true),
-    		'expanded'=> true,
-    		'multiple' => false,
-    		'required' => false));
-    	$builder->add('birthDate', BirthdayType::class, array('required' => false));
-    	$builder->add('phone', TextType::class, array('required' => false));
-    	$builder->add('street', TextType::class, array('required' => false));
-    	$builder->add('postcode', TextType::class, array('required' => false));
-    	$builder->add('city', TextType::class, array('required' => false));
-    	$builder->add('country', EntityType::class, array(
-				    'class'        => 'BecowoCoreBundle:Country',
-				    'choice_label' => 'name',
-				    'multiple'     => false,
-				    'expanded'	   => false));
+    	$builder
+            ->add('firstname', TextType::class, array('required' => false))
+    	    ->add('name', TextType::class, array('required' => false))
+    	    ->add('sex', ChoiceType::class, array(
+        		'choices' => array(
+        			'Male' => false,
+        			'Female' => true),
+        		'expanded'=> true,
+        		'multiple' => false,
+        		'required' => false))
+    	    ->add('birthDate', BirthdayType::class, array('required' => false))
+    	    ->add('phone', TextType::class, array('required' => false))
+    	    ->add('street', TextType::class, array('required' => false))
+    	    ->add('postcode', TextType::class, array('required' => false))
+    	    ->add('city', TextType::class, array('required' => false))
+    	    ->add('country', EntityType::class, array(
+			    'class'        => 'BecowoCoreBundle:Country',
+			    'choice_label' => 'name',
+			    'multiple'     => false,
+			    'expanded'	   => false))
 
-        $builder->add('job', TextType::class, array('required' => false));
-    	$builder->add('society', TextType::class, array('required' => false));
-    	$builder->add('website', TextType::class, array('required' => false));
-    	$builder->add('description', TextareaType::class, array('required' => false));
-    	$builder->add('facebookLink', UrlType::class, array('required' => false));
-    	$builder->add('twitterLink', UrlType::class, array('required' => false));
-    	$builder->add('instagramLink', UrlType::class, array('required' => false));
-    	$builder->add('linkedinLink', UrlType::class, array('required' => false));
-    	$builder->add('profilePicture', ProfilePictureType::class);
+            ->add('job', TextType::class, array('required' => false))
+    	    ->add('society', TextType::class, array('required' => false))
+    	    ->add('website', TextType::class, array('required' => false))
+    	    ->add('description', TextareaType::class, array('required' => false))
+    	    ->add('facebookLink', UrlType::class, array('required' => false))
+    	    ->add('twitterLink', UrlType::class, array('required' => false))
+    	    ->add('instagramLink', UrlType::class, array('required' => false))
+    	    ->add('linkedinLink', UrlType::class, array('required' => false))
+    	    ->add('profilePicture', ProfilePictureType::class)
+            ;
 
     	$builder->remove('current_password');
     }
