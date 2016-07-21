@@ -1,11 +1,9 @@
 <div id="myCarouselTeam" class="carousel slide" data-interval="false">
   <div class="carousel-inner">
     {% for teamMember in ws.teamMember %}     
-      {{dump(teamMember)}}
       <div class={% if loop.first %}"item active"{% else %}"item"{% endif %}>       
       <div class="card">
-      {# TO DO mettre image en dynamique #}
-        <img class="card-img-top" src="{{ asset('images/olivia.png') }}" alt="TO DO" width="100px" height="100px">
+        <img class="card-img-top" src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}" width="100px" height="100px">
         <div class="card-block">
           <h4 class="card-title">{{teamMember.firstname}} {{teamMember.name}}</h4>
           <span class="label label-info">{{teamMember.job}}</span>

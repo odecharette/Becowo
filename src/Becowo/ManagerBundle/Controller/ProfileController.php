@@ -55,7 +55,7 @@ class ProfileController extends Controller
   	$formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
   	$formBuilder
         ->add('name',   TextType::class)
-    	->add('description',   TextareaType::class)
+    	  ->add('description',   TextareaType::class)
         ->add('descriptionBonus',   TextType::class)
         ->add('street',   TextType::class)
         ->add('postCode',   TextType::class)
@@ -210,6 +210,9 @@ class ProfileController extends Controller
   		$form = $this->get('form.factory')->create(TeamMemberType::class, $teamMember);
 
   		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+        $teamMember->upload($this->getUser()->getWorkspace()->getName());
+
 	      $em = $this->getDoctrine()->getManager();
 	      $em->persist($teamMember);
 	      $this->getUser()->getWorkspace()->addTeamMember($teamMember);	// pour la relation Many-to-many

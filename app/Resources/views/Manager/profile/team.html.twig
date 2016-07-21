@@ -37,7 +37,11 @@
 				<td>{{teamMember.name}}</td>
 				<td>{{teamMember.email}}</td>
 				<td>{{teamMember.job}}</td>
-				<td>{{teamMember.urlProfilePicture}}</td>
+				{% if teamMember.urlProfilePicture != '' %}
+					<td><img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}" width="50px" height="50px"></td>
+				{% else %}
+					<td></td>
+				{% endif %}
 				<td>{{teamMember.description}}</td>
 				<td>{{teamMember.phone}}</td>
 				<td><a href="{{ path('becowo_manager_profile_team_delete', { 'id': teamMember.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td>

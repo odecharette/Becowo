@@ -5,6 +5,7 @@ namespace Becowo\CoreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class TeamMemberType extends AbstractType
 {
@@ -19,10 +20,9 @@ class TeamMemberType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('job')
-            ->add('urlProfilePicture')
             ->add('description')
             ->add('phone')
-         //   ->add('workspace')
+            ->add('file', FileType::class, array('multiple' => false, 'label' => 'Photo de profil'))
         ;
     }
     
