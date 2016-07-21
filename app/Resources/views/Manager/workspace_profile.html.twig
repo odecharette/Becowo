@@ -124,10 +124,10 @@
 		
 			<div id="myCarouselTeam" class="carousel slide" data-interval="false">
   			<div class="carousel-inner">
-			{% for teamMember in app.user.workspace.teamMember %}    				
+			{% for teamMember in app.user.workspace.teamMember %}   				
 					<div class={% if loop.first %}"item active"{% else %}"item"{% endif %}>       
 	      				<div class="card">
-			      			{# TO DO mettre image en dynamique #}
+			      			{# TO DO mettre image en dynamique /!\ page non utilisée #}
 			        		<img class="card-img-top" src="{{ asset('images/olivia.png') }}" alt="TO DO" width="100px" height="100px">
 			        		<div class="card-block">
 			          			<h4 class="card-title">{{teamMember.firstname}} {{teamMember.name}}</h4>

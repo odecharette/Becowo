@@ -131,9 +131,6 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="well">
-					{# <button type="submit" class="btn btn-primary" id="btnComment" >Envoyer</button> #}
-					
-					<input type="hidden" id="wsName" value="{{ws.name}}">
 					<div id="CommentResults">
 						{{ render(controller('BecowoCoreBundle:Comment:view', {name: ws.name})) }}
 					</div>
