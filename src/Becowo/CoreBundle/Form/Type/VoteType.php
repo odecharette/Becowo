@@ -1,12 +1,11 @@
 <?php
 
-namespace Becowo\CoreBundle\Form;
+namespace Becowo\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use blackknight467\StarRatingBundle\Form\RatingType as RatingType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class VoteType extends AbstractType
 {

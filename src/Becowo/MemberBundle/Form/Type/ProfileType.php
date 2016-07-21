@@ -1,18 +1,16 @@
 <?php
-namespace Becowo\MemberBundle\Form;
+namespace Becowo\MemberBundle\Form\Type;
 // Surcharge C:\wamp64\www\Becowo\vendor\friendsofsymfony\user-bundle\Form\Type\ProfileFormType.php
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Becowo\CoreBundle\Form\ProfilePictureType;
+use Becowo\CoreBundle\Form\Type\ProfilePictureType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class ProfileType extends AbstractType

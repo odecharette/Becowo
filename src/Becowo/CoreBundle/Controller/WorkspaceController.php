@@ -3,12 +3,6 @@
 namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Becowo\CoreBundle\Entity\Vote;
-use Becowo\CoreBundle\Entity\Comment;
-use Becowo\CoreBundle\Form\CommentType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 class WorkspaceController extends Controller
@@ -38,5 +32,4 @@ class WorkspaceController extends Controller
         'averageVote' => $averageVote));
   }
 
- 
 }

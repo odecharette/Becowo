@@ -4,7 +4,7 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Becowo\CoreBundle\Form\ContactOfferType;
+use Becowo\CoreBundle\Form\Type\ContactOfferType;
 use Becowo\CoreBundle\Entity\ContactOffer;
 
 class OfferController extends Controller

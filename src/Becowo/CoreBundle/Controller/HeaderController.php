@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 class HeaderController extends Controller
 {
   
-  public function DeclarerEspaceAction(Request $request)
+  public function declarerEspaceAction(Request $request)
   {
 
     $defaultData = array('description' => '');

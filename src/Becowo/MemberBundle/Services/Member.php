@@ -3,7 +3,6 @@
 namespace Becowo\MemberBundle\Services;
 
 use Doctrine\ORM\EntityManager;
-use Becowo\MemberBundle\Entity\Member;
 
 class Member
 {

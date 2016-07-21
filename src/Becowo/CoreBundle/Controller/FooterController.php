@@ -4,7 +4,7 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Becowo\CoreBundle\Form\ContactType;
+use Becowo\CoreBundle\Form\Type\ContactType;
 use Becowo\CoreBundle\Entity\Contact;
 
 
@@ -47,12 +47,12 @@ class FooterController extends Controller
   
   }
 
-  public function AproposAction()
+  public function aProposAction()
   {
     return $this->render('Footer/apropos.html.twig');
   }
 
-  public function FaqAction()
+  public function faqAction()
   {
     $em = $this->getDoctrine()->getManager();
     $repo = $em->getRepository('BecowoCoreBundle:Faq');
@@ -64,22 +64,22 @@ class FooterController extends Controller
     return $this->render('Footer/faq.html.twig', array('faq' => $faq, 'faqCategory' => $faqCategory));
   }
 
-  public function CgvAction()
+  public function cgvAction()
   {
     return $this->render('Footer/cgv.html.twig');
   }
 
-  public function MentionsAction()
+  public function mentionsAction()
   {
     return $this->render('Footer/mentions-legales.html.twig');
   }
 
-  public function PaiementAction()
+  public function paiementAction()
   {
     return $this->render('Footer/paiement.html.twig');
   }
 
-  public function AmbassadeurAction()
+  public function ambassadeurAction()
   {
     return $this->render('Footer/ambassadeur.html.twig');
   }

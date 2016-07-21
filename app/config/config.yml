@@ -31,6 +31,7 @@ framework:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+        name: becowo_session  #https://insight.sensiolabs.com/what-we-analyse/symfony.request.session_cookie_default_name
     fragments:       ~
     http_method_override: true
     assets: ~
@@ -81,7 +82,7 @@ fos_user:
     user_class:    Becowo\MemberBundle\Entity\Member # La classe de l'entité User que nous utilisons
     profile:
         form:
-            type: Becowo\MemberBundle\Form\ProfileType
+            type: Becowo\MemberBundle\Form\Type\ProfileType
     from_email:
         address:        contact@becowo.com
         sender_name:    Becowo

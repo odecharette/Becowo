@@ -1,13 +1,13 @@
 <?php
 
-namespace Becowo\CoreBundle\Form;
+namespace Becowo\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class EventType extends AbstractType
+class PictureType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,11 +16,8 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('startDate', DateTimeType::class)
-            ->add('endDate', DateTimeType::class)
-         //   ->add('workspace')
+            ->add('file', FileType::class, array(
+                'multiple' => false))
         ;
     }
     
@@ -30,7 +27,7 @@ class EventType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Becowo\CoreBundle\Entity\Event'
+            'data_class' => 'Becowo\CoreBundle\Entity\Picture'
         ));
     }
 }

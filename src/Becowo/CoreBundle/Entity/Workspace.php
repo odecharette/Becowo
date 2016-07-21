@@ -913,7 +913,7 @@ class Workspace
      */
     public function isIndexable()
     {
-        if($this->isDeleted == false && $this->isVisible == true)
+        if($this->isDeleted === false && $this->isVisible === true)
             return true;
     }
 }

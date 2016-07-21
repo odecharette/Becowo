@@ -3,7 +3,6 @@
 namespace Becowo\MemberBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 class MemberRepository extends EntityRepository

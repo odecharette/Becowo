@@ -4,7 +4,7 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Becowo\CoreBundle\Form\VoteType;
+use Becowo\CoreBundle\Form\Type\VoteType;
 use Becowo\CoreBundle\Entity\Vote;
 
 class VoteController extends Controller

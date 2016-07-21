@@ -5,19 +5,17 @@ namespace Becowo\ManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Entity\Workspace;
-use Becowo\CoreBundle\Entity\Picture;
 use Becowo\CoreBundle\Entity\WorkspaceHasOffice;
 use Becowo\CoreBundle\Entity\Event;
 use Becowo\CoreBundle\Entity\TeamMember;
-use Becowo\CoreBundle\Form\WorkspaceType;
-use Becowo\CoreBundle\Form\PictureType;
-use Becowo\CoreBundle\Form\WorkspaceHasOfficeType;
-use Becowo\CoreBundle\Form\EventType;
-use Becowo\CoreBundle\Form\TeamMemberType;
+use Becowo\CoreBundle\Form\Type\WorkspaceType;
+use Becowo\CoreBundle\Form\Type\PictureType;
+use Becowo\CoreBundle\Form\Type\WorkspaceHasOfficeType;
+use Becowo\CoreBundle\Form\Type\EventType;
+use Becowo\CoreBundle\Form\Type\TeamMemberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProfileController extends Controller

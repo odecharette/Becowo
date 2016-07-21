@@ -1,13 +1,13 @@
 <?php
 
-namespace Becowo\CoreBundle\Form;
+namespace Becowo\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class WorkspaceHasOfficeType extends AbstractType
+class EventType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,11 +16,11 @@ class WorkspaceHasOfficeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('desk_qty')
-            ->add('office', EntityType::class, array(
-                'class' => 'BecowoCoreBundle:Office',
-                'choice_label' => 'name'))
-        //    ->add('workspace')
+            ->add('title')
+            ->add('description')
+            ->add('startDate', DateTimeType::class)
+            ->add('endDate', DateTimeType::class)
+         //   ->add('workspace')
         ;
     }
     
@@ -30,7 +30,7 @@ class WorkspaceHasOfficeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Becowo\CoreBundle\Entity\WorkspaceHasOffice'
+            'data_class' => 'Becowo\CoreBundle\Entity\Event'
         ));
     }
 }

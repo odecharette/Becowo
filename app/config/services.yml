@@ -5,7 +5,7 @@ parameters:
 
 services:
     app.form.registration:
-        class: Becowo\MemberBundle\Form\ProfileType
+        class: Becowo\MemberBundle\Form\Type\ProfileType
         tags:
             - { name: form.type, alias: app_user_profile }
 

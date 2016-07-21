@@ -13,14 +13,17 @@ becowo_core_workspace:
 becowo_core_booking_myreservations:
     path: /booking
     defaults: { _controller: BecowoCoreBundle:Booking:myReservations }
+    methods: GET
 
 becowo_core_offers:
     path:     /offres
     defaults: { _controller: BecowoCoreBundle:Offer:view }
+    methods: GET
 
 becowo_core_offers_contact:
     path:     /offres/{name}
     defaults: { _controller: BecowoCoreBundle:Offer:contact }
+    methods: GET
 
 becowo_core_vote:
     path:     /vote/{name}
@@ -31,39 +34,48 @@ becowo_core_vote:
 
 becowo_core_contact:
     path:     /contact
-    defaults: { _controller: BecowoCoreBundle:Footer:Contact }
+    defaults: { _controller: BecowoCoreBundle:Footer:contact }
+    methods: GET
 
 becowo_core_apropos:
     path:     /apropos
-    defaults: { _controller: BecowoCoreBundle:Footer:Apropos }
+    defaults: { _controller: BecowoCoreBundle:Footer:aPropos }
+    methods: GET
 
 becowo_core_faq:
     path:     /faq
-    defaults: { _controller: BecowoCoreBundle:Footer:Faq }
+    defaults: { _controller: BecowoCoreBundle:Footer:faq }
+    methods: GET
 
 becowo_core_cgv:
     path:     /cgv
-    defaults: { _controller: BecowoCoreBundle:Footer:Cgv }
+    defaults: { _controller: BecowoCoreBundle:Footer:cgv }
+    methods: GET
 
 becowo_core_mentions:
     path:     /mentions-legales
-    defaults: { _controller: BecowoCoreBundle:Footer:Mentions }
+    defaults: { _controller: BecowoCoreBundle:Footer:mentions }
+    methods: GET
 
 becowo_core_paiement:
     path:     /paiement-en-ligne
-    defaults: { _controller: BecowoCoreBundle:Footer:Paiement }
+    defaults: { _controller: BecowoCoreBundle:Footer:paiement }
+    methods: GET
 
 becowo_core_ambassadeur:
     path:     /devenir-ambassadeur
-    defaults: { _controller: BecowoCoreBundle:Footer:Ambassadeur }
+    defaults: { _controller: BecowoCoreBundle:Footer:ambassadeur }
+    methods: GET
 
 becowo_core_declare_ws:
     path:     /declarer-un-espace
-    defaults: { _controller: BecowoCoreBundle:Header:DeclarerEspace }
+    defaults: { _controller: BecowoCoreBundle:Header:declarerEspace }
+    methods: GET
 
 becowo_member_public_profile:
     path:     /profile/public/{username}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
+    methods: GET
 
 becowo_search:
     path:    /search

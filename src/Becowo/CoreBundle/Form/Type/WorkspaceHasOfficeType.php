@@ -1,14 +1,13 @@
 <?php
 
-namespace Becowo\CoreBundle\Form;
+namespace Becowo\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class ProfilePictureType extends AbstractType
+class WorkspaceHasOfficeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,9 +16,11 @@ class ProfilePictureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', FileType::class, array('required' => false))
-            ->add('url', HiddenType::class, array('required' => false))
-            ->add('alt', HiddenType::class, array('required' => false))
+            ->add('desk_qty')
+            ->add('office', EntityType::class, array(
+                'class' => 'BecowoCoreBundle:Office',
+                'choice_label' => 'name'))
+        //    ->add('workspace')
         ;
     }
     
@@ -29,7 +30,7 @@ class ProfilePictureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Becowo\CoreBundle\Entity\ProfilePicture'
+            'data_class' => 'Becowo\CoreBundle\Entity\WorkspaceHasOffice'
         ));
     }
 }
