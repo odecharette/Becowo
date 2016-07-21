@@ -12,24 +12,24 @@ class VoteController extends Controller
 
   public function voteAction(Request $request)
   {
-    // $WsService = $this->get('app.workspace');
-    // $ws = $WsService->getWorkspaceByName($request->get('YellowWorking')); // TO DO recup current WS
+    $WsService = $this->get('app.workspace');
+    $ws = $WsService->getWorkspaceByName($request->get('name')); 
 
   	$vote = new Vote();
 
     $form = $this->createForm(VoteType::class, $vote);
-dump($form);
-      if ($request->isMethod('POST') && $form->handleRequest($request)->isValid() ) {  // TO DO renvoi false...
 
-        // $vote->setWorkspace($ws);
-        // $vote->setMember($this->getUser());
+      if ($request->isMethod('POST') && $form->handleRequest($request)->isValid() ) { 
+
+        $vote->setWorkspace($ws);
+        $vote->setMember($this->getUser());
         $vote->setScoreAvg("1"); // TO DO 
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($vote);
         $em->flush();
         
-        return $this->redirectToRoute('becowo_core_vote');
+        return $this->redirectToRoute('becowo_core_vote', array('name' => $request->get('name')));
       }
 
     return $this->render('Vote/vote.html.twig', array(

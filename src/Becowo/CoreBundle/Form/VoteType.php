@@ -17,16 +17,11 @@ class VoteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('voteDate')
-            // ->add('score1')
-            // ->add('score2')
-            // ->add('score3')
-            // ->add('score4')
-            // ->add('scoreAvg')
-            // ->add('workspace')
-            // ->add('member')
-            ->add('score1', RatingType::class, ['label' => 'Rating']);
-           // ->add('Submit', SubmitType::class);
+            ->add('score1', RatingType::class, ['label' => 'Connectivité'])
+            ->add('score2', RatingType::class, ['label' => 'Services'])
+            ->add('score3', RatingType::class, ['label' => 'Cosy/Confort'])
+            ->add('score4', RatingType::class, ['label' => 'Ambiance'])
+            ;
     }
     
     /**

@@ -20,14 +20,18 @@
 					Pas de logo
 				{% endif %}
 			</div>
-			<div class="col-lg-6">
-				<h1>{{ws.name}}</h1>
+			<div class="col-lg-5">
+				<h1 id="wsName">{{ws.name}}</h1>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-4">
 				<div class="well">
-					{{ render(controller('BecowoCoreBundle:Vote:vote')) }}
-					<button type="submit" class="fa fa-search" onclick="goVote()">A voter !</button>
-					<div id="VoteResults"></div>
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+						{{ render(controller('BecowoCoreBundle:Vote:vote', {name: ws.name})) }}
+						<button type="submit" class="btn btn-primary" onclick="goVote()">Voter !</button>
+						<div id="VoteResults"></div>
+					{% else %}
+					Vous devez être connecté pour voter
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -159,13 +163,14 @@
     }
 
     function goVote(){
-    	$.ajax(Routing.generate('becowo_core_vote'), {
+    	$.ajax(Routing.generate('becowo_core_vote', {name: document.getElementById('wsName').innerHTML}), {
     				data: $('#vote-form').serialize(),
                     type: "POST",
                     success: function(data) {
                     	$('#VoteResults').html("Merci, vote comptabilisé !");
                     },
                     error: function() {
+                    	$('#VoteResults').html("Une erreur est survenue, veuillez réessayer plus tard");
                     }
                 });
     		return false;

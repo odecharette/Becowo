@@ -23,7 +23,7 @@ becowo_core_offers_contact:
     defaults: { _controller: BecowoCoreBundle:Offer:contact }
 
 becowo_core_vote:
-    path:     /vote
+    path:     /vote/{name}
     defaults: { _controller: BecowoCoreBundle:Vote:vote }
     methods: GET|POST
     options:
