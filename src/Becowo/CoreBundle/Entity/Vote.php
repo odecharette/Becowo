@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="vote", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}), @ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"})})
  * @ORM\Entity
+ *
+ * @ORM\HasLifecycleCallbacks() 
  */
 class Vote
 {
@@ -90,7 +92,6 @@ class Vote
     public function __construct()
     {
         $this->voteDate = new \DateTime();
-        // TO DO calculer la moyenne en auto
     }
 
 
@@ -295,5 +296,15 @@ class Vote
     {
         return $this->member;
     }
+
+    /** 
+     * Set Averafe 
+     * 
+     * @ORM\PrePersist 
+     */  
+    public function setAverage()  
+    {  
+        $this->scoreAvg = ($this->score1 + $this->score2 + $this->score3 + $this->score4) / 4;  
+    }  
 
 }

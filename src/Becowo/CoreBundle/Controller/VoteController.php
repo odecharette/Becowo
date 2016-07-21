@@ -23,7 +23,6 @@ class VoteController extends Controller
 
         $vote->setWorkspace($ws);
         $vote->setMember($this->getUser());
-        $vote->setScoreAvg("1"); // TO DO 
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($vote);
