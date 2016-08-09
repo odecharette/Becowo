@@ -75,7 +75,7 @@ becowo_core_declare_ws:
 becowo_core_map:
     path:     /map
     defaults: { _controller: BecowoCoreBundle:Map:view }
-    methods: GET
+    methods: GET|POST
 
 becowo_member_public_profile:
     path:     /profile/public/{username}
