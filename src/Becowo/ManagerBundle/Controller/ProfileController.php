@@ -16,6 +16,7 @@ use Becowo\CoreBundle\Form\Type\TeamMemberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProfileController extends Controller
@@ -227,25 +228,27 @@ class ProfileController extends Controller
 
     public function calendarAction(Request $request)
     {
-      // $teamMember = new TeamMember();
-      // $teamMember->addWorkspace($this->getUser()->getWorkspace());
-      // $form = $this->get('form.factory')->create(TeamMemberType::class, $teamMember);
+      $workspace = $this->getUser()->getWorkspace();
+      $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
+      $formBuilder
+        ->add('openHoursInfo',   TextareaType::class)
+        ->add('isAlwaysOpen',   CheckboxType::class, array('label' => 'Ouvert 24/7'))
+        ;
+      $form = $formBuilder->getForm();
 
-      // if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($workspace);
+        $em->flush();
 
-      //   $teamMember->upload($this->getUser()->getWorkspace()->getName());
+        $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      //   $em = $this->getDoctrine()->getManager();
-      //   $em->persist($teamMember);
-      //   $this->getUser()->getWorkspace()->addTeamMember($teamMember); // pour la relation Many-to-many
-      //   $em->flush();
+        return $this->redirectToRoute('becowo_manager_profile_calendar');
+      }
 
-      //   $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+      return $this->render('Manager/profile/calendar.html.twig', array(
+        'form' => $form->createView()));
 
-      //   return $this->redirectToRoute('becowo_manager_profile_team');
-      // }
-
-      return $this->render('Manager/profile/calendar.html.twig');
     }
 
 

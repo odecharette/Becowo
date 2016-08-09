@@ -13,8 +13,8 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
-{# {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-{{ form_errors(form) }} #}
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(form) }}
 
 {####################################################### Horaires #####################################################}
 <div class="row">
@@ -24,15 +24,24 @@
 			<small>Indiquez ici les heures d'ouvertures et de fermetures de votre espace</small>
 			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('horaires')"></button>
 		</h4><div class="well well-sm">
-			{# {{app.user.workspace.name}} #}
+			{{app.user.workspace.openHoursInfo}} <br>
+			Ouvert 24/7 : 
+				{% if app.user.workspace.isAlwaysOpen %} 
+					<img src={{ asset('/images/icons/box_checked.gif')}} alt="checked">
+				{% else %}
+					<img src={{ asset('/images/icons/box_unchecked.gif')}} alt="unchecked">
+				{% endif %}
 		</div></div>
 		<div class="write-horaires">
 		<h4>Les horaires
 			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
 			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('horaires')"></button>
 		</h4>  
-		    {# {{ form_errors(form.name) }} #}
-		    {# {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}   #}
+		    {{ form_errors(form.openHoursInfo) }}
+		    {{ form_widget(form.openHoursInfo, {'attr': {'class': 'form-control'}}) }}  <br>
+
+		    {{ form_errors(form.isAlwaysOpen) }}
+		    {{ form_widget(form.isAlwaysOpen, {'attr': {'class': 'form-control'}}) }}  
 		</div>
 	</div>
 </div>
@@ -58,8 +67,8 @@
 	</div>
 </div>
 <br>
-{# {{ form_rest(form) }}
-{{ form_end(form) }} #}
+{{ form_rest(form) }}
+{{ form_end(form) }}
 
 {% endblock %}
 
