@@ -115,8 +115,20 @@
         </nav>
 
     <div id="page-wrapper">
+        <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Profil de {{app.user.workspace.name}}
+                </h1>
+            </div>
+        </div><!-- /.row -->
+
+        {% include "CommonViews/flashMessage.html.twig" %}
+
         {% block page %}
-        {% endblock page%}
+        {% endblock page %}
     </div>
 
     </div>
