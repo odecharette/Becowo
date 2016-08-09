@@ -225,5 +225,28 @@ class ProfileController extends Controller
   		'form' => $form->createView()));
   	}
 
+    public function calendarAction(Request $request)
+    {
+      // $teamMember = new TeamMember();
+      // $teamMember->addWorkspace($this->getUser()->getWorkspace());
+      // $form = $this->get('form.factory')->create(TeamMemberType::class, $teamMember);
+
+      // if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+      //   $teamMember->upload($this->getUser()->getWorkspace()->getName());
+
+      //   $em = $this->getDoctrine()->getManager();
+      //   $em->persist($teamMember);
+      //   $this->getUser()->getWorkspace()->addTeamMember($teamMember); // pour la relation Many-to-many
+      //   $em->flush();
+
+      //   $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      //   return $this->redirectToRoute('becowo_manager_profile_team');
+      // }
+
+      return $this->render('Manager/profile/calendar.html.twig');
+    }
+
 
 }

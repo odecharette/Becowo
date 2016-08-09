@@ -1,0 +1,72 @@
+{% extends 'manager/manager-layout.html.twig' %}
+
+{% block page %}
+<div class="container-fluid">
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Profil de {{app.user.workspace.name}}
+        </h1>
+    </div>
+</div><!-- /.row -->
+
+{% include "CommonViews/flashMessage.html.twig" %}
+
+{# {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(form) }} #}
+
+{####################################################### Horaires #####################################################}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="read-horaires">
+		<h4>Les horaires
+			<small>Indiquez ici les heures d'ouvertures et de fermetures de votre espace</small>
+			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('horaires')"></button>
+		</h4><div class="well well-sm">
+			{# {{app.user.workspace.name}} #}
+		</div></div>
+		<div class="write-horaires">
+		<h4>Les horaires
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('horaires')"></button>
+		</h4>  
+		    {# {{ form_errors(form.name) }} #}
+		    {# {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}   #}
+		</div>
+	</div>
+</div>
+<br>
+{####################################################### Calendrier #####################################################}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="read-calendar">
+		<h4>Calendrier
+			<small>Indiquez une fermeture exceptionnelle ou une indisponibilité</small>
+			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('calendar')"></button>
+		</h4><div class="well well-sm">
+			{# {{app.user.workspace.name}} #}
+		</div></div>
+		<div class="write-calendar">
+		<h4>Calendrier
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('calendar')"></button>
+		</h4>  
+		    {# {{ form_errors(form.name) }} #}
+		    {# {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}   #}
+		</div>
+	</div>
+</div>
+<br>
+{# {{ form_rest(form) }}
+{{ form_end(form) }} #}
+
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+
+	goRead("horaires");
+	goRead("calendar");
+	</script>
+{% endblock %}
