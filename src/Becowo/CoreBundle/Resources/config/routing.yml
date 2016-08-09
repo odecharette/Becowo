@@ -72,6 +72,11 @@ becowo_core_declare_ws:
     defaults: { _controller: BecowoCoreBundle:Header:declarerEspace }
     methods: GET
 
+becowo_core_map:
+    path:     /map
+    defaults: { _controller: BecowoCoreBundle:Map:view }
+    methods: GET
+
 becowo_member_public_profile:
     path:     /profile/public/{username}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
