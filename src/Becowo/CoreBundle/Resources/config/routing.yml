@@ -77,6 +77,11 @@ becowo_core_map:
     defaults: { _controller: BecowoCoreBundle:Map:view }
     methods: GET|POST
 
+becowo_core_extract:
+    path:     /extract
+    defaults: { _controller: BecowoCoreBundle:Extract:extract }
+    methods: GET
+
 becowo_member_public_profile:
     path:     /profile/public/{username}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
