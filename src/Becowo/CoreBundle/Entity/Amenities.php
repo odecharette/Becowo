@@ -29,6 +29,13 @@ class Amenities
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="urlLogo", type="string", length=55, nullable=true)
+     */
+    private $urlLogo;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace", mappedBy="amenities")
@@ -66,6 +73,30 @@ class Amenities
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set urlLogo
+     *
+     * @param string $urlLogo
+     *
+     * @return Amenities
+     */
+    public function setUrlLogo($urlLogo)
+    {
+        $this->urlLogo = $urlLogo;
+
+        return $this;
+    }
+
+    /**
+     * Get urlLogo
+     *
+     * @return string
+     */
+    public function getUrlLogo()
+    {
+        return $this->urlLogo;
     }
 
     /**

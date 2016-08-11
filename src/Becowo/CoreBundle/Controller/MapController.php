@@ -29,7 +29,15 @@ class MapController extends Controller
       $itemNode->addAttribute( 'country', "FR" );
       $itemNode->addAttribute( 'listed', "true" ); // Pour que seuls les espaces soient affichés dans la liste
       $itemNode->addAttribute( 'featured', "true" );
-      $itemNode->addAttribute( 'features', "Wifi" ); // TO DO : liste des amenities, séparé par virgule espace
+
+      $amenities = $workspaces->getAmenities();
+
+      $listeAmenities = "";
+      foreach ($amenities as $amenity) {
+        $listeAmenities = $amenity->getName() . ", " . $listeAmenities ;
+      }
+      $itemNode->addAttribute( 'features', $listeAmenities );
+      
       $itemNode->addAttribute( 'description', $workspaces->getDescription() );
 
       $UrlLogo = $WsService->getLogoUrlByWorkspace($workspaces->getName());
