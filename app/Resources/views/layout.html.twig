@@ -34,62 +34,58 @@
 <header>
 	<div class="container-fluid">
 		<div class="row text-center">
-			<div id="logo" class="col-lg-2">
-				<a href="{{ path('becowo_core_homepage') }}"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Becowo" width="100px" height="80px"></a>
-			</div>
 			<div id="btn_manager" class="col-lg-2">
 				<a href="{{ path('becowo_core_offers') }}" class="btn btn-lg btn-info">Manager <br> Découvrez nos offres</a>
-			</div>
-			<div id="title" class="col-lg-4">
-				<h1>Becowo</h1>
-				<h3>Enfin une bonne raison d'aller au travail !</h3>
-			</div>
-			<div id="btn_coworker" class="col-lg-2">
+				<br>
 				<a href="{{ path('becowo_core_declare_ws') }}" class="btn btn-lg btn-info">Coworker <br> Déclarez un espace</a>
 			</div>
-{######################################### Menu login #####################################################"""#}
-			<div class="col-lg-2 col-centered">
-				<div class="row">
-					<div id="login" class="col-lg-12">
-						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-							
-					    	<div class="dropdown">
-							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							    {% if app.user.profilePicture.url is defined %}
-							    	<img src="{{ asset('images/ProfilePictures/')}}{{app.user.profilePicture.url}}" alt="{{app.user.profilePicture.alt}}" width="50px" height="50px">
-							    {% else %}
-							    	Bonjour {{ app.user.username }}
-								{% endif %}
-							    <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a></li>
-							    <li><a href="{{ path('fos_user_change_password') }}"><i class="fa fa-key"></i> Changer mon mot de passe</a></li>
-							    <li><a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a></li>
-							    {% if is_granted('ROLE_MANAGER') %}
-  								<li><a href="{{ path('becowo_manager_profile_identite') }}"><i class="fa fa-wrench"></i> Espace Manager</a></li>
-								{% endif %}
-								{% if is_granted('ROLE_ADMIN') %}
-								<li><a href="{{ path('easyadmin') }}"><i class="fa fa-lock"></i> Espace Admin</a></li>
-								{% endif %}
-							    <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a></li>
-							  </ul>
-							</div>
-						{% else %}
-						    <a href="{{ path('fos_user_security_login') }}">Connexion</a> | 
-						    <a href="{{ path('fos_user_registration_register') }}">Inscription</a>
-						{% endif %}
-					</div>
-{######################################### Barre de RS #####################################################"""#}
-
-					<div class="col-lg-12">{% include 'CommonViews/RS/all_RS_small.html.twig' %}</div>
-				</div>
+			<div id="logo" class="col-lg-8">
+				<a href="{{ path('becowo_core_homepage') }}"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Becowo" width="100px" height="80px"></a>
 			</div>
-		</div>	
+{######################################### Menu login #####################################################"""#}
+			<div id="login" class="col-lg-2">
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					
+			    	<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    {% if app.user.profilePicture.url is defined %}
+					    	<img src="{{ asset('images/ProfilePictures/')}}{{app.user.profilePicture.url}}" alt="{{app.user.profilePicture.alt}}" width="50px" height="50px">
+					    {% else %}
+					    	Bonjour {{ app.user.username }}
+						{% endif %}
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					    <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a></li>
+					    <li><a href="{{ path('fos_user_change_password') }}"><i class="fa fa-key"></i> Changer mon mot de passe</a></li>
+					    <li><a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a></li>
+					    {% if is_granted('ROLE_MANAGER') %}
+							<li><a href="{{ path('becowo_manager_profile_identite') }}"><i class="fa fa-wrench"></i> Espace Manager</a></li>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
+						<li><a href="{{ path('easyadmin') }}"><i class="fa fa-lock"></i> Espace Admin</a></li>
+						{% endif %}
+					    <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a></li>
+					  </ul>
+					</div>
+				{% else %}
+				    <a href="{{ path('fos_user_security_login') }}">Connexion</a> | 
+				    <a href="{{ path('fos_user_registration_register') }}">Inscription</a>
+				{% endif %}
+				<br>
+{######################################### Barre de RS #####################################################"""#}		
+				{% include 'CommonViews/RS/all_RS_small.html.twig' %}
+			</div> {# Div login #}
+		</div>  {# fin row #}
+
 		<div class="row text-center">
-			<h5><a href="{{ path('becowo_core_ambassadeur') }}">Devenez ambassadeur !</a></h5>
-		</div>
-	</div>
+			<div id="title" class="col-lg-12">
+				<h1>Becowo</h1>
+				<h3>Enfin une bonne raison d'aller au travail !</h3>
+				<h5><a href="{{ path('becowo_core_ambassadeur') }}">Devenez ambassadeur !</a></h5>
+			</div>
+		</div> {# fin row #}
+	</div> {# fin container #}
 </header>
 
 
@@ -100,7 +96,7 @@
 
 {######################################################Footer ######################################################}
     
-	<footer class="navbar navbar-inverse">
+	<footer class="navbar">
 		<div class="container-fluid">
 		<div class="row">
 		<div id="footer_menu" class="col-lg-3">
@@ -125,7 +121,7 @@
 			</ul>
 		</div>
 		<div id="footer_menu" class="col-lg-3">
-			<div class="col-lg-12">{% include 'CommonViews/RS/all_RS_small.html.twig' %}</div>
+			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
 		</div>
 		</div>
 	</div>

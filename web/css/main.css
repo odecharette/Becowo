@@ -12,66 +12,88 @@
     font-weight: bold;
     src: url('../css/font/DIN Alternate Bold.otf');
 }
+@font-face {
+    font-family: "MyriadPro";
+    src: url('../css/font/MyriadPro-Regular.otf');
+}
 
 :root {
-  --my-green: rgb(29, 142, 157);
-  --my-red: rgb(199, 47, 79);
-  --my-orange: rgb(255, 173, 105);
-  --my-blue: rgb(43, 56, 101);
-  --my-pink: rgb(206, 97, 110);
-  --my-yellow: rgb(244, 240, 67);
+  --my-green: rgb(0, 161, 154);
+  --my-red: rgb(231, 46, 70);
+  --my-orange: rgb(244, 147, 2);
+  --my-blue: rgb(32, 56, 94);
+  --my-pink: rgb(246, 96, 106);
+  --my-yellow: rgb(252, 231, 99);
   /* to use it : color: var(--my-red); */
 }
 
 
-header
-{
-	margin-top: 15px;
+header {
+  background-color: var(--my-green);
+	padding-top: 20px;
+  margin-bottom: 10px; 
+  font-size: 16px;
 }
 
-body 
-{
+header a{
+
+}
+
+header, header a{
+  font-family: "MyriadPro", Helvetica, Arial, sans-serif;
+  color: white;
+}
+
+body {
 	font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
-    margin-left: 10px;
 }
 
-footer, footer a
-{
+footer, footer a{
+  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
+  padding-left: 20px;
+  background: var(--my-blue);
 	color: white;
+  padding-top: 10px;
+  line-height: 2; 
+}
+.navbar{
+  margin-bottom: 0;
 }
 
-.gallery
-{
+footer li {
+  list-style-type: none;
+}
+
+.gallery{
     display: inline-block;
     margin-top: 20px;
 }
 
-#Vignettes-image
-{
+/*
+#Vignettes-image{
 	margin-left: -30px;
-    margin-right: -30px;
+  margin-right: -30px;
 }
+*/
 
 /*.row
 {
 	background-color: yellow;
 }*/
 
-#liensRS
-{
-	background-color: rgb(46,49,56);
-	width: 160px;
+#liensRS{
+	/*background-color: rgb(46,49,56);*/
+	/*width: 160px;*/
 	padding-top: 5px;
 	padding-bottom: 5px;
 	border-radius: 20px;
 }
 
-#NewMembers a
-{
+#NewMembers a{
 	display: inline-block;
 }
 
 #filters, label {
-    padding-left: 5px;
-    padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 10px;
 }
