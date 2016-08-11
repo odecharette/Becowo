@@ -59,6 +59,11 @@ body {
   border-style: solid;
 }
 
+#vignette #listeLogo img{
+  width: 50px;
+  height: 50px;
+}
+
 footer, footer a{
   font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   padding-left: 20px;

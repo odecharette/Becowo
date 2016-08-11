@@ -31,12 +31,15 @@ class MapController extends Controller
       $itemNode->addAttribute( 'featured', "true" );
 
       $amenities = $workspaces->getAmenities();
-
       $listeAmenities = "";
+      $i = 0;
       foreach ($amenities as $amenity) {
         $listeAmenities = $amenity->getName() . ", " . $listeAmenities ;
+        $itemNode->addAttribute( 'featuresUrl' . $i, $amenity->getUrlLogo() );
+        $i++;
       }
       $itemNode->addAttribute( 'features', $listeAmenities );
+      
       
       $itemNode->addAttribute( 'description', $workspaces->getDescription() );
 
