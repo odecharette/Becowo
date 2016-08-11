@@ -2,22 +2,26 @@
 {{#if listed}}
 	<div class="container-fluid" data-markerid="{{markerid}}" id="vignette">
 		<div class="row">
-			<div class="col-lg-3">
-				<img src="/Becowo/web/images/Workspaces/{{name}}/{{logo}}">
+			<div class="col-lg-3" id="logo">
+				{{#if logo}}
+					<img src="/Becowo/web/images/Workspaces/{{name}}/{{logo}}">
+				{{/if}}
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-4">
 				{{address}} <br>
 				{{city}}{{#if city}},{{/if}} {{state}} {{postal}}
 			</div>
-			<div class="col-lg-3">
-				etoiles
+			<div class="col-lg-3" id="stars">
+				<img src="/Becowo/web/images/icons/star{{averageVote}}.png">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-2">
 				prix
 			</div>
 		</div>
-		<div class="row">
-			<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}">
+		<div class="row" id="favoritePicture">
+			{{#if favoritePicture}}
+				<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}">
+			{{/if}}
 		</div>
 		<div class="row">
 			{{description}}
@@ -51,22 +55,6 @@
 			
 		</div>
 	</div>
-	<!-- <div data-markerid="{{markerid}}">
-		<div class="list-label">{{marker}}</div>
-		<div class="list-details">
-			<div class="list-content">
-				<div class="loc-name">{{name}}</div>
-				<div class="loc-addr">{{address}}</div> 
-				<div class="loc-addr2">{{address2}}</div> 
-				<div class="loc-addr3">{{city}}{{#if city}},{{/if}} {{state}} {{postal}}</div>
-				<div class="loc-phone">{{phone}}</div>
-				<div class="loc-web"><a href="{{web}}" target="_blank">{{niceURL web}}</a></div>
-				{{#if distance}}
-					<div class="loc-dist">{{distance}} {{length}}</div>
-					<div class="loc-directions"><a href="https://maps.google.com/maps?saddr={{origin}}&amp;daddr={{address}} {{address2}} {{city}}, {{state}} {{postal}}" target="_blank">Directions</a></div>
-				{{/if}}
-			</div>
-		</div>
-	</div> -->
 {{/if}}
 {{/location}}
+

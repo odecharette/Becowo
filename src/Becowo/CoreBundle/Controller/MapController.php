@@ -23,7 +23,7 @@ class MapController extends Controller
       $itemNode->addAttribute( 'lat', $workspaces->getLatitude() );
       $itemNode->addAttribute( 'lng', $workspaces->getLongitude() );
       $itemNode->addAttribute( 'category', "coworking" ); // TO DO : getCategory ?
-      $itemNode->addAttribute( 'address', $workspaces->getStreet() );
+      $itemNode->addAttribute( 'address', ucfirst(strtolower($workspaces->getStreet())) );
       $itemNode->addAttribute( 'city', $workspaces->getCity() );
       $itemNode->addAttribute( 'postal', $workspaces->getPostCode() );
       $itemNode->addAttribute( 'country', "FR" );
@@ -48,6 +48,11 @@ class MapController extends Controller
 
       $pictureFavorite = $WsService->getFavoritePictureUrlByWorkspace($workspaces->getName());
       $itemNode->addAttribute( 'favoritePicture', $pictureFavorite["url"] );
+
+      $averageVote = $WsService->getAverageVoteByWorkspace($workspaces);
+      $averageVote = round($averageVote, 0);
+      $itemNode->addAttribute( 'averageVote', $averageVote );
+
     }
 
 
