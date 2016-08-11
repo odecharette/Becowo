@@ -12,6 +12,7 @@ class MapController extends Controller
     $WsService = $this->get('app.workspace');
     $workspaces = $WsService->getActiveWorkspaces(); 
 
+
     $rootNode = new \SimpleXMLElement( "<?xml version='1.0' encoding='UTF-8'?><markers></markers>" );
 
 
@@ -29,6 +30,13 @@ class MapController extends Controller
       $itemNode->addAttribute( 'listed', "true" ); // Pour que seuls les espaces soient affichés dans la liste
       $itemNode->addAttribute( 'featured', "true" );
       $itemNode->addAttribute( 'features', "Wifi" ); // TO DO : liste des amenities, séparé par virgule espace
+      $itemNode->addAttribute( 'description', $workspaces->getDescription() );
+
+      $UrlLogo = $WsService->getLogoUrlByWorkspace($workspaces->getName());
+      $itemNode->addAttribute( 'logo', $UrlLogo["url"] );
+
+      $pictureFavorite = $WsService->getFavoritePictureUrlByWorkspace($workspaces->getName());
+      $itemNode->addAttribute( 'favoritePicture', $pictureFavorite["url"] );
     }
 
 

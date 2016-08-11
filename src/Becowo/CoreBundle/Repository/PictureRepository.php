@@ -36,6 +36,21 @@ class PictureRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findByWsFavoriteUrl($wsName)
+	{
+		//retourne l'URL de la picture favorite d'un WS
+
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->select('p.url')
+			->leftJoin('p.workspace', 'w')
+			->where('w.name = :name')
+			->andWhere('p.isFavorite = true')
+			->setParameter('name', $wsName);
+
+		return $qb->getQuery()->getOneOrNullResult();
+	}
+
 	public function findByWsLogo($wsName)
 	{
 		//retourne le logo d'un WS
@@ -48,6 +63,21 @@ class PictureRepository extends EntityRepository
 			->setParameter('name', $wsName);
 
 		return $qb->getQuery()->getResult();
+	}
+
+	public function findByWsUrlLogo($wsName)
+	{
+		//retourne l'URL du logo d'un WS
+
+		$qb = $this->createQueryBuilder('p');
+
+		$qb->select('p.url')
+			->leftJoin('p.workspace', 'w')
+			->where('w.name = :name')
+			->andWhere('p.isLogo = true')
+			->setParameter('name', $wsName);
+
+		return $qb->getQuery()->getOneOrNullResult();
 	}
 
 	

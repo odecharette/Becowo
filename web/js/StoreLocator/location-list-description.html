@@ -1,6 +1,32 @@
 {{#location}}
 {{#if listed}}
-	<li data-markerid="{{markerid}}">
+	<div class="container-fluid" data-markerid="{{markerid}}" id="vignette">
+		<div class="row">
+			<div class="col-lg-3">
+				<img src="/Becowo/web/images/Workspaces/{{name}}/{{logo}}">
+			</div>
+			<div class="col-lg-3">
+				{{address}} <br>
+				{{city}}{{#if city}},{{/if}} {{state}} {{postal}}
+			</div>
+			<div class="col-lg-3">
+				etoiles
+			</div>
+			<div class="col-lg-3">
+				prix
+			</div>
+		</div>
+		<div class="row">
+			<img src="/Becowo/web/images/Workspaces/{{name}}/{{mainPicture}}">
+		</div>
+		<div class="row">
+			{{description}}
+		</div>
+		<div class="row">
+			icon amenities
+		</div>
+	</div>
+	<!-- <div data-markerid="{{markerid}}">
 		<div class="list-label">{{marker}}</div>
 		<div class="list-details">
 			<div class="list-content">
@@ -16,6 +42,6 @@
 				{{/if}}
 			</div>
 		</div>
-	</li>
+	</div> -->
 {{/if}}
 {{/location}}

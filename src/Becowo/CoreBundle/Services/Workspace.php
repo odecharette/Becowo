@@ -85,10 +85,22 @@ class Workspace
         return $repo->findByWsFavorite($name);
     }
 
+    public function getFavoritePictureUrlByWorkspace($name)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Picture');
+        return $repo->findByWsFavoriteUrl($name);
+    }
+
     public function getLogoByWorkspace($name)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Picture');
         return $repo->findByWsLogo($name);
+    }
+
+    public function getLogoUrlByWorkspace($name)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Picture');
+        return $repo->findByWsUrlLogo($name);
     }
 
     public function getEventsByWorkspace(Workspace $ws)

@@ -54,6 +54,11 @@ body {
 	font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
 }
 
+#vignette{
+  border-width: 1px;
+  border-style: solid;
+}
+
 footer, footer a{
   font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   padding-left: 20px;
