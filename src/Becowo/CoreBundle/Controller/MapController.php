@@ -19,10 +19,13 @@ class MapController extends Controller
       $itemNode->addAttribute( 'name', $workspaces->getName() );
       $itemNode->addAttribute( 'lat', $workspaces->getLatitude() );
       $itemNode->addAttribute( 'lng', $workspaces->getLongitude() );
+      $itemNode->addAttribute( 'category', "coworking" ); // TO DO : getCategory ?
       $itemNode->addAttribute( 'address', $workspaces->getStreet() );
       $itemNode->addAttribute( 'city', $workspaces->getCity() );
       $itemNode->addAttribute( 'postal', $workspaces->getPostCode() );
       $itemNode->addAttribute( 'country', "FR" );
+      $itemNode->addAttribute( 'featured', "true" );
+      $itemNode->addAttribute( 'features', "Wifi" ); // TO DO : liste des amenities, séparé par virgule espace
     }
 
 

@@ -12,22 +12,19 @@
 <a href="https://github.com/bjorn2404/jQuery-Store-Locator-Plugin/tree/master/dist">lien git Hub</a>
 
 <div class="bh-sl-container">
-	<div id="page-header">
-		<h1 class="bh-sl-title">Using Chipotle as an Example</h1>
-		<p>I used locations around Minneapolis and the southwest suburbs. So, for example, Edina, Plymouth, Eden Prarie, etc. would be good for testing the functionality.
-			You can use just the city as the address - ex: Edina, MN.</p>
-	</div>
 
 	<div class="bh-sl-form-container">
 		<form id="bh-sl-user-location" method="post" action="#">
 			<div class="form-input">
+				<label for="bh-sl-search">Location name search:</label>
+				<input type="text" id="bh-sl-search" name="bh-sl-search" />
 				<label for="bh-sl-address">Enter Address or Zip Code:</label>
 				<input type="text" id="bh-sl-address" name="bh-sl-address" />
 				<select id="bh-sl-maxdistance" name="bh-sl-maxdistance">
-					<option value="10">10 Miles</option>
-					<option value="20">20 Miles</option>
-					<option value="30">30 Miles</option>
-					<option value="40">40 Miles</option>
+					<option value="10">10 Km</option>
+					<option value="20">20 Km</option>
+					<option value="30">30 Km</option>
+					<option value="40">40 Km</option>
 				</select>
 			</div>
 
@@ -35,67 +32,57 @@
 
 			<div class="bh-sl-filters-container">
 				<ul id="category-filters-container1" class="bh-sl-filters">
-					<li><h3>Categories</h3></li>
+					<li><h3>Catégories</h3></li>
 					<li>
 						<label>
-							<input type="checkbox" name="category" value="Restaurant"> Restaurant
+							<input type="checkbox" name="category" value="Coworking"> Espace de coworking
 						</label>
 					</li>
 					<li>
 						<label>
-							<input type="checkbox" name="category" value="Bar"> Bar
+							<input type="checkbox" name="category" value="cafe"> Café
 						</label>
 					</li>
 					<li>
 						<label>
-							<input type="checkbox" name="category" value="Cafe"> Cafe
-						</label>
-					</li>
-					<li>
-						<label>
-							<input type="checkbox" name="category" value="Bakery"> Bakery
-						</label>
-					</li>
-					<li>
-						<label>
-							<input type="checkbox" name="category" value="Coffee"> Coffee
+							<input type="checkbox" name="category" value="coffice"> Coffice
 						</label>
 					</li>
 				</ul>
 
 				<ul id="category-filters-container2" class="bh-sl-filters">
-					<li><h3>Features</h3></li>
+					<li><h3>Equipements</h3></li>
 					<li>
 						<label>
-							<input type="checkbox" name="feature" value="Fresh Guacamole"> Fresh Guacamole
+							<input type="checkbox" name="feature" value="Snack"> Snack
 						</label>
 					</li>
 					<li>
 						<label>
-							<input type="checkbox" name="feature" value="Online Ordering"> Online Ordering
+							<input type="checkbox" name="feature" value="Wifi"> Wifi
 						</label>
 					</li>
 					<li>
 						<label>
-							<input type="checkbox" name="feature" value="Margaritas"> Margaritas
+							<input type="checkbox" name="feature" value="Cuisine"> Cuisine
 						</label>
 					</li>
 				</ul>
 
 				<ul id="city-filter" class="bh-sl-filters">
-					<li><h3>City</h3></li>
+					<li><h3>Ville</h3></li>
 					<li>
 						<select name="city">
-							<option value="">All cities</option>
-							<option value="Minneapolis">Minneapolis</option>
-							<option value="Bloomington">Bloomington</option>
-							<option value="Golden Valley">Golden Valley</option>
-							<option value="St. Louis Park">St. Louis Park</option>
+							<option value="">France</option>
+							<option value="Paris">Paris</option>
+							<option value="Lille">Lille</option>
+							<option value="Aix en Provence">Aix en Provence</option>
+							<option value="Marseilles">Marseilles</option>
 						</select>
 					</li>
 				</ul>
 				
-				<ul id="postal-filter" class="bh-sl-filters">
+				{# <ul id="postal-filter" class="bh-sl-filters">
 					<li><h3>Zip</h3></li>
 					<li>
 						<input type="radio" name="postal" value="55416">55416
@@ -109,7 +96,7 @@
 					<li>
 						<input type="radio" name="postal" value="55317">55317
 					</li>
-				</ul>
+				</ul> #}
 			</div>
 		</form>
 
@@ -135,12 +122,13 @@
 		        zoom : 12,
 		        mapTypeId: google.maps.MapTypeId.ROADMAP,
 		      },
-			'maxDistance': true,
+			'maxDistance': false,	// active menu déroulant de recherche par distance max
+			'distanceAlert' : 100000,
 			'taxonomyFilters' : {
 				'category' : 'category-filters-container1',
 				'features' : 'category-filters-container2',
 				'city' : 'city-filter',
-				'postal': 'postal-filter'
+				// 'postal': 'postal-filter'
 			},
 			'infowindowTemplatePath'   : "{{ asset('js/StoreLocator/infowindow-description.html') }}",
 			'listTemplatePath'         : "{{ asset('js/StoreLocator/location-list-description.html') }}",
@@ -151,7 +139,9 @@
     		'nameSearch': true,
     		// 'dataRaw' : "{{ xml_locations }}",
     		'dataType' : 'xml',
-    		'dataLocation' : "{{ asset('js/StoreLocator/locations.xml') }}"
+    		'dataLocation' : "{{ asset('js/StoreLocator/locations.xml') }}",
+    		'catMarkers' : {'coworking' : ["{{ asset('images/icons/marker.png') }}", 32, 32]}, // TO DO : 1 marker par category d'espace
+    		// 'markerImg' : "{{ asset('images/icons/marker.png') }}"
 		});
 	});
 </script>
