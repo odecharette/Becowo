@@ -14,6 +14,8 @@ class MapController extends Controller
 
     $rootNode = new \SimpleXMLElement( "<?xml version='1.0' encoding='UTF-8'?><markers></markers>" );
 
+
+    // Add Workspaces
     foreach ($workspaces as $workspaces) {
       $itemNode = $rootNode->addChild('marker');
       $itemNode->addAttribute( 'name', $workspaces->getName() );
@@ -24,8 +26,27 @@ class MapController extends Controller
       $itemNode->addAttribute( 'city', $workspaces->getCity() );
       $itemNode->addAttribute( 'postal', $workspaces->getPostCode() );
       $itemNode->addAttribute( 'country', "FR" );
+      $itemNode->addAttribute( 'listed', "true" ); // Pour que seuls les espaces soient affichés dans la liste
       $itemNode->addAttribute( 'featured', "true" );
       $itemNode->addAttribute( 'features', "Wifi" ); // TO DO : liste des amenities, séparé par virgule espace
+    }
+
+
+    // Add POI
+    $poi = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Poi')->findPoiWithCategory();
+
+    foreach ($poi as $poi) {
+      $itemNode = $rootNode->addChild('marker');
+      $itemNode->addAttribute( 'name', str_replace("'"," ",$poi->getName()) );
+      $itemNode->addAttribute( 'lat', $poi->getLatitude() );
+      $itemNode->addAttribute( 'lng', $poi->getLongitude() );
+      $itemNode->addAttribute( 'category', $poi->getPoiCategory()->getName() );
+      $itemNode->addAttribute( 'address', $poi->getStreet() );
+      $itemNode->addAttribute( 'city', $poi->getCity() );
+      $itemNode->addAttribute( 'postal', $poi->getPostCode() );
+      $itemNode->addAttribute( 'country', "FR" );
+      $itemNode->addAttribute( 'featured', "true" );
+      $itemNode->addAttribute( 'features', "" );
     }
 
 
