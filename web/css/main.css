@@ -110,6 +110,28 @@ body {
   text-transform: uppercase;
 }
 
+#NewMembers{
+  background: var(--my-green-opacity);
+  padding-bottom: 30px;
+  margin-left: 37px;
+  margin-top: 20px;
+  margin-right: 44px;
+}
+#NewMembers h2{
+  color: var(--my-green);
+  font-size: 25pt;
+}
+#NewMembers a{
+  display: inline-block;
+}
+#NewMembers #members{
+  text-align: center;
+  margin: 0,20px,0,20px;
+}
+#NewMembers #members span{
+  padding-right: 90px;
+}
+
 footer, footer a{
   font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   padding-left: 20px;
@@ -151,9 +173,7 @@ footer li {
 	border-radius: 20px;
 }
 
-#NewMembers a{
-	display: inline-block;
-}
+
 
 #filters, label {
   padding-left: 5px;
