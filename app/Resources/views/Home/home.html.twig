@@ -7,6 +7,8 @@
 {% block stylesheets %}
 	{# Pour la Map, version StoreLocator #}
 	<link rel="stylesheet" href="{{ asset('css/storelocator/bootstrap-example.min.css') }}">
+	{# Pour la vidéo #}
+	<link type="text/css" rel="stylesheet" href="{{ asset('css/jquery.videocontrols.css') }}">
 {% endblock stylesheets %}
 
 {% block body %}
@@ -14,11 +16,9 @@
 
 {############################################ Vidéo ##############################################}
 
-<div class="container" id="video"><div class="row"><div class="col-lg-6 col-lg-offset-3">
-	<div class="embed-responsive embed-responsive-16by9">
-	    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/FepLZO6Q2Ms" allowfullscreen></iframe>
-	</div>
-</div></div></div>
+<video id="video" width="50%" height="50%" controls="controls">
+	<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
+</video>
 
 {############################################ Map ##############################################}
 
@@ -260,6 +260,25 @@
     		// 'markerImg' : "{{ asset('images/icons/marker.png') }}"
 		});
 	});
+</script>
+
+{# Pour la vidéo #}
+<script src="{{ asset('js/jquery.videocontrols.js') }}"></script>
+<script type="text/javascript"> 
+    $(document).ready(function () 
+    { 
+        $('#video').videocontrols( 
+        {  
+            theme: 
+            { 
+                progressbar: 'pink', 
+                range: 'pink', 
+                volume: 'pink' 
+            },
+            fillscreen: false,
+            mediumscreen: false 
+        }); 
+    }); 
 </script>
 
 {% endblock javascripts %}

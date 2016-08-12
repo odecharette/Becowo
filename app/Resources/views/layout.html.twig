@@ -34,12 +34,10 @@
 <header>
 	<div class="container-fluid">
 		<div class="row text-center">
-			<div id="btn_manager" class="col-lg-2">
-				<a href="{{ path('becowo_core_offers') }}" class="btn btn-lg btn-info">Manager <br> Découvrez nos offres</a>
-				<br>
-				<a href="{{ path('becowo_core_declare_ws') }}" class="btn btn-lg btn-info">Coworker <br> Déclarez un espace</a>
+			<div id="btn_manager" class="col-lg-3">
+				<a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a>
 			</div>
-			<div id="logo" class="col-lg-8">
+			<div id="logo" class="col-lg-7">
 				<a href="{{ path('becowo_core_homepage') }}"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Becowo" width="100px" height="80px"></a>
 			</div>
 {######################################### Menu login #####################################################"""#}
@@ -76,6 +74,7 @@
 {######################################### Barre de RS #####################################################"""#}		
 				{% include 'CommonViews/RS/all_RS_small.html.twig' %}
 			</div> {# Div login #}
+				<a href="{{ path('becowo_core_declare_ws') }}">Coworker, déclarez un espace</a>
 		</div>  {# fin row #}
 
 		<div class="row text-center">

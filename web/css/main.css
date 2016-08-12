@@ -1,15 +1,5 @@
 @font-face {
     font-family: "DIN Alternate";
-    src: url('../css/font/DIN Alternate Regular.otf');
-}
-/*@font-face {
-    font-family: "DIN Alternate";
-    font-style: italic;
-    src: url('MaSuperFonte-Italic.ttf');
-}*/
-@font-face {
-    font-family: "DIN Alternate";
-    font-weight: bold;
     src: url('../css/font/DIN Alternate Bold.otf');
 }
 @font-face {
@@ -35,19 +25,26 @@ header {
 }
 
 header h1{
+  font-family: "MyriadPro", Helvetica, Arial, sans-serif;
   font-size: 40px;
 }
 header h2{
+  font-family: "MyriadPro", Helvetica, Arial, sans-serif;
   font-size: 38px;
 }
 
-header a{
-
+header a:hover{
+  font-weight: bold;
+  color: white;
 }
 
 header, header a{
-  font-family: "MyriadPro", Helvetica, Arial, sans-serif;
   color: white;
+  text-decoration: underline;
+  font-size: 15px;
+}
+header #login a{
+  text-decoration: none;
 }
 
 body {
