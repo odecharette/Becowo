@@ -9,6 +9,7 @@
 
 :root {
   --my-green: rgb(0, 161, 154);
+  --my-green-opacity: rgba(0, 161, 154, 0.15);
   --my-red: rgb(231, 46, 70);
   --my-orange: rgb(244, 147, 2);
   --my-blue: rgb(32, 56, 94);
@@ -74,6 +75,21 @@ body {
 #vignette #stars img{
   width: 140px;
   height: 30px;
+}
+
+/*Nouveaux espaces*/
+#NewEspaces{
+  background: var(--my-green-opacity);
+  padding-bottom: 30px;
+}
+#NewEspaces h2{
+  color: var(--my-green);
+  font-size: 25pt;
+}
+#NewEspaces h3{
+  color: var(--my-pink);
+  font-size: 17pt;
+  text-transform: uppercase;
 }
 
 footer, footer a{
