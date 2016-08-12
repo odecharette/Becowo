@@ -158,7 +158,7 @@
 	<div id="vignette_espace_mini" class="container-fluid">
 		<div class="row text-center">
 			{% for newWs in workspaces %}
-				{% if loop.index < 3 %}
+				{% if loop.index < 4 %}
 	 				<div class="col-lg-4">
 				  		<h3>{{newWs.name}}</h3>
 				  		{% for pic in picturesByWs[newWs.name] if pic.isFavorite %}
