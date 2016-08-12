@@ -13,7 +13,8 @@
   --my-red: rgb(231, 46, 70);
   --my-orange: rgb(244, 147, 2);
   --my-blue: rgb(32, 56, 94);
-  --my-pink: rgb(246, 96, 106);
+  --my-pink: rgb(241, 95, 104);
+  --my-pink-opacity: rgba(241, 95, 104, 0.3);
   --my-yellow: rgb(252, 231, 99);
   /* to use it : color: var(--my-red); */
 }
@@ -77,10 +78,11 @@ body {
   height: 30px;
 }
 
-/*Nouveaux espaces*/
 #NewEspaces{
   background: var(--my-green-opacity);
   padding-bottom: 30px;
+  margin-left: -10px;
+  margin-right: 10px;
 }
 #NewEspaces h2{
   color: var(--my-green);
@@ -88,6 +90,22 @@ body {
 }
 #NewEspaces h3{
   color: var(--my-pink);
+  font-size: 17pt;
+  text-transform: uppercase;
+}
+
+#coupCoeur{
+  background: var(--my-pink-opacity); 
+  padding-bottom: 30px;
+}
+#coupCoeur h2{
+  color: var(--my-pink);  
+  font-size: 25pt;
+  text-decoration: underline;
+  text-align: center;
+}
+#coupCoeur h3{
+  color: var(--my-blue);  
   font-size: 17pt;
   text-transform: uppercase;
 }
