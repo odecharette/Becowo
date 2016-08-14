@@ -16,6 +16,7 @@
   --my-pink: rgb(241, 95, 104);
   --my-pink-opacity: rgba(241, 95, 104, 0.3);
   --my-yellow: rgb(252, 231, 99);
+  --my-yellow-opacity: rgba(252, 231, 99, 0.5);
   /* to use it : color: var(--my-red); */
 }
 
@@ -146,11 +147,13 @@ body {
   border-style: solid;
   margin-top: 20px;
   padding-bottom: 20px;
+  margin-left: -10px;
+  margin-right: 10px;
 }
 #NewAvis h2{
   color: var(--my-green);  
   font-size: 22pt;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   margin-left: 10px;
 }
 #NewAvis #avis{
@@ -159,7 +162,23 @@ body {
   border-style: solid;
   margin-left: 10px;
   margin-right: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+#Instagram{
+  background: var(--my-yellow-opacity);
+  margin-top: 20px;
+}
+#Instagram img{
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+#Instagram h2{
+  color: var(--my-red);
+  font-size: 22pt;
+  text-transform: uppercase;
+  margin-top: 10px;
 }
 
 footer, footer a{
