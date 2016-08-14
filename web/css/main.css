@@ -109,6 +109,18 @@ body {
   margin-right: 10px;
   width: 30px;
 }
+#BarreRecherche #BtnSearch{
+  background-color: var(--my-green);
+  color: white;
+  font-size: 18pt;
+}
+#BarreRecherche .fa {
+  color: var(--my-pink);
+}
+#BarreRecherche select, #BarreRecherche button{
+  background: url(../images/icons/caret-down-pink.png) no-repeat 90% #fff;
+  -webkit-appearance: none; /* Enlène l'arrow d'origine */
+}
 
 #vignette{
   border-width: 1px;
