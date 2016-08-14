@@ -87,10 +87,10 @@ body {
 #BarreRecherche li{
   margin-right: -1px;
 }
-#BarreRecherche input, #BarreRecherche select, #BarreRecherche button{
+#BarreRecherche #bh-sl-address, #BarreRecherche select, #BarreRecherche button{
   border-radius: 0px;
 }
-#BarreRecherche input{ 
+#BarreRecherche #bh-sl-address { 
   width: 250px;
   height: 50px;
 }
@@ -99,9 +99,27 @@ body {
   height: 50px;
 }
 #BarreRecherche button{
-  width: 150px;
+  width: 170px;
   height: 50px;
 }
+#BarreRecherche input[type=checkbox] {
+    display:none;
+} 
+#BarreRecherche input[type=checkbox] + label
+{
+  background: url(../images/icons/unchecked.png) no-repeat;
+  display:inline-block;
+  background-position-x: 5px;
+  padding-left: 25px;
+}
+#BarreRecherche input[type=checkbox]:checked + label
+{
+  background: url(../images/icons/checked.png) no-repeat;
+  display:inline-block;
+  background-position-x: 5px;
+  padding-left: 25px;
+}
+
 #BarreRecherche #findMe{
   background: none;
   border: none;
