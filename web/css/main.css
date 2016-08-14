@@ -83,6 +83,10 @@ body {
   padding-bottom: 30px;
   margin-left: -10px;
   margin-right: 10px;
+  margin-top: 20px;
+  border-left: solid;
+  border-left-width: 10px;
+  border-left-color: var(--my-green);
 }
 #NewEspaces h2{
   color: var(--my-green);
@@ -97,6 +101,10 @@ body {
 #coupCoeur{
   background: var(--my-pink-opacity); 
   padding-bottom: 30px;
+  margin-top: 20px;
+  border-left: solid;
+  border-left-width: 10px;
+  border-left-color: var(--my-pink);
 }
 #coupCoeur h2{
   color: var(--my-pink);  
@@ -130,6 +138,28 @@ body {
 }
 #NewMembers #members span{
   padding-right: 90px;
+}
+
+#NewAvis{
+  border-color: var(--my-green);
+  border-width: 2pt;
+  border-style: solid;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+#NewAvis h2{
+  color: var(--my-green);  
+  font-size: 22pt;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+#NewAvis #avis{
+  border-color: var(--my-green);
+  border-width: 2pt;
+  border-style: solid;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 footer, footer a{

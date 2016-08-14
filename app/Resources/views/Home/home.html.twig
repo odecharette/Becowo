@@ -128,25 +128,6 @@
 	</div>
 </div>
 
-<br><br>
-
-<div class="container-fluid" id="NewMembers">
-	<div class="row">
-		<div class="col-lg-6">
-			azerty
-		</div>
-		<div class="col-lg-6">
-{############################################ Barre Instagram ##############################################}
-			<h2>Suivez-nous sur Instagram</h2>
-			{% include 'CommonViews/RS/instagram.html.twig' %}
-
-		</div>
-	</div>
-</div>
-
-
-<br><br>
-
 {############################################ Nouveaux espaces ##############################################}
 
 <div class="container"><div class="row"><div class="col-lg-8" id="NewEspaces">
@@ -192,6 +173,41 @@
 			<span><a href="{{ path('becowo_member_public_profile', {'username' : member.username}) }}"><img src="{{asset('images/ProfilePictures/')}}{{member.ProfilePicture.url}}" alt="{{member.ProfilePicture.alt}}" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.job}} @{{member.city}}"></a></span>
 		{% endfor %}
 </div></div>
+
+
+{############################################ Nouveaux avis ##############################################}
+<div class="container"><div class="row"><div class="col-lg-8" id="NewAvis">
+	<h2>Les nouveaux avis</h2>
+	<div class="row" id="avis">
+		<div class="col-lg-4">
+			Etoiles <br>
+			Photo
+		</div>
+		<div class="col-lg-8">
+			blablbabla<br>
+			blablbabla<br>
+			blablbabla<br>
+		</div>
+	</div>
+	<div class="row" id="avis">
+		<div class="col-lg-4">
+			Etoiles <br>
+			Photo
+		</div>
+		<div class="col-lg-8">
+			blablbabla<br>
+			blablbabla<br>
+			blablbabla<br>
+		</div>
+	</div>
+{# TO DO  #}
+</div>
+{############################################ Barre Instagram ##############################################}
+<div class="col-lg-4" id="Instagram">
+	<h2>Actu Instagram</h2>
+	{% include 'CommonViews/RS/instagram.html.twig' %}
+
+</div></div></div>
 
 
 {# Social Media Widget #}
