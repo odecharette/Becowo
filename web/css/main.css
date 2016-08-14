@@ -110,9 +110,15 @@ body {
   width: 30px;
 }
 #BarreRecherche #BtnSearch{
-  background-color: var(--my-green);
-  color: white;
   font-size: 18pt;
+  border:none;
+  padding:6px 0 6px 0;
+  border-radius:75%;
+  border-bottom:3px solid var(--my-pink);
+  font:bold 13px Arial;
+  color:var(--my-pink);
+  background:#fff;
+  margin-left: 10px;
 }
 #BarreRecherche .fa {
   color: var(--my-pink);
