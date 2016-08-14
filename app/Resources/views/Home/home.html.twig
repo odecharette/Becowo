@@ -28,7 +28,7 @@
 
 {############################################ Map ##############################################}
 
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation" id="BarreRecherche">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex2-collapse">
@@ -42,7 +42,7 @@
     	<form id="bh-sl-user-location" method="post" action="#">
 	        <ul class="nav navbar-nav">
 	        	<li>
-	        		<button id='findMe' type="button" class="btn btn-primary">Find me</button>
+	        		<button id='findMe' type="button"><i class="fa fa-bullseye fa-2x" aria-hidden="true"></i></button>
 	        	</li>
 		        <li>
 			        <input type="text" class="form-control" placeholder="Search" id="bh-sl-address" name="bh-sl-address" />
@@ -58,12 +58,12 @@
 		        <li class="dropdown bh-sl-filters-container">
 		          	<button href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Catégories <b class="caret"></b></button>
 		          	<ul class="dropdown-menu bh-sl-filters" id="category-filters-container1" >
-					    <li><label><input type="checkbox" name="category" value="Coworking"> Espace de coworking</label></li>
-						<li><label><input type="checkbox" name="category" value="cafe"> Café</label></li>
-						<li><label><input type="checkbox" name="category" value="coffice"> Coffice</label></li>
+					    <li><label><input type="checkbox" name="category" value="Coworking"/> Espace de coworking</label></li>
+						<li><label><input type="checkbox" name="category" value="cafe"/> Café</label></li>
+						<li><label><input type="checkbox" name="category" value="coffice"/> Coffice</label></li>
 						<li role="separator" class="divider"></li>
-			            <li><label><input type="checkbox" name="category" value="creche"> Crèche</label></li>
-			            <li><label><input type="checkbox" name="category" value="Salle de musculation"> Salle de musculation</label></li>
+			            <li><label><input type="checkbox" name="category" value="creche"/> Crèche</label></li>
+			            <li><label><input type="checkbox" name="category" value="Salle de musculation"/> Salle de musculation</label></li>
 				    </ul>
 		        </li>
 	        	<li class="dropdown bh-sl-filters-container">
