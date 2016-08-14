@@ -35,22 +35,21 @@
 	<div class="container-fluid">
 		<div class="row text-center">
 			<div id="btn_manager" class="col-lg-3">
-				<a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a>
+				
 			</div>
-			<div id="logo" class="col-lg-7">
+			<div id="logo" class="col-lg-6">
 				<a href="{{ path('becowo_core_homepage') }}"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Becowo" width="100px" height="80px"></a>
 			</div>
 {######################################### Menu login #####################################################"""#}
-			<div id="login" class="col-lg-2">
-				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-					
+			<div id="login" class="col-lg-3">
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}				
 			    	<div class="dropdown">
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    {% if app.user.profilePicture.url is defined %}
+			    		<button data-toggle="dropdown" class="btn btn-link btn-lg dropdown-toggle" type="button">
+					    {# {% if app.user.profilePicture.url is defined %}
 					    	<img src="{{ asset('images/ProfilePictures/')}}{{app.user.profilePicture.url}}" alt="{{app.user.profilePicture.alt}}" width="50px" height="50px">
-					    {% else %}
-					    	Bonjour {{ app.user.username }}
-						{% endif %}
+					    {% else %} #}
+					    	Bonjour {{ app.user.username }} 
+						{# {% endif %} #}
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -74,16 +73,26 @@
 {######################################### Barre de RS #####################################################"""#}		
 				{% include 'CommonViews/RS/all_RS_small.html.twig' %}
 			</div> {# Div login #}
-				<a href="{{ path('becowo_core_declare_ws') }}">Coworker, déclarez un espace</a>
+				
 		</div>  {# fin row #}
 
-		<div class="row text-center">
-			<div id="title" class="col-lg-12">
+		<div class="row text-center" id="title" >
+			<div class="col-lg-3">
+				<br>
+				<a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a>
+			</div>
+			<div class="col-lg-6">
 				<h1>Becowo</h1>
-				<h2>Enfin une bonne raison d'aller au travail !</h2>
-				<h5><a href="{{ path('becowo_core_ambassadeur') }}">Devenez ambassadeur !</a></h5>
+			</div>
+			<div class="col-lg-3">
+				<br>
+				<a href="{{ path('becowo_core_declare_ws') }}">Coworker, déclarez un espace</a>
 			</div>
 		</div> {# fin row #}
+		<div class="row text-center">
+			<h2>Enfin une bonne raison d'aller au travail !</h2>
+			<h5><a href="{{ path('becowo_core_ambassadeur') }}">Devenez ambassadeur !</a></h5>
+		</div>
 	</div> {# fin container #}
 </header>
 
