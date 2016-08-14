@@ -169,6 +169,19 @@ body {
   width: 140px;
   height: 30px;
 }
+.bh-sl-loc-list::-webkit-scrollbar {
+    width: 6px;
+}
+.bh-sl-loc-list::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
+.bh-sl-loc-list::-webkit-scrollbar-thumb {
+    background-color: var(--my-pink);
+}
+.bh-sl-loc-list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--my-pink);
+}
 
 #NewEspaces{
   background: var(--my-green-opacity);
@@ -243,6 +256,7 @@ body {
   padding-bottom: 20px;
   margin-left: -10px;
   margin-right: 10px;
+  margin-bottom: 20px;
 }
 #NewAvis h2{
   color: var(--my-green);  
@@ -263,6 +277,7 @@ body {
 #Instagram{
   background: var(--my-yellow-opacity);
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 #Instagram img{
   width: 50px;
