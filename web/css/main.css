@@ -1,6 +1,6 @@
 @font-face {
     font-family: "DIN Alternate";
-    src: url('../css/font/DIN Alternate.otf');
+    src: url('../css/font/DIN Alternate Regular.otf');
 }
 @font-face {
     font-family: "MyriadPro";
@@ -268,4 +268,27 @@ footer #liensRS a{
 #filters, label {
   padding-left: 5px;
   padding-right: 10px;
+}
+
+#top-link-block i{
+  display: inline-block;
+  box-shadow: 0px 0px 2px #888;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  text-align: center;
+  color: #888;
+  background-color: #efefef;
+  opacity: 0.2;
+}
+#top-link-block.affix-top {
+  position: absolute; /* allows it to "slide" up into view */
+  bottom: -82px; /* negative of the offset - height of link element */
+  right: 10px; /* padding from the left side of the window */
+}
+#top-link-block.affix {
+  position: fixed; /* keeps it on the bottom once in view */
+  bottom: 18px; /* height of link element */
+  right: 10px; /* padding from the left side of the window */
+  z-index: 1;
 }

@@ -101,6 +101,11 @@
 
 {% endblock %}
 
+<span id="top-link-block" class="hidden">
+    <a href="#top" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+        <i class="fa fa-angle-double-up fa-4x" aria-hidden="true"></i>
+    </a>
+</span><!-- /top-link-block -->
 
 {######################################################Footer ######################################################}
     
@@ -152,6 +157,16 @@
 	{# Autocomplétion du moteur de recherche #}
 	<script src="{{ asset('js/jquery.instantSearch.js') }}"></script>
 
+
+	{# Bouton Back to top #}
+	<script type="text/javascript">
+		if ( ($(window).height() + 100) < $(document).height() ) {
+	    $('#top-link-block').removeClass('hidden').affix({
+	        // how far to scroll down before link "slides" into view
+	        offset: {top:100}
+	    });
+		}
+	</script>
 {#	<script>
 
       function my_modal($url){
