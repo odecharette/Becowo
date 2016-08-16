@@ -10,37 +10,35 @@
 
 {% block body %}
 
-	<div class="container-fluid">
-		<div class="row text-center">
-			<div class="col-lg-3">
-				{% if pictureLogo[0] is defined %}
-					<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
-				{% else %}
-					Pas de logo
-				{% endif %}
-			</div>
-			<div class="col-lg-5">
+<div class="container-fluid" id="wsHeader">
+	<div class="row">
+		<div class="col-lg-6">
+			{% if pictureLogo[0] is defined %}
+				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
+			{% else %}
 				<h1 id="wsName">{{ws.name}}</h1>
-			</div>
-			<div class="col-lg-4">
-				<div class="well">
-					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-						{{ render(controller('BecowoCoreBundle:Vote:vote', {name: ws.name})) }}
-						<button type="submit" class="btn btn-primary" onclick="goVote()">Voter !</button>
-						<div id="VoteResults"></div>
-					{% else %}
-					Vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a> pour voter
-					{% endif %}
-				</div>
-			</div>
+			{% endif %}
 		</div>
+		<div class="col-lg-6">
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				{{ render(controller('BecowoCoreBundle:Vote:vote', {name: ws.name})) }}
+				<button type="submit" class="btn btn-primary" onclick="goVote()">Voter !</button>
+				<div id="VoteResults"></div>
+			{% else %}
+			Vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a> pour voter
+			{% endif %}
+		</div>
+	</div>
 {############################################# Caroussel #########################################}
-		<div class="row">
-			<div class="col-lg-12">
-				{% include 'Workspace/carroussel.html.twig' %}
-			</div>
-		</div>
+	<div class="row">
+		{% include 'Workspace/carroussel.html.twig' %}
+	</div>
+	<div class="row">
+		Contact : {{ws.street}} - {{ws.postCode}} {{ws.city}}
+	</div>
+</div>
 {############################################# Description #########################################}
+<div class="container-fluid"
 		<div class="row">
 			<div class="col-lg-10">
 				<h4>A propos de cet espace</h4> 
