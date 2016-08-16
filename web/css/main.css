@@ -282,6 +282,9 @@ body {
   color: var(--my-pink);
   font-size: 14pt;
 }
+#avis .rating{
+  display: flex;
+}
 
 #Instagram{
   background: var(--my-yellow-opacity);
