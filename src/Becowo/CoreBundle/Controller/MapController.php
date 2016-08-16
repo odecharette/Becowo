@@ -42,6 +42,7 @@ class MapController extends Controller
       
       
       $itemNode->addAttribute( 'description', $workspaces->getDescription() );
+      $itemNode->addAttribute( 'descriptionBonus', $workspaces->getDescriptionBonus() );
 
       $UrlLogo = $WsService->getLogoUrlByWorkspace($workspaces->getName());
       $itemNode->addAttribute( 'logo', $UrlLogo["url"] );
