@@ -20,9 +20,13 @@
 			</div>
 		</div>
 		<div class="row" id="favoritePicture">
-			{{#if favoritePicture}}
-				<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}">
-			{{/if}}
+			<div id="imageBtn">
+				{{#if favoritePicture}}
+					<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}">
+				{{/if}}
+				<!-- TO DO url à rendre dynamique -->
+				<a href="/Becowo/web/app_dev.php/ws/{{name}}"><button type="button" id="BtnReserve">Je réserve <i class="fa fa-caret-right" aria-hidden="true"></i></button></a>
+			</div>
 		</div>
 		<div class="row">
 			<p>{{description}}</p>
