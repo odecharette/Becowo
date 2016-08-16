@@ -35,7 +35,7 @@ class MapController extends Controller
       $i = 0;
       foreach ($amenities as $amenity) {
         $listeAmenities = $amenity->getName() . ", " . $listeAmenities ;
-        $itemNode->addAttribute( 'featuresUrl' . $i, $amenity->getUrlLogo() );
+        $itemNode->addAttribute( 'featuresUrl' . $i, substr($amenity->getUrlLogo(), 0,-4));
         $i++;
       }
       $itemNode->addAttribute( 'features', $listeAmenities );
