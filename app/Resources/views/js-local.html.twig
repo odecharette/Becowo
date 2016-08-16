@@ -1,0 +1,47 @@
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-dialog.min.js') }}"></script>
+    <script src="{{ asset('js/carroussel.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <!-- AddThisEvent in calendar -->
+	<script src="{{ asset('js/ate.min.js') }}"></script>
+	{# pour le bundle friendsofsymfony/jsrouting-bundle #}
+	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+	<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+	{# social widget #}
+	{# <script type="text/javascript" src="{{ asset('js/SocialMediaWidget.js') }}"></script> #}
+	{# Autocomplétion du moteur de recherche #}
+	{# <script src="{{ asset('js/jquery.instantSearch.js') }}"></script> #}
+
+
+	{# Bouton Back to top #}
+	<script type="text/javascript">
+		if ( ($(window).height() + 100) < $(document).height() ) {
+	    $('#top-link-block').removeClass('hidden').affix({
+	        // how far to scroll down before link "slides" into view
+	        offset: {top:100}
+	    });
+		}
+	</script>
+{#	<script>
+
+      function my_modal($url){
+
+	   	if ($url == 'Connexion') {
+        	BootstrapDialog.show({
+        		title: 'Connexion',
+            	message: $('<div></div>').load('{{ path('fos_user_security_login') }}'),
+            	draggable: true
+        	});
+    	}
+    	else if ($url == 'Inscription') {
+    		BootstrapDialog.show({
+    			title: 'Inscription',
+            	message: $('<div></div>').load('{{ path('fos_user_registration_register') }}'),
+            	draggable: true
+        	});
+    	}
+      }
+
+      
+    </script> #}
