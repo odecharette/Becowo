@@ -155,51 +155,22 @@
 {############################################ Nouveaux avis ##############################################}
 <div class="container"><div class="row"><div class="col-lg-8" id="NewAvis">
 	<h2>Les nouveaux avis</h2>
-	<div class="row" id="avis">
-		<div class="col-lg-4">
-			Etoiles <br>
-			Photo
+	{% for comment in comments %}
+		<div class="row" id="avis">
+		<div class="col-lg-2" id="avisCol1">
+			Etoiles <br>{# 	TO DO #}
+			{% if comment.member.ProfilePicture.url is defined %}
+				<span><a href="{{ path('becowo_member_public_profile', {'username' : comment.member.username}) }}"><img src="{{asset('images/ProfilePictures/')}}{{comment.member.ProfilePicture.url}}" alt="{{comment.member.ProfilePicture.alt}}" width="70px" height="70px" class="img-circle" title="{{comment.member.username}}, {{comment.member.job}} @{{comment.member.city}}"></a></span>
+			{% else %}
+				{{comment.member.username}}
+			{% endif %}
 		</div>
-		<div class="col-lg-8">
-			blablbabla<br>
-			blablbabla<br>
-			blablbabla<br>
-		</div>
-	</div>
-	<div class="row" id="avis">
-		<div class="col-lg-4">
-			Etoiles <br>
-			Photo
-		</div>
-		<div class="col-lg-8">
-			blablbabla<br>
-			blablbabla<br>
-			blablbabla<br>
+		<div class="col-lg-10">
+			<h4><a href="{{ path('becowo_core_workspace', {'name' : comment.workspace.name}) }}">A propos de {{comment.workspace.name}}</a></h4>
+			<p>{{comment.post}}</p>
 		</div>
 	</div>
-	<div class="row" id="avis">
-		<div class="col-lg-4">
-			Etoiles <br>
-			Photo
-		</div>
-		<div class="col-lg-8">
-			blablbabla<br>
-			blablbabla<br>
-			blablbabla<br>
-		</div>
-	</div>
-	<div class="row" id="avis">
-		<div class="col-lg-4">
-			Etoiles <br>
-			Photo
-		</div>
-		<div class="col-lg-8">
-			blablbabla<br>
-			blablbabla<br>
-			blablbabla<br>
-		</div>
-	</div>
-{# TO DO  #}
+	{% endfor %}
 </div>
 {############################################ Barre Instagram ##############################################}
 <div class="col-lg-4" id="Instagram">

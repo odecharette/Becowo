@@ -272,6 +272,15 @@ body {
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#avis #avisCol1{
+  text-align: center;
+}
+#avis h4,#avis a{
+  color: var(--my-pink);
+  font-size: 14pt;
 }
 
 #Instagram{

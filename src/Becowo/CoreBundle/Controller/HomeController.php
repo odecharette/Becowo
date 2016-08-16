@@ -16,6 +16,9 @@ class HomeController extends Controller
 
     $WsService = $this->get('app.member');
     $members = $WsService->getLastActiveMembers(5);
+
+    $WsService = $this->get('app.comment');
+    $comments = $WsService->getLastCommentsAndAuthor(3);
    
     // $WsService = $this->get('app.map');
     // $mapGeoJson = $WsService->getWsAndPoiInGeoJson($workspaces);
@@ -31,7 +34,8 @@ class HomeController extends Controller
   		'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
       'picturesByWs' => $picturesByWs,
-      'officesByWS' => $officesByWS
+      'officesByWS' => $officesByWS,
+      'comments' => $comments
       // ,      'mapGeoJson' => $mapGeoJson
       ));
   }
