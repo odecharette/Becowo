@@ -1,5 +1,5 @@
  {# Visible uniquement si le membre est connecté #}
- <h3>Commentaires</h3>
+ <h2>Commentaires</h2>
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
@@ -12,16 +12,16 @@
 {% for comment in listComments %}
 	<div class="row">
 		<div class="col-lg-2">
-			<img src="{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}", alt="{{comment.member.profilePicture.alt}}" width="50px", height="50px"><br>
-			<a href="{{ path('becowo_member_public_profile', {'username' : comment.member.username}) }}">{{comment.member.username}}</a>
-			
+			<a href="{{ path('becowo_member_public_profile', {'username' : comment.member.username}) }}">
+				<img src="{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}", alt="{{comment.member.profilePicture.alt}}" width="50px", height="50px" title="{{comment.member.username}}"><br>
+			</a>
 		</div>
 		<div class="col-lg-10">
-			Le {{comment.postedOn|date("d/m/Y - H:i")}} <br>
+			<span>Le {{comment.postedOn|date("d/m/Y - H:i")}}</span>
 			<p>{{comment.post}}</p>
 		</div>
 	</div>
-	<br>
+	{% if loop.last %}{% else %}<hr>{% endif %}
 {% endfor %}
 
 

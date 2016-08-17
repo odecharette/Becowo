@@ -44,9 +44,9 @@
 	</div>
 </div>
 {############################################# Description #########################################}
-<div class="container-fluid"
+<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-9" id="description">	
+			<div class="col-lg-8" id="description">	
 				<h2>Description</h2>		
 				<p>{{ws.description}}</p>
 				<span>{{ws.descriptionBonus}}</span>
@@ -73,18 +73,16 @@
 				<a href="{{ws.website}}" target="_blank">{{ws.website}}</a><br>
 				<button type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button>
 			</div>
+			</div>
 		</div>
-		<hr>
-{############################################# Services #########################################}
+{############################################# Booking #########################################}
 		<div class="row">
-			<div class="col-lg-9">
-				A supprimer
-			</div>
-			<div class="col-lg-3">
-				A supprimer
+			<div id="booking">
+				<h2>Faire une réservation</h2>
+				<br><br><br><br><br>
+				{# {% include 'Workspace/book.html.twig' %} #}
 			</div>
 		</div>
-		<hr>
 {############################################# Offices #########################################}
 		<div class="row">
 			<div class="col-lg-9">
@@ -96,23 +94,13 @@
 				</ul>
 			</div>
 {############################################# Panel Event #########################################}
-			<div class="col-lg-3">
-				<div class="well">
-					<h4>Evenements</h4>
-					<p>Ne manquez pas les évènements chez {{ws.name}}</p>
-					{% include 'Workspace/events.html.twig' %}
-				</div>
+			<div class="col-lg-3" id="events">
+				<h2>Evenements</h2>
+				<p>Ne manquez pas les évènements chez {{ws.name}}</p>
+				{% include 'Workspace/events.html.twig' %}
 			</div>
 		</div>
-		<hr>
-{############################################# Booking #########################################}
-		<div class="row">
-			<div class="col-lg-12">
-				{% include 'Workspace/book.html.twig' %}
-			</div>
-		</div>
-		<hr>
-		<br>
+
 {############################################# Team #########################################}
 		<div class="row">
 			<div class="col-lg-2">
@@ -126,12 +114,8 @@
 		</div>
 {############################################# Commentaires #########################################}
 		<div class="row">
-			<div class="col-lg-8">
-				<div class="well">
-					<div id="CommentResults">
-						{{ render(controller('BecowoCoreBundle:Comment:view', {name: ws.name})) }}
-					</div>
-				</div>
+			<div id="CommentResults">
+				{{ render(controller('BecowoCoreBundle:Comment:view', {name: ws.name})) }}
 			</div>
 		</div>
 
