@@ -101,17 +101,6 @@
 			</div>
 		</div>
 
-{############################################# Team #########################################}
-		<div class="row">
-			<div class="col-lg-2">
-				<div class="well">
-					<center>
-					<h4>L'équipe à votre service</h4>
-					{% include 'Workspace/teamMembers.html.twig' %}
-					</center>
-				</div>
-			</div>
-		</div>
 {############################################# Commentaires #########################################}
 		<div class="row">
 			<div id="CommentResults">
@@ -119,6 +108,19 @@
 			</div>
 		</div>
 
+{############################################# Team #########################################}
+		<div class="row" id="team">
+			<h2>L'équipe à votre service</h2>
+			{# {% include 'Workspace/teamMembers.html.twig' %} #}
+			{% for teamMember in ws.teamMember %}
+				<div class="col-lg-2">
+		        	<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}">
+		          	<h4>{{teamMember.firstname}} {{teamMember.name}}</h4>
+		          	<span class="label label-info">{{teamMember.job}}</span>
+		          	<p>{{teamMember.description}}</p>
+	          	</div>
+		    {% endfor %}
+		</div>
 
 	</div>
 
