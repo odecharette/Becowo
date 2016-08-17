@@ -5,13 +5,16 @@
 {% endblock %}
 
 {% block stylesheets %}
+	{# carroussel2 #}
+	<link rel="stylesheet" href="{{ asset('css/ninja-slider.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/thumbnail-slider.css') }}">
 	
 {% endblock %}
 
 {% block body %}
 
 <div class="container-fluid" id="wsHeader">
-	<div class="row">
+	<div class="row text-center">
 		<div class="col-lg-6">
 			{% if pictureLogo[0] is defined %}
 				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
@@ -20,36 +23,42 @@
 			{% endif %}
 		</div>
 		<div class="col-lg-6">
-			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+		{# 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				{{ render(controller('BecowoCoreBundle:Vote:vote', {name: ws.name})) }}
 				<button type="submit" class="btn btn-primary" onclick="goVote()">Voter !</button>
 				<div id="VoteResults"></div>
 			{% else %}
 			Vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a> pour voter
-			{% endif %}
+			{% endif %} #}
+			{{averageVote|rating}}
 		</div>
 	</div>
 {############################################# Caroussel #########################################}
 	<div class="row">
-		{% include 'Workspace/carroussel.html.twig' %}
+		<div class="col-lg-10 col-lg-offset-1">
+			{% include 'Workspace/carroussel2.html.twig' %}
+		</div>
 	</div>
-	<div class="row">
+	<div class="row text-center" id="contact">
 		Contact : {{ws.street}} - {{ws.postCode}} {{ws.city}}
 	</div>
 </div>
 {############################################# Description #########################################}
 <div class="container-fluid"
 		<div class="row">
-			<div class="col-lg-10">
-				<h4>A propos de cet espace</h4> 
-				{{averageVote|rating}}
+			<div class="col-lg-9" id="description">	
+				<h2>Description</h2>		
 				<p>{{ws.description}}</p>
-				<div class="well well-sm">
-					{{ws.descriptionBonus}}
-				</div>
+				<span>{{ws.descriptionBonus}}</span>
+				<hr>
+				<h2>Services</h2>
+				<p>Sed laeditur hic coetuum magnificus splendor levitate paucorum incondita, ubi nati sunt non reputantium, sed tamquam indulta licentia vitiis ad errores lapsorum ac lasciviam. ut enim Simonides lyricus docet, beate perfecta ratione vieturo ante alia patriam esse convenit gloriosam.</p>
+				{% for amenity in ws.amenities %}
+					<img src="{{ asset('images/icons/amenities/BsurN/') }}{{amenity.urlLogo}}" alt="{{amenity.name}}" title="{{amenity.name}}">
+				{% endfor %}
 			</div>
 {############################################# Horaires #########################################}
-			<div class="col-lg-2">
+			<div class="col-lg-3">
 				<div class="well">
 					<center><i class="fa fa-clock-o fa-6" aria-hidden="true"></i></center>
 					{{ws.openHoursInfo}}
@@ -64,12 +73,7 @@
 {############################################# Services #########################################}
 		<div class="row">
 			<div class="col-lg-9">
-				<h4>Les services</h4>
-				<ul>
-					{% for amenity in ws.amenities %}
-						<li>{{amenity.name}}</li>
-					{% endfor %}
-				</ul>
+				A supprimer
 			</div>
 {############################################# Panel Map #########################################}
 			<div class="col-lg-3">
@@ -139,6 +143,10 @@
 	</div>
 
 {% block javascripts %}
+	{# carroussel2 #}
+	<script src="{{ asset('js/ninja-slider.js') }}"></script>
+	<script src="{{ asset('js/thumbnail-slider.js') }}"></script>
+
 	<script type="text/javascript">
 
 $(function () {

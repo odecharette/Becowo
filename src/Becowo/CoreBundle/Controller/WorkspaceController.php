@@ -14,7 +14,7 @@ class WorkspaceController extends Controller
 
     $ws = $WsService->getWorkspaceByName($name);
     $pictures = $WsService->getPicturesByWorkspace($name);
-    $pictureFavorite = $WsService->getFavoritePictureByWorkspace($name);
+    // $pictureFavorite = $WsService->getFavoritePictureByWorkspace($name);
     $pictureLogo = $WsService->getLogoByWorkspace($name);
     $listEvents = $WsService->getEventsByWorkspace($ws);
     $listOffices = $WsService->getOfficesByWorkspace($ws);
@@ -25,7 +25,7 @@ class WorkspaceController extends Controller
       array('ws' => $ws, 
         'listEvents' => $listEvents, 
         'pictures' => $pictures, 
-        'pictureFavorite' => $pictureFavorite, 
+        // 'pictureFavorite' => $pictureFavorite, 
         'pictureLogo' => $pictureLogo,
         'listOffices' => $listOffices,
         'prices' => $prices,

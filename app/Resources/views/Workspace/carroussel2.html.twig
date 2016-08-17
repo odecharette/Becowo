@@ -1,0 +1,26 @@
+ <!--start-->
+    <div id="caroussel">
+        <div id="ninja-slider" style="float:left;">
+            <div class="slider-inner">
+                <ul>
+                    {% for picture in pictures %}
+                        <li><a class="ns-img" href="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}"></a></li>
+                    {% endfor %}
+                </ul>
+                <div class="fs-icon" title="Expand/Close"></div>
+            </div>
+        </div>
+        <div id="thumbnail-slider" style="float:left;">
+            <div class="inner">
+                <ul>
+                    {% for picture in pictures %}
+                    <li>
+                        <a class="thumb" href="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}"></a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <!--end-->

@@ -25,6 +25,7 @@
   --my-pink-opacity-4: rgba(241, 95, 104, 0.4);
   --my-yellow: rgb(252, 231, 99);
   --my-yellow-opacity: rgba(252, 231, 99, 0.5);
+  --my-grey: rgb(140, 142, 144);
   /* to use it : color: var(--my-red); */
 }
 
@@ -436,13 +437,44 @@ footer #liensRS a{
 /********************************** Page workspace *************************************/
 
 #wsHeader{
-  border: solid 1px;
+  /*border: solid 1px;*/
   margin: 0px 10px 20px 10px;
   padding: 10px 10px 10px 10px;
 }
 #wsHeader .row{
   margin-right: 0;
   margin-left: 0;
+}
+#contact{
+  font-size: 23pt;
+  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
+  color: var(--my-grey);
+}
+#description{
+  border : solid 1px;
+  padding: 10px 10px 10px 10px;
+}
+#description h2{
+  color: var(--my-green);
+}
+#description p{
+  color: var(--my-grey);
+  font-size: 14pt;
+}
+#description span{
+  color: var(--my-green);
+  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
+  font-size: 14pt;
+}
+#description hr{
+  border-top: 1px solid var(--my-green);
+  width: 60%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+#description img{
+  width: 70px;
+  height: 70px;
 }
 
 /**************************************************************************************/
