@@ -476,6 +476,39 @@ footer #liensRS a{
   width: 70px;
   height: 70px;
 }
+#time{
+  margin-top: 10px;
+  /*border: 1px solid var(--my-grey);*/
+  background-color: var(--my-pink-opacity);
+  color: var(--my-grey);
+  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
+  font-size: 14pt;
+}
+#time i{
+  color: var(--my-pink);
+}
+#time p{
+  margin-left: 10px;
+}
+#time a{
+  margin-left: 10px;
+  color: var(--my-pink);
+}
+#time a:hover{
+  font-weight: bold;
+}
+#time button{
+  width: 100%;
+  border: none;
+  background: var(--my-pink);
+  color: white;
+  margin-top: 10px;
+  height: 40px;
+}
+#time button i{
+  color: white;
+  margin-right: 15px;
+}
 
 /**************************************************************************************/
 
