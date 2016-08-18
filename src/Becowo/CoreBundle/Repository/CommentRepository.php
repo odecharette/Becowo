@@ -22,4 +22,15 @@ class CommentRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function getMemberCommentForWorkspace($ws, $member)
+	{
+		$qb = $this->createQueryBuilder('c');
+		$qb->where('c.workspace = :ws')
+			->andWhere('c.member = :member')
+			->setParameter('ws', $ws)
+			->setParameter('member', $member);
+
+		return $qb->getQuery()->getResult();
+	}
+
 }

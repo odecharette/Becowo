@@ -25,4 +25,15 @@ class VoteRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function getMemberVoteForWorkspace($ws, $member)
+	{
+		$qb = $this->createQueryBuilder('v');
+		$qb->where('v.workspace = :ws')
+			->andWhere('v.member = :member')
+			->setParameter('ws', $ws)
+			->setParameter('member', $member);
+
+		return $qb->getQuery()->getResult();
+	}
 }
