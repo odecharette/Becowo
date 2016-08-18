@@ -576,6 +576,9 @@ footer #liensRS a{
   display: block;
   margin-top: 10px;
 }
+#CommentResults .rating{
+  margin-top: -10px;
+}
 #comment #comment_Envoyer{
   background: #2dc4bc;
   background-image: -webkit-linear-gradient(top, #2dc4bc, #00a199);
@@ -595,6 +598,12 @@ footer #liensRS a{
 #comment #comment_Envoyer:hover{
   background: #00a199;
   text-decoration: none;
+}
+#comment label{
+  display: none;
+}
+#comment textarea{
+  margin-top: 10px;
 }
 #team{
   background-color: var(--my-pink-opacity);
