@@ -26,7 +26,7 @@ class CommentController extends Controller
       $em->persist($comment);
       $em->flush();
 
-      $this->addFlash('success', 'Commentaire bien enregistré.');
+      $this->addFlash('success', 'Merci ! Commentaire et vote bien enregistrés.');
 
       return $this->redirectToRoute('becowo_comment', array('name' => $request->get('name')));
     }

@@ -13,23 +13,18 @@
 
 {% block body %}
 
+<span id="wsName" hidden="true">{{ws.name}}</span>   {# Important, permet de router pour les comment et vote#}
+
 <div class="container-fluid" id="wsHeader">
 	<div class="row text-center">
 		<div class="col-lg-6">
 			{% if pictureLogo[0] is defined %}
 				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
 			{% else %}
-				<h1 id="wsName">{{ws.name}}</h1>
+				<h1>{{ws.name}}</h1>
 			{% endif %}
 		</div>
 		<div class="col-lg-6">
-		{# 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-				{{ render(controller('BecowoCoreBundle:Vote:vote', {name: ws.name})) }}
-				<button type="submit" class="btn btn-primary" onclick="goVote()">Voter !</button>
-				<div id="VoteResults"></div>
-			{% else %}
-			Vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a> pour voter
-			{% endif %} #}
 			{{averageVote|rating}}
 		</div>
 	</div>
@@ -124,44 +119,10 @@
 
 	</div>
 
-{% block javascripts %}
+{% block javascripts %}    
 	{# carroussel2 #}
 	<script src="{{ asset('js/ninja-slider.js') }}"></script>
 	<script src="{{ asset('js/thumbnail-slider.js') }}"></script>
-
-	<script type="text/javascript">
-
-$(function () {
-    $("#comment_Envoyer").unbind("click").click(function(){
-    	$.ajax(Routing.generate('becowo_comment', {name: document.getElementById('wsName').innerHTML}), {
-                    data: $('#comment-form').serialize(),
-                    type: "POST",
-                    success: function(data) {
-                        $('#CommentResults').html(data);
-                    },
-                    error: function() {
-                    	$('#CommentResults').html("Une erreur est survenue, veuillez réessayer plus tard");
-                    }
-                });
-    		return false;
-    });
-});
-
-    function goVote(){
-    	$.ajax(Routing.generate('becowo_core_vote', {name: document.getElementById('wsName').innerHTML}), {
-    				data: $('#vote-form').serialize(),
-                    type: "POST",
-                    success: function(data) {
-                    	$('#VoteResults').html("Merci, vote comptabilisé !");
-                    },
-                    error: function() {
-                    	$('#VoteResults').html("Une erreur est survenue, veuillez réessayer plus tard");
-                    }
-                });
-    		return false;
-    }
-    </script>
-    
 {% endblock javascripts %}
 
 {% endblock body %}
