@@ -570,6 +570,11 @@ footer #liensRS a{
 }
 #CommentResults span{
   font-weight: bold;
+  display: flex;
+}
+#CommentResults a{
+  display: block;
+  margin-top: 10px;
 }
 #comment #comment_Envoyer{
   background: #2dc4bc;
