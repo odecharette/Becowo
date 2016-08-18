@@ -15,6 +15,7 @@ class CommentController extends Controller
     $WsService = $this->get('app.workspace');
     $ws = $WsService->getWorkspaceByName($request->get('name'));
     $listComments = $WsService->getCommentsByWorkspace($ws);
+    $votes = $WsService->getVotesByWorkspace($ws);
 
     // Création du formulaire de commentaires
     $comment = new Comment($ws, $this->getUser());
@@ -30,6 +31,6 @@ class CommentController extends Controller
       return $this->redirectToRoute('becowo_comment', array('name' => $request->get('name')));
     }
 
-    return $this->render('Workspace/comments.html.twig', array('form' => $form->createView(), 'listComments' => $listComments));
+    return $this->render('Workspace/comments.html.twig', array('form' => $form->createView(), 'listComments' => $listComments, 'ws' =>$ws, 'votes' =>$votes));
   }
 }

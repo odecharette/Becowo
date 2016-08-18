@@ -148,4 +148,10 @@ class Workspace
         $repo = $this->em->getRepository('BecowoCoreBundle:Vote');
         return $repo->getAverage($ws);
     }
+
+    public function getVotesByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Vote');
+        return $repo->getVotesByWorkspace($ws);
+    }
 }

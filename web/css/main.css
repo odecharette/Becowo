@@ -571,6 +571,26 @@ footer #liensRS a{
 #CommentResults span{
   font-weight: bold;
 }
+#comment #comment_Envoyer{
+  background: #2dc4bc;
+  background-image: -webkit-linear-gradient(top, #2dc4bc, #00a199);
+  background-image: -moz-linear-gradient(top, #2dc4bc, #00a199);
+  background-image: -ms-linear-gradient(top, #2dc4bc, #00a199);
+  background-image: -o-linear-gradient(top, #2dc4bc, #00a199);
+  background-image: linear-gradient(to bottom, #2dc4bc, #00a199);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin-left: 85%;
+}
+#comment #comment_Envoyer:hover{
+  background: #00a199;
+  text-decoration: none;
+}
 #team{
   background-color: var(--my-pink-opacity);
   margin-left: 10px;

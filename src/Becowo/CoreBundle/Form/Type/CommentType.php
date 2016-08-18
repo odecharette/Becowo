@@ -12,7 +12,7 @@ class CommentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('post', TextareaType::class);
+        $builder->add('post', TextareaType::class, array('label' => 'Saisir ici votre commentaire'));
         $builder->add('Envoyer', SubmitType::class); // ID auto : comment_Envoyer
     }
 

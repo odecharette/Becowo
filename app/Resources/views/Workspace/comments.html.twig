@@ -3,15 +3,22 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
-{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    {{ form(form) }}
-{% else %}
-	<p>Pour saisir des commentaires, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
-{% endif %}
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	    {{ form(form) }}
+	{% else %}
+		<p>Pour saisir des commentaires, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
+	{% endif %}
+	</div>
+</div>
 
 {% for comment in listComments %}
-	<div class="row">
-		<div class="col-lg-1 col-lg-offset-1">
+	<div class="row text-center">
+		<div class="col-lg-2">
+			{% for vote in votes if comment.member == vote.member and ws == vote.workspace %}
+				{{vote.scoreAvg|rating}}
+			{% endfor %}
 			<a href="{{ path('becowo_member_public_profile', {'username' : comment.member.username}) }}">
 				<img src="{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}", alt="{{comment.member.profilePicture.alt}}" title="{{comment.member.username}}"><br>
 			</a>
@@ -23,5 +30,4 @@
 	</div>
 	{% if loop.last %}{% else %}<hr>{% endif %}
 {% endfor %}
-
 
