@@ -77,18 +77,22 @@
 				{# {% include 'Workspace/book.html.twig' %} #}
 			</div>
 		</div>
-{############################################# Offices #########################################}
-		<div class="row">
-			<div class="col-lg-9">
-				<h4>Les Bureaux</h4>
-				<ul>
-					{% for office in listOffices %}
-						<li>{{office.office.name}} ({{office.DeskQty}} bureaux)</li>
-					{% endfor %}
-				</ul>
+		<div class="row text-center">
+{############################################# Team #########################################}
+			<div class="col-lg-3" id="team">
+				<h2>L'équipe à votre service</h2>
+				{% include 'Workspace/teamMembers.html.twig' %} 
+				{# {% for teamMember in ws.teamMember %}
+					<div class="col-lg-2">
+			        	<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}">
+			          	<h4>{{teamMember.firstname}} {{teamMember.name}}</h4>
+			          	<span class="label label-info">{{teamMember.job}}</span>
+			          	<p>{{teamMember.description}}</p>
+		          	</div>
+			    {% endfor %}#}
 			</div>
 {############################################# Panel Event #########################################}
-			<div class="col-lg-3" id="events">
+			<div class="col-lg-8" id="events">
 				<h2>Evenements</h2>
 				<p>Ne manquez pas les évènements chez {{ws.name}}</p>
 				{% include 'Workspace/events.html.twig' %}
@@ -102,21 +106,16 @@
 			</div>
 		</div>
 
-{############################################# Team #########################################}
-		<div class="row" id="team">
-			<h2>L'équipe à votre service</h2>
-			{# {% include 'Workspace/teamMembers.html.twig' %} #}
-			{% for teamMember in ws.teamMember %}
-				<div class="col-lg-2">
-		        	<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}">
-		          	<h4>{{teamMember.firstname}} {{teamMember.name}}</h4>
-		          	<span class="label label-info">{{teamMember.job}}</span>
-		          	<p>{{teamMember.description}}</p>
-	          	</div>
-		    {% endfor %}
+{############################################# Offices #########################################}
+		<div class="row">
+				<h4>Les Bureaux</h4>
+				<ul>
+					{% for office in listOffices %}
+						<li>{{office.office.name}} ({{office.DeskQty}} bureaux)</li>
+					{% endfor %}
+				</ul>
 		</div>
-
-</div>
+</div>  {# end of container #}
 
 {% block javascripts %}    
 	{# carroussel2 #}

@@ -529,8 +529,37 @@ footer #liensRS a{
   margin-right: 20px;
   padding-top: 20px;
 }
+#team{
+  background-color: var(--my-pink-opacity);
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+#team h2{
+  color: var(--my-pink);
+  text-decoration: underline;
+  margin-bottom: 20px;
+  font-size: 20pt;
+}
+#team img{
+  width: 70px;
+  height: 70px;
+}
+#team .carousel-control{
+  background-image: none;
+  display: inline-block;
+  position: absolute;
+  top: 40%;
+  z-index: 5;
+}
+
 #events{
   background-color: var(--my-yellow-opacity);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 #events h2{
   color: var(--my-green);
@@ -540,18 +569,7 @@ footer #liensRS a{
   font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   font-size: 12pt;
 }
-#events #accordion .panel-heading{
-  background-color: var(--my-green);
-  color: white;
-}
-#events #accordion .addthisevent-drop{
-  width: 100%;
-  border: none;
-  background: var(--my-green);
-  color: white!important;
-  margin-top: 10px;
-  height: 40px;
-}
+
 #CommentResults{
   border: 1px solid var(--my-green);
   margin-left: 20px;
@@ -655,22 +673,6 @@ footer #liensRS a{
   margin-bottom: 10px;
   font-size: 14pt;
   font-weight: bold;
-}
-#team{
-  background-color: var(--my-pink-opacity);
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-left: 10px;
-}
-#team h2{
-  color: var(--my-pink);
-  text-decoration: underline;
-}
-#team img{
-  width: 70px;
-  height: 70px;
 }
 
 /**************************************************************************************/
