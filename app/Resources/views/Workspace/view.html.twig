@@ -6,8 +6,7 @@
 
 {% block stylesheets %}
 	{# carroussel2 #}
-	<link rel="stylesheet" href="{{ asset('css/ninja-slider.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/thumbnail-slider.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/jssor-slider.css') }}">
 	
 {% endblock %}
 
@@ -121,8 +120,9 @@
 
 {% block javascripts %}    
 	{# carroussel2 #}
-	<script src="{{ asset('js/ninja-slider.js') }}"></script>
-	<script src="{{ asset('js/thumbnail-slider.js') }}"></script>
+	<script src="{{ asset('js/jquery.min.js') }}"></script>
+	<script src="{{ asset('js/jssor.slider-21.1.5.mini.js') }}"></script>
+	<script src="{{ asset('js/jssor-slider.js') }}"></script>
 {% endblock javascripts %}
 
 {% endblock body %}

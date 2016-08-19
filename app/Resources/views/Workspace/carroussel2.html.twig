@@ -1,26 +1,33 @@
- <!--start-->
-    <div id="caroussel">
-        <div id="ninja-slider" style="float:left;">
-            <div class="slider-inner">
-                <ul>
-                    {% for picture in pictures %}
-                        <li><a class="ns-img" href="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}"></a></li>
-                    {% endfor %}
-                </ul>
-                <div class="fs-icon" title="Expand/Close"></div>
-            </div>
+<div id="jssor_1" style="position: relative; margin: 0 auto; top: 20px; left: 0px; width: 960px; height: 480px; overflow: hidden; visibility: hidden; background-color: #24262e; margin-bottom: 20px;">
+        <!-- Loading Screen -->
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+            <div style="position:absolute;display:block;background:url('{{ asset('images/icons/loading.gif') }}') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
         </div>
-        <div id="thumbnail-slider" style="float:left;">
-            <div class="inner">
-                <ul>
-                    {% for picture in pictures %}
-                    <li>
-                        <a class="thumb" href="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}"></a>
-                    </li>
-                {% endfor %}
-                </ul>
-            </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 240px; width: 720px; height: 480px; overflow: hidden;">
+            {% for picture in pictures %}
+                <div data-p="150.00" style="display: none;">
+                    <img data-u="image" src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" />
+                    <img data-u="thumb" src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" />
+                </div>
+            {% endfor %}
+            <a data-u="add" href="http://www.jssor.com/demos/image-gallery-with-vertical-thumbnail.slider" style="display:none">Image Gallery with Vertical Thumbnail</a>
+        
         </div>
-        <div style="clear:both;"></div>
+        <!-- Thumbnail Navigator -->
+        <div data-u="thumbnavigator" class="jssort01-99-66" style="position:absolute;left:0px;top:0px;width:240px;height:480px;" data-autocenter="2">
+            <!-- Thumbnail Item Skin Begin -->
+            <div data-u="slides" style="cursor: default;">
+                <div data-u="prototype" class="p">
+                    <div class="w">
+                        <div data-u="thumbnailtemplate" class="t"></div>
+                    </div>
+                    <div class="c"></div>
+                </div>
+            </div>
+            <!-- Thumbnail Item Skin End -->
+        </div>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora05l" style="top:158px;left:248px;width:40px;height:40px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora05r" style="top:158px;right:8px;width:40px;height:40px;" data-autocenter="2"></span>
     </div>
-    <!--end-->
