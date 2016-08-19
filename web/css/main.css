@@ -412,6 +412,11 @@ footer #liensRS a{
 #avis .rating{
   display: flex;
 }
+#avis p{
+  text-align: justify;
+  color: var(--my-grey);
+  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
+}
 
 #Instagram{
   background: var(--my-yellow-opacity);
@@ -483,6 +488,7 @@ footer #liensRS a{
   width: 100%
 }
 #map i{
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 #time, #map{
