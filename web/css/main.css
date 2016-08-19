@@ -100,7 +100,10 @@ footer, footer a{
   padding-top: 10px;
   line-height: 2; 
 }
-
+footer a:hover{
+  color: white;
+  font-weight: bold;
+}
 footer li {
   list-style-type: none;
 }
