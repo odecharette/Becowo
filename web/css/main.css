@@ -21,6 +21,7 @@
   --my-red: rgb(231, 46, 70);
   --my-orange: rgb(244, 147, 2);
   --my-blue: rgb(32, 56, 94);
+  --my-blue-opacity: rgba(32, 56, 94, 0.2);
   --my-pink: rgb(241, 95, 104);
   --my-pink-opacity: rgba(241, 95, 104, 0.3);
   --my-pink-opacity-4: rgba(241, 95, 104, 0.4);
@@ -123,7 +124,67 @@ footer #liensRS a{
   display: inline-block;
 }
 
-/* Bouton de retour haut de page */
+#footer-contact form{
+  border-left: solid 3px var(--my-blue);
+  border-right: solid 3px var(--my-blue);
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+#footer-contact h2{
+  background-color: var(--my-blue);
+  color: white;
+  margin-bottom: 0;
+  line-height: 2;
+  text-align: center;
+}
+#footer-contact label{
+  color: var(--my-grey);
+  font-size: 14pt;
+  margin-top: 15px;
+  text-align: right;
+  width: 100%;
+  color: var(--my-blue);
+}
+#footer-contact .form-control{
+  border-radius: 8px;
+  margin-right: 20px;
+  border: 1px solid var(--my-blue);
+  margin-top: 15px;
+}
+#footer-contact button{
+  background-color: var(--my-blue);
+  color: white;
+  margin-bottom: 0;
+  line-height: 3;
+  text-align: center;
+  width: 100%;
+  font-size: 14pt;
+  border: none;
+  margin-top: 30px;
+}
+#footer-contact button:hover{
+  background-color: var(--my-blue);
+  font-weight: bold;
+}
+#footer-contact i{
+  color: white;
+  margin-right: 10px;
+}
+#footer-contact #contact-content1, #footer-contact #contact-content2{
+  border-left: 3px solid var(--my-blue);
+  border-right: 3px solid var(--my-blue);
+  border-bottom: 3px solid var(--my-blue);
+  color: var(--my-blue);
+  padding: 20px 20px 20px 20px;
+}
+#footer-contact #contact-content2 img{
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-bottom: 21px;
+}
+
+/********************************** Bouton de retour haut de page *************************************/
 #top-link-block i{
   display: inline-block;
   box-shadow: 0px 0px 2px #888;

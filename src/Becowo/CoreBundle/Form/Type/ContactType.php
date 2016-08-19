@@ -18,10 +18,8 @@ class ContactType extends AbstractType
             ->add('name', TextType::class, array('label' => 'Votre nom *'))
             ->add('email', EmailType::class, array('label' => 'Votre email *'))
             ->add('subject', TextType::class, array('label' => 'Objet *'))
-            ->add('message', TextareaType::class, array('label' => 'Votre message *'))
-            ->add('envoyer',      SubmitType::class);
+            ->add('message', TextareaType::class, array('label' => 'Votre message *', 'attr' => array('rows' => '10')));
     }
-
     /**
      * @param OptionsResolver $resolver
      */
