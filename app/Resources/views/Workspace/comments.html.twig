@@ -22,24 +22,30 @@
 	{% endif %}
 	</div>
 </div>
-<div id="listComments">
-{% for comment in listComments %}
-	<div class="row text-center">
-		<div class="col-lg-2">
-			{% for vote in votes if comment.member == vote.member and ws == vote.workspace %}
-				{{vote.scoreAvg|rating}}
-			{% endfor %}
-			{% if comment.member.profilePicture.url is defined %}
-				<a href="{{ path('becowo_member_public_profile', {'username' : comment.member.username}) }}" class="memberPic">
-					<img src="{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}", alt="{{comment.member.profilePicture.alt}}" title="{{comment.member.username}}">
-				</a>
-			{% endif %}
-		</div>
-		<div class="col-lg-10">
-			<span>Le {{comment.postedOn|date("d/m/Y - H:i")}}</span>
-			<p>{{comment.post}}</p>
-		</div>
+{% if listComments is empty %}
+	<div id="noComment">
+		Soyez le premier à saisir un commentaire !
 	</div>
-	{% if loop.last %}{% else %}<hr>{% endif %}
-{% endfor %}
+{% else %}
+<div id="listComments">
+	{% for comment in listComments %}
+		<div class="row text-center">
+			<div class="col-lg-2">
+				{% for vote in votes if comment.member == vote.member and ws == vote.workspace %}
+					{{vote.scoreAvg|rating}}
+				{% endfor %}
+				{% if comment.member.profilePicture.url is defined %}
+					<a href="{{ path('becowo_member_public_profile', {'username' : comment.member.username}) }}" class="memberPic">
+						<img src="{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}", alt="{{comment.member.profilePicture.alt}}" title="{{comment.member.username}}">
+					</a>
+				{% endif %}
+			</div>
+			<div class="col-lg-10">
+				<span>Le {{comment.postedOn|date("d/m/Y - H:i")}}</span>
+				<p>{{comment.post}}</p>
+			</div>
+		</div>
+		{% if loop.last %}{% else %}<hr>{% endif %}
+	{% endfor %}
 </div>
+{% endif %}

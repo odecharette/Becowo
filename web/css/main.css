@@ -651,15 +651,26 @@ footer #liensRS a{
 #listComments::-webkit-scrollbar-thumb:hover {
   background-color: var(--my-green);
 }
+#noComment{
+  margin-bottom: 10px;
+  font-size: 14pt;
+  font-weight: bold;
+}
 #team{
   background-color: var(--my-pink-opacity);
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
 }
 #team h2{
   color: var(--my-pink);
   text-decoration: underline;
+}
+#team img{
+  width: 70px;
+  height: 70px;
 }
 
 /**************************************************************************************/
