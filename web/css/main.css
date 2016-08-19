@@ -478,15 +478,22 @@ footer #liensRS a{
   width: 70px;
   height: 70px;
 }
-#time{
-  margin-top: 10px;
+#map{
+  /*Pour que la google map s'affiche correctement*/
+  width: 100%
+}
+#map i{
+  margin-bottom: 10px;
+}
+#time, #map{
+  margin-bottom: 10px;
   /*border: 1px solid var(--my-grey);*/
   background-color: var(--my-pink-opacity);
   color: var(--my-grey);
   font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   font-size: 14pt;
 }
-#time i{
+#time i, #map i{
   color: var(--my-pink);
 }
 #time p{
@@ -499,7 +506,7 @@ footer #liensRS a{
 #time a:hover{
   font-weight: bold;
 }
-#time button{
+#time button, #map button{
   width: 100%;
   border: none;
   background: var(--my-pink);
@@ -507,7 +514,7 @@ footer #liensRS a{
   margin-top: 10px;
   height: 40px;
 }
-#time button i{
+#time button i, #map button i{
   color: white;
   margin-right: 15px;
 }

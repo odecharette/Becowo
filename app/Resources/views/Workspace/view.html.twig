@@ -55,10 +55,10 @@
 {############################################# Map #########################################}
 				{# La taille de la carte joue sur les options affichées : itinéraire... #}
 			<div id="map">
-				<div class="embed-responsive embed-responsive-16by9">
-					<span id="address_ws"> {{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}</span>
-			    	<iframe id="map_ws" class="embed-responsive-item" allowfullscreen></iframe>
-				</div>
+				<center><i class="fa fa-map-o fa-3x" aria-hidden="true"></i></center>
+				<iframe frameborder="0" style="border:0;width: inherit;" src="https://www.google.com/maps/embed/v1/place?q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}&key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&zoom=15" ></iframe>
+
+				<a href="http://maps.google.fr/maps?f=q&hl=fr&q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}" target="_blank"><button type="button">Agrandir le plan</button></a>
 			</div>
 {############################################# horaire #########################################}	
 			<div id="time">
@@ -120,7 +120,6 @@
 
 {% block javascripts %}    
 	{# carroussel2 #}
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/jssor.slider-21.1.5.mini.js') }}"></script>
 	<script src="{{ asset('js/jssor-slider.js') }}"></script>
 {% endblock javascripts %}
