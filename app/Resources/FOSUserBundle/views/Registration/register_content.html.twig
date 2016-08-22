@@ -7,7 +7,6 @@
 				<div class="col-lg-6">
 					<h3>Rejoignez Becowo !</h3>
     		<p>Veuillez choisir un pseudo et un mot de passe</p>
-    		<br>
     		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
             	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
@@ -33,7 +32,7 @@
 		{{ form_end(form) }}
 		</div>
 				<div class="col-lg-1">
-					<img src="{{ asset('images/icons/or.png') }}" id="or">
+					<img src="{{ asset('images/icons/bar.png') }}" id="bar">
 				</div>
 				<div class="col-lg-5">
 					<img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo-right">

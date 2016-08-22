@@ -31,7 +31,7 @@ input[type="password"] {
 button.btn {
 	height: 50px;
     width: 100%;
-    margin: 0;
+    margin-top: 15px;
     padding: 0 20px;
     vertical-align: middle;
     background: var(--my-green);
@@ -120,6 +120,10 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     height: 200px;
     margin-top: 20px;
 }
+#bar{    
+    height: 250px;
+    margin-top: 100px;
+}
 
 #logo{
     width: 100px;
@@ -129,6 +133,7 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
 }
 
 #logo-right{
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
+    margin-top: 15%;
 }
