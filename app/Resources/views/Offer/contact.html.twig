@@ -6,22 +6,96 @@
 
 {% block body %}
 
-Vous avez sélectionné l'offre <strong>{{name}}</strong>
 
-<p>
-Nous allons prendre contact avec vous sous 48h afin d'établir un devis et d'effectuer une première visite de votre espace.
-</p>
-<p>
-Pour celà, veuillez remplir le formulaire ci-dessous</p>
-<p>Merci</p>
+<div class="container-fluid" id="offers-contact">
 
-<div class="container-fluid">
+<p>Vous avez sélectionné l'offre <strong>{{name}}</strong><br>
+<br>
+Nous allons prendre contact avec vous sous 48h afin d'établir un devis et d'effectuer une première visite de votre espace.<br>
+Pour celà, veuillez remplir le formulaire ci-dessous<br>
+<br>
+Merci</p>
     <div class="row">
-        <div class="col-lg-6 col-lg-offset-2">
-            <div class="well">
-                {{ form(form)}}
-            </div>
+        <div class="col-lg-8 col-lg-offset-2">
+      <h2>Contactez-nous</h2>
+      {{ form_start(form) }}
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.wsName) }}
         </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.wsName) }}
+          {{ form_widget(form.wsName) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.email) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.email) }}
+          {{ form_widget(form.email) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.street) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.street) }}
+          {{ form_widget(form.street) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.postCode) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.postCode) }}
+          {{ form_widget(form.postCode) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.city) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.city) }}
+          {{ form_widget(form.city) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.phone) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.phone) }}
+          {{ form_widget(form.phone) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.nbDesk) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.nbDesk) }}
+          {{ form_widget(form.nbDesk) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.comments) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.comments) }}
+          {{ form_widget(form.comments) }}
+        </div>
+      </div>
+      
+      {{ form_rest(form) }}
+      <button type="submit"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Envoyer</button>
+      {{ form_end(form) }}
+		</div>
     </div>
 </div>
 
