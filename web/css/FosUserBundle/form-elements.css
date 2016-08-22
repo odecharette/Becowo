@@ -1,18 +1,24 @@
+body{
+    background-color: var(--my-green);
+     -webkit-filter: drop-shadow(16px 16px 10px rgba(0,0,0,0.9));
+  filter: drop-shadow(16px 16px 10px rgba(0,0,0,0.9));
+}
+#form-login{
+    background-color: white;
+    margin-top: 80px;
+    border-radius: 6pt;
+}
 
 input[type="text"],
 input[type="email"],  
-input[type="password"], 
-textarea, 
-textarea.form-control {
+input[type="password"] {
 	height: 50px;
-    width: 95%;
-    margin-left: -10px;
+    width: 100%;
     margin-top: 10px;
     padding: 0 20px;
     vertical-align: middle;
     background: #fff;
-    border: 3px solid #fff;
-    font-family: 'Roboto', sans-serif;
+    border: 1px solid var(--my-grey);
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
@@ -22,7 +28,7 @@ textarea.form-control {
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
 
-textarea, 
+/*textarea, 
 textarea.form-control {
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -31,15 +37,13 @@ textarea.form-control {
 
 input[type="text"]:focus, 
 input[type="email"]:focus, 
-input[type="password"]:focus, 
-textarea:focus, 
-textarea.form-control:focus {
+input[type="password"]:focus {
 	outline: 0;
 	background: #fff;
     border: 3px solid #fff;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
-
+*/
 input[type="text"]:-moz-placeholder,input[type="email"]:-moz-placeholder, input[type="password"]:-moz-placeholder, 
 textarea:-moz-placeholder, textarea.form-control:-moz-placeholder { color: #888; }
 
@@ -53,12 +57,12 @@ textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeh
 
 button.btn {
 	height: 50px;
+    width: 100%;
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
-    background: #19b9e7;
+    background: var(--my-green);
     border: 0;
-    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
@@ -69,20 +73,17 @@ button.btn {
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
 
-button.btn:hover { opacity: 0.6; color: #fff; }
+button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; color: #fff; }
 
-button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
-
-button.btn:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
-
-button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
-
+#rs-login{
+    margin-top: 50px;
+}
 .btn-link-2 {
     display: inline-block;
     height: 50px;
+    width: 250px;
     margin: 5px;
     padding: 15px 20px 0 20px;
-    background: rgba(0, 0, 0, 0.3);
     border: 1px solid #fff;
     font-size: 16px;
     font-weight: 300;
@@ -98,6 +99,18 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
     vertical-align: middle;
     font-size: 20px;
     line-height: 20px;
+}
+#fb{
+    background-color: #3b5998;
+}
+#tw{
+    background-color: #00aced;
+}
+#li{
+    background-color: #007bb6;
+}
+#titre{
+    margin-bottom: 15px;
 }
 /***** Top content *****/
 
@@ -123,14 +136,11 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 .top-content .description a:hover, 
 .top-content .description a:focus { border-bottom: 1px dotted #fff; }
 
-.form-box {
-    margin-top: 70px;
-}
 
 .form-top {
     overflow: hidden;
     padding: 0 25px 15px 25px;
-    background: var(--my-red);
+    background: var(--my-pink);
     -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
     text-align: left;
 }
@@ -205,12 +215,36 @@ button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; bac
 
 
 #remember_me {
-  width: 18px;
-  height: 18px;
+    padding: 0;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    top: -2px;
+}
+#remember{
+    margin-top: 15px;
+    font-size: 10pt;
+}
+#remember label{
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+#remember a{
+    color: var(--my-green);
+    text-decoration: underline;
+}
+#remember a:hover{
+    font-weight: bold;
 }
 
 .error, .help-block
 {
     color: var(--my-red);
     font-size: 16px;
+}
+
+#or{
+    height: 200px;
+    margin-top: 60px;
 }

@@ -4,70 +4,90 @@
 
 {% block fos_user_content %}
 
-<div class="form-box">
-	<div class="form-top">
-		<div class="form-top-left">
-			<h3>Se connecter à Becowo</h3>
-    		<p>Saisir un login et un mot de passe</p>
-    		<br>
-    		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-            	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
-            {% else %}
-            	<a href="{{ path('fos_user_resetting_request') }}">J'ai oublié mon mot de passe</a>
-        	{% endif %}
-		</div>
-		<div class="form-top-right">
-			<i class="fa fa-lock"></i>
-		</div>
-    </div>
-	<div class="form-bottom">
-		{% if error %}
-	    	<span class="help-block">
-	    		<ul class="list-unstyled">
-	    			<li><span class="glyphicon glyphicon-exclamation-sign"></span> 
-	    				{{ error.messageKey|trans(error.messageData, 'security') }}
-	    			</li>
-	    		</ul>
-    		</span>
-		{% endif %}
-		<form action="{{ path("fos_user_security_check") }}" method="post">
-		    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+<div class="container-fluid form-box">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<div class="row" id="form-login">
+				<div class="col-lg-6">
+					<h3>Se connecter à Becowo</h3>
+					{% if error %}
+		    	<span class="help-block">
+		    		<ul class="list-unstyled">
+		    			<li><span class="glyphicon glyphicon-exclamation-sign"></span> 
+		    				{{ error.messageKey|trans(error.messageData, 'security') }}
+		    			</li>
+		    		</ul>
+	    		</span>
+			{% endif %}
+			<form action="{{ path("fos_user_security_check") }}" method="post">
+			    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-		    <div class="form-group">
-		        <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
-		        <input type="text" id="username" name="_username"  placeholder="{{ 'security.login.username'|trans }}..." value="{{ last_username }}" required="required" />
-		    </div>
+			    <div class="form-group">
+			        <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
+			        <input type="text" id="username" name="_username"  placeholder="{{ 'security.login.username'|trans }}..." value="{{ last_username }}" required="required" />
+			    </div>
 
-		    <div class="form-group">
-		        <label class="sr-only"  for="password">{{ 'security.login.password'|trans }}</label>
-		        <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}..." required="required" />
-		    </div>
+			    <div class="form-group">
+			        <label class="sr-only"  for="password">{{ 'security.login.password'|trans }}</label>
+			        <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}..." required="required" />
+			    </div>
 
-		    <div class="checkbox">
-		        <label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-		        {{ 'security.login.remember_me'|trans }}</label>
-		    </div>
+			    <button type="submit" class="btn" id="_submit" name="_submit"> {{ 'security.login.submit'|trans }}</button>
 
-		    <button type="submit" class="btn" id="_submit" name="_submit"> {{ 'security.login.submit'|trans }}</button>
-		</form>
-		<center>
-		<div class="footer-border"></div>
-		<div class="social-login">
-			...or login with:
-			<div class="social-login-buttons">
-		    	<a class="btn btn-link-2" href="#">
-		    		<i class="fa fa-facebook"></i> Facebook
-		    	</a>
-		    	<a class="btn btn-link-2" href="#">
-		    		<i class="fa fa-twitter"></i> Twitter
-		    	</a>
-		    	<a class="btn btn-link-2" href="#">
-		    		<i class="fa fa-google-plus"></i> Google Plus
-		    	</a>
+			    <div class="row text-center" id="remember">
+			    	<div class="col-lg-5">
+			       		<label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+			       		{{ 'security.login.remember_me'|trans }}</label>
+			    	</div>
+			    	<div class="col-lg-7">
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+		            	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+		            	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+		            {% else %}
+		            	<a href="{{ path('fos_user_resetting_request') }}">J'ai oublié mon mot de passe</a>
+		        	{% endif %}
+			    	</div>
+				</div>
+			</form>
+				</div>
+				<div class="col-lg-1">
+					<img src="{{ asset('images/icons/or.png') }}" id="or">
+				</div>
+				<div class="col-lg-5" id="rs-login">
+					<center>
+					<div id="titre">Vous n'avez pas de compte, <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a> !</div>
+			    	<a class="btn btn-link-2" href="#" id="fb"><i class="fa fa-facebook"></i> Facebook</a><br>
+			    	<a class="btn btn-link-2" href="#" id="tw"><i class="fa fa-twitter"></i> Twitter</a><br>
+			    	<a class="btn btn-link-2" href="#" id="li"><i class="fa fa-linkedin"></i> LinkedIn</a>
+			    	</center>
+				</div>
+
 			</div>
-		</div></center>
+		</div>
 	</div>
 </div>
+{# 			<div class="form-top">
+				<div class="form-top-left">
+					
+		    		<p>Saisir un login et un mot de passe</p>
+		    		<br> 
+		    		
+				</div>
+				<div class="form-top-right">
+					<i class="fa fa-lock"></i>
+				</div>
+		    </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-2 form-bottom">
+			
+		</div>
+		<div class="col-lg-4">
+			
+		</div>
+	</div>
+</div>
+#}
 
 {% endblock fos_user_content %}
