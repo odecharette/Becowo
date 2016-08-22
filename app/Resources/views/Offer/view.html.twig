@@ -9,13 +9,11 @@
 {% include "CommonViews/flashMessage.html.twig" %}
 
 <div class="container-fluid">
-  <div class="row text-center">
-    <h1>Nos offres</h1>
-  </div>
+<h1>Nos offres</h1>
   <div class="row">
     <div class="col-lg-3 col-lg-offset-3">
-      <div class="well">
-        <h3><center>Offre Zen</center></h3>
+        <div id="offer1" class="offers">
+        <h3>Offre Zen</h3>
         <ul>
             <li>Prise en charge des réservations</li>
             <li>Paiement en ligne</li>
@@ -25,18 +23,18 @@
             <li>Statistiques sur les coworkers</li>
             <br>
         </ul>
-        <center><a href="{{ path('becowo_core_offers_contact', { 'name': 'Zen' }) }}"><button type="button" class="btn btn-success">Je suis intéressé</button></a></center>
+        <button type="button"><a href="{{ path('becowo_core_offers_contact', { 'name': 'Zen' }) }}">Je suis intéressé</a></button>
         <br>
         <h5>Conditions</h5>
-        <ul>
+        <ul class="conditions">
             <li>15% de commission</li>
             <li>Facture au mois</li>
         </ul>
-      </div>
+        </div>
     </div>
     <div class="col-lg-3">
-      <div class="well">
-        <h3><center>Offre Link</center></h3>
+        <div id="offer2" class="offers">
+        <h3>Offre Link</h3>
         <ul>
             <li>Visibilité sur notre site</li>
             <li>Affichage de vos coordonnées</li>
@@ -45,45 +43,45 @@
             <li>Statistiques sur les pages vues</li>
             <br><br>
         </ul>
-        <center><a href="{{ path('becowo_core_offers_contact', { 'name': 'Link' }) }}"><button type="button" class="btn btn-success">Je suis intéressé</button></a></center>
+        <button type="button"><a href="{{ path('becowo_core_offers_contact', { 'name': 'Link' }) }}">Je suis intéressé</a></button>
         <br>
         <h5>Conditions</h5>
-        <ul>
+        <ul class="conditions">
             <li>Contrat d'affiliation</li>
             <br>
         </ul>
-      </div>
+        </div>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-3 col-lg-offset-3">
-      <div class="well">
-        <h3><center>Offre Zen +</center></h3>
+      <div id="offer3" class="offers">
+        <h3>Offre Zen +</h3>
         <ul>
             <li>Offre Zen</li>
             <li>Visite virtuelle de l'espace à 360°</li>
             <br>
         </ul>
-        <center><a href="{{ path('becowo_core_offers_contact', { 'name': 'Zen +' }) }}"><button type="button" class="btn btn-success">Je suis intéressé</button></a></center>
+        <button type="button"><a href="{{ path('becowo_core_offers_contact', { 'name': 'Zen +' }) }}">Je suis intéressé</a></button>
         <br>
         <h5>Conditions</h5>
-        <ul>
+        <ul class="conditions">
             <li>100€ HT</li>
         </ul>
       </div>
     </div>
     <div class="col-lg-3">
-      <div class="well">
-        <h3><center>Offre Link +</center></h3>
+      <div id="offer4" class="offers">
+        <h3>Offre Link +</h3>
         <ul>
             <li>Offre Link</li>
             <li>Mise en avant sponsorisée de votre annonce</li>
             <br>
         </ul>
-        <center><a href="{{ path('becowo_core_offers_contact', { 'name': 'Link +' }) }}"><button type="button" class="btn btn-success">Je suis intéressé</button></a></center>
+        <button type="button"><a href="{{ path('becowo_core_offers_contact', { 'name': 'Link +' }) }}">Je suis intéressé</a></button>
         <br>
         <h5>Conditions</h5>
-        <ul>
+        <ul class="conditions">
             <li>10€ HT / jour</li>
         </ul>
       </div>

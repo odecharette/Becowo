@@ -20,6 +20,7 @@
   --my-green-opacity-4: rgba(0, 161, 154, 0.4);
   --my-red: rgb(231, 46, 70);
   --my-orange: rgb(244, 147, 2);
+  --my-orange-opacity: rgba(244, 147, 2, 0.3);
   --my-blue: rgb(32, 56, 94);
   --my-blue-opacity: rgba(32, 56, 94, 0.2);
   --my-pink: rgb(241, 95, 104);
@@ -759,6 +760,74 @@ footer #liensRS a{
   font-size: 14pt;
   font-weight: bold;
 }
+
+/*********************************** offers ****************************************/
+#offer1{
+  background-color: var(--my-pink-opacity);
+  margin-bottom: 15px;
+}
+#offer1 h3, #offer1 h5{
+  color: var(--my-pink);
+}
+#offer1 button, #offer1 a{
+  background-color: var(--my-pink);
+}
+#offer2{
+  background-color: var(--my-green-opacity);
+  margin-bottom: 15px;
+}
+#offer2 h3, #offer2 h5{
+  color: var(--my-green);
+}
+#offer2 button, #offer2 a{
+  background-color: var(--my-green);
+}
+#offer3{
+  background-color: var(--my-blue-opacity);
+}
+#offer3 h3, #offer3 h5{
+  color: var(--my-blue);
+}
+#offer3 button, #offer3 a{
+  background-color: var(--my-blue);
+}
+#offer4{
+  background-color: var(--my-orange-opacity);
+}
+#offer4 h3, #offer4 h5{
+  color: var(--my-orange);
+}
+#offer4 button, #offer4 a{
+  background-color: var(--my-orange);
+}
+.offers{
+  color: var(--my-grey);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.offers ul{
+  height: 150px;
+}
+.offers .conditions{
+  height: 50px;
+}
+.offers h3{
+  text-align: center;
+}
+.offers h5{
+  margin-left: 5px;
+}
+.offers button, .offers a{
+  color: white;
+  width: 100%;
+  line-height: 3;
+  border: none;
+  font-size: 14pt;
+}
+.offers button:hover{
+  font-weight: bold;
+}
+
 
 /**************************************************************************************/
 
