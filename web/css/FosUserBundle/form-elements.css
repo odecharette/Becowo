@@ -137,3 +137,10 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     height: 300px;
     margin-top: 15%;
 }
+
+#checkEmail{
+    padding: 20 20 20 20px;
+    background-color: white;
+    margin-top: 80px;
+    border-radius: 6pt;
+}
