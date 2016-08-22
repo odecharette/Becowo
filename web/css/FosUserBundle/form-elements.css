@@ -246,5 +246,12 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
 
 #or{
     height: 200px;
-    margin-top: 60px;
+    margin-top: 20px;
+}
+
+#logo{
+    width: 100px;
+    height: 100px;
+    margin-top: -40px;
+    margin-left: -25px;
 }
