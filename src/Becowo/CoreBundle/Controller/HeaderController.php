@@ -21,7 +21,7 @@ class HeaderController extends Controller
         ->add('nomEspace', TextType::class, array('label' => 'Le nom de l\'espace'))
         ->add('website', TextType::class, array('label' => 'Site web'))
         ->add('description', TextareaType::class, array('label' => 'Racontez-nous votre expérience *', 'required' => true))
-        ->add('Envoyer', SubmitType::class)
+        // ->add('Envoyer', SubmitType::class)
         ->getForm();
 
     $form->handleRequest($request);

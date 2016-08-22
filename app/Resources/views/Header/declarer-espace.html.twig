@@ -6,24 +6,62 @@
 
 {% block body %}
 
-<h2>Coworker - Déclarez un espace</h2>
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
-<div class="container-fluid">
+<div class="container-fluid" id="coworker-declare">
 	<div class="row">
-		<div class="col-lg-6">
-			Cher Coworker, <br>
-			vous avez travaillé dans un espace de coworking qui n'est pas référencé sur notre site ? <br>
-			Vous souhaitez nous faire part de votre expérience, alors remplissez ce formulaire <br>
-			<br>
-			Un grand merci de la part de Becowo !
-			<br><br>
-			<div class="well">
-				{{form(form)}}
-			</div>
+    <div class="col-lg-8 col-lg-offset-2">
+      	<h2>Coworker - Déclarez un espace</h2>
+      	{{ form_start(form) }}
+		<p>Cher Coworker, <br>
+		vous avez travaillé dans un espace de coworking qui n'est pas référencé sur notre site ? <br>
+		Vous souhaitez nous faire part de votre expérience, alors remplissez ce formulaire <br>
+		<br>
+		Un grand merci de la part de Becowo !
+		</p>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.email) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.email) }}
+          {{ form_widget(form.email) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.nomEspace) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.nomEspace) }}
+          {{ form_widget(form.nomEspace) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.website) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.website) }}
+          {{ form_widget(form.website) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.description) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.description) }}
+          {{ form_widget(form.description) }}
+        </div>
+      </div>
+      
+      {{ form_rest(form) }}
+      <button type="submit"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Envoyer</button>
+      {{ form_end(form) }}
 		</div>
-	</div>
+		</div>
 </div>
 
 

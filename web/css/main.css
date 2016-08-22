@@ -828,21 +828,21 @@ footer #liensRS a{
   font-weight: bold;
 }
 
-/********** offers contact *********/
-#offers-contact form{
+/********** offers contact & coworker déclarez un WS *********/
+#offers-contact form, #coworker-declare form{
   border-left: solid 3px var(--my-blue);
   border-right: solid 3px var(--my-blue);
   padding-top: 20px;
   margin-bottom: 20px;
 }
-#offers-contact h2{
+#offers-contact h2, #coworker-declare h2{
   background-color: var(--my-blue);
   color: white;
   margin-bottom: 0;
   line-height: 2;
   text-align: center;
 }
-#offers-contact label{
+#offers-contact label, #coworker-declare label{
   color: var(--my-grey);
   font-size: 14pt;
   margin-top: 15px;
@@ -850,13 +850,13 @@ footer #liensRS a{
   width: 100%;
   color: var(--my-blue);
 }
-#offers-contact .form-control{
+#offers-contact .form-control, #coworker-declare .form-control{
   border-radius: 8px;
   margin-right: 20px;
   border: 1px solid var(--my-blue);
   margin-top: 15px;
 }
-#offers-contact button, #offers-contact a:visited{
+#offers-contact button, #offers-contact a:visited, #coworker-declare button, #coworker-declare a:visited{
   background-color: var(--my-blue);
   color: white;
   margin-bottom: 0;
@@ -867,18 +867,19 @@ footer #liensRS a{
   border: none;
   margin-top: 30px;
 }
-#offers-contact button:hover, #offers-contact a:active, #offers-contact a:link{
+#offers-contact button:hover, #offers-contact a:active, #offers-contact a:link, #coworker-declare button:hover, #coworker-declare a:active, #coworker-declare a:link{
   background-color: var(--my-blue);
   font-weight: bold;
 }
-#offers-contact i{
+#offers-contact i, #coworker-declare i{
   color: white;
   margin-right: 10px;
 }
-#offers-contact p{
+#offers-contact p, #coworker-declare p{
   color: var(--my-grey);
   font-size: 14pt;
   margin-top: 15px;
+  margin-left: 10px;
 }
 /**************************************************************************************/
 
