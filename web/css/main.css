@@ -181,6 +181,10 @@ footer #liensRS a{
   margin-right: 10px;
   margin-bottom: 21px;
 }
+#footer-contact #contact-content2 a{
+  color: var(--my-blue);
+  background-color: white;
+}
 #page-simple{
   margin-left: 25px;
   margin-right: 25px;
