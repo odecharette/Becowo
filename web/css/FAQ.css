@@ -3,6 +3,52 @@
 Primary style
 
 -------------------------------- */
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, main {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -56,7 +102,7 @@ Main components
   line-height: 180px;
   text-align: center;
   background-color: #a9c056;
-}*/
+}
 section h1 {
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
@@ -65,16 +111,16 @@ section h1 {
   font-size: 1.25rem;
 }
 @media only screen and (min-width: 1024px) {
-/*  header {
+  header {
     height: 240px;
     line-height: 240px;
-  }*/
+  }
   section h1 {
     font-size: 36px;
     font-size: 2.25rem;
     font-weight: 300;
   }
-}/**/
+}*/
 
 body.cd-overlay::after {
   visibility: visible;
@@ -85,11 +131,15 @@ body.cd-overlay::after {
 }
 
 #faq{
-  background-color: #f3f3f5;
-  color: #4e5359;
-  font-family: "Open Sans", sans-serif;
+  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
 }
 
+h1{
+  margin-top: 30px;
+  margin-left: 20px;
+  color: var(--my-blue);
+  font-size: 20pt;
+}
 .cd-faq {
   width: 90%;
   max-width: 1024px;
@@ -116,13 +166,12 @@ body.cd-overlay::after {
   height: 50px;
   line-height: 50px;
   padding: 0 28px 0 16px;
-  background-color: #4e5359;
+  background-color: var(--my-pink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
   white-space: nowrap;
-  border-bottom: 1px solid #555b61;
-  text-overflow: ellipsis;
+  border-bottom: 1px solid var(--my-red);
 }
 .cd-faq-categories a::before, .cd-faq-categories a::after {
   /* plus icon on the right */
@@ -132,7 +181,7 @@ body.cd-overlay::after {
   display: inline-block;
   height: 1px;
   width: 10px;
-  background-color: #7f868e;
+  background-color:  var(--my-pink);
 }
 .cd-faq-categories a::after {
   -webkit-transform: rotate(90deg);
@@ -164,7 +213,7 @@ body.cd-overlay::after {
     display: none;
   }
   .no-touch .cd-faq-categories a:hover {
-    background: #555b61;
+    background:  var(--my-pink);
   }
   .no-js .cd-faq-categories {
     width: 100%;
@@ -180,7 +229,7 @@ body.cd-overlay::after {
     z-index: 2;
   }
   .cd-faq-categories a::before {
-    /* decorative rectangle on the left visible for the selected item */
+    /* decorative rectangle on the left visible for the selected item 
     display: block;
     top: 0;
     right: auto;
@@ -191,10 +240,10 @@ body.cd-overlay::after {
     opacity: 0;
     -webkit-transition: opacity 0.2s;
     -moz-transition: opacity 0.2s;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s;*/
   }
   .cd-faq-categories .selected {
-    background: #42464b !important;
+    background: var(--my-red) !important;
   }
   .cd-faq-categories .selected::before {
     opacity: 1;
@@ -347,10 +396,9 @@ body.cd-overlay::after {
 }
 .cd-faq-group .cd-faq-title h2 {
   text-transform: uppercase;
-  font-size: 16px;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #bbbbc7;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--my-grey);
 }
 .no-js .cd-faq-group {
   display: block;
@@ -361,7 +409,7 @@ body.cd-overlay::after {
     display: block;
   }
   .cd-faq-group > li {
-    background: #ffffff;
+    background: var(--my-green-opacity);
     margin-bottom: 6px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     -webkit-transition: box-shadow 0.2s;
@@ -384,6 +432,7 @@ body.cd-overlay::after {
   display: block;
   margin: 1.6em 0 .4em;
   line-height: 1.2;
+  color: var(--my-blue);
 }
 @media only screen and (min-width: 768px) {
   .cd-faq-trigger {
@@ -442,10 +491,10 @@ body.cd-overlay::after {
 }
 
 .cd-faq-content p {
-  font-size: 14px;
-  font-size: 0.875rem;
+  font-size: 16px;
   line-height: 1.4;
-  color: #6c7d8e;
+  color: var(--my-grey);
+  text-align: justify;
 }
 @media only screen and (min-width: 768px) {
   .cd-faq-content {

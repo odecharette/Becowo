@@ -77,7 +77,7 @@ header #login button span{
   margin-left: 5px;
 }
 header #liensRS{
-  margin-top: -10px;
+  margin-top: 10px;
   padding-bottom: 5px;
 }
 header #liensRS img{
@@ -98,7 +98,6 @@ footer, footer a{
   padding-left: 20px;
   background: var(--my-blue);
   color: white;
-  padding-top: 10px;
   line-height: 2; 
 }
 footer a:hover{
@@ -110,8 +109,6 @@ footer li {
 }
 
 footer #liensRS{
-  /*background-color: rgb(46,49,56);*/
-  /*width: 160px;*/
   padding-top: 5px;
   padding-bottom: 5px;
 }
@@ -151,7 +148,7 @@ footer #liensRS a{
   border: 1px solid var(--my-blue);
   margin-top: 15px;
 }
-#footer-contact button{
+#footer-contact button, #footer-contact a:visited{
   background-color: var(--my-blue);
   color: white;
   margin-bottom: 0;
@@ -162,7 +159,7 @@ footer #liensRS a{
   border: none;
   margin-top: 30px;
 }
-#footer-contact button:hover{
+#footer-contact button:hover, #footer-contact a:active, #footer-contact a:link{
   background-color: var(--my-blue);
   font-weight: bold;
 }
@@ -272,7 +269,7 @@ footer #liensRS a{
   background: none;
   border: none;
   padding-top: 3px;
-  margin-right: 10px;
+  margin-right: 20px;
   width: 30px;
 }
 #BarreRecherche #BtnSearch{
