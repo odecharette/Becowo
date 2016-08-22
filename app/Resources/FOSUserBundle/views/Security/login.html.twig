@@ -11,14 +11,14 @@
 				<div class="col-lg-6">
 					<h3>Se connecter à Becowo</h3>
 					{% if error %}
-		    	<span class="help-block">
+		    		<span class="help-block">
 		    		<ul class="list-unstyled">
 		    			<li><span class="glyphicon glyphicon-exclamation-sign"></span> 
 		    				{{ error.messageKey|trans(error.messageData, 'security') }}
 		    			</li>
 		    		</ul>
-	    		</span>
-			{% endif %}
+	    			</span>
+					{% endif %}
 			<form action="{{ path("fos_user_security_check") }}" method="post">
 			    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 

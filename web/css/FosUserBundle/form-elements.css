@@ -127,3 +127,8 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     margin-top: -40px;
     margin-left: -25px;
 }
+
+#logo-right{
+    width: 100px;
+    height: 100px;
+}

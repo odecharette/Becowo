@@ -1,61 +1,44 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="form-box">
-	<div class="form-top">
-		<div class="form-top-left">
-			<h3>Rejoignez Becowo !</h3>
+<div class="container-fluid form-box">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<div class="row" id="form-login">
+				<div class="col-lg-6">
+					<h3>Rejoignez Becowo !</h3>
     		<p>Veuillez choisir un pseudo et un mot de passe</p>
     		<br>
     		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
             	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
         	{% endif %}
-		</div>
-		<div class="form-top-right">
-			<i class="fa fa-pencil"></i>
-		</div>
-    </div>
-	<div class="form-bottom">
+		
 		{{form_start(form, {'method': 'POST', 'attr':{'class': 'register'}})}}
 
-		<div class="form-group">
-			<div class="row">
-				<div class="col-lg-2"><i class="fa fa-user" aria-hidden="true" id="icon"></i></div>
-				<div class="col-lg-10"><label class="sr-only" for="username">{{ form_label(form.username) }}</label>
+			<label class="sr-only" for="username">{{ form_label(form.username) }}</label>
 			  	{{ form_widget(form.username, {'attr': {'placeholder': 'form.username'|trans}}) }}
-			    {{ form_errors(form.username) }}</div>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="row">
-		    <div class="col-lg-2"><i class="fa fa-envelope" aria-hidden="true" id="icon"></i></div>
-				<div class="col-lg-10"><label class="sr-only" for="email">{{ form_label(form.email) }}</label>
+			    {{ form_errors(form.username) }}
+			<label class="sr-only" for="email">{{ form_label(form.email) }}</label>
 		    	{{ form_widget(form.email, {'attr': {'placeholder': 'form.email'|trans}}) }}
-		    	{{ form_errors(form.email) }}</div>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="row">
-		    <div class="col-lg-2"><i class="fa fa-unlock-alt" aria-hidden="true" id="icon"></i></div>
-				<div class="col-lg-10"><label class="sr-only" for="password">{{ form_label(form.plainPassword.first) }}</label>
+		    	{{ form_errors(form.email) }}
+		    <label class="sr-only" for="password">{{ form_label(form.plainPassword.first) }}</label>
 		    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'form.password'|trans}}) }}
-		    {{ form_errors(form.plainPassword.first) }}</div>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="row">
-		    <div class="col-lg-2"><i class="fa fa-unlock-alt" aria-hidden="true" id="icon"></i></div>
-				<div class="col-lg-10"><label class="sr-only" for="plainPassword.second">{{ form_label(form.plainPassword.second) }}</label>
+		    {{ form_errors(form.plainPassword.first) }}
+		    <label class="sr-only" for="plainPassword.second">{{ form_label(form.plainPassword.second) }}</label>
 		    	{{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'form.password_confirmation'|trans}}) }}
-		    	{{ form_errors(form.plainPassword.second) }}</div>
-			</div>
-		</div>
+		    	{{ form_errors(form.plainPassword.second) }}
 
 		<button type="submit" class="btn" id="_submit" name="_submit"> {{ 'registration.submit'|trans }}</button>
 		  
 		{{ form_end(form) }}
+		</div>
+				<div class="col-lg-1">
+					<img src="{{ asset('images/icons/or.png') }}" id="or">
+				</div>
+				<div class="col-lg-5">
+					<img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo-right">
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
