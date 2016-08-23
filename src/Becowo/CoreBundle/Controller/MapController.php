@@ -75,10 +75,19 @@ class MapController extends Controller
     }
 
 
-  $xml = $rootNode->asXML();
+    // prepare XML
+  // $xml = trim(preg_replace('~[\r\n]+~', '', $xml));
+  $xml = $rootNode->asXML("js/StoreLocator/locations.xml");
 
-   $xml = trim(preg_replace('~[\r\n]+~', '', $xml));
-   
+    // Save XML into file
+
+  // header('HTTP/1.1 200 OK');
+  // header("Pragma: no-cache");
+  // header('Cache-Control: no-cache, no-store, max-age=0, must-revalidate');
+  // header('Content-type', 'text/xml');
+  // header('Content-Disposition: attachment; filename="dirname(__DIR__)/web/js/StoreLocator/locations.xml"');
+ 
+  // echo $xml;
 // $xml = json_encode($xml);
 
 dump($xml);
