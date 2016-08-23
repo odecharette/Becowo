@@ -361,7 +361,7 @@ footer #liensRS a{
   /*opacity: 1;*/
 }
 #vignette #imageBtn button{    
-  margin-left: 67%;
+  right: 21px;
   position: absolute;
   margin-top: -80px;
 }
