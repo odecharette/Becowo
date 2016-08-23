@@ -1,6 +1,6 @@
 {{#location}}
 {{#if listed}}
-	<div class="container-fluid" data-markerid="{{markerid}}" id="vignette">
+	<div class="container-fluid vignette" data-markerid="{{markerid}}" id="vignette">
 		<div class="row">
 			<div class="col-lg-3" id="logo">
 				{{#if logo}}
@@ -14,8 +14,8 @@
 			<div class="col-lg-3" id="stars">
 				<img src="/Becowo/web/images/icons/star{{averageVote}}.png">
 			</div>
-			<div class="col-lg-2">
-				prix
+			<div class="col-lg-2" id="parent">
+				<div id="price">prix</div>
 				<!-- to do -->
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 			<div id="bonus">{{descriptionBonus}}</div>
 		</div>
 		<div class="row" id="listeLogo">
-				{{#if featuresUrl0}} <img src="/Becowo/web/images/icons/amenities/BsurN/{{featuresUrl0}}.png" alt="{{featuresUrl0}}" title="{{featuresUrl0}}"> {{/if}}
+		{{#if featuresUrl0}} <img src="/Becowo/web/images/icons/amenities/BsurN/{{featuresUrl0}}.png" alt="{{featuresUrl0}}" title="{{featuresUrl0}}"> {{/if}}
 		{{#if featuresUrl1}} <img src="/Becowo/web/images/icons/amenities/BsurN/{{featuresUrl1}}.png" alt="{{featuresUrl1}}" title="{{featuresUrl1}}"> {{/if}}
 		{{#if featuresUrl2}} <img src="/Becowo/web/images/icons/amenities/BsurN/{{featuresUrl2}}.png" alt="{{featuresUrl2}}" title="{{featuresUrl2}}"> {{/if}}
 		{{#if featuresUrl3}} <img src="/Becowo/web/images/icons/amenities/BsurN/{{featuresUrl3}}.png" alt="{{featuresUrl3}}" title="{{featuresUrl3}}"> {{/if}}
