@@ -168,7 +168,8 @@
 {############################################ Barre Instagram ##############################################}
 <div class="col-lg-4" id="Instagram">
 	<h2><img src="{{asset('images/RS/instagram.png')}}">Actu Instagram</h2>
-	{% include 'CommonViews/RS/instagram.html.twig' %}
+	<!-- SnapWidget -->
+	<iframe src="https://snapwidget.com/embed/code/189769" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
 
 </div></div></div>
 
@@ -244,24 +245,6 @@
 	});
 </script>
 
-{# Pour la vidéo #}
-<script src="{{ asset('js/jquery.videocontrols.js') }}"></script>
-<script type="text/javascript"> 
-    $(document).ready(function () 
-    { 
-        $('#video').videocontrols( 
-        {  
-            theme: 
-            { 
-                progressbar: 'pink', 
-                range: 'pink', 
-                volume: 'pink' 
-            },
-            fillscreen: false,
-            mediumscreen: false 
-        }); 
-    }); 
-</script>
 
 {% endblock javascripts %}
 	
