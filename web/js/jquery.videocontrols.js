@@ -6,6 +6,7 @@
  * http://blog.pornzrus.com/2014-01-25-HTML5-Video-Player-like-YouTube-in-jQuery-plugin
 */
 
+if (document.getElementById("video")){
 (function($)
 {
     $.fn.videocontrols = function(options)
@@ -678,3 +679,4 @@
 
     $.fn.videocontrols.defaults = { };
 })(jQuery);
+};

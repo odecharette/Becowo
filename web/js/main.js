@@ -78,17 +78,19 @@ $(function () {
 /*************** Vidéo on home page *****************/
 $(document).ready(function () 
     { 
-        $('#video').videocontrols( 
-        {  
-            theme: 
-            { 
-                progressbar: 'pink', 
-                range: 'pink', 
-                volume: 'pink' 
-            },
-            fillscreen: false,
-            mediumscreen: false 
-        }); 
+        if (document.getElementById("video")){
+            $('#video').videocontrols( 
+            {  
+                theme: 
+                { 
+                    progressbar: 'pink', 
+                    range: 'pink', 
+                    volume: 'pink' 
+                },
+                fillscreen: false,
+                mediumscreen: false 
+            }); 
+        };
     }); 
 
 /************************ blackknight467/star-rating-bundle    rating.js *************************/

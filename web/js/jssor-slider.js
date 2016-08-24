@@ -1,3 +1,4 @@
+if (document.getElementById("jssor_1")){
 jQuery(document).ready(function ($) {
             
             var jssor_1_SlideshowTransitions = [
@@ -59,3 +60,4 @@ jQuery(document).ready(function ($) {
             $(window).bind("orientationchange", ScaleSlider);
             //responsive code end
         });
+};

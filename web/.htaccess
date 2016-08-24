@@ -66,3 +66,10 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault "access 1 day"
+</IfModule>
+## EXPIRES CACHING ##
