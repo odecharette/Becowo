@@ -5,8 +5,6 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{# carroussel2 #}
-	<link rel="stylesheet" href="{{ asset('css/jssor-slider.css') }}">
 	
 {% endblock %}
 
@@ -73,8 +71,7 @@
 		<div class="row">
 			<div id="booking">
 				<h2>Faire une réservation</h2>
-				<br><br><br><br><br>
-				{# {% include 'Workspace/book.html.twig' %} #}
+				{% include 'Workspace/book2.html.twig' %}
 			</div>
 		</div>
 		<div class="row text-center">
@@ -106,15 +103,6 @@
 			</div>
 		</div>
 
-{############################################# Offices #########################################}
-		<div class="row">
-				<h4>Les Bureaux</h4>
-				<ul>
-					{% for office in listOffices %}
-						<li>{{office.office.name}} ({{office.DeskQty}} bureaux)</li>
-					{% endfor %}
-				</ul>
-		</div>
 </div>  {# end of container #}
 
 {% block javascripts %}    

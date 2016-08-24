@@ -1,0 +1,37 @@
+{{dump(listOffices)}}
+<div class="container-fluid">
+	<div class="row">
+		{{ws.name}} vous propose plusieurs types de bureaux : <br>
+		{% for office in listOffices %}
+			<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
+	  	{% endfor %}
+	  	<br>
+	  	Faites une recherche ci-dessous et commencez l'aventure !
+	</div>
+	<div class="row">
+		<div class="col-lg-10" id="bookSearch">
+			<select id="selectOffice">
+				<option value="">Type de bureau</option>
+				{% for office in listOffices %}
+			  		<option value="{{office.office.name}}">{{office.office.name}}</option>
+			  	{% endfor %}
+			</select>
+			<select id="selectDuree">
+				<option value="">Durée </option>
+				<option value="Heure">Heure</option>
+				<option value="1/2 journée">1/2 journée</option>
+				<option value="Journée">Journée</option>
+				<option value="Semaine">Semaine</option>
+				<option value="Mois">Mois</option>
+			</select>
+			<input type="number" id="selectNbPers" placeholder="Nombre de personnes" step="1" min="1" max="10">
+			<input type="date" id="selectDate">
+		</div>
+		<div class="col-lg-2" id="bookRecap">
+			Récapitulatif : <br>
+			<br>
+			Total : <br>
+			<button type="button" class="btn btn-primary">Je réserve <i class="fa fa-caret-right" aria-hidden="true"></i></button>			
+		</div>
+	</div>
+</div>

@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{# Pour la MapBox #}
+	{# Pour la MapBox 
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
   <link rel="stylesheet" href="{{ asset('css/map.css') }}">
+#}
+  
 {% endblock stylesheets %}
 
 {% block body %}
@@ -225,10 +227,10 @@
 {% block javascripts %}
 
 	
-{# Pour la MapBox #}
+{# Pour la MapBox 
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
 	<script src="{{ asset('js/my-mapbox.js') }}"></script>
- 
+#} 
 	{# Recherche avec elastic search
     <script type="text/javascript">
         $(function() {

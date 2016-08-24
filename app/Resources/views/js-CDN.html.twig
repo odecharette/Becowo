@@ -1,49 +1,23 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
-    {# // <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/umd/carousel.js"></script> #}
     <script src="{{ asset('js/main.js') }}"></script>
     <!-- AddThisEvent in calendar -->
 	<script type="text/javascript" src="https://addthisevent.com/libs/1.6.0/ate.min.js"></script>
 	{# pour le bundle friendsofsymfony/jsrouting-bundle #}
 	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 	<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+
+
+
+    {# // <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script> #}
+    {# // <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/umd/carousel.js"></script> #}    
     {# blackknight467/star-rating-bundle #}
-    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+    {# // <script src="{{ asset('js/rating.js') }}"></script> #}
 	{# social widget #}
 	{# <script type="text/javascript" src="{{ asset('js/SocialMediaWidget.js') }}"></script> #}
 	{# Autocomplétion du moteur de recherche #}
 	{# <script src="{{ asset('js/jquery.instantSearch.js') }}"></script> #}
 
 
-	{# Bouton Back to top #}
-	<script type="text/javascript">
-		if ( ($(window).height() + 100) < $(document).height() ) {
-	    $('#top-link-block').removeClass('hidden').affix({
-	        // how far to scroll down before link "slides" into view
-	        offset: {top:100}
-	    });
-		}
-	</script>
-{#	<script>
-
-      function my_modal($url){
-
-	   	if ($url == 'Connexion') {
-        	BootstrapDialog.show({
-        		title: 'Connexion',
-            	message: $('<div></div>').load('{{ path('fos_user_security_login') }}'),
-            	draggable: true
-        	});
-    	}
-    	else if ($url == 'Inscription') {
-    		BootstrapDialog.show({
-    			title: 'Inscription',
-            	message: $('<div></div>').load('{{ path('fos_user_registration_register') }}'),
-            	draggable: true
-        	});
-    	}
-      }
-
-      
-    </script> #}
+	
