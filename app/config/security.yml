@@ -12,6 +12,17 @@ security:
         id: fos_user.user_provider.username
 
   firewalls:
+    secured_area:
+            anonymous: ~
+            logout: true
+            oauth:
+                resource_owners:
+                    facebook:           "/login/check-facebook"
+                login_path:        /login
+                use_forward:       false
+                failure_path:      /login
+                oauth_user_provider:
+                  service: app.HWIOAuth.user_provider
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
@@ -28,7 +39,9 @@ security:
       remember_me:
         secret:     %secret% # %secret% est un paramètre de parameter
 
+
   access_control:
     - { path: ^/manager, roles: ROLE_MANAGER }
     - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

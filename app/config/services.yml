@@ -33,3 +33,6 @@ services:
         class: Becowo\ManagerBundle\Services\Dashboard
         arguments: ['@doctrine.orm.entity_manager'] 
 
+    app.HWIOAuth.user_provider:
+        class:        Becowo\MemberBundle\Services\MyFOSUBUserProvider
+        arguments: ['@fos_user.user_manager', { facebook: facebook_id }]
