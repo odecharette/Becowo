@@ -36,28 +36,22 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        dump($response);
-        // TO DO $response->getEmail(); est vide
-        // $userEmail = $response->getEmail();
         $facebookId = $response->getUsername(); // bizarre mais username renvoi bien le Facebook Id
         $username = $response->getRealName();
         $user = $this->userManager->findUserByUsername($username);
 
-        dump($response->getRealName());
-        dump($user);
         // if null just create new user and set it properties
         if (null === $user) {
             
             $user = $this->userManager->createUser();
             $user->setUsername($username);
             $user->setEnabled(true);
-            $user->setEmail("toto@email.com");
+            $user->setEmail($response->getEmail());
             $user->setPassword("FacebookPwd");
             $user->setUpdatedAt( new \DateTime());
             $user->setFirstName($response->getFirstName());
             $user->setName($response->getLastName());
             $user->setFacebookId($facebookId);
-            // $user->setFacebookAccessToken($response->getAccessToken());
 
             // ... save user to database
 

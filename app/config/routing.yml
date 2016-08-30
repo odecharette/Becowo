@@ -9,11 +9,11 @@ hwi_oauth_connect:
 
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix:   /login
+    prefix:   /loginHWI
 
 facebook_login:
     path: /login/check-facebook
-    
+
 # My own routes
 becowo_manager:
     resource: "@BecowoManagerBundle/Resources/config/routing.yml"
