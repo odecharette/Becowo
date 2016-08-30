@@ -5,6 +5,7 @@ namespace Becowo\MemberBundle\Services;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseFOSUBProvider;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Becowo\CoreBundle\Entity\ProfilePicture;
 
 class MyFOSUBUserProvider extends BaseFOSUBProvider
 {
@@ -36,8 +37,9 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
+        dump($response);
         $facebookId = $response->getUsername(); // bizarre mais username renvoi bien le Facebook Id
-        $username = $response->getRealName();
+        $username = $response->getNickName();
         $user = $this->userManager->findUserByUsername($username);
 
         // if null just create new user and set it properties
@@ -50,10 +52,14 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
             $user->setPassword("FacebookPwd");
             $user->setUpdatedAt( new \DateTime());
             $user->setFirstName($response->getFirstName());
-            $user->setName($response->getLastName());
+            $user->setName($response->getRealName());
             $user->setFacebookId($facebookId);
-
-            // ... save user to database
+            $user->setFacebookLink("https://www.facebook.com/".$facebookId);
+            
+            $profile_picture = new ProfilePicture();
+            $profile_picture->setUrl($response->getProfilePicture());
+            $profile_picture->setAlt($response->getFirstName());
+            $user->setProfilePicture($profile_picture);
 
             return $user;
         }
