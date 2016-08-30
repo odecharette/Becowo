@@ -38,35 +38,66 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
         dump($response);
-        $facebookId = $response->getUsername(); // bizarre mais username renvoi bien le Facebook Id
-        $username = $response->getNickName();
-        $user = $this->userManager->findUserByUsername($username);
+        
 
+        $service = $response->getResourceOwner()->getName();
+        $infos = $response->getResponse();
+        $rsId = $infos['id'];
+        switch ($service) {
+                case 'facebook':
+                    $email = $response->getEmail();
+                    break;
+                case 'linkedin':
+                    $email = $infos['emailAddress'];
+                    break;
+        }
+        $user = $this->userManager->findUserBy(array('email' => $email));
+
+        dump($user);
         // if null just create new user and set it properties
         if (null === $user) {
             
             $user = $this->userManager->createUser();
-            $user->setUsername($username);
+            $user->setUsername($response->getNickName());
             $user->setEnabled(true);
-            $user->setEmail($response->getEmail());
-            $user->setPassword("FacebookPwd");
+            $user->setPassword("RSPwd");
             $user->setUpdatedAt( new \DateTime());
-            $user->setFirstName($response->getFirstName());
-            $user->setName($response->getRealName());
-            $user->setFacebookId($facebookId);
-            $user->setFacebookLink("https://www.facebook.com/".$facebookId);
+            $user->setSignedUpWith($service);
+            $user->setRsId($infos['id']);
+            $user->setEmail($email);
             
-            $profile_picture = new ProfilePicture();
-            $profile_picture->setUrl($response->getProfilePicture());
-            $profile_picture->setAlt($response->getFirstName());
-            $user->setProfilePicture($profile_picture);
+            switch ($service) {
+                case 'facebook':
+                    $user->setFacebookLink("https://www.facebook.com/".$rsId);
+                    $user->setFirstName($response->getFirstName());
+                    $user->setName($response->getRealName());
+                    
+                    $profile_picture = new ProfilePicture();
+                    $profile_picture->setUrl($response->getProfilePicture());
+                    $profile_picture->setAlt($response->getFirstName());
+                    $user->setProfilePicture($profile_picture);
+                    break;
+                case 'linkedin':
+                    $user->setLinkedinLink($infos['publicProfileUrl']);
+                    $user->setJob($infos['headline']);
+                    $user->setCity($infos['location']['name']);
+                    $user->setFirstName($infos['firstName']);
+                    $user->setName($infos['lastName']);
+                    $user->setSociety($infos['positions']['values'][0]['company']['name']);
+
+                    $profile_picture = new ProfilePicture();
+                    $profile_picture->setUrl($infos['pictureUrl']);
+                    $profile_picture->setAlt($infos['firstName']);
+                    $user->setProfilePicture($profile_picture);
+                    break;
+            }
 
             return $user;
         }
         // else update access token of existing user
-        $serviceName = $response->getResourceOwner()->getName();
-        $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
-        $user->$setter($response->getAccessToken());//update access token
+        // $serviceName = $response->getResourceOwner()->getName();
+        // $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
+        $user->setRsAccessToken($response->getAccessToken());//update access token
 
         return $user;
     }

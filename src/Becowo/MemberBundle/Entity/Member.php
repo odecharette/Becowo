@@ -227,11 +227,11 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     private $workspace;
 
     /**
-     * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true)
+     * @ORM\Column(name="rs_id", type="string", length=255, nullable=true)
      */
-    private $facebookId;
+    private $rsId;
 
-    private $facebookAccessToken;
+    private $rsAccessToken;
 
     /**
      * Constructor
@@ -926,12 +926,12 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     }
 
     /**
-     * @param string $facebookId
+     * @param string $rsId
      * @return User
      */
-    public function setFacebookId($facebookId)
+    public function setRsId($rsId)
     {
-        $this->facebookId = $facebookId;
+        $this->rsId = $rsId;
 
         return $this;
     }
@@ -939,18 +939,18 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @return string
      */
-    public function getFacebookId()
+    public function getRsId()
     {
-        return $this->facebookId;
+        return $this->rsId;
     }
 
     /**
      * @param string $facebookAccessToken
      * @return User
      */
-    public function setFacebookAccessToken($facebookAccessToken)
+    public function setRsAccessToken($rsAccessToken)
     {
-        $this->facebookAccessToken = $facebookAccessToken;
+        $this->rsAccessToken = $rsAccessToken;
 
         return $this;
     }
@@ -958,8 +958,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @return string
      */
-    public function getFacebookAccessToken()
+    public function getRsAccessToken()
     {
-        return $this->facebookAccessToken;
+        return $this->rsAccessToken;
     }
 }

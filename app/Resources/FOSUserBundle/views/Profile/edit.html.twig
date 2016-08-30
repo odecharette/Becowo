@@ -22,7 +22,7 @@
     {{ form_errors(form) }}
   <div class="row text-center">
     {% if form.children.profilePicture.children.url.vars.value != '' %}
-      {% if form.vars.data.facebookId != '' %}
+      {% if form.vars.data.signedUpWith != '' %}
         <img src={{form.children.profilePicture.children.url.vars.value}} alt="{{form.children.profilePicture.children.alt.vars.value}}" width="70px" height="70px">
       {% else %}
         <img src={{asset('images/ProfilePictures/')}}{{form.children.profilePicture.children.url.vars.value}} alt="{{form.children.profilePicture.children.alt.vars.value}}" width="70px" height="70px">

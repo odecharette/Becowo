@@ -299,3 +299,9 @@ hwi_oauth:
                 display: popup
                 auth_type: rerequest # Re-asking for Declined Permissions
                 # csrf: true
+        linkedin:
+            type:           linkedin
+            client_id:      779agcgijedscy
+            client_secret:  Q3q0A7pbEPQxHzgk
+            infos_url:      "https://api.linkedin.com/v1/people/~:(id,formatted-name,first-name,last-name,location,positions,headline,email-address,public-profile-url,picture-url)?format=json"
+            scope:          "r_basicprofile,r_emailaddress"
