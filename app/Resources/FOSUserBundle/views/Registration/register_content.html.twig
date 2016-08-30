@@ -6,36 +6,43 @@
 			<div class="row" id="form-login">
 				<div class="col-lg-6">
 					<h3>Rejoignez Becowo !</h3>
-    		<p>Veuillez choisir un pseudo et un mot de passe</p>
-    		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-            	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
-        	{% endif %}
+		    		<p>Veuillez choisir un pseudo et un mot de passe</p>
+		    		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+		            	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+		            	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+		        	{% endif %}
 		
-		{{form_start(form, {'method': 'POST', 'attr':{'class': 'register'}})}}
+					{{form_start(form, {'method': 'POST', 'attr':{'class': 'register'}})}}
 
-			<label class="sr-only" for="username">{{ form_label(form.username) }}</label>
-			  	{{ form_widget(form.username, {'attr': {'placeholder': 'form.username'|trans}}) }}
-			    {{ form_errors(form.username) }}
-			<label class="sr-only" for="email">{{ form_label(form.email) }}</label>
-		    	{{ form_widget(form.email, {'attr': {'placeholder': 'form.email'|trans}}) }}
-		    	{{ form_errors(form.email) }}
-		    <label class="sr-only" for="password">{{ form_label(form.plainPassword.first) }}</label>
-		    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'form.password'|trans}}) }}
-		    {{ form_errors(form.plainPassword.first) }}
-		    <label class="sr-only" for="plainPassword.second">{{ form_label(form.plainPassword.second) }}</label>
-		    	{{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'form.password_confirmation'|trans}}) }}
-		    	{{ form_errors(form.plainPassword.second) }}
+					<label class="sr-only" for="username">{{ form_label(form.username) }}</label>
+					  	{{ form_widget(form.username, {'attr': {'placeholder': 'form.username'|trans}}) }}
+					    {{ form_errors(form.username) }}
+					<label class="sr-only" for="email">{{ form_label(form.email) }}</label>
+				    	{{ form_widget(form.email, {'attr': {'placeholder': 'form.email'|trans}}) }}
+				    	{{ form_errors(form.email) }}
+				    <label class="sr-only" for="password">{{ form_label(form.plainPassword.first) }}</label>
+				    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'form.password'|trans}}) }}
+				    {{ form_errors(form.plainPassword.first) }}
+				    <label class="sr-only" for="plainPassword.second">{{ form_label(form.plainPassword.second) }}</label>
+				    	{{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'form.password_confirmation'|trans}}) }}
+				    	{{ form_errors(form.plainPassword.second) }}
 
-		<button type="submit" class="btn" id="_submit" name="_submit"> {{ 'registration.submit'|trans }}</button>
-		  
-		{{ form_end(form) }}
-		</div>
-				<div class="col-lg-1">
-					<img src="{{ asset('images/icons/bar.png') }}" id="bar">
+					<button type="submit" class="btn" id="_submit" name="_submit"> {{ 'registration.submit'|trans }}</button>
+					  
+					{{ form_end(form) }}
 				</div>
-				<div class="col-lg-5">
-					<img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo-right">
+				<div class="col-lg-1">
+					<img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo">
+					<br>
+					<img src="{{ asset('images/icons/or.png') }}" id="or">
+				</div>
+				<div class="col-lg-5" id="rs-login">
+					<center>
+					<div id="titre">Utilisez votre réseau social préféré !</div>
+			    	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('facebook')}}" id="fb"><i class="fa fa-facebook"></i> Facebook</a><br>
+			    	<a class="btn btn-link-2" href="#" id="tw"><i class="fa fa-twitter"></i> Twitter</a><br>
+			    	<a class="btn btn-link-2" href="#" id="li"><i class="fa fa-linkedin"></i> LinkedIn</a>
+			    	</center>
 				</div>
 			</div>
 		</div>

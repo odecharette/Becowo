@@ -19,36 +19,36 @@
 		    		</ul>
 	    			</span>
 					{% endif %}
-			<form action="{{ path("fos_user_security_check") }}" method="post">
-			    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+					<form action="{{ path("fos_user_security_check") }}" method="post">
+				    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-			    <div class="form-group">
-			        <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
-			        <input type="text" id="username" name="_username"  placeholder="{{ 'security.login.username'|trans }}..." value="{{ last_username }}" required="required" />
-			    </div>
+				    <div class="form-group">
+				        <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
+				        <input type="text" id="username" name="_username"  placeholder="{{ 'security.login.username'|trans }}..." value="{{ last_username }}" required="required" />
+				    </div>
 
-			    <div class="form-group">
-			        <label class="sr-only"  for="password">{{ 'security.login.password'|trans }}</label>
-			        <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}..." required="required" />
-			    </div>
+				    <div class="form-group">
+				        <label class="sr-only"  for="password">{{ 'security.login.password'|trans }}</label>
+				        <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}..." required="required" />
+				    </div>
 
-			    <button type="submit" class="btn" id="_submit" name="_submit"> {{ 'security.login.submit'|trans }}</button>
+				    <button type="submit" class="btn" id="_submit" name="_submit"> {{ 'security.login.submit'|trans }}</button>
 
-			    <div class="row text-center" id="remember">
-			    	<div class="col-lg-5">
-			       		<label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-			       		{{ 'security.login.remember_me'|trans }}</label>
-			    	</div>
-			    	<div class="col-lg-7">
-					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-		            	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-		            	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
-		            {% else %}
-		            	<a href="{{ path('fos_user_resetting_request') }}">J'ai oublié mon mot de passe</a>
-		        	{% endif %}
-			    	</div>
-				</div>
-			</form>
+				    <div class="row text-center" id="remember">
+				    	<div class="col-lg-5">
+				       		<label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+				       		{{ 'security.login.remember_me'|trans }}</label>
+				    	</div>
+				    	<div class="col-lg-7">
+						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			            	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+			            	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+			            {% else %}
+			            	<a href="{{ path('fos_user_resetting_request') }}">J'ai oublié mon mot de passe</a>
+			        	{% endif %}
+				    	</div>
+					</div>
+					</form>
 				</div>
 				<div class="col-lg-1">
 					<img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo">
@@ -57,10 +57,11 @@
 				</div>
 				<div class="col-lg-5" id="rs-login">
 					<center>
-					<div id="titre">Vous n'avez pas de compte, <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a> !</div>
+					<div id="titre">Utilisez votre réseau social préféré !</div>
 			    	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('facebook')}}" id="fb"><i class="fa fa-facebook"></i> Facebook</a><br>
 			    	<a class="btn btn-link-2" href="#" id="tw"><i class="fa fa-twitter"></i> Twitter</a><br>
-			    	<a class="btn btn-link-2" href="#" id="li"><i class="fa fa-linkedin"></i> LinkedIn</a>
+			    	<a class="btn btn-link-2" href="#" id="li"><i class="fa fa-linkedin"></i> LinkedIn</a><br><br>
+			    	<div id="lienRegister">Vous n'avez pas de compte, <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a> !</div>
 			    	</center>
 				</div>
 
