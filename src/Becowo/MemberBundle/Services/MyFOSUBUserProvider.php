@@ -42,16 +42,22 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
 
         $service = $response->getResourceOwner()->getName();
         $infos = $response->getResponse();
-        $rsId = $infos['id'];
         switch ($service) {
                 case 'facebook':
+                    $rsId = $infos['id'];
                     $email = $response->getEmail();
+                    $user = $this->userManager->findUserBy(array('email' => $email));
                     break;
                 case 'linkedin':
+                    $rsId = $infos['id'];
                     $email = $infos['emailAddress'];
+                    $user = $this->userManager->findUserBy(array('email' => $email));
+                    break;
+                case 'twitter':
+                    $rsId = $infos['id_str'];
+                    $user = $this->userManager->findUserBy(array('rsId' => $rsId));
                     break;
         }
-        $user = $this->userManager->findUserBy(array('email' => $email));
 
         dump($user);
         // if null just create new user and set it properties
@@ -63,11 +69,11 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
             $user->setPassword("RSPwd");
             $user->setUpdatedAt( new \DateTime());
             $user->setSignedUpWith($service);
-            $user->setRsId($infos['id']);
-            $user->setEmail($email);
+            $user->setRsId($rsId);
             
             switch ($service) {
                 case 'facebook':
+                    $user->setEmail($email);
                     $user->setFacebookLink("https://www.facebook.com/".$rsId);
                     $user->setFirstName($response->getFirstName());
                     $user->setName($response->getRealName());
@@ -78,6 +84,7 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setProfilePicture($profile_picture);
                     break;
                 case 'linkedin':
+                    $user->setEmail($email);
                     $user->setLinkedinLink($infos['publicProfileUrl']);
                     $user->setJob($infos['headline']);
                     $user->setCity($infos['location']['name']);
@@ -88,6 +95,15 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $profile_picture = new ProfilePicture();
                     $profile_picture->setUrl($infos['pictureUrl']);
                     $profile_picture->setAlt($infos['firstName']);
+                    $user->setProfilePicture($profile_picture);
+                    break;
+                case 'twitter':
+                    $user->setTwitterLink('https://twitter.com/'.$infos['screen_name']);
+                    $user->setName($infos['name']);
+
+                    $profile_picture = new ProfilePicture();
+                    $profile_picture->setUrl($infos['profile_image_url_https']);
+                    $profile_picture->setAlt($infos['name']);
                     $user->setProfilePicture($profile_picture);
                     break;
             }

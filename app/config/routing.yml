@@ -17,6 +17,9 @@ facebook_login:
 linkedin_login:
     path: /login/check-linkedin
 
+twitter_login:
+    path: /login/check-twitter
+
 # My own routes
 becowo_manager:
     resource: "@BecowoManagerBundle/Resources/config/routing.yml"
