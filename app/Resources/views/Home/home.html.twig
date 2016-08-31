@@ -140,7 +140,15 @@
 	<h2>Ils ont rejoint la communauté</h2>
 	<div id="members">
 		{% for member in members if member.ProfilePicture.url is defined %}
-			<span><a href="{{ path('becowo_member_public_profile', {'username' : member.username}) }}"><img src="{{asset('images/ProfilePictures/')}}{{member.ProfilePicture.url}}" alt="{{member.ProfilePicture.alt}}" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.job}} @{{member.city}}"></a></span>
+			<span><a href="{{ path('becowo_member_public_profile', {'username' : member.username}) }}">
+				{% if member.signedUpWith != '' %}
+			        <img src="{{member.ProfilePicture.url}}" alt="{{member.ProfilePicture.alt}}" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.job}} @{{member.city}}">
+			    {% else %}
+			        <img src="{{asset('images/ProfilePictures/')}}{{member.ProfilePicture.url}}" alt="{{member.ProfilePicture.alt}}" width="115px" height="115px" class="img-circle" title="{{member.username}}, {{member.job}} @{{member.city}}">
+			    {% endif %}
+				
+
+			</a></span>
 		{% endfor %}
 </div></div>
 
