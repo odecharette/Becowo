@@ -18,18 +18,20 @@
 
 <header>
 	<div class="container-fluid">
-		<div class="row text-center">
-			<div id="btn_manager" class="col-lg-3">
-				
+		
+		<div class="row">
+			<div id="logo" class="col-lg-1 col-lg-offset-1">
+				<a href="{{ path('becowo_core_homepage') }}"><img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo" width="80px" height="80px"></a>
 			</div>
-			<div id="logo" class="col-lg-6">
-				<a href="{{ path('becowo_core_homepage') }}"><img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo" width="100px" height="100px"></a>
+			<div id="title" class="col-lg-8">
+				<h1>Becowo</h1>
+				<h4>Enfin une bonne raison d'aller au travail !</h4>
 			</div>
-{######################################### Menu login #####################################################"""#}
-			<div id="login" class="col-lg-3">
+			<div class="col-lg-2">
+				{######################################### Menu login ######################################################}
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}				
-			    	<div class="dropdown">
-			    		<button data-toggle="dropdown" class="btn btn-link btn-lg dropdown-toggle" type="button">
+					<div class="btn-group">
+			    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 					    {# {% if app.user.profilePicture.url is defined %}
 					    	<img src="{{ asset('images/ProfilePictures/')}}{{app.user.profilePicture.url}}" alt="{{app.user.profilePicture.alt}}" width="50px" height="50px">
 					    {% else %} #}
@@ -54,29 +56,56 @@
 				    <a href="{{ path('fos_user_security_login') }}">Connexion</a> | 
 				    <a href="{{ path('fos_user_registration_register') }}">Inscription</a>
 				{% endif %}
-				<br>
-{######################################### Barre de RS #####################################################"""#}		
+
+				
+				{######################## Barre de RS ################################"""#}		
 				{% include 'CommonViews/RS/all_RS_small.html.twig' %}
-			</div> {# Div login #}
+			</div>
+
 				
 		</div>  {# fin row #}
 
-		<div class="row text-center" id="title" >
-			<div class="col-lg-3">
-				<br>
-				<a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a>
+		<div class="row" id="rowMenu" >
+			<div class="col-lg-8 col-lg-offset-1">
+			<div class="btn-group">
+			  	<div class="btn-group">
+			    	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Nos offres</button>
+			    </div>
+
+				<div class="btn-group">
+				    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				      Déclarer un espace <span class="caret"></span>
+				    </button>
+				    <ul class="dropdown-menu" role="menu">
+				      <li><a href="#">Je suis gérant</a></li>
+				      <li><a href="#">Je suis coworker</a></li>
+				    </ul>
+				</div>
+
+				<div class="btn-group">
+				    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				      Comment ça marche ? <span class="caret"></span>
+				    </button>
+				    <ul class="dropdown-menu" role="menu">
+				      <li><a href="#">Je suis gérant</a></li>
+				      <li><a href="#">Je suis coworker</a></li>
+				    </ul>
+				</div>
+
+				
 			</div>
-			<div class="col-lg-6">
-				<h1>Becowo</h1>
-			</div>
-			<div class="col-lg-3">
-				<br>
-				<a href="{{ path('becowo_core_declare_ws') }}">Coworker, déclarez un espace</a>
-			</div>
-		</div> {# fin row #}
-		<div class="row text-center">
-			<h2>Enfin une bonne raison d'aller au travail !</h2>
 		</div>
+			
+			{# <div class="col-lg-2 col-lg-offset-1">
+				<a href="{{ path('becowo_core_offers') }}"><button type="button" class="btn btn-primary" >Manager <br> découvrez nos offres</button></a>
+			</div>
+			<div class="col-lg-2 col-lg-offset-1">
+				<a href="{{ path('becowo_core_declare_ws') }}"><button type="button" class="btn btn-primary" >Coworker <br> déclarez un espace</button></a>
+			</div> #}
+		</div> {# fin row #}
+		{# <div class="row text-center">
+			
+		</div> #}
 	</div> {# fin container #}
 </header>
 

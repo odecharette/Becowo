@@ -10,15 +10,7 @@
 {% block body %}
 
 
-{############################################ Vidéo ##############################################}
 
-{# texte d'exemple</div> #}
-<div id="hideVideo" class="collapse in">
-	<video id="video" width="50%" height="50%" controls="controls">
-		<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
-	</video>
-</div>
-<button type="button" class="btn btn-inverse collapse in" data-toggle="collapse" data-target="#hideVideo">Cacher la vidéo</button>
 
 {############################################ Map ##############################################}
 <nav class="navbar navbar-default" role="navigation" id="BarreRecherche">
@@ -77,6 +69,15 @@
 		        <li>
 		        	<button type="submit" class="btn btn-default" id="BtnSearch">Rechercher</button>
 	        	</li>
+	        	
+	        		{############################################ Vidéo ##############################################}
+				{# 	<div id="hideVideo" class="collapse in">
+						<video id="video" width="200px" height="200px" controls="controls">
+							<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
+						</video>
+					</div> #}
+					{# <button type="button" class="btn btn-inverse collapse in" data-toggle="collapse" data-target="#hideVideo">Cacher la vidéo</button> #}
+	        	
 	        </ul>
         </form>
     </div>

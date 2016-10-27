@@ -16,6 +16,7 @@
 
 :root {
   --my-green: rgb(0, 161, 154); /* #00A19A */
+  --my-green-strong: rgb(0, 129, 125); /* #00817D */
   --my-green-opacity: rgba(0, 161, 154, 0.15);
   --my-green-opacity-4: rgba(0, 161, 154, 0.4);
   --my-red: rgb(231, 46, 70);
@@ -35,8 +36,10 @@
 
 header {
   background-color: var(--my-green);
-	padding-top: 20px;
-  margin-bottom: 10px; 
+	padding-top: 10px;
+}
+header #rowMenu{
+  background-color: var(--my-green-strong);
 }
 
 header h1{
@@ -49,7 +52,22 @@ header h2{
   font-size: 38px;
   color: white;
 }
+header h4{
+  font-family: "MyriadPro", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: white;
+}
 header #title{
+  margin-top: -20px;
+}
+header #logo{
+  margin-bottom: 15px;
+}
+header .btn{
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin-top: 4px;
 }
 header a:hover{
   font-weight: bold;
@@ -93,6 +111,10 @@ body {
 	font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
 }
 
+
+#hideVideo{
+  margin-top: -150px;
+}
 
 footer, footer a{
   font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
@@ -200,7 +222,6 @@ footer #liensRS a{
 }
 
 .navbar{
-  margin-top: 20px;
   margin-bottom: 0;
   border-radius: 0;
 }
@@ -234,8 +255,10 @@ footer #liensRS a{
 #BarreRecherche{
   background-color: white;
   border: none;
+  margin-left: 10%;
 }
 #BarreRecherche li{
+  margin-top: 30px; 
   margin-right: -1px;
 }
 #BarreRecherche #bh-sl-address, #BarreRecherche select, #BarreRecherche button{
