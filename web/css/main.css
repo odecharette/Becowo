@@ -15,7 +15,7 @@
 
 
 :root {
-  --my-green: rgb(0, 161, 154);
+  --my-green: rgb(0, 161, 154); /* #00A19A */
   --my-green-opacity: rgba(0, 161, 154, 0.15);
   --my-green-opacity-4: rgba(0, 161, 154, 0.4);
   --my-red: rgb(231, 46, 70);
@@ -26,9 +26,9 @@
   --my-pink: rgb(241, 95, 104);
   --my-pink-opacity: rgba(241, 95, 104, 0.3);
   --my-pink-opacity-4: rgba(241, 95, 104, 0.4);
-  --my-yellow: rgb(252, 231, 99);
+  --my-yellow: rgb(252, 231, 99); /* #FCE763 */
   --my-yellow-opacity: rgba(252, 231, 99, 0.5);
-  --my-grey: rgb(140, 142, 144);
+  --my-grey: rgb(140, 142, 144); /* #8C8E90 */
   /* to use it : color: var(--my-red); */
 }
 
