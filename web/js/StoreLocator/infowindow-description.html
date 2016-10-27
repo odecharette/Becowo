@@ -1,7 +1,8 @@
 {{#location}}
 <a href="http://localhost/Becowo/web/app_dev.php/ws/{{name}}">  <!-- TO DO : adresse en dynamique-->
 <div class="loc-name">{{name}}</div>
-<div>{{address}}</div>
-<div>{{postal}}{{#if postal}}, {{/if}}{{city}}</div>
+{{#if favoritePicture}}
+					<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}">
+				{{/if}}
 </a>
 {{/location}}
