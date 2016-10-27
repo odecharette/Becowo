@@ -2,6 +2,25 @@
 {{#if listed}}
 	<div class="container-fluid vignette" data-markerid="{{markerid}}" id="vignette">
 		<div class="row">
+			<div class="col-lg-8" id="gauche">
+				{{#if favoritePicture}}
+					<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}" id="favoritePicture">
+				{{/if}}
+				<div id="price">147 <sup>€</sup></div>
+			</div>
+			<div class="col-lg-4" id="droite">
+				{{#if logo}}
+				<img src="/Becowo/web/images/Workspaces/{{name}}/{{logo}}" id="logo">
+				{{/if}} <br>
+				{{address}} <br>
+				{{city}}{{#if city}},{{/if}} {{state}} {{postal}} <br>
+				<img src="/Becowo/web/images/icons/star{{averageVote}}.png" id="stars"> <br>
+				<!-- TO DO url à rendre dynamique -->
+				<a href="/Becowo/web/app_dev.php/ws/{{name}}"><button type="button" id="BtnReserve">Réserver <i class="fa fa-caret-right" aria-hidden="true"></i></button></a>
+				
+			</div>
+		</div>
+		<!-- <div class="row">
 			<div class="col-lg-3" id="logo">
 				{{#if logo}}
 					<img src="/Becowo/web/images/Workspaces/{{name}}/{{logo}}">
@@ -16,18 +35,9 @@
 			</div>
 			<div class="col-lg-2" id="parent">
 				<div id="price">prix</div>
-				<!-- to do -->
 			</div>
-		</div>
-		<div class="row" id="favoritePicture">
-			<div id="imageBtn">
-				{{#if favoritePicture}}
-					<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}">
-				{{/if}}
-				<!-- TO DO url à rendre dynamique -->
-				<a href="/Becowo/web/app_dev.php/ws/{{name}}"><button type="button" id="BtnReserve">Réserver <i class="fa fa-caret-right" aria-hidden="true"></i></button></a>
-			</div>
-		</div>
+		</div> -->
+		
 		<div class="row">
 			<p>{{description}}</p>
 			<div id="bonus">{{descriptionBonus}}</div>
