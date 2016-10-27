@@ -62,10 +62,10 @@ becowo_core_paiement:
     defaults: { _controller: BecowoCoreBundle:Footer:paiement }
     methods: GET
 
-becowo_core_ambassadeur:
-    path:     /devenir-ambassadeur
-    defaults: { _controller: BecowoCoreBundle:Footer:ambassadeur }
-    methods: GET
+# becowo_core_ambassadeur:
+#     path:     /devenir-ambassadeur
+#     defaults: { _controller: BecowoCoreBundle:Footer:ambassadeur }
+#     methods: GET
 
 becowo_core_declare_ws:
     path:     /declarer-un-espace
