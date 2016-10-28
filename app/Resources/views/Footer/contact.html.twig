@@ -1,11 +1,96 @@
-{% extends "layout.html.twig" %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+   <meta name="viewport" content="initial-scale=1.0"> {# Pour Google Map #}
+  <title>Becowo</title>
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/FosUserBundle/form-elements.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+</head>
 
-{% block title %}
-  {{ parent() }} - Contactez-nous
-{% endblock %}
 
-{% block body %}
+<body>
 
+<div class="container-fluid form-box">
+{% include "CommonViews/flashMessage.html.twig" %}
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <div class="row" id="form-login">
+        <div class="col-lg-6">
+          <h3>Contacter notre équipe</h3>
+          
+          {{ form_start(form) }}
+          <div class="row">
+          <div class="col-lg-4">
+          {{ form_label(form.name) }}
+          </div>
+          <div class="col-lg-7">
+          {{ form_errors(form.name) }}
+          {{ form_widget(form.name) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            {{ form_label(form.email) }}
+          </div>
+          <div class="col-lg-7">
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.subject) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.subject) }}
+          {{ form_widget(form.subject) }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          {{ form_label(form.message) }}
+        </div>
+        <div class="col-lg-7">
+          {{ form_errors(form.message) }}
+          {{ form_widget(form.message) }}
+        </div>
+      </div>
+      
+      {{ form_rest(form) }}
+      <button type="submit"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Envoyer</button>
+      {{ form_end(form) }}
+   
+        </div>
+        <div class="col-lg-1">
+          <img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo">
+          <br>
+          <img src="{{ asset('images/icons/VR.png') }}" height="400px">
+        </div>
+        <div class="col-lg-5">
+          <div class="row" id="rs">
+              <a href="https://www.facebook.com/becowo" target="_blank"><img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook"></a>
+              <a href="https://twitter.com/becowo_and_you" target="_blank"><img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter"></a>
+              <a href="https://www.linkedin.com/company/becowo"  target="_blank"><img src="{{ asset('images/RS/linkedin.png') }}" alt="Linkedin"></a>
+              <a href="https://www.instagram.com/becowo_and_you/" target="_blank"><img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram"></a>
+          </div>
+              <br>
+              Imaginarium - Plaine Images<br>
+              99 A Boulevard Constantin Descat <br>
+              59200 Tourcoing<br>
+              <u>Tel</u> : 06.11.70.63.82<br><br>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10108.033872878754!2d3.1582131!3d50.7012274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2551d389c0607e14!2sImaginarium+-+Plaine+Images!5e0!3m2!1sfr!2sfr!4v1477660339025" width="300" height="200" frameborder="0" style="border:0"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  {# #####################################################################################"" #}
+{# 
 <div class="container-fluid" id="footer-contact">
 {% include "CommonViews/flashMessage.html.twig" %}
 	<div class="row">
@@ -54,14 +139,16 @@
       {{ form_end(form) }}
 		</div>
     <div class="col-lg-6">
-        <h2>Becowo</h2>
-        <div id="contact-content1">
-          Notre adresse à Lille<br>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40492.55484396377!2d3.01214105760308!3d50.6311166961078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2d579b3256e11%3A0x40af13e81646360!2sLille!5e0!3m2!1sfr!2sfr!4v1464886297463" width="200" height="150" frameborder="0" style="border:0" allowfullscreen></iframe><br>
-          Tel :
+        <h3>Becowo</h3>
+        <div>
+          Imaginarium - Plaine Images<br>
+          99 A Boulevard Constantin Descat <br>
+          59200 Tourcoing<br>
+          <u>Tel</u> : 06.11.70.63.82<br><br>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10108.033872878754!2d3.1582131!3d50.7012274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2551d389c0607e14!2sImaginarium+-+Plaine+Images!5e0!3m2!1sfr!2sfr!4v1477660339025" width="300" height="200" frameborder="0" style="border:0"></iframe>
         </div>
-        <h2>Suivez nous via les réseaux sociaux</h2>
-        <div id="contact-content2">
+        <h3>Suivez nous via les réseaux sociaux</h3>
+        <div>
           <div class="row">
             <div class="col-lg-6">
               <a href="https://www.facebook.com/becowo" target="_blank"><img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook">facebook.com/becowo</a><br>
@@ -78,5 +165,5 @@
 	</div>
 </div>
 
-
-{% endblock %}
+ #}
+</body>
