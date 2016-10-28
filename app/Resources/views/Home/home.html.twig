@@ -159,25 +159,24 @@
 	<h2>Les nouveaux avis</h2>
 	{% for comment in comments %}
 		<div class="row">
-			<h4><a href="{{ path('becowo_core_workspace', {'name' : comment.comments.workspace.name}) }}">A propos de {{comment.comments.workspace.name}}</a></h4>
-		</div>
-		<div class="row" id="avis">
-		<div class="col-lg-4" id="avisCol1">
+			<div class="col-lg-2" id="pic">
 			{% if comment.comments.member.ProfilePicture.url is defined %}
 				<span><a href="{{ path('becowo_member_public_profile', {'username' : comment.comments.member.username}) }}"><img src="{{asset('images/ProfilePictures/')}}{{comment.comments.member.ProfilePicture.url}}" alt="{{comment.comments.member.ProfilePicture.alt}}" width="70px" height="70px" class="img-circle" title="{{comment.comments.member.username}}, {{comment.comments.member.job}} @{{comment.comments.member.city}}"></a></span>
 			{% else %}
 				{{comment.comments.member.username}}
 			{% endif %}
-			<br>
-			{{comment.scoreAvg|rating}}
+			</div>
+			<div class="col-lg-4">
+				<h4><a href="{{ path('becowo_core_workspace', {'name' : comment.comments.workspace.name}) }}">A propos de {{comment.comments.workspace.name}}</a></h4>
+				{{comment.scoreAvg|rating}}
+			</div>
+
 		</div>
-		<div class="col-lg-8">
-			
-			<blockquote class="oval-speech-border">
+		<div class="row">
+			<blockquote class="speech-bubble">
 		    	<p>{{comment.comments.post}}</p>
 		    </blockquote>
 		</div>
-	</div>
 	{% endfor %}
 </div>
 {############################################ Barre Instagram ##############################################}
@@ -188,7 +187,7 @@
 
 </div>
 
-<iframe width='640' height='360' src='https://roundme.com/embed/84871/213752' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+{# <iframe width='640' height='360' src='https://roundme.com/embed/84871/213752' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> #}
 
 
 </div></div>

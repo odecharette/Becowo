@@ -537,7 +537,10 @@ footer #liensRS a{
 #NewAvis h4,#NewAvis a{
   color: var(--my-pink);
   font-size: 14pt;
-  margin-left: 15px;
+  margin-bottom: 3px;
+}
+#NewAvis #pic{
+  text-align: center;
 }
 #avis .rating{
   display: flex;
@@ -548,111 +551,39 @@ footer #liensRS a{
   font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
 }
 
-.oval-speech-border {
+.speech-bubble {
   position:relative;
-  /*padding:70px 30px;*/
-  margin: 1em auto 30px;
-  border:8px solid #f3961c;
-  text-align:center;
+  padding:15px;
+  margin:10px 10px 30px 10px;
   color:#333;
-  background:#fff;
-  /* css3 */
-  /*
-  NOTES:
-  -webkit-border-radius:240px 140px; // produces oval in safari 4 and chrome 4
-  -webkit-border-radius:240px / 140px; // produces oval in chrome 4 (again!) but not supported in safari 4
-  Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
-  */
-  -webkit-border-top-left-radius:240px 140px;
-  -webkit-border-top-right-radius:240px 140px;
-  -webkit-border-bottom-right-radius:240px 140px;
-  -webkit-border-bottom-left-radius:240px 140px;
-  -moz-border-radius:240px / 140px;
-  border-radius:240px / 140px;
-}
-
-/* creates larger curve */
-.oval-speech-border:before {
-  content:"";
-  position:absolute;
-  z-index:2;
-  bottom:-37px;
-  right:50%;
-  width:50px;
-  height:30px;
-  border-style:solid;
-  border-width:0 10px 10px 0;
-  border-color:#f3961c;
-  margin-right:-10px;
-  background:transparent;
-  /* css3 */
-  -webkit-border-bottom-right-radius:80px 50px;
-  -moz-border-radius-bottomright:80px 50px;
-  border-bottom-right-radius:80px 50px;
-  /* reduce the damage in FF3.0 */
-  display:block;
-}
-
-/* creates smaller curve */
-.oval-speech-border:after {
-  content:"";
-  position:absolute;
-  z-index:2;
-  bottom:-36px;
-  right:50%;
-  width:20px;
-  height:36px;
-  border-style:solid;
-  border-width:0 10px 10px 0;
-  border-color:#f3961c;
-  margin-right:20px;
-  background:transparent;
-  /* css3 */
-  -webkit-border-bottom-right-radius:40px 50px;
-  -moz-border-radius-bottomright:40px 50px;
-  border-bottom-right-radius:40px 50px;
-  /* reduce the damage in FF3.0 */
-  display:block;
-}
-
-/* creates a small circle to produce a rounded point where the two curves meet */
-.oval-speech-border > :first-child:before {
-  content:"";
-  position:absolute;
-  z-index:1;
-  bottom:-37px;
-  right:50%;
-  width:10px;
-  height:10px;
-  margin-right:35px;
-  background:#f3961c;
+  background:#eee;
   /* css3 */
   -webkit-border-radius:10px;
   -moz-border-radius:10px;
   border-radius:10px;
 }
 
-/* creates a white rectangle to cover part of the oval border*/
-.oval-speech-border > :first-child:after {
-  content:"";
-  position:absolute;
-  z-index:1;
-  bottom:-10px;
-  right:50%;
-  width:30px;
-  height:15px;
-  background:#fff;
+.speech-bubble p {
+  font-size : 16px; 
+  line-height:1.25em;
 }
 
-.oval-speech-border p{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  line-height: 16px;
-  max-height: 50px;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+/* creates the triangle */
+.speech-bubble:after {
+  content:"";
+  position:absolute;
+  top:-25px;
+  left:35px;
+  border:15px solid transparent;
+  border-bottom-color:#eee;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
 }
+
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.speech-bubble + p {padding-left:15px; font:14px Arial, sans-serif;}
+
 
 #Instagram{
   background: var(--my-yellow-opacity);
