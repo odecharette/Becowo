@@ -36,14 +36,14 @@
 }
 
 header .navbar-default{
-    position: relative;
+    /*position: relative;*/
     background-color: white;
     border-bottom: solid 3px #e9e9e9;
     bottom: 2px;
     height: 70px;
 }
 header img{
-  width: 170px;
+  width: 250px;
 }
 header .navbar-brand {
   padding: 5px 5px 5px 5px;
