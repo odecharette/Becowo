@@ -9,8 +9,9 @@
 
 {% block body %}
 
+<img src="{{ asset('images/Home4.jpg') }}" alt="Becowo" width="100%">
 
-
+<h2>Enfin une bonne raison d'aller au travail !</h2>
 
 {############################################ Map ##############################################}
 <nav class="navbar navbar-default" role="navigation" id="BarreRecherche">
@@ -26,11 +27,12 @@
     <div class="collapse navbar-collapse navbar-ex2-collapse">
     	<form id="bh-sl-user-location" method="post" action="#">
 	        <ul class="nav navbar-nav">
-	        	<li>
-	        		<button id='findMe' type="button"><i class="fa fa-bullseye fa-3x" aria-hidden="true" title="Ma position"></i></button>
-	        	</li>
+	        	{# <li>
+	        		<button id='findMe' type="button">Géolocalisez moi</button>
+	        	</li> #}
 		        <li>
-			        <input type="text" class="form-control" placeholder="Search" id="bh-sl-address" name="bh-sl-address" />
+			        <input type="text" class="form-control" placeholder="Saisir une adresse ici" id="bh-sl-address" name="bh-sl-address">
+			        <button id='findMe' type="button"> <u>Me géolocaliser</u></button></input>
 			    </li>
 			    <li>      
 			    	<select id="bh-sl-maxdistance" name="bh-sl-maxdistance" class="form-control">
@@ -70,13 +72,7 @@
 		        	<button type="submit" class="btn btn-default" id="BtnSearch">Rechercher</button>
 	        	</li>
 	        	
-	        		{############################################ Vidéo ##############################################}
-				{# 	<div id="hideVideo" class="collapse in">
-						<video id="video" width="200px" height="200px" controls="controls">
-							<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
-						</video>
-					</div> #}
-					{# <button type="button" class="btn btn-inverse collapse in" data-toggle="collapse" data-target="#hideVideo">Cacher la vidéo</button> #}
+	        		
 	        	
 	        </ul>
         </form>
@@ -99,10 +95,32 @@
 	</div>
 </div><!-- /.container-fluid -->
 
-{############################################ Nouveaux espaces ##############################################}
 
-<div class="container-fluid"><div class="row"><div class="col-lg-8" id="NewEspaces">
-	{# Ne récupérer que les 3 derniers workspaces #}
+<div class="container-fluid">
+
+{############################################ Vidéo ##############################################}
+<div class="row" id="vid">
+	<div class="col-lg-4 col-lg-offset-1">
+	 	<div id="hideVideo" class="collapse in">
+			<video id="video" height="200px" controls="controls">
+				<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
+			</video>
+		</div> 
+	</div>
+	<div class="col-lg-3">
+		<p>Oportunum est, ut arbitror, explanare nunc causam, quae ad exitium praecipitem Aginatium inpulit iam inde a priscis maioribus nobilem, ut locuta est pertinacior fama. nec enim super hoc ulla documentorum rata est fides. Oportunum est, ut arbitror, explanare nunc causam, quae ad </p>
+		<button type="button" class="btn btn-primary">Comment ça marche ?</button>
+	</div>
+	<div class="col-lg-1" id="separateur"></div>
+	<div class="col-lg-3" id="Instagram">
+		<h4>Quoi de neuf sur Instagram ?</h4>
+		<script src="https://snapwidget.com/js/snapwidget.js"></script>
+		<iframe src="https://snapwidget.com/embed/code/207854" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
+	</div>
+</div>
+{############################################ Nouveaux espaces #############################################
+<div class="col-lg-8" id="NewEspaces">
+	Ne récupérer que les 3 derniers workspaces
 	<h2>Les nouveaux espaces</h2>
 	<div id="vignette_espace_mini" class="container-fluid">
 		<div class="row text-center">
@@ -116,8 +134,8 @@
 	  				</div>
 				{% endif %}
 			{% endfor %}
-</div></div></div>
-{############################################ Coup de coeur ##############################################}
+</div></div></div>#}
+{############################################ Coup de coeur #############################################
 <div class="col-lg-4" id="coupCoeur">
 	<h2>Coup de coeur</h2>
 	<div id="vignette_espace_mini" class="container-fluid">
@@ -134,9 +152,9 @@
 			{% endif %}
 		</div>
 	</div>
-</div></div></div>
+</div></div></div>#}
 
-{############################################ Derniers inscrits ##############################################}
+{############################################ Derniers inscrits #############################################
 <div class="container-fluid" id="NewMembers">
 	<h2>Ils ont rejoint la communauté</h2>
 	<div id="members">
@@ -151,10 +169,10 @@
 
 			</a></span>
 		{% endfor %}
-</div></div>
+</div></div>#}
 
 
-{############################################ Nouveaux avis ##############################################}
+{############################################ Nouveaux avis #############################################
 <div class="container"><div class="row"><div class="col-lg-8" id="NewAvis">
 	<h2>Les nouveaux avis</h2>
 	{% for comment in comments %}
@@ -178,19 +196,25 @@
 		    </blockquote>
 		</div>
 	{% endfor %}
-</div>
+</div>#}
 {############################################ Barre Instagram ##############################################}
-<div class="col-lg-4" id="Instagram">
-	<h2><img src="{{asset('images/RS/instagram.png')}}" alt="Instagram">Actu Instagram</h2>
+{# <div class="col-lg-4" id="Instagram"> 
+<div class="row">
+	<div class="col-lg-4 col-lg-offset-2">
+		Quoi de neuf sur Instagram ?
+	</div>
+	<div class="col-lg-3 col-lg-offset-1">
 	<!-- SnapWidget -->
-	<iframe sandbox="allow-scripts" src="https://snapwidget.com/embed/code/189769" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
-
+	<script src="https://snapwidget.com/js/snapwidget.js"></script>
+	<iframe src="https://snapwidget.com/embed/code/207854" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
+	</div>
 </div>
+ </div> #}
 
 {# <iframe width='640' height='360' src='https://roundme.com/embed/84871/213752' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> #}
 
 
-</div></div>
+</div>
 
 
 {# Social Media Widget #}
