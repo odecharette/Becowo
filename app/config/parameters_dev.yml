@@ -1,9 +1,9 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: 127.0.0.1
+    database_host: localhost #127.0.0.1
     database_port: null
-    database_name: Becowo
-    database_user: webmaster
+    database_name: Becowo #id116531_becowo
+    database_user: webmaster #id116531_webmaster
     database_password: Annapurna1985
     mailer_transport: smtp
     mailer_host: 127.0.0.1

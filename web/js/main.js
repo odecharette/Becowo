@@ -75,7 +75,7 @@ $(function () {
 /* Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent */
     window.cookieconsent_options = {"message":"En poursuivant votre navigation sur ce site, vous acceptez que des cookies soient utilisés.","dismiss":"J'ai compris !","learnMore":"En savoir plus","link":"https://www.microsoft.com/fr-fr/security/resources/cookie-whatis.aspx","theme":"light-floating"};
 
-/*************** Vidéo on home page *****************/
+/*************** Vidéo on home page ****************
 $(document).ready(function () 
     { 
         if (document.getElementById("video")){
@@ -92,7 +92,7 @@ $(document).ready(function ()
             }); 
         };
     }); 
-
+*/
 /************************ blackknight467/star-rating-bundle    rating.js *************************/
 
 $(function(){

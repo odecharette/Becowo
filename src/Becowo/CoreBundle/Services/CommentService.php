@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Becowo\CoreBundle\Entity\Comment;
 use Doctrine\ORM\NoResultException;
 
-class Comment
+class CommentService
 {
     private $em = null;
 

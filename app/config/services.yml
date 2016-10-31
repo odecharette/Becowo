@@ -14,11 +14,11 @@ services:
     #     arguments:    ['@fos_elastica.finder.becowo.workspace']
 
     app.workspace:
-        class: Becowo\CoreBundle\Services\Workspace
+        class: Becowo\CoreBundle\Services\WorkspaceService
         arguments: ['@doctrine.orm.entity_manager']
 
     app.comment:
-        class: Becowo\CoreBundle\Services\Comment
+        class: Becowo\CoreBundle\Services\CommentService
         arguments: ['@doctrine.orm.entity_manager']
 
     app.member:
