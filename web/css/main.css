@@ -750,6 +750,7 @@ footer #liensRS a{
   padding-left: 20px;
   color: var(--my-grey);
   font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
+  margin-bottom: 10px;
 }
 #CommentResults h2{
   color: var(--my-green);
