@@ -137,11 +137,11 @@ class WorkspaceService
         return  $repo->getTotInclTaxReservationsByWorkspace($ws->getId());
     }
 
-    // public function getPricesByWorkspace(Workspace $ws)
-    // {
-    //     $repo = $this->em->getRepository('BecowoCoreBundle:Price');
-    //     return $repo->findBy(array('workspace' => $ws));
-    // }
+    public function getPricesByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Price');
+        return $repo->findBy(array('workspace' => $ws));
+    }
 
     public function getAverageVoteByWorkspace(Workspace $ws)
     {

@@ -151,11 +151,9 @@ function bookOffice() {
 // http://www.daterangepicker.com
 
 $('input[name="booking-calendar"]').daterangepicker({
-        timePicker: true,
-        timePicker24Hour: true,
-        timePickerIncrement: 30,
+        timePicker: false,
         locale: {
-            format: 'DD/MM/YYYY h:mm',
+            format: 'DD/MM/YYYY',
             separator: '/',
             applyLabel: 'Valider',
             cancelLabel: 'Annuler',
@@ -173,12 +171,17 @@ $('input[name="booking-calendar"]').daterangepicker({
 
 $('input[name="booking-calendar"]').on('apply.daterangepicker', function(ev, picker) {
 	document.getElementById('booking-recap-date').innerHTML = "Du ";
-	document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY HH:mm');
+	document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
 	document.getElementById('booking-recap-date').innerHTML += " Au ";
-	document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY HH:mm');
+	document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY');
 });
 /***************** Booking slider ****************************/
 // http://seiyria.com/bootstrap-slider/
+var mySlider = $("#booking-time-slider").slider({});
+mySlider.on('change', function(ev){
+	document.getElementById('booking-recap-people').innerHTML = mySlider.data('slider').getValue();
+	document.getElementById('booking-recap-people').innerHTML += " personne(s)"; 
+});
 
 var mySlider = $("#booking-slider").slider({});
 mySlider.on('change', function(ev){

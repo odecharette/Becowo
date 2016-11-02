@@ -852,12 +852,27 @@ footer #liensRS a{
        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
             filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
-/* Booking slider */
-.slider-handle.custom::before {
+/* Booking sliders */
+.slideTime .slider-handle.custom::before {
+content: "\f017" !important; /*code from fontawesome icons : http://fontawesome.io/cheatsheet/*/
+font-family: FontAwesome;
+color: var(--my-blue) !important;
+}
+/*.slider-handle .min-slider-handle .custom:last-child::before {
+content: "\f017" !important; code from fontawesome icons : http://fontawesome.io/cheatsheet/
+font-family: FontAwesome;
+color: var(--my-blue) !important;
+}*/
+.slidePeople .slider-handle.custom::before {
 content: "\f183" !important; /*code from fontawesome icons : http://fontawesome.io/cheatsheet/*/
 font-family: FontAwesome;
 color: var(--my-blue) !important;
 }
+/*.slider-handle.max-slider-handle::before {
+content: "\f017" !important; code from fontawesome icons : http://fontawesome.io/cheatsheet/
+font-family: FontAwesome;
+color: var(--my-blue) !important;
+}*/
 /* booking calendar */
 .calendar .today{
   background-color: grey;
