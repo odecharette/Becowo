@@ -1,32 +1,40 @@
 {# {{dump(listOffices)}}  #}
 <div class="container-fluid">
 	<div class="row">
-		<div id="booking-steps">
-		    <titre>Réservation</titre>
-		    <section>
-		        <p> Choisir parmi les espaces disponibles : <br>
-		        	<div class="cc-selector">
-		        		{% for office in listOffices %}
-				        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}"/>
-				        	<label class="drinkcard-cc" for="{{office.office.name}}">
-				        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
-				        	</label>
-				        {% endfor %}
-				    </div>
-
-		        	{# {% for office in listOffices %}
-						<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
-	  				{% endfor %} #}
-	  			</p>
-		    </section>
-		    <titre>Paiement</titre>
-		    <section>
-		        <p>Wonderful transition effects.</p>
-		    </section>
-		    <titre>Confirmation</titre>
-		    <section>
-		        <p>The next and previous buttons help you to navigate through your content.</p>
-		    </section>
+		<div class="col-lg-9">
+			<div id="booking-steps">
+			    <titre>Réservation</titre>
+			    <section>
+			        <p> Choisir parmi les espaces disponibles : <br>
+			        	<div class="cc-selector">
+			        		{% for office in listOffices %}
+					        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}"/>
+					        	<label class="drinkcard-cc" for="{{office.office.name}}">
+					        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
+					        	</label>
+					        {% endfor %}
+					    </div>
+					    <br>
+					    <input type="text" name="booking-calendar" />
+					    {# TO DO : min et max en fonction de la salle sélectionnée et des places dispos #}
+					    <b>1</b>
+					    	<input id="booking-slider" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="10" data-slider-value="1"/>
+					    <b>10</b>
+		  			</p>
+			    </section>
+			    <titre>Paiement</titre>
+			    <section>
+			        <p>Wonderful transition effects.</p>
+			    </section>
+			    <titre>Confirmation</titre>
+			    <section>
+			        <p>The next and previous buttons help you to navigate through your content.</p>
+			    </section>
+			</div>
+		</div>
+		<div class="col-lg-3 well">
+			Détails de la réservation : <br>
+			
 		</div>
 	</div>
 </div>
@@ -69,4 +77,3 @@
 	</div>
 </div>
  #}
- 

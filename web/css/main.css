@@ -821,6 +821,7 @@ footer #liensRS a{
 #booking-steps .title{
   display: none;
 }
+/* Booking office selection */
 .cc-selector input{
     margin:0;padding:0;
     -webkit-appearance:none;
@@ -851,6 +852,13 @@ footer #liensRS a{
        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
             filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
+/* Booking slider */
+.slider-handle.custom::before {
+content: "\f183" !important; /*code from fontawesome icons : http://fontawesome.io/cheatsheet/*/
+font-family: FontAwesome;
+color: var(--my-blue) !important;
+}
+
 #team{
   background-color: var(--my-pink-opacity);
   margin-left: 20px;

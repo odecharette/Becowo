@@ -141,3 +141,21 @@ $("#booking-steps").steps({
     transitionEffect: "slideLeft",
     autoFocus: true
 });
+
+/***************** Booking calendar ****************************/
+// http://www.daterangepicker.com
+
+$('input[name="booking-calendar"]').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        locale: {
+            format: 'DD/MM/YYYY h:mm A'
+        },
+        startDate: '01/01/2016',
+    	endDate: '01/01/2016'
+    });
+
+/***************** Booking slider ****************************/
+// http://seiyria.com/bootstrap-slider/
+
+$("#booking-slider").slider({});
