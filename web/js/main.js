@@ -131,3 +131,13 @@ $(function(){
 
 });
 /***************** fin rating.js ****************************/
+
+/***************** Booking steps ****************************/
+//http://www.jquery-steps.com/Examples#basic
+
+$("#booking-steps").steps({
+    headerTag: "titre",
+    bodyTag: "section",
+    transitionEffect: "slideLeft",
+    autoFocus: true
+});

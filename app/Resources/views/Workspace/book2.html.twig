@@ -1,6 +1,37 @@
-<br><br><br><br>
+{# {{dump(listOffices)}}  #}
+<div class="container-fluid">
+	<div class="row">
+		<div id="booking-steps">
+		    <titre>Réservation</titre>
+		    <section>
+		        <p> Choisir parmi les espaces disponibles : <br>
+		        	<div class="cc-selector">
+		        		{% for office in listOffices %}
+				        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}"/>
+				        	<label class="drinkcard-cc" for="{{office.office.name}}">
+				        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
+				        	</label>
+				        {% endfor %}
+				    </div>
 
-{# {{dump(listOffices)}} 
+		        	{# {% for office in listOffices %}
+						<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
+	  				{% endfor %} #}
+	  			</p>
+		    </section>
+		    <titre>Paiement</titre>
+		    <section>
+		        <p>Wonderful transition effects.</p>
+		    </section>
+		    <titre>Confirmation</titre>
+		    <section>
+		        <p>The next and previous buttons help you to navigate through your content.</p>
+		    </section>
+		</div>
+	</div>
+</div>
+
+{# 
 <div class="container-fluid">
 	<div class="row">
 		{{ws.name}} vous propose plusieurs types de bureaux : <br>
@@ -38,3 +69,4 @@
 	</div>
 </div>
  #}
+ 
