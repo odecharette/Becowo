@@ -1156,7 +1156,7 @@ color: var(--my-blue) !important;
             width: 40px;
             height: 40px;
             cursor: pointer;
-            background: url('img/a17.png') no-repeat;
+            background: url('../images/icons/jssor-buttons.png') no-repeat;
             overflow: hidden;
         }
         .jssora05l { background-position: -10px -40px; }
@@ -1206,7 +1206,7 @@ color: var(--my-blue) !important;
             height: 62px;
             border: #000 2px solid;
             box-sizing: content-box;
-            background: url('img/t01.png') -800px -800px no-repeat;
+            background: url('../images/icons/jssor-plus.png') -800px -800px no-repeat;
             _background: none;
         }
         
