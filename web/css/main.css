@@ -1,21 +1,17 @@
 /********************************** layout *************************************/
 
 @font-face {
-    font-family: "DIN Alternate";
-    src: url('../css/font/DIN Alternate Regular.otf');
+    font-family: 'aniversregular';
+    src: url('../css/font/Anivers_Regular-webfont.eot');
+    src: url('../css/font/Anivers_Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../css/font/Anivers_Regular-webfont.woff2') format('woff2'),
+         url('../css/font/Anivers_Regular-webfont.woff') format('woff'),
+         url('../css/font/Anivers_Regular-webfont.ttf') format('truetype'),
+         url('../css/font/Anivers_Regular-webfont.svg#aniversregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
-@font-face {
-    font-family: "MyriadPro";
-    src: url('../css/font/MyriadPro-Regular.otf');
-}
-@font-face {
-    font-family: "MinionPro";
-    src: url('../css/font/MinionPro-Regular.otf');
-}
-@font-face {
-    font-family: "Gnuolane";
-    src: url('../css/font/gnuolane rg.ttf');
-}
+
 
 :root {
 
@@ -46,7 +42,9 @@ header .navbar-default{
     height: 70px;
 }
 header img{
-  width: 250px;
+  /* Pour mémo, typo : Vollkorn gras italique pour name et regular pour tagline*/
+  width: 450px;
+  margin-top: 5px;
 }
 header .navbar-brand {
   padding: 5px 5px 5px 5px;
@@ -70,7 +68,6 @@ header #login a {
 h2{
   color: var(--my-red);
   text-align: center;
-  font-family: "Gnuolane";
   font-weight: 700;
 }
 h4{
@@ -167,7 +164,7 @@ header #liensRS a{
 
 
 body {
-	font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
+	font-family: "aniversregular", Helvetica, Arial, sans-serif;
 }
 
 
@@ -193,7 +190,6 @@ video{
 }
 
 footer, footer a{
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   padding-left: 20px;
   background: var(--my-blue);
   color: white;
@@ -294,7 +290,6 @@ footer #liensRS a{
 #page-simple p{
   text-align: justify;
   color: var(--my-grey);
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
 }
 
 .navbar{
@@ -409,13 +404,11 @@ footer #liensRS a{
 }
 #vignette p{
   color: #999999;
-  font-family: "MyriadPro", Helvetica, Arial, sans-serif;
   font-size: 10pt;
   text-align: justify;
 }
 #vignette #adresse{
   color: #737373;
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   font-size: 10pt;
 }
 #vignette #bonus{
@@ -428,6 +421,7 @@ footer #liensRS a{
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
+  letter-spacing: 0.1em;
 }
 
 #vignette #favoritePicture{
@@ -627,7 +621,6 @@ footer #liensRS a{
 #avis p{
   text-align: justify;
   color: var(--my-grey);
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
 }
 
 .speech-bubble {
@@ -699,7 +692,6 @@ footer #liensRS a{
 }
 #contact{
   font-size: 23pt;
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   color: var(--my-grey);
 }
 #description{
@@ -716,7 +708,6 @@ footer #liensRS a{
 }
 #description span{
   color: var(--my-green);
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   font-size: 14pt;
 }
 #description hr{
@@ -742,7 +733,6 @@ footer #liensRS a{
   /*border: 1px solid var(--my-grey);*/
   background-color: var(--my-pink-opacity);
   color: var(--my-grey);
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   font-size: 14pt;
 }
 #time i, #map i{
@@ -914,7 +904,6 @@ color: var(--my-blue) !important;
 }
 #events p{
   color: var(--my-grey);
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   font-size: 12pt;
 }
 
@@ -924,7 +913,6 @@ color: var(--my-blue) !important;
   margin-right: 20px;
   padding-left: 20px;
   color: var(--my-grey);
-  font-family: "DIN Alternate", Helvetica, Arial, sans-serif;
   margin-bottom: 10px;
 }
 #CommentResults h2{
