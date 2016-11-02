@@ -142,20 +142,46 @@ $("#booking-steps").steps({
     autoFocus: true
 });
 
+/***************** Booking offices ****************************/
+function bookOffice() { 
+    document.getElementById('booking-recap-office').innerHTML = document.querySelector('input[name="office"]:checked').value;
+};
+
 /***************** Booking calendar ****************************/
 // http://www.daterangepicker.com
 
 $('input[name="booking-calendar"]').daterangepicker({
         timePicker: true,
+        timePicker24Hour: true,
         timePickerIncrement: 30,
         locale: {
-            format: 'DD/MM/YYYY h:mm A'
+            format: 'DD/MM/YYYY h:mm',
+            separator: '/',
+            applyLabel: 'Valider',
+            cancelLabel: 'Annuler',
+            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
+            firstDay: '2'
         },
-        startDate: '01/01/2016',
-    	endDate: '01/01/2016'
+        startDate: new Date(),
+        minDate: new Date(),
+        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
+    	isInvalidDate: function(date) {
+		    return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+		  }
     });
 
+$('input[name="booking-calendar"]').on('apply.daterangepicker', function(ev, picker) {
+	document.getElementById('booking-recap-date').innerHTML = "Du ";
+	document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY HH:mm');
+	document.getElementById('booking-recap-date').innerHTML += " Au ";
+	document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY HH:mm');
+});
 /***************** Booking slider ****************************/
 // http://seiyria.com/bootstrap-slider/
 
-$("#booking-slider").slider({});
+var mySlider = $("#booking-slider").slider({});
+mySlider.on('change', function(ev){
+	document.getElementById('booking-recap-people').innerHTML = mySlider.data('slider').getValue();
+	document.getElementById('booking-recap-people').innerHTML += " personne(s)"; 
+});

@@ -858,7 +858,10 @@ content: "\f183" !important; /*code from fontawesome icons : http://fontawesome.
 font-family: FontAwesome;
 color: var(--my-blue) !important;
 }
-
+/* booking calendar */
+.calendar .today{
+  background-color: grey;
+}
 #team{
   background-color: var(--my-pink-opacity);
   margin-left: 20px;
