@@ -37,7 +37,7 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        dump($response);
+        //dump($response);
         
 
         $service = $response->getResourceOwner()->getName();
@@ -59,7 +59,7 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     break;
         }
 
-        dump($user);
+      //  dump($user);
         // if null just create new user and set it properties
         if (null === $user) {
             
