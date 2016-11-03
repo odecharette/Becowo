@@ -187,7 +187,8 @@ mySliderPeople.on('change', function(ev){
 /***************** Booking offices ****************************/
 function bookOffice() { 
     document.getElementById('booking-recap-office').innerHTML = document.querySelector('input[name="office"]:checked').value;
-    $("#booking-slider").slider('setAttribute', 'max', 8);
+    // Change la valeur max du slider de personnes, en fonction du 'deskQty' de l'office sélectionné
+    $("#booking-slider").slider('setAttribute', 'max', document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value).innerHTML);
     $("#booking-slider").slider('refresh');
-    document.getElementById('booking-slider-max').innerHTML = "8";
+    document.getElementById('booking-slider-max').innerHTML = document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value).innerHTML;
 };
