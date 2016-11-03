@@ -188,7 +188,23 @@ mySliderPeople.on('change', function(ev){
 function bookOffice() { 
     document.getElementById('booking-recap-office').innerHTML = document.querySelector('input[name="office"]:checked').value;
     // Change la valeur max du slider de personnes, en fonction du 'deskQty' de l'office sélectionné
-    $("#booking-slider").slider('setAttribute', 'max', document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value).innerHTML);
+    $("#booking-slider").slider('setAttribute', 'max', document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML);
     $("#booking-slider").slider('refresh');
-    document.getElementById('booking-slider-max').innerHTML = document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value).innerHTML;
+    document.getElementById('booking-slider-max').innerHTML = document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML;
 };
+
+/***************** Booking duration choices ****************************/
+function chooseDuration() {
+	var liste = "Open space,Bureau,Salle de réunion,Salle de conférence";
+
+	//Récup la liste des bureaux
+	var oInput = document.getElementById('booking-office'),
+            oChild;
+    for(i = 0; i < oInput.childNodes.length; i++){
+        oChild = oInput.childNodes[i];
+        if(oChild.nodeName == 'INPUT'){ // Boucle sur chaque input dont l'ID est un type d'espace
+        	// Inscrit le prix par durée sélectionnée, pour chaque bureau
+        	document.getElementById('pricePerOffice-' + oChild.id).innerHTML = document.getElementById('SelectedOffice-' + oChild.id + '-price' + document.querySelector('input[name="booking-duration"]:checked').value).innerHTML;
+        }
+    }
+}
