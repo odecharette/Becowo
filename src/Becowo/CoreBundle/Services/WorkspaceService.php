@@ -173,4 +173,10 @@ class WorkspaceService
         }
         
     }
+
+    public function getTimesByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Timetable');
+        return $repo->findOpenCloseHoursByWorkspaces($ws);
+    }
 }

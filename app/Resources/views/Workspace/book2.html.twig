@@ -16,11 +16,12 @@
 					    </div>
 					    <br>
 					    <input type="text" name="booking-calendar" />
-					    <b>08:00</b>
+					    <b>{{times[0].openHour|date("H:i")}}</b>
 					    <span class="slideTime">
 					    	<input id="booking-time-slider" type="text" data-slider-handle="custom" data-slider-min="8" data-slider-max="20" data-slider-step="0.5" data-slider-value="[8,20]" />
 					    </span>
-					    <b>20:00</b>
+					    <b>{{times[0].closeHour|date("H:i")}}</b>
+					    <br>
 					    {# TO DO : min et max en fonction de la salle sélectionnée et des places dispos #}
 					    <b>1</b><span class="slidePeople">
 					    	<input id="booking-slider" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="10" data-slider-value="1"/>

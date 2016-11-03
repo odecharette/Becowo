@@ -20,6 +20,7 @@ class WorkspaceController extends Controller
     $listOffices = $WsService->getOfficesByWorkspace($ws);
     $prices = $WsService->getPricesByWorkspace($ws);
     $averageVote = $WsService->getAverageVoteByWorkspace($ws);
+    $times = $WsService->getTimesByWorkspace($ws);
 
   	return $this->render('Workspace/view.html.twig', 
       array('ws' => $ws, 
@@ -29,7 +30,8 @@ class WorkspaceController extends Controller
         'pictureLogo' => $pictureLogo,
         'listOffices' => $listOffices,
         'prices' => $prices,
-        'averageVote' => $averageVote));
+        'averageVote' => $averageVote,
+        'times' => $times));
   }
 
 }

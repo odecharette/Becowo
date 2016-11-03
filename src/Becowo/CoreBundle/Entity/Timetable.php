@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Timetable
  *
- * @ORM\Table(name="timetable", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"}), @ORM\Index(name="fk_week_day_id_idx", columns={"week_day_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="timetable", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"})})
+* @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\TimetableRepository")
  */
 class Timetable
 {
@@ -32,25 +32,14 @@ class Timetable
     private $workspace;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\WeekDay
-     *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\WeekDay")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="week_day_id", referencedColumnName="id")
-     * })
-     */
-    private $weekDay;
-
-
-    /**
-     * @var \DateTime
+     * @var \Timestamp
      *
      * @ORM\Column(name="open_hour", type="time", nullable=true)
      */
     private $openHour;
 
     /**
-     * @var \DateTime
+     * @var \Timestamp
      *
      * @ORM\Column(name="close_hour", type="time", nullable=true)
      */
@@ -139,29 +128,6 @@ class Timetable
         return $this->workspace;
     }
 
-    /**
-     * Set weekDay
-     *
-     * @param \Becowo\CoreBundle\Entity\WeekDay $weekDay
-     *
-     * @return Timetable
-     */
-    public function setWeekDay(\Becowo\CoreBundle\Entity\WeekDay $weekDay = null)
-    {
-        $this->weekDay = $weekDay;
-
-        return $this;
-    }
-
-    /**
-     * Get weekDay
-     *
-     * @return \Becowo\CoreBundle\Entity\WeekDay
-     */
-    public function getWeekDay()
-    {
-        return $this->weekDay;
-    }
 
     public function __toString()
     {
