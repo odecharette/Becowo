@@ -1,4 +1,5 @@
 {{dump(prices)}} 
+{{dump(listOffices)}}
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-9">
@@ -23,9 +24,11 @@
 					    <b>{{times[0].closeHour|date("H:i")}}</b>
 					    <br>
 					    {# TO DO : min et max en fonction de la salle sélectionnée et des places dispos #}
-					    <b>1</b><span class="slidePeople">
+					    <b>1</b>
+					    <span class="slidePeople">
 					    	<input id="booking-slider" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="10" data-slider-value="1"/>
-					    </span><b>10</b>
+					    </span>
+					    <b id="booking-slider-max">10</b>
 		  			</p>
 			    </section>
 			    <titre>Paiement</titre>
@@ -40,8 +43,10 @@
 		</div>
 		<div class="col-lg-3 well">
 			Détails de la réservation : <br>
+			<div id="booking-selected-office" style="display: none"></div>
 			<div id="booking-recap-office"></div>
 			<div id="booking-recap-date"></div>
+			<div id="booking-recap-time"></div>
 			<div id="booking-recap-people"></div>
 		</div>
 	</div>

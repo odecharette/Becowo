@@ -142,10 +142,6 @@ $("#booking-steps").steps({
     autoFocus: true
 });
 
-/***************** Booking offices ****************************/
-function bookOffice() { 
-    document.getElementById('booking-recap-office').innerHTML = document.querySelector('input[name="office"]:checked').value;
-};
 
 /***************** Booking calendar ****************************/
 // http://www.daterangepicker.com
@@ -177,14 +173,21 @@ $('input[name="booking-calendar"]').on('apply.daterangepicker', function(ev, pic
 });
 /***************** Booking slider ****************************/
 // http://seiyria.com/bootstrap-slider/
-var mySlider = $("#booking-time-slider").slider({});
-mySlider.on('change', function(ev){
-	document.getElementById('booking-recap-people').innerHTML = mySlider.data('slider').getValue();
+var mySliderTime = $("#booking-time-slider").slider({});
+mySliderTime.on('change', function(ev){
+	document.getElementById('booking-recap-time').innerHTML = mySliderTime.data('slider').getValue();
+});
+
+var mySliderPeople = $("#booking-slider").slider({});
+mySliderPeople.on('change', function(ev){
+	document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
 	document.getElementById('booking-recap-people').innerHTML += " personne(s)"; 
 });
 
-var mySlider = $("#booking-slider").slider({});
-mySlider.on('change', function(ev){
-	document.getElementById('booking-recap-people').innerHTML = mySlider.data('slider').getValue();
-	document.getElementById('booking-recap-people').innerHTML += " personne(s)"; 
-});
+/***************** Booking offices ****************************/
+function bookOffice() { 
+    document.getElementById('booking-recap-office').innerHTML = document.querySelector('input[name="office"]:checked').value;
+    $("#booking-slider").slider('setAttribute', 'max', 8);
+    $("#booking-slider").slider('refresh');
+    document.getElementById('booking-slider-max').innerHTML = "8";
+};
