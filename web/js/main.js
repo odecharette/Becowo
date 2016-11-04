@@ -215,22 +215,46 @@ function loadCalendar(){
 		    };
 	    });
 	}
+
+	
+	$('#booking-calendar').on('apply.daterangepicker', function(ev, picker) {
+		if(picker.startDate.date() == picker.endDate.date()){
+			console.log('une date');
+			document.getElementById('booking-recap-date').innerHTML = picker.startDate.format('DD/MM/YYYY');
+		}else{
+			console.log('deux dates');
+			document.getElementById('booking-recap-date').innerHTML = "Du ";
+			document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
+			document.getElementById('booking-recap-date').innerHTML += " Au ";
+			document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY');
+		}
+	});
 };
 
 
-$('#booking-calendar').on('apply.daterangepicker', function(ev, picker) {
-	document.getElementById('booking-recap-date').innerHTML = "Du ";
-	document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
-	document.getElementById('booking-recap-date').innerHTML += " Au ";
-	document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY');
-});
-/***************** Booking slider ****************************/
+/***************** Booking time ****************************/
 // http://seiyria.com/bootstrap-slider/
-var mySliderTime = $("#booking-time-slider").slider({});
-mySliderTime.on('change', function(ev){
-	document.getElementById('booking-recap-time').innerHTML = mySliderTime.data('slider').getValue();
-});
 
+function loadTime(boo){
+	if(boo){ // true
+		document.getElementById('calendar-time').style.display = 'block';
+		var mySliderTime = $("#booking-time-slider").slider({});
+		mySliderTime.on('change', function(ev){
+			document.getElementById('booking-recap-time').innerHTML = mySliderTime.data('slider').getValue();
+		});
+	}else{ // false
+		document.getElementById('calendar-time').style.display = 'none';
+	}
+}
+
+function loadHalfTime(boo){
+	if(boo){
+		document.getElementById('calendar-halftime').style.display = 'block';
+	}else{
+		document.getElementById('calendar-halftime').style.display = 'none';
+	}
+}
+/***************** Booking people ****************************/
 var mySliderPeople = $("#booking-slider").slider({});
 mySliderPeople.on('change', function(ev){
 	document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
@@ -259,27 +283,40 @@ function chooseDuration() {
         	switch(document.querySelector('input[name="booking-duration"]:checked').value) {
         		case 'Heure':
         			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / heure';
+        			loadTime(true);
+        			loadHalfTime(false);
         			break;
         		case '1/2 journée':
         			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / 1/2 journée';
+        			loadTime(false);
+        			loadHalfTime(true);
         			break;
         		case 'Journée':
         			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / jour';
+        			loadTime(false);
+        			loadHalfTime(false);
         			break;
         		case 'Semaine':
         			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Semaine';
+        			loadTime(false);
+        			loadHalfTime(false);
         			break;
         		case 'Mois':
         			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Mois';
+        			loadTime(false);
+        			loadHalfTime(false);
         			break;
         		default:
         			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€';
+        			loadTime(false);
+        			loadHalfTime(false);
         	}
         }
     }
     document.getElementById('booking-recap-duration').innerHTML = document.querySelector('input[name="booking-duration"]:checked').value;
 
     loadCalendar();
+
 }
 $( document ).ready(function() {
 	//Affichage des prix au démarrage
