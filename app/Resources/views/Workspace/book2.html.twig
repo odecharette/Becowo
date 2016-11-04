@@ -43,11 +43,11 @@
 						<span id="calendar-error"></span>
 					<span id="calendar-time">	
 					<br> 4. Choisir votre heure d'arrivée et de départ <br>
-					    <b>{{times[0].openHour|date("H:i")}}</b>
+					    <b id="calendar-time-min">{{times[0].openHour|date("H:i")}}</b>
 					    <span class="slideTime">
-					    	<input id="booking-time-slider" type="text" data-slider-handle="custom" data-slider-min="8" data-slider-max="20" data-slider-step="0.5" data-slider-value="[8,20]" />
+					    	<input id="booking-time-slider" type="text" data-slider-handle="custom" />
 					    </span>
-					    <b>{{times[0].closeHour|date("H:i")}}</b>
+					    <b id="calendar-time-max">{{times[0].closeHour|date("H:i")}}</b>
 					    <br>
 					</span>
 					<span id="calendar-halftime">	

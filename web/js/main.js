@@ -216,7 +216,7 @@ function loadCalendar(){
 	    });
 	}
 
-	
+
 	$('#booking-calendar').on('apply.daterangepicker', function(ev, picker) {
 		if(picker.startDate.date() == picker.endDate.date()){
 			console.log('une date');
@@ -238,9 +238,40 @@ function loadCalendar(){
 function loadTime(boo){
 	if(boo){ // true
 		document.getElementById('calendar-time').style.display = 'block';
-		var mySliderTime = $("#booking-time-slider").slider({});
+		var ouverture = document.getElementById('calendar-time-min').innerHTML.split(':');
+		var ouvertureMinutes = Number(ouverture[0]) * 60 + Number(ouverture[1]);
+		var fermeture = document.getElementById('calendar-time-max').innerHTML.split(':');
+		var fermetureMinutes = Number(fermeture[0]) * 60 + Number(fermeture[1]);
+
+		var mySliderTime = $("#booking-time-slider").slider({
+
+		range: true,
+    	min: ouvertureMinutes,	// every values are in minutes
+    	max: fermetureMinutes,
+    	step: 30,
+    	value: [600, 720]
+
+		});
 		mySliderTime.on('change', function(ev){
-			document.getElementById('booking-recap-time').innerHTML = mySliderTime.data('slider').getValue();
+
+		var valeurs = mySliderTime.data('slider').getValue();
+
+		var hours1 = Math.floor(valeurs[0] / 60);
+        var minutes1 = valeurs[0] - (hours1 * 60);
+
+        if (hours1 < 10) hours1 = '0' + hours1;
+        if (minutes1.length == 1) minutes1 = '0' + minutes1;
+        if (minutes1 == 0) minutes1 = '00';
+
+        var hours2 = Math.floor(valeurs[1] / 60);
+        var minutes2 = valeurs[1] - (hours2 * 60);
+
+        if (hours2 < 10) hours2 = '0' + hours2;
+        if (minutes2.length == 1) minutes2 = '0' + minutes2;
+        if (minutes2 == 0) minutes2 = '00';
+
+		$('.tooltip').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
+		document.getElementById('booking-recap-time').innerHTML = 'De ' + hours1 + ':' + minutes1 + ' à ' + hours2 + ':' + minutes2;
 		});
 	}else{ // false
 		document.getElementById('calendar-time').style.display = 'none';
@@ -322,3 +353,4 @@ $( document ).ready(function() {
 	//Affichage des prix au démarrage
     chooseDuration();
 });
+
