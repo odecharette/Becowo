@@ -146,26 +146,70 @@ $("#booking-steps").steps({
 /***************** Booking calendar ****************************/
 // http://www.daterangepicker.com
 
-$('input[name="booking-calendar"]').daterangepicker({
-        timePicker: false,
-        locale: {
-            format: 'DD/MM/YYYY',
-            separator: '/',
-            applyLabel: 'Valider',
-            cancelLabel: 'Annuler',
-            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
-            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
-            firstDay: '2'
-        },
-        startDate: new Date(),
-        minDate: new Date(),
-        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
-    	isInvalidDate: function(date) {
-		    return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
-		  }
-    });
+// Le calendrier s'adapte en fonction de la durée le location choisie
+function loadCalendar(){
+	if(document.querySelector('input[name="booking-duration"]:checked').value == 'Heure' || document.querySelector('input[name="booking-duration"]:checked').value == '1/2 journée' || document.querySelector('input[name="booking-duration"]:checked').value == 'Journée') {
+		console.log('calendrier heure');
+		$('#booking-calendar').daterangepicker({
+	        timePicker: false,
+	        singleDatePicker: true,
+	        locale: {
+	            format: 'DD/MM/YYYY',
+	            separator: '/',
+	            applyLabel: 'Valider',
+	            cancelLabel: 'Annuler',
+	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
+	            firstDay: '2'
+	        },
+	        startDate: new Date(),
+	        minDate: new Date(),
+	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
+	    	isInvalidDate: function(date) {
+			    return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+			  }
+	    });
+	} else if (document.querySelector('input[name="booking-duration"]:checked').value == 'Semaine' || document.querySelector('input[name="booking-duration"]:checked').value == 'Mois'){
+		console.log('calendrier semaine');
+		$('#booking-calendar').daterangepicker({
+	        timePicker: false,
+	        singleDatePicker: false,
+	        locale: {
+	            format: 'DD/MM/YYYY',
+	            separator: '/',
+	            applyLabel: 'Valider',
+	            cancelLabel: 'Annuler',
+	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
+	            firstDay: '2'
+	        },
+	        startDate: new Date(),
+	        minDate: new Date(),
+	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
+	    	isInvalidDate: function(date) {
+			    return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+			  }
+	    });
 
-$('input[name="booking-calendar"]').on('apply.daterangepicker', function(ev, picker) {
+
+	    $('#booking-calendar').on('apply.daterangepicker', function (e, picker) {
+	    	var end = new Date(picker.endDate);
+	    	var begin = new Date(picker.startDate);
+	    	var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+
+			var diffDays = Math.round(Math.abs((end.getTime() - begin.getTime())/(oneDay)));
+	        if(diffDays % 5 != 0){
+	        	document.getElementById('calendar-error').innerHTML = "Pour profiter du tarif semaine, veuillez sélectionner une semaine complète ";
+	        }
+	        else{
+	        	document.getElementById('calendar-error').innerHTML = "";
+	        }
+	    });
+	}
+};
+
+
+$('#booking-calendar').on('apply.daterangepicker', function(ev, picker) {
 	document.getElementById('booking-recap-date').innerHTML = "Du ";
 	document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
 	document.getElementById('booking-recap-date').innerHTML += " Au ";
@@ -195,8 +239,6 @@ function bookOffice() {
 
 /***************** Booking duration choices ****************************/
 function chooseDuration() {
-	var liste = "Open space,Bureau,Salle de réunion,Salle de conférence";
-
 	//Récup la liste des bureaux
 	var oInput = document.getElementById('booking-office'),
             oChild;
@@ -205,6 +247,32 @@ function chooseDuration() {
         if(oChild.nodeName == 'INPUT'){ // Boucle sur chaque input dont l'ID est un type d'espace
         	// Inscrit le prix par durée sélectionnée, pour chaque bureau
         	document.getElementById('pricePerOffice-' + oChild.id).innerHTML = document.getElementById('SelectedOffice-' + oChild.id + '-price' + document.querySelector('input[name="booking-duration"]:checked').value).innerHTML;
+        	switch(document.querySelector('input[name="booking-duration"]:checked').value) {
+        		case 'Heure':
+        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / heure';
+        			break;
+        		case '1/2 journée':
+        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / 1/2 journée';
+        			break;
+        		case 'Journée':
+        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / jour';
+        			break;
+        		case 'Semaine':
+        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Semaine';
+        			break;
+        		case 'Mois':
+        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Mois';
+        			break;
+        		default:
+        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€';
+        	}
         }
     }
+    document.getElementById('booking-recap-duration').innerHTML = document.querySelector('input[name="booking-duration"]:checked').value;
+
+    loadCalendar();
 }
+$( document ).ready(function() {
+	//Affichage des prix au démarrage
+    chooseDuration();
+});

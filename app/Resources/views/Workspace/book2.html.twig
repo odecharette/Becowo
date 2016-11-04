@@ -13,25 +13,25 @@
 					        	<label class="drinkcard-cc" for="{{office.office.name}}">
 					        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
 					        	</label>
-					        	<span id="pricePerOffice-{{office.office.name}}">Prix ici</span>
+					        	 <span id="pricePerOffice-{{office.office.name}}">{# le prix va s'afficher ici via JS #}</span>
 					        	<div id="SelectedOffice-{{office.office.name}}-deskQty" style="display: none">{{office.deskQty}}</div>
 					        	{# Récup les prix par bureau #}
 					        	{% for price in prices if price.office.name == office.office.name %}
-					        		<div id="SelectedOffice-{{office.office.name}}-priceHour" style="display: none">{{price.priceHour}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceHalfDay" style="display: none">{{price.priceHalfDay}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceDay" style="display: none">{{price.priceDay}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceWeek" style="display: none">{{price.priceWeek}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceMonth" style="display: none">{{price.priceMonth}}</div>
+					        		<div id="SelectedOffice-{{office.office.name}}-priceHeure" style="display: none">{{price.priceHour}}</div>
+					        		<div id="SelectedOffice-{{office.office.name}}-price1/2 journée" style="display: none">{{price.priceHalfDay}}</div>
+					        		<div id="SelectedOffice-{{office.office.name}}-priceJournée" style="display: none">{{price.priceDay}}</div>
+					        		<div id="SelectedOffice-{{office.office.name}}-priceSemaine" style="display: none">{{price.priceWeek}}</div>
+					        		<div id="SelectedOffice-{{office.office.name}}-priceMois" style="display: none">{{price.priceMonth}}</div>
 					        	{% endfor %}
 					        {% endfor %}
 					    </div>
 					<br> 2. Choisir une durée pour afficher les prix <br>
 					    <div class="segmented-control" style="width: 400px; color: #20385e" id="booking-duration">
-						  <input type="radio" name="booking-duration" id="booking-duration-1" value="Hour" checked onchange="chooseDuration()">
-						  <input type="radio" name="booking-duration" id="booking-duration-2" value="HalfDay" onchange="chooseDuration()">
-						  <input type="radio" name="booking-duration" id="booking-duration-3" value="Day" onchange="chooseDuration()">
-						  <input type="radio" name="booking-duration" id="booking-duration-4" value="Week" onchange="chooseDuration()">
-						  <input type="radio" name="booking-duration" id="booking-duration-5" value="Month" onchange="chooseDuration()">
+						  <input type="radio" name="booking-duration" id="booking-duration-1" value="Heure" checked onchange="chooseDuration()">
+						  <input type="radio" name="booking-duration" id="booking-duration-2" value="1/2 journée" onchange="chooseDuration()">
+						  <input type="radio" name="booking-duration" id="booking-duration-3" value="Journée" onchange="chooseDuration()">
+						  <input type="radio" name="booking-duration" id="booking-duration-4" value="Semaine" onchange="chooseDuration()">
+						  <input type="radio" name="booking-duration" id="booking-duration-5" value="Mois" onchange="chooseDuration()">
 						  <label for="booking-duration-1" data-value="Heure">Heure</label>
 						  <label for="booking-duration-2" data-value="1/2 journée">1/2 journée</label>
 						  <label for="booking-duration-3" data-value="Journée">Journée</label>
@@ -39,7 +39,8 @@
 						  <label for="booking-duration-5" data-value="Mois">Mois</label>
 						</div>
 					<br> 3. Choisir une plage de dates dans le calendrier <br>
-					    <input type="text" name="booking-calendar" />
+						<input type="text" name="booking-calendar" id="booking-calendar" />
+						<span id="calendar-error"></span>
 					<br> 4. Choisir votre heure d'arrivée <br>
 					    <b>{{times[0].openHour|date("H:i")}}</b>
 					    <span class="slideTime">
@@ -80,6 +81,7 @@
 			{# <div id="booking-selected-office" style="display: none"></div> #}
 			<div id="booking-recap-office"></div>
 			<div id="booking-recap-date"></div>
+			<div id="booking-recap-duration"></div>
 			<div id="booking-recap-time"></div>
 			<div id="booking-recap-people"></div>
 		</div>
