@@ -195,15 +195,24 @@ function loadCalendar(){
 	    $('#booking-calendar').on('apply.daterangepicker', function (e, picker) {
 	    	var end = new Date(picker.endDate);
 	    	var begin = new Date(picker.startDate);
-	    	var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+	    	// end = moment(end).add(1, 'm'); // Add 1 minute
 
-			var diffDays = Math.round(Math.abs((end.getTime() - begin.getTime())/(oneDay)));
-	        if(diffDays % 5 != 0){
-	        	document.getElementById('calendar-error').innerHTML = "Pour profiter du tarif semaine, veuillez sélectionner une semaine complète ";
-	        }
-	        else{
-	        	document.getElementById('calendar-error').innerHTML = "";
-	        }
+	    	var diff = moment.preciseDiff(begin, end, true); // http://codebox.org.uk/pages/moment-date-range-plugin
+	    	console.log(diff);
+	    	console.log(diff.days);
+	    	console.log(diff.months);
+
+			if (document.querySelector('input[name="booking-duration"]:checked').value == 'Semaine'){
+		        
+		        	document.getElementById('calendar-error').innerHTML = "TO DO vérifier saisie est en semaine";
+		    }else{
+		    	if(diff.months > 0 && diff.days == 0){
+		        	document.getElementById('calendar-error').innerHTML = "";
+		        }
+		        else{
+		        	document.getElementById('calendar-error').innerHTML = "Pour profiter du tarif mois, veuillez sélectionner un mois complet.";
+		        }
+		    };
 	    });
 	}
 };
