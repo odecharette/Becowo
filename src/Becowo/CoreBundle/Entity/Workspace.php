@@ -8,7 +8,7 @@ use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 /**
  * Workspace
  *
- * @ORM\Table(name="workspace", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_category_id_idx", columns={"category_id"})})
+ * @ORM\Table(name="becowo_workspace", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_category_id_idx", columns={"category_id"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\WorkspaceRepository")
  */
 class Workspace
@@ -181,7 +181,7 @@ class Workspace
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Poi", inversedBy="workspace")
-     * @ORM\JoinTable(name="workspace_has_poi",
+     * @ORM\JoinTable(name="becowo_workspace_has_poi",
      *   joinColumns={
      *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
      *   },
@@ -196,7 +196,7 @@ class Workspace
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\TeamMember", inversedBy="workspace", cascade={"persist"})
-     * @ORM\JoinTable(name="workspace_has_team_member",
+     * @ORM\JoinTable(name="becowo_workspace_has_team_member",
      *   joinColumns={
      *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
      *   },
@@ -211,7 +211,7 @@ class Workspace
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Amenities", inversedBy="workspace")
-     * @ORM\JoinTable(name="workspace_has_amenities",
+     * @ORM\JoinTable(name="becowo_workspace_has_amenities",
      *   joinColumns={
      *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
      *   },
@@ -227,7 +227,7 @@ class Workspace
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Offer", inversedBy="workspace")
-     * @ORM\JoinTable(name="workspace_has_offer",
+     * @ORM\JoinTable(name="becowo_workspace_has_offer",
      *   joinColumns={
      *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
      *   },
