@@ -845,10 +845,11 @@ footer #liensRS a{
             filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 .drinkcard-cc-title{
-    position:absolute;
-    top: 2%;
-    left: 32%;
-    color: white;
+  position:absolute;
+  top: 2%;
+  width: 100%;
+  text-align: center;
+  color: white;
 }
 .drinkcard-cc-price{
   position: absolute;
