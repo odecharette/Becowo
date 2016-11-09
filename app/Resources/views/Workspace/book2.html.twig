@@ -3,17 +3,19 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-9">
+		    <form id="form-booking">
 			<div id="booking-steps">
 			    <titre>Réservation</titre>
 			    <section>
 			        1. Choisir parmi les espaces disponibles : <br>
 			        	<div class="cc-selector" id="booking-office">
 			        		{% for office in listOffices %}
-					        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}" onchange="bookOffice()" />
+					        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}" onchange="bookOffice()" class="required" />
 					        	<label class="drinkcard-cc" for="{{office.office.name}}">
 					        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
+				        			<div class="drinkcard-cc-title">{{office.office.name}}</div>
+				        	 		<div class="drinkcard-cc-price" id="pricePerOffice-{{office.office.name}}">{# le prix va s'afficher ici via JS #}</div>
 					        	</label>
-					        	 <span id="pricePerOffice-{{office.office.name}}">{# le prix va s'afficher ici via JS #}</span>
 					        	<div id="SelectedOffice-{{office.office.name}}-deskQty" style="display: none">{{office.deskQty}}</div>
 					        	{# Récup les prix par bureau #}
 					        	{% for price in prices if price.office.name == office.office.name %}
@@ -78,6 +80,7 @@
 			        <p>TO DO</p>
 			    </section>
 			</div>
+			</form>
 		</div>
 		<div class="col-lg-3 well">
 			Détails de la réservation : <br>

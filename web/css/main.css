@@ -16,7 +16,8 @@
 :root {
 
 --my-blue: rgb(32, 56, 94); /* #20385e */
---my-red: rgb(231, 46, 70);  
+--my-red: rgb(231, 46, 70);  /* #E72E46 */
+/* grey : #e9e9e9 */
 
   --my-green: rgb(0, 161, 154); /* #00A19A */
   --my-green-strong: rgb(0, 129, 125); /* #00817D */
@@ -771,6 +772,7 @@ footer #liensRS a{
   margin-right: 20px;
   padding-top: 20px;
 }
+
 #booking-steps .steps ul, #booking-steps .actions ul{
   list-style: none!important;
 }
@@ -825,11 +827,11 @@ footer #liensRS a{
             filter: none;
 }
 .drinkcard-cc{
+  position: relative;
     cursor:pointer;
     background-size:contain;
     background-repeat:no-repeat;
     display:inline-block;
-    width:100px;height:70px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
@@ -841,6 +843,21 @@ footer #liensRS a{
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
             filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+.drinkcard-cc-title{
+    position:absolute;
+    top: 2%;
+    left: 32%;
+    color: white;
+}
+.drinkcard-cc-price{
+  position: absolute;
+  top: 76%;
+  left: 2%;
+  color: white;
+  background-color: black;
+  padding: 5px 5px 5px 5px;
+  border-radius: 5px;
 }
 /* Booking sliders */
 .slideTime .slider-handle.custom::before {
