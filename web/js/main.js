@@ -178,7 +178,16 @@ function loadCalendar(){
 	        minDate: new Date(),
 	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
 	    	isInvalidDate: function(date) {
-			    return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+
+	    		if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+	    			return (date.day() == 6 || date < new Date() );
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML == 1){
+	    			return (date.day() == 5 || date < new Date() );
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == 1){
+	    			return (date < new Date() );
+	    		}
 			  }
 	    });
 	} else if (document.querySelector('input[name="booking-duration"]:checked').value == 'Semaine' || document.querySelector('input[name="booking-duration"]:checked').value == 'Mois'){
@@ -199,7 +208,16 @@ function loadCalendar(){
 	        minDate: new Date(),
 	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
 	    	isInvalidDate: function(date) {
-			    return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+
+	    		if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+	    			return (date.day() == 6 || date < new Date() );
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML == 1){
+	    			return (date.day() == 5 || date < new Date() );
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == 1){
+	    			return (date < new Date() );
+	    		}
 			  }
 	    });
 
@@ -281,12 +299,13 @@ function loadTime(boo){
         if (minutes2.length == 1) minutes2 = '0' + minutes2;
         if (minutes2 == 0) minutes2 = '00';
 
-		$('.tooltip').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
+		$('.slideTime .tooltip-inner').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
 		document.getElementById('booking-recap-time').innerHTML = 'De ' + hours1 + ':' + minutes1 + ' à ' + hours2 + ':' + minutes2;
 		document.getElementById('booking-recap-time-calculated').innerHTML = (valeurs[1] - valeurs[0])/60;
 		
 		bookCalculatePrice();
 		});
+
 	}else{ // false
 		document.getElementById('calendar-time').style.display = 'none';
 	}
@@ -344,32 +363,32 @@ function chooseDuration() {
 
 	        	switch(document.querySelector('input[name="booking-duration"]:checked').value) {
 	        		case 'Heure':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / heure';
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / heure*';
 	        			loadTime(true);
 	        			loadHalfTime(false);
 	        			break;
 	        		case '1/2 journée':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / 1/2 journée';
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / 1/2 journée*';
 	        			loadTime(false);
 	        			loadHalfTime(true);
 	        			break;
 	        		case 'Journée':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / jour';
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / jour*';
 	        			loadTime(false);
 	        			loadHalfTime(false);
 	        			break;
 	        		case 'Semaine':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Semaine';
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / Semaine*';
 	        			loadTime(false);
 	        			loadHalfTime(false);
 	        			break;
 	        		case 'Mois':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Mois';
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / Mois*';
 	        			loadTime(false);
 	        			loadHalfTime(false);
 	        			break;
 	        		default:
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€';
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' €*';
 	        			loadTime(false);
 	        			loadHalfTime(false);
 	        	}
@@ -435,7 +454,7 @@ function bookCalculatePrice()
 
 
 	document.getElementById('booking-recap-price').innerHTML = finalPrice;
-	document.getElementById('booking-recap-price-txt').innerHTML = " €";
+	document.getElementById('booking-recap-price-txt').innerHTML = " € TTC";
 
 
 }

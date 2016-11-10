@@ -45,6 +45,19 @@ class Timetable
      */
     private $closeHour;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_open_saturday", type="boolean", nullable=true)
+     */
+    private $isOpenSaturday;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_open_sunday", type="boolean", nullable=true)
+     */
+    private $isOpenSunday;
 
     /**
      * Set openHour
@@ -128,7 +141,54 @@ class Timetable
         return $this->workspace;
     }
 
+    /**
+     * Set isOpenSaturday
+     *
+     * @param boolean $isOpenSaturday
+     *
+     * @return Timetable
+     */
+    public function setIsOpenSaturday($isOpenSaturday)
+    {
+        $this->isOpenSaturday = $isOpenSaturday;
 
+        return $this;
+    }
+
+    /**
+     * Get isOpenSaturday
+     *
+     * @return boolean
+     */
+    public function getisOpenSaturday()
+    {
+        return $this->isOpenSaturday;
+    }
+
+    /**
+     * Set isOpenSunday
+     *
+     * @param boolean $isOpenSunday
+     *
+     * @return Timetable
+     */
+    public function setIsOpenSunday($isOpenSunday)
+    {
+        $this->isOpenSunday = $isOpenSunday;
+
+        return $this;
+    }
+
+    /**
+     * Get isOpenSunday
+     *
+     * @return boolean
+     */
+    public function getIsOpenSunday()
+    {
+        return $this->isOpenSunday;
+    }
+    
     public function __toString()
     {
         return $this->openHour;

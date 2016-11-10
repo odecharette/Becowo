@@ -41,6 +41,7 @@
 						  <label for="booking-duration-5" data-value="Mois">Mois</label>
 						</div>
 					<br> 3. Choisir une plage de dates dans le calendrier <br>
+						<div id="isOpenSaturday">{{times[0].isOpenSaturday}}</div><div id="isOpenSunday">{{times[0].isOpenSunday}}</div>
 						<input type="text" name="booking-calendar" id="booking-calendar" />
 						<span id="calendar-error"></span>
 					<span id="calendar-time">	
@@ -70,6 +71,7 @@
 					    </span>
 					    <b id="booking-slider-max">10</b>
 		  			</p>
+		  			* Nos prix sont exprimés en TTC
 			    </section>
 			    <titre>Paiement</titre>
 			    <section>
