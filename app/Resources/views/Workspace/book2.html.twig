@@ -11,7 +11,7 @@
 			        	<div class="cc-selector" id="booking-office">
 			        		{% for office in listOffices %}
 					        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}" onchange="bookOffice()" class="required" />
-					        	<label class="drinkcard-cc" for="{{office.office.name}}">
+					        	<label class="drinkcard-cc" for="{{office.office.name}}" id="label-{{office.office.name}}">
 					        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
 				        			<div class="drinkcard-cc-title">{{office.office.name}}</div>
 				        	 		<div class="drinkcard-cc-price" id="pricePerOffice-{{office.office.name}}">{# le prix va s'afficher ici via JS #}</div>

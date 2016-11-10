@@ -775,7 +775,9 @@ footer #liensRS a{
 #booking-error{
   color: red;
 }
-
+.ToBeHide{
+  display: none;
+}
 #booking-steps .steps ul, #booking-steps .actions ul{
   list-style: none!important;
 }

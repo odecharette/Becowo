@@ -330,37 +330,49 @@ function chooseDuration() {
         oChild = oInput.childNodes[i];
         if(oChild.nodeName == 'INPUT'){ // Boucle sur chaque input dont l'ID est un type d'espace
         	// Inscrit le prix par durée sélectionnée, pour chaque bureau
-        	document.getElementById('pricePerOffice-' + oChild.id).innerHTML = document.getElementById('SelectedOffice-' + oChild.id + '-price' + document.querySelector('input[name="booking-duration"]:checked').value).innerHTML;
-        	switch(document.querySelector('input[name="booking-duration"]:checked').value) {
-        		case 'Heure':
-        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / heure';
-        			loadTime(true);
-        			loadHalfTime(false);
-        			break;
-        		case '1/2 journée':
-        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / 1/2 journée';
-        			loadTime(false);
-        			loadHalfTime(true);
-        			break;
-        		case 'Journée':
-        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / jour';
-        			loadTime(false);
-        			loadHalfTime(false);
-        			break;
-        		case 'Semaine':
-        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Semaine';
-        			loadTime(false);
-        			loadHalfTime(false);
-        			break;
-        		case 'Mois':
-        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Mois';
-        			loadTime(false);
-        			loadHalfTime(false);
-        			break;
-        		default:
-        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€';
-        			loadTime(false);
-        			loadHalfTime(false);
+        	var p = document.getElementById('SelectedOffice-' + oChild.id + '-price' + document.querySelector('input[name="booking-duration"]:checked').value).innerHTML;
+    		document.getElementById('pricePerOffice-' + oChild.id).innerHTML = p;
+        	
+
+        	// si un prix est à zéro on cache le choix du bureau car ca veut dire qu'il n'est pas réservable pour cette durée de tps
+        	if(p == 0)
+        	{
+				$('label[for="' + oChild.id + '"]').hide();
+        	} else
+        	{
+        		$('label[for="' + oChild.id + '"]').show();
+
+	        	switch(document.querySelector('input[name="booking-duration"]:checked').value) {
+	        		case 'Heure':
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / heure';
+	        			loadTime(true);
+	        			loadHalfTime(false);
+	        			break;
+	        		case '1/2 journée':
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / 1/2 journée';
+	        			loadTime(false);
+	        			loadHalfTime(true);
+	        			break;
+	        		case 'Journée':
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / jour';
+	        			loadTime(false);
+	        			loadHalfTime(false);
+	        			break;
+	        		case 'Semaine':
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Semaine';
+	        			loadTime(false);
+	        			loadHalfTime(false);
+	        			break;
+	        		case 'Mois':
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€ / Mois';
+	        			loadTime(false);
+	        			loadHalfTime(false);
+	        			break;
+	        		default:
+	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += '€';
+	        			loadTime(false);
+	        			loadHalfTime(false);
+	        	}
         	}
         }
     }
