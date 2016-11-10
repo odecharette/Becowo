@@ -179,4 +179,10 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Timetable');
         return $repo->findOpenCloseHoursByWorkspaces($ws);
     }
+
+    public function getClosedDatesByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceIsClosed');
+        return $repo->findClosedDatesByWorkspaces($ws);
+    }
 }
