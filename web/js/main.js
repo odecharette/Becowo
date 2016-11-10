@@ -160,6 +160,12 @@ $("#booking-steps").steps({
 
 // Le calendrier s'adapte en fonction de la durée le location choisie
 function loadCalendar(){
+
+	var closedDates = document.getElementById('closedDates').innerHTML;
+	closedDates = closedDates.replace(/(?:\r\n|\r|\n)/g, '');
+	closedDates = closedDates.trim();
+	var closedDatesTab = closedDates.split(',');
+
 	if(document.querySelector('input[name="booking-duration"]:checked').value == 'Heure' || document.querySelector('input[name="booking-duration"]:checked').value == '1/2 journée' || document.querySelector('input[name="booking-duration"]:checked').value == 'Journée') {
 		console.log('calendrier heure');
 		$('#booking-calendar').daterangepicker({
@@ -179,7 +185,9 @@ function loadCalendar(){
 	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
 	    	isInvalidDate: function(date) {
 
-	    		if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+	    		if ($.inArray(date.format('DD/MM/YYYY'), closedDatesTab) != -1) {
+			        return true;
+			    } else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
 			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
 	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
 	    			return (date.day() == 6 || date < new Date() );

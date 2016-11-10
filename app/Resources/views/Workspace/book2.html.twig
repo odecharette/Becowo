@@ -42,7 +42,10 @@
 						  <label for="booking-duration-5" data-value="Mois">Mois</label>
 						</div>
 					<br> 3. Choisir une plage de dates dans le calendrier <br>
-						<div id="isOpenSaturday">{{times[0].isOpenSaturday}}</div><div id="isOpenSunday">{{times[0].isOpenSunday}}</div>
+						<div id="isOpenSaturday" style="display:none">{{times[0].isOpenSaturday}}</div><div id="isOpenSunday" style="display:none">{{times[0].isOpenSunday}}</div>
+						<div id="closedDates" style="display:none">
+							{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}
+						</div>
 						<input type="text" name="booking-calendar" id="booking-calendar" />
 						<span id="calendar-error"></span>
 					<span id="calendar-time">	
