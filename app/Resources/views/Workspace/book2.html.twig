@@ -6,6 +6,7 @@
 			<div id="booking-steps">
 			    <titre>Réservation</titre>
 			    <section>
+			    	<div id="booking-error"></div>
 			        1. Choisir parmi les espaces disponibles : <br>
 			        	<div class="cc-selector" id="booking-office">
 			        		{% for office in listOffices %}
@@ -84,10 +85,11 @@
 			Détails de la réservation : <br>
 			{# <div id="booking-selected-office" style="display: none"></div> #}
 			<div id="booking-recap-office"></div>
-			<div id="booking-recap-date"></div>
+			<div id="booking-recap-date"></div><div id="booking-recap-date-calculated"></div>
 			<div id="booking-recap-duration"></div>
-			<div id="booking-recap-time"></div>
-			<div id="booking-recap-people"></div>
+			<div id="booking-recap-time"></div><div id="booking-recap-time-calculated"></div>
+			<div id="booking-recap-people"></div><div id="booking-recap-people-txt"></div>
+			<div id="booking-recap-price"></div><div id="booking-recap-price-txt"></div>
 		</div>
 	</div>
 </div>

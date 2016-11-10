@@ -772,6 +772,9 @@ footer #liensRS a{
   margin-right: 20px;
   padding-top: 20px;
 }
+#booking-error{
+  color: red;
+}
 
 #booking-steps .steps ul, #booking-steps .actions ul{
   list-style: none!important;

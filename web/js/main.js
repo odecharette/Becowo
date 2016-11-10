@@ -139,7 +139,19 @@ $("#booking-steps").steps({
     headerTag: "titre",
     bodyTag: "section",
     transitionEffect: "slideLeft",
-    autoFocus: true
+    autoFocus: true,
+    onStepChanging: function (event, currentIndex, newIndex)
+    {
+    	if(document.getElementById('booking-recap-price').innerHTML != '')
+    	{
+    		document.getElementById('booking-error').innerHTML = "";
+    		return true;
+    	}else{
+    		document.getElementById('booking-error').innerHTML = "Il manque un élément pour réserver";
+    		return false;
+    	}
+    	
+    }
 });
 
 
@@ -198,16 +210,15 @@ function loadCalendar(){
 	    	// end = moment(end).add(1, 'm'); // Add 1 minute
 
 	    	var diff = moment.preciseDiff(begin, end, true); // http://codebox.org.uk/pages/moment-date-range-plugin
-	    	console.log(diff);
-	    	console.log(diff.days);
-	    	console.log(diff.months);
 
 			if (document.querySelector('input[name="booking-duration"]:checked').value == 'Semaine'){
 		        
 		        	document.getElementById('calendar-error').innerHTML = "TO DO vérifier saisie est en semaine";
+					document.getElementById('booking-recap-date-calculated').innerHTML = "TO DO calculer le nb de semaines"
 		    }else{
 		    	if(diff.months > 0 && diff.days == 0){
 		        	document.getElementById('calendar-error').innerHTML = "";
+		        	document.getElementById('booking-recap-date-calculated').innerHTML = diff.months;
 		        }
 		        else{
 		        	document.getElementById('calendar-error').innerHTML = "Pour profiter du tarif mois, veuillez sélectionner un mois complet.";
@@ -219,16 +230,16 @@ function loadCalendar(){
 
 	$('#booking-calendar').on('apply.daterangepicker', function(ev, picker) {
 		if(picker.startDate.date() == picker.endDate.date()){
-			console.log('une date');
 			document.getElementById('booking-recap-date').innerHTML = picker.startDate.format('DD/MM/YYYY');
 		}else{
-			console.log('deux dates');
 			document.getElementById('booking-recap-date').innerHTML = "Du ";
 			document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
 			document.getElementById('booking-recap-date').innerHTML += " Au ";
 			document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY');
 		}
 	});
+
+	bookCalculatePrice();
 };
 
 
@@ -272,10 +283,15 @@ function loadTime(boo){
 
 		$('.tooltip').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
 		document.getElementById('booking-recap-time').innerHTML = 'De ' + hours1 + ':' + minutes1 + ' à ' + hours2 + ':' + minutes2;
+		document.getElementById('booking-recap-time-calculated').innerHTML = (valeurs[1] - valeurs[0])/60;
+		
+		bookCalculatePrice();
 		});
 	}else{ // false
 		document.getElementById('calendar-time').style.display = 'none';
 	}
+
+	bookCalculatePrice();
 }
 
 function loadHalfTime(boo){
@@ -284,12 +300,15 @@ function loadHalfTime(boo){
 	}else{
 		document.getElementById('calendar-halftime').style.display = 'none';
 	}
+
+	bookCalculatePrice();
 }
 /***************** Booking people ****************************/
 var mySliderPeople = $("#booking-slider").slider({});
 mySliderPeople.on('change', function(ev){
 	document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
-	document.getElementById('booking-recap-people').innerHTML += " personne(s)"; 
+	document.getElementById('booking-recap-people-txt').innerHTML = " personne(s)"; 
+	bookCalculatePrice();
 });
 
 /***************** Booking offices ****************************/
@@ -299,6 +318,7 @@ function bookOffice() {
     $("#booking-slider").slider('setAttribute', 'max', document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML);
     $("#booking-slider").slider('refresh');
     document.getElementById('booking-slider-max').innerHTML = document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML;
+    bookCalculatePrice();
 };
 
 /***************** Booking duration choices ****************************/
@@ -347,6 +367,7 @@ function chooseDuration() {
     document.getElementById('booking-recap-duration').innerHTML = document.querySelector('input[name="booking-duration"]:checked').value;
 
     loadCalendar();
+    bookCalculatePrice();
 
 }
 $( document ).ready(function() {
@@ -354,3 +375,55 @@ $( document ).ready(function() {
     chooseDuration();
 });
 
+/************************* Booking calculate price *******************/
+
+function bookCalculatePrice()
+{
+	// SelectedOffice-{{office.office.name}}-priceHeure
+
+	var officeReserved = document.getElementById('booking-recap-office').innerHTML;
+	var dateReserved = document.getElementById('booking-recap-date').innerHTML;
+	var dateCalculatedReserved = document.getElementById('booking-recap-date-calculated').innerHTML;
+	var durationReserved = document.getElementById('booking-recap-duration').innerHTML;
+	var timeReserved = document.getElementById('booking-recap-time').innerHTML;
+	var timeCalculatedReserved = document.getElementById('booking-recap-time-calculated').innerHTML;
+	var peopleReserved = document.getElementById('booking-recap-people').innerHTML;
+	var pricePerOffice = 0;
+	if(document.getElementById('SelectedOffice-' + officeReserved + '-price' + durationReserved) != null)
+	{
+		pricePerOffice = Number(document.getElementById('SelectedOffice-' + officeReserved + '-price' + durationReserved).innerHTML);
+	}else{
+		pricePerOffice = 0;
+	}
+	var finalPrice = 0;
+
+
+	if(officeReserved == 'Open space')
+	{
+		// le prix est par personne (sinon il est par bureau)
+		pricePerOffice = pricePerOffice * peopleReserved;
+	}
+
+	// A la 1/2 journée et journée, pas besoin de multipler le prix car un seul 'espace temps' réservable
+	if(durationReserved == 'Heure')
+	{
+		finalPrice = pricePerOffice * timeCalculatedReserved;
+	}else if(durationReserved == 'Semaine')
+	{
+		// TO DO calculer le nb de semaine sélectionnée
+	}else if(durationReserved == 'Mois')
+	{
+		finalPrice = pricePerOffice * dateCalculatedReserved;
+		console.log('prix au mois');
+		console.log(pricePerOffice + ' * ' + dateCalculatedReserved);
+	}else
+	{
+		finalPrice = pricePerOffice;
+	}
+
+
+	document.getElementById('booking-recap-price').innerHTML = finalPrice;
+	document.getElementById('booking-recap-price-txt').innerHTML = " €";
+
+
+}
