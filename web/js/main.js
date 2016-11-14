@@ -142,15 +142,30 @@ $("#booking-steps").steps({
     autoFocus: true,
     onStepChanging: function (event, currentIndex, newIndex)
     {
-    	if(document.getElementById('booking-recap-price').innerHTML > 0)
-    	{
-    		document.getElementById('booking-error').innerHTML = "";
-    		return true;
-    	}else{
-    		document.getElementById('booking-error').innerHTML = "Il manque un élément pour réserver";
-    		return false;
-    	}
+    	console.log(currentIndex);
+    	console.log(newIndex);
     	
+    	if(newIndex == 1) //Passage à l'étape paiement
+    	{
+	    	if(document.getElementById('booking-recap-price').innerHTML > 0)
+	    	{
+	    		document.getElementById('booking-error').innerHTML = "";
+    			document.getElementById('barre-steps-0').style.borderColor = "var(--my-blue)";
+    			document.getElementById('booking-steps-t-1').style.background = "var(--my-blue)";
+	    		return true;
+	    	}else{
+	    		document.getElementById('booking-error').innerHTML = "Il manque un élément pour réserver";
+	    		return false;
+	    	}
+	    }else if(newIndex == 2) // Passage à l'étape confirmation
+	    {
+	    		document.getElementById('barre-steps-1').style.borderColor = "var(--my-blue)";
+    			document.getElementById('booking-steps-t-2').style.background = "var(--my-blue)";
+	    }else if(newIndex == 3) // Finish
+	    {
+    			document.getElementById('booking-steps-t-3').style.background = "var(--my-blue)";
+	    }
+
     }
 });
 

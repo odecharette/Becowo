@@ -807,7 +807,6 @@ footer #liensRS a{
     text-align: right;
 }
 #booking-steps .actions li{
-  /*background-color: grey;*/
   color: var(--my-grey);
   line-height: 30px;
   float: left;
@@ -817,22 +816,33 @@ footer #liensRS a{
 #booking-steps .number{
   display: block;
 }
-.barre-steps{
-  border-top: 15px solid var(--my-blue);
+#barre-steps-0{
+  border-top: 15px solid var(--my-grey);
   position: absolute;
   top: 18px;
-  width: 600px;
+  width: 300px;
   left: 180px;
+  z-index: 2;
+}
+#barre-steps-1{
+  border-top: 15px solid var(--my-grey);
+  position: absolute;
+  top: 18px;
+  width: 300px;
+  left: 500px;
   z-index: 2;
 }
 #booking-steps .first{
   margin-left: 120px;
 }
+#booking-steps .first a{
+  background-color: var(--my-blue) !important;
+}
 #booking-steps .steps a{
   float: left;
   color: #ffffff;
   font-size: 14px;
-  background: #20385e;
+  background-color: var(--my-grey);
   text-decoration: none;
   margin-right: 200px;
   width:85px;
@@ -845,9 +855,14 @@ footer #liensRS a{
   z-index: 2;
 }
 #booking-steps .steps a:hover{
-  background: #34709e;
-  text-decoration: none;
+  background-color: #34709e;
 }
+
+
+
+/*.disabled a {
+    background-color: grey !important;
+}*/
 #booking-steps .steps .current-info{
   display: none;
 }
