@@ -13,7 +13,7 @@
 <span id="wsName" hidden="true">{{ws.name}}</span>   {# Important, permet de router pour les comment et vote#}
 
 <div class="container-fluid" id="wsHeader">
-	<div class="row text-center">
+{# 	<div class="row text-center">
 		<div class="col-lg-6">
 			{% if pictureLogo[0] is defined %}
 				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
@@ -24,47 +24,71 @@
 		<div class="col-lg-6">
 			{{averageVote|rating}}
 		</div>
-	</div>
+	</div> #}
 {############################################# Caroussel #########################################}
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
+	<div class="row text-center">
+		<div class="col-lg-9">
 			{% include 'Workspace/carroussel2.html.twig' %}
-		</div>
+		</div>	
+		<div class="col-lg-3" id="carroussel-right">
+			{% if pictureLogo[0] is defined %}
+				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
+			{% else %}
+				<h1>{{ws.name}}</h1>
+			{% endif %}
+			<br><br>
+			{############################################# Map #########################################}
+			{# La taille de la carte joue sur les options affichées : itinéraire... #}
+			<div id="map">
+				<iframe frameborder="0" style="border:0;width: inherit;" src="https://www.google.com/maps/embed/v1/place?q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}&key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&zoom=15" ></iframe>
+
+			{# 	<a href="http://maps.google.fr/maps?f=q&hl=fr&q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}" target="_blank">
+				<button type="button">Agrandir le plan</button></a> #}
+			</div>
+			<div id="contact">
+				{{ws.street|capitalize}} <br>
+				{{ws.postCode}} {{ws.city|capitalize}} <br>
+			</div>
+			<br>
+			<div id="time">
+				<center><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></center>
+				{{ws.openHoursInfo}}<br>
+				<a href="{{ws.website}}" target="_blank">{{ws.website}}</a>
+				<button type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button>
+			</div>
+		</div>		
 	</div>
-	<div class="row text-center" id="contact">
+{# 	<div class="row text-center" id="contact">
 		{{ws.street}} - {{ws.postCode}} {{ws.city}}
-	</div>
+	</div> #}
+	{############################################# horaire #########################################}	
+{# 	<div class="row text-center"  id="time">
+		<i class="fa fa-clock-o fa-2x" aria-hidden="true"></i> {{ws.openHoursInfo}}
+		<a href="{{ws.website}}" target="_blank">{{ws.website}}</a>
+		<button type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button>
+	</div> #}
 </div>
 {############################################# Description #########################################}
 <div class="container-fluid">
+		<div class="row text-center">
+			<span id="bonus">{{ws.descriptionBonus}}</span>
+		</div>
 		<div class="row">
 			<div class="col-lg-8" id="description">	
-				<h2>Description</h2>		
+				<h2>{{ws.name}} {{averageVote|rating}}</h2>		
 				<p>{{ws.description}}</p>
-				<span>{{ws.descriptionBonus}}</span>
-				<hr>
-				<h2>Services</h2>
 				<p>Sed laeditur hic coetuum magnificus splendor levitate paucorum incondita, ubi nati sunt non reputantium, sed tamquam indulta licentia vitiis ad errores lapsorum ac lasciviam. ut enim Simonides lyricus docet, beate perfecta ratione vieturo ante alia patriam esse convenit gloriosam.</p>
+				{# <hr> #}
+				
+			</div>
+			<div class="col-lg-4" id="services">
+				<h2>Nos services</h2>
+				<p>Sed laeditur hic coetuum magnificus splendor levitate paucorum incondita, ubi nati sunt non reputantium, sed tamquam indulta licentia vitiis ad errores lapsorum ac lasciviam. ut enim Simonides lyricus docet, beate perfecta ratione vieturo ante alia patriam esse convenit gloriosam.</p>
+				<center>
 				{% for amenity in ws.amenities %}
 					<img src="{{ asset('images/icons/amenities/BsurN/') }}{{amenity.urlLogo}}" alt="{{amenity.name}}" title="{{amenity.name}}">
 				{% endfor %}
-			</div>
-			<div class="col-lg-3">
-{############################################# Map #########################################}
-				{# La taille de la carte joue sur les options affichées : itinéraire... #}
-			<div id="map">
-				<center><i class="fa fa-map-o fa-3x" aria-hidden="true"></i></center>
-				<iframe frameborder="0" style="border:0;width: inherit;" src="https://www.google.com/maps/embed/v1/place?q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}&key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&zoom=15" ></iframe>
-
-				<a href="http://maps.google.fr/maps?f=q&hl=fr&q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}" target="_blank"><button type="button">Agrandir le plan</button></a>
-			</div>
-{############################################# horaire #########################################}	
-			<div id="time">
-				<center><i class="fa fa-clock-o fa-3x" aria-hidden="true"></i></center>
-				<p>{{ws.openHoursInfo}}</p>
-				<a href="{{ws.website}}" target="_blank">{{ws.website}}</a><br>
-				<button type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button>
-			</div>
+				</center>
 			</div>
 		</div>
 {############################################# Booking #########################################}

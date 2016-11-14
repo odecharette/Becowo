@@ -142,7 +142,7 @@ $("#booking-steps").steps({
     autoFocus: true,
     onStepChanging: function (event, currentIndex, newIndex)
     {
-    	if(document.getElementById('booking-recap-price').innerHTML != '')
+    	if(document.getElementById('booking-recap-price').innerHTML > 0)
     	{
     		document.getElementById('booking-error').innerHTML = "";
     		return true;
@@ -167,7 +167,7 @@ function loadCalendar(){
 	var closedDatesTab = closedDates.split(',');
 
 	if(document.querySelector('input[name="booking-duration"]:checked').value == 'Heure' || document.querySelector('input[name="booking-duration"]:checked').value == '1/2 journée' || document.querySelector('input[name="booking-duration"]:checked').value == 'Journée') {
-		console.log('calendrier heure');
+
 		$('#booking-calendar').daterangepicker({
 	        timePicker: false,
 	        singleDatePicker: true,
@@ -199,7 +199,6 @@ function loadCalendar(){
 			  }
 	    });
 	} else if (document.querySelector('input[name="booking-duration"]:checked').value == 'Semaine' || document.querySelector('input[name="booking-duration"]:checked').value == 'Mois'){
-		console.log('calendrier semaine');
 		$('#booking-calendar').daterangepicker({
 	        timePicker: false,
 	        singleDatePicker: false,
@@ -217,7 +216,9 @@ function loadCalendar(){
 	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
 	    	isInvalidDate: function(date) {
 
-	    		if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+	    		if ($.inArray(date.format('DD/MM/YYYY'), closedDatesTab) != -1) {
+			        return true;
+			    } else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
 			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
 	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
 	    			return (date.day() == 6 || date < new Date() );
@@ -453,8 +454,6 @@ function bookCalculatePrice()
 	}else if(durationReserved == 'Mois')
 	{
 		finalPrice = pricePerOffice * dateCalculatedReserved;
-		console.log('prix au mois');
-		console.log(pricePerOffice + ' * ' + dateCalculatedReserved);
 	}else
 	{
 		finalPrice = pricePerOffice;
@@ -463,6 +462,12 @@ function bookCalculatePrice()
 
 	document.getElementById('booking-recap-price').innerHTML = finalPrice;
 	document.getElementById('booking-recap-price-txt').innerHTML = " € TTC";
-
-
 }
+
+/*************dureation day choice ************************/
+
+function chooseDurationDay()
+{
+	document.getElementById('booking-recap-duration-txt').innerHTML = document.querySelector('input[name="booking-duration-day"]:checked').value;
+}
+	

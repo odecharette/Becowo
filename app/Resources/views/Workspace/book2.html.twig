@@ -1,9 +1,6 @@
-{{dump(prices)}} 
-{{dump(listOffices)}}
-{{dump(closedDates)}}
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-lg-9">
+		<div class="col-lg-10">
 			<div id="booking-steps">
 			    <titre>Réservation</titre>
 			    <section>
@@ -60,10 +57,10 @@
 					<span id="calendar-halftime">	
 					<br> 4. Choisir votre 1/2 journée <br>
 					    <div class="segmented-control" style="width: 300px; color: #20385e" id="booking-duration-day">
-						  <input type="radio" name="sc-1-1" id="sc-1-1-1" checked>
-						  <input type="radio" name="sc-1-1" id="sc-1-1-2">
-						  <label for="sc-1-1-1" data-value="Matin">Matin</label>
-						  <label for="sc-1-1-2" data-value="Après-midi">Après-midi</label>
+						  <input type="radio" name="booking-duration-day" id="booking-duration-day-1" checked onchange="chooseDurationDay()" value="Matin">
+						  <input type="radio" name="booking-duration-day" id="booking-duration-day-2" onchange="chooseDurationDay()" value="Après-midi">
+						  <label for="booking-duration-day-1" data-value="Matin">Matin</label>
+						  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
 						</div>
 					    <br>
 					</span>
@@ -87,54 +84,16 @@
 			    </section>
 			</div>
 		</div>
-		<div class="col-lg-3 well">
+		<div class="col-lg-2 well">
 			Détails de la réservation : <br>
 			{# <div id="booking-selected-office" style="display: none"></div> #}
-			<div id="booking-recap-office"></div>
-			<div id="booking-recap-date"></div><div id="booking-recap-date-calculated"></div>
-			<div id="booking-recap-duration"></div>
-			<div id="booking-recap-time"></div><div id="booking-recap-time-calculated"></div>
-			<div id="booking-recap-people"></div><div id="booking-recap-people-txt"></div>
-			<div id="booking-recap-price"></div><div id="booking-recap-price-txt"></div>
+			<span id="booking-recap-office-name">{{ws.name}}</span><br>
+			<span id="booking-recap-office"></span><br>
+			<span id="booking-recap-duration"></span> <span id="booking-recap-duration-txt"></span><br>
+			<span id="booking-recap-date"></span><span id="booking-recap-date-calculated" style="display:none"></span><br>
+			<span id="booking-recap-time"></span><span id="booking-recap-time-calculated" style="display:none"></span><br>
+			<span id="booking-recap-people"></span><span id="booking-recap-people-txt"></span><br>
+			<span id="booking-recap-price"></span><span id="booking-recap-price-txt"></span><br>
 		</div>
 	</div>
 </div>
-
-{# 
-<div class="container-fluid">
-	<div class="row">
-		{{ws.name}} vous propose plusieurs types de bureaux : <br>
-		{% for office in listOffices %}
-			<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
-	  	{% endfor %}
-	  	<br>
-	  	Faites une recherche ci-dessous et commencez l'aventure !
-	</div>
-	<div class="row">
-		<div class="col-lg-10" id="bookSearch">
-			<select id="selectOffice">
-				<option value="">Type de bureau</option>
-				{% for office in listOffices %}
-			  		<option value="{{office.office.name}}">{{office.office.name}}</option>
-			  	{% endfor %}
-			</select>
-			<select id="selectDuree">
-				<option value="">Durée </option>
-				<option value="Heure">Heure</option>
-				<option value="1/2 journée">1/2 journée</option>
-				<option value="Journée">Journée</option>
-				<option value="Semaine">Semaine</option>
-				<option value="Mois">Mois</option>
-			</select>
-			<input type="number" id="selectNbPers" placeholder="Nombre de personnes" step="1" min="1" max="10">
-			<input type="date" id="selectDate">
-		</div>
-		<div class="col-lg-2" id="bookRecap">
-			Récapitulatif : <br>
-			<br>
-			Total : <br>
-			<button type="button" class="btn btn-primary">Je réserve <i class="fa fa-caret-right" aria-hidden="true"></i></button>			
-		</div>
-	</div>
-</div>
- #}

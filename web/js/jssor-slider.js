@@ -30,7 +30,7 @@ jQuery(document).ready(function ($) {
               },
               $ThumbnailNavigatorOptions: {
                 $Class: $JssorThumbnailNavigator$,
-                $Rows: 2,
+                $Rows: 1,
                 $Cols: 6,
                 $SpacingX: 14,
                 $SpacingY: 12,

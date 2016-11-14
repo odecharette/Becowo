@@ -17,6 +17,8 @@
 
 --my-blue: rgb(32, 56, 94); /* #20385e */
 --my-red: rgb(231, 46, 70);  /* #E72E46 */
+--my-grey: rgb(140, 142, 144); /* #8C8E90 */
+--my-grey-light: rgb(233, 233, 233); /* #e9e9e9 */
 /* grey : #e9e9e9 */
 
   --my-green: rgb(0, 161, 154); /* #00A19A */
@@ -31,7 +33,6 @@
   --my-pink-opacity-4: rgba(241, 95, 104, 0.4);
   --my-yellow: rgb(252, 231, 99); /* #FCE763 */
   --my-yellow-opacity: rgba(252, 231, 99, 0.5);
-  --my-grey: rgb(140, 142, 144); /* #8C8E90 */
   /* to use it : color: var(--my-red); */
 }
 
@@ -166,12 +167,13 @@ header #liensRS a{
 
 body {
 	font-family: "aniversregular", Helvetica, Arial, sans-serif;
+  margin-top: 90px;
 }
 
 
-#hideVideo{
+/*#hideVideo{
   
-}
+}*/
 video{
   border: 1px solid grey;
   margin-top: 50px;
@@ -684,42 +686,23 @@ footer #liensRS a{
 
 #wsHeader{
   /*border: solid 1px;*/
-  margin: 0px 10px 20px 10px;
-  padding: 10px 10px 10px 10px;
+  margin: 0px 0px 0px 10px;
+  padding: 0px 0px 10px 10px;
 }
 #wsHeader .row{
   margin-right: 0;
   margin-left: 0;
 }
 #contact{
-  font-size: 23pt;
+  font-size: 14pt;
   color: var(--my-grey);
 }
-#description{
-  border : solid 1px;
-  padding: 10px 10px 10px 10px;
-  margin-left: 20px;
+#jssor_1{
+  /*Le style est directement dans le HTML du carroussel sinon ca bug*/
+  border : solid #24262e 1px;
 }
-#description h2{
-  color: var(--my-green);
-}
-#description p{
-  color: var(--my-grey);
-  font-size: 14pt;
-}
-#description span{
-  color: var(--my-green);
-  font-size: 14pt;
-}
-#description hr{
-  border-top: 1px solid var(--my-green);
-  width: 60%;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-#description img{
-  width: 70px;
-  height: 70px;
+#carroussel-right{
+  margin-left: -10px;
 }
 #map{
   /*Pour que la google map s'affiche correctement*/
@@ -727,32 +710,28 @@ footer #liensRS a{
 }
 #map i{
   margin-top: 10px;
-  margin-bottom: 10px;
 }
-#time, #map{
-  margin-bottom: 10px;
-  /*border: 1px solid var(--my-grey);*/
-  background-color: var(--my-pink-opacity);
+#time{
   color: var(--my-grey);
   font-size: 14pt;
 }
 #time i, #map i{
-  color: var(--my-pink);
+  color: var(--my-red);
 }
 #time p{
   margin-left: 10px;
 }
 #time a{
   margin-left: 10px;
-  color: var(--my-pink);
+  color: var(--my-red);
 }
 #time a:hover{
   font-weight: bold;
 }
-#time button, #map button{
+#time button{
   width: 100%;
   border: none;
-  background: var(--my-pink);
+  background: var(--my-blue);
   color: white;
   margin-top: 10px;
   height: 40px;
@@ -760,6 +739,49 @@ footer #liensRS a{
 #time button i, #map button i{
   color: white;
   margin-right: 15px;
+}
+#bonus{
+  background-color: var(--my-grey-light);
+  color: var(--my-blue);
+  line-height: 50px;
+  display: block;
+  font-weight: 600;
+  font-size: 14pt;
+}
+#description{
+/*  border : solid 1px;
+  padding: 10px 10px 10px 10px;
+  margin-left: 20px;*/
+}
+#description .rating{
+  display: inline;
+}
+#description h2{
+  color: var(--my-blue);
+}
+#description p{
+  color: var(--my-grey);
+  font-size: 12pt;
+  text-align: justify;
+}
+/*#description span{
+  color: var(--my-blue);
+  font-size: 14pt;
+}*/
+/*#description hr{
+  border-top: 1px solid var(--my-blue);
+  width: 60%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}*/
+#description img{
+  width: 70px;
+  height: 70px;
+}
+#services p{
+  color: var(--my-grey);
+  font-size: 12pt;
+  text-align: justify;
 }
 #booking{
   /*background-color: var(--my-green-opacity);*/
@@ -795,10 +817,19 @@ footer #liensRS a{
 }
 #booking-steps .steps a{
   float: left;
-  line-height: 30px;
-  color: white;
-  background-color: blue;
-  border-radius: 20%;
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  color: #ffffff;
+  font-size: 20px;
+  background: #20385e;
+  padding: 15px 25px 15px 25px;
+  text-decoration: none;
+  margin-right: 15px;
+}
+#booking-steps .steps a:hover{
+  background: #34709e;
+  text-decoration: none;
 }
 #booking-steps .steps .current-info{
   display: none;
