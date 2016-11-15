@@ -5,74 +5,110 @@
 			<div id="booking-steps">
 			    <titre>Réservation</titre>
 			    <section>
+			    	{# ERREUR #}
 			    	<div id="booking-error"></div>
-			        1. Choisir parmi les espaces disponibles : <br>
-			        	<div class="cc-selector" id="booking-office">
-			        		{% for office in listOffices %}
-					        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}" onchange="bookOffice()" class="required" />
-					        	<label class="drinkcard-cc" for="{{office.office.name}}" id="label-{{office.office.name}}">
-					        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}">
-				        			<div class="drinkcard-cc-title">{{office.office.name}}</div>
-				        	 		<div class="drinkcard-cc-price" id="pricePerOffice-{{office.office.name}}">{# le prix va s'afficher ici via JS #}</div>
-					        	</label>
-					        	<div id="SelectedOffice-{{office.office.name}}-deskQty" style="display: none">{{office.deskQty}}</div>
-					        	{# Récup les prix par bureau #}
-					        	{% for price in prices if price.office.name == office.office.name %}
-					        		<div id="SelectedOffice-{{office.office.name}}-priceHeure" style="display: none">{{price.priceHour}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-price1/2 journée" style="display: none">{{price.priceHalfDay}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceJournée" style="display: none">{{price.priceDay}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceSemaine" style="display: none">{{price.priceWeek}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceMois" style="display: none">{{price.priceMonth}}</div>
-					        	{% endfor %}
-					        {% endfor %}
-					    </div>
-					<br> 2. Choisir une durée pour afficher les prix <br>
-					    <div class="segmented-control" style="width: 400px; color: #20385e" id="booking-duration">
-						  <input type="radio" name="booking-duration" id="booking-duration-1" value="Heure" checked onchange="chooseDuration()">
-						  <input type="radio" name="booking-duration" id="booking-duration-2" value="1/2 journée" onchange="chooseDuration()">
-						  <input type="radio" name="booking-duration" id="booking-duration-3" value="Journée" onchange="chooseDuration()">
-						  <input type="radio" name="booking-duration" id="booking-duration-4" value="Semaine" onchange="chooseDuration()">
-						  <input type="radio" name="booking-duration" id="booking-duration-5" value="Mois" onchange="chooseDuration()">
-						  <label for="booking-duration-1" data-value="Heure">Heure</label>
-						  <label for="booking-duration-2" data-value="1/2 journée">1/2 journée</label>
-						  <label for="booking-duration-3" data-value="Journée">Journée</label>
-						  <label for="booking-duration-4" data-value="Semaine">Semaine</label>
-						  <label for="booking-duration-5" data-value="Mois">Mois</label>
+			    	{# OFFICE #}
+			    	<div class="row">
+			    		<div class="col-lg-1">
+							<span class="booking-badge">1</span>
+			    		</div>
+			    		<div class="col-lg-11">
+							<div class="cc-selector" id="booking-office">
+				        		{% for office in listOffices %}
+						        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}" onchange="bookOffice()" class="required" />
+						        	<label class="drinkcard-cc" for="{{office.office.name}}" id="label-{{office.office.name}}">
+						        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}2.png" alt="{{office.office.name}}" title="{{office.office.name}}">
+					        			<div class="drinkcard-cc-title">{{office.office.name}}</div>
+					        	 		<div class="drinkcard-cc-price" id="pricePerOffice-{{office.office.name}}">{# le prix va s'afficher ici via JS #}</div>
+						        	</label>
+						        	<div id="SelectedOffice-{{office.office.name}}-deskQty" style="display: none">{{office.deskQty}}</div>
+						        	{# Récup les prix par bureau #}
+						        	{% for price in prices if price.office.name == office.office.name %}
+						        		<div id="SelectedOffice-{{office.office.name}}-priceHeure" style="display: none">{{price.priceHour}}</div>
+						        		<div id="SelectedOffice-{{office.office.name}}-price1/2 journée" style="display: none">{{price.priceHalfDay}}</div>
+						        		<div id="SelectedOffice-{{office.office.name}}-priceJournée" style="display: none">{{price.priceDay}}</div>
+						        		<div id="SelectedOffice-{{office.office.name}}-priceSemaine" style="display: none">{{price.priceWeek}}</div>
+						        		<div id="SelectedOffice-{{office.office.name}}-priceMois" style="display: none">{{price.priceMonth}}</div>
+						        	{% endfor %}
+						        {% endfor %}
+						    </div>
+			    		</div>
+			    	</div>
+			    		
+			        	
+					<div class="row">
+						<div class="col-lg-1">
+							<span class="booking-badge">2</span>
 						</div>
-					<br> 3. Choisir une plage de dates dans le calendrier <br>
-						<div id="isOpenSaturday" style="display:none">{{times[0].isOpenSaturday}}</div><div id="isOpenSunday" style="display:none">{{times[0].isOpenSunday}}</div>
-						<div id="closedDates" style="display:none">
-							{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}
+						<div class="col-lg-5">
+							{# DUREE #}
+							    <div class="segmented-control" style="width: 400px; color: #20385e" id="booking-duration">
+								  <input type="radio" name="booking-duration" id="booking-duration-1" value="Heure" checked onchange="chooseDuration()">
+								  <input type="radio" name="booking-duration" id="booking-duration-2" value="1/2 journée" onchange="chooseDuration()">
+								  <input type="radio" name="booking-duration" id="booking-duration-3" value="Journée" onchange="chooseDuration()">
+								  <input type="radio" name="booking-duration" id="booking-duration-4" value="Semaine" onchange="chooseDuration()">
+								  <input type="radio" name="booking-duration" id="booking-duration-5" value="Mois" onchange="chooseDuration()">
+								  <label for="booking-duration-1" data-value="Heure">Heure</label>
+								  <label for="booking-duration-2" data-value="1/2 journée">1/2 journée</label>
+								  <label for="booking-duration-3" data-value="Journée">Journée</label>
+								  <label for="booking-duration-4" data-value="Semaine">Semaine</label>
+								  <label for="booking-duration-5" data-value="Mois">Mois</label>
+								</div>
 						</div>
-						<input type="text" name="booking-calendar" id="booking-calendar" />
-						<span id="calendar-error"></span>
-					<span id="calendar-time">	
-					<br> 4. Choisir votre heure d'arrivée et de départ <br>
-					    <b id="calendar-time-min">{{times[0].openHour|date("H:i")}}</b>
-					    <span class="slideTime">
-					    	<input id="booking-time-slider" type="text" data-slider-handle="custom" />
-					    </span>
-					    <b id="calendar-time-max">{{times[0].closeHour|date("H:i")}}</b>
-					    <br>
-					</span>
-					<span id="calendar-halftime">	
-					<br> 4. Choisir votre 1/2 journée <br>
-					    <div class="segmented-control" style="width: 300px; color: #20385e" id="booking-duration-day">
-						  <input type="radio" name="booking-duration-day" id="booking-duration-day-1" checked onchange="chooseDurationDay()" value="Matin">
-						  <input type="radio" name="booking-duration-day" id="booking-duration-day-2" onchange="chooseDurationDay()" value="Après-midi">
-						  <label for="booking-duration-day-1" data-value="Matin">Matin</label>
-						  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
+						<div class="col-lg-1">
+							<span class="booking-badge">3</span>
 						</div>
-					    <br>
-					</span>
-					    {# TO DO : min et max en fonction de la salle sélectionnée et des places dispos #}
-					<br> 5. Choisir le nombre de coworkers <br>
-					    <b>1</b>
-					    <span class="slidePeople">
-					    	<input id="booking-slider" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="10" data-slider-value="1"/>
-					    </span>
-					    <b id="booking-slider-max">10</b>
-		  			</p>
+						<div class="col-lg-5">
+							{# CALENDRIER #}
+								<div id="isOpenSaturday" style="display:none">{{times[0].isOpenSaturday}}</div><div id="isOpenSunday" style="display:none">{{times[0].isOpenSunday}}</div>
+								<div id="closedDates" style="display:none">
+									{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}
+								</div>
+								<input type="text" name="booking-calendar" id="booking-calendar" />
+								<span id="calendar-error"></span>
+						</div>	
+					</div>
+							
+						<div class="row">
+							<div class="col-lg-1">
+								<span class="booking-badge">4</span>
+							</div>
+						<div class="col-lg-5">
+							{# HORAIRE #}
+								<span id="calendar-time">
+								    <b id="calendar-time-min">{{times[0].openHour|date("H:i")}}</b>
+								    <span class="slideTime">
+								    	<input id="booking-time-slider" type="text" data-slider-handle="custom" />
+								    </span>
+								    <b id="calendar-time-max">{{times[0].closeHour|date("H:i")}}</b>
+								    <br>
+								</span>
+							{# 1/2 JOURNEE #}
+								<span id="calendar-halftime">	
+								    <div class="segmented-control" style="width: 300px; color: #20385e" id="booking-duration-day">
+									  <input type="radio" name="booking-duration-day" id="booking-duration-day-1" checked onchange="chooseDurationDay()" value="Matin">
+									  <input type="radio" name="booking-duration-day" id="booking-duration-day-2" onchange="chooseDurationDay()" value="Après-midi">
+									  <label for="booking-duration-day-1" data-value="Matin">Matin</label>
+									  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
+									</div>
+								    <br>
+								</span>
+						</div>
+						<div class="col-lg-1">
+							<span class="booking-badge">5</span>
+						</div>
+						<div class="col-lg-5">
+							
+							    {# TO DO : min et max en fonction de la salle sélectionnée et des places dispos #}
+						    {# Nb PEOPLE #}
+							    <b>1</b>
+							    <span class="slidePeople">
+							    	<input id="booking-slider" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="10" data-slider-value="1"/>
+							    </span>
+							    <b id="booking-slider-max">10</b>
+						</div>
+						</div>
+
 		  			* Nos prix sont exprimés en TTC
 			    </section>
 			    <titre>Paiement</titre>
