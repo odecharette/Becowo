@@ -1,0 +1,58 @@
+<?php
+
+{# On doit ici calculer l'empreinte du message pour assurer la sécurité du paiement
+Le code PHP est mis ici car on doit avoir exactement les même infos que celles envoyés pour payer (montant, timestamp etc) #}
+
+{# On récupère la date au format ISO-8601  #}
+$dateTime = date("c"); 
+{# On crée la chaîne à hacher sans URLencodage  #}
+$msg = "PBX_SITE= ?> {{paiementInfos[0].pbxSite}} <?php". 
+"&PBX_RANG= ?> {{paiementInfos[0].pbxRang}} <?php". 
+"&PBX_IDENTIFIANT= ?> {{paiementInfos[0].pbxIdentifiant}} <?php". 
+"&PBX_TOTAL=1000". 
+"&PBX_DEVISE= ?> {{paiementInfos[0].pbxDevise}} <?php". 
+"&PBX_CMD=123". 
+"&PBX_PORTEUR=olivia.decharette@becowo.com". 
+"&PBX_RETOUR= ?> {{paiementInfos[0].pbxRetour}} <?php". 
+"&PBX_HASH= ?> {{paiementInfos[0].PbxHash}} <?php". 
+"&PBX_TIME=".$dateTime; 
+
+{# On récupère la clé secrète HMAC (stockée dans une base de données cryptée) et que l’on renseigne dans la variable  #}
+$keyTest = ?> {{paiementInfos[0].pbxHmac}} <?php;
+{# Si la clé est en ASCII, On la transforme en binaire  #}
+$binKey = pack("H*", $keyTest);  
+{# On calcule l’empreinte (à renseigner dans le paramètre PBX_HMAC) grâce à la fonction hash_hmac et la clé binaire
+On envoie via la variable PBX_HASH l'algorithme de hachage qui a été utilisé (SHA512 dans ce cas).
+Pour afficher la liste des algorithmes disponibles sur votre environnement, décommentez la ligne suivante
+ //print_r(hash_algos());  #} 
+
+$hmac = strtoupper(hash_hmac('sha512', $msg, $binKey)); 
+ {# La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()   #}
+
+{#  On crée le formulaire à envoyer à e-transactions
+	ATTENTION : l'ordre des champs est extrêmement important, il doit correspondre exactement à l'ordre des champs dans la chaîne hachée  #}
+
+?>
+
+
+{{dump(paiementInfos)}}
+{# TO DO : en BDD mettre les infos de preprod puis prod données par le Crédit Agricole #}
+
+{# Preprod #}
+<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi"> {# TO DO URL de prod  #}
+	<input type="hidden" name="PBX_SITE" value="{{paiementInfos[0].pbxSite}}"> 
+	<input type="hidden" name="PBX_RANG" value="{{paiementInfos[0].pbxRang}}"> 
+	<input type="hidden" name="PBX_IDENTIFIANT" value="{{paiementInfos[0].pbxIdentifiant}}"> 
+	<input type="hidden" name="PBX_TOTAL" value="1000"> {# TO DO dynamique #}
+	<input type="hidden" name="PBX_DEVISE" value="{{paiementInfos[0].pbxDevise}}"> 
+	<input type="hidden" name="PBX_CMD" value="123">  {# TO DO dynamique #}
+	<input type="hidden" name="PBX_PORTEUR" value="olivia.decharette@becowo.com">  {# TO DO dynamique #}
+	<input type="hidden" name="PBX_RETOUR" value="{{paiementInfos[0].pbxRetour}}"> 
+	<input type="hidden" name="PBX_HASH" value="{{paiementInfos[0].PbxHash}}"> 
+	<input type="hidden" name="PBX_TIME" value="<? echo $dateTime; ?>">  {# on récup la var crée ci-dessus en PHP #}
+	<input type="hidden" name="PBX_HMAC" value="<? echo $hmac; ?>">
+	<input type="submit" value="Payer !"> 
+</form> 
+
+
+

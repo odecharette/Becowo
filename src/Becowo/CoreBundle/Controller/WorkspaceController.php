@@ -11,6 +11,7 @@ class WorkspaceController extends Controller
   {
 
     $WsService = $this->get('app.workspace');
+    $PaiementService = $this->get('app.paiement');
 
     $ws = $WsService->getWorkspaceByName($name);
     $pictures = $WsService->getPicturesByWorkspace($name);
@@ -22,6 +23,7 @@ class WorkspaceController extends Controller
     $averageVote = $WsService->getAverageVoteByWorkspace($ws);
     $times = $WsService->getTimesByWorkspace($ws);
     $closedDates = $WsService->getClosedDatesByWorkspace($ws);
+    $paiementInfos = $PaiementService->getPaiementInfos();
 
   	return $this->render('Workspace/view.html.twig', 
       array('ws' => $ws, 
@@ -33,7 +35,8 @@ class WorkspaceController extends Controller
         'prices' => $prices,
         'averageVote' => $averageVote,
         'times' => $times,
-        'closedDates' => $closedDates));
+        'closedDates' => $closedDates,
+        'paiementInfos' => $paiementInfos));
   }
 
 }
