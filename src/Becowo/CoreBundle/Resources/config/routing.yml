@@ -70,7 +70,7 @@ becowo_core_booking_form:
         expose: true
 
 becowo_core_booking:
-    path:     /ws/{name}/{bookingNumber}
+    path:     /ws/{name}/book
     defaults: { _controller: BecowoCoreBundle:Booking:book }
     methods: GET|POST
     options:

@@ -3,8 +3,7 @@
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
 		<div class="row">
-			{# TO DO gestion du booking number, doit venir de la BDD #}
-	    	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name, 'bookingNumber' : 1}) }}">
+	    	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}">
 			<div class="col-lg-10">
 
 		    	{# ERREUR #}

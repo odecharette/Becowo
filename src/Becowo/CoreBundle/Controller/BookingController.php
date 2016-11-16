@@ -28,16 +28,32 @@ class BookingController extends Controller
 
   	if ($request->isMethod('POST'))
   	{
+  		// TO DO : vérifier ici que le formulaire de résa est complet/valide
+
   		return $this->redirectToRoute('becowo_core_booking_form', array('name' => $request->get('name')));
+  		//return $this->render('Workspace/book-validated.html.twig');
   	}
   	return $this->render('Workspace/book3.html.twig', array('listOffices' => $listOffices, 'prices' => $prices, 'ws' => $ws, 'times' => $times, 'closedDates' => $closedDates));
   }
 
-  public function bookAction(Request $request)
+  public function bookAction($name, Request $request)
   {
   	//SAVE le booking en cours en BDD
+  	dump($request);
+
+  	$WsService = $this->get('app.workspace');
+
+    $ws = $WsService->getWorkspaceByName($name);
+    
+  	$office = $request->get('office');
+  	$bookingDuration = $request->get('booking-duration');
+  	$bookingCalendar = $request->get('booking-calendar');
+  	$bookingDurationDay = $request->get('booking-duration-day');
+
+  	$currentUser = $this->getUser();
 
   	return $this->render('Workspace/book-validated.html.twig');
+
 
   }
 }
