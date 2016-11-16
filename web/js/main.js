@@ -347,11 +347,13 @@ function loadHalfTime(boo){
 	bookCalculatePrice();
 }
 /***************** Booking people ****************************/
-var mySliderPeople = $("#booking-slider").slider({});
-mySliderPeople.on('change', function(ev){
-	document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
-	document.getElementById('booking-recap-people-txt').innerHTML = " personne(s)"; 
-	bookCalculatePrice();
+$( document ).ready(function() {
+	var mySliderPeople = $("#booking-people").slider({});
+	mySliderPeople.on('change', function(ev){
+		document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
+		document.getElementById('booking-recap-people-txt').innerHTML = " personne(s)"; 
+		bookCalculatePrice();
+	});
 });
 
 /***************** Booking offices ****************************/
@@ -360,9 +362,9 @@ function bookOffice() {
     document.getElementById('booking-recap-office').innerHTML = off[0];
     document.getElementById('booking-recap-office-type').innerHTML = off[1];
     // Change la valeur max du slider de personnes, en fonction du 'deskQty' de l'office sélectionné
-    $("#booking-slider").slider('setAttribute', 'max', document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML);
-    $("#booking-slider").slider('refresh');
-    document.getElementById('booking-slider-max').innerHTML = document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML;
+    $("#booking-people").slider('setAttribute', 'max', document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML);
+    $("#booking-people").slider('refresh');
+    document.getElementById('booking-people-max').innerHTML = document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML;
     bookCalculatePrice();
 };
 

@@ -4,6 +4,7 @@ namespace Becowo\CoreBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Becowo\CoreBundle\Entity\Workspace;
+use Becowo\CoreBundle\Entity\Office;
 use Doctrine\ORM\NoResultException;
 
 class WorkspaceService
@@ -184,5 +185,25 @@ class WorkspaceService
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceIsClosed');
         return $repo->findClosedDatesByWorkspaces($ws);
+    }
+
+    public function getOfficeByName($name)
+    {
+        //Récup l'objet Office de la table office
+        $repo = $this->em->getRepository('BecowoCoreBundle:Office');
+        return $repo->findOfficeByName($name);
+    }
+
+    public function getOfficeOfWorkspaceByWsOfficeName(Workspace $ws, Office $office, $name)
+    {
+        //Récup l'objet de la table office Workspace_has_office
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
+        return $repo->findOfficeOfWorkspaceByWsOfficeName($ws, $office, $name);
+    }
+
+    public function getStatusById($id)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Status');
+        return $repo->findStatusById($id);
     }
 }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Office
  *
  * @ORM\Table(name="becowo_office", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\OfficeRepository")
  */
 class Office
 {

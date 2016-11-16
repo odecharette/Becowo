@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Status
  *
  * @ORM\Table(name="becowo_status", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\StatusRepository")
  */
 class Status
 {

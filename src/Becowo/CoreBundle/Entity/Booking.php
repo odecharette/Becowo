@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Booking
  *
- * @ORM\Table(name="becowo_booking", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}), @ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"}), @ORM\Index(name="fk_office_id_idx", columns={"office_id"}), @ORM\Index(name="fk_status_id_idx", columns={"status_id"})})
+ * @ORM\Table(name="becowo_booking", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}),@ORM\Index(name="fk_WorkspaceHasOffice_id_idx", columns={"WorkspaceHasOffice_id"}), @ORM\Index(name="fk_status_id_idx", columns={"status_id"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\BookingRepository")
  */
 class Booking
@@ -64,16 +64,6 @@ class Booking
     private $priceInclTax;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\Workspace
-     *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     * })
-     */
-    private $workspace;
-
-    /**
      * @var \Becowo\CoreBundle\Entity\Status
      *
      * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Status")
@@ -84,14 +74,14 @@ class Booking
     private $status;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\Office
+     * @var \Becowo\CoreBundle\Entity\WorkspaceHasOffice
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Office")
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasOffice")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="office_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="WorkspaceHasOffice_id", referencedColumnName="id")
      * })
      */
-    private $office;
+    private $WorkspaceHasOffice;
 
     /**
      * @var \Becowo\MemberBundle\Entity\Member
@@ -266,27 +256,27 @@ class Booking
     }
 
     /**
-     * Set workspace
+     * Set WorkspaceHasOffice
      *
-     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
+     * @param \Becowo\CoreBundle\Entity\WorkspaceHasOffice $WorkspaceHasOffice
      *
      * @return Booking
      */
-    public function setWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace = null)
+    public function setWorkspaceHasOffice(\Becowo\CoreBundle\Entity\WorkspaceHasOffice $WorkspaceHasOffice = null)
     {
-        $this->workspace = $workspace;
+        $this->WorkspaceHasOffice = $WorkspaceHasOffice;
 
         return $this;
     }
 
     /**
-     * Get workspace
+     * Get WorkspaceHasOffice
      *
-     * @return \Becowo\CoreBundle\Entity\Workspace
+     * @return \Becowo\CoreBundle\Entity\WorkspaceHasOffice
      */
-    public function getWorkspace()
+    public function getWorkspaceHasOffice()
     {
-        return $this->workspace;
+        return $this->WorkspaceHasOffice;
     }
 
     /**
@@ -313,29 +303,7 @@ class Booking
         return $this->status;
     }
 
-    /**
-     * Set office
-     *
-     * @param \Becowo\CoreBundle\Entity\Office $office
-     *
-     * @return Booking
-     */
-    public function setOffice(\Becowo\CoreBundle\Entity\Office $office = null)
-    {
-        $this->office = $office;
-
-        return $this;
-    }
-
-    /**
-     * Get office
-     *
-     * @return \Becowo\CoreBundle\Entity\Office
-     */
-    public function getOffice()
-    {
-        return $this->office;
-    }
+   
 
     /**
      * Set member

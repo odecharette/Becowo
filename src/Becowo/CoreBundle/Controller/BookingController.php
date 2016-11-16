@@ -4,7 +4,8 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Becowo\CoreBundle\Entity\Booking;
+use Becowo\CoreBundle\Entity\Status;
 
 class BookingController extends Controller
 {
@@ -48,14 +49,21 @@ class BookingController extends Controller
   	$office = explode("*", $request->get('office'));
   	$officeName = $office[0];
   	$officeType = $office[1];
-
   	$officeObj = $WsService->getOfficeByName($officeType);
   	$officeOfWs = $WsService->getOfficeOfWorkspaceByWsOfficeName($ws, $officeObj, $officeName);
+
   	$bookingDuration = $request->get('booking-duration');
   	$bookingCalendar = $request->get('booking-calendar');
   	$bookingDurationDay = $request->get('booking-duration-day');
 
   	$currentUser = $this->getUser();
+
+  	$status = $WsService->getStatusById(1); // "Id 1 : En cours"
+
+  	$booking = New Booking();
+  	$booking->setWorkspaceHasOffice($officeOfWs);
+  	$booking->setMember($currentUser);
+  	$booking->setStatus($status);
 
   	return $this->render('Workspace/book-validated.html.twig');
 
