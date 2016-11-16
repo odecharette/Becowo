@@ -17,11 +17,11 @@ class WorkspaceController extends Controller
     // $pictureFavorite = $WsService->getFavoritePictureByWorkspace($name);
     $pictureLogo = $WsService->getLogoByWorkspace($name);
     $listEvents = $WsService->getEventsByWorkspace($ws);
-    $listOffices = $WsService->getOfficesByWorkspace($ws);
-    $prices = $WsService->getPricesByWorkspace($ws);
+    // $listOffices = $WsService->getOfficesByWorkspace($ws);
+    // $prices = $WsService->getPricesByWorkspace($ws);
     $averageVote = $WsService->getAverageVoteByWorkspace($ws);
-    $times = $WsService->getTimesByWorkspace($ws);
-    $closedDates = $WsService->getClosedDatesByWorkspace($ws);
+    // $times = $WsService->getTimesByWorkspace($ws);
+    // $closedDates = $WsService->getClosedDatesByWorkspace($ws);
     
 
   	return $this->render('Workspace/view.html.twig', 
@@ -30,11 +30,12 @@ class WorkspaceController extends Controller
         'pictures' => $pictures, 
         // 'pictureFavorite' => $pictureFavorite, 
         'pictureLogo' => $pictureLogo,
-        'listOffices' => $listOffices,
-        'prices' => $prices,
-        'averageVote' => $averageVote,
-        'times' => $times,
-        'closedDates' => $closedDates));
+        // 'listOffices' => $listOffices,
+        // 'prices' => $prices,
+        'averageVote' => $averageVote
+        // 'times' => $times,
+        // 'closedDates' => $closedDates
+        ));
   }
 
 }

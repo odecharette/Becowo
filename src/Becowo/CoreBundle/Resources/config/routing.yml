@@ -62,6 +62,20 @@ becowo_core_paiement:
     defaults: { _controller: BecowoCoreBundle:Footer:paiement }
     methods: GET
 
+becowo_core_booking_form:
+    path:     /ws/{name}
+    defaults: { _controller: BecowoCoreBundle:Booking:bookForm }
+    methods: GET|POST
+    options:
+        expose: true
+
+becowo_core_booking:
+    path:     /ws/{name}/{bookingNumber}
+    defaults: { _controller: BecowoCoreBundle:Booking:book }
+    methods: GET|POST
+    options:
+        expose: true
+
 # becowo_core_ambassadeur:
 #     path:     /devenir-ambassadeur
 #     defaults: { _controller: BecowoCoreBundle:Footer:ambassadeur }

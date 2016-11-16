@@ -3,6 +3,8 @@
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
 		<div class="row">
+			{# TO DO gestion du booking number, doit venir de la BDD #}
+	    	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name, 'bookingNumber' : 1}) }}">
 			<div class="col-lg-10">
 
 		    	{# ERREUR #}
@@ -13,13 +15,14 @@
 		    		</div>
 		    	{% endif %}
 		    	<div id="booking-error"></div>
-		    	{# OFFICE #}
+
 		    	<div class="row">
 		    		<div class="col-lg-1">
 						<span class="booking-badge">1</span>
 		    		</div>
 		    		<div class="col-lg-11">
 						<div class="cc-selector" id="booking-office">
+		    				{# OFFICE #}
 			        		{% for office in listOffices %}
 					        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}" onchange="bookOffice()" class="required" />
 					        	<label class="drinkcard-cc" for="{{office.office.name}}" id="label-{{office.office.name}}">
@@ -40,8 +43,7 @@
 					    </div>
 		    		</div>
 		    	</div>
-		    		
-		        	
+		    				        	
 				<div class="row">
 					<div class="col-lg-1">
 						<span class="booking-badge">2</span>
@@ -128,9 +130,10 @@
 				<span id="booking-recap-time"></span><span id="booking-recap-time-calculated" style="display:none"></span><br>
 				<span id="booking-recap-people"></span><span id="booking-recap-people-txt"></span><br>
 				<span id="booking-recap-price"></span><span id="booking-recap-price-txt"></span><br>
-				{# Appel à la procédure de paiement via le module e-transactions du crédit agricole : https://e-transactions.aveo-groupe.com #}
-				{{ render(controller('BecowoCoreBundle:Paiement:callBank', {montant: "100"})) }}
+				<input type="submit" value="Valider"> 
+				
 			</div>
+			</form>
 		</div>
 
 	{% else %}

@@ -1,0 +1,6 @@
+Ici blabla pour expliquer le process
+<br><br>
+Puis bouton "Payer"
+
+{# Appel à la procédure de paiement via le module e-transactions du crédit agricole : https://e-transactions.aveo-groupe.com #}
+{{ render(controller('BecowoCoreBundle:Paiement:callBank', {montant: "100"})) }}
