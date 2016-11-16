@@ -101,13 +101,6 @@ becowo_comment:
     options:
         expose: true
 
-# becowo_paiement:
-#     path:    /paiement/{montant}{email}
-#     defaults: { _controller: BecowoCoreBundle:Paiement:callBank }
-#     methods: GET|POST
-#     options:
-#         expose: true
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

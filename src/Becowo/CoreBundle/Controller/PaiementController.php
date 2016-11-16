@@ -2,9 +2,7 @@
 
 namespace Becowo\CoreBundle\Controller;
 
-// use Becowo\CoreBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-// use Becowo\CoreBundle\Form\Type\CommentType;
 use Symfony\Component\HttpFoundation\Request;
 
 class PaiementController extends Controller
@@ -16,9 +14,7 @@ class PaiementController extends Controller
      $paiementInfos = $paiementService->getPaiementInfos();
      $montant = $request->get('montant');
      $userEmail = $request->get('email');
-     $numCmd = "123" ; // TO DO
-     
-      dump($paiementInfos);
+     $numCmd = "1" ; // TO DO
 
      // TO DO : obliger user à être connecté, puis récup son email
      //$currentUser = $this->getUser();
@@ -41,7 +37,6 @@ class PaiementController extends Controller
     "&PBX_HASH=" . $paiementInfos[0]['p_pbxHash'] .
     "&PBX_TIME=".$dateISO; 
 
-    dump($msg);
 
     // On récupère la clé secrète HMAC (stockée dans une base de données cryptée) et que l’on renseigne dans la variable 
     $keyTest = $paiementInfos[0]['p_pbxHmac'];
@@ -54,22 +49,6 @@ class PaiementController extends Controller
 
     $hmacCalculated = strtoupper(hash_hmac($paiementInfos[0]['p_pbxHash'], $msg, $binKey)); 
     // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
-
-    // On crée le formulaire à envoyer à e-transactions
-    // ATTENTION : l'ordre des champs est extrêmement important, il doit correspondre exactement à l'ordre des champs dans la chaîne hachée
-
-
-
-
-    //  if ($request->isMethod('POST')) {
-    // //   $em = $this->getDoctrine()->getManager();
-    // //   $em->persist($comment);
-    // //   $em->flush();
-
-
-                  // decommenter route si j'utilise le redirecttoroute
-    //    return $this->redirectToRoute('becowo_paiement', array('montant' => $request->get('montant'), 'email' => $request->get('email')));
-    //  }
 
     return $this->render('Paiement/payer.html.twig', array('paiementInfos' =>$paiementInfos, 'montant' => $montant, 'numCmd' => $numCmd, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated));
   }

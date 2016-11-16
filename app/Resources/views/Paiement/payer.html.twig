@@ -1,12 +1,7 @@
-
-
-
-{{dump(paiementInfos)}}
-
 {# TO DO : en BDD mettre les infos de preprod puis prod données par le Crédit Agricole #}
 
-{# Preprod #}
-{# URL :  #}
+{# ATTENTION : l'ordre des champs est extrêmement important, il doit correspondre exactement à l'ordre des champs dans la chaîne hachée (PaiementController.php) #}
+
 <form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi"> {# TO DO URL de prod  #}
 	<input type="hidden" name="PBX_SITE" value="{{paiementInfos[0].p_pbxSite}}"> 
 	<input type="hidden" name="PBX_RANG" value="{{paiementInfos[0].p_pbxRang}}"> 
