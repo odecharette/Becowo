@@ -12,12 +12,10 @@ class PaiementController extends Controller
   {
      $paiementService = $this->get('app.paiement');
      $paiementInfos = $paiementService->getPaiementInfos();
+     $currentUser = $this->getUser();
+     $userEmail = $currentUser->getEmail();
      $montant = $request->get('montant');
-     $userEmail = $request->get('email');
      $numCmd = "1" ; // TO DO
-
-     // TO DO : obliger user à être connecté, puis récup son email
-     //$currentUser = $this->getUser();
 
 
     /************************************/
