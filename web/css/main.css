@@ -787,14 +787,14 @@ footer #liensRS a{
   background-color: var(--my-grey-light);
   width: 100%;
 }
-#booking .booking-badge {
+/*#booking .booking-badge {
   border-radius: 50%;
   background-color: white;
   color: var(--my-blue);
   padding: 15px 20px 15px 20px;
   position: absolute;
   border: solid 3px var(--my-blue);
-}
+}*/
 #booking h2{
   color: var(--my-blue);
   margin-left: 20px;
@@ -807,11 +807,11 @@ footer #liensRS a{
 .ToBeHide{
   display: none;
 }
-#booking-steps .row{
+#booking .row{
   margin-bottom: 50px;
   margin-top: 20px;
 }
-#booking-steps .steps ul, #booking-steps .actions ul{
+/*#booking-steps .steps ul, #booking-steps .actions ul{
   list-style: none!important;
 }
 #booking-steps .actions ul{
@@ -869,13 +869,13 @@ footer #liensRS a{
 #booking-steps .steps a:hover{
   background-color: #34709e;
 }
-
+*/
 
 
 /*.disabled a {
     background-color: grey !important;
 }*/
-#booking-steps .steps .current-info{
+/*#booking-steps .steps .current-info{
   display: none;
 }
 #booking-steps .content{
@@ -891,7 +891,8 @@ footer #liensRS a{
 }
 #booking-steps .title{
   display: none;
-}
+}*/
+
 /* Booking office selection */
 .cc-selector input{
     margin:0;padding:0;

@@ -134,7 +134,7 @@ $(function(){
 
 /***************** Booking steps ****************************/
 //http://www.jquery-steps.com/Examples#basic
-
+/*
 $("#booking-steps").steps({
     headerTag: "titre",
     bodyTag: "section",
@@ -168,7 +168,7 @@ $("#booking-steps").steps({
 
     }
 });
-
+*/
 
 /***************** Booking calendar ****************************/
 // http://www.daterangepicker.com
