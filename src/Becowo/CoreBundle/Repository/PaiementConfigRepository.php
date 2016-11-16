@@ -11,7 +11,7 @@ class PaiementConfigRepository extends EntityRepository
 	{
 		$qb = $this->createQueryBuilder('p');
 
-		return $qb->getQuery()->getResult();
+		return $qb->getQuery()->getScalarResult();
 	}
 
 	
