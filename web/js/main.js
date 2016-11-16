@@ -356,7 +356,9 @@ mySliderPeople.on('change', function(ev){
 
 /***************** Booking offices ****************************/
 function bookOffice() { 
-    document.getElementById('booking-recap-office').innerHTML = document.querySelector('input[name="office"]:checked').value;
+	var off = document.querySelector('input[name="office"]:checked').value.split('*');
+    document.getElementById('booking-recap-office').innerHTML = off[0];
+    document.getElementById('booking-recap-office-type').innerHTML = off[1];
     // Change la valeur max du slider de personnes, en fonction du 'deskQty' de l'office sélectionné
     $("#booking-slider").slider('setAttribute', 'max', document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML);
     $("#booking-slider").slider('refresh');
@@ -373,8 +375,8 @@ function chooseDuration() {
         oChild = oInput.childNodes[i];
         if(oChild.nodeName == 'INPUT'){ // Boucle sur chaque input dont l'ID est un type d'espace
         	// Inscrit le prix par durée sélectionnée, pour chaque bureau
-        	var p = document.getElementById('SelectedOffice-' + oChild.id + '-price' + document.querySelector('input[name="booking-duration"]:checked').value).innerHTML;
-    		document.getElementById('pricePerOffice-' + oChild.id).innerHTML = p;
+	        var p = document.getElementById('SelectedOffice-' + oChild.id + '-price' + document.querySelector('input[name="booking-duration"]:checked').value).innerHTML;
+			document.getElementById('pricePerOffice-' + oChild.id).innerHTML = p;
         	
 
         	// si un prix est à zéro on cache le choix du bureau car ca veut dire qu'il n'est pas réservable pour cette durée de tps
@@ -437,6 +439,7 @@ function bookCalculatePrice()
 	// SelectedOffice-{{office.office.name}}-priceHeure
 
 	var officeReserved = document.getElementById('booking-recap-office').innerHTML;
+	var officeTypeReserved = document.getElementById('booking-recap-office-type').innerHTML;
 	var dateReserved = document.getElementById('booking-recap-date').innerHTML;
 	var dateCalculatedReserved = document.getElementById('booking-recap-date-calculated').innerHTML;
 	var durationReserved = document.getElementById('booking-recap-duration').innerHTML;
@@ -453,7 +456,7 @@ function bookCalculatePrice()
 	var finalPrice = 0;
 
 
-	if(officeReserved == 'Open space')
+	if(officeTypeReserved == 'Open space')
 	{
 		// le prix est par personne (sinon il est par bureau)
 		pricePerOffice = pricePerOffice * peopleReserved;

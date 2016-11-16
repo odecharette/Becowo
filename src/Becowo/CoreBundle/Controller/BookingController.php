@@ -44,8 +44,13 @@ class BookingController extends Controller
   	$WsService = $this->get('app.workspace');
 
     $ws = $WsService->getWorkspaceByName($name);
-    
-  	$office = $request->get('office');
+
+  	$office = explode("*", $request->get('office'));
+  	$officeName = $office[0];
+  	$officeType = $office[1];
+
+  	$officeObj = $WsService->getOfficeByName($officeType);
+  	$officeOfWs = $WsService->getOfficeOfWorkspaceByWsOfficeName($ws, $officeObj, $officeName);
   	$bookingDuration = $request->get('booking-duration');
   	$bookingCalendar = $request->get('booking-calendar');
   	$bookingDurationDay = $request->get('booking-duration-day');

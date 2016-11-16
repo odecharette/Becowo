@@ -8,8 +8,8 @@ namespace Becowo\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="becowo_workspace_has_office", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\WorkspaceHasOfficeRepository")
  */
 class WorkspaceHasOffice
 {
@@ -24,6 +24,13 @@ class WorkspaceHasOffice
    * @ORM\Column(name="desk_qty", type="integer")
    */
   private $desk_qty;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     */
+    private $name;
 
   /**
    * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
@@ -132,4 +139,30 @@ class WorkspaceHasOffice
 
         return $this;
     }
+
+  
+    /**
+     * Gets the value of name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Sets the value of name.
+     *
+     * @param string $name the name
+     *
+     * @return self
+     */
+    private function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
 }

@@ -1,3 +1,8 @@
+{# ATTENTION
+office.name = le nom du bureau dans le WS (pluton, Mars, Venus)
+office.office.name = type de bureau (open space, bureau, salle de réunion etc)
+ #}
+
 <div class="container-fluid">
 
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -23,23 +28,24 @@
 						<div class="cc-selector" id="booking-office">
 		    				{# OFFICE #}
 			        		{% for office in listOffices %}
-					        	<input id="{{office.office.name}}" type="radio" name="office" value="{{office.office.name}}" onchange="bookOffice()" class="required" />
-					        	<label class="drinkcard-cc" for="{{office.office.name}}" id="label-{{office.office.name}}">
+					        	<input id="{{office.name}}*{{office.office.name}}" type="radio" name="office" value="{{office.name}}*{{office.office.name}}" onchange="bookOffice()" class="required" />
+					        	<label class="drinkcard-cc" for="{{office.name}}*{{office.office.name}}" id="label-{{office.name}}*{{office.office.name}}">
 					        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}2.png" alt="{{office.office.name}}" title="{{office.office.name}}">
-				        			<div class="drinkcard-cc-title">{{office.office.name}}</div>
-				        	 		<div class="drinkcard-cc-price" id="pricePerOffice-{{office.office.name}}">{# le prix va s'afficher ici via JS #}</div>
+				        			<div class="drinkcard-cc-title">{{office.name}} - {{office.office.name}}</div>
+				        	 		<div class="drinkcard-cc-price" id="pricePerOffice-{{office.name}}*{{office.office.name}}">{# le prix va s'afficher ici via JS #}</div>
 					        	</label>
-					        	<div id="SelectedOffice-{{office.office.name}}-deskQty" style="display: none">{{office.deskQty}}</div>
+					        	<div id="SelectedOffice-{{office.name}}*{{office.office.name}}-deskQty" style="display: none">{{office.deskQty}}</div>
 					        	{# Récup les prix par bureau #}
 					        	{% for price in prices if price.office.name == office.office.name %}
-					        		<div id="SelectedOffice-{{office.office.name}}-priceHeure" style="display: none">{{price.priceHour}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-price1/2 journée" style="display: none">{{price.priceHalfDay}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceJournée" style="display: none">{{price.priceDay}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceSemaine" style="display: none">{{price.priceWeek}}</div>
-					        		<div id="SelectedOffice-{{office.office.name}}-priceMois" style="display: none">{{price.priceMonth}}</div>
+					        		<div id="SelectedOffice-{{office.name}}*{{office.office.name}}-priceHeure" style="display: none">{{price.priceHour}}</div>
+					        		<div id="SelectedOffice-{{office.name}}*{{office.office.name}}-price1/2 journée" style="display: none">{{price.priceHalfDay}}</div>
+					        		<div id="SelectedOffice-{{office.name}}*{{office.office.name}}-priceJournée" style="display: none">{{price.priceDay}}</div>
+					        		<div id="SelectedOffice-{{office.name}}*{{office.office.name}}-priceSemaine" style="display: none">{{price.priceWeek}}</div>
+					        		<div id="SelectedOffice-{{office.name}}*{{office.office.name}}-priceMois" style="display: none">{{price.priceMonth}}</div>
 					        	{% endfor %}
 					        {% endfor %}
 					    </div>
+					    {# Attention, ne pas ajouter d'input dans la div booking-office car dans main.js on boucle sur les input #}
 		    		</div>
 		    	</div>
 		    				        	
@@ -123,7 +129,7 @@
 				Détails de la réservation : <br>
 				{# <div id="booking-selected-office" style="display: none"></div> #}
 				<span id="booking-recap-office-name">{{ws.name}}</span><br>
-				<span id="booking-recap-office"></span><br>
+				<span id="booking-recap-office-type"></span><span id="booking-recap-office"></span><br>
 				<span id="booking-recap-duration"></span> <span id="booking-recap-duration-txt"></span><br>
 				<span id="booking-recap-date"></span><span id="booking-recap-date-calculated" style="display:none"></span><br>
 				<span id="booking-recap-time"></span><span id="booking-recap-time-calculated" style="display:none"></span><br>

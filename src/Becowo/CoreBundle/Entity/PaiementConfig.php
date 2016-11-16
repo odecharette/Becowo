@@ -38,7 +38,7 @@ class PaiementConfig
     /**
      * @var string
      *
-     * @ORM\Column(name="PBX_IDENTIFIANT", type="string", length=1, nullable=true)
+     * @ORM\Column(name="PBX_IDENTIFIANT", type="string", length=3, nullable=true)
      */
     private $pbxIdentifiant;
 
