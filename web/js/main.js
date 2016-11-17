@@ -55,10 +55,10 @@ $(function () {
             data: $('#booking-form').serialize(),
             type: "POST",
             success: function(data) {
-                $('#booking-valider-result').html(data);
+                $('#booking-content').html(data);
             },
             error: function() {
-            	$('#booking-valider-result').html("Une erreur est survenue, veuillez réessayer plus tard");
+            	$('#booking-content').html("Une erreur est survenue, veuillez réessayer plus tard");
             }
         });
 

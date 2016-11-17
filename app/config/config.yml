@@ -10,6 +10,16 @@ imports:
 parameters:
     locale: fr
     tva: 20
+    # config pour le paiement via e-transactions du Crédit Agricole
+    # Config de test public TO DO mettre la config de pre-prod puis prod
+    creditAgricole:
+        PBX_SITE: 1999887
+        PBX_RANG: 32
+        PBX_IDENTIFIANT: 213
+        PBX_DEVISE: 978
+        PBX_RETOUR: Mt:M;Ref:R;Auto:A;Erreur:E
+        PBX_HASH: SHA512
+        PBX_HMAC: 0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
 
 framework:
     #esi:             ~
@@ -45,6 +55,7 @@ twig:
         - 'bootstrap_3_layout.html.twig'
     globals:
         tva: '%tva%'
+        creditAgricole: '%creditAgricole%'
 
 # Doctrine Configuration
 doctrine:

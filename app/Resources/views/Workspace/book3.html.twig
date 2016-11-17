@@ -7,7 +7,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-		<div class="row">
+		<div class="row" id="booking-content">
 	    	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
 			<div class="col-lg-10">
 
@@ -143,9 +143,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 			</div>
 			</form>
 		</div>
-		<div class="row">
-			<div id="booking-valider-result"></div>
-		</div>
+
 
 	{% else %}
 		<p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
