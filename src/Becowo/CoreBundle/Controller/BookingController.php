@@ -59,12 +59,14 @@ class BookingController extends Controller
   	$startDate = str_replace('/', '-', $startDate);
   	$endDate = str_replace('/', '-', $endDate);
 
-  	// TO DO convertir milliseconds en time
+  	// TO DO convertir minutes en time
 
-  	// $bookingTimeSlider = explode(",",$request->get('booking-time-slider'));
-  	// isset($bookingTimeSlider[0]) ? $startDate = $startDate . $bookingTimeSlider[0];
-  	// isset($bookingTimeSlider[1]) ? $endTime = $bookingTimeSlider[1];
+  	$bookingTimeSlider = explode(",",$request->get('booking-time-slider'));
+  	isset($bookingTimeSlider[0]) ? $startTime = floor($bookingTimeSlider[0] / 60) . ':' . ($bookingTimeSlider[0] % 60) : $startTime = "00:00";
+  	isset($bookingTimeSlider[1]) ? $endTime = floor($bookingTimeSlider[1] / 60) . ':' . ($bookingTimeSlider[1] % 60) : $endTime = "00:00";
 
+  	$startDate = $startDate . 'T' . $startTime;
+  	$endDate = $endDate . 'T' . $endTime;
 
   	$bookingPriceInclTax = $request->get('booking-price-incl-tax');
   	$bookingDurationDay = $request->get('booking-duration-day');
@@ -81,11 +83,10 @@ class BookingController extends Controller
   	$booking->setDuration($bookingDuration);
   	$booking->setStartDate(New \DateTime($startDate));
   	$booking->setEndDate(New \DateTime($endDate));
-  	// TO DO $booking->setStartTime(New \DateTime("05:14:12"));
-  	// TO DO $booking->setEndTime($endTime);
   	$booking->setDurationDay($bookingDurationDay);
   	$booking->setNbPeople($bookingPeople);
   	$booking->setPriceInclTax($bookingPriceInclTax);
+  	$booking->setPriceExclTax($bookingPriceInclTax * (1 - floatval($this->container->getParameter('tva')/100)));
   	// TO DO : déterminer si isFirstBook
 
   	$em = $this->getDoctrine()->getManager();
