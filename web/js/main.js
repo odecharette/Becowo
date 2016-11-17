@@ -19,27 +19,50 @@ $(function () {
     $("#comment_Envoyer").unbind("click").click(function(){
     	//Commentaire
     	$.ajax(Routing.generate('becowo_comment', {name: document.getElementById('wsName').innerHTML}), {
-                    data: $('#comment-form').serialize(),
-                    type: "POST",
-                    success: function(data) {
-                        $('#CommentResults').html(data);
-                    },
-                    error: function() {
-                    	$('#CommentResults').html("Une erreur est survenue, veuillez réessayer plus tard");
-                    }
-                });
+            data: $('#comment-form').serialize(),
+            type: "POST",
+            success: function(data) {
+                $('#CommentResults').html(data);
+            },
+            error: function() {
+            	$('#CommentResults').html("Une erreur est survenue, veuillez réessayer plus tard");
+            }
+        });
     	// vote
     	$.ajax(Routing.generate('becowo_core_vote', {name: document.getElementById('wsName').innerHTML}), {
-    				data: $('#vote-form').serialize(),
-                    type: "POST",
-                    success: function(data) {
-                    	$('#VoteResults').html("Merci, vote comptabilisé !");
-                    },
-                    error: function() {
-                    	$('#VoteResults').html("Une erreur est survenue, veuillez réessayer plus tard");
-                    }
-                });
-    		return false;
+			data: $('#vote-form').serialize(),
+            type: "POST",
+            success: function(data) {
+            	$('#VoteResults').html("Merci, vote comptabilisé !");
+            },
+            error: function() {
+            	$('#VoteResults').html("Une erreur est survenue, veuillez réessayer plus tard");
+            }
+        });
+
+
+    	return false;
+
+
+    });
+
+});
+
+// Page d'un WS, envoye le booking en AJAX
+$(function () {
+    $("#booking-valider").unbind("click").click(function(){
+    	$.ajax(Routing.generate('becowo_core_booking', {name: document.getElementById('wsName').innerHTML}), {
+            data: $('#booking-form').serialize(),
+            type: "POST",
+            success: function(data) {
+                $('#booking-valider-result').html(data);
+            },
+            error: function() {
+            	$('#booking-valider-result').html("Une erreur est survenue, veuillez réessayer plus tard");
+            }
+        });
+
+    	return false;
 
 
     });

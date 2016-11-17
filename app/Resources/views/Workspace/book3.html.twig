@@ -8,7 +8,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
 		<div class="row">
-	    	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}">
+	    	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
 			<div class="col-lg-10">
 
 		    	{# ERREUR #}
@@ -138,10 +138,13 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 				{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
 				<input id="booking-price-incl-tax" type="number" step="any" name="booking-price-incl-tax" value="" hidden="true">
 
-				<input type="submit" value="Valider"> 
+				<input type="submit" value="Valider" id="booking-valider"> 
 				
 			</div>
 			</form>
+		</div>
+		<div class="row">
+			<div id="booking-valider-result"></div>
 		</div>
 
 	{% else %}

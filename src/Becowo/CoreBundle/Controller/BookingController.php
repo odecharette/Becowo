@@ -40,7 +40,6 @@ class BookingController extends Controller
   public function bookAction($name, Request $request)
   {
   	//SAVE le booking en cours en BDD
-  	dump($request);
 
   	$WsService = $this->get('app.workspace');
 
@@ -49,17 +48,21 @@ class BookingController extends Controller
   	$office = explode("*", $request->get('office'));
   	$officeName = $office[0];
   	$officeType = $office[1];
+
+
+
   	$officeObj = $WsService->getOfficeByName($officeType);
   	$officeOfWs = $WsService->getOfficeOfWorkspaceByWsOfficeName($ws, $officeObj, $officeName);
 
   	$bookingDuration = $request->get('booking-duration');
+
+  	// Pour les dates, on récupère séparement les dates et heure, puis on convertit puis on concatene le tout
+
   	$bookingCalendar = explode(" - ",$request->get('booking-calendar'));
   	isset($bookingCalendar[0]) ? $startDate = $bookingCalendar[0] : $startDate = null;
   	isset($bookingCalendar[1]) ? $endDate = $bookingCalendar[1] : $endDate = $startDate;
   	$startDate = str_replace('/', '-', $startDate);
   	$endDate = str_replace('/', '-', $endDate);
-
-  	// TO DO convertir minutes en time
 
   	$bookingTimeSlider = explode(",",$request->get('booking-time-slider'));
   	isset($bookingTimeSlider[0]) ? $startTime = floor($bookingTimeSlider[0] / 60) . ':' . ($bookingTimeSlider[0] % 60) : $startTime = "00:00";
