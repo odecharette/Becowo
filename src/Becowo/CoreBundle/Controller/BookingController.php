@@ -53,8 +53,22 @@ class BookingController extends Controller
   	$officeOfWs = $WsService->getOfficeOfWorkspaceByWsOfficeName($ws, $officeObj, $officeName);
 
   	$bookingDuration = $request->get('booking-duration');
-  	$bookingCalendar = $request->get('booking-calendar');
+  	$bookingCalendar = explode(" - ",$request->get('booking-calendar'));
+  	isset($bookingCalendar[0]) ? $startDate = $bookingCalendar[0] : $startDate = null;
+  	isset($bookingCalendar[1]) ? $endDate = $bookingCalendar[1] : $endDate = $startDate;
+  	$startDate = str_replace('/', '-', $startDate);
+  	$endDate = str_replace('/', '-', $endDate);
+
+  	// TO DO convertir milliseconds en time
+
+  	// $bookingTimeSlider = explode(",",$request->get('booking-time-slider'));
+  	// isset($bookingTimeSlider[0]) ? $startDate = $startDate . $bookingTimeSlider[0];
+  	// isset($bookingTimeSlider[1]) ? $endTime = $bookingTimeSlider[1];
+
+
+  	$bookingPriceInclTax = $request->get('booking-price-incl-tax');
   	$bookingDurationDay = $request->get('booking-duration-day');
+  	$bookingPeople = $request->get('booking-people');
 
   	$currentUser = $this->getUser();
 
@@ -64,6 +78,19 @@ class BookingController extends Controller
   	$booking->setWorkspaceHasOffice($officeOfWs);
   	$booking->setMember($currentUser);
   	$booking->setStatus($status);
+  	$booking->setDuration($bookingDuration);
+  	$booking->setStartDate(New \DateTime($startDate));
+  	$booking->setEndDate(New \DateTime($endDate));
+  	// TO DO $booking->setStartTime(New \DateTime("05:14:12"));
+  	// TO DO $booking->setEndTime($endTime);
+  	$booking->setDurationDay($bookingDurationDay);
+  	$booking->setNbPeople($bookingPeople);
+  	$booking->setPriceInclTax($bookingPriceInclTax);
+  	// TO DO : déterminer si isFirstBook
+
+  	$em = $this->getDoctrine()->getManager();
+  	$em->persist($booking);
+	$em->flush();
 
   	return $this->render('Workspace/book-validated.html.twig');
 

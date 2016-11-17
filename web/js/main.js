@@ -247,6 +247,9 @@ function loadCalendar(){
 
 
 	    $('#booking-calendar').on('apply.daterangepicker', function (e, picker) {
+
+	    	$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+
 	    	var end = new Date(picker.endDate);
 	    	var begin = new Date(picker.startDate);
 	    	// end = moment(end).add(1, 'm'); // Add 1 minute
@@ -266,7 +269,9 @@ function loadCalendar(){
 		        	document.getElementById('calendar-error').innerHTML = "Pour profiter du tarif mois, veuillez sélectionner un mois complet.";
 		        }
 		    };
+
 	    });
+
 	}
 
 
@@ -274,16 +279,20 @@ function loadCalendar(){
 		if(picker.startDate.date() == picker.endDate.date()){
 			document.getElementById('booking-recap-date').innerHTML = picker.startDate.format('DD/MM/YYYY');
 		}else{
+			$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
 			document.getElementById('booking-recap-date').innerHTML = "Du ";
 			document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
 			document.getElementById('booking-recap-date').innerHTML += " Au ";
 			document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY');
+
 		}
 	});
 
+
+
+
 	bookCalculatePrice();
 };
-
 
 /***************** Booking time ****************************/
 // http://seiyria.com/bootstrap-slider/
@@ -324,6 +333,7 @@ function loadTime(boo){
         if (minutes2 == 0) minutes2 = '00';
 
 		$('.slideTime .tooltip-inner').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
+//		mySliderTime.data('slider').setValue(""); pour changer le tooltip black mais pb de format de value
 		document.getElementById('booking-recap-time').innerHTML = 'De ' + hours1 + ':' + minutes1 + ' à ' + hours2 + ':' + minutes2;
 		document.getElementById('booking-recap-time-calculated').innerHTML = (valeurs[1] - valeurs[0])/60;
 		
@@ -449,9 +459,11 @@ function bookCalculatePrice()
 	var timeCalculatedReserved = document.getElementById('booking-recap-time-calculated').innerHTML;
 	var peopleReserved = document.getElementById('booking-recap-people').innerHTML;
 	var pricePerOffice = 0;
-	if(document.getElementById('SelectedOffice-' + officeReserved + '-price' + durationReserved) != null)
+	console.log('**********************');
+	console.log('SelectedOffice-' + officeReserved + '*' + officeTypeReserved + '-price' + durationReserved);
+	if(document.getElementById('SelectedOffice-' + officeReserved + '*' + officeTypeReserved + '-price' + durationReserved) != null)
 	{
-		pricePerOffice = Number(document.getElementById('SelectedOffice-' + officeReserved + '-price' + durationReserved).innerHTML);
+		pricePerOffice = Number(document.getElementById('SelectedOffice-' + officeReserved + '*' + officeTypeReserved + '-price' + durationReserved).innerHTML);
 	}else{
 		pricePerOffice = 0;
 	}
@@ -482,9 +494,10 @@ function bookCalculatePrice()
 
 	document.getElementById('booking-recap-price').innerHTML = finalPrice;
 	document.getElementById('booking-recap-price-txt').innerHTML = " € TTC";
+	document.getElementById('booking-price-incl-tax').value = finalPrice;
 }
 
-/*************dureation day choice ************************/
+/*************duration day choice ************************/
 
 function chooseDurationDay()
 {

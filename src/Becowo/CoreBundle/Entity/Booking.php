@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Booking
  *
- * @ORM\Table(name="becowo_booking", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}),@ORM\Index(name="fk_WorkspaceHasOffice_id_idx", columns={"WorkspaceHasOffice_id"}), @ORM\Index(name="fk_status_id_idx", columns={"status_id"})})
+ * @ORM\Table(name="becowo_booking", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}), @ORM\Index(name="fk_status_id_idx", columns={"status_id"}), @ORM\Index(name="fk_WorkspaceHasOffice_id_idx", columns={"WorkspaceHasOffice_id"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\BookingRepository")
  */
 class Booking
@@ -15,7 +15,7 @@ class Booking
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,14 +24,14 @@ class Booking
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_date", type="date", nullable=true)
+     * @ORM\Column(name="start_date", type="datetime", nullable=true)
      */
     private $startDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end_date", type="date", nullable=true)
+     * @ORM\Column(name="end_date", type="datetime", nullable=true)
      */
     private $endDate;
 
@@ -64,9 +64,41 @@ class Booking
     private $priceInclTax;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\Status
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Status")
+     * @ORM\Column(name="duration", type="string", length=30, nullable=false)
+     */
+    private $duration;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duration_day", type="string", length=20, nullable=false)
+     */
+    private $durationDay;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_people", type="integer", nullable=false)
+     */
+    private $nbPeople;
+
+    /**
+     * @var \WorkspaceHasOffice
+     *
+     * @ORM\ManyToOne(targetEntity="WorkspaceHasOffice")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="WorkspaceHasOffice_id", referencedColumnName="id")
+     * })
+     */
+    private $workspacehasoffice;
+
+    /**
+     * @var \Status
+     *
+     * @ORM\ManyToOne(targetEntity="Status")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      * })
@@ -74,17 +106,7 @@ class Booking
     private $status;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\WorkspaceHasOffice
-     *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasOffice")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="WorkspaceHasOffice_id", referencedColumnName="id")
-     * })
-     */
-    private $WorkspaceHasOffice;
-
-    /**
-     * @var \Becowo\MemberBundle\Entity\Member
+     * @var Becowo\MemberBundle\Entity\Member
      *
      * @ORM\ManyToOne(targetEntity="Becowo\MemberBundle\Entity\Member")
      * @ORM\JoinColumns({
@@ -102,151 +124,7 @@ class Booking
     }
 
     /**
-     * Set startDate
-     *
-     * @param \DateTime $startDate
-     *
-     * @return Booking
-     */
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
-
-        return $this;
-    }
-
-    /**
-     * Get startDate
-     *
-     * @return \DateTime
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * Set endDate
-     *
-     * @param \DateTime $endDate
-     *
-     * @return Booking
-     */
-    public function setEndDate($endDate)
-    {
-        $this->endDate = $endDate;
-
-        return $this;
-    }
-
-    /**
-     * Get endDate
-     *
-     * @return \DateTime
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * Set isFirstBook
-     *
-     * @param boolean $isFirstBook
-     *
-     * @return Booking
-     */
-    public function setIsFirstBook($isFirstBook)
-    {
-        $this->isFirstBook = $isFirstBook;
-
-        return $this;
-    }
-
-    /**
-     * Get isFirstBook
-     *
-     * @return boolean
-     */
-    public function getIsFirstBook()
-    {
-        return $this->isFirstBook;
-    }
-
-    /**
-     * Set createdOn
-     *
-     * @param \DateTime $createdOn
-     *
-     * @return Booking
-     */
-    public function setCreatedOn($createdOn)
-    {
-        $this->createdOn = $createdOn;
-
-        return $this;
-    }
-
-    /**
-     * Get createdOn
-     *
-     * @return \DateTime
-     */
-    public function getCreatedOn()
-    {
-        return $this->createdOn;
-    }
-
-    /**
-     * Set priceExclTax
-     *
-     * @param string $priceExclTax
-     *
-     * @return Booking
-     */
-    public function setPriceExclTax($priceExclTax)
-    {
-        $this->priceExclTax = $priceExclTax;
-
-        return $this;
-    }
-
-    /**
-     * Get priceExclTax
-     *
-     * @return string
-     */
-    public function getPriceExclTax()
-    {
-        return $this->priceExclTax;
-    }
-
-    /**
-     * Set priceInclTax
-     *
-     * @param string $priceInclTax
-     *
-     * @return Booking
-     */
-    public function setPriceInclTax($priceInclTax)
-    {
-        $this->priceInclTax = $priceInclTax;
-
-        return $this;
-    }
-
-    /**
-     * Get priceInclTax
-     *
-     * @return string
-     */
-    public function getPriceInclTax()
-    {
-        return $this->priceInclTax;
-    }
-
-    /**
-     * Get id
+     * Gets the value of id.
      *
      * @return integer
      */
@@ -256,37 +134,278 @@ class Booking
     }
 
     /**
-     * Set WorkspaceHasOffice
+     * Sets the value of id.
      *
-     * @param \Becowo\CoreBundle\Entity\WorkspaceHasOffice $WorkspaceHasOffice
+     * @param integer $id the id
      *
-     * @return Booking
+     * @return self
      */
-    public function setWorkspaceHasOffice(\Becowo\CoreBundle\Entity\WorkspaceHasOffice $WorkspaceHasOffice = null)
+    private function _setId($id)
     {
-        $this->WorkspaceHasOffice = $WorkspaceHasOffice;
+        $this->id = $id;
 
         return $this;
     }
 
     /**
-     * Get WorkspaceHasOffice
+     * Gets the value of startDate.
      *
-     * @return \Becowo\CoreBundle\Entity\WorkspaceHasOffice
+     * @return \DateTime
      */
-    public function getWorkspaceHasOffice()
+    public function getStartDate()
     {
-        return $this->WorkspaceHasOffice;
+        return $this->startDate;
     }
 
     /**
-     * Set status
+     * Sets the value of startDate.
+     *
+     * @param \DateTime $startDate
+     *
+     * @return self
+     */
+    public function setStartDate(\DateTime $startDate)
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of endDate.
+     *
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * Sets the value of endDate.
+     *
+     * @param \DateTime $endDate the end date
+     *
+     * @return self
+     */
+    public function setEndDate(\DateTime $endDate)
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of isFirstBook.
+     *
+     * @return boolean
+     */
+    public function getIsFirstBook()
+    {
+        return $this->isFirstBook;
+    }
+
+    /**
+     * Sets the value of isFirstBook.
+     *
+     * @param boolean $isFirstBook the is first book
+     *
+     * @return self
+     */
+    public function setIsFirstBook($isFirstBook)
+    {
+        $this->isFirstBook = $isFirstBook;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of createdOn.
+     *
+     * @return \DateTime
+     */
+    public function getCreatedOn()
+    {
+        return $this->createdOn;
+    }
+
+    /**
+     * Sets the value of createdOn.
+     *
+     * @param \DateTime $createdOn the created on
+     *
+     * @return self
+     */
+    public function setCreatedOn(\DateTime $createdOn)
+    {
+        $this->createdOn = $createdOn;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of priceExclTax.
+     *
+     * @return string
+     */
+    public function getPriceExclTax()
+    {
+        return $this->priceExclTax;
+    }
+
+    /**
+     * Sets the value of priceExclTax.
+     *
+     * @param string $priceExclTax the price excl tax
+     *
+     * @return self
+     */
+    public function setPriceExclTax($priceExclTax)
+    {
+        $this->priceExclTax = $priceExclTax;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of priceInclTax.
+     *
+     * @return string
+     */
+    public function getPriceInclTax()
+    {
+        return $this->priceInclTax;
+    }
+
+    /**
+     * Sets the value of priceInclTax.
+     *
+     * @param string $priceInclTax the price incl tax
+     *
+     * @return self
+     */
+    public function setPriceInclTax($priceInclTax)
+    {
+        $this->priceInclTax = $priceInclTax;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of duration.
+     *
+     * @return string
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Sets the value of duration.
+     *
+     * @param string $duration
+     *
+     * @return self
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+ 
+    /**
+     * Gets the value of durationDay.
+     *
+     * @return string
+     */
+    public function getDurationDay()
+    {
+        return $this->durationDay;
+    }
+
+    /**
+     * Sets the value of durationDay.
+     *
+     * @param string $durationDay the duration day
+     *
+     * @return self
+     */
+    public function setDurationDay($durationDay)
+    {
+        $this->durationDay = $durationDay;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of nbPeople.
+     *
+     * @return integer
+     */
+    public function getNbPeople()
+    {
+        return $this->nbPeople;
+    }
+
+    /**
+     * Sets the value of nbPeople.
+     *
+     * @param integer $nbPeople the nb people
+     *
+     * @return self
+     */
+    public function setNbPeople($nbPeople)
+    {
+        $this->nbPeople = $nbPeople;
+
+        return $this;
+    }
+
+    /**
+     * Gets the }).
+     *
+     * @return Becowo\CoreBundle\Entity\WorkspaceHasOffice
+     */
+    public function getWorkspaceHasOffice()
+    {
+        return $this->workspacehasoffice;
+    }
+
+    /**
+     * Sets the workspacehasoffice
+     *
+     * @param \Becowo\CoreBundle\Entity\WorkspaceHasOffice $workspacehasoffice
+     *
+     * @return self
+     */
+    public function setWorkspaceHasOffice(\Becowo\CoreBundle\Entity\WorkspaceHasOffice $workspacehasoffice)
+    {
+        $this->workspacehasoffice = $workspacehasoffice;
+
+        return $this;
+    }
+
+    /**
+     * Gets the }).
+     *
+     * @return Becowo\CoreBundle\Entity\Status
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Sets the }).
      *
      * @param \Becowo\CoreBundle\Entity\Status $status
      *
-     * @return Booking
+     * @return self
      */
-    public function setStatus(\Becowo\CoreBundle\Entity\Status $status = null)
+    public function setStatus(\Becowo\CoreBundle\Entity\Status $status)
     {
         $this->status = $status;
 
@@ -294,33 +413,7 @@ class Booking
     }
 
     /**
-     * Get status
-     *
-     * @return \Becowo\CoreBundle\Entity\Status
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-   
-
-    /**
-     * Set member
-     *
-     * @param \Becowo\MemberBundle\Entity\Member $member
-     *
-     * @return Booking
-     */
-    public function setMember(\Becowo\MemberBundle\Entity\Member $member = null)
-    {
-        $this->member = $member;
-
-        return $this;
-    }
-
-    /**
-     * Get member
+     * Gets the Member
      *
      * @return \Becowo\MemberBundle\Entity\Member
      */
@@ -328,4 +421,19 @@ class Booking
     {
         return $this->member;
     }
+
+    /**
+     * Sets the Member
+     *
+     * @param \Becowo\MemberBundle\Entity\Member $member
+     *
+     * @return self
+     */
+    public function setMember(\Becowo\MemberBundle\Entity\Member $member = null)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
 }
+

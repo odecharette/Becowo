@@ -91,7 +91,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 							<span id="calendar-time">
 							    <b id="calendar-time-min">{{times[0].openHour|date("H:i")}}</b>
 							    <span class="slideTime">
-							    	<input id="booking-time-slider" type="text" data-slider-handle="custom" />
+							    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
 							    </span>
 							    <b id="calendar-time-max">{{times[0].closeHour|date("H:i")}}</b>
 							    <br>
@@ -116,7 +116,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 					    {# Nb PEOPLE #}
 						    <b>1</b>
 						    <span class="slidePeople">
-						    	<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="10" data-slider-value="1"/>
+						    	<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="10" data-slider-value="1" name="booking-people"/>
 						    </span>
 						    <b id="booking-people-max">10</b>
 					</div>
@@ -135,6 +135,9 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 				<span id="booking-recap-time"></span><span id="booking-recap-time-calculated" style="display:none"></span><br>
 				<span id="booking-recap-people"></span><span id="booking-recap-people-txt"></span><br>
 				<span id="booking-recap-price"></span><span id="booking-recap-price-txt"></span><br>
+				{# J'ai besoin que le price soit dans un input pour le récupérer depuisle controller #}
+				<input id="booking-price-incl-tax" type="number" step="any" name="booking-price-incl-tax" value="" hidden="true">
+
 				<input type="submit" value="Valider"> 
 				
 			</div>
