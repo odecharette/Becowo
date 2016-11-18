@@ -52,5 +52,15 @@ class BookingRepository extends EntityRepository
 
 		return $this->getEntityManager()->createNativeQuery($sql, $rsm)->getScalarResult();
 	}
+
+	public function getBookingByRef($ref)
+	{
+		$qb = $this->createQueryBuilder('b');
+		$qb->where('b.bookingRef = :ref')
+		   ->setParameter('ref', $ref);
+
+		return $qb->getQuery()->getSingleResult();
+		// on pourrais utiliser directement findBy(array...) mais ca renvoi un array et non un objet alors bon..
+	}
 	
 }

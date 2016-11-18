@@ -4,6 +4,7 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Becowo\CoreBundle\Entity\PaiementTransaction;
 
 class PaiementController extends Controller
 {
@@ -35,7 +36,8 @@ class PaiementController extends Controller
     "&PBX_TIME=".$dateISO .
     "&PBX_EFFECTUE=".$paiementInfos['PBX_EFFECTUE'] .
     "&PBX_REFUSE=".$paiementInfos['PBX_REFUSE'] .
-    "&PBX_ANNULE=".$paiementInfos['PBX_ANNULE']; 
+    "&PBX_ANNULE=".$paiementInfos['PBX_ANNULE'] .
+    "&PBX_REPONDRE_A=".$paiementInfos['PBX_REPONDRE_A']; 
 
 
     // On récupère la clé secrète HMAC (stockée dans une base de données cryptée) et que l’on renseigne dans la variable 
@@ -55,20 +57,107 @@ class PaiementController extends Controller
 
   public function effectueAction(Request $request)
   {
-    // TO DO upadte status resa en BDD
-    
-    return $this->render('Paiement/effectue.html.twig');
+    $error_code = $request->get('erreur'); 
+    if($error_code != "00000")
+    {
+      // La transaction a générée une erreur
+      $errorService = $this->get('app.error');
+      $error = $errorService->getErrorByCode($error_code);
+      $error_msg = $error[0]['sentence'];
+    }
+
+    return $this->render('Paiement/effectue.html.twig', array('error_msg' => $error_msg));
   }
 
   public function annuleAction(Request $request)
   {
-    // TO DO upadte status resa en BDD
+    $error_code = $request->get('erreur'); 
+    if($error_code != "00000")
+    {
+      // La transaction a générée une erreur
+      $errorService = $this->get('app.error');
+      $error = $errorService->getErrorByCode($error_code);
+      $error_msg = $error[0]['sentence'];
+    }
     return $this->render('Paiement/annule.html.twig');
   }
 
   public function refuseAction(Request $request)
   {
-    // TO DO upadte status resa en BDD
+    $error_code = $request->get('erreur'); 
+    if($error_code != "00000")
+    {
+      // La transaction a générée une erreur
+      $errorService = $this->get('app.error');
+      $error = $errorService->getErrorByCode($error_code);
+      $error_msg = $error[0]['sentence'];
+    }
     return $this->render('Paiement/refuse.html.twig');
+  }
+
+
+  public function ipnAction(Request $request)
+  {
+    /* Lors de l’appel de cette URL, un script présent sur le serveur Marchand à l’emplacement spécifié par l’URL, va s’exécuter. Il n’y a pas de contrainte sur le langage de ce script (ASP, PHP, PERL, …). La seule limitation est que ce script ne doit pas faire de redirection et doit générer une page HTML vide. */
+
+
+    // pour tester (changer de ref de booking à chaque fois) : URL : http://localhost/Becowo/web/app_dev.php/ws/paiement/ipn?ref=582ed7f9441a9&call_number=71256&authorization_number=30258&total=2000&abonnement=354341&erreur=00000&sign=
+
+    dump($request);
+    $booking_ref = $request->get('ref');
+    $call_number = $request->get('call_number');  //Numéro d’appel  
+    $authorization_number = $request->get('authorization_number'); // numéro d’Autorisation (numéro remis par le centre d’autorisation) 
+    $total = $request->get('total'); // Montant de la transaction 
+    $abonnement = $request->get('abonnement'); // numéro d’abonnement (numéro remis par la plateforme)
+    $error_code = $request->get('erreur'); 
+    $signature = $request->get('sign'); // Signature sur les variables de l’URL. Format : url-encodé 
+    $uri = $_SERVER['REQUEST_URI'];
+    $paramList = explode('?', $uri);
+
+    $WsService = $this->get('app.workspace');
+    $booking = $WsService->getBookingByRef($booking_ref);
+
+    $errorService = $this->get('app.error');
+    $error = $errorService->getErrorByCode($error_code);
+
+    // Vérifier l'IP qui appel cette URL pouor assurer que ca provient bien de la banque
+    $clientIP = $request->getClientIp();
+    $CreditAgricoleIP = ['195.101.99.76', '194.2.122.158', '194.2.122.190', '195.25.7.166', '195.25.67.22'];
+    $trusted_IP = in_array($clientIP, $CreditAgricoleIP);
+
+    // Vérifier la signature
+    // Lecture de la clé publique depuis le certificat
+  //  $pubkeyid = openssl_pkey_get_public($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem');
+    $fp = fopen($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem', "r");
+    $pubkeyid = fread($fp, 8192);
+    fclose($fp);
+    /***************************************************************/
+    $data = $paramList[1]; 
+    $trusted_Signature = openssl_verify($data, $signature, $pubkeyid);
+
+
+    // Sauvegarde de la transaction en BDD
+    $transaction = New PaiementTransaction();
+    $transaction->setReturnCode($error);
+    $transaction->setBooking($booking);
+    $transaction->setAuthorizationNumber($authorization_number);
+    $transaction->setTrustedIP($trusted_IP);
+    $transaction->setTrustedSignature($trusted_Signature);
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($transaction);
+    $em->flush();
+
+    // Transaction valide
+    // * $error_code = "00000"
+    // * $authorization_number = "XXXXXX" si test sinon != null (param non envoyé si transaction refusée)
+    // * $trusted_IP = true
+    // * $trusted_Signature = true
+
+
+    
+
+
+
+    return $this->render('Paiement/ipn.html.twig');
   }
 }

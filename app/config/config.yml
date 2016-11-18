@@ -17,12 +17,13 @@ parameters:
         PBX_RANG: 32
         PBX_IDENTIFIANT: 213
         PBX_DEVISE: 978
-        PBX_RETOUR: Mt:M;Ref:R;Auto:A;Erreur:E
+        PBX_RETOUR: Mt:M;Ref:R;Auto:A;Erreur:E;sign:K    #Le param K doit tjs être en dernier
         PBX_HASH: SHA512
         PBX_HMAC: 0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
         PBX_EFFECTUE: http://localhost/Becowo/web/app_dev.php/ws/paiement/effectue
         PBX_ANNULE: http://localhost/Becowo/web/app_dev.php/ws/paiement/annule
         PBX_REFUSE: http://localhost/Becowo/web/app_dev.php/ws/paiement/refuse
+        PBX_REPONDRE_A: http://localhost/Becowo/web/app_dev.php/ws/paiement/ipn
 
 framework:
     #esi:             ~

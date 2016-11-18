@@ -21,6 +21,10 @@ services:
         class: Becowo\CoreBundle\Services\CommentService
         arguments: ['@doctrine.orm.entity_manager']
 
+    app.error:
+        class: Becowo\CoreBundle\Services\ErrorService
+        arguments: ['@doctrine.orm.entity_manager']
+
     # app.paiement:
     #     class: Becowo\CoreBundle\Services\PaiementService
     #     arguments: ['@doctrine.orm.entity_manager']

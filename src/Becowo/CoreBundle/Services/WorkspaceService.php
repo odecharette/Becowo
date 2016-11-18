@@ -132,6 +132,12 @@ class WorkspaceService
         return $repo->findBy(array('workspace' => $ws));
     }
 
+    public function getBookingByRef($ref)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        return $repo->getBookingByRef($ref);
+    }
+
     public function getTotalInclTaxReservationsByWorkspace(Workspace $ws)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Booking');

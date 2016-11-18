@@ -382,11 +382,14 @@ function loadHalfTime(boo){
 /***************** Booking people ****************************/
 $( document ).ready(function() {
 	var mySliderPeople = $("#booking-people").slider({});
+	if(mySliderPeople != null)
+	{
 	mySliderPeople.on('change', function(ev){
 		document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
 		document.getElementById('booking-recap-people-txt').innerHTML = " personne(s)"; 
 		bookCalculatePrice();
 	});
+	}
 });
 
 /***************** Booking offices ****************************/
@@ -406,6 +409,9 @@ function chooseDuration() {
 	//Récup la liste des bureaux
 	var oInput = document.getElementById('booking-office'),
             oChild;
+    if(oInput != null)
+    {
+
     for(i = 0; i < oInput.childNodes.length; i++){
         oChild = oInput.childNodes[i];
         if(oChild.nodeName == 'INPUT'){ // Boucle sur chaque input dont l'ID est un type d'espace
@@ -460,6 +466,8 @@ function chooseDuration() {
 
     loadCalendar();
     bookCalculatePrice();
+    
+    }
 
 }
 $( document ).ready(function() {
