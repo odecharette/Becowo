@@ -11,12 +11,15 @@
 {% block body %}
 
 
-<center><b><h2>Votre transaction a été acceptée</h2></center></b><br>
-<br><b>MONTANT : </b> {{app.request.get('Mt') / 100 }} € TTC
-<br><b>REFERENCE : </b> {{app.request.get('Ref')}}
+<center><b><h2>Votre paiement a été accepté</h2></center></b><br>
+Le paiement de votre réservation N° {{app.request.get('Ref')}} a été accepté<br>
+<b>MONTANT : </b> {{app.request.get('Mt') / 100 }} € TTC
 <br><b>AUTO : </b> {{app.request.get('Auto')}}
 <br><b>ERROR : </b> {{app.request.get('Erreur')}}
 {{error_msg}}
+
+<br><br>
+Un email vient de vous être envoyé avec toutes les informations concernant votre réservation.<br>
 
 {% block javascripts %}    
 {% endblock javascripts %}
