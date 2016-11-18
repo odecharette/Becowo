@@ -104,12 +104,28 @@ class BookingController extends Controller
 
   	public function validateAction($bookRef, Request $request)
   	{
-  		// TO DO : valider résa en BDD et informer coworker
+  		$WsService = $this->get('app.workspace');
+    	$booking = $WsService->getBookingByRef($bookRef);
+    	$status = $WsService->getStatusById(4); // "Id 4 : Réservation validée"
+      	$booking->setStatus($status);
+      	$em = $this->getDoctrine()->getManager();
+  		$em->persist($booking);
+		$em->flush();
+
+		return $this->render('Booking/validated.html.twig');
   	}
 
   	public function refuseAction($bookRef, Request $request)
   	{
-  		// TO DO : refuser résa en BDD et informer coworker
+  		$WsService = $this->get('app.workspace');
+    	$booking = $WsService->getBookingByRef($bookRef);
+    	$status = $WsService->getStatusById(5); // "Id 5 : Réservation refusée"
+      	$booking->setStatus($status);
+      	$em = $this->getDoctrine()->getManager();
+  		$em->persist($booking);
+		$em->flush();
+
+		return $this->render('Booking/refused.html.twig');
   	}
 
 }
