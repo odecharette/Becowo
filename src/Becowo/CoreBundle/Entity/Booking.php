@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Booking
  *
- * @ORM\Table(name="becowo_booking", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}), @ORM\Index(name="fk_status_id_idx", columns={"status_id"}), @ORM\Index(name="fk_WorkspaceHasOffice_id_idx", columns={"WorkspaceHasOffice_id"})})
+ * @ORM\Table(name="becowo_booking", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}), @ORM\UniqueConstraint(name="bookingRef_UNIQUE", columns={"booking_ref"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}), @ORM\Index(name="fk_status_id_idx", columns={"status_id"}), @ORM\Index(name="fk_WorkspaceHasOffice_id_idx", columns={"WorkspaceHasOffice_id"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\BookingRepository")
  */
 class Booking
@@ -19,7 +19,7 @@ class Booking
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var \DateTime
@@ -50,14 +50,14 @@ class Booking
     private $createdOn;
 
     /**
-     * @var string
+     * @var decimal
      *
      * @ORM\Column(name="price_excl_tax", type="decimal", precision=5, scale=2, nullable=true)
      */
     private $priceExclTax;
 
     /**
-     * @var string
+     * @var decimal
      *
      * @ORM\Column(name="price_incl_tax", type="decimal", precision=5, scale=2, nullable=true)
      */
@@ -106,6 +106,14 @@ class Booking
     private $status;
 
     /**
+     * @var \string
+     *
+     * @ORM\Column(name="booking_ref", type="string", length=20, nullable=false)
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $bookingRef;
+
+    /**
      * @var Becowo\MemberBundle\Entity\Member
      *
      * @ORM\ManyToOne(targetEntity="Becowo\MemberBundle\Entity\Member")
@@ -121,6 +129,7 @@ class Booking
     public function __construct()
     {
         $this->createdOn = new \DateTime();
+        $this->bookingRef = uniqid();
     }
 
     /**
@@ -246,7 +255,7 @@ class Booking
     /**
      * Gets the value of priceExclTax.
      *
-     * @return string
+     * @return decimal
      */
     public function getPriceExclTax()
     {
@@ -256,7 +265,7 @@ class Booking
     /**
      * Sets the value of priceExclTax.
      *
-     * @param string $priceExclTax the price excl tax
+     * @param decimal 
      *
      * @return self
      */
@@ -270,7 +279,7 @@ class Booking
     /**
      * Gets the value of priceInclTax.
      *
-     * @return string
+     * @return decimal
      */
     public function getPriceInclTax()
     {
@@ -280,9 +289,9 @@ class Booking
     /**
      * Sets the value of priceInclTax.
      *
-     * @param string $priceInclTax the price incl tax
+     * @param $priceInclTax
      *
-     * @return self
+     * @return decimal
      */
     public function setPriceInclTax($priceInclTax)
     {
@@ -435,5 +444,30 @@ class Booking
 
         return $this;
     }
+
+   /**
+     * Gets the value of booking_ref.
+     *
+     * @return string
+     */
+    public function getBookingRef()
+    {
+        return $this->bookingRef;
+    }
+
+    /**
+     * Sets the value of bookingRef.
+     *
+     * @param string $bookingRef
+     *
+     * @return self
+     */
+    public function setBookingRef($bookingRef)
+    {
+        $this->bookingRef = $bookingRef;
+
+        return $this;
+    }
+
 }
 

@@ -96,8 +96,10 @@ class BookingController extends Controller
   	$em->persist($booking);
 	$em->flush();
 
+	$priceToPay = $bookingPriceInclTax * 100; // il faut envoyer le prix en cts
+
 	// Ce controller est appelé en AJAX dans main.js, donc le résult s'affiche dans une DIV dans la page du WS
-  	return $this->render('Workspace/book-validated.html.twig');
+  	return $this->render('Workspace/book-validated.html.twig', array('priceToPay' =>$priceToPay, 'bookingRef' => $booking->getBookingRef()));
 
 
   }

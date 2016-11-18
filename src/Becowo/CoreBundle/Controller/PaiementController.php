@@ -11,11 +11,10 @@ class PaiementController extends Controller
   public function callBankAction(Request $request)
   {
      $paiementInfos = $this->container->getParameter('creditAgricole');
-     dump($paiementInfos);
      $currentUser = $this->getUser();
      $userEmail = $currentUser->getEmail();
-     $montant = $request->get('montant');
-     $numCmd = "1" ; // TO DO
+     $priceToPay = $request->get('priceToPay');
+     $bookingRef = $request->get('bookingRef');
 
 
     /************************************/
@@ -27,9 +26,9 @@ class PaiementController extends Controller
     $msg = "PBX_SITE=" . $paiementInfos['PBX_SITE'] . 
     "&PBX_RANG=" . $paiementInfos['PBX_RANG'] . 
     "&PBX_IDENTIFIANT=" . $paiementInfos['PBX_IDENTIFIANT'] . 
-    "&PBX_TOTAL=" . $montant .
+    "&PBX_TOTAL=" . $priceToPay .
     "&PBX_DEVISE=" . $paiementInfos['PBX_DEVISE'] . 
-    "&PBX_CMD=" . $numCmd . 
+    "&PBX_CMD=" . $bookingRef . 
     "&PBX_PORTEUR=" . $userEmail . 
     "&PBX_RETOUR=" . $paiementInfos['PBX_RETOUR'] . 
     "&PBX_HASH=" . $paiementInfos['PBX_HASH'] .
@@ -48,6 +47,6 @@ class PaiementController extends Controller
     $hmacCalculated = strtoupper(hash_hmac($paiementInfos['PBX_HASH'], $msg, $binKey)); 
     // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
 
-    return $this->render('Paiement/payer.html.twig', array('paiementInfos' =>$paiementInfos, 'montant' => $montant, 'numCmd' => $numCmd, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated));
+    return $this->render('Paiement/payer.html.twig', array('paiementInfos' =>$paiementInfos, 'priceToPay' => $priceToPay, 'bookingRef' => $bookingRef, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated));
   }
 }
