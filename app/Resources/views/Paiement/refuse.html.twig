@@ -1,0 +1,23 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Paiement effectué
+{% endblock %}
+
+{% block stylesheets %}
+	
+{% endblock %}
+
+{% block body %}
+
+
+<center><b><h2>Votre transaction a été refusée</h2></center></b><br>
+<br><b>MONTANT : </b> {{app.request.get('Mt') / 100 }} € TTC
+<br><b>REFERENCE : </b> {{app.request.get('Ref')}}
+<br><b>AUTO : </b> {{app.request.get('Auto')}}
+<br><b>ERROR : </b> {{app.request.get('Erreur')}}
+
+{% block javascripts %}    
+{% endblock javascripts %}
+
+{% endblock body %}

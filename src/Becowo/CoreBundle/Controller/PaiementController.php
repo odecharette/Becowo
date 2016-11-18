@@ -32,7 +32,10 @@ class PaiementController extends Controller
     "&PBX_PORTEUR=" . $userEmail . 
     "&PBX_RETOUR=" . $paiementInfos['PBX_RETOUR'] . 
     "&PBX_HASH=" . $paiementInfos['PBX_HASH'] .
-    "&PBX_TIME=".$dateISO; 
+    "&PBX_TIME=".$dateISO .
+    "&PBX_EFFECTUE=".$paiementInfos['PBX_EFFECTUE'] .
+    "&PBX_REFUSE=".$paiementInfos['PBX_REFUSE'] .
+    "&PBX_ANNULE=".$paiementInfos['PBX_ANNULE']; 
 
 
     // On récupère la clé secrète HMAC (stockée dans une base de données cryptée) et que l’on renseigne dans la variable 
@@ -48,5 +51,24 @@ class PaiementController extends Controller
     // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
 
     return $this->render('Paiement/payer.html.twig', array('paiementInfos' =>$paiementInfos, 'priceToPay' => $priceToPay, 'bookingRef' => $bookingRef, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated));
+  }
+
+  public function effectueAction(Request $request)
+  {
+    // TO DO upadte status resa en BDD
+    
+    return $this->render('Paiement/effectue.html.twig');
+  }
+
+  public function annuleAction(Request $request)
+  {
+    // TO DO upadte status resa en BDD
+    return $this->render('Paiement/annule.html.twig');
+  }
+
+  public function refuseAction(Request $request)
+  {
+    // TO DO upadte status resa en BDD
+    return $this->render('Paiement/refuse.html.twig');
   }
 }

@@ -100,7 +100,6 @@ class BookingController extends Controller
 
 	// Ce controller est appelé en AJAX dans main.js, donc le résult s'affiche dans une DIV dans la page du WS
   	return $this->render('Workspace/book-validated.html.twig', array('priceToPay' =>$priceToPay, 'bookingRef' => $booking->getBookingRef()));
-
-
   }
+
 }

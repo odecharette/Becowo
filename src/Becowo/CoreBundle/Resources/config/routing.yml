@@ -76,6 +76,27 @@ becowo_core_booking:
     options:
         expose: true
 
+becowo_core_paiement_effectue:
+    path:     /ws/paiement/effectue
+    defaults: { _controller: BecowoCoreBundle:Paiement:effectue }
+    methods: GET|POST
+    options:
+        expose: true
+
+becowo_core_paiement_annule:
+    path:     /ws/paiement/annule
+    defaults: { _controller: BecowoCoreBundle:Paiement:annule }
+    methods: GET|POST
+    options:
+        expose: true
+
+becowo_core_paiement_refuse:
+    path:     /ws/paiement/refuse
+    defaults: { _controller: BecowoCoreBundle:Paiement:refuse }
+    methods: GET|POST
+    options:
+        expose: true
+
 # becowo_core_ambassadeur:
 #     path:     /devenir-ambassadeur
 #     defaults: { _controller: BecowoCoreBundle:Footer:ambassadeur }
