@@ -32,7 +32,7 @@ class PaiementTransaction
     /**
      * @var string
      *
-     * @ORM\Column(name="authorization_number", type="string", length=255)
+     * @ORM\Column(name="authorization_number", type="string", length=255, nullable=true)
      */
     private $authorizationNumber;   
 
@@ -49,6 +49,13 @@ class PaiementTransaction
      * @ORM\Column(name="trusted_signature", type="boolean")
      */
     private $trustedSignature; 
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="transaction_is_valid", type="boolean")
+     */
+    private $transactionIsValid; 
 
     /**
      * @var \Booking
@@ -238,6 +245,31 @@ class PaiementTransaction
     public function setTrustedSignature($trustedSignature)
     {
         $this->trustedSignature = $trustedSignature;
+
+        return $this;
+    }
+
+
+    /**
+     * Gets the value of transactionIsValid.
+     *
+     * @return boolean
+     */
+    public function getTransactionIsValid()
+    {
+        return $this->transactionIsValid;
+    }
+
+    /**
+     * Sets the value of transactionIsValid.
+     *
+     * @param boolean $transactionIsValid 
+     *
+     * @return self
+     */
+    public function setTransactionIsValid($transactionIsValid)
+    {
+        $this->transactionIsValid = $transactionIsValid;
 
         return $this;
     }

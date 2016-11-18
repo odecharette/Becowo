@@ -57,7 +57,8 @@ class PaiementController extends Controller
 
   public function effectueAction(Request $request)
   {
-    $error_code = $request->get('erreur'); 
+    $error_code = $request->get('Erreur'); 
+    $error_msg = "";
     if($error_code != "00000")
     {
       // La transaction a générée une erreur
@@ -71,7 +72,7 @@ class PaiementController extends Controller
 
   public function annuleAction(Request $request)
   {
-    $error_code = $request->get('erreur'); 
+    $error_code = $request->get('Erreur'); 
     if($error_code != "00000")
     {
       // La transaction a générée une erreur
@@ -84,7 +85,7 @@ class PaiementController extends Controller
 
   public function refuseAction(Request $request)
   {
-    $error_code = $request->get('erreur'); 
+    $error_code = $request->get('Erreur'); 
     if($error_code != "00000")
     {
       // La transaction a générée une erreur
@@ -136,6 +137,17 @@ class PaiementController extends Controller
     $trusted_Signature = openssl_verify($data, $signature, $pubkeyid);
 
 
+    // On vérifie si la transaction est valide
+    if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
+    {
+      $transaction_valide = true;
+    }
+    else
+    {
+      $transaction_valide = false;
+    }
+    
+
     // Sauvegarde de la transaction en BDD
     $transaction = New PaiementTransaction();
     $transaction->setReturnCode($error);
@@ -143,6 +155,7 @@ class PaiementController extends Controller
     $transaction->setAuthorizationNumber($authorization_number);
     $transaction->setTrustedIP($trusted_IP);
     $transaction->setTrustedSignature($trusted_Signature);
+    $transaction->setTransactionIsValid($transaction_valide);
     $em = $this->getDoctrine()->getManager();
     $em->persist($transaction);
     $em->flush();
