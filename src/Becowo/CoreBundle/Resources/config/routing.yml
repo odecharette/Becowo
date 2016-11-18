@@ -76,6 +76,16 @@ becowo_core_booking:
     options:
         expose: true
 
+becowo_core_booking_validated:
+    path:     /book/validated/{bookRef}
+    defaults: { _controller: BecowoCoreBundle:Booking:validate }
+    methods: GET|POST
+
+becowo_core_booking_refused:
+    path:     /book/refused/{bookRef}
+    defaults: { _controller: BecowoCoreBundle:Booking:refuse }
+    methods: GET|POST
+
 becowo_core_paiement_effectue:
     path:     /ws/paiement/effectue
     defaults: { _controller: BecowoCoreBundle:Paiement:effectue }

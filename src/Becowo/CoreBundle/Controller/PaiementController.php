@@ -136,15 +136,52 @@ class PaiementController extends Controller
     $data = $paramList[1]; 
     $trusted_Signature = openssl_verify($data, $signature, $pubkeyid);
 
+    $em = $this->getDoctrine()->getManager();
+
 
     // On vérifie si la transaction est valide
-    if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
+    // * $error_code = "00000"
+    // * $authorization_number = "XXXXXX" si test sinon != null (param non envoyé si transaction refusée)
+    // * $trusted_IP = true
+    // * $trusted_Signature = true
+
+    // ************* if désactivé juste pour tester l'envoi de l'email
+//   if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
+
+    if(true)
     {
       $transaction_valide = true;
+
+      // La transaction est valide, donc on update le statut de la réservation
+      $status = $WsService->getStatusById(2); // "Id 2 : Paiement validé"
+      $booking->setStatus($status);
+      $em->persist($booking);
+
+      //Puis on envoi un mail au manager pour valider la résa
+      $message = \Swift_Message::newInstance()
+        ->setSubject("Nouvelle demande de réservation - " . $booking_ref)
+        ->setFrom($this->getUser()->getEmail())
+        ->setTo('odecharette@gmail.com') // TO DO récup email du manager
+        ->setBody(
+            $this->renderView(
+                'CommonViews/Mail/New-dme-resa.html.twig',
+                array(
+                    'user' => $this->getUser()->getFirstname() . ' ' . $this->getUser()->getName(),
+                    'booking' => $booking
+                )
+            )
+        );
+
+      $this->get('mailer')->send($message);
     }
     else
     {
       $transaction_valide = false;
+
+      // La transaction est refusé, donc on update le statut de la réservation
+      $status = $WsService->getStatusById(3); // "Id 3 : Paiement refusé"
+      $booking->setStatus($status);
+      $em->persist($booking);
     }
     
 
@@ -156,15 +193,11 @@ class PaiementController extends Controller
     $transaction->setTrustedIP($trusted_IP);
     $transaction->setTrustedSignature($trusted_Signature);
     $transaction->setTransactionIsValid($transaction_valide);
-    $em = $this->getDoctrine()->getManager();
     $em->persist($transaction);
+
     $em->flush();
 
-    // Transaction valide
-    // * $error_code = "00000"
-    // * $authorization_number = "XXXXXX" si test sinon != null (param non envoyé si transaction refusée)
-    // * $trusted_IP = true
-    // * $trusted_Signature = true
+ 
 
 
     

@@ -1,0 +1,29 @@
+<p>Bonjour, <br>
+<br>
+{{ user|raw }} souhaite réserver dans votre espace.<br>
+<br>
+Détails de la réservation N° {{booking.bookingRef}} : <br>
+<br>
+Salle : {{booking.workspacehasoffice.name}} - {{booking.workspacehasoffice.office.name}}
+Date de début : {{booking.startDate|date('d/m/Y h:i')}} <br>
+Date de fin : {{booking.endDate|date('d/m/Y h:i')}} <br>
+Durée : {{booking.duration}} {{booking.durationDay}} <br>
+Nombre de coworkers : {{booking.nbPeople}} <br>
+<br><br>
+Informations sur le coworker : <br>
+Prénom : {{booking.member.Firstname}} <br>
+Nom : {{booking.member.name}} <br>
+Sexe : {{booking.member.sex}} <br>
+Téléphone : {{booking.member.phone}} <br>
+Email : {{booking.member.email}} <br>
+Job : {{booking.member.job}} <br>
+<br>
+</p>
+<br>
+<p>
+<a href="{{ absolute_url(path('becowo_core_booking_validated', {'bookRef': booking.bookingRef})) }}"><button type="button" class="btn btn-success">Valider la réservation</button></a><br>
+<br>
+<a href="{{ absolute_url(path('becowo_core_booking_refused', {'bookRef': booking.bookingRef})) }}"><button type="button" class="btn btn-danger">Refuser la réservation</button></a>
+Si vous refusez la réservation, le coworker sera prévenu par email puis remboursé.<br>
+Nous vous conseillons cependant, de le contacter directement pour lui expliquer la raison où trouver un arrangement avec lui. <br>
+</p>

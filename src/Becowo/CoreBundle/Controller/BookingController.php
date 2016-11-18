@@ -102,4 +102,14 @@ class BookingController extends Controller
   	return $this->render('Workspace/book-validated.html.twig', array('priceToPay' =>$priceToPay, 'bookingRef' => $booking->getBookingRef()));
   }
 
+  	public function validateAction($bookRef, Request $request)
+  	{
+  		// TO DO : valider résa en BDD et informer coworker
+  	}
+
+  	public function refuseAction($bookRef, Request $request)
+  	{
+  		// TO DO : refuser résa en BDD et informer coworker
+  	}
+
 }
