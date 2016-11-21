@@ -57,7 +57,7 @@ class PaiementController extends Controller
 
   public function effectueAction(Request $request)
   {
-    $error_code = $request->get('Erreur'); 
+    $error_code = $request->get('erreur'); 
     $error_msg = "";
     if($error_code != "00000")
     {
@@ -72,7 +72,7 @@ class PaiementController extends Controller
 
   public function annuleAction(Request $request)
   {
-    $error_code = $request->get('Erreur'); 
+    $error_code = $request->get('erreur'); 
     if($error_code != "00000")
     {
       // La transaction a générée une erreur
@@ -85,7 +85,7 @@ class PaiementController extends Controller
 
   public function refuseAction(Request $request)
   {
-    $error_code = $request->get('Erreur'); 
+    $error_code = $request->get('erreur'); 
     if($error_code != "00000")
     {
       // La transaction a générée une erreur
@@ -99,42 +99,45 @@ class PaiementController extends Controller
 
   public function ipnAction(Request $request)
   {
-    /* Lors de l’appel de cette URL, un script présent sur le serveur Marchand à l’emplacement spécifié par l’URL, va s’exécuter. Il n’y a pas de contrainte sur le langage de ce script (ASP, PHP, PERL, …). La seule limitation est que ce script ne doit pas faire de redirection et doit générer une page HTML vide. */
+    /* Cette action est appelée par le Crédit Agricole pour faire un retour sur le paiement */
+    /* Cette action doit renvoyer une page HTML vide */
 
+    // pour tester (supprimer la transaction en BDD) : URL : http://localhost/Becowo/web/app_dev.php/ws/paiement/ipn?Montant=1000&Ref=5832be24b67bb&call_number=71256&authorization_number=30258&erreur=00000
 
-    // pour tester (changer de ref de booking à chaque fois) : URL : http://localhost/Becowo/web/app_dev.php/ws/paiement/ipn?ref=582ed7f9441a9&call_number=71256&authorization_number=30258&total=2000&abonnement=354341&erreur=00000&sign=
-
-    dump($request);
-    $booking_ref = $request->get('ref');
+    // Récupération des paramètres envoyés par le CréditAgricole (liste configurable dans le fichier de config) 
+    $total = $request->get('Montant'); // Montant de la transaction 
+    $booking_ref = $request->get('Ref'); // Référence de la réservation
     $call_number = $request->get('call_number');  //Numéro d’appel  
-    $authorization_number = $request->get('authorization_number'); // numéro d’Autorisation (numéro remis par le centre d’autorisation) 
-    $total = $request->get('total'); // Montant de la transaction 
-    $abonnement = $request->get('abonnement'); // numéro d’abonnement (numéro remis par la plateforme)
-    $error_code = $request->get('erreur'); 
+    $authorization_number = $request->get('authorization_number'); // numéro d’Autorisation (numéro remis par le centre d’autorisation)
+    $error_code = $request->get('erreur'); // Code retour de la transation (voir table ErrorCodes)
     $signature = $request->get('sign'); // Signature sur les variables de l’URL. Format : url-encodé 
-    $uri = $_SERVER['REQUEST_URI'];
-    $paramList = explode('?', $uri);
 
+    // Construction de l'objet Booking correspondant à la transaction
     $WsService = $this->get('app.workspace');
     $booking = $WsService->getBookingByRef($booking_ref);
 
+    // Construction de l'objet Error correspond au code retour de la transaction
     $errorService = $this->get('app.error');
     $error = $errorService->getErrorByCode($error_code);
 
-    // Vérifier l'IP qui appel cette URL pouor assurer que ca provient bien de la banque
+    // Vérifier l'IP qui appel cette URL pour assurer que ca provient bien de la banque
     $clientIP = $request->getClientIp();
     $CreditAgricoleIP = ['195.101.99.76', '194.2.122.158', '194.2.122.190', '195.25.7.166', '195.25.67.22'];
     $trusted_IP = in_array($clientIP, $CreditAgricoleIP);
 
-    // Vérifier la signature
+    // Vérifier la signature de l'URL pour assurer que ca provient bien de la banque
+    // Récupération de l'URL reçue pour récup la liste des paramètres
+    $uri = $_SERVER['REQUEST_URI'];
+    $paramList = explode('?', $uri);
+    $data = $paramList[1]; 
     // Lecture de la clé publique depuis le certificat
-  //  $pubkeyid = openssl_pkey_get_public($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem');
+      //  $pubkeyid = openssl_pkey_get_public($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem');
     $fp = fopen($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem', "r");
     $pubkeyid = fread($fp, 8192);
     fclose($fp);
     /***************************************************************/
-    $data = $paramList[1]; 
     $trusted_Signature = openssl_verify($data, $signature, $pubkeyid);
+
 
     $em = $this->getDoctrine()->getManager();
 
@@ -146,8 +149,7 @@ class PaiementController extends Controller
     // * $trusted_Signature = true
 
     // ************* if désactivé juste pour tester l'envoi de l'email
-//   if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
-
+ //  if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
     if(true)
     {
       $transaction_valide = true;
@@ -165,12 +167,22 @@ class PaiementController extends Controller
         ->setBody(
             $this->renderView(
                 'CommonViews/Mail/New-dme-resa.html.twig',
-                array(
-                    'user' => $this->getUser()->getFirstname() . ' ' . $this->getUser()->getName(),
-                    'booking' => $booking
-                )
-            )
-        );
+                array('user' => $this->getUser()->getFirstname() . ' ' . $this->getUser()->getName(),
+                    'booking' => $booking)
+            ));
+
+      $this->get('mailer')->send($message);
+
+      //Puis on envoi un mail au coworker pour l'informer que le paiement est valide
+      $message = \Swift_Message::newInstance()
+        ->setSubject("Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref)
+        ->setFrom('contact@becowo.com')
+        ->setTo($this->getUser()->getEmail())
+        ->setBody(
+            $this->renderView(
+                'CommonViews/Mail/Coworker-ResaPayee.html.twig',
+                array('booking' => $booking)
+            ));
 
       $this->get('mailer')->send($message);
     }
@@ -197,13 +209,7 @@ class PaiementController extends Controller
 
     $em->flush();
 
- 
-
-
-    
-
-
-
+    // On renvoi une page HTML vide
     return $this->render('Paiement/ipn.html.twig');
   }
 }

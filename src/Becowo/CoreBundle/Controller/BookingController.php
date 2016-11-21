@@ -42,14 +42,11 @@ class BookingController extends Controller
   	//SAVE le booking en cours en BDD
 
   	$WsService = $this->get('app.workspace');
-
     $ws = $WsService->getWorkspaceByName($name);
 
   	$office = explode("*", $request->get('office'));
   	$officeName = $office[0];
   	$officeType = $office[1];
-
-
 
   	$officeObj = $WsService->getOfficeByName($officeType);
   	$officeOfWs = $WsService->getOfficeOfWorkspaceByWsOfficeName($ws, $officeObj, $officeName);
@@ -112,6 +109,19 @@ class BookingController extends Controller
   		$em->persist($booking);
 		$em->flush();
 
+		//On envoi un mail au coworker pour l'informer que la résa est confirmée
+      	$message = \Swift_Message::newInstance()
+        ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
+        ->setFrom('contact@becowo.com')
+        ->setTo($booking->getMember()->getEmail())
+        ->setBody(
+            $this->renderView(
+                'CommonViews/Mail/Coworker-ResaValidee.html.twig',
+                array('booking' => $booking)
+            ));
+
+      	$this->get('mailer')->send($message);
+
 		return $this->render('Booking/validated.html.twig');
   	}
 
@@ -124,6 +134,19 @@ class BookingController extends Controller
       	$em = $this->getDoctrine()->getManager();
   		$em->persist($booking);
 		$em->flush();
+
+		//On envoi un mail au coworker pour l'informer que la résa est refusée
+      	$message = \Swift_Message::newInstance()
+        ->setSubject("Becowo - Réservation N°" . $bookRef . " refusée")
+        ->setFrom('contact@becowo.com')
+        ->setTo($booking->getMember()->getEmail())
+        ->setBody(
+            $this->renderView(
+                'CommonViews/Mail/Coworker-ResaRefusee.html.twig',
+                array('booking' => $booking)
+            ));
+
+      	$this->get('mailer')->send($message);
 
 		return $this->render('Booking/refused.html.twig');
   	}

@@ -24,7 +24,7 @@ class PaiementTransaction
     /**
      * @var \ErrorCodes
      *
-     * @ORM\OneToOne(targetEntity="ErrorCodes")
+     * @ORM\ManyToOne(targetEntity="ErrorCodes")
      * @ORM\JoinColumn(name="returnCode", referencedColumnName="id")
      */
     private $returnCode;    

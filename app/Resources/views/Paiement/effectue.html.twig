@@ -13,9 +13,7 @@
 
 <center><b><h2>Votre paiement a été accepté</h2></center></b><br>
 Le paiement de votre réservation N° {{app.request.get('Ref')}} a été accepté<br>
-<b>MONTANT : </b> {{app.request.get('Mt') / 100 }} € TTC
-<br><b>AUTO : </b> {{app.request.get('Auto')}}
-<br><b>ERROR : </b> {{app.request.get('Erreur')}}
+{{dump(app.request)}}
 {{error_msg}}
 
 <br><br>
