@@ -148,6 +148,19 @@ class BookingController extends Controller
 
       	$this->get('mailer')->send($message);
 
+      	//Puis on envoi un mail à l'admin de Becowo pour procéder au remboursement
+      	$message = \Swift_Message::newInstance()
+        ->setSubject("Becowo - Rembourser réservation N°" . $bookRef)
+        ->setFrom('contact@becowo.com')
+        ->setTo('webmaster@becowo.com')
+        ->setBody(
+            $this->renderView(
+                'CommonViews/Mail/Admin-Rembourser.html.twig',
+                array('booking' => $booking)
+            ));
+
+      	$this->get('mailer')->send($message);
+
 		return $this->render('Booking/refused.html.twig');
   	}
 
