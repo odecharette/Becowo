@@ -45,11 +45,14 @@
     	<div class="row">
     		<div class="col-lg-8">
 		        <p>Sed laeditur hic coetuum magnificus splendor levitate paucorum incondita, ubi nati sunt non reputantium, sed tamquam indulta licentia vitiis ad errores lapsorum ac lasciviam. ut enim Simonides lyricus docet, beate perfecta ratione vieturo ante alia patriam esse convenit gloriosam.</p>
-				<center>
-				{% for amenity in ws.amenities %}
-					<img src="{{ asset('images/icons/amenities/BsurN/') }}{{amenity.urlLogo}}" alt="{{amenity.name}}" title="{{amenity.name}}">
-				{% endfor %}
-				</center>
+		        <ul>
+					{% for amenity in ws.amenities %}
+						<li>
+							<img src="{{ asset('images/icons/amenities/BsurN/') }}{{amenity.urlLogo}}" alt="{{amenity.name}}" title="{{amenity.name}}"> 
+							{{amenity.name}}
+						</li>
+					{% endfor %}
+		        </ul>
     		</div>
 			<div class="col-lg-4">
 				<h2>L'équipe à votre service</h2>

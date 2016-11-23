@@ -695,14 +695,14 @@ footer #liensRS a{
 .rating{
   display: inline;
 }
-#bonus{
+#wsHeader #bonus{
   background-color: var(--my-grey-light);
   color: var(--my-blue);
   line-height: 50px;
   display: block;
   font-weight: 600;
   font-size: 14pt;
-  margin-bottom: 10px;
+  margin: 10px 0 30px 0;
 }
 #wsHeader ul,#wsHeader .tab-content{
   width: 90%;
@@ -728,6 +728,20 @@ footer #liensRS a{
   color: var(--my-grey);
   font-size: 16px;
   text-align: justify;
+}
+#Services ul{
+  overflow:hidden;
+}
+#Services li{
+  width:50%; /* to have 2 columns */
+  line-height:1.7em;
+  float:left;
+  display:inline;
+  text-align: left;
+  margin-top: 10px;
+}
+#Services li img{
+  margin-right: 10px;
 }
 #myCarouselTeam{
   margin-top: 10px;
@@ -759,6 +773,18 @@ footer #liensRS a{
 #jssor_1{
   /*Le style est directement dans le HTML du carroussel sinon ca bug*/
   border : solid #24262e 1px;
+  width: 1140px !important;
+  margin-left: 55px !important;
+}
+#jssor_1 #left{
+  position: absolute;
+  left: 25%;
+  font-size: 20px;
+}
+#jssor_1 #right{
+  position: absolute;
+  left: 95%;
+  font-size: 20px;
 }
 #map{
   /*Pour que la google map s'affiche correctement*/
