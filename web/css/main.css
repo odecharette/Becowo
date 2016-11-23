@@ -1026,19 +1026,22 @@ color: var(--my-blue) !important;
   background-color: var(--my-blue);
   color: white;
   font-size: 18px;
+  font-weight: bold;
 }
 #panelEvent .panel-body{
   margin-top: -2px;
   margin-bottom: -2px;
+  color: var(--my-grey);
+  font-size: 12pt;
   text-align: justify;
-  height: 250px;
+  height: 300px;
   padding: none;
   border: solid 1px var(--my-blue);
-  background-color: var(--my-grey-light);
 }
 #panelEvent .panel-body center{
     font-weight: bold;
     font-size: 15px;
+    color: var(--my-blue);
 }
 #panelEvent .panel-footer{
   background-color: white;
