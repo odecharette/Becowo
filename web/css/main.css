@@ -611,14 +611,14 @@ footer #liensRS a{
 }
 #avis #avisCol1{
 }
-#NewAvis h4,#NewAvis a{
+/*#NewAvis h4,#NewAvis a{
   color: var(--my-pink);
   font-size: 14pt;
   margin-bottom: 3px;
 }
 #NewAvis #pic{
   text-align: center;
-}
+}*/
 #avis .rating{
   display: flex;
 }
@@ -626,39 +626,6 @@ footer #liensRS a{
   text-align: justify;
   color: var(--my-grey);
 }
-
-.speech-bubble {
-  position:relative;
-  padding:15px;
-  margin:10px 10px 30px 10px;
-  color:#333;
-  background:#eee;
-  /* css3 */
-  -webkit-border-radius:10px;
-  -moz-border-radius:10px;
-  border-radius:10px;
-}
-
-.speech-bubble p {
-  font-size : 16px; 
-  line-height:1.25em;
-}
-
-/* creates the triangle */
-.speech-bubble:after {
-  content:"";
-  position:absolute;
-  top:-25px;
-  left:35px;
-  border:15px solid transparent;
-  border-bottom-color:#eee;
-  /* reduce the damage in FF3.0 */
-  display:block;
-  width:0;
-}
-
-/* display of quote author (alternatively use a class on the element following the blockquote) */
-.speech-bubble + p {padding-left:15px; font:14px Arial, sans-serif;}
 
 
 /*#Instagram{
@@ -1201,11 +1168,66 @@ color: var(--my-blue) !important;
 #listComments{
   padding-top: 20px;
   margin-top: 20px;
+  /* scrollbar désactivée
   height: 300px;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden;*/
 }
-#listComments::-webkit-scrollbar {
+#listComments img{
+  width: 70px;
+  margin-left: 15px;
+}
+#listComments h4{
+  text-align: left;
+}
+#listComments h4 a{
+  color: var(--my-red);
+}
+#listComments .rating{
+  float: left;
+}
+#listComments .speech-bubble {
+  position:relative;
+  padding:15px;
+  margin:10px 10px 30px 10px;
+  color:#333;
+  background:#eee;
+  /* css3 */
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+}
+
+#listComments .speech-time{
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+}
+#listComments .speech-bubble p {
+  font-size : 16px; 
+  line-height:1.25em;
+  text-align: justify;
+  margin-top: 5px;
+}
+
+/* creates the triangle */
+#listComments .speech-bubble:after {
+  content:"";
+  position:absolute;
+  top:-25px;
+  left:35px;
+  border:15px solid transparent;
+  border-bottom-color:#eee;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+#listComments .speech-bubble + p {padding-left:15px; font:14px Arial, sans-serif;}
+
+
+/*#listComments::-webkit-scrollbar {
   width: 6px;
 }
 #listComments::-webkit-scrollbar-track {
@@ -1217,7 +1239,7 @@ color: var(--my-blue) !important;
 }
 #listComments::-webkit-scrollbar-thumb:hover {
   background-color: var(--my-green);
-}
+}*/
 #noComment{
   margin-bottom: 10px;
   font-size: 14pt;

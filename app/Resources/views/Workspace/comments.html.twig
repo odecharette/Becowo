@@ -1,10 +1,9 @@
  {# Visible uniquement si le membre est connecté #}
- <h2>Commentaires</h2>
+ <h2>Les avis de nos coworkers</h2>
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
 <div class="row">
-	<div class="col-lg-9 col-lg-offset-2">
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 		{% if voteAlreadyDone %}
 			<p>Vous avez déjà voté/commenté</p>
@@ -20,7 +19,6 @@
 	{% else %}
 		<p>Pour voter et saisir des commentaires, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
 	{% endif %}
-	</div>
 </div>
 {% if listComments is empty %}
 	<div id="noComment">
@@ -29,23 +27,27 @@
 {% else %}
 <div id="listComments">
 	{% for comment in listComments %}
-		<div class="row text-center">
-			<div class="col-lg-2">
-				{% for vote in votes if comment.member == vote.member and ws == vote.workspace %}
-					{{vote.scoreAvg|rating}}
-				{% endfor %}
+		<div class="row">
+			<div class="col-lg-1">
 				{% if comment.member.profilePicture.url is defined %}
 					<a href="{{ path('becowo_member_public_profile', {'username' : comment.member.username}) }}" class="memberPic">
 						<img src="{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}", alt="{{comment.member.profilePicture.alt}}" title="{{comment.member.username}}">
 					</a>
 				{% endif %}
 			</div>
-			<div class="col-lg-10">
-				<span>Le {{comment.postedOn|date("d/m/Y - H:i")}}</span>
-				<p>{{comment.post}}</p>
+			<div class="col-lg-4">
+				<h4><a href="{{ path('becowo_core_workspace', {'name' : comment.workspace.name}) }}">A propos de {{comment.workspace.name}}</a></h4>
+				{% for vote in votes if comment.member == vote.member and ws == vote.workspace %}
+					{{vote.scoreAvg|rating}}
+				{% endfor %}
 			</div>
 		</div>
-		{% if loop.last %}{% else %}<hr>{% endif %}
+		<div class="row">
+			<blockquote class="speech-bubble">
+				<div class="speech-time">Le {{comment.postedOn|date("d/m/Y - H:i")}}</div>
+		    	<p>{{comment.post}}</p>
+		    </blockquote>
+		</div>
 	{% endfor %}
 </div>
 {% endif %}
