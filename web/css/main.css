@@ -71,6 +71,7 @@ h2{
   color: var(--my-red);
   text-align: center;
   font-weight: 700;
+  font-size: 22px;
 }
 h4{
   color: var(--my-red);
@@ -685,28 +686,84 @@ footer #liensRS a{
 /********************************** Page workspace *************************************/
 
 #wsHeader{
-  /*border: solid 1px;*/
-  margin: 0px 0px 0px 10px;
-  padding: 0px 0px 10px 10px;
+  margin-top: -20px;
 }
 #wsHeader .row{
   margin-right: 0;
   margin-left: 0;
 }
-#contact{
-  font-size: 14pt;
-  color: var(--my-grey);
+.rating{
+  display: inline;
 }
+#bonus{
+  background-color: var(--my-grey-light);
+  color: var(--my-blue);
+  line-height: 50px;
+  display: block;
+  font-weight: 600;
+  font-size: 14pt;
+  margin-bottom: 10px;
+}
+#wsHeader ul,#wsHeader .tab-content{
+  width: 90%;
+  left: 5%;
+  position: relative;
+}
+#wsHeader li{
+  width: 200px;
+  line-height: 14px;
+  font-size: 16px;
+  text-align: center;
+}
+#wsHeader li a{
+  border-width: 2px;
+}
+#wsHeader .tab-content{
+  padding: 30px 10px 10px 10px;
+  border: solid 2px #ddd;
+  border-top: none;
+  height: 430px;
+}
+#Description, #Services, #Contact, #Réserver{
+  color: var(--my-grey);
+  font-size: 16px;
+  text-align: justify;
+}
+#myCarouselTeam{
+  margin-top: 10px;
+}
+#myCarouselTeam .carousel-control{
+  background-image: none;
+  display: inline-block;
+  position: absolute;
+  top: 40%;
+  z-index: 5;
+}
+#myCarouselTeam .card{
+  text-align: center;
+}
+
+#Contact button{
+  width: 100%;
+  border: none;
+  background: var(--my-blue);
+  color: white;
+  margin-top: 10px;
+  height: 40px;
+}
+#Contact button i{
+  color: white;
+  margin-right: 15px;
+}
+
 #jssor_1{
   /*Le style est directement dans le HTML du carroussel sinon ca bug*/
   border : solid #24262e 1px;
 }
-#carroussel-right{
-  margin-left: -10px;
-}
 #map{
   /*Pour que la google map s'affiche correctement*/
-  width: 100%
+  width: 100%;
+  height: 220px;
 }
 #map i{
   margin-top: 10px;
@@ -714,6 +771,7 @@ footer #liensRS a{
 #time{
   color: var(--my-grey);
   font-size: 14pt;
+  text-align: center;
 }
 #time i, #map i{
   color: var(--my-red);
@@ -728,42 +786,10 @@ footer #liensRS a{
 #time a:hover{
   font-weight: bold;
 }
-#time button{
-  width: 100%;
-  border: none;
-  background: var(--my-blue);
-  color: white;
-  margin-top: 10px;
-  height: 40px;
-}
-#time button i, #map button i{
-  color: white;
-  margin-right: 15px;
-}
-#bonus{
-  background-color: var(--my-grey-light);
-  color: var(--my-blue);
-  line-height: 50px;
-  display: block;
-  font-weight: 600;
-  font-size: 14pt;
-}
-#description{
-/*  border : solid 1px;
-  padding: 10px 10px 10px 10px;
-  margin-left: 20px;*/
-}
-#description .rating{
-  display: inline;
-}
-#description h2{
-  color: var(--my-blue);
-}
-#description p{
-  color: var(--my-grey);
-  font-size: 12pt;
-  text-align: justify;
-}
+
+
+
+
 /*#description span{
   color: var(--my-blue);
   font-size: 14pt;
@@ -774,15 +800,15 @@ footer #liensRS a{
   margin-top: 50px;
   margin-bottom: 50px;
 }*/
-#description img{
+/*#description img{
   width: 70px;
   height: 70px;
-}
-#services p{
+}*/
+/*#services p{
   color: var(--my-grey);
   font-size: 12pt;
   text-align: justify;
-}
+}*/
 #booking{
   background-color: var(--my-grey-light);
   width: 100%;
@@ -965,7 +991,7 @@ color: var(--my-blue) !important;
 .calendar .today{
   background-color: grey;
 }
-#team{
+/*#team{
   background-color: var(--my-pink-opacity);
   margin-left: 20px;
   margin-right: 10px;
@@ -982,22 +1008,16 @@ color: var(--my-blue) !important;
 #team img{
   width: 70px;
   height: 70px;
-}
-#team .carousel-control{
-  background-image: none;
-  display: inline-block;
-  position: absolute;
-  top: 40%;
-  z-index: 5;
-}
+}*/
+
 
 #panelEvent {
-  width: 400px; 
+  width: 350px; 
   display: inline-block;  
   border: none;
   overflow: hidden;
   margin-bottom: 0;
-  padding: 0 40px 30px 40px;
+  padding: 0 10px 0px 10px;
   box-shadow: none;
 }
 
@@ -1008,6 +1028,8 @@ color: var(--my-blue) !important;
   color: grey;
   font-size: 50px;
   line-height: 25px;
+  position: relative;
+  left: 50%;
 }
 #Event-more.collapsed:before
 {
@@ -1018,10 +1040,6 @@ color: var(--my-blue) !important;
   content:"\f102" ; /* fontAwesome up */
 }
 
-#panelEvent .addthisevent{
-  width: 100%;
-}
-
 #panelEvent .panel-heading{
   background-color: var(--my-blue);
   color: white;
@@ -1030,11 +1048,10 @@ color: var(--my-blue) !important;
 }
 #panelEvent .panel-body{
   margin-top: -2px;
-  margin-bottom: -2px;
   color: var(--my-grey);
   font-size: 12pt;
   text-align: justify;
-  height: 300px;
+  height: 280px;
   padding: none;
   border: solid 1px var(--my-blue);
 }
@@ -1043,14 +1060,13 @@ color: var(--my-blue) !important;
     font-size: 15px;
     color: var(--my-blue);
 }
-#panelEvent .panel-footer{
+/*#panelEvent .panel-footer{
   background-color: white;
   border: solid 2px var(--my-blue);
   padding: none !important;
-}
+}*/
 
 .addthisevent-drop {
-  width: 100%; 
   color: white !important;
   background-color: white !important;
   border: none !important;

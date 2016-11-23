@@ -1,14 +1,36 @@
 {% for event in listEvents %}    
   {% if loop.index == 4 %}<div id="event-suite" class="collapse"> {% endif %}
     <div class="panel panel-default" id="panelEvent">
-      <div class="panel-heading">{{event.title}}</div>
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-lg-7">
+            {{event.title}}
+          </div>
+          <div class="col-lg-5">
+            <div title="Add to Calendar" class="addthisevent">
+            Add to calendar
+            <span class="start">{{event.startDate|date("d/m/Y H:i:s")}}</span>
+            <span class="end">{{event.endDate|date("d/m/Y H:i:s")}}</span>
+            <span class="timezone">Europe/Paris</span>
+            <span class="title">{{event.title}}</span>
+            <span class="description">{{event.description}}</span>
+            <span class="location">{{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}</span>
+            <span class="organizer">Organizer</span>
+            <span class="organizer_email">Organizer e-mail</span>
+            <span class="all_day_event">false</span>
+            <span class="date_format">DD/MM/YYYY</span>
+            </div>
+          </div>
+          </div>
+        </div>
+        
       <div class="panel-body">
         <center>{{ event.startDate|localizeddate('full', 'none')|title }} <br>
         {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}} <br> </center>
         <br>
         {{event.description}}
       </div>
-      <div class="panel-footer">
+{#       <div class="panel-footer">
         <div title="Add to Calendar" class="addthisevent">
           Ajouter à mon calendrier
           <span class="start">{{event.startDate|date("d/m/Y H:i:s")}}</span>
@@ -22,7 +44,7 @@
           <span class="all_day_event">false</span>
           <span class="date_format">DD/MM/YYYY</span>
         </div>
-      </div>
+      </div> #}
     </div>
   {% if loop.length >= 4 and loop.last %}</div> {% endif %}
 {% endfor %}
