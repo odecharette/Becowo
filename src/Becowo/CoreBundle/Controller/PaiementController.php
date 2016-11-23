@@ -149,8 +149,8 @@ class PaiementController extends Controller
     // * $trusted_Signature = true
 
     // ************* if désactivé juste pour tester l'envoi de l'email
- //  if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
-    if(true)
+   if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
+ //   if(true)
     {
       $transaction_valide = true;
 

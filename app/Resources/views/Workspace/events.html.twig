@@ -1,55 +1,32 @@
-{#<div id="accordion">
-  {% for event in listEvents %}
-    <div id="event">
-      <h3>{{event.title}} - {{event.startDate|date("d/m/Y")}}</h3>
-      De {{event.startDate|date("H:i")}} à {{event.endDate|date("H:i")}}
-      <p>{{event.description}}</p>
-      <div title="Add to Calendar" class="addthisevent">
-        Ajouter à mon calendrier
-        <span class="start">{{event.startDate|date("d/m/Y H:i:s")}}</span>
-        <span class="end">{{event.endDate|date("d/m/Y H:i:s")}}</span>
-        <span class="timezone">Europe/Paris</span>
-        <span class="title">{{event.title}}</span>
-        <span class="description">{{event.description}}</span>
-        <span class="location">{{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}</span>
-        <span class="organizer">Organizer</span>
-        <span class="organizer_email">Organizer e-mail</span>
-        <span class="all_day_event">false</span>
-        <span class="date_format">DD/MM/YYYY</span>
+{% for event in listEvents %}    
+  {% if loop.index == 4 %}<div id="event-suite" class="collapse"> {% endif %}
+    <div class="panel panel-default" id="panelEvent">
+      <div class="panel-heading">{{event.title}}</div>
+      <div class="panel-body">
+        <center>{{ event.startDate|localizeddate('full', 'none')|title }} <br>
+        {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}} <br> </center>
+        <br>
+        {{event.description}}
+      </div>
+      <div class="panel-footer">
+        <div title="Add to Calendar" class="addthisevent">
+          Ajouter à mon calendrier
+          <span class="start">{{event.startDate|date("d/m/Y H:i:s")}}</span>
+          <span class="end">{{event.endDate|date("d/m/Y H:i:s")}}</span>
+          <span class="timezone">Europe/Paris</span>
+          <span class="title">{{event.title}}</span>
+          <span class="description">{{event.description}}</span>
+          <span class="location">{{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}</span>
+          <span class="organizer">Organizer</span>
+          <span class="organizer_email">Organizer e-mail</span>
+          <span class="all_day_event">false</span>
+          <span class="date_format">DD/MM/YYYY</span>
+        </div>
       </div>
     </div>
-        
-  {% endfor %}
-</div>
-#}
-<div id="accordionEvent" class="panel-group">
-  {% for event in listEvents %}
-    <div class="panel panel-warning" id="event">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a href="#collapse{{loop.index}}" data-parent="#accordionEvent" data-toggle="collapse" class="accordion-toggle">
-            {{event.title}} - {{event.startDate|date("d/m/Y")}}</a>
-        </h4>
-      </div>
-      {% if loop.first %}<div class="panel-collapse in" id="collapse{{loop.index}}">
-      {% else %}<div class="panel-collapse collapse" id="collapse{{loop.index}}">
-      {% endif %}
-        <div class="panel-body">De {{event.startDate|date("H:i")}} à {{event.endDate|date("H:i")}}
-      <p>{{event.description}}</p>
-      <div title="Add to Calendar" class="addthisevent">
-        Ajouter à mon calendrier
-        <span class="start">{{event.startDate|date("d/m/Y H:i:s")}}</span>
-        <span class="end">{{event.endDate|date("d/m/Y H:i:s")}}</span>
-        <span class="timezone">Europe/Paris</span>
-        <span class="title">{{event.title}}</span>
-        <span class="description">{{event.description}}</span>
-        <span class="location">{{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}</span>
-        <span class="organizer">Organizer</span>
-        <span class="organizer_email">Organizer e-mail</span>
-        <span class="all_day_event">false</span>
-        <span class="date_format">DD/MM/YYYY</span>
-      </div></div>
-      </div>
-    </div>
-  {% endfor %}
-</div>
+  {% if loop.length >= 4 and loop.last %}</div> {% endif %}
+{% endfor %}
+<br>
+<button class="btn btn-success collapsed" id="Event-more" data-toggle="collapse" data-target="#event-suite"></i>
+</button>
+  {#  #}

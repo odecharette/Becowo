@@ -61,6 +61,12 @@ twig:
         tva: '%tva%'
         creditAgricole: '%creditAgricole%'
 
+services:
+    twig.extension.intl:
+       class: Twig_Extensions_Extension_Intl
+       tags:
+           - { name: twig.extension }
+           
 # Doctrine Configuration
 doctrine:
     dbal:
