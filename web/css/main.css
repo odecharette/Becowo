@@ -677,13 +677,30 @@ footer #liensRS a{
   position: relative;
 }
 #wsHeader li{
-  width: 200px;
+  width: 20%;
   line-height: 14px;
   font-size: 16px;
   text-align: center;
 }
 #wsHeader li a{
   border-width: 2px;
+  color: var(--my-blue);
+  border-color: var(--my-blue);
+}
+
+#wsHeader li.active a{
+  color: white;
+  background-color: var(--my-blue);
+}
+#wsHeader #resa a{
+  color: white;
+  background-color: var(--my-red);
+  border-color: var(--my-red);
+}
+#wsHeader #resa.active a{
+  color: var(--my-red);
+  background-color: white;
+  border-color: var(--my-red);
 }
 #wsHeader .tab-content{
   padding: 30px 10px 10px 10px;

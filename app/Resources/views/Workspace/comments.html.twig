@@ -36,7 +36,7 @@
 				{% endif %}
 			</div>
 			<div class="col-lg-4">
-				<h4><a href="{{ path('becowo_core_workspace', {'name' : comment.workspace.name}) }}">A propos de {{comment.workspace.name}}</a></h4>
+				<div class="speech-time">Le {{comment.postedOn|date("d/m/Y - H:i")}}</div>
 				{% for vote in votes if comment.member == vote.member and ws == vote.workspace %}
 					{{vote.scoreAvg|rating}}
 				{% endfor %}
@@ -44,7 +44,6 @@
 		</div>
 		<div class="row">
 			<blockquote class="speech-bubble">
-				<div class="speech-time">Le {{comment.postedOn|date("d/m/Y - H:i")}}</div>
 		    	<p>{{comment.post}}</p>
 		    </blockquote>
 		</div>
