@@ -662,6 +662,16 @@ footer #liensRS a{
 .rating{
   display: inline;
 }
+#wsHeader #visite360 img{
+  border-radius: 10px;
+}
+#wsHeader #visite360 #txt{
+  position: absolute;
+  top: 65%;
+  color: white;
+  font-size: 18px;
+  left: 20%;
+}
 #wsHeader #bonus{
   background-color: var(--my-grey-light);
   color: var(--my-blue);

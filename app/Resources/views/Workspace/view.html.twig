@@ -20,7 +20,15 @@
 	</div>
 
 	<div class="row text-center">
-		<h2>{{ws.name}} {{averageVote|rating}}</h2>
+		<div class="col-lg-3" id="visite360">
+			<a href="{{ path('becowo_core_visit_360', {'name' : ws.name}) }}" target="_blank">	
+				<img src="{{ asset('images/icons/visite360.png') }}" alt="visite 360°" title="visite 360°">
+				<div id="txt">Visitez {{ws.name}} en 360°</div>
+			</a>
+		</div>
+		<div class="col-lg-6">
+			<h2>{{ws.name}} {{averageVote|rating}}</h2>
+		</div>
 	</div>	
 
 	<div class="row text-center">

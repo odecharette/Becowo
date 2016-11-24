@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Becowo - Visite 360°</title>
+
+<style type="text/css">
+	@font-face {
+    font-family: 'aniversregular';
+    src: url('../css/font/Anivers_Regular-webfont.eot');
+    src: url('../css/font/Anivers_Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../css/font/Anivers_Regular-webfont.woff2') format('woff2'),
+         url('../css/font/Anivers_Regular-webfont.woff') format('woff'),
+         url('../css/font/Anivers_Regular-webfont.ttf') format('truetype'),
+         url('../css/font/Anivers_Regular-webfont.svg#aniversregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+	}
+</style>
+</head>
+<body style="background-color:black;">
+
+<div style="font-family: aniversregular;font-size:18px; color: white;"><center>Vous êtes en train de visiter <a href="{{ path('becowo_core_workspace', {'name' : ws.name}) }}" style="color:white">{{ws.name}}</a></center></div>
+<iframe style="position: absolute; height: 95%; width: 99%; top: 5%; border: none" src='https://roundme.com/embed/89706/227184' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+</body>
+</html>

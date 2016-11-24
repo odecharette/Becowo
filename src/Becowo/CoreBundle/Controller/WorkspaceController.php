@@ -38,4 +38,12 @@ class WorkspaceController extends Controller
         ));
   }
 
+  public function visitAction($name, Request $request)
+  {
+    $WsService = $this->get('app.workspace');
+    $ws = $WsService->getWorkspaceByName($name);
+
+    return $this->render('Workspace/visit360.html.twig', array('ws' => $ws));
+  }
+
 }

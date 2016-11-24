@@ -106,6 +106,10 @@ becowo_core_paiement_ipn:
     defaults: { _controller: BecowoCoreBundle:Paiement:ipn }
     methods: GET|POST
 
+becowo_core_visit_360:
+    path:     /ws/{name}/visit-360
+    defaults: { _controller: BecowoCoreBundle:Workspace:visit }
+
 # becowo_core_ambassadeur:
 #     path:     /devenir-ambassadeur
 #     defaults: { _controller: BecowoCoreBundle:Footer:ambassadeur }
