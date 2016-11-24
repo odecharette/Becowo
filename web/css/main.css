@@ -19,6 +19,7 @@
 --my-red: rgb(231, 46, 70);  /* #E72E46 */
 --my-grey: rgb(140, 142, 144); /* #8C8E90 */
 --my-grey-light: rgb(233, 233, 233); /* #e9e9e9 */
+--my-black: rgb(36, 38, 46); /* #24262e */
 /* grey : #e9e9e9 */
 
   --my-green: rgb(0, 161, 154); /* #00A19A */
@@ -996,7 +997,7 @@ footer #liensRS a{
   top: 76%;
   left: 2%;
   color: white;
-  background-color: black;
+  background-color: var(--my-black);
   padding: 5px 5px 5px 5px;
   border-radius: 5px;
 }
