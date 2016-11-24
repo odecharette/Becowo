@@ -713,6 +713,14 @@ footer #liensRS a{
   font-size: 16px;
   text-align: justify;
 }
+#Description #office{
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+}
+#Description #office img{
+  width: 90%;
+}
 #Services ul{
   overflow:hidden;
 }
@@ -729,6 +737,12 @@ footer #liensRS a{
 }
 #myCarouselTeam{
   margin-top: 10px;
+}
+#myCarouselTeam i{
+  color: var(--my-red);
+}
+#myCarouselTeam img{
+  border-radius: 10%;
 }
 #myCarouselTeam .carousel-control{
   background-image: none;

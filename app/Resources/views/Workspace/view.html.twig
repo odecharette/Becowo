@@ -39,6 +39,31 @@
 {############################ Description ############################}
     <div id="Description" class="tab-pane fade active in">
         <p>{{ws.description|nl2br}}</p>
+        <br>
+        <div class="row text-center">
+	        {% for office in listOffices %}
+	        	<div id="office">
+		    		<img src="{{ asset('images/icons/offices/BsurN/') }}{{office.office.name}}.png" alt="{{office.office.name}}" title="{{office.office.name}}"> <br>
+		    		{{office.office.name}} <br>
+		    		<strong>
+		        	{% for price in prices if price.office.name == office.office.name %}
+		        		A partir de 
+		        		{% if price.priceHour > 0 %}
+		        			{{price.priceHour}} € / heure
+		        		{% elseif price.priceHalfDay > 0 %}
+		        			{{price.priceHalfDay}} € / 1/2 journée
+		        		{% elseif price.priceDay > 0 %}
+		        			{{price.priceDay}} € / jour
+		        		{% elseif price.priceWeek > 0 %}
+		        			{{price.priceWeek}} € / semaine
+		        		{% elseif price.priceMonth > 0 %}
+		        			{{price.priceMonth}} € / mois
+		        		{% endif %}
+		        	{% endfor %}
+		        	</strong>
+		        </div>
+	        {% endfor %}
+        </div>
     </div>
 {############################ Services ############################}
     <div id="Services" class="tab-pane fade">
@@ -57,6 +82,7 @@
     		</div>
 			<div class="col-lg-4">
 				<h2>L'équipe à votre service</h2>
+				<br>
 				{% include 'Workspace/teamMembers.html.twig' %} 
     		</div>
     	</div>
