@@ -51,6 +51,13 @@ class Workspace
     private $website;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="url_visit_360", type="string", length=255, nullable=true)
+     */
+    private $urlVisit360;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="is_always_open", type="boolean", nullable=true)
@@ -373,6 +380,30 @@ class Workspace
         return $this->website;
     }
 
+    /**
+     * Set urlVisit360
+     *
+     * @param string $urlVisit360
+     *
+     * @return Workspace
+     */
+    public function setUrlVisit360($urlVisit360)
+    {
+        $this->urlVisit360 = $urlVisit360;
+
+        return $this;
+    }
+
+    /**
+     * Get urlVisit360
+     *
+     * @return string
+     */
+    public function getUrlVisit360()
+    {
+        return $this->urlVisit360;
+    }
+    
     /**
      * Set isAlwaysOpen
      *
