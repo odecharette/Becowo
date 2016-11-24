@@ -47,14 +47,14 @@ becowo_core_faq:
     defaults: { _controller: BecowoCoreBundle:Footer:faq }
     methods: GET
 
-becowo_core_cgv:
-    path:     /cgv
-    defaults: { _controller: BecowoCoreBundle:Footer:cgv }
+becowo_core_cgu:
+    path:     /cgu
+    defaults: { _controller: BecowoCoreBundle:Footer:cgu }
     methods: GET
 
-becowo_core_mentions:
-    path:     /mentions-legales
-    defaults: { _controller: BecowoCoreBundle:Footer:mentions }
+becowo_core_cookies:
+    path:     /cookies
+    defaults: { _controller: BecowoCoreBundle:Footer:cookies }
     methods: GET
 
 becowo_core_paiement:

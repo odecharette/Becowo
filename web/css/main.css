@@ -288,6 +288,11 @@ footer #liensRS a{
   margin-left: 25px;
   margin-right: 25px;
 }
+#page-simple h1{
+  color: var(--my-blue);
+  margin-bottom: 26px;
+  text-align: center;
+}
 #page-simple h2{
   color: var(--my-blue);
   margin-bottom: 20px;
@@ -789,11 +794,13 @@ footer #liensRS a{
   position: absolute;
   left: 25%;
   font-size: 20px;
+  color: var(--my-black);
 }
 #jssor_1 #right{
   position: absolute;
   left: 95%;
   font-size: 20px;
+  color: var(--my-black);
 }
 #map{
   /*Pour que la google map s'affiche correctement*/
@@ -1289,7 +1296,53 @@ color: var(--my-blue) !important;
 }
 
 /*********************************** offers ****************************************/
-#offer1{
+#offres h1{
+  text-align: center;
+}
+#offres .panel{
+  border-color: var(--my-blue);
+}
+#offres .panel-heading{
+  background-color: white;
+  color: var(--my-blue);
+  height: 50px;
+}
+#offres .panel-title{
+  font-size: 30px;
+}
+#offres .panel-heading span{
+  background-color: var(--my-blue);
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+  position: absolute;
+  right: 30px;
+  top: 6px;
+  padding: 10px 10px 10px 10px;
+}
+#offres .panel-body{
+  height: 380px;
+}
+
+#offres .panel-body img{
+  height: 150px;
+}
+#offres #panel-body-small{
+  height: 120px;
+}
+#offres .panel-footer{
+  text-align: center;
+  background-color: var(--my-blue);
+}
+#offres .panel-footer a, #offres .panel-footer{
+  width: 100%;
+  font-size: 18px;
+  color: white;
+}
+#offres p{
+  text-align: justify;
+}
+/*#offer1{
   background-color: var(--my-pink-opacity);
   margin-bottom: 15px;
 }
@@ -1353,7 +1406,7 @@ color: var(--my-blue) !important;
 }
 .offers button:hover{
   font-weight: bold;
-}
+}*/
 
 /********** offers contact & coworker déclarez un WS *********/
 #offers-contact form, #coworker-declare form{

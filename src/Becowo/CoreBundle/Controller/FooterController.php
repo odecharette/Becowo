@@ -64,14 +64,14 @@ class FooterController extends Controller
     return $this->render('Footer/faq.html.twig', array('faq' => $faq, 'faqCategory' => $faqCategory));
   }
 
-  public function cgvAction()
+  public function cguAction()
   {
-    return $this->render('Footer/cgv.html.twig');
+    return $this->render('Footer/cgu.html.twig');
   }
 
-  public function mentionsAction()
+  public function cookiesAction()
   {
-    return $this->render('Footer/mentions-legales.html.twig');
+    return $this->render('Footer/cookies.html.twig');
   }
 
   public function paiementAction()

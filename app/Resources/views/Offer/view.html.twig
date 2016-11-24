@@ -8,9 +8,117 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
-<div class="container-fluid">
+<div class="container-fluid" id="offres">
 <h1>Nos offres</h1>
-  <div class="row">
+<br>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Link <span>Gratuit</span></h3>
+            </div>
+            <div class="panel-body">
+                {# source : http://www.easy-ware.be/wp-content/uploads/2015/06/bonhomme-cable.jpg #}
+                <img src="{{ asset('images/icons/lien.jpg') }}" alt="Offre link" title="bonhomme lien"><br>
+                <ul>
+                    <li>Référencement sur notre site</li>
+                    <li>Affichage de vos coordonnées</li>
+                    <li>3 photos maximum</li>
+                    <li>Les coworkers peuvent voter et commenter</li>
+                    <li>Présentation de votre équipe</li>
+                </ul>
+            </div>
+            <div class="panel-footer"><a href="">Je suis interessé</a></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Zen <span>Prix sur demande</span></h3>
+            </div>
+            <div class="panel-body">
+                {# source : http://autoentrepreneurinfo.com/images/auto-entrepreneur-compte-bancaire-entreprise.jpg #}
+                <img src="{{ asset('images/icons/cb.jpg') }}" alt="Offre zen" title="bonhomme carte bleu"><br>
+                <ul>
+                    <li>Référencement sur notre site</li>
+                    <li>Affichage de vos coordonnées</li>
+                    <li>Photos illimitées</li>
+                    <li><strong>Réservation et paiement en ligne sécurisé</strong></li>
+                    <li>Présentation de votre équipe</li>
+                    <li>Publication de vos évènements</li>
+                    <li>Accès à la plateforme d'administration</li>
+                    <ul>
+                        <li>Vous avez la main sur le contenu du votre page pour personnaiser le texte, les photos et les prix</li>
+                        <li>Suivi des réservations</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="panel-footer"><a href="">Je suis interessé</a></div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Zen + <span>Bientôt disponible</span></h3>
+            </div>
+            <div class="panel-body">
+                {# source : http://fr.123rf.com/images-libres-de-droits/bonhomme_blanc_objectifs.html?mediapopup=14533010 #}
+                <img src="{{ asset('images/icons/stat.jpg') }}" alt="Offre zen +" title="bonhomme statistiques"><br>
+                Accédez aux statistiques d'utilisation et de profil des coworkers
+            </div>
+            <div class="panel-footer">Bientôt disponible</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Visite virtuelle à 360° <span>xxx € HT</span></h3>
+            </div>
+            <div class="panel-body" id="panel-body-small">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul>
+                            <li>Nous réalisons pour vous les photos et la création d'une visite virtuelle à 360° de vos espaces</li>
+                            <li>Prise en charge de l'hébergement sur notre plateforme</li>
+                            <li>La visite est directement visible sur votre page Becowo</li>
+                            <li>Voir un exemple de visite virtuelle ici</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="{{ asset('images/icons/visite360.png') }}" alt="visite 360°" title="visite 360°">
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer"><a href="">Je suis interessé</a></div>
+        </div>
+    </div>
+</div>
+
+<h1>Pourquoi rejoindre Becowo ?</h1>
+<div class="row">
+   <div class="col-lg-4">
+        icone <br>
+        <p>Et quoniam inedia gravi adflictabantur, locum petivere Paleas nomine, vergentem in mare, valido muro firmatum, ubi conduntur nunc usque commeatus distribui militibus omne latus Isauriae defendentibus adsueti. circumstetere igitur hoc munimentum per triduum et trinoctium et cum neque adclivitas ipsa sine discrimine adiri letali, nec cuniculis quicquam geri posset, nec procederet ullum obsidionale commentum, maesti excedunt postrema vi subigente maiora viribus adgressuri.</p>
+   </div> 
+   <div class="col-lg-4">
+        icone <br>
+        <p>Et quoniam inedia gravi adflictabantur, locum petivere Paleas nomine, vergentem in mare, valido muro firmatum, ubi conduntur nunc usque commeatus distribui militibus omne latus Isauriae defendentibus adsueti. circumstetere igitur hoc munimentum per triduum et trinoctium et cum neque adclivitas ipsa sine discrimine adiri letali, nec cuniculis quicquam geri posset, nec procederet ullum obsidionale commentum, maesti excedunt postrema vi subigente maiora viribus adgressuri.</p>
+   </div> 
+   <div class="col-lg-4">
+        icone <br>
+        <p>Et quoniam inedia gravi adflictabantur, locum petivere Paleas nomine, vergentem in mare, valido muro firmatum, ubi conduntur nunc usque commeatus distribui militibus omne latus Isauriae defendentibus adsueti. circumstetere igitur hoc munimentum per triduum et trinoctium et cum neque adclivitas ipsa sine discrimine adiri letali, nec cuniculis quicquam geri posset, nec procederet ullum obsidionale commentum, maesti excedunt postrema vi subigente maiora viribus adgressuri.</p>
+   </div> 
+</div>
+<h1>Une question ? Contactez-nous ! </h1>
+06.11.70.63.82
+<br><br>
+</div>
+
+
+{#   <div class="row">
     <div class="col-lg-3 col-lg-offset-3">
         <div id="offer1" class="offers">
         <h3>Offre Zen</h3>
@@ -87,8 +195,5 @@
       </div>
     </div>
   </div>
-</div>
-
-<br><br>
-
+</div> #}
 {% endblock %}
