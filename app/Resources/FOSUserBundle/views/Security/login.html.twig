@@ -6,10 +6,11 @@
 
 <div class="container-fluid form-box">
 	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
+		<div class="col-lg-10 col-lg-offset-1">
 			<div class="row" id="form-login">
-				<div class="col-lg-6">
+				<div class="col-lg-5">
 					<h3>Se connecter à Becowo</h3>
+					<br>
 					{% if error %}
 		    		<span class="help-block">
 		    		<ul class="list-unstyled">
@@ -50,14 +51,17 @@
 					</div>
 					</form>
 				</div>
-				<div class="col-lg-1">
+				<div class="col-lg-2">
+					<center>
 					<img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo">
 					<br>
 					<img src="{{ asset('images/icons/or.png') }}" id="or">
+					</center>
 				</div>
 				<div class="col-lg-5" id="rs-login">
 					<center>
-					<div id="titre">Utilisez votre réseau social préféré !</div>
+					<h3>Utilisez votre réseau social préféré !</h3>
+					<br>
 			    	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('linkedin')}}" id="li"><i class="fa fa-linkedin"></i> LinkedIn</a><br>
 			    	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('facebook')}}" id="fb"><i class="fa fa-facebook"></i> Facebook</a><br><a class="btn btn-link-2" href="{{ hwi_oauth_login_url('twitter')}}" id="tw"><i class="fa fa-twitter"></i> Twitter</a>
 			    	<br><br>

@@ -67,7 +67,10 @@ header #login a {
     color: white;
     background-color: var(--my-blue);
 }
-
+header .dropdown-toggle{
+  color: white !important;
+  background-color: var(--my-blue) !important;
+}
 h2{
   color: var(--my-red);
   text-align: center;

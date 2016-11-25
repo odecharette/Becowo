@@ -62,33 +62,40 @@
                             Declarer un espace
                         </a>
                     </li>
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}				
-					<div class="btn-group">
-			    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-					    {# {% if app.user.profilePicture.url is defined %}
-					    	<img src="{{ asset('images/ProfilePictures/')}}{{app.user.profilePicture.url}}" alt="{{app.user.profilePicture.alt}}" width="50px" height="50px">
-					    {% else %} #}
-					    	Bonjour {{ app.user.username }} 
-						{# {% endif %} #}
-					    <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					    <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a></li>
-					    <li><a href="{{ path('fos_user_change_password') }}"><i class="fa fa-key"></i> Changer mon mot de passe</a></li>
-					    <li><a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a></li>
-					    {% if is_granted('ROLE_MANAGER') %}
-							<li><a href="{{ path('becowo_manager_profile_identite') }}"><i class="fa fa-wrench"></i> Espace Manager</a></li>
-						{% endif %}
-						{% if is_granted('ROLE_ADMIN') %}
-						<li><a href="{{ path('easyadmin') }}"><i class="fa fa-lock"></i> Espace Admin</a></li>
-						{% endif %}
-					    <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a></li>
-					  </ul>
-					</div>
-				{% else %}
-					<li class="dropdown "  id="login">
-                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-                    </li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}		
+						<li class="dropdown ">
+				          <a href="" class="dropdown-toggle" data-toggle="dropdown">
+				          	Bonjour {{ app.user.username }} <b class="caret"></b>
+				          </a>
+				          <ul class="dropdown-menu dropdown-menu-default">
+				            <li>
+				            	<a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a>
+				            </li>
+						    <li>
+						    	<a href="{{ path('fos_user_change_password') }}"><i class="fa fa-key"></i> Changer mon mot de passe</a>
+						    </li>
+						    <li>
+						    	<a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a>
+						    </li>
+						    {% if is_granted('ROLE_MANAGER') %}
+								<li>
+									<a href="{{ path('becowo_manager_profile_identite') }}"><i class="fa fa-wrench"></i> Espace Manager</a>
+								</li>
+							{% endif %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<li>
+									<a href="{{ path('easyadmin') }}"><i class="fa fa-lock"></i> Espace Admin</a>
+								</li>
+							{% endif %}
+						    <li>
+						    	<a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a>
+						    </li>
+				          </ul>
+				        </li>
+					{% else %}
+						<li class="dropdown "  id="login">
+	                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+	                    </li>
 				    
 				{% endif %}
                     

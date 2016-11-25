@@ -1,23 +1,20 @@
-body{
-    background-color: var(--my-green);
-    -webkit-filter: drop-shadow(16px 16px 10px rgba(0,0,0,0.9));
-    filter: drop-shadow(16px 16px 10px rgba(0,0,0,0.9));
-}
 #form-login{
-    background-color: white;
-    margin-top: 80px;
-    border-radius: 6pt;
+    margin-top: 50px;
+    margin-bottom: 40px;
 }
-
+h3{
+    color: var(--my-red);
+    text-align: center;
+}
 input[type="text"],
 input[type="email"],  
 input[type="password"] {
 	height: 50px;
-    width: 100%;
+    width: 90%;
+    margin-left: 25px;
     margin-top: 10px;
     padding: 0 20px;
     vertical-align: middle;
-    background: #FAFFBD;
     border: 1px solid var(--my-grey);
     font-size: 16px;
     font-weight: 300;
@@ -34,7 +31,8 @@ button.btn {
     margin-top: 15px;
     padding: 0 20px;
     vertical-align: middle;
-    background: var(--my-green);
+    background: var(--my-blue);
+    font-weight: bold;
     border: 0;
     font-size: 16px;
     font-weight: 300;
@@ -48,9 +46,6 @@ button.btn {
 
 button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; color: #fff; }
 
-#rs-login{
-    margin-top: 50px;
-}
 .btn-link-2 {
     display: inline-block;
     height: 50px;
@@ -82,11 +77,6 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
 #li{
     background-color: #007bb6;
 }
-#titre{
-    margin-bottom: 20px;
-    font-size: 14pt;
-    margin-top: -25px;
-}
 
 #remember_me {
     padding: 0;
@@ -105,7 +95,7 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     text-indent: -15px;
 }
 #remember a{
-    color: var(--my-green);
+    /*color: var(--my-blue);*/
     text-decoration: underline;
 }
 #remember a:hover{
@@ -127,7 +117,6 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     width: 100px;
     height: 100px;
     margin-top: -40px;
-    margin-left: -25px;
 }
 
 #logo-right{
@@ -141,9 +130,4 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     background-color: white;
     margin-top: 80px;
     border-radius: 6pt;
-}
-.form-box{
-    position: absolute;
-    top: 10%;
-    width: 100%;
 }
