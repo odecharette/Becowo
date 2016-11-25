@@ -79,6 +79,11 @@ class FooterController extends Controller
     return $this->render('Footer/paiement.html.twig');
   }
 
+  public function commentCaMarcheAction()
+  {
+    return $this->render('Footer/comment-ca-marche.html.twig');
+  }
+
   // public function ambassadeurAction()
   // {
   //   return $this->render('Footer/ambassadeur.html.twig');

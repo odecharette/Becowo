@@ -246,6 +246,14 @@ class Workspace
     private $offer;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=255, nullable=false)
+     *
+     */
+    private $region;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -946,5 +954,30 @@ class Workspace
     {
         if($this->isDeleted === false && $this->isVisible === true)
             return true;
+    }
+
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     *
+     * @return Workspace
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
     }
 }

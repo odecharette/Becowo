@@ -29,6 +29,7 @@ class MapController extends Controller
       $itemNode->addAttribute( 'country', "FR" );
       $itemNode->addAttribute( 'listed', "true" ); // Pour que seuls les espaces soient affichés dans la liste
       $itemNode->addAttribute( 'featured', "true" );
+      $itemNode->addAttribute( 'region', $workspaces->getRegion() );
 
       $amenities = $workspaces->getAmenities();
       $listeAmenities = "";

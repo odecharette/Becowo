@@ -13,7 +13,9 @@
 
 <h2>Réservez un espace de travail et intégrez une communauté de coworkers</h2>
 
-{############################################ Map ##############################################}
+
+
+{# Navbar de recherche désativée le temps d'avoir plus d'espaces à proposer
 <nav class="navbar navbar-default" role="navigation" id="BarreRecherche">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -26,10 +28,9 @@
     </div>
     <div class="collapse navbar-collapse navbar-ex2-collapse">
     	<form id="bh-sl-user-location" method="post" action="#">
+
+    		
 	        <ul class="nav navbar-nav">
-	        	{# <li>
-	        		<button id='findMe' type="button">Géolocalisez moi</button>
-	        	</li> #}
 		        <li>
 			        <input type="text" class="form-control" placeholder="Saisir une adresse ici" id="bh-sl-address" name="bh-sl-address">
 			        <button id='findMe' type="button"> <u>Me géolocaliser</u></button></input>
@@ -63,31 +64,48 @@
 						<li><input type="checkbox" name="feature" value="Espace Cuisine" id="choiceE"><label for="choiceE"> Espace Cuisine</label></li>
 					</ul>
 		        </li>
-		       {#  <li>
-		        	<span id="PriceSliderMin">20</span> €
-		        	<input id="PriceSlider" type="text" class="span2" value="" data-slider-min="10" data-slider-max="100" data-slider-step="5" data-slider-value="[20,90]"/>
-		        	<span id="PriceSliderMax">90</span> €
-		        </li> #}
 		        <li>
 		        	<button type="submit" class="btn btn-default" id="BtnSearch">Rechercher</button>
 	        	</li>
-	        	
-	        		
-	        	
 	        </ul>
+	        
         </form>
     </div>
   </div>
 </nav>
-{#  #}
-
+#}
 <div class="bh-sl-container container-fluid">
+	{###################### Barre de recherche #######################}
+	<form id="bh-sl-user-location" method="post" action="#">
+		{# 
+		Pour qu'un filtre fonctionne :
+			1. Le tag parent doit avoir la class "bh-sl-filters-container"
+			2. Le tag enfant doit avoir la class  "bh-sl-filters"
+			3. Le tag enfant doit avoir un id "toto" 
+			4. cet id doit être déclaré dans le taxonomyFilters de $('#bh-sl-map-container').storeLocator
+		#}
+		<div class="bh-sl-filters-container">
+	        <div class="segmented-control bh-sl-filters" id="region-filters-container">
+			  <input type="radio" name="region" id="choice1" value="" checked>
+			  <input type="radio" name="region" id="choice2" value="Hauts de France">
+			  <input type="radio" name="region" id="choice3" value="Ile de France" >
+			  <label for="choice1" data-value="Tous">Tous</label>
+			  <label for="choice2" data-value="Hauts de France">Hauts de France</label>
+			  <label for="choice3" data-value="Ile de France">Ile de France</label>
+			</div>
+		</div>
+
+	    <button id='findMe' type="button"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></button></input>
+	</form>
     {############# Map #############}
     <div id="bh-sl-map-container" class="bh-sl-map-container">
 		<div class="row">
 			<div id="map-results-container" class="container-fluid">
-				<div id="bh-sl-map" class="bh-sl-map col-lg-6"></div>
+				<div id="bh-sl-map" class="bh-sl-map col-lg-6">
+					{# Emplacement de la map #}
+				</div>
 				<div class="bh-sl-loc-list col-lg-6">
+					{# Emplacement de la liste d'espace #}
 					<ul class="list list-unstyled"></ul>
 				</div>
 			</div>
@@ -261,21 +279,20 @@
 		        styles: styles,
 		        scrollwheel : false,
 		      },
-			'maxDistance': false,	// active menu déroulant de recherche par distance max
+			// 'maxDistance': false,	// active menu déroulant de recherche par distance max
 			'distanceAlert' : 100000,
 			'storeLimit' : 100000,
 			'exclusiveFiltering' : true,
 			'geocodeID' : 'findMe',
 			'taxonomyFilters' : {
-				'category' : 'category-filters-container1',
-				'features' : 'category-filters-container2',
-				'city' : 'city-filter',
+				'region' : 'region-filters-container',
+				'category' : 'category-filters-container1'
+				// 'features' : 'category-filters-container2',
+				// 'city' : 'city-filter',
 				// 'postal': 'postal-filter'
 			},
 			'infowindowTemplatePath'   : "{{ asset('js/StoreLocator/infowindow-description.html') }}",
 			'listTemplatePath'         : "{{ asset('js/StoreLocator/location-list-description.html') }}",
-    		// 'KMLinfowindowTemplatePath': "{{ asset('js/StoreLocator/kml-infowindow-description.html') }}",
-    		// 'KMLlistTemplatePath'      : "{{ asset('js/StoreLocator/kml-location-list-description.html') }}",
     		'lengthUnit'	: 'km',
     		'fullMapStart' : true,	// show map by default
     		'nameSearch': true,

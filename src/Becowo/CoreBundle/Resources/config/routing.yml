@@ -25,6 +25,11 @@ becowo_core_offers_contact:
     defaults: { _controller: BecowoCoreBundle:Offer:contact }
     methods: GET
 
+becowo_core_comment_ca_marche:
+    path:     /comment-ca-marche
+    defaults: { _controller: BecowoCoreBundle:Footer:commentCaMarche }
+    methods: GET
+
 becowo_core_vote:
     path:     /vote/{name}
     defaults: { _controller: BecowoCoreBundle:Vote:vote }

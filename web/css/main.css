@@ -37,6 +37,17 @@
   /* to use it : color: var(--my-red); */
 }
 
+body {
+  font-family: "aniversregular", Helvetica, Arial, sans-serif;
+  margin-top: 69px;
+}
+header .container{
+  margin-right: 0px;
+}
+header .navbar-header{
+  margin-left: -60px !important;
+}
+
 header .navbar-default{
     /*position: relative;*/
     background-color: white;
@@ -170,10 +181,6 @@ header #liensRS a{
 */
 
 
-body {
-	font-family: "aniversregular", Helvetica, Arial, sans-serif;
-  margin-top: 90px;
-}
 
 
 /*#hideVideo{
@@ -203,7 +210,7 @@ footer, footer a{
   color: white;
   line-height: 2; 
 }
-footer a:hover{
+footer a:hover, footer a:active{
   color: white;
   font-weight: bold;
 }
@@ -335,7 +342,40 @@ footer #liensRS a{
 }
 
 /********************************** home page *************************************/
-
+#bh-sl-map-container{
+  margin-top: 20px;
+}
+#bh-sl-user-location{
+  display: inline-flex;
+  position: absolute;
+  z-index: 2;
+  margin-top: 15px;
+  margin-left: 130px;
+}
+#region-filters-container{
+  color: var(--my-red);
+  background-color: white;
+  width: 359px;
+  margin-right: 0;
+  height: 33px;
+  border-right: none;
+}
+#region-filters-container label{
+  border-right: solid 1px var(--my-red);
+  height: 33px;
+}
+#region-filters-container input{
+  margin-bottom: 0px;
+}
+#findMe{
+  width: 50px;
+  border: solid 1px var(--my-red);
+  background-color: white;
+  color: var(--my-red);
+  height: 33px;
+  margin-top: 15px;
+}
+/*
 #BarreRecherche{
   background-color: white;
   border: none;
@@ -403,9 +443,9 @@ footer #liensRS a{
 }
 #BarreRecherche select, #BarreRecherche button{
   background: url(../images/icons/caret-down-blue.png) no-repeat 90% #fff;
-  -webkit-appearance: none; /* Enlène l'arrow d'origine */
+  -webkit-appearance: none; // Enlène l'arrow d'origine 
 }
-
+*/
 #vignette{
   border: solid 1px var(--my-grey);
 }
@@ -662,7 +702,7 @@ footer #liensRS a{
 /********************************** Page workspace *************************************/
 
 #wsHeader{
-  margin-top: -20px;
+  /*margin-top: -20px;*/
 }
 #wsHeader .row{
   margin-right: 0;
