@@ -173,6 +173,8 @@ easy_admin:
             class: Becowo\CoreBundle\Entity\Workspace
             list:
                 fields: ['id', 'name', 'description', 'descriptionBonus', { property: 'website', type: 'url' }, 'isAlwaysOpen', 'longitude', 'latitude', 'isVisible', 'isDeleted']
+        Workspace_has_office:
+            class: Becowo\CoreBundle\Entity\WorkspaceHasOffice
         Workspace_Category:
             class: Becowo\CoreBundle\Entity\WorkspaceCategory
         Workspace_Favorite:
@@ -258,7 +260,7 @@ easy_admin:
     design:
         menu:
             - label: 'Workspaces'
-              children: ['Workspace', 'Workspace_Category', 'Workspace_Favorite', 'Picture', 'Office', 'Amenities', 'TeamMember', 'Price', 'Timetable']
+              children: ['Workspace', 'Workspace_has_office', 'Workspace_Category', 'Workspace_Favorite', 'Picture', 'Amenities', 'TeamMember', 'Price', 'Timetable']
             - label: 'Booking'
               children: ['Booking', 'Booking_Status']
             - label: 'Members'
@@ -270,7 +272,7 @@ easy_admin:
             - label: 'FAQ'
               children: ['FAQ', 'FAQ_Category']
             - label: 'Config'
-              children: ['Country', 'DistanceSearch', 'Origin', 'WeekDay']
+              children: ['Office', 'Country', 'DistanceSearch', 'Origin', 'WeekDay']
 
 # Google chart / CMENGoogleChartsBundle 
 cmen_google_charts:

@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Price
  *
- * @ORM\Table(name="becowo_price", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"}), @ORM\Index(name="fk_office_id_idx", columns={"office_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="becowo_price", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_has_office_idx", columns={"workspace_has_office_id"})})
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\PriceRepository")
  */
 class Price
 {
@@ -57,24 +57,13 @@ class Price
     private $priceMonth;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\Workspace
+     * @var \Becowo\CoreBundle\Entity\WorkspaceHasOffice
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     * })
+     * @ORM\OneToOne(targetEntity="WorkspaceHasOffice")
+     * @ORM\JoinColumn(name="Workspace_has_office_id", referencedColumnName="id")
      */
-    private $workspace;
+    private $workspaceHasOffice;
 
-    /**
-     * @var \Becowo\CoreBundle\Entity\Office
-     *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Office")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="office_id", referencedColumnName="id")
-     * })
-     */
-    private $office;
 
 
 
@@ -209,50 +198,28 @@ class Price
     }
 
     /**
-     * Set workspace
+     * Set workspaceHasOffice
      *
-     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
+     * @param \Becowo\CoreBundle\Entity\WorkspaceHasOffice $workspaceHasOffice
      *
      * @return Price
      */
-    public function setWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace = null)
+    public function setWorkspaceHasOffice(\Becowo\CoreBundle\Entity\WorkspaceHasOffice $workspaceHasOffice = null)
     {
-        $this->workspace = $workspace;
+        $this->workspaceHasOffice = $workspaceHasOffice;
 
         return $this;
     }
 
     /**
-     * Get workspace
+     * Get workspaceHasOffice
      *
-     * @return \Becowo\CoreBundle\Entity\Workspace
+     * @return \Becowo\CoreBundle\Entity\WorkspaceHasOffice
      */
-    public function getWorkspace()
+    public function getWorkspaceHasOffice()
     {
-        return $this->workspace;
+        return $this->workspaceHasOffice;
     }
 
-    /**
-     * Set office
-     *
-     * @param \Becowo\CoreBundle\Entity\Office $office
-     *
-     * @return Price
-     */
-    public function setOffice(\Becowo\CoreBundle\Entity\Office $office = null)
-    {
-        $this->office = $office;
-
-        return $this;
-    }
-
-    /**
-     * Get office
-     *
-     * @return \Becowo\CoreBundle\Entity\Office
-     */
-    public function getOffice()
-    {
-        return $this->office;
-    }
+   
 }

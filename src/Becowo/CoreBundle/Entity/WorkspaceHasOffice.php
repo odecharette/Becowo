@@ -158,11 +158,16 @@ class WorkspaceHasOffice
      *
      * @return self
      */
-    private function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
 }

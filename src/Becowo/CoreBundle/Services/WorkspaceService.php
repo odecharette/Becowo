@@ -147,7 +147,7 @@ class WorkspaceService
     public function getPricesByWorkspace(Workspace $ws)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Price');
-        return $repo->findBy(array('workspace' => $ws));
+        return $repo->findPricesByWorkspace($ws);
     }
 
     public function getAverageVoteByWorkspace(Workspace $ws)
