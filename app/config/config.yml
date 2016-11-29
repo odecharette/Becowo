@@ -20,10 +20,10 @@ parameters:
         PBX_RETOUR: Montant:M;Ref:R;call_number:T;authorization_number:A;erreur:E;sign:K    #Le param K doit tjs être en dernier
         PBX_HASH: SHA512
         PBX_HMAC: 0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
-        PBX_EFFECTUE: http://localhost/Becowo/web/app_dev.php/ws/paiement/effectue # TO DO URL du serveur
-        PBX_ANNULE: http://localhost/Becowo/web/app_dev.php/ws/paiement/annule # TO DO URL du serveur
-        PBX_REFUSE: http://localhost/Becowo/web/app_dev.php/ws/paiement/refuse # TO DO URL du serveur
-        PBX_REPONDRE_A: http://localhost/Becowo/web/app_dev.php/ws/paiement/ipn # TO DO URL du serveur
+        PBX_EFFECTUE: "%site_url%/ws/paiement/effectue"
+        PBX_ANNULE: "%site_url%/ws/paiement/annule"
+        PBX_REFUSE: "%site_url%/ws/paiement/refuse"
+        PBX_REPONDRE_A: "%site_url%/ws/paiement/ipn"
 
 framework:
     #esi:             ~
@@ -61,6 +61,7 @@ twig:
         tva: '%tva%'
         creditAgricole: '%creditAgricole%'
         kernelRootDir: '%kernel.root_dir%'
+        site_url: '%site_url%'
 
 services:
     twig.extension.intl:

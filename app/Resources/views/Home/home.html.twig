@@ -272,6 +272,20 @@
 	$(function() {
 		var styles = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}];
 
+		// dégeulasse mais je n'arrive pas à faire mieux
+		var url = "{{site_url}}";
+		if(url.indexOf('localhost') !== -1)
+		{
+			var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-LOCAL.html') }}";
+			var listTemplatePath = "{{ asset('js/StoreLocator/location-list-description-LOCAL.html') }}";
+		}else if(url.indexOf('demo') !== -1){
+			var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-DEMO.html') }}";
+			var listTemplatePath = "{{ asset('js/StoreLocator/location-list-description-DEMO.html') }}";
+		}else{
+			var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-PROD.html') }}";
+			var listTemplatePath = "{{ asset('js/StoreLocator/location-list-description-PROD.html') }}";
+		}
+
 		$('#bh-sl-map-container').storeLocator({
 			'mapSettings' : {
 		        zoom : 12,
@@ -291,8 +305,8 @@
 				// 'city' : 'city-filter',
 				// 'postal': 'postal-filter'
 			},
-			'infowindowTemplatePath'   : "{{ asset('js/StoreLocator/infowindow-description.html') }}",
-			'listTemplatePath'         : "{{ asset('js/StoreLocator/location-list-description.html') }}",
+			'infowindowTemplatePath'   : infowindowTemplatePath,
+			'listTemplatePath'         : listTemplatePath,
     		'lengthUnit'	: 'km',
     		'fullMapStart' : true,	// show map by default
     		'nameSearch': true,

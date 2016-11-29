@@ -1,7 +1,12 @@
 {# TO DO : en dans le fichier de config mettre les infos de preprod puis prod données par le Crédit Agricole #}
 
 {# ATTENTION : l'ordre des champs est extrêmement important, il doit correspondre exactement à l'ordre des champs dans la chaîne hachée (PaiementController.php) #}
-
+{# {{dump(creditAgricole)}}
+{{dump(priceToPay)}}
+{{dump(bookingRef)}}
+{{dump(userEmail)}}
+{{dump(dateISO)}}
+{{dump(hmacCalculated)}} #}
 <form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi"> {# TO DO URL de prod  #}
 	<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
 	<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
@@ -14,7 +19,7 @@
 	<input type="hidden" name="PBX_HASH" value="{{creditAgricole.PBX_HASH}}"> 
 	<input type="hidden" name="PBX_TIME" value="{{dateISO}}">
 	<input type="hidden" name="PBX_HMAC" value="{{hmacCalculated}}">
-	{# TO mettre les URL de retout ds BO du credit agricole, mis ici tant que pas de BO #}
+	{# TO DO mettre les URL de retour ds BO du credit agricole, mais ici tant que pas de BO #}
 	<input type="hidden" name="PBX_EFFECTUE" value="{{creditAgricole.PBX_EFFECTUE}}"> 
 	<input type="hidden" name="PBX_REFUSE" value="{{creditAgricole.PBX_REFUSE}}">
 	<input type="hidden" name="PBX_ANNULE" value="{{creditAgricole.PBX_ANNULE}}">

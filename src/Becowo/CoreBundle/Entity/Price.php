@@ -31,28 +31,28 @@ class Price
     /**
      * @var string
      *
-     * @ORM\Column(name="price_half_day", type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(name="price_half_day", type="decimal", precision=6, scale=2, nullable=true)
      */
     private $priceHalfDay;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="price_day", type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(name="price_day", type="decimal", precision=6, scale=2, nullable=true)
      */
     private $priceDay;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="price_week", type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(name="price_week", type="decimal", precision=6, scale=2, nullable=true)
      */
     private $priceWeek;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="price_month", type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(name="price_month", type="decimal", precision=6, scale=2, nullable=true)
      */
     private $priceMonth;
 

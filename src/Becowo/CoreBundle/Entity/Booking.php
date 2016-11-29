@@ -52,14 +52,14 @@ class Booking
     /**
      * @var decimal
      *
-     * @ORM\Column(name="price_excl_tax", type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(name="price_excl_tax", type="decimal", precision=7, scale=2, nullable=true)
      */
     private $priceExclTax;
 
     /**
      * @var decimal
      *
-     * @ORM\Column(name="price_incl_tax", type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(name="price_incl_tax", type="decimal", precision=7, scale=2, nullable=true)
      */
     private $priceInclTax;
 

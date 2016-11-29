@@ -50,6 +50,7 @@
     <div id="Description" class="tab-pane fade active in">
         <p>{{ws.description|nl2br}}</p>
         <br>
+        {{dump(pricesAndOffices)}}
         <div class="row text-center">
 	         {% for priceandoffice in pricesAndOffices %}
 	        	<div id="office">
@@ -143,7 +144,7 @@
     </div>
 {############################ Réserver ############################}
     <div id="Réserver" class="tab-pane fade">
-        {# {{ render(controller('BecowoCoreBundle:Booking:bookForm', {name: ws.name})) }} #}
+        {{ render(controller('BecowoCoreBundle:Booking:bookForm', {name: ws.name})) }}
     </div>
 </div>
 

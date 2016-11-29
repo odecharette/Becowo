@@ -22,10 +22,11 @@ class BookingController extends Controller
   {
   	$WsService = $this->get('app.workspace');
   	$ws = $WsService->getWorkspaceByName($name);
-  	$listOffices = $WsService->getOfficesByWorkspace($ws);
-  	$prices = $WsService->getPricesByWorkspace($ws);
+  	//$listOffices = $WsService->getOfficesByWorkspace($ws);
+  	//$prices = $WsService->getPricesByWorkspace($ws);
   	$times = $WsService->getTimesByWorkspace($ws);
   	$closedDates = $WsService->getClosedDatesByWorkspace($ws);
+    $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
 
   	if ($request->isMethod('POST'))
   	{
@@ -34,7 +35,13 @@ class BookingController extends Controller
   		return $this->redirectToRoute('becowo_core_booking_form', array('name' => $request->get('name')));
   		//return $this->render('Workspace/book-validated.html.twig');
   	}
-  	return $this->render('Workspace/book3.html.twig', array('listOffices' => $listOffices, 'prices' => $prices, 'ws' => $ws, 'times' => $times, 'closedDates' => $closedDates));
+  	return $this->render('Workspace/book4.html.twig', array(
+        //'listOffices' => $listOffices, 
+        //'prices' => $prices, 
+        'pricesAndOffices' => $pricesAndOffices,
+        'ws' => $ws, 
+        'times' => $times, 
+        'closedDates' => $closedDates));
   }
 
   public function bookAction($name, Request $request)
