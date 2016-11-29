@@ -19,17 +19,17 @@ class MapController extends Controller
     // Add Workspaces
     foreach ($workspaces as $workspaces) {
       $itemNode = $rootNode->addChild('marker');
-      $itemNode->addAttribute( 'name', $workspaces->getName() );
+      $itemNode->addAttribute( 'name', utf8_encode($workspaces->getName()) );
       $itemNode->addAttribute( 'lat', $workspaces->getLatitude() );
       $itemNode->addAttribute( 'lng', $workspaces->getLongitude() );
-      $itemNode->addAttribute( 'category', "coworking" ); // TO DO : getCategory ?
-      $itemNode->addAttribute( 'address', ucfirst(strtolower($workspaces->getStreet())) );
-      $itemNode->addAttribute( 'city', $workspaces->getCity() );
+      $itemNode->addAttribute( 'category', utf8_encode($workspaces->getCategory()) );
+      $itemNode->addAttribute( 'address', utf8_encode(ucfirst(strtolower($workspaces->getStreet()))) );
+      $itemNode->addAttribute( 'city', utf8_encode($workspaces->getCity()) );
       $itemNode->addAttribute( 'postal', $workspaces->getPostCode() );
       $itemNode->addAttribute( 'country', "FR" );
       $itemNode->addAttribute( 'listed', "true" ); // Pour que seuls les espaces soient affichés dans la liste
       $itemNode->addAttribute( 'featured', "true" );
-      $itemNode->addAttribute( 'region', $workspaces->getRegion() );
+      $itemNode->addAttribute( 'region', utf8_encode($workspaces->getRegion()) );
 
       $amenities = $workspaces->getAmenities();
       $listeAmenities = "";

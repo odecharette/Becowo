@@ -116,12 +116,29 @@
     		<div class="col-lg-6">
 		        {# La taille de la carte joue sur les options affichées : itinéraire... #}
 				<div id="map">
-					<iframe frameborder="0" style="border:0;width: inherit;height: inherit;" src="https://www.google.com/maps/embed/v1/place?q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}&key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&zoom=15" ></iframe>
+					<iframe frameborder="0" style="border:0;width: inherit;height: inherit;" src="https://www.google.com/maps/embed/v1/place?q={{ws.name|replace({'&': "and"})}} {{ws.street}} {{ws.postcode}} {{ws.city}}&key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&zoom=15" ></iframe>
 
 				{# 	<a href="http://maps.google.fr/maps?f=q&hl=fr&q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}" target="_blank">
 					<button type="button">Agrandir le plan</button></a> #}
 				</div>
     		</div>
+    	</div>
+    	<div class="row">
+    		{% if ws.facebookLink != '' %}
+    			<a href="{{ws.facebookLink}}" target="_blank">
+    				<img src="{{ asset('images/RS/facebook.png') }}" alt="Profile facebook" title="Profile facebook {{ws.name}}">
+    			</a>
+    		{% endif %}
+    		{% if ws.twitterLink != '' %}
+    			<a href="{{ws.twitterLink}}" target="_blank">
+    				<img src="{{ asset('images/RS/twitter.png') }}" alt="Profile Twitter" title="Profile Twitter {{ws.name}}">
+    			</a>
+    		{% endif %}
+    		{% if ws.instagramLink != '' %}
+    			<a href="{{ws.instagramLink}}" target="_blank">
+    				<img src="{{ asset('images/RS/instagrampng') }}" alt="Profile Instagram" title="Profile Instagram {{ws.name}}">
+    			</a>
+    		{% endif %}
     	</div>
     </div>
 {############################ Réserver ############################}

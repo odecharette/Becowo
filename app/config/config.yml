@@ -60,6 +60,7 @@ twig:
     globals:
         tva: '%tva%'
         creditAgricole: '%creditAgricole%'
+        kernelRootDir: '%kernel.root_dir%'
 
 services:
     twig.extension.intl:
