@@ -313,7 +313,7 @@ class TeamMember
 
     public function __toString()
     {
-        return $this->name;
+        return $this->firstname . ' ' . $this->name;
     }
 
     public function upload($wsName)
