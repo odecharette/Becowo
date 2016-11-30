@@ -1,0 +1,84 @@
+{# ATTENTION
+office.name = le nom du bureau dans le WS (pluton, Mars, Venus)
+office.office.name = type de bureau (open space, bureau, salle de réunion etc)
+ #}
+
+<div class="container-fluid">
+
+	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+		<div class="row" id="booking-content">
+	    	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
+
+	    	{# ERREUR #}
+	    	{% if app.user.email == "" %}
+	    		<div id="email-error">
+	    			ATTENTION, vous devez renseigner votre email dans <a href="{{ path('fos_user_profile_edit') }}">votre profil</a>, afin de valider la réservation <br>
+	    			Votre email nous permettra de confirmer la réservation et de vous envoyer un ticket de paiement.
+	    		</div>
+	    	{% endif %}
+	    	<div id="booking-error"></div>
+
+		    {% for priceandoffice in pricesAndOffices %}
+
+		    	<div class="row">
+		    		<div class="col-lg-6">
+						{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
+		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}" width="100%">
+		        		{% else %}
+		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+		        		{% endif %}
+		    		</div>
+		    		<div class="col-lg-6">
+		    			{{priceandoffice.workspaceHasOffice.name}} - 
+		    			Capacité : {{priceandoffice.workspaceHasOffice.deskQty}}<br>
+		    			<br>
+		    			<p>Et est admodum mirum videre plebem innumeram mentibus ardore quodam infuso cum dimicationum curulium eventu pendentem. haec similiaque memorabile nihil vel serium agi Romae permittunt. ergo redeundum ad textum.</p>
+		    			<div class="row">
+		    				<div class="col-lg-6">
+		    					Nos formules : <br>
+				    			{% if priceandoffice.priceHour > 0 %} {{priceandoffice.priceHour}} € / heure*<br> {% endif %}
+			    				{% if priceandoffice.priceHalfDay > 0 %} {{priceandoffice.priceHalfDay}} € / demi journée*<br> {% endif %}
+		    					{% if priceandoffice.priceDay > 0 %} {{priceandoffice.priceDay}} € / jour*<br> {% endif %}
+								{% if priceandoffice.priceWeek > 0 %} {{priceandoffice.priceWeek}} € / semaine*<br> {% endif %}
+								{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € / mois*<br> {% endif %}
+		    				</div>
+		    				<div class="col-lg-6">
+		    				<button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#myModalResa">Réserver</button>
+ 
+							<!-- Modale -->
+							<div class="modal fade" id="myModalResa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							    <div class="modal-dialog">
+							        <div class="modal-content">
+							            <div class="modal-header">
+							                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							                <h4 class="modal-title">Votre réservation chez {{ws.name}}</h4>
+							            </div>
+							            <div class="modal-body">
+							                {% include 'Workspace/book-modal.html.twig' with { 'priceandofficeSelected' : priceandoffice } %}
+							            </div>
+							            <div class="modal-footer">
+							                <button type="button" class="btn btn-primary"><i class="icon icon-check icon-lg"></i> Valide</button>
+							                <button type="button" class="btn btn-inverse" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+							<!-- Fin Modale -->
+		    				</div>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	<br>
+				{% endfor %}
+
+  			* Les prix sont exprimés en TTC
+			
+			</form>
+		</div>
+
+
+	{% else %}
+		<p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
+	{% endif %}
+</div>

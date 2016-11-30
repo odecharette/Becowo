@@ -32,6 +32,8 @@ footer, header, hgroup, menu, nav, section, main {
 }
 body {
   line-height: 1;
+  margin-top: 90px;
+  margin-left: 20px;
 }
 ol, ul {
   list-style: none;
@@ -132,9 +134,13 @@ body.cd-overlay::after {
 
 h1{
   margin-top: 30px;
-  margin-left: 20px;
   color: var(--my-blue);
-  font-size: 20pt;
+  font-size: 26pt;
+  text-align: center;
+}
+h2{
+  color: var(--my-blue);
+  font-size: 18pt;
 }
 .cd-faq {
   width: 90%;

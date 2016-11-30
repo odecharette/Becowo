@@ -21,6 +21,18 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    	<div id="booking-error"></div>
 
 		    	<div class="row">
+		    		<div class="segmented-control" style="width: 800px; color: #20385e" id="filter-office-type">
+					  <input type="radio" name="filter-office-type" id="filter-office-type-1" value="Open space" checked onchange="chooseOfficeType()">
+					  <input type="radio" name="filter-office-type" id="filter-office-type-2" value="Bureau privé" onchange="chooseOfficeType()">
+					  <input type="radio" name="filter-office-type" id="filter-office-type-3" value="Salles de réunions et conférences" onchange="chooseOfficeType()">
+					  <input type="radio" name="filter-office-type" id="filter-office-type-4" value="Divers" onchange="chooseOfficeType()">
+					  <label for="filter-office-type-1" data-value="Open space">Open space</label>
+					  <label for="filter-office-type-2" data-value="Bureau privé">Bureau privé</label>
+					  <label for="filter-office-type-3" data-value="Salles de réunions et conférences">Salles de réunions et conférences</label>
+					  <label for="filter-office-type-4" data-value="Divers">Divers</label>
+					</div>
+		    	</div>
+		    	<div class="row">
 		    		<div class="col-lg-1">
 						<span class="booking-badge">1</span>
 		    		</div>
@@ -30,8 +42,12 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    				{% for priceandoffice in pricesAndOffices %}
 		    					<input id="{{priceandoffice.workspaceHasOffice.name}}*{{priceandoffice.workspaceHasOffice.office.name}}" type="radio" name="office" value="{{priceandoffice.workspaceHasOffice.name}}*{{priceandoffice.workspaceHasOffice.office.name}}" onchange="bookOffice()" class="required" />
 		    					<label class="drinkcard-cc" for="{{priceandoffice.workspaceHasOffice.name}}*{{priceandoffice.workspaceHasOffice.office.name}}" id="label-{{priceandoffice.workspaceHasOffice.name}}*{{priceandoffice.workspaceHasOffice.office.name}}">
-					        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.workspaceHasOffice.office.name}}2.png" alt="{{priceandoffice.workspaceHasOffice.office.name}}" title="{{priceandoffice.workspaceHasOffice.office.name}}">
-				        			<div class="drinkcard-cc-title">{{priceandoffice.workspaceHasOffice.name}} - {{priceandoffice.workspaceHasOffice.office.name}}</div>
+		    					{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
+				        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}" width="190px">
+				        		{% else %}
+				        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+				        		{% endif %}
+				        			<div class="drinkcard-cc-title">{{priceandoffice.workspaceHasOffice.name}}</div>
 				        	 		<div class="drinkcard-cc-price" id="pricePerOffice-{{priceandoffice.workspaceHasOffice.name}}*{{priceandoffice.workspaceHasOffice.office.name}}">{# le prix va s'afficher ici via JS #}</div>
 					        	</label>
 					        	<div id="SelectedOffice-{{priceandoffice.workspaceHasOffice.name}}*{{priceandoffice.workspaceHasOffice.office.name}}-deskQty" style="display: none">{{priceandoffice.workspaceHasOffice.deskQty}}</div>

@@ -232,8 +232,6 @@ easy_admin:
             class: Becowo\CoreBundle\Entity\PoiCategory
         Amenities:
             class: Becowo\CoreBundle\Entity\Amenities
-            form:
-                fields: ['name']
         TeamMember:
             class: Becowo\CoreBundle\Entity\TeamMember
         Vote:

@@ -32,6 +32,13 @@ class WorkspaceHasOffice
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_profile_picture", type="string", length=255, nullable=true)
+     */
+    private $urlProfilePicture;
+
   /**
    * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
    * @ORM\JoinColumn(nullable=false)
@@ -92,6 +99,30 @@ class WorkspaceHasOffice
         return $this;
     }
 
+    /**
+     * Set urlProfilePicture
+     *
+     * @param string $urlProfilePicture
+     *
+     * @return TeamMember
+     */
+    public function setUrlProfilePicture($urlProfilePicture)
+    {
+        $this->urlProfilePicture = $urlProfilePicture;
+
+        return $this;
+    }
+
+    /**
+     * Get urlProfilePicture
+     *
+     * @return string
+     */
+    public function getUrlProfilePicture()
+    {
+        return $this->urlProfilePicture;
+    }
+    
     /**
      * Gets the value of workspace.
      *

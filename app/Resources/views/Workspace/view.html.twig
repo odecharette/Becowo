@@ -29,7 +29,7 @@
 			{% endif %}
 		</div>
 		<div class="col-lg-6">
-			<h2>{{ws.name}} {{averageVote|rating}}</h2>
+			<h1>{{ws.name}} {{averageVote|rating}}</h1>
 		</div>
 	</div>	
 
@@ -49,16 +49,22 @@
 {############################ Description ############################}
     <div id="Description" class="tab-pane fade active in">
         <p>{{ws.description|nl2br}}</p>
+        <strong>Retrouvez tous nos bureaux et les tarifs en détail dans l'onglet "Réserver"</strong>
         <br>
-        {{dump(pricesAndOffices)}}
+        <br>
         <div class="row text-center">
 	         {% for priceandoffice in pricesAndOffices %}
+	         	{% if loop.index < 6 %} {# on n'affiche que les 5 premiers bureaux #}
 	        	<div id="office">
-	        		<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}"> <br>
+	        		{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
+	        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+	        		{% else %}
+	        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+	        		{% endif %} <br>
 	        		{{priceandoffice.WorkspaceHasOffice.name}} <br>
 	        		<strong>
 	        			{% if priceandoffice.priceHour > 0 %}
-		        			{{priceandoffice.priceHour}} € / heure
+		        			A partir de {{priceandoffice.priceHour}} € / heure
 		        		{% elseif priceandoffice.priceHalfDay > 0 %}
 		        			{{priceandoffice.priceHalfDay}} € / 1/2 journée
 		        		{% elseif priceandoffice.priceDay > 0 %}
@@ -70,6 +76,7 @@
 		        		{% endif %}
 					</strong>
 		        </div>
+		    	{% endif %}
 	        {% endfor %} 
 	       
         </div>
@@ -90,8 +97,6 @@
 		        </ul>
     		</div>
 			<div class="col-lg-4">
-				<h2>L'équipe à votre service</h2>
-				<br>
 				{% include 'Workspace/teamMembers.html.twig' %} 
     		</div>
     	</div>
@@ -105,11 +110,12 @@
     	<div class="row">
     		<div class="col-lg-6">
 				<div id="time">
-					<center><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></center>
+					<center><i class="fa fa-map-signs fa-2x" aria-hidden="true"></i></center>
 					{{ws.street|capitalize}} <br>
 					{{ws.postCode}} {{ws.city|capitalize}} <br>
-					<br>
-					{{ws.openHoursInfo}}<br>
+					<center><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></center>
+					{{ws.openHoursInfo|nl2br}}<br>
+					<center><i class="fa fa-globe fa-2x" aria-hidden="true"></i></center>
 					<a href="{{ws.website}}" target="_blank">{{ws.website}}</a>
 				</div>
 				<button type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button> <br>
@@ -124,7 +130,8 @@
 				</div>
     		</div>
     	</div>
-    	<div class="row">
+    	<br><br>
+    	<div class="row text-center">
     		{% if ws.facebookLink != '' %}
     			<a href="{{ws.facebookLink}}" target="_blank">
     				<img src="{{ asset('images/RS/facebook.png') }}" alt="Profile facebook" title="Profile facebook {{ws.name}}">

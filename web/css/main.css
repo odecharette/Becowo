@@ -82,6 +82,10 @@ header .dropdown-toggle{
   color: white !important;
   background-color: var(--my-blue) !important;
 }
+h1{
+  color: var(--my-red);
+  text-align: center;
+}
 h2{
   color: var(--my-red);
   text-align: center;
@@ -316,7 +320,71 @@ footer #liensRS a{
   margin-bottom: 0;
   border-radius: 0;
 }
+#FAQ-bulle{
+  width: 350px;
+  border: solid 3px var(--my-blue);
+  padding: 15px;
+  border-radius: 5%;
+  height: 200px;
+  top: 100px;
+  position: absolute;
+  left: 68%;
+  z-index: 2;
+}
+#FAQ-bulle span{
+  text-align: center;
+  font-size: 14pt;
+  color: var(--my-blue);
+  font-family: "aniversregular", Helvetica, Arial, sans-serif;
+}
+#FAQ-bulle p{
+  font-family: "aniversregular", Helvetica, Arial, sans-serif;
+  color: var(--my-grey);
+  font-size: 14pt;
+  text-align: justify;
+}
+#FAQ .faqHeader h2{
+  text-align: left;
+}
+#FAQ .panel{
+  box-shadow: none;
+}
+#FAQ .panel-heading{
+  background-color: transparent;
+}
+#FAQ .panel-heading [data-toggle="collapse"]:after {
+  font-family: FontAwesome;
+  content: "\f0d8"; /* caret up */
+  float: right;
+  color: var(--my-blue);
+  font-size: 26pt;
+  line-height: 22px;
+  margin-right: 20px;
+  float: left;
+}
 
+#FAQ .panel-heading [data-toggle="collapse"].collapsed:after {
+  font-family: FontAwesome;
+  content: "\f0d7"; /* caret down */
+  color: var(--my-blue);
+  font-size: 26pt;
+  margin-right: 20px;
+  float: left;
+}
+#FAQ .panel-default>.panel-heading+.panel-collapse>.panel-body, #FAQ .panel{
+  border: none;
+}
+#FAQ .panel-title{
+  color: var(--my-blue);
+  text-align: left;
+  font-size: 14pt;
+}
+#FAQ .panel-body{
+  font-family: "aniversregular", Helvetica, Arial, sans-serif;
+  text-align: justify;
+  font-size: 12pt;
+  color: var(--my-grey);
+}
 /********************************** Bouton de retour haut de page *************************************/
 #top-link-block i{
   display: inline-block;
@@ -778,13 +846,15 @@ footer #liensRS a{
   text-align: center;
 }
 #Description #office img{
-  width: 90%;
+  width: 190px;
+  border-radius: 10%;
+  height: 130px;
 }
 #Services ul{
   overflow:hidden;
 }
 #Services li{
-  width:50%; /* to have 2 columns */
+  width:33%; /* to have 3 columns */
   line-height:1.7em;
   float:left;
   display:inline;
@@ -813,7 +883,12 @@ footer #liensRS a{
 #myCarouselTeam .card{
   text-align: center;
 }
-
+#myCarouselTeam .card-text{
+  width: 80%;
+  left: 15%;
+  position: relative;
+  margin-top: 10px;
+}
 #Contact button{
   width: 100%;
   border: none;
@@ -826,12 +901,16 @@ footer #liensRS a{
   color: white;
   margin-right: 15px;
 }
-
+#Contact img{
+  width: 50px;
+  border-radius: 25%;
+  margin-right: 20px;
+}
 #jssor_1{
   /*Le style est directement dans le HTML du carroussel sinon ca bug*/
   border : solid #24262e 1px;
   width: 1140px !important;
-  margin-left: 55px !important;
+  margin-left: 50px !important;
 }
 #jssor_1 #left{
   position: absolute;

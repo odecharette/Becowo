@@ -1,48 +1,48 @@
 {% extends "layout.html.twig" %}
 
-{% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('css/FAQ.css') }}">
-{% endblock %}
-
-
 {% block title %}
   {{ parent() }} - FAQ
 {% endblock %}
 
 {% block body %}
 
-
+<br>
 <h1>Foire Aux Questions</h1>
-
-<div class="container-fluid" id="faq">
-	<section class="cd-faq">
-		<ul class="cd-faq-categories">
-		{% for cat in faqCategory %}					
-				<li><a href="#{{cat.name}}">{{cat.name}}</a></li>
-		{% endfor %}	
-		</ul>
-		{% for cat in faqCategory %}	
-			<div class="cd-faq-items">
-				<ul id="{{cat.name}}" class="cd-faq-group">
-					<li class="cd-faq-title"><h2>{{cat.name}}</h2></li>
-					{% for faq in faq %}
-						<li>
-							<a class="cd-faq-trigger" href="#0">{{faq.question}}</a>
-							<div class="cd-faq-content">
-								<p>{{faq.answer}}</p>
-							</div> 
-						</li>
-					{% endfor %}
-				</ul>
-				<br>
-			</div> 
-		{% endfor %}
-	</section>
+{# TO DO , voir en BDD les questions qui ont un TO DO à compléter #}
+<div id="FAQ-bulle">
+<span>Votre question n’est pas dans la FAQ ?</span>	
+<br><br>
+<p>Envoyez-nous un mail à <strong>contact@becowo.com</strong> pour nous poser directement votre question et nous vous répondrons dans les meilleurs délais.</p>
 </div>
 
-
+<br>
+<div class="container" id="FAQ">
+	<div class="row">
+		<div class="col-lg-10">
+    {% for cat in faqCategory %}
+    	<br>
+	    <div class="panel-group" id="accordion">
+	        <div class="faqHeader"><h2>{{cat.name}}</h2></div>
+	        	{% for faq in faq if faq.category.name == cat.name %}
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h4 class="panel-title">
+		                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{cat.id}}-{{loop.index}}">{{faq.question}}</a>
+		                </h4>
+		            </div>
+		            <div id="collapse-{{cat.id}}-{{loop.index}}" class="panel-collapse collapse">
+		                <div class="panel-body">
+		                    {{faq.answer|raw}}
+		                </div>
+		            </div>
+		        </div>
+		    {% endfor %}
+	    </div>
+    {% endfor %}
+		</div>
+	</div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
-   <script src="{{ asset('js/FAQ.js') }}"></script>
 {% endblock %}

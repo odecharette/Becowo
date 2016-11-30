@@ -35,7 +35,7 @@ class BookingController extends Controller
   		return $this->redirectToRoute('becowo_core_booking_form', array('name' => $request->get('name')));
   		//return $this->render('Workspace/book-validated.html.twig');
   	}
-  	return $this->render('Workspace/book4.html.twig', array(
+  	return $this->render('Workspace/book5.html.twig', array(
         //'listOffices' => $listOffices, 
         //'prices' => $prices, 
         'pricesAndOffices' => $pricesAndOffices,
