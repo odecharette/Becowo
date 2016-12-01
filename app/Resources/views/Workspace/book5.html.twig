@@ -24,30 +24,30 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    	<div class="row">
 		    		<div class="col-lg-6">
 						{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
-		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}" width="100%">
+		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" width="100%" height="245px">
 		        		{% else %}
-		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 		        		{% endif %}
 		    		</div>
 		    		<div class="col-lg-6">
-		    			{{priceandoffice.workspaceHasOffice.name}} - 
-		    			Capacité : {{priceandoffice.workspaceHasOffice.deskQty}}<br>
+		    			<span class="office-name">{{priceandoffice.workspaceHasOffice.name}}</span> - 
+		    			<span class="capacity">Capacité : {{priceandoffice.workspaceHasOffice.deskQty}} <i class="fa fa-male" aria-hidden="true"></i></span><br>
 		    			<br>
 		    			<p>Et est admodum mirum videre plebem innumeram mentibus ardore quodam infuso cum dimicationum curulium eventu pendentem. haec similiaque memorabile nihil vel serium agi Romae permittunt. ergo redeundum ad textum.</p>
 		    			<div class="row">
-		    				<div class="col-lg-6">
-		    					Nos formules : <br>
-				    			{% if priceandoffice.priceHour > 0 %} {{priceandoffice.priceHour}} € / heure*<br> {% endif %}
-			    				{% if priceandoffice.priceHalfDay > 0 %} {{priceandoffice.priceHalfDay}} € / demi journée*<br> {% endif %}
-		    					{% if priceandoffice.priceDay > 0 %} {{priceandoffice.priceDay}} € / jour*<br> {% endif %}
-								{% if priceandoffice.priceWeek > 0 %} {{priceandoffice.priceWeek}} € / semaine*<br> {% endif %}
-								{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € / mois*<br> {% endif %}
+		    				<div class="col-lg-6" id="formules">
+		    					<strong><i class="fa fa-money" aria-hidden="true"></i> Nos formules : </strong><br>
+				    			{% if priceandoffice.priceHour > 0 %} {{priceandoffice.priceHour}} € HT / heure<br> {% endif %}
+			    				{% if priceandoffice.priceHalfDay > 0 %} {{priceandoffice.priceHalfDay}} € HT / demi journée<br> {% endif %}
+		    					{% if priceandoffice.priceDay > 0 %} {{priceandoffice.priceDay}} € HT / jour<br> {% endif %}
+								{% if priceandoffice.priceWeek > 0 %} {{priceandoffice.priceWeek}} € HT / semaine<br> {% endif %}
+								{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € HT / mois<br> {% endif %}
 		    				</div>
 		    				<div class="col-lg-6">
-		    				<button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#myModalResa">Réserver</button>
+		    				<button type="button" id="btnResa" data-toggle="modal"  data-target="#myModalResa-{{priceandoffice.id}}">Réserver</button>
  
 							<!-- Modale -->
-							<div class="modal fade" id="myModalResa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal fade" id="myModalResa-{{priceandoffice.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							    <div class="modal-dialog">
 							        <div class="modal-content">
 							            <div class="modal-header">
@@ -58,8 +58,12 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 							                {% include 'Workspace/book-modal.html.twig' with { 'priceandofficeSelected' : priceandoffice } %}
 							            </div>
 							            <div class="modal-footer">
-							                <button type="button" class="btn btn-primary"><i class="icon icon-check icon-lg"></i> Valide</button>
-							                <button type="button" class="btn btn-inverse" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
+							                <div class="col-lg-8" id="total">
+												Total : <span id="booking-recap-price-{{priceandoffice.id}}"></span> € HT
+											</div>
+											<div class="col-lg-4">
+												<button type="button" class="btn btn-primary">Confirmer</button>
+											</div>
 							            </div>
 							        </div>
 							    </div>
@@ -70,10 +74,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    		</div>
 		    	</div>
 		    	<br>
-				{% endfor %}
-
-  			* Les prix sont exprimés en TTC
-			
+				{% endfor %}			
 			</form>
 		</div>
 

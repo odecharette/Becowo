@@ -199,17 +199,17 @@ $("#booking-steps").steps({
 /***************** Booking calendar ****************************/
 // http://www.daterangepicker.com
 
-// Le calendrier s'adapte en fonction de la durée le location choisie
-function loadCalendar(){
+// Le calendrier s'adapte en fonction de la durée de location choisie
+function loadCalendar(id, duree, prix){
 
 	var closedDates = document.getElementById('closedDates').innerHTML;
 	closedDates = closedDates.replace(/(?:\r\n|\r|\n)/g, '');
 	closedDates = closedDates.trim();
 	var closedDatesTab = closedDates.split(',');
 
-	if(document.querySelector('input[name="booking-duration"]:checked').value == 'Heure' || document.querySelector('input[name="booking-duration"]:checked').value == '1/2 journée' || document.querySelector('input[name="booking-duration"]:checked').value == 'Journée') {
-
-		$('#booking-calendar').daterangepicker({
+	if(duree == 'Heure' || duree == '1/2 journée' || duree == 'Journée') {
+ 
+		$('#booking-calendar-' + id).daterangepicker({
 	        timePicker: false,
 	        singleDatePicker: true,
 	        locale: {
@@ -239,8 +239,8 @@ function loadCalendar(){
 	    		}
 			  }
 	    });
-	} else if (document.querySelector('input[name="booking-duration"]:checked').value == 'Semaine' || document.querySelector('input[name="booking-duration"]:checked').value == 'Mois'){
-		$('#booking-calendar').daterangepicker({
+	} else if (duree == 'Semaine' || duree == 'Mois'){
+		$('#booking-calendar-' + id).daterangepicker({
 	        timePicker: false,
 	        singleDatePicker: false,
 	        locale: {
@@ -272,7 +272,7 @@ function loadCalendar(){
 	    });
 
 
-	    $('#booking-calendar').on('apply.daterangepicker', function (e, picker) {
+	    $('#booking-calendar-' + id).on('apply.daterangepicker', function (e, picker) {
 
 	    	$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
 
@@ -282,7 +282,7 @@ function loadCalendar(){
 
 	    	var diff = moment.preciseDiff(begin, end, true); // http://codebox.org.uk/pages/moment-date-range-plugin
 
-			if (document.querySelector('input[name="booking-duration"]:checked').value == 'Semaine'){
+			if (duree == 'Semaine'){
 		        
 		        	document.getElementById('calendar-error').innerHTML = "TO DO vérifier saisie est en semaine";
 					document.getElementById('booking-recap-date-calculated').innerHTML = "TO DO calculer le nb de semaines"
@@ -301,45 +301,46 @@ function loadCalendar(){
 	}
 
 
-	$('#booking-calendar').on('apply.daterangepicker', function(ev, picker) {
-		if(picker.startDate.date() == picker.endDate.date()){
-			document.getElementById('booking-recap-date').innerHTML = picker.startDate.format('DD/MM/YYYY');
-		}else{
-			$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-			document.getElementById('booking-recap-date').innerHTML = "Du ";
-			document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
-			document.getElementById('booking-recap-date').innerHTML += " Au ";
-			document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY');
+	// $('#booking-calendar-' + id).on('apply.daterangepicker', function(ev, picker) {
+	// 	if(picker.startDate.date() == picker.endDate.date()){
+	// 		document.getElementById('booking-recap-date').innerHTML = picker.startDate.format('DD/MM/YYYY');
+	// 	}else{
+	// 		$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+	// 		document.getElementById('booking-recap-date').innerHTML = "Du ";
+	// 		document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
+	// 		document.getElementById('booking-recap-date').innerHTML += " Au ";
+	// 		document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY');
 
-		}
-	});
+	// 	}
+	// });
 
-
-
-
-	bookCalculatePrice();
+	loadTime(id, duree, prix);
+	loadPeople(id, duree, prix);
+	loadPrice(id, duree, prix); 
+//	bookCalculatePrice();
 };
 
 /***************** Booking time ****************************/
 // http://seiyria.com/bootstrap-slider/
 
-function loadTime(boo){
-	if(boo){ // true
-		document.getElementById('calendar-time').style.display = 'block';
+function loadTime(id, duree, prix){
+	if(duree == 'Heure'){ 
+		document.getElementById('calendar-halftime-' + id).style.display = 'none';
+		document.getElementById('calendar-time-' + id).style.display = 'block';
 		var ouverture = document.getElementById('calendar-time-min').innerHTML.split(':');
 		var ouvertureMinutes = Number(ouverture[0]) * 60 + Number(ouverture[1]);
 		var fermeture = document.getElementById('calendar-time-max').innerHTML.split(':');
 		var fermetureMinutes = Number(fermeture[0]) * 60 + Number(fermeture[1]);
 
-		var mySliderTime = $("#booking-time-slider").slider({
-
+		var mySliderTime = $("#booking-time-slider-" + id).slider({
 		range: true,
     	min: ouvertureMinutes,	// every values are in minutes
     	max: fermetureMinutes,
     	step: 30,
-    	value: [600, 720]
+    	value: [ouvertureMinutes, ouvertureMinutes+60]
 
 		});
+
 		mySliderTime.on('change', function(ev){
 
 		var valeurs = mySliderTime.data('slider').getValue();
@@ -360,40 +361,53 @@ function loadTime(boo){
 
 		$('.slideTime .tooltip-inner').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
 //		mySliderTime.data('slider').setValue(""); pour changer le tooltip black mais pb de format de value
-		document.getElementById('booking-recap-time').innerHTML = 'De ' + hours1 + ':' + minutes1 + ' à ' + hours2 + ':' + minutes2;
-		document.getElementById('booking-recap-time-calculated').innerHTML = (valeurs[1] - valeurs[0])/60;
-		
-		bookCalculatePrice();
+	
+	//	document.getElementById('booking-recap-time').innerHTML = 'De ' + hours1 + ':' + minutes1 + ' à ' + hours2 + ':' + minutes2;
+	//	document.getElementById('booking-recap-time-calculated').innerHTML = (valeurs[1] - valeurs[0])/60;
+		var nbHeures = (valeurs[1] - valeurs[0])/60;
+		document.getElementById('recap-nbHeures-' + id).innerHTML = nbHeures;
+
+		loadPrice(id, duree, prix);
+	//	bookCalculatePrice();
 		});
 
-	}else{ // false
-		document.getElementById('calendar-time').style.display = 'none';
-	}
-
-	bookCalculatePrice();
-}
-
-function loadHalfTime(boo){
-	if(boo){
-		document.getElementById('calendar-halftime').style.display = 'block';
+	}else if(duree == '1/2 journée'){ 
+		document.getElementById('calendar-time-' + id).style.display = 'none';
+		document.getElementById('calendar-halftime-' + id).style.display = 'block';
 	}else{
-		document.getElementById('calendar-halftime').style.display = 'none';
+		document.getElementById('calendar-time-' + id).style.display = 'none';
+		document.getElementById('calendar-halftime-' + id).style.display = 'none';
 	}
 
-	bookCalculatePrice();
+	loadPrice(id, duree, prix);
+//	bookCalculatePrice();
 }
+
+// function loadHalfTime(boo){
+// 	if(boo){
+// 		document.getElementById('calendar-halftime').style.display = 'block';
+// 	}else{
+// 		document.getElementById('calendar-halftime').style.display = 'none';
+// 	}
+
+// 	bookCalculatePrice();
+// }
 /***************** Booking people ****************************/
-$( document ).ready(function() {
-	var mySliderPeople = $("#booking-people").slider({});
+function loadPeople(id, duree, prix, nbHeures) {
+	var mySliderPeople = $("#booking-people-" + id).slider({});
 	if(mySliderPeople != null)
 	{
 	mySliderPeople.on('change', function(ev){
-		document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
-		document.getElementById('booking-recap-people-txt').innerHTML = " personne(s)"; 
-		bookCalculatePrice();
+		// document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
+		// document.getElementById('booking-recap-people-txt').innerHTML = " personne(s)"; 
+		// bookCalculatePrice();
+		var nbPeople = mySliderPeople.data('slider').getValue();
+		document.getElementById('recap-nbPeople-' + id).innerHTML = nbPeople;
+
+		loadPrice(id, duree, prix);
 	});
 	}
-});
+};
 
 /***************** Booking offices ****************************/
 function bookOffice() { 
@@ -467,7 +481,7 @@ function chooseDuration() {
     }
     document.getElementById('booking-recap-duration').innerHTML = document.querySelector('input[name="booking-duration"]:checked').value;
 
-    loadCalendar();
+ //   loadCalendar();
     bookCalculatePrice();
     
     }
@@ -477,6 +491,30 @@ $( document ).ready(function() {
 	//Affichage des prix au démarrage
     chooseDuration();
 });
+/************************* Booking calculate price 2 *******************/
+function loadPrice(id, duree, prix){
+
+	var total = prix;
+	var officeType = document.getElementById('recap-officeType-' + id).innerHTML;
+	var nbHeures = document.getElementById('recap-nbHeures-' + id).innerHTML;
+	var nbPeople = document.getElementById('recap-nbPeople-' + id).innerHTML;
+
+
+	if(duree == 'Heure'){
+		total = prix * nbHeures;
+	}else{
+		total = prix;
+	}
+
+	if(officeType == 'Open space'){
+		total = total * nbPeople;
+	}
+
+
+	document.getElementById('booking-recap-price-'+id).innerHTML = total;
+
+}
+
 
 /************************* Booking calculate price *******************/
 
@@ -533,8 +571,8 @@ function bookCalculatePrice()
 
 /*************duration day choice ************************/
 
-function chooseDurationDay()
-{
-	document.getElementById('booking-recap-duration-txt').innerHTML = document.querySelector('input[name="booking-duration-day"]:checked').value;
-}
+// function chooseDurationDay()
+// {
+// 	document.getElementById('booking-recap-duration-txt').innerHTML = document.querySelector('input[name="booking-duration-day"]:checked').value;
+// }
 	

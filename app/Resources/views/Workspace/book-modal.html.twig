@@ -1,2 +1,88 @@
 {{dump(priceandofficeSelected)}}
-{# attention ca envoi tjs le meme ? #}
+<span class="office-name">{{priceandofficeSelected.workspaceHasOffice.name}}</span> - 
+<span class="capacity">Capacité : {{priceandofficeSelected.workspaceHasOffice.deskQty}} <i class="fa fa-male" aria-hidden="true"></i></span><br>
+<br>
+<h3>Choisir un créneau de réservation</h3>
+<br>
+{# DUREE #}
+Durée : 
+<div class="segmented-control" style="width: 400px; color: #20385e" id="booking-duration-{{priceandofficeSelected.id}}">
+	{# on ne propose le choix que s'il y a un prix, donc dispo#}
+	{% if priceandofficeSelected.priceHour != '' %} 
+		<input type="radio" name="booking-duration-{{priceandofficeSelected.id}}" id="booking-duration-1-{{priceandofficeSelected.id}}" value="Heure" onchange="loadCalendar('{{priceandofficeSelected.id}}', 'Heure', '{{priceandofficeSelected.priceHour}}')">
+  	{% endif %}
+  	{% if priceandofficeSelected.priceHalfDay != '' %} 
+		<input type="radio" name="booking-duration-{{priceandofficeSelected.id}}" id="booking-duration-2-{{priceandofficeSelected.id}}" value="1/2 journée" onchange="loadCalendar('{{priceandofficeSelected.id}}', '1/2 journée', '{{priceandofficeSelected.priceHalfDay}}')">
+  	{% endif %}
+  	{% if priceandofficeSelected.priceDay != '' %} 
+		<input type="radio" name="booking-duration-{{priceandofficeSelected.id}}" id="booking-duration-3-{{priceandofficeSelected.id}}" value="Journée" onchange="loadCalendar('{{priceandofficeSelected.id}}', 'Journée', '{{priceandofficeSelected.priceDay}}')">
+  	{% endif %}
+  	{% if priceandofficeSelected.priceWeek != '' %} 
+		<input type="radio" name="booking-duration-{{priceandofficeSelected.id}}" id="booking-duration-4-{{priceandofficeSelected.id}}" value="Semaine" onchange="loadCalendar('{{priceandofficeSelected.id}}', 'Semaine', '{{priceandofficeSelected.priceWeek}}')">
+  	{% endif %}
+  	{% if priceandofficeSelected.priceMonth != '' %} 
+	  	<input type="radio" name="booking-duration-{{priceandofficeSelected.id}}" id="booking-duration-5-{{priceandofficeSelected.id}}" value="Mois" onchange="loadCalendar('{{priceandofficeSelected.id}}', 'Mois', '{{priceandofficeSelected.priceMonth}}')">
+  	{% endif %}
+	{# Chargement des label, forcément en paquet, après les input #}
+  	{% if priceandofficeSelected.priceHour != '' %} 
+		<label for="booking-duration-1-{{priceandofficeSelected.id}}" data-value="Heure">Heure</label>
+  	{% endif %}
+  	{% if priceandofficeSelected.priceHalfDay != '' %} 
+		<label for="booking-duration-2-{{priceandofficeSelected.id}}" data-value="1/2 journée">1/2 journée</label>
+  	{% endif %}
+  	{% if priceandofficeSelected.priceDay != '' %} 
+		<label for="booking-duration-3-{{priceandofficeSelected.id}}" data-value="Journée">Journée</label>
+  	{% endif %}
+  	{% if priceandofficeSelected.priceWeek != '' %} 
+		<label for="booking-duration-4-{{priceandofficeSelected.id}}" data-value="Semaine">Semaine</label>
+  	{% endif %}
+  	{% if priceandofficeSelected.priceMonth != '' %} 
+	  	<label for="booking-duration-5-{{priceandofficeSelected.id}}" data-value="Mois">Mois</label>
+  	{% endif %}	  	
+</div>
+<br><br>
+Date : 
+{# Date #}
+<div id="isOpenSaturday" style="display:none">{{times[0].isOpenSaturday}}</div>
+<div id="isOpenSunday" style="display:none">{{times[0].isOpenSunday}}</div>
+<div id="closedDates" style="display:none">
+	{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}
+</div>
+<input type="text" name="booking-calendar" id="booking-calendar-{{priceandofficeSelected.id}}" /><br>
+<span id="calendar-error"></span>
+<br><br>
+{# HORAIRE #}
+<span id="calendar-time-{{priceandofficeSelected.id}}" style="display:none"> {# caché par défaut, affiché en JS si besoin #}
+Horaire : 
+    <b id="calendar-time-min">{{times[0].openHour|date("H:i")}}</b>
+    <span class="slideTime">
+    	<input id="booking-time-slider-{{priceandofficeSelected.id}}" type="text" data-slider-handle="custom" name="booking-time-slider-{{priceandofficeSelected.id}}" />
+    </span>
+    <b id="calendar-time-max">{{times[0].closeHour|date("H:i")}}</b>
+    <br>
+</span>
+{# 1/2 JOURNEE #}
+<span id="calendar-halftime-{{priceandofficeSelected.id}}" style="display:none">	 {# caché par défaut, affiché en JS si besoin #}
+Horaire : 
+    <div class="segmented-control" style="width: 300px; color: #20385e" id="booking-duration-day-{{priceandofficeSelected.id}}">
+	  <input type="radio" name="booking-duration-day-{{priceandofficeSelected.id}}" id="booking-duration-day-1" checked value="Matin">
+	  <input type="radio" name="booking-duration-day-{{priceandofficeSelected.id}}" id="booking-duration-day-2" value="Après-midi">
+	  <label for="booking-duration-day-1" data-value="Matin">Matin</label>
+	  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
+	</div>
+    <br>
+</span>
+<br><br>
+Personnes :
+{# TO DO : min et max en fonction des places dispos #}
+{# Nb PEOPLE #}
+<b>1</b>
+<span class="slidePeople">
+	<input id="booking-people-{{priceandofficeSelected.id}}" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="{{priceandofficeSelected.workspaceHasOffice.deskQty}}" data-slider-value="1" name="booking-people"/>
+</span>
+<b id="booking-people-max">{{priceandofficeSelected.workspaceHasOffice.deskQty}}</b>
+<br>
+{# Recap des choix #}
+<span id="recap-officeType-{{priceandofficeSelected.id}}" style="display:none">{{priceandofficeSelected.workspaceHasOffice.office.name}}</span>
+<span id="recap-nbHeures-{{priceandofficeSelected.id}}" style="display:none">1</span>
+<span id="recap-nbPeople-{{priceandofficeSelected.id}}" style="display:none">1</span>

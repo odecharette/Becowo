@@ -57,9 +57,9 @@
 	         	{% if loop.index < 6 %} {# on n'affiche que les 5 premiers bureaux #}
 	        	<div id="office">
 	        		{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
-	        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+	        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 	        		{% else %}
-	        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" title="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+	        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 	        		{% endif %} <br>
 	        		{{priceandoffice.WorkspaceHasOffice.name}} <br>
 	        		<strong>

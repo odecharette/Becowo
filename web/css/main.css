@@ -833,7 +833,7 @@ footer #liensRS a{
   padding: 30px 10px 10px 10px;
   border: solid 2px #ddd;
   border-top: none;
-  height: 430px;
+  height: 100%;
 }
 #Description, #Services, #Contact, #Réserver{
   color: var(--my-grey);
@@ -950,8 +950,28 @@ footer #liensRS a{
 #time a:hover{
   font-weight: bold;
 }
-
-
+#Réserver .office-name{
+  font-size: 16pt;
+  font-weight: bold;
+  color: var(--my-blue);
+}
+#Réserver #formules{
+  padding-left: 0px;
+}
+#Réserver i{
+  color: var(--my-blue);
+}
+#Réserver #btnResa{
+  width: 100%;
+  line-height: 3em;
+  background-color: var(--my-red);
+  color: white;
+  font-size: 18pt;
+  border-color: var(--my-red);
+}
+#Réserver #btnResa:hover {
+border: solid 3px var(--my-black);
+}
 
 
 /*#description span{
