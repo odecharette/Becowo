@@ -62,7 +62,11 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 												Total : <span id="booking-recap-price-{{priceandoffice.id}}"></span> € HT
 											</div>
 											<div class="col-lg-4">
-												<button type="button" class="btn btn-primary">Confirmer</button>
+												{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
+												<input id="booking-price-excl-tax-{{priceandoffice.id}}" type="number" step="any" name="booking-price-excl-tax-{{priceandoffice.id}}" value="" hidden="true">
+												<input type="number" name="WsHasOfficeId" value="{{priceandofficeSelected.workspaceHasOffice.id}}" hidden="true">
+												<input type="number" name="priceandofficeSelectedId" value="{{priceandofficeSelected.id}}" hidden="true">
+												<button type="submit" class="btn btn-primary">Confirmer</button>
 											</div>
 							            </div>
 							        </div>

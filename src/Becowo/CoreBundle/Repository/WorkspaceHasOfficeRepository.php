@@ -20,5 +20,13 @@ class WorkspaceHasOfficeRepository extends EntityRepository
 		return $qb->getQuery()->getSingleResult();
 	}
 	
+	public function findWsHasOfficeById($id)
+	{
+		$qb = $this->createQueryBuilder('o');
+		$qb->where('o.id = :id')
+		   ->setParameter('id', $id);
+
+		return $qb->getQuery()->getSingleResult();
+	}
 
 }

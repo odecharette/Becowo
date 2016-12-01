@@ -512,6 +512,7 @@ function loadPrice(id, duree, prix){
 
 
 	document.getElementById('booking-recap-price-'+id).innerHTML = total;
+	document.getElementById('booking-price-excl-tax-'+id).value = total;
 
 }
 
