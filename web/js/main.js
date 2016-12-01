@@ -570,6 +570,89 @@ function bookCalculatePrice()
 	document.getElementById('booking-price-incl-tax').value = finalPrice;
 }
 
+// test toto
+$('#myModalResaTest').on('show.bs.modal', function(e) {
+  // var priceHour = e.relatedTarget.dataset.priceHour;
+  // var priceHalfDay = e.relatedTarget.dataset.priceHalfDay;
+  // var priceDay = e.relatedTarget.dataset.priceDay;
+  // var priceWeek = e.relatedTarget.dataset.priceWeek;
+  // var priceMonth = e.relatedTarget.dataset.priceMonth;
+  // var openHour = e.relatedTarget.dataset.openHour;
+  // var closeHour = e.relatedTarget.dataset.closeHour;
+  // var spaceName = e.relatedTarget.dataset.spaceName;
+  // var spaceType = e.relatedTarget.dataset.spaceType;
+  // var capacity = e.relatedTarget.dataset.capacity;
+  // var wsName = e.relatedTarget.dataset.wsName;
+  var modalData = e.relatedTarget.dataset;
+
+
+  // attention tout en minuscule pour lire le contenu de modalData
+  document.getElementById('spaceName').innerHTML = modalData['spacename'];
+  document.getElementById('capacity').innerHTML = modalData['capacity'];
+
+  // var x = document.getElementById('form_test');
+  // var myForm = document.createElement('form');
+  // x.appendChild(myForm);
+
+
+
+
+  // console.log('!!!!!!!!!!!!!!!!!!!');
+  // console.log(modalData);
+
+
+  	// construction de l'input Duration
+  	var listeDurationFR = ['heure', 'demijournee', 'journee', 'semaine', 'mois']; // doit être en minuscule
+  	var listeDurationEN = ['hour', 'halfday', 'day', 'week', 'month']; // doit être en minuscule
+  	var first = true;
+  	var maDiv = document.getElementById('booking-duration');
+  	for (j=0 ; j < listeDurationFR.length ; j++)
+  	{
+  		//On ne rajoute la valeur que s'il y a un prix
+  		if(modalData['price' + listeDurationEN[j]] != "")
+  		{
+	  		var i = document.createElement('input');
+			i.setAttribute("type", "radio");
+			i.setAttribute("name", "booking-duration");
+			i.setAttribute("id", "booking-duration-" + listeDurationFR[j]);
+			i.setAttribute("value", listeDurationFR[j]);
+
+			// on sélectionne le premier choix
+			if(first)
+			{
+				i.setAttribute("checked", "true");
+			}
+
+			maDiv.appendChild(i);
+		}
+		first = false;
+  	};
+  	//on est obligé de charger tous les input et ensuite tous les label
+  	for (j=0 ; j < listeDurationFR.length ; j++)
+  	{
+  		//On ne rajoute la valeur que s'il y a un prix
+  		if(modalData['price' + listeDurationEN[j]] != "")
+  		{
+			var l = document.createElement('label');
+			l.setAttribute("for", "booking-duration-" + listeDurationFR[j]);
+			l.setAttribute("data-value",listeDurationFR[j]);
+			l.innerHTML = listeDurationFR[j];
+
+			maDiv.appendChild(l);
+		}
+  	};
+  	console.log(maDiv);
+  
+});
+
+// on reset le formulaire quand la modal se ferme
+$('#myModalResaTest').on('hidden.bs.modal', function (e) {
+  	var element = document.getElementById("booking-duration");
+	while (element.firstChild) {
+  		element.removeChild(element.firstChild);
+	}
+})
+
 /*************duration day choice ************************/
 
 // function chooseDurationDay()

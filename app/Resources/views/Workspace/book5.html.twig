@@ -8,7 +8,6 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
 		<div class="row" id="booking-content">
-	    	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
 
 	    	{# ERREUR #}
 	    	{% if app.user.email == "" %}
@@ -45,6 +44,19 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    				</div>
 		    				<div class="col-lg-6">
 		    				<button type="button" id="btnResa" data-toggle="modal"  data-target="#myModalResa-{{priceandoffice.id}}">Réserver</button>
+		    				<button type="button" data-toggle="modal" data-target="#myModalResaTest" 
+		    				data-priceHour="{{priceandoffice.priceHour}}" 
+		    				data-priceHalfDay="{{priceandoffice.priceHalfDay}}" 
+		    				data-priceDay="{{priceandoffice.priceDay}}" 
+		    				data-priceWeek="{{priceandoffice.priceWeek}}"
+		    				data-priceMonth="{{priceandoffice.priceMonth}}" 
+		    				data-openHour="{{times[0].openHour|date("H:i")}}" 
+		    				data-closeHour="{{times[0].closeHour|date("H:i")}}" 
+		    				data-spaceName="{{priceandoffice.workspaceHasOffice.name}}" 
+		    				data-spaceType="{{priceandoffice.workspaceHasOffice.office.name}}" 
+		    				data-capacity="{{priceandoffice.workspaceHasOffice.deskQty}}" 
+		    				data-wsName="{{ws.name}}"
+		    				>test modal</button>
  
 							<!-- Modale -->
 							<div class="modal fade" id="myModalResa-{{priceandoffice.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -64,8 +76,6 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 											<div class="col-lg-4">
 												{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
 												<input id="booking-price-excl-tax-{{priceandoffice.id}}" type="number" step="any" name="booking-price-excl-tax-{{priceandoffice.id}}" value="" hidden="true">
-												<input type="number" name="WsHasOfficeId" value="{{priceandofficeSelected.workspaceHasOffice.id}}" hidden="true">
-												<input type="number" name="priceandofficeSelectedId" value="{{priceandofficeSelected.id}}" hidden="true">
 												<button type="submit" class="btn btn-primary">Confirmer</button>
 											</div>
 							            </div>
@@ -86,4 +96,86 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 	{% else %}
 		<p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
 	{% endif %}
+
+{# Modal de test #}
+	<div class="modal fade" id="myModalResaTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Votre réservation chez {{ws.name}}</h4>
+            </div>
+            <div class="modal-body">
+            	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
+
+            	<span class="office-name" id="spaceName"></span> - 
+				Capacité : <span class="capacity" id="capacity"></span><i class="fa fa-male" aria-hidden="true"></i>
+				<br>
+				<br>
+				<h3>Choisir un créneau de réservation</h3>
+				<br>
+				Durée : 
+				<div class="segmented-control" style="width: 400px; color: #20385e" id="booking-duration">
+				{#   <input type="radio" name="booking-duration" id="booking-duration-hour" value="Heure" hidden="true">
+				  <input type="radio" name="booking-duration" id="booking-duration-halfday" value="1/2 journée">
+				  <input type="radio" name="booking-duration" id="booking-duration-day" value="Journée">
+				  <input type="radio" name="booking-duration" id="booking-duration-week" value="Semaine">
+				  <input type="radio" name="booking-duration" id="booking-duration-month" value="Mois">
+				  <label for="booking-duration-hour" data-value="Heure">Heure</label>
+				  <label for="booking-duration-halfday" data-value="1/2 journée">1/2 journée</label>
+				  <label for="booking-duration-day" data-value="Journée">Journée</label>
+				  <label for="booking-duration-week" data-value="Semaine">Semaine</label>
+				  <label for="booking-duration-month" data-value="Mois">Mois</label> #}
+				</div>
+				<br><br>
+				Date :
+				<div id="isOpenSaturday" style="display:none"></div>
+				<div id="isOpenSunday" style="display:none"></div> 
+				<div id="closedDates" style="display:none"></div>
+				<input type="text" name="booking-calendar" id="booking-calendar" /><br>
+				<span id="calendar-error"></span>
+				<br><br>
+
+				{# HORAIRE #}
+				<span id="calendar-time" style="display:none"> {# caché par défaut, affiché en JS si besoin #}
+				Horaire : 
+				    <b id="calendar-time-min"></b>
+				    <span class="slideTime">
+				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
+				    </span>
+				    <b id="calendar-time-max"></b>
+				    <br>
+				</span>
+				{# 1/2 JOURNEE #}
+				<span id="calendar-halftime" style="display:none">	 {# caché par défaut, affiché en JS si besoin #}
+				Horaire : 
+				    <div class="segmented-control" style="width: 300px; color: #20385e" id="booking-duration-day">
+					  <input type="radio" name="booking-duration-day" id="booking-duration-day-1" checked value="Matin">
+					  <input type="radio" name="booking-duration-day" id="booking-duration-day-2" value="Après-midi">
+					  <label for="booking-duration-day-1" data-value="Matin">Matin</label>
+					  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
+					</div>
+				    <br>
+				</span>
+				<br><br>
+				Personnes :
+				{# TO DO : min et max en fonction des places dispos #}
+				{# Nb PEOPLE #}
+				<b>1</b>
+				<span class="slidePeople">
+					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="" data-slider-value="1" name="booking-people"/>
+				</span>
+				<b id="booking-people-max"></b>
+				<br>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button"><i class="icon icon-check icon-lg"></i> Valide</button>
+                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+{# Modal de test #}
+
 </div>
