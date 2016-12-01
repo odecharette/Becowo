@@ -50,6 +50,8 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    				data-priceDay="{{priceandoffice.priceDay}}" 
 		    				data-priceWeek="{{priceandoffice.priceWeek}}"
 		    				data-priceMonth="{{priceandoffice.priceMonth}}" 
+		    				data-isOpenSaturday="{{times[0].isOpenSaturday}}" 
+		    				data-isOpenSunday="{{times[0].isOpenSunday}}" 
 		    				data-openHour="{{times[0].openHour|date("H:i")}}" 
 		    				data-closeHour="{{times[0].closeHour|date("H:i")}}" 
 		    				data-spaceName="{{priceandoffice.workspaceHasOffice.name}}" 
@@ -107,25 +109,15 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
             </div>
             <div class="modal-body">
             	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
-
+            		{# Le contenu de la form est construit dans main.js #}
             	<span class="office-name" id="spaceName"></span> - 
-				Capacité : <span class="capacity" id="capacity"></span><i class="fa fa-male" aria-hidden="true"></i>
+				Capacité : <span class="capacity" id="capacity"></span> <i class="fa fa-male" aria-hidden="true"></i>
 				<br>
 				<br>
 				<h3>Choisir un créneau de réservation</h3>
 				<br>
 				Durée : 
 				<div class="segmented-control" style="width: 400px; color: #20385e" id="booking-duration">
-				{#   <input type="radio" name="booking-duration" id="booking-duration-hour" value="Heure" hidden="true">
-				  <input type="radio" name="booking-duration" id="booking-duration-halfday" value="1/2 journée">
-				  <input type="radio" name="booking-duration" id="booking-duration-day" value="Journée">
-				  <input type="radio" name="booking-duration" id="booking-duration-week" value="Semaine">
-				  <input type="radio" name="booking-duration" id="booking-duration-month" value="Mois">
-				  <label for="booking-duration-hour" data-value="Heure">Heure</label>
-				  <label for="booking-duration-halfday" data-value="1/2 journée">1/2 journée</label>
-				  <label for="booking-duration-day" data-value="Journée">Journée</label>
-				  <label for="booking-duration-week" data-value="Semaine">Semaine</label>
-				  <label for="booking-duration-month" data-value="Mois">Mois</label> #}
 				</div>
 				<br><br>
 				Date :
@@ -170,7 +162,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" type="button"><i class="icon icon-check icon-lg"></i> Valide</button>
+                <button class="btn btn-primary" type="submit"><i class="icon icon-check icon-lg"></i> Valider</button>
                 <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
             </div>
         </div>

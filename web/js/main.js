@@ -570,41 +570,20 @@ function bookCalculatePrice()
 	document.getElementById('booking-price-incl-tax').value = finalPrice;
 }
 
+
+/********************************  JS construction form dans modal ******************/
 // test toto
 $('#myModalResaTest').on('show.bs.modal', function(e) {
-  // var priceHour = e.relatedTarget.dataset.priceHour;
-  // var priceHalfDay = e.relatedTarget.dataset.priceHalfDay;
-  // var priceDay = e.relatedTarget.dataset.priceDay;
-  // var priceWeek = e.relatedTarget.dataset.priceWeek;
-  // var priceMonth = e.relatedTarget.dataset.priceMonth;
-  // var openHour = e.relatedTarget.dataset.openHour;
-  // var closeHour = e.relatedTarget.dataset.closeHour;
-  // var spaceName = e.relatedTarget.dataset.spaceName;
-  // var spaceType = e.relatedTarget.dataset.spaceType;
-  // var capacity = e.relatedTarget.dataset.capacity;
-  // var wsName = e.relatedTarget.dataset.wsName;
   var modalData = e.relatedTarget.dataset;
-
 
   // attention tout en minuscule pour lire le contenu de modalData
   document.getElementById('spaceName').innerHTML = modalData['spacename'];
   document.getElementById('capacity').innerHTML = modalData['capacity'];
 
-  // var x = document.getElementById('form_test');
-  // var myForm = document.createElement('form');
-  // x.appendChild(myForm);
-
-
-
-
-  // console.log('!!!!!!!!!!!!!!!!!!!');
-  // console.log(modalData);
-
-
-  	// construction de l'input Duration
+  	// CONSTRUCTION DURATION
   	var listeDurationFR = ['heure', 'demijournee', 'journee', 'semaine', 'mois']; // doit être en minuscule
   	var listeDurationEN = ['hour', 'halfday', 'day', 'week', 'month']; // doit être en minuscule
-  	var first = true;
+  	var premier = true;
   	var maDiv = document.getElementById('booking-duration');
   	for (j=0 ; j < listeDurationFR.length ; j++)
   	{
@@ -618,14 +597,14 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 			i.setAttribute("value", listeDurationFR[j]);
 
 			// on sélectionne le premier choix
-			if(first)
+			if(premier)
 			{
 				i.setAttribute("checked", "true");
-			}
+				premier = false;
+			};
 
 			maDiv.appendChild(i);
 		}
-		first = false;
   	};
   	//on est obligé de charger tous les input et ensuite tous les label
   	for (j=0 ; j < listeDurationFR.length ; j++)
@@ -641,8 +620,19 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 			maDiv.appendChild(l);
 		}
   	};
-  	console.log(maDiv);
   
+  // CONSTRUCTION DATE
+  document.getElementById('isOpenSaturday').innerHTML = modalData['isopensaturday'];
+  document.getElementById('isOpenSunday').innerHTML = modalData['isopensunday'];
+  document.getElementById('closedDates').innerHTML = ""; // TO DO remplir les dates de fermeture
+  // En twig : <div id="closedDates" style="display:none">
+// 	{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}
+// </div>
+
+	// CONSTRUCTION CALENDAR
+	var duree = document.querySelector('input[name="booking-duration"]:checked').value;
+	loadCalendar2(duree);
+
 });
 
 // on reset le formulaire quand la modal se ferme
@@ -653,10 +643,101 @@ $('#myModalResaTest').on('hidden.bs.modal', function (e) {
 	}
 })
 
-/*************duration day choice ************************/
+// Le calendrier s'adapte en fonction de la durée de location choisie
+function loadCalendar2(duree){
 
-// function chooseDurationDay()
-// {
-// 	document.getElementById('booking-recap-duration-txt').innerHTML = document.querySelector('input[name="booking-duration-day"]:checked').value;
-// }
-	
+	var closedDates = document.getElementById('closedDates').innerHTML;
+	closedDates = closedDates.replace(/(?:\r\n|\r|\n)/g, '');
+	closedDates = closedDates.trim();
+	var closedDatesTab = closedDates.split(',');
+
+	if(duree == 'heure' || duree == 'demijournee' || duree == 'journee') {
+ 
+		$('#booking-calendar').daterangepicker({
+	        timePicker: false,
+	        singleDatePicker: true,
+	        locale: {
+	            format: 'DD/MM/YYYY',
+	            separator: '/',
+	            applyLabel: 'Valider',
+	            cancelLabel: 'Annuler',
+	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
+	            firstDay: '2'
+	        },
+	        startDate: new Date(),
+	        minDate: new Date(),
+	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
+	    	isInvalidDate: function(date) {
+
+	    		if ($.inArray(date.format('DD/MM/YYYY'), closedDatesTab) != -1) {
+			        return true;
+			    } else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+	    			return (date.day() == 6 || date < new Date() );
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML == 1){
+	    			return (date.day() == 5 || date < new Date() );
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == 1){
+	    			return (date < new Date() );
+	    		}
+			  }
+	    });
+	} else if (duree == 'semaine' || duree == 'mois'){
+		$('#booking-calendar').daterangepicker({
+	        timePicker: false,
+	        singleDatePicker: false,
+	        locale: {
+	            format: 'DD/MM/YYYY',
+	            separator: '/',
+	            applyLabel: 'Valider',
+	            cancelLabel: 'Annuler',
+	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
+	            firstDay: '2'
+	        },
+	        startDate: new Date(),
+	        minDate: new Date(),
+	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
+	    	isInvalidDate: function(date) {
+
+	    		if ($.inArray(date.format('DD/MM/YYYY'), closedDatesTab) != -1) {
+			        return true;
+			    } else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
+	    			return (date.day() == 6 || date < new Date() );
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML == 1){
+	    			return (date.day() == 5 || date < new Date() );
+	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == 1){
+	    			return (date < new Date() );
+	    		}
+			  }
+	    });
+
+
+	    $('#booking-calendar').on('apply.daterangepicker', function (e, picker) {
+
+	    	$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+
+	    	var end = new Date(picker.endDate);
+	    	var begin = new Date(picker.startDate);
+	    	// end = moment(end).add(1, 'm'); // Add 1 minute
+
+	    	var diff = moment.preciseDiff(begin, end, true); // http://codebox.org.uk/pages/moment-date-range-plugin
+
+			if (duree == 'semaine'){
+		        	document.getElementById('calendar-error').innerHTML = "TO DO vérifier saisie est en semaine";
+		    }else{
+		    	if(diff.months > 0 && diff.days == 0){
+		        	document.getElementById('calendar-error').innerHTML = "";
+		        }
+		        else{
+		        	document.getElementById('calendar-error').innerHTML = "Pour profiter du tarif mois, veuillez sélectionner un mois complet.";
+		        }
+		    };
+
+	    });
+
+	}
+};
