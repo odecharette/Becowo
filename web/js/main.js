@@ -631,7 +631,7 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 
 	// CONSTRUCTION CALENDAR
 	var duree = document.querySelector('input[name="booking-duration"]:checked').value;
-	loadCalendar2(duree);
+	loadCalendar3(duree);
 
 	// CONSTRUCTION HORAIRE
 	loadTime2(duree, modalData);
@@ -651,7 +651,7 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 	// On reload des éléments à chaque fois que la duration change :
 	$('#booking-duration').on('change', function() { 
 	    var duree = document.querySelector('input[name="booking-duration"]:checked').value;
-	    loadCalendar2(duree);
+	    loadCalendar3(duree);
 	    loadTime2(duree, modalData);
 	    loadPrice2(duree, modalData);
 	});
@@ -665,6 +665,9 @@ $('#myModalResaTest').on('hidden.bs.modal', function (e) {
 	while (element.firstChild) {
   		element.removeChild(element.firstChild);
 	}
+
+	// reset calendar
+	$('#booking-calendar').data('dateRangePicker').destroy();
 })
 
 
@@ -767,6 +770,52 @@ function loadCalendar2(duree){
 
 	}
 };
+
+// config : http://longbill.github.io/jquery-date-range-picker/
+function loadCalendar3(duree)
+{
+	var closedDates = document.getElementById('closedDates').innerHTML;
+	closedDates = closedDates.replace(/(?:\r\n|\r|\n)/g, '');
+	closedDates = closedDates.trim();
+	var closedDatesTab = closedDates.split(',');
+
+	if(duree == 'heure' || duree == 'demijournee' || duree == 'journee') {
+
+		$('#booking-calendar').dateRangePicker({
+			inline:true,
+			singleDate : true,
+			singleMonth: true,
+			container: '#calendarContainer',
+			alwaysOpen:true,
+			language:'fr',
+			startOfWeek: 'monday',
+			format: 'DD-MM-YYYY',
+			customTopBar: ' ',
+			startDate: moment().format('DD-MM-YYYY')
+		});
+
+	}else if (duree == 'semaine' || duree == 'mois'){
+
+		$('#booking-calendar').dateRangePicker({
+			inline:true,
+			container: '#calendarContainer',
+			alwaysOpen:true,
+			language:'fr',
+			startOfWeek: 'monday',
+			format: 'DD-MM-YYYY',
+			separator: ' au ',
+			stickyMonths: true,
+			customTopBar: ' ',
+			startDate: moment().format('DD-MM-YYYY')
+		});
+
+	};
+
+	// TO DO
+	// Désactiver samedi / dimanche selon BDD
+	// Désactiver jours fermés
+	// vérifier sélection si semaine, mois
+}
 
 function loadTime2(duree, modalData){
 
