@@ -710,14 +710,15 @@ function loadCalendar2(duree){
 			  }
 	    });
 	} else if (duree == 'semaine' || duree == 'mois'){
-		$('#booking-calendar').daterangepicker({
+		var cal = $('#booking-calendar').daterangepicker({
 	        timePicker: false,
 	        singleDatePicker: false,
+	        autoApply: true, // Pas de buton valider/Annuler
 	        locale: {
 	            format: 'DD/MM/YYYY',
 	            separator: '/',
-	            applyLabel: 'Valider',
-	            cancelLabel: 'Annuler',
+	            //applyLabel: 'Valider',
+	            //cancelLabel: 'Annuler',
 	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
 	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
 	            firstDay: '2'
@@ -740,7 +741,6 @@ function loadCalendar2(duree){
 	    		}
 			  }
 	    });
-
 
 	    $('#booking-calendar').on('apply.daterangepicker', function (e, picker) {
 
