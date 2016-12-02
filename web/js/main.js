@@ -633,6 +633,28 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 	var duree = document.querySelector('input[name="booking-duration"]:checked').value;
 	loadCalendar2(duree);
 
+	// CONSTRUCTION HORAIRE
+	loadTime2(duree, modalData);
+
+	// On reload des éléments à chaque fois que la duration change :
+	$('#booking-duration').on('change', function() { 
+	    var duree = document.querySelector('input[name="booking-duration"]:checked').value;
+	    loadCalendar2(duree);
+	    loadTime2(duree, modalData);
+	});
+
+	// CONSTRUCTION PEOPLE
+	var mySliderPeople = $("#booking-people").slider({
+		max: modalData['capacity']
+	});
+
+
+	document.getElementById('booking-people-max').innerHTML = modalData['capacity'];
+	mySliderPeople.on('change', function(ev){
+		var nbPeople = mySliderPeople.data('slider').getValue();
+	});
+
+
 });
 
 // on reset le formulaire quand la modal se ferme
@@ -642,6 +664,8 @@ $('#myModalResaTest').on('hidden.bs.modal', function (e) {
   		element.removeChild(element.firstChild);
 	}
 })
+
+
 
 // Le calendrier s'adapte en fonction de la durée de location choisie
 function loadCalendar2(duree){
@@ -741,3 +765,61 @@ function loadCalendar2(duree){
 
 	}
 };
+
+function loadTime2(duree, modalData){
+
+	console.log('!!!!!!!!!!' + duree);
+	if(duree == 'heure'){ 
+		document.getElementById('calendar-halftime').style.display = 'none';
+		document.getElementById('calendar-time').style.display = 'block';
+		document.getElementById('time-min').innerHTML = modalData['openhour'];
+		document.getElementById('time-max').innerHTML = modalData['closehour'];
+
+		var ouverture = modalData['openhour'].split(':');
+		var ouvertureMinutes = Number(ouverture[0]) * 60 + Number(ouverture[1]);
+		var fermeture = modalData['closehour'].split(':');
+		var fermetureMinutes = Number(fermeture[0]) * 60 + Number(fermeture[1]);
+
+		var mySliderTime = $("#booking-time-slider").slider({
+		range: true,
+    	min: ouvertureMinutes,	// every values are in minutes
+    	max: fermetureMinutes,
+    	step: 30,
+    	value: [ouvertureMinutes, ouvertureMinutes+60]
+
+		});
+
+		mySliderTime.on('change', function(ev){
+
+		var valeurs = mySliderTime.data('slider').getValue();
+
+		var hours1 = Math.floor(valeurs[0] / 60);
+        var minutes1 = valeurs[0] - (hours1 * 60);
+
+        if (hours1 < 10) hours1 = '0' + hours1;
+        if (minutes1.length == 1) minutes1 = '0' + minutes1;
+        if (minutes1 == 0) minutes1 = '00';
+
+        var hours2 = Math.floor(valeurs[1] / 60);
+        var minutes2 = valeurs[1] - (hours2 * 60);
+
+        if (hours2 < 10) hours2 = '0' + hours2;
+        if (minutes2.length == 1) minutes2 = '0' + minutes2;
+        if (minutes2 == 0) minutes2 = '00';
+
+		$('.slideTime .tooltip-inner').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
+//		mySliderTime.data('slider').setValue(""); pour changer le tooltip black mais pb de format de value
+	
+		var nbHeures = (valeurs[1] - valeurs[0])/60;
+
+		});
+
+	}else if(duree == 'demijournee'){ 
+		document.getElementById('calendar-time').style.display = 'none';
+		document.getElementById('calendar-halftime').style.display = 'block';
+	}else{
+		document.getElementById('calendar-time').style.display = 'none';
+		document.getElementById('calendar-halftime').style.display = 'none';
+	}
+
+}

@@ -43,8 +43,8 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 								{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € HT / mois<br> {% endif %}
 		    				</div>
 		    				<div class="col-lg-6">
-		    				<button type="button" id="btnResa" data-toggle="modal"  data-target="#myModalResa-{{priceandoffice.id}}">Réserver</button>
-		    				<button type="button" data-toggle="modal" data-target="#myModalResaTest" 
+		    				{# <button type="button"data-toggle="modal"  data-target="#myModalResa-{{priceandoffice.id}}">Réserver</button> #}
+		    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResaTest" 
 		    				data-priceHour="{{priceandoffice.priceHour}}" 
 		    				data-priceHalfDay="{{priceandoffice.priceHalfDay}}" 
 		    				data-priceDay="{{priceandoffice.priceDay}}" 
@@ -58,9 +58,9 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    				data-spaceType="{{priceandoffice.workspaceHasOffice.office.name}}" 
 		    				data-capacity="{{priceandoffice.workspaceHasOffice.deskQty}}" 
 		    				data-wsName="{{ws.name}}"
-		    				>test modal</button>
+		    				>Réserver</button>
  
-							<!-- Modale -->
+							<!-- Modale
 							<div class="modal fade" id="myModalResa-{{priceandoffice.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							    <div class="modal-dialog">
 							        <div class="modal-content">
@@ -84,7 +84,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 							        </div>
 							    </div>
 							</div>
-							<!-- Fin Modale -->
+							Fin Modale -->
 		    				</div>
 		    			</div>
 		    		</div>
@@ -131,11 +131,11 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 				{# HORAIRE #}
 				<span id="calendar-time" style="display:none"> {# caché par défaut, affiché en JS si besoin #}
 				Horaire : 
-				    <b id="calendar-time-min"></b>
+				    <span id="time-min"></span>
 				    <span class="slideTime">
 				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
 				    </span>
-				    <b id="calendar-time-max"></b>
+				    <span id="time-max"></span>
 				    <br>
 				</span>
 				{# 1/2 JOURNEE #}
