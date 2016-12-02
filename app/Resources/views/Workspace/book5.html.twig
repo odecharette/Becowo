@@ -45,11 +45,11 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    				<div class="col-lg-6">
 		    				{# <button type="button"data-toggle="modal"  data-target="#myModalResa-{{priceandoffice.id}}">Réserver</button> #}
 		    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResaTest" 
-		    				data-priceHour="{{priceandoffice.priceHour}}" 
-		    				data-priceHalfDay="{{priceandoffice.priceHalfDay}}" 
-		    				data-priceDay="{{priceandoffice.priceDay}}" 
-		    				data-priceWeek="{{priceandoffice.priceWeek}}"
-		    				data-priceMonth="{{priceandoffice.priceMonth}}" 
+		    				data-priceheure="{{priceandoffice.priceHour}}" 
+		    				data-pricedemijournee="{{priceandoffice.priceHalfDay}}" 
+		    				data-pricejournee="{{priceandoffice.priceDay}}" 
+		    				data-pricesemaine="{{priceandoffice.priceWeek}}"
+		    				data-pricemois="{{priceandoffice.priceMonth}}" 
 		    				data-isOpenSaturday="{{times[0].isOpenSaturday}}" 
 		    				data-isOpenSunday="{{times[0].isOpenSunday}}" 
 		    				data-openHour="{{times[0].openHour|date("H:i")}}" 
@@ -136,6 +136,7 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
 				    </span>
 				    <span id="time-max"></span>
+				    <span id="nbHeures" hidden="true">1</span>
 				    <br>
 				</span>
 				{# 1/2 JOURNEE #}
@@ -158,12 +159,18 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="" data-slider-value="1" name="booking-people"/>
 				</span>
 				<b id="booking-people-max"></b>
+				<span id="nbPeople" hidden="true">1</span>
 				<br>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" type="submit"><i class="icon icon-check icon-lg"></i> Valider</button>
-                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
+                <div class="col-lg-8" id="total">
+					{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
+					Total : <input id="price-excl-tax" type="number" step="any" name="price-excl-tax" value="" disabled="true"> € HT
+				</div>
+				<div class="col-lg-4">
+					<button type="submit" class="btn btn-primary">Confirmer</button>
+				</div>
             </div>
         </div>
     </div>

@@ -581,20 +581,20 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
   document.getElementById('capacity').innerHTML = modalData['capacity'];
 
   	// CONSTRUCTION DURATION
-  	var listeDurationFR = ['heure', 'demijournee', 'journee', 'semaine', 'mois']; // doit être en minuscule
-  	var listeDurationEN = ['hour', 'halfday', 'day', 'week', 'month']; // doit être en minuscule
+  	var listeDuration = ['heure', 'demijournee', 'journee', 'semaine', 'mois']; // doit être en minuscule
+//  	var listeDurationEN = ['hour', 'halfday', 'day', 'week', 'month']; // doit être en minuscule
   	var premier = true;
   	var maDiv = document.getElementById('booking-duration');
-  	for (j=0 ; j < listeDurationFR.length ; j++)
+  	for (j=0 ; j < listeDuration.length ; j++)
   	{
   		//On ne rajoute la valeur que s'il y a un prix
-  		if(modalData['price' + listeDurationEN[j]] != "")
+  		if(modalData['price' + listeDuration[j]] != "")
   		{
 	  		var i = document.createElement('input');
 			i.setAttribute("type", "radio");
 			i.setAttribute("name", "booking-duration");
-			i.setAttribute("id", "booking-duration-" + listeDurationFR[j]);
-			i.setAttribute("value", listeDurationFR[j]);
+			i.setAttribute("id", "booking-duration-" + listeDuration[j]);
+			i.setAttribute("value", listeDuration[j]);
 
 			// on sélectionne le premier choix
 			if(premier)
@@ -607,15 +607,15 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 		}
   	};
   	//on est obligé de charger tous les input et ensuite tous les label
-  	for (j=0 ; j < listeDurationFR.length ; j++)
+  	for (j=0 ; j < listeDuration.length ; j++)
   	{
   		//On ne rajoute la valeur que s'il y a un prix
-  		if(modalData['price' + listeDurationEN[j]] != "")
+  		if(modalData['price' + listeDuration[j]] != "")
   		{
 			var l = document.createElement('label');
-			l.setAttribute("for", "booking-duration-" + listeDurationFR[j]);
-			l.setAttribute("data-value",listeDurationFR[j]);
-			l.innerHTML = listeDurationFR[j];
+			l.setAttribute("for", "booking-duration-" + listeDuration[j]);
+			l.setAttribute("data-value",listeDuration[j]);
+			l.innerHTML = listeDuration[j];
 
 			maDiv.appendChild(l);
 		}
@@ -636,22 +636,24 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 	// CONSTRUCTION HORAIRE
 	loadTime2(duree, modalData);
 
+	// CONSTRUCTION PEOPLE
+	var mySliderPeople = $("#booking-people").slider({
+		max: modalData['capacity']
+	});
+	document.getElementById('booking-people-max').innerHTML = modalData['capacity'];
+	mySliderPeople.on('change', function(ev){
+		var nbPeople = mySliderPeople.data('slider').getValue();
+		document.getElementById('nbPeople').innerHTML = nbPeople;
+
+		loadPrice2(duree, modalData);
+	});
+
 	// On reload des éléments à chaque fois que la duration change :
 	$('#booking-duration').on('change', function() { 
 	    var duree = document.querySelector('input[name="booking-duration"]:checked').value;
 	    loadCalendar2(duree);
 	    loadTime2(duree, modalData);
-	});
-
-	// CONSTRUCTION PEOPLE
-	var mySliderPeople = $("#booking-people").slider({
-		max: modalData['capacity']
-	});
-
-
-	document.getElementById('booking-people-max').innerHTML = modalData['capacity'];
-	mySliderPeople.on('change', function(ev){
-		var nbPeople = mySliderPeople.data('slider').getValue();
+	    loadPrice2(duree, modalData);
 	});
 
 
@@ -768,7 +770,6 @@ function loadCalendar2(duree){
 
 function loadTime2(duree, modalData){
 
-	console.log('!!!!!!!!!!' + duree);
 	if(duree == 'heure'){ 
 		document.getElementById('calendar-halftime').style.display = 'none';
 		document.getElementById('calendar-time').style.display = 'block';
@@ -811,8 +812,11 @@ function loadTime2(duree, modalData){
 //		mySliderTime.data('slider').setValue(""); pour changer le tooltip black mais pb de format de value
 	
 		var nbHeures = (valeurs[1] - valeurs[0])/60;
+		document.getElementById('nbHeures').innerHTML = nbHeures;
 
 		});
+
+		loadPrice2(duree, modalData);
 
 	}else if(duree == 'demijournee'){ 
 		document.getElementById('calendar-time').style.display = 'none';
@@ -821,5 +825,35 @@ function loadTime2(duree, modalData){
 		document.getElementById('calendar-time').style.display = 'none';
 		document.getElementById('calendar-halftime').style.display = 'none';
 	}
+
+}
+
+function loadPrice2(duree, modalData){
+
+	var prix = modalData['price' + duree]; 
+	var total = prix;
+	var officeType = modalData['spacetype'];
+	var nbHeures = document.getElementById('nbHeures').innerHTML;
+	var nbPeople = document.getElementById('nbPeople').innerHTML;
+
+
+	console.log('!!!!!!! price');
+	console.log(duree);
+	console.log(prix);
+	console.log(officeType);
+	console.log(nbHeures);
+	console.log(nbPeople);
+
+	if(duree == 'heure'){
+		total = prix * nbHeures;
+	}else{
+		total = prix;
+	}
+
+	if(officeType == 'Open space'){
+		total = total * nbPeople;
+	}
+
+	document.getElementById('price-excl-tax').value = total;
 
 }
