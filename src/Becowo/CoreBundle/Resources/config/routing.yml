@@ -91,6 +91,13 @@ becowo_core_booking_refused:
     defaults: { _controller: BecowoCoreBundle:Booking:refuse }
     methods: GET|POST
 
+becowo_core_paiement_call_bank:
+    path:     /ws/{name}
+    defaults: { _controller: BecowoCoreBundle:Paiement:callBank }
+    methods: GET|POST
+    options:
+        expose: true
+
 becowo_core_paiement_effectue:
     path:     /ws/paiement/effectue
     defaults: { _controller: BecowoCoreBundle:Paiement:effectue }

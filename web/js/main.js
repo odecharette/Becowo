@@ -50,22 +50,25 @@ $(function () {
 
 // Page d'un WS, envoye le booking en AJAX
 $(function () {
-    $("#booking-valider").unbind("click").click(function(){
-    	$.ajax(Routing.generate('becowo_core_booking', {name: document.getElementById('wsName').innerHTML}), {
-            data: $('#booking-form').serialize(),
-            type: "POST",
-            success: function(data) {
-                $('#booking-content').html(data);
-            },
-            error: function() {
-            	$('#booking-content').html("Une erreur est survenue, veuillez réessayer plus tard");
-            }
-        });
+    // $("#btn_confirm").unbind("click").click(function(){
+    // 	// NE MARCHE PAS !!!! TO DO
+    // 	$.ajax(Routing.generate('becowo_core_paiement_call_bank', {name: document.getElementById('wsName').innerHTML}), {
+    //         data: $('#booking-form').serialize(),
+    //         //type: "POST",
+    //         success: function(data) {
+    //             $('#modal-body').html(data);
+    //             $('#modal-footer').html('');
+    //         },
+    //         error: function() {
+    //         	$('#modal-body').html("Une erreur est survenue, veuillez réessayer plus tard");
+    //             $('#modal-footer').html('');
+    //         }
+    //     });
 
-    	return false;
+    // 	return false;
 
 
-    });
+    // });
 
 });
 
@@ -571,106 +574,6 @@ function bookCalculatePrice()
 }
 
 
-/********************************  JS construction form dans modal ******************/
-// test toto
-$('#myModalResaTest').on('show.bs.modal', function(e) {
-  var modalData = e.relatedTarget.dataset;
-
-  // attention tout en minuscule pour lire le contenu de modalData
-  document.getElementById('spaceName').innerHTML = modalData['spacename'];
-  document.getElementById('capacity').innerHTML = modalData['capacity'];
-
-  	// CONSTRUCTION DURATION
-  	var listeDuration = ['heure', 'demijournee', 'journee', 'semaine', 'mois']; // doit être en minuscule
-//  	var listeDurationEN = ['hour', 'halfday', 'day', 'week', 'month']; // doit être en minuscule
-  	var premier = true;
-  	var maDiv = document.getElementById('booking-duration');
-  	for (j=0 ; j < listeDuration.length ; j++)
-  	{
-  		//On ne rajoute la valeur que s'il y a un prix
-  		if(modalData['price' + listeDuration[j]] != "")
-  		{
-	  		var i = document.createElement('input');
-			i.setAttribute("type", "radio");
-			i.setAttribute("name", "booking-duration");
-			i.setAttribute("id", "booking-duration-" + listeDuration[j]);
-			i.setAttribute("value", listeDuration[j]);
-
-			// on sélectionne le premier choix
-			if(premier)
-			{
-				i.setAttribute("checked", "true");
-				premier = false;
-			};
-
-			maDiv.appendChild(i);
-		}
-  	};
-  	//on est obligé de charger tous les input et ensuite tous les label
-  	for (j=0 ; j < listeDuration.length ; j++)
-  	{
-  		//On ne rajoute la valeur que s'il y a un prix
-  		if(modalData['price' + listeDuration[j]] != "")
-  		{
-			var l = document.createElement('label');
-			l.setAttribute("for", "booking-duration-" + listeDuration[j]);
-			l.setAttribute("data-value",listeDuration[j]);
-			l.innerHTML = listeDuration[j];
-
-			maDiv.appendChild(l);
-		}
-  	};
-  
-  // CONSTRUCTION DATE
-  document.getElementById('isOpenSaturday').innerHTML = modalData['isopensaturday'];
-  document.getElementById('isOpenSunday').innerHTML = modalData['isopensunday'];
-  document.getElementById('closedDates').innerHTML = ""; // TO DO remplir les dates de fermeture
-  // En twig : <div id="closedDates" style="display:none">
-// 	{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}
-// </div>
-
-	// CONSTRUCTION CALENDAR
-	var duree = document.querySelector('input[name="booking-duration"]:checked').value;
-	loadCalendar3(duree);
-
-	// CONSTRUCTION HORAIRE
-	loadTime2(duree, modalData);
-
-	// CONSTRUCTION PEOPLE
-	var mySliderPeople = $("#booking-people").slider({
-		max: modalData['capacity']
-	});
-	document.getElementById('booking-people-max').innerHTML = modalData['capacity'];
-	mySliderPeople.on('change', function(ev){
-		var nbPeople = mySliderPeople.data('slider').getValue();
-		document.getElementById('nbPeople').innerHTML = nbPeople;
-
-		loadPrice2(duree, modalData);
-	});
-
-	// On reload des éléments à chaque fois que la duration change :
-	$('#booking-duration').on('change', function() { 
-	    var duree = document.querySelector('input[name="booking-duration"]:checked').value;
-	    loadCalendar3(duree);
-	    loadTime2(duree, modalData);
-	    loadPrice2(duree, modalData);
-	});
-
-
-});
-
-// on reset le formulaire quand la modal se ferme
-$('#myModalResaTest').on('hidden.bs.modal', function (e) {
-  	var element = document.getElementById("booking-duration");
-	while (element.firstChild) {
-  		element.removeChild(element.firstChild);
-	}
-
-	// reset calendar
-	$('#booking-calendar').data('dateRangePicker').destroy();
-})
-
-
 
 // Le calendrier s'adapte en fonction de la durée de location choisie
 function loadCalendar2(duree){
@@ -771,8 +674,121 @@ function loadCalendar2(duree){
 	}
 };
 
+/********************************  JS construction form dans modal ******************/
+// test toto
+$('#myModalResaTest').on('show.bs.modal', function(e) {
+  var modalData = e.relatedTarget.dataset;
+console.log(modalData);
+
+  // attention tout en minuscule pour lire le contenu de modalData
+  document.getElementById('spaceName').innerHTML = modalData['spacename'];
+  document.getElementById('capacity').innerHTML = modalData['capacity'];
+  document.getElementById('wshasofficeID').value = modalData['wshasofficeid'];
+
+  	// CONSTRUCTION DURATION
+  	var listeDuration = ['heure', 'demijournee', 'journee', 'semaine', 'mois']; // doit être en minuscule
+//  	var listeDurationEN = ['hour', 'halfday', 'day', 'week', 'month']; // doit être en minuscule
+  	var premier = true;
+  	var maDiv = document.getElementById('booking-duration');
+  	for (j=0 ; j < listeDuration.length ; j++)
+  	{
+  		//On ne rajoute la valeur que s'il y a un prix
+  		if(modalData['price' + listeDuration[j]] != "")
+  		{
+	  		var i = document.createElement('input');
+			i.setAttribute("type", "radio");
+			i.setAttribute("name", "booking-duration");
+			i.setAttribute("id", "booking-duration-" + listeDuration[j]);
+			i.setAttribute("value", listeDuration[j]);
+
+			// on sélectionne le premier choix
+			if(premier)
+			{
+				i.setAttribute("checked", "true");
+				premier = false;
+			};
+
+			maDiv.appendChild(i);
+		}
+  	};
+  	//on est obligé de charger tous les input et ensuite tous les label
+  	for (j=0 ; j < listeDuration.length ; j++)
+  	{
+  		//On ne rajoute la valeur que s'il y a un prix
+  		if(modalData['price' + listeDuration[j]] != "")
+  		{
+			var l = document.createElement('label');
+			l.setAttribute("for", "booking-duration-" + listeDuration[j]);
+			l.setAttribute("data-value",listeDuration[j]);
+			l.innerHTML = listeDuration[j];
+
+			maDiv.appendChild(l);
+		}
+  	};
+
+  	if(maDiv.getElementsByTagName('label').length == 1){
+  		maDiv.getElementsByTagName('label')[0].style.opacity = '0'; // on désactive le label s'il n'y en a qu'un seul
+  		maDiv.getElementsByTagName('label')[0].style.height = '0';
+  	}else{
+  		document.getElementById('booking-duration').style.width="500px";
+  		document.getElementById('booking-duration').style.border="solid";
+  		document.getElementById('booking-duration').style.textTransform="uppercase";
+  	}
+  
+  // CONSTRUCTION DATE
+  document.getElementById('isOpenSaturday').innerHTML = modalData['isopensaturday'];
+  document.getElementById('isOpenSunday').innerHTML = modalData['isopensunday'];
+  document.getElementById('closedDates').innerHTML = ""; // TO DO remplir les dates de fermeture
+  // En twig : <div id="closedDates" style="display:none">
+// 	{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}
+// </div>
+
+	// CONSTRUCTION CALENDAR
+	var duree = document.querySelector('input[name="booking-duration"]:checked').value;
+	loadCalendar3(duree, modalData);
+
+	// CONSTRUCTION HORAIRE
+	loadTime2(duree, modalData);
+
+	// CONSTRUCTION PEOPLE
+	var mySliderPeople = $("#booking-people").slider({
+		max: modalData['capacity']
+	});
+	document.getElementById('booking-people-max').innerHTML = modalData['capacity'];
+	mySliderPeople.on('change', function(ev){
+		var nbPeople = mySliderPeople.data('slider').getValue();
+		document.getElementById('nbPeople').innerHTML = nbPeople;
+
+		loadPrice2(duree, modalData);
+	});
+
+	// On reload des éléments à chaque fois que la duration change :
+	$('#booking-duration').on('change', function() { 
+	    var duree = document.querySelector('input[name="booking-duration"]:checked').value;
+	    // reset calendar
+		$('#booking-calendar').data('dateRangePicker').destroy();
+	    loadCalendar3(duree, modalData);
+	    loadTime2(duree, modalData);
+	    loadPrice2(duree, modalData);
+	});
+
+
+});
+
+// on reset le formulaire quand la modal se ferme
+$('#myModalResaTest').on('hidden.bs.modal', function (e) {
+  	var element = document.getElementById("booking-duration");
+	while (element.firstChild) {
+  		element.removeChild(element.firstChild);
+	}
+	// reset calendar
+	$('#booking-calendar').data('dateRangePicker').destroy();
+})
+
+
+
 // config : http://longbill.github.io/jquery-date-range-picker/
-function loadCalendar3(duree)
+function loadCalendar3(duree, modalData)
 {
 	var closedDates = document.getElementById('closedDates').innerHTML;
 	closedDates = closedDates.replace(/(?:\r\n|\r|\n)/g, '');
@@ -792,9 +808,12 @@ function loadCalendar3(duree)
 			format: 'DD-MM-YYYY',
 			customTopBar: ' ',
 			startDate: moment().format('DD-MM-YYYY')
+		}).bind('datepicker-change',function(event,obj){
+			/* This event will be triggered when second date is selected */
+			loadPrice2(duree, modalData);
 		});
 
-	}else if (duree == 'semaine' || duree == 'mois'){
+	}else if (duree == 'semaine'){
 
 		$('#booking-calendar').dateRangePicker({
 			inline:true,
@@ -806,15 +825,40 @@ function loadCalendar3(duree)
 			separator: ' au ',
 			stickyMonths: true,
 			customTopBar: ' ',
+			minDays: 5,
+			maxDays: 7,
 			startDate: moment().format('DD-MM-YYYY')
+		}).bind('datepicker-change',function(event,obj){
+			/* This event will be triggered when second date is selected */
+			loadPrice2(duree, modalData);
+		});
+
+	}else if (duree == 'mois'){
+
+		$('#booking-calendar').dateRangePicker({
+			inline:true,
+			container: '#calendarContainer',
+			alwaysOpen:true,
+			language:'fr',
+			startOfWeek: 'monday',
+			format: 'DD-MM-YYYY',
+			separator: ' au ',
+			stickyMonths: true,
+			customTopBar: ' ',
+			minDays: 28,
+			maxDays:31,
+			startDate: moment().format('DD-MM-YYYY')
+		}).bind('datepicker-change',function(event,obj){
+			/* This event will be triggered when second date is selected */
+			loadPrice2(duree, modalData);
 		});
 
 	};
 
+
 	// TO DO
 	// Désactiver samedi / dimanche selon BDD
 	// Désactiver jours fermés
-	// vérifier sélection si semaine, mois
 }
 
 function loadTime2(duree, modalData){
@@ -822,8 +866,8 @@ function loadTime2(duree, modalData){
 	if(duree == 'heure'){ 
 		document.getElementById('calendar-halftime').style.display = 'none';
 		document.getElementById('calendar-time').style.display = 'block';
-		document.getElementById('time-min').innerHTML = modalData['openhour'];
-		document.getElementById('time-max').innerHTML = modalData['closehour'];
+		document.getElementById('time-min').innerHTML = modalData['openhour'].replace(':', 'h');
+		document.getElementById('time-max').innerHTML = modalData['closehour'].replace(':', 'h');
 
 		var ouverture = modalData['openhour'].split(':');
 		var ouvertureMinutes = Number(ouverture[0]) * 60 + Number(ouverture[1]);
@@ -834,12 +878,12 @@ function loadTime2(duree, modalData){
 		range: true,
     	min: ouvertureMinutes,	// every values are in minutes
     	max: fermetureMinutes,
-    	step: 30,
+    	step: 60,
     	value: [ouvertureMinutes, ouvertureMinutes+60]
 
 		});
 
-		mySliderTime.on('change', function(ev){
+		mySliderTime.on('slide', function(ev){
 
 		var valeurs = mySliderTime.data('slider').getValue();
 
@@ -858,13 +902,18 @@ function loadTime2(duree, modalData){
         if (minutes2 == 0) minutes2 = '00';
 
 		$('.slideTime .tooltip-inner').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
-//		mySliderTime.data('slider').setValue(""); pour changer le tooltip black mais pb de format de value
 	
 		var nbHeures = (valeurs[1] - valeurs[0])/60;
 		document.getElementById('nbHeures').innerHTML = nbHeures;
 
+		loadPrice2(duree, modalData);
 		});
 
+
+		//on désactive les tooltip car le txt affiché ne convient pas
+		document.getElementsByClassName('tooltip-main')[0].style.display = 'none';
+		document.getElementsByClassName('tooltip-inner')[0].style.display = 'none';
+		document.getElementsByClassName('tooltip-arrow')[0].style.display = 'none';
 		loadPrice2(duree, modalData);
 
 	}else if(duree == 'demijournee'){ 
@@ -885,14 +934,6 @@ function loadPrice2(duree, modalData){
 	var nbHeures = document.getElementById('nbHeures').innerHTML;
 	var nbPeople = document.getElementById('nbPeople').innerHTML;
 
-
-	console.log('!!!!!!! price');
-	console.log(duree);
-	console.log(prix);
-	console.log(officeType);
-	console.log(nbHeures);
-	console.log(nbPeople);
-
 	if(duree == 'heure'){
 		total = prix * nbHeures;
 	}else{
@@ -904,5 +945,6 @@ function loadPrice2(duree, modalData){
 	}
 
 	document.getElementById('price-excl-tax').value = total;
+	document.getElementById('price-incl-tax').value = total * (1 + modalData['tva']/100);
 
 }

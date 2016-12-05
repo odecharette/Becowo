@@ -47,35 +47,33 @@ class BookingController extends Controller
   public function bookAction($name, Request $request)
   {
   	//SAVE le booking en cours en BDD
-dump($request);
   	$WsService = $this->get('app.workspace');
-    $currentWsHasOfficeId = $request->get('WsHasOfficeId'); 
-    $currentpriceandofficeSelectedId = $request->get('priceandofficeSelectedId');
+    $currentWsHasOfficeId = (int)$request->get('wshasofficeID'); 
     $ws = $WsService->getWorkspaceByName($name);
 
     $WsHasOffice = $WsService->getWsHasOfficeById($currentWsHasOfficeId);
 
-  	$bookingDuration = $request->get('booking-duration-' + $currentpriceandofficeSelectedId);
+  	$bookingDuration = $request->get('booking-duration');
 
   	// Pour les dates, on récupère séparement les dates et heure, puis on convertit puis on concatene le tout
 
-  	$bookingCalendar = explode(" - ",$request->get('booking-calendar-' + $currentpriceandofficeSelectedId));
+  	$bookingCalendar = explode(" au ",$request->get('booking-calendar'));
   	isset($bookingCalendar[0]) ? $startDate = $bookingCalendar[0] : $startDate = null;
   	isset($bookingCalendar[1]) ? $endDate = $bookingCalendar[1] : $endDate = $startDate;
-  	$startDate = str_replace('/', '-', $startDate);
-  	$endDate = str_replace('/', '-', $endDate);
+  	// $startDate = str_replace('/', '-', $startDate);
+  	// $endDate = str_replace('/', '-', $endDate);
 
-  	$bookingTimeSlider = explode(",",$request->get('booking-time-slider-' + $currentpriceandofficeSelectedId));
+  	$bookingTimeSlider = explode(",",$request->get('booking-time-slider'));
   	isset($bookingTimeSlider[0]) ? $startTime = floor($bookingTimeSlider[0] / 60) . ':' . ($bookingTimeSlider[0] % 60) : $startTime = "00:00";
   	isset($bookingTimeSlider[1]) ? $endTime = floor($bookingTimeSlider[1] / 60) . ':' . ($bookingTimeSlider[1] % 60) : $endTime = "00:00";
 
   	$startDate = $startDate . 'T' . $startTime;
   	$endDate = $endDate . 'T' . $endTime;
 
-  	$bookingPriceExclTax = $request->get('booking-price-excl-tax-' + $currentpriceandofficeSelectedId);
-    $bookingPriceInclTax = $bookingPriceExclTax * (1 + floatval($this->container->getParameter('tva')/100));
-  	$bookingDurationDay = $request->get('booking-duration-day-' + $currentpriceandofficeSelectedId);
-  	$bookingPeople = $request->get('booking-people-' + $currentpriceandofficeSelectedId);
+  	$bookingPriceExclTax = $request->get('price-excl-tax');
+    $bookingPriceInclTax = $request->get('price-incl-tax');
+  	$bookingDurationDay = $request->get('booking-duration-day');
+  	$bookingPeople = $request->get('booking-people');
 
   	$currentUser = $this->getUser();
 

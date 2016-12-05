@@ -7,7 +7,8 @@
 {{dump(userEmail)}}
 {{dump(dateISO)}}
 {{dump(hmacCalculated)}} #}
-<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi"> {# TO DO URL de prod  #}
+
+<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi" id="form-payer"> {# TO DO URL de prod  #}
 	<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
 	<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
 	<input type="hidden" name="PBX_IDENTIFIANT" value="{{creditAgricole.PBX_IDENTIFIANT}}"> 
@@ -25,8 +26,7 @@
 	<input type="hidden" name="PBX_ANNULE" value="{{creditAgricole.PBX_ANNULE}}">
 	<input type="hidden" name="PBX_REPONDRE_A" value="{{creditAgricole.PBX_REPONDRE_A}}">
 	{# <input type="hidden" name="PBX_ATTENTE" value="{{hmacCalculated}}"> #}
-	<input type="submit" value="Payer !"> 
+	<input type="submit" value="Payer !" id="payer"> 
 </form> 
-
 
 

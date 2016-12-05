@@ -1,6 +1,6 @@
 {# ATTENTION
-office.name = le nom du bureau dans le WS (pluton, Mars, Venus)
-office.office.name = type de bureau (open space, bureau, salle de réunion etc)
+priceandoffice.WorkspaceHasOffice.name = le nom du bureau dans le WS (pluton, Mars, Venus)
+priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bureau, salle de réunion etc)
  #}
 
 <div class="container-fluid">
@@ -43,8 +43,8 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 								{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € HT / mois<br> {% endif %}
 		    				</div>
 		    				<div class="col-lg-6">
-		    				{# <button type="button"data-toggle="modal"  data-target="#myModalResa-{{priceandoffice.id}}">Réserver</button> #}
-		    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResaTest" 
+		    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResaTest"  
+		    				data-wshasofficeid="{{priceandoffice.id}}" 
 		    				data-priceheure="{{priceandoffice.priceHour}}" 
 		    				data-pricedemijournee="{{priceandoffice.priceHalfDay}}" 
 		    				data-pricejournee="{{priceandoffice.priceDay}}" 
@@ -58,40 +58,16 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 		    				data-spaceType="{{priceandoffice.workspaceHasOffice.office.name}}" 
 		    				data-capacity="{{priceandoffice.workspaceHasOffice.deskQty}}" 
 		    				data-wsName="{{ws.name}}"
+		    				data-tva="{{tva}}"
 		    				>Réserver</button>
  
-							<!-- Modale
-							<div class="modal fade" id="myModalResa-{{priceandoffice.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							    <div class="modal-dialog">
-							        <div class="modal-content">
-							            <div class="modal-header">
-							                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							                <h4 class="modal-title">Votre réservation chez {{ws.name}}</h4>
-							            </div>
-							            <div class="modal-body">
-							                {% include 'Workspace/book-modal.html.twig' with { 'priceandofficeSelected' : priceandoffice } %}
-							            </div>
-							            <div class="modal-footer">
-							                <div class="col-lg-8" id="total">
-												Total : <span id="booking-recap-price-{{priceandoffice.id}}"></span> € HT
-											</div>
-											<div class="col-lg-4">
-												{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
-												<input id="booking-price-excl-tax-{{priceandoffice.id}}" type="number" step="any" name="booking-price-excl-tax-{{priceandoffice.id}}" value="" hidden="true">
-												<button type="submit" class="btn btn-primary">Confirmer</button>
-											</div>
-							            </div>
-							        </div>
-							    </div>
-							</div>
-							Fin Modale -->
 		    				</div>
 		    			</div>
 		    		</div>
 		    	</div>
 		    	<br>
 				{% endfor %}			
-			</form>
+			{# </form> #}
 		</div>
 
 
@@ -103,24 +79,20 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 	<div class="modal fade" id="myModalResaTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+        	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
             <div class="modal-header">
                 <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
                 <h4 class="modal-title">Votre réservation chez {{ws.name}}</h4>
             </div>
-            <div class="modal-body">
-            	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
+            <div class="modal-body" id="modal-body">
+            	<input type="text" name="wshasofficeID" id="wshasofficeID" hidden="true">
             		{# Le contenu de la form est construit dans main.js #}
             	<span class="office-name" id="spaceName"></span> - 
 				Capacité : <span class="capacity" id="capacity"></span> <i class="fa fa-male" aria-hidden="true"></i>
 				<br>
-				<br>
 				<h3>Choisir un créneau de réservation</h3>
-				<br>
-				Durée : 
-				<div class="segmented-control" style="width: 400px; color: #20385e" id="booking-duration">
+				<div class="segmented-control" style="color: #20385e;border: none;" id="booking-duration">
 				</div>
-				<br><br>
-				Date :
 				<div id="isOpenSaturday" style="display:none"></div>
 				<div id="isOpenSunday" style="display:none"></div> 
 				<div id="closedDates" style="display:none"></div>
@@ -128,22 +100,20 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 				<div id='calendarContainer'></div>
 				<br>
 				<span id="calendar-error"></span>
-				<br><br>
 
 				{# HORAIRE #}
 				<span id="calendar-time" style="display:none"> {# caché par défaut, affiché en JS si besoin #}
 				Horaire : 
-				    <span id="time-min"></span>
+				    <strong><span id="time-min"></span></strong>
 				    <span class="slideTime">
 				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
 				    </span>
-				    <span id="time-max"></span>
+				    <strong><span id="time-max"></span></strong>
 				    <span id="nbHeures" hidden="true">1</span>
-				    <br>
+				    <br><br>
 				</span>
 				{# 1/2 JOURNEE #}
 				<span id="calendar-halftime" style="display:none">	 {# caché par défaut, affiché en JS si besoin #}
-				Horaire : 
 				    <div class="segmented-control" style="width: 300px; color: #20385e" id="booking-duration-day">
 					  <input type="radio" name="booking-duration-day" id="booking-duration-day-1" checked value="Matin">
 					  <input type="radio" name="booking-duration-day" id="booking-duration-day-2" value="Après-midi">
@@ -151,29 +121,30 @@ office.office.name = type de bureau (open space, bureau, salle de réunion etc)
 					  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
 					</div>
 				    <br>
-				</span>
 				<br><br>
-				Personnes :
+				</span>
+				Nombre de coworkers :
 				{# TO DO : min et max en fonction des places dispos #}
 				{# Nb PEOPLE #}
-				<b>1</b>
 				<span class="slidePeople">
+				<b> 1 </b>
 					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="" data-slider-value="1" name="booking-people"/>
+				<b id="booking-people-max"> </b>
 				</span>
-				<b id="booking-people-max"></b>
 				<span id="nbPeople" hidden="true">1</span>
 				<br>
 
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="modal-footer">
                 <div class="col-lg-8" id="total">
 					{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
-					Total : <input id="price-excl-tax" type="number" step="any" name="price-excl-tax" value="" disabled="true"> € HT
+					<strong>Total : </strong><input id="price-excl-tax" type="number" step="any" name="price-excl-tax" value=""> € HT (soit <input id="price-incl-tax" type="number" step="any" name="price-incl-tax" value=""> € TTC)
 				</div>
 				<div class="col-lg-4">
-					<button type="submit" class="btn btn-primary">Confirmer</button>
+					<button type="submit" id="btn_confirm">Confirmer</button>
 				</div>
             </div>
+        	</form>
         </div>
     </div>
 </div>
