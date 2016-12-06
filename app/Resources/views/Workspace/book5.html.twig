@@ -5,17 +5,8 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 
 <div class="container-fluid">
 
-	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
 		<div class="row" id="booking-content">
 
-	    	{# ERREUR #}
-	    	{% if app.user.email == "" %}
-	    		<div id="email-error">
-	    			ATTENTION, vous devez renseigner votre email dans <a href="{{ path('fos_user_profile_edit') }}">votre profil</a>, afin de valider la réservation <br>
-	    			Votre email nous permettra de confirmer la réservation et de vous envoyer un ticket de paiement.
-	    		</div>
-	    	{% endif %}
 	    	<div id="booking-error"></div>
 
 		    {% for priceandoffice in pricesAndOffices %}
@@ -43,23 +34,40 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 								{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € HT / mois<br> {% endif %}
 		    				</div>
 		    				<div class="col-lg-6">
-		    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResaTest"  
-		    				data-wshasofficeid="{{priceandoffice.id}}" 
-		    				data-priceheure="{{priceandoffice.priceHour}}" 
-		    				data-pricedemijournee="{{priceandoffice.priceHalfDay}}" 
-		    				data-pricejournee="{{priceandoffice.priceDay}}" 
-		    				data-pricesemaine="{{priceandoffice.priceWeek}}"
-		    				data-pricemois="{{priceandoffice.priceMonth}}" 
-		    				data-isOpenSaturday="{{times[0].isOpenSaturday}}" 
-		    				data-isOpenSunday="{{times[0].isOpenSunday}}" 
-		    				data-openHour="{{times[0].openHour|date("H:i")}}" 
-		    				data-closeHour="{{times[0].closeHour|date("H:i")}}" 
-		    				data-spaceName="{{priceandoffice.workspaceHasOffice.name}}" 
-		    				data-spaceType="{{priceandoffice.workspaceHasOffice.office.name}}" 
-		    				data-capacity="{{priceandoffice.workspaceHasOffice.deskQty}}" 
-		    				data-wsName="{{ws.name}}"
-		    				data-tva="{{tva}}"
-		    				>Réserver</button>
+	    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResaTest"  
+			    				data-wshasofficeid="{{priceandoffice.id}}" 
+			    				data-priceheure="{{priceandoffice.priceHour}}" 
+			    				data-pricedemijournee="{{priceandoffice.priceHalfDay}}" 
+			    				data-pricejournee="{{priceandoffice.priceDay}}" 
+			    				data-pricesemaine="{{priceandoffice.priceWeek}}"
+			    				data-pricemois="{{priceandoffice.priceMonth}}" 
+			    				data-isOpenSaturday="{{times[0].isOpenSaturday}}" 
+			    				data-isOpenSunday="{{times[0].isOpenSunday}}" 
+			    				data-openHour="{{times[0].openHour|date("H:i")}}" 
+			    				data-closeHour="{{times[0].closeHour|date("H:i")}}" 
+			    				data-spaceName="{{priceandoffice.workspaceHasOffice.name}}" 
+			    				data-spaceType="{{priceandoffice.workspaceHasOffice.office.name}}" 
+			    				data-capacity="{{priceandoffice.workspaceHasOffice.deskQty}}" 
+			    				data-wsName="{{ws.name}}"
+			    				data-tva="{{tva}}"
+			    				>Réserver</button>
+			    			{% else %}
+			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect">Réserver</button>
+			    			<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						    <div class="modal-dialog">
+						        <div class="modal-content">
+						            <div class="modal-header modal-header-danger">
+						                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+						                <h4 class="modal-title">Réservation</h4>
+						            </div>
+						            <div class="modal-body">
+						                <p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+			    			{% endif %}
  
 		    				</div>
 		    			</div>
@@ -71,20 +79,28 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		</div>
 
 
-	{% else %}
-		<p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
-	{% endif %}
-
 {# Modal de test #}
 	<div class="modal fade" id="myModalResaTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
+    		
             <div class="modal-header">
                 <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
                 <h4 class="modal-title">Votre réservation chez {{ws.name}}</h4>
             </div>
             <div class="modal-body" id="modal-body">
+            	{# EMAIL non renseigné #}
+		    	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.email == "" %}
+		    		<div id="email-error">
+		    			<div class="alert alert-danger alert-dismissable fade in">
+						  <h4><i class="icon icon-times-circle icon-lg"></i> Aucun email renseigné</h4>
+						  <p>ATTENTION, vous devez renseigner votre email dans <a href="{{ path('fos_user_profile_edit') }}">votre profil</a>, afin de valider la réservation.</p>
+						</div>
+		    			
+		    		</div>
+		    	{% endif %}
+
             	<input type="text" name="wshasofficeID" id="wshasofficeID" hidden="true">
             		{# Le contenu de la form est construit dans main.js #}
             	<span class="office-name" id="spaceName"></span> - 
