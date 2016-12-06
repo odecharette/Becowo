@@ -625,6 +625,7 @@ footer #liensRS a{
 
 .bh-sl-loc-list{
   height: 200px;
+  overflow-x: hidden !important;
   overflow-y: scroll;
   border: none;
   padding-right: 0px;
