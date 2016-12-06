@@ -8,16 +8,16 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
+<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
+
 <div class="container-fluid" id="offres">
-<h1>Nos offres</h1>
-<br>
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Link <span>Gratuit</span></h3>
-            </div>
             <div class="panel-body">
+                <h1>Link</h1>
+                <h4>Gratuit</h4>
+                <br>
                 {# source : http://www.easy-ware.be/wp-content/uploads/2015/06/bonhomme-cable.jpg #}
                 <img src="{{ asset('images/icons/lien.jpg') }}" alt="Offre link" title="bonhomme lien"><br>
                 <ul>
@@ -30,12 +30,12 @@
             <div class="panel-footer"><a href="">Je suis interessé</a></div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Zen <span>Prix sur demande</span></h3>
-            </div>
             <div class="panel-body">
+                <h1>Zen</h1>
+                <h4>Prix sur demande</h4>
+                <br>
                 {# source : http://autoentrepreneurinfo.com/images/auto-entrepreneur-compte-bancaire-entreprise.jpg #}
                 <img src="{{ asset('images/icons/cb.jpg') }}" alt="Offre zen" title="bonhomme carte bleu"><br>
                 <ul>
@@ -52,12 +52,12 @@
             <div class="panel-footer"><a href="">Je suis interessé</a></div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Option Data <span>Bientôt disponible</span></h3>
-            </div>
             <div class="panel-body">
+                <h1>Option Data</h1>
+                <h4>Bientôt disponible</h4>
+                <br>
                 {# source : http://fr.123rf.com/images-libres-de-droits/bonhomme_blanc_objectifs.html?mediapopup=14533010 #}
                 <img src="{{ asset('images/icons/stat.jpg') }}" alt="Offre zen +" title="bonhomme statistiques"><br>
                 <ul>
@@ -68,36 +68,29 @@
             <div class="panel-footer">Bientôt disponible</div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-10 col-lg-offset-1">
+    <div class="col-lg-3">
         <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Visite virtuelle à 360° <span>A partir de 199 € HT*</span></h3>
-            </div>
-            <div class="panel-body" id="panel-body-small">
-                <div class="row">
-                    <div class="col-lg-6">
-                        Nous réalisons pour vous la visite virtuelle à 360° de votre espace :
-                        <ul>
-                            <li>Prise des photos de l’espace</li>
-                            <li>Personnalisation et enrichissement de la visite virtuelle</li>
-                            <li>Prise en charge de l’hébergement sur notre site</li>
-                            <li>La visite est directement visible sur votre page Becowo</li>
-                            <li>Cession de droits d'auteur</li>
-                            <li><a href="https://roundme.com/tour/89706/view/227184/" target="_blank">Voir un exemple de visite virtuelle</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6">
-                        <img src="{{ asset('images/icons/visite360.png') }}" alt="visite 360°" title="visite 360°">
-                    </div>
-                </div>
+            <div class="panel-body" id="panel-body">
+                <h1>Visite virtuelle à 360°</h1>
+                <h4>A partir de 199 € HT*</h4>
+                <br>
+                <img src="{{ asset('images/icons/visite360.png') }}" alt="visite 360°" title="visite 360°" width="200px" height="100px">
+                <br>
+                Nous réalisons pour vous la visite virtuelle à 360° de votre espace :
+                <ul>
+                    <li>Prise des photos de l’espace</li>
+                    <li>Personnalisation et enrichissement de la visite virtuelle</li>
+                    <li>Prise en charge de l’hébergement sur notre site</li>
+                    <li>La visite est directement visible sur votre page Becowo</li>
+                    <li>Cession de droits d'auteur</li>
+                    <li><a href="https://roundme.com/tour/89706/view/227184/" target="_blank">Voir un exemple de visite virtuelle</a></li>
+                </ul>
             </div>
             <div class="panel-footer"><a href="">Je suis interessé</a></div>
         </div>
     </div>
 </div>
+
 
 * Prix valable pour les Hauts de France et l’Ile de France, pour 3 portails (devis personnalisé en fonction de l’agencement)
 
@@ -138,9 +131,12 @@
     <li>Revue des commentaires et notes données par les coworkers</li>
 </ul>
 
-<h1>Une question ? Contactez-nous ! </h1>
-<center>06.11.70.63.82</center>
-<br><br>
+<div id="question">
+    <img src="{{ asset('images/icons/questions.jpg') }}" alt="question" width="80%">
+    <h1>Une question ? Contactez-nous ! </h1>
+    <span>06.11.70.63.82</span>
+</div>
+
 </div>
 
 

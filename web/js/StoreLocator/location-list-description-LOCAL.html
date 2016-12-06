@@ -1,5 +1,6 @@
 {{#location}}
 {{#if listed}}
+<li>
 	<div class="container-fluid vignette" data-markerid="{{markerid}}" id="vignette">
 		<div class="row">
 			<div class="col-lg-8" id="gauche">
@@ -19,12 +20,12 @@
 				<a href="/Becowo/web/app_dev.php/ws/{{name}}"><button type="button" id="BtnReserve">Réserver <i class="fa fa-caret-right" aria-hidden="true"></i></button></a>
 				
 			</div>
-		</div>
+		<!-- </div> -->
 		
-		<div class="row">
+		<!-- <div class="row"> -->
 			<div id="bonus">{{descriptionBonus}}</div>
-		</div>
-		<div class="row" id="listeLogo">
+		<!-- </div> -->
+		<div id="listeLogo">
 		{{#if featuresUrl0}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl0}}.png" alt="{{featuresUrl0}}" title="{{featuresUrl0}}"> {{/if}}
 		{{#if featuresUrl1}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl1}}.png" alt="{{featuresUrl1}}" title="{{featuresUrl1}}"> {{/if}}
 		{{#if featuresUrl2}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl2}}.png" alt="{{featuresUrl2}}" title="{{featuresUrl2}}"> {{/if}}
@@ -52,6 +53,7 @@
 		{{#if featuresUrl24}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl24}}.png" alt="{{featuresUrl24}}" title="{{featuresUrl24}}"> {{/if}}
 		</div>
 	</div>
+</li>
 {{/if}}
 {{/location}}
 

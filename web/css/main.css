@@ -21,9 +21,9 @@
 --my-grey-light: rgb(233, 233, 233); /* #e9e9e9 */
 --my-black: rgb(36, 38, 46); /* #24262e */
 --my-green: rgb(0, 161, 154); /* #00A19A */
+--my-green-strong: rgb(0, 135, 142); /* #00878E */
 /* grey : #e9e9e9 */
 
-  --my-green-strong: rgb(0, 129, 125); /* #00817D */
   --my-green-opacity: rgba(0, 161, 154, 0.15);
   --my-green-opacity-4: rgba(0, 161, 154, 0.4);
   --my-orange: rgb(244, 147, 2);
@@ -201,6 +201,8 @@ video{
 #vid p{
   text-align: justify;
   margin-top: 50px;
+  color: var(--my-grey);
+  font-size: 13pt;
 }
 
 footer, footer a{
@@ -218,12 +220,12 @@ footer li {
 }
 
 footer #liensRS{
-  padding-top: 5px;
+  padding-top: 30px;
   padding-bottom: 5px;
 }
 footer #liensRS img{
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   margin-left: -10px;
 }
 footer #liensRS a{
@@ -292,6 +294,9 @@ footer #liensRS a{
 #footer-contact #contact-content2 a{
   color: var(--my-blue);
   background-color: white;
+}
+#footer_menu ul{
+  margin-bottom: 0;
 }
 #page-simple{
   margin-left: 25px;
@@ -407,7 +412,23 @@ footer #liensRS a{
 /********************************** home page *************************************/
 #bh-sl-map-container{
   margin-top: 20px;
+
 }
+#bh-sl-map-container ul{
+  padding: 0;
+    margin: 0;
+    -webkit-column-count: 2;
+       -moz-column-count: 2;
+            column-count: 2;
+    -webkit-column-width: 50%;
+       -moz-column-width: 50%;
+            column-width: 50%; 
+}
+/*#bh-sl-map-container li{
+  width: 50%;
+  float: left;
+  display: inline;
+}*/
 #bh-sl-user-location{
   display: inline-flex;
   position: absolute;
@@ -612,7 +633,12 @@ footer #liensRS a{
   margin-left: -15px;
 }
 
-
+.bh-sl-loc-list{
+  /*width: 420px;*/
+    height: 200px;
+    overflow-y: scroll;
+    border: none;
+}
 .bh-sl-loc-list::-webkit-scrollbar {
     width: 6px;
 }
@@ -825,12 +851,10 @@ footer #liensRS a{
 #wsHeader #resa a{
   color: white;
   background-color: var(--my-green);
-  border-color: var(--my-green);
+  border-color: var(--my-green-strong);
 }
 #wsHeader #resa.active a{
-  color: var(--my-green);
-  background-color: white;
-  border-color: var(--my-green);
+  background-color: var(--my-green-strong);
 }
 #wsHeader .tab-content{
   padding: 30px 10px 10px 10px;
@@ -858,7 +882,7 @@ footer #liensRS a{
 }
 #Services li{
   width:33%; /* to have 3 columns */
-  line-height:1.7em;
+  line-height:4em;
   float:left;
   display:inline;
   text-align: left;
@@ -882,6 +906,7 @@ footer #liensRS a{
   position: absolute;
   top: 40%;
   z-index: 5;
+  opacity: 1;
 }
 #myCarouselTeam .card{
   text-align: center;
@@ -970,10 +995,10 @@ footer #liensRS a{
   background-color: var(--my-green);
   color: white;
   font-size: 18pt;
-  border-color: var(--my-green);
+  border-color: var(--my-green-strong);
 }
 #Réserver #btnResa:hover {
-border: solid 3px var(--my-black);
+border: solid 3px var(--my-green-strong);
 }
 .office-name{
   color: var(--my-red);
@@ -1511,20 +1536,25 @@ color: var(--my-blue) !important;
 }
 
 /*********************************** offers ****************************************/
+#offres{
+  position: absolute;
+  top: 70%;
+}
 #offres h1{
   text-align: center;
 }
 #offres .panel{
-  border-color: var(--my-blue);
+  border-color: white;
 }
 #offres .panel-heading{
   background-color: white;
   color: var(--my-blue);
   height: 50px;
 }
-#offres .panel-title{
+/*#offres .panel-title{
+  text-align: center;
   font-size: 30px;
-}
+}*/
 #offres .panel-heading span{
   background-color: var(--my-blue);
   color: white;
@@ -1556,6 +1586,25 @@ color: var(--my-blue) !important;
 }
 #offres p{
   text-align: justify;
+}
+#offres #question {
+  position: absolute;
+}
+#offres #question img{
+  margin-left: 10%;
+}
+#offres #question h1{
+  position: absolute;
+  top: 38%;
+  color: white;
+  left: 30%;
+}
+#offres #question span{
+  position: absolute;
+  top: 50%;
+  color: white;
+  left: 40%;
+  font-size: 20pt;
 }
 /*#offer1{
   background-color: var(--my-pink-opacity);

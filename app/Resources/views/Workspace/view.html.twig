@@ -64,15 +64,15 @@
 	        		{{priceandoffice.WorkspaceHasOffice.name}} <br>
 	        		<strong>
 	        			{% if priceandoffice.priceHour > 0 %}
-		        			A partir de {{priceandoffice.priceHour}} € / heure
+		        			A partir de {{priceandoffice.priceHour}} € HT / heure
 		        		{% elseif priceandoffice.priceHalfDay > 0 %}
-		        			{{priceandoffice.priceHalfDay}} € / 1/2 journée
+		        			{{priceandoffice.priceHalfDay}} € HT / 1/2 journée
 		        		{% elseif priceandoffice.priceDay > 0 %}
-		        			{{priceandoffice.priceDay}} € / jour
+		        			{{priceandoffice.priceDay}} € HT / jour
 		        		{% elseif priceandoffice.priceWeek > 0 %}
-		        			{{priceandoffice.priceWeek}} € / semaine
+		        			{{priceandoffice.priceWeek}} € HT / semaine
 		        		{% elseif priceandoffice.priceMonth > 0 %}
-		        			{{priceandoffice.priceMonth}} € / mois
+		        			{{priceandoffice.priceMonth}} € HT / mois
 		        		{% endif %}
 					</strong>
 		        </div>
@@ -130,7 +130,8 @@
 				</div>
     		</div>
     	</div>
-    	<br><br>
+    	<br>
+    	<h4>Suivez {{ws.name}} sur les réseaux sociaux :</h4>
     	<div class="row text-center">
     		{% if ws.facebookLink != '' %}
     			<a href="{{ws.facebookLink}}" target="_blank">
