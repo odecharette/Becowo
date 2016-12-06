@@ -14,8 +14,10 @@ class PaiementController extends Controller
      $paiementInfos = $this->container->getParameter('creditAgricole');
      $currentUser = $this->getUser();
      $userEmail = $currentUser->getEmail();
-     $priceToPay = $request->get('priceToPay');
-     $bookingRef = $request->get('bookingRef');
+     $priceToPay = $request->get('price-incl-tax') * 100; // Prix TTC x 100 pour envoyer en cts
+
+$session = $request->getSession();
+$bookingRef = $session->get('bookingRef');
 
 
     /************************************/

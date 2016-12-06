@@ -50,25 +50,24 @@ $(function () {
 
 // Page d'un WS, envoye le booking en AJAX
 $(function () {
-    // $("#btn_confirm").unbind("click").click(function(){
-    // 	// NE MARCHE PAS !!!! TO DO
-    // 	$.ajax(Routing.generate('becowo_core_paiement_call_bank', {name: document.getElementById('wsName').innerHTML}), {
-    //         data: $('#booking-form').serialize(),
-    //         //type: "POST",
-    //         success: function(data) {
-    //             $('#modal-body').html(data);
-    //             $('#modal-footer').html('');
-    //         },
-    //         error: function() {
-    //         	$('#modal-body').html("Une erreur est survenue, veuillez réessayer plus tard");
-    //             $('#modal-footer').html('');
-    //         }
-    //     });
+    $("#btn_confirm").unbind("click").click(function(){
+    	$.ajax(Routing.generate('becowo_core_booking', {name: document.getElementById('wsName').innerHTML}), {
+            data: $('#booking-form').serialize(),
+            type: "POST",
+            success: function(data) {
+                $('#modal-body').html(data);
+                $('#modal-footer').html('');
+            },
+            error: function() {
+            	$('#modal-body').html("Une erreur est survenue, veuillez réessayer plus tard");
+                $('#modal-footer').html('');
+            }
+        });
 
-    // 	return false;
+    	return false;
 
 
-    // });
+    });
 
 });
 

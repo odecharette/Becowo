@@ -62,5 +62,15 @@ class BookingRepository extends EntityRepository
 		return $qb->getQuery()->getSingleResult();
 		// on pourrais utiliser directement findBy(array...) mais ca renvoi un array et non un objet alors bon..
 	}
+
+
+	public function findBookingByWsHasOfficeId($id)
+	{
+		$qb = $this->createQueryBuilder('b');
+		$qb->where('b.workspacehasoffice = :id')
+		   ->setParameter('id', $id);
+
+		return $qb->getQuery()->getSingleResult();
+	}
 	
 }

@@ -28,5 +28,6 @@ class WorkspaceHasOfficeRepository extends EntityRepository
 
 		return $qb->getQuery()->getSingleResult();
 	}
+	
 
 }

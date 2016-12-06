@@ -46,6 +46,6 @@ class WorkspaceController extends Controller
 
     return $this->render('Workspace/visit360.html.twig', array('ws' => $ws));
   }
-  
+
 
 }
