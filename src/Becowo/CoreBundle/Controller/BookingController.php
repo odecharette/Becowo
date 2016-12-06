@@ -98,6 +98,7 @@ class BookingController extends Controller
 
       $session = $request->getSession();
       $session->set('bookingRef', $booking->getBookingRef());
+      $session->set('priceToPay', $bookingPriceInclTax * 100); // on doit envoyer le prix à payer en cts à la banque
 
       return $this->redirectToRoute('becowo_core_paiement_call_bank', array('name' => $request->get('name')));
     }
