@@ -1,5 +1,5 @@
-if (document.getElementById("jssor_1")){
 jQuery(document).ready(function ($) {
+if (document.getElementById("jssor_1")){
             
             var jssor_1_SlideshowTransitions = [
               {$Duration:2000,$Zoom:1,$Easing:{$Zoom:$Jease$.$InCubic,$Opacity:$Jease$.$OutQuad},$Opacity:2},
@@ -59,5 +59,7 @@ jQuery(document).ready(function ($) {
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
             //responsive code end
-        });
 };
+
+
+});

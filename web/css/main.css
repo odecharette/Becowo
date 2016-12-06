@@ -531,113 +531,101 @@ footer #liensRS a{
 }
 */
 #vignette{
-  border: solid 1px var(--my-grey);
+  /*border: solid 1px var(--my-grey);*/
+  padding: 0;
 }
-#vignette .row{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-#vignette p{
-  color: #999999;
-  font-size: 10pt;
-  text-align: justify;
-}
-#vignette #adresse{
-  color: #737373;
+
+#vignette #address{
+  color: var(--my-black);
   font-size: 10pt;
 }
 #vignette #bonus{
   color: var(--my-red);
-  height: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  height: 14px;
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
   letter-spacing: 0.1em;
 }
 
-#vignette #favoritePicture{
+#vignette #pic{
+  position: relative;
+  width: 100%;
+}
+#vignette #favoritePicture img{
   width: 100%;
   height: 220px;
-  margin-left: -15px;
 }
-#vignette #logo{
-  width: 150px;
-  height: 50px;
-  margin-bottom: 15px;
-}
-#vignette #stars{
-  width: 180px;
-  height: 40px;
-  margin-top: 15px;
-}
-#vignette #droite{
-  margin-left: -10px;
-  padding-left: 0;
-}
-#vignette #BtnReserve{
-  /*background: #f25f69;
-  background-image: -webkit-linear-gradient(top, #f25f69, #fa7b85);
-  background-image: -moz-linear-gradient(top, #f25f69, #fa7b85);
-  background-image: -ms-linear-gradient(top, #f25f69, #fa7b85);
-  background-image: -o-linear-gradient(top, #f25f69, #fa7b85);
-  background-image: linear-gradient(to bottom, #f25f69, #fa7b85);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;*/
-  background-color: var(--my-green);
-  border: none;
-  color: white;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  /*border: solid #7a767a 1px;*/
-  text-decoration: none;
-  text-transform: uppercase;
-  width: 100%;
-  margin-top: 15px;
-}
-/*#vignette #BtnReserve:hover, #vignette #BtnReserve a{
-  text-decoration: none;
-  background-color: var(--my-pink);
-}*/
-
-#vignette #listeLogo{
-  padding-left: 20px;
-  padding-top: 5px;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-}
-#vignette #listeLogo img{
-  width: 50px;
-  height: 50px;
-}
-#vignette #stars img{
-  width: 140px;
-  height: 30px;
-}
-#price{
+#vignette #price{
   background-color: rgba(45,45,45,0.9);
   color: white;
   position: absolute;
-  top: 70%;
+  top: 5%;
+  left: 0%;
   width: 20%;
   font-size: large;
   padding-left: 10px;
   font-weight: bold;
   line-height: 40px;
-  margin-left: -15px;
 }
+#vignette #btn{
+  position: absolute;
+  right: 0;
+  bottom: -5%;
+}
+#vignette #btn button{
+  background-color: var(--my-green);
+  border : var(--my-green-strong);
+  color: white ;
+  font-size: 14pt;
+  line-height: 2em;
+  width: 100px;
+}
+#vignette table{
+  width: 100%;
+  margin-top: 10px;
+}
+#vignette #stars {
+  text-align: right;
+}
+#vignette #stars img{
+  width: 90px;
+  height: 20px;
+  margin-top: -10px;
+}
+#vignette #listeLogo{
+  margin-bottom: 5px;
+  text-align: center;
+}
+#vignette #listeLogo img{
+  width: 30px;
+  height: 30px;
+}
+
+/*#vignette #BtnReserve{
+  background-color: var(--my-green);
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  margin-top: 15px;
+}*/
+
+
 
 .bh-sl-loc-list{
   /*width: 420px;*/
     height: 200px;
     overflow-y: scroll;
     border: none;
+}
+.bh-sl-loc-list li{
+  background: none !important;
+  width: 100% !important;
+  margin: 0 !important;
 }
 .bh-sl-loc-list::-webkit-scrollbar {
     width: 6px;
