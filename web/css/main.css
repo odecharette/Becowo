@@ -434,7 +434,7 @@ footer #liensRS a{
   position: absolute;
   z-index: 2;
   margin-top: 15px;
-  margin-left: 130px;
+  margin-left: 25px;
 }
 #region-filters-container{
   color: var(--my-blue);
