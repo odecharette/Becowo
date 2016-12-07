@@ -9,11 +9,14 @@
 
 {% block body %}
 
-<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
+<div id="home-image">
+	<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
 
-<h2>Réservez un espace de travail et intégrez une communauté de coworkers</h2>
-
-
+	<span>Réservez un espace de travail et intégrez une communauté de coworkers </span>
+	<a href="#ancre"><i class="fa fa-angle-down fa-3x" aria-hidden="true"></i></a>
+	
+</div>
+<div id="ancre"></div>
 
 {# Navbar de recherche désativée le temps d'avoir plus d'espaces à proposer
 <nav class="navbar navbar-default" role="navigation" id="BarreRecherche">

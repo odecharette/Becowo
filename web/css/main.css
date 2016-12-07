@@ -424,6 +424,28 @@ footer{
 }
 
 /********************************** home page *************************************/
+
+#home-image{
+  position: relative;
+}
+#home-image span{
+  position: absolute;
+  top: 60%;
+  color: white;
+  font-size: 36px;
+  font-family: Georgia;
+  width: 100%;
+  text-align: center;
+}
+#home-image i{
+    position: absolute;
+    top: 70%;
+    color: white;
+    background-color: var(--my-green);
+    padding: 5px 13px 5px 13px;
+    border-radius: 50%;
+    left: 48%;
+}
 #bh-sl-map{
   padding-left: 0;
   margin-right: 15px;
