@@ -36,10 +36,14 @@
   --my-yellow-opacity: rgba(252, 231, 99, 0.5);
   /* to use it : color: var(--my-red); */
 }
-
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
   font-family: "aniversregular", Helvetica, Arial, sans-serif;
   margin-top: 69px;
+  margin-bottom: 100px;
 }
 header .container{
   margin-right: 0px;
@@ -69,7 +73,10 @@ header.header .navbar-default .navbar-nav>li>a {
     font-weight: 700;
     line-height: 40px;
 }
-header.header .navbar-default .navbar-nav>li>a:hover, header #login a:hover {
+.navbar-default .navbar-nav>li>a:focus, 
+.navbar-default .navbar-nav>li>a:hover, 
+header .navbar-default .navbar-nav>li.active>a,
+header #login a:hover {
     background-color: #e9e9e9;
     color: var(--my-blue);
     border-bottom: solid 3px var(--my-blue);
@@ -230,6 +237,13 @@ footer #liensRS img{
 }
 footer #liensRS a{
   display: inline-block;
+}
+footer{
+  position: absolute !important;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 90px;
 }
 
 #footer-contact form{
@@ -1533,141 +1547,124 @@ color: var(--my-blue) !important;
 }
 
 /*********************************** offers ****************************************/
+#top-image{
+  position: relative;
+  height: 1950px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
+}
 #offres{
   position: absolute;
-  top: 70%;
+  top: 10%;
+  width: 100%;
 }
 #offres h1{
   text-align: center;
 }
 #offres .panel{
-  border-color: white;
-}
-#offres .panel-heading{
   background-color: white;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  border: none;
   color: var(--my-blue);
-  height: 50px;
 }
-/*#offres .panel-title{
+#offres .panel ul{
+  padding-left: 5px;
+ list-style-type: none;
+}
+#offres .panel li:before {
+  content: "\f043";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+#offres .panel i{
+  color: var(--my-blue);
+}
+#offres .panel-body
+{
+  padding-top: 0;
+  height: 410px;
+}
+#offres #logo{
   text-align: center;
-  font-size: 30px;
-}*/
-#offres .panel-heading span{
-  background-color: var(--my-blue);
-  color: white;
-  font-size: 18px;
-  border-radius: 20px;
-  position: absolute;
-  right: 30px;
-  top: 6px;
-  padding: 10px 10px 10px 10px;
-}
-#offres .panel-body{
-  height: 380px;
 }
 
 #offres .panel-body img{
-  height: 150px;
-}
-#offres #panel-body-small{
-  height: 120px;
+  height: 100px;
+  margin-bottom: 15px;
 }
 #offres .panel-footer{
   text-align: center;
-  background-color: var(--my-blue);
+  background-color: var(--my-green);
 }
 #offres .panel-footer a, #offres .panel-footer{
   width: 100%;
-  font-size: 18px;
+  font-size: 22px;
   color: white;
 }
 #offres p{
   text-align: justify;
 }
-#offres #question {
-  position: absolute;
+#offres #nb{
+  font-style: italic;
+  text-align: center;
+  font-size: 8pt;
+}
+#offres #pourquoi h3, p{
+  color: #484848;
+  text-align: center !important;
+}
+#offres #pourquoi p{
+  font-size: 12pt;
+}
+#offres #services{
+  background-color: var(--my-green);
+  color: white;
+}
+#offres #services h1{
+  color: white !important;
+}
+#offres #services h3{
+  text-align: center;
+  margin-bottom: 15px;
+}
+#offres #services ul{
+  padding-left: 70px;
+ list-style-type: none;
+}
+#offres #services li:before {
+  content: "\f12e";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-right: 3px;
+  margin-bottom: 5px;
+  color: white;
+}
+#offres #services a, #offres #question a{
+  color: white;
+  text-decoration: underline;
+}
+#offres #question{
+  display: inline-flex;
+  margin-left: 1px;
+}
+#offres #question div{
+  margin-top: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#offres #question h3, #offres #question a{
+  color: #484848;
+  text-align: center !important;
 }
 #offres #question img{
-  margin-left: 10%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-#offres #question h1{
-  position: absolute;
-  top: 38%;
-  color: white;
-  left: 30%;
+#offres #question #m{
+  width: 20px;
 }
-#offres #question span{
-  position: absolute;
-  top: 50%;
-  color: white;
-  left: 40%;
-  font-size: 20pt;
-}
-/*#offer1{
-  background-color: var(--my-pink-opacity);
-  margin-bottom: 15px;
-}
-#offer1 h3, #offer1 h5{
-  color: var(--my-pink);
-}
-#offer1 button, #offer1 a{
-  background-color: var(--my-pink);
-}
-#offer2{
-  background-color: var(--my-green-opacity);
-  margin-bottom: 15px;
-}
-#offer2 h3, #offer2 h5{
-  color: var(--my-green);
-}
-#offer2 button, #offer2 a{
-  background-color: var(--my-green);
-}
-#offer3{
-  background-color: var(--my-blue-opacity);
-}
-#offer3 h3, #offer3 h5{
-  color: var(--my-blue);
-}
-#offer3 button, #offer3 a{
-  background-color: var(--my-blue);
-}
-#offer4{
-  background-color: var(--my-orange-opacity);
-}
-#offer4 h3, #offer4 h5{
-  color: var(--my-orange);
-}
-#offer4 button, #offer4 a{
-  background-color: var(--my-orange);
-}
-.offers{
-  color: var(--my-grey);
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-.offers ul{
-  height: 150px;
-}
-.offers .conditions{
-  height: 50px;
-}
-.offers h3{
-  text-align: center;
-}
-.offers h5{
-  margin-left: 5px;
-}
-.offers button, .offers a{
-  color: white;
-  width: 100%;
-  line-height: 3;
-  border: none;
-  font-size: 14pt;
-}
-.offers button:hover{
-  font-weight: bold;
-}*/
+
 
 /********** offers contact & coworker déclarez un WS *********/
 #offers-contact form, #coworker-declare form{

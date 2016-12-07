@@ -8,214 +8,174 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
-<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
+<div id="top-image">
+    <img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
 
-<div class="container-fluid" id="offres">
-<div class="row">
-    <div class="col-lg-3">
-        <div class="panel panel-primary">
-            <div class="panel-body">
-                <h1>Link</h1>
-                <h4>Gratuit</h4>
-                <br>
-                {# source : http://www.easy-ware.be/wp-content/uploads/2015/06/bonhomme-cable.jpg #}
-                <img src="{{ asset('images/icons/lien.jpg') }}" alt="Offre link" title="bonhomme lien"><br>
-                <ul>
-                    <li>Référencement de votre espace sur le site de Becowo</li>
-                    <li>Affichage de vos coordonnées</li>
-                    <li>Votes et commentaires des coworkers</li>
-                    <li>Présentation de votre équipe sur la page dédiée de votre espace</li>
-                </ul>
+    <div class="container-fluid" id="offres">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <h1>Link</h1>
+                        <h4>Gratuit</h4>
+                        {# source : http://www.easy-ware.be/wp-content/uploads/2015/06/bonhomme-cable.jpg #}
+                        <div id="logo"><img src="{{ asset('images/icons/lien.jpg') }}" alt="Offre link" title="bonhomme lien"></div>
+                        <ul>
+                            <li>Référencement</li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer"><a href="">Je suis interessé</a></div>
+                </div>
             </div>
-            <div class="panel-footer"><a href="">Je suis interessé</a></div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="panel panel-primary">
-            <div class="panel-body">
-                <h1>Zen</h1>
-                <h4>Prix sur demande</h4>
-                <br>
-                {# source : http://autoentrepreneurinfo.com/images/auto-entrepreneur-compte-bancaire-entreprise.jpg #}
-                <img src="{{ asset('images/icons/cb.jpg') }}" alt="Offre zen" title="bonhomme carte bleu"><br>
-                <ul>
-                    <li>Référencement de votre espace sur le site de Becowo</li>
-                    <li><strong>Réservation et paiement en ligne sécurisé</strong></li>
-                    <li>Publication de vos évènements</li>
-                    <li>Accès à la plateforme d'administration</li>
-                    <ul>
-                        <li>Vous avez la main sur le contenu du votre page pour personnaliser le texte, les photos et les prix</li>
-                        <li>Suivi des réservations</li>
-                    </ul>
-                </ul>
+            <div class="col-lg-3">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <h1>Zen</h1>
+                        <h4>Prix sur demande</h4>
+                        {# source : http://autoentrepreneurinfo.com/images/auto-entrepreneur-compte-bancaire-entreprise.jpg #}
+                        <div id="logo"><img src="{{ asset('images/icons/cb.jpg') }}" alt="Offre zen" title="bonhomme carte bleu"></div>
+                        <ul>
+                            <li>Référencement</li>
+                            <li>Réservation en ligne</li>
+                            <li><strong>Paiement en ligne sécurisé</strong></li>
+                            <li>Evènements, contacts, vote</li>
+                            <li>Module d'administration</li>
+                            <li>Personnalisation de votre page</li>
+                            <li>Suivi des réservations</li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer"><a href="">Je suis interessé</a></div>
+                </div>
             </div>
-            <div class="panel-footer"><a href="">Je suis interessé</a></div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="panel panel-primary">
-            <div class="panel-body">
-                <h1>Option Data</h1>
-                <h4>Bientôt disponible</h4>
-                <br>
-                {# source : http://fr.123rf.com/images-libres-de-droits/bonhomme_blanc_objectifs.html?mediapopup=14533010 #}
-                <img src="{{ asset('images/icons/stat.jpg') }}" alt="Offre zen +" title="bonhomme statistiques"><br>
-                <ul>
-                    <li>Accès aux statistiques sur les visiteurs de Becowo (détails sur l’audience, critères de recherche utilisés, etc)</li>
-                    <li>Information sur le profil des coworkers qui ont effectué une réservation</li>
-                </ul>
+            <div class="col-lg-3">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <h1>Option Data</h1>
+                        <h4>Bientôt disponible</h4>
+                        {# source : http://fr.123rf.com/images-libres-de-droits/bonhomme_blanc_objectifs.html?mediapopup=14533010 #}
+                        <div id="logo"><img src="{{ asset('images/icons/stat.jpg') }}" alt="Offre zen +" title="bonhomme statistiques"></div>
+                        <ul>
+                            <li>Statistiques de Becowo et de votre page</li>
+                            <li>Vues sur votre page</li>
+                            <li>Profil de l'audience</li>
+                            <li>Comportement du visiteur</li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer">Bientôt disponible</div>
+                </div>
             </div>
-            <div class="panel-footer">Bientôt disponible</div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="panel panel-primary">
-            <div class="panel-body" id="panel-body">
-                <h1>Visite virtuelle à 360°</h1>
-                <h4>A partir de 199 € HT*</h4>
-                <br>
-                <img src="{{ asset('images/icons/visite360.png') }}" alt="visite 360°" title="visite 360°" width="200px" height="100px">
-                <br>
-                Nous réalisons pour vous la visite virtuelle à 360° de votre espace :
-                <ul>
-                    <li>Prise des photos de l’espace</li>
-                    <li>Personnalisation et enrichissement de la visite virtuelle</li>
-                    <li>Prise en charge de l’hébergement sur notre site</li>
-                    <li>La visite est directement visible sur votre page Becowo</li>
-                    <li>Cession de droits d'auteur</li>
-                    <li><a href="https://roundme.com/tour/89706/view/227184/" target="_blank">Voir un exemple de visite virtuelle</a></li>
-                </ul>
+            <div class="col-lg-3">
+                <div class="panel panel-primary">
+                    <div class="panel-body" id="panel-body">
+                        <h1>Visite à 360°</h1>
+                        <h4>A partir de 199 € HT*</h4>
+                        {# http://previews.123rf.com/images/johan2011/johan20111107/johan2011110700023/9976654-3d-little-human-character-with-a-camera--Stock-Photo-people.jpg #}
+                        <div id="logo"><img src="{{ asset('images/icons/photo.jpg') }}" alt="visite 360°" title="visite 360°" width="200px" height="50px"></div>
+                        <ul>
+                            <li>Réalisation de visite virtuelle à 360°</li>
+                            <li>Prise des photos de l’espace</li>
+                            <li>Personnalisation de la visite virtuelle</li>
+                            <li>Hébergement sur notre site</li>
+                            <li>Visibilité sur votre page</li>
+                            <li>Cession de droits d'auteur</li>
+                            <li><a href="https://roundme.com/tour/89706/view/227184/" target="_blank">Voir un exemple de visite virtuelle</a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer"><a href="">Je suis interessé</a></div>
+                </div>
             </div>
-            <div class="panel-footer"><a href="">Je suis interessé</a></div>
         </div>
-    </div>
-</div>
+        <div class="row" id="pourquoi">
+            <div id="nb">* Prix valable pour les Hauts de France et l’Ile de France, pour 3 portails (devis personnalisé en fonction de l’agencement)</div>
 
-
-* Prix valable pour les Hauts de France et l’Ile de France, pour 3 portails (devis personnalisé en fonction de l’agencement)
-
-<h1>Pourquoi rejoindre Becowo ?</h1>
-<h3>Becowo est une plateforme web de référencement d’espaces de travail partagés qui poursuit plusieurs objectifs :</h3>
-
-<ul>
-    <li>Accroitre la visibilité d’espaces de travail atypiques et de qualité</li>
-    <li>Valoriser les initiatives autour du coworking et du travail flexible en général</li>
-    <li>Développer à travers le monde une communauté de coworkers audacieux</li>
-    <li>Privilégier les échanges et l’entraide parmi les coworkers et les partenaires de B ecowo </li>
-    <li>Permettre à chacun de développer son réseau professionnel</li>
-    <li>Optimiser la gestion d’un espace de travail </li>
-</ul>
-
-<h1>Les services déjà disponibles</h1>
-<br>
-<ul>
-    <li>Référencement d’espaces de travail payant dans les Hauts-de France et l’Ile de France </li>
-    <li>Description des services, photos et visite virtuelle des espaces </li>
-    <li>Réservation et paiement en ligne</li>
-    <li>Un blog, pour suivre l’actualité sur le travail flexible</li>
-</ul>
-
-<h3>Pour les coworkers</h3>
-<br>
-<ul>
-    <li>Possibilité de réserver un espace</li>
-    <li>Possibilité de noter un espace et de laisser un commentaire</li>
-    <li>Consultation du profil des autres coworkers</li>
-</ul>
-<h3>Pour les espaces</h3>
-<br>
-<ul>
-    <li>Gestion de la page espace : photos, descriptions, équipe, horaires, … </li>
-    <li>Gestion des réservations </li>
-    <li>Publication des événements organisés</li>
-    <li>Revue des commentaires et notes données par les coworkers</li>
-</ul>
-
-<div id="question">
-    <img src="{{ asset('images/icons/questions.jpg') }}" alt="question" width="80%">
-    <h1>Une question ? Contactez-nous ! </h1>
-    <span>06.11.70.63.82</span>
-</div>
-
-</div>
-
-
-{#   <div class="row">
-    <div class="col-lg-3 col-lg-offset-3">
-        <div id="offer1" class="offers">
-        <h3>Offre Zen</h3>
-        <ul>
-            <li>Prise en charge des réservations</li>
-            <li>Paiement en ligne</li>
-            <li>Gestion des agendas</li>
-            <li>Back-office en ligne de gestion de votre profil</li>
-            <li>Mise en avant de votre annonce</li>
-            <li>Statistiques sur les coworkers</li>
-            <br>
-        </ul>
-        <button type="button"><a href="{{ path('becowo_core_offers_contact', { 'name': 'Zen' }) }}">Je suis intéressé</a></button>
-        <br>
-        <h5>Conditions</h5>
-        <ul class="conditions">
-            <li>15% de commission</li>
-            <li>Facture au mois</li>
-        </ul>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div id="offer2" class="offers">
-        <h3>Offre Link</h3>
-        <ul>
-            <li>Visibilité sur notre site</li>
-            <li>Affichage de vos coordonnées</li>
-            <li>Lien vers votre site</li>
-            <li>Formulaire de contact</li>
-            <li>Statistiques sur les pages vues</li>
             <br><br>
-        </ul>
-        <button type="button"><a href="{{ path('becowo_core_offers_contact', { 'name': 'Link' }) }}">Je suis intéressé</a></button>
-        <br>
-        <h5>Conditions</h5>
-        <ul class="conditions">
-            <li>Contrat d'affiliation</li>
-            <br>
-        </ul>
+
+            <h1>Pourquoi rejoindre Becowo ?</h1>
+
+            <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                    <h3>Visibilité</h3>
+                    <p>Géolocalisation, tri par critères, gage de qualité, simplicité</p>
+                </div>
+                <div class="col-lg-3 col-lg-offset-2">
+                    <h3>Communauté</h3>
+                    <p>Toucher une communauté active, se rapprocher des coworkers, échanger, connaitre</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                    <h3>Géstion</h3>
+                    <p>Simplifier la gestion au quotidien, uniformiser les outils</p>
+                </div>
+                <div class="col-lg-3 col-lg-offset-2">
+                    <h3>Suivi</h3>
+                    <p>Suivez votre clientèle, être à l'écoute</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-lg-offset-2">
+                    <h3>Entraide</h3>
+                    <p>Rompre avec l'isolement, partage des compétences</p>
+                </div>
+                <div class="col-lg-3 col-lg-offset-2">
+                    <h3>Réseau</h3>
+                    <p>Développer son réseau professionnel, rencontrer, se diversifier</p>
+                </div>
+            </div>
+            
+        </div>
+        <br><br>
+        <div class="row" id="services">
+            <h1>Les services déjà disponibles</h1>
+            <div class="row">
+                <div class="col-lg-4">
+                    <h3>Pour TOUS</h3>
+                    <ul>
+                        <li>Disponibilité Hauts-de France et Ile de France </li>
+                        <li>Espaces de coworking de qualité</li>
+                        <li>Visite des espaces en photos et même à 360°</li>
+                        <li>Mise en avant des services proposés</li>
+                        <li>Suivi des évènements organisés</li>
+                        <li>Réservation et paiement en ligne</li>
+                        <li>Un blog, pour suivre l’actualité sur le travail flexible <a title="blog" href="http://www.blog.becowo.com/" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h3>Pour les COWORKERS</h3>
+                    <ul>
+                        <li>Qualité, simplicité, efficacité</li>
+                        <li>Réservation instantanée</li>
+                        <li>Paiement sécurisé</li>
+                        <li>Noter et commenter son expérience</li>
+                        <li>Intégrer une communauté active</li>
+                        <li>Ne plus être isolé</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h3>Pour les ESPACES</h3>
+                    <ul>
+                        <li>Simplicité, transparence, visibilité</li>
+                        <li>Gestion du contenu</li>
+                        <li>Gestion des réservations</li>
+                        <li>Publication des événements organisés</li>
+                        <li>Revue des commentaires et des notes</li>
+                    </ul>
+                </div>
+            </div>
+            <h3>Plus de services à venir bientôt</h3>
+            
+        </div>
+        <div class="row text-center" id="question">
+            <img src="{{ asset('images/icons/questions-vert.png') }}" alt="question">
+            <div>
+                <h1>Une question ? Une suggestion ? Contactez-nous ! </h1>
+                <h3><i class="fa fa-mobile" aria-hidden="true"></i> Par téléphone ou SMS au : <a href="tel:+33611706382">06 11 70 63 82</a></h3>
+                <h3><img src="{{ asset('images/icons/messenger.png') }}" alt="messenger" id="m"> Par messenger en <a href="http://m.me/becowo" target="_blank">cliquant ici</a></h3>
+            </div>
+            <img src="{{ asset('images/icons/questions-rose.png') }}" alt="question">
         </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-3 col-lg-offset-3">
-      <div id="offer3" class="offers">
-        <h3>Offre Zen +</h3>
-        <ul>
-            <li>Offre Zen</li>
-            <li>Visite virtuelle de l'espace à 360°</li>
-            <br>
-        </ul>
-        <button type="button"><a href="{{ path('becowo_core_offers_contact', { 'name': 'Zen +' }) }}">Je suis intéressé</a></button>
-        <br>
-        <h5>Conditions</h5>
-        <ul class="conditions">
-            <li>100€ HT</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-lg-3">
-      <div id="offer4" class="offers">
-        <h3>Offre Link +</h3>
-        <ul>
-            <li>Offre Link</li>
-            <li>Mise en avant sponsorisée de votre annonce</li>
-            <br>
-        </ul>
-        <button type="button"><a href="{{ path('becowo_core_offers_contact', { 'name': 'Link +' }) }}">Je suis intéressé</a></button>
-        <br>
-        <h5>Conditions</h5>
-        <ul class="conditions">
-            <li>10€ HT / jour</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div> #}
+
+</div>
+
 {% endblock %}
