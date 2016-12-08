@@ -8,16 +8,27 @@
 					<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}">
 				{{/if}}
 			</div>
-			<div id="price">147 <sup>€</sup></div>
+			<div id="price">
+				147 <sup>€</sup>
+				{{#if offerZen}}
+					<i class="fa fa-bolt" aria-hidden="true"></i>
+				{{/if}}
+			</div>
 			<div id="btn">
-				<!-- TO DO url à rendre dynamique -->
-				<a href="/Becowo/web/app_dev.php/ws/{{name}}"><button type="button">Découvrir</button></a>	
+				{{#if offerZen}}
+					<!-- TO DO url à rendre dynamique -->
+					<a href="/Becowo/web/app_dev.php/ws/{{name}}"><button type="button">Découvrir</button></a>
+				{{else}}
+					<form method="POST" action="/Becowo/web/app_dev.php/voteZen/{{id}}" id="form_voteZen">
+						<button type="submit" id="voteZen-{{id}}">Je vote pour cet espace</button>
+					</form>	
+				{{/if}}
 			</div>
 		</div>
 		
 		<table>
 			<td id="address">
-				<strong>{{name}}</strong> <br>
+				<strong id="WSname">{{name}}</strong> <br>
 				{{address}} <br>
 				{{postal}}{{#if city}},{{/if}} {{city}}
 			</td>
@@ -57,7 +68,32 @@
 		{{#if featuresUrl23}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl23}}.png" alt="{{featuresUrl23}}" title="{{featuresUrl23}}"> {{/if}}
 		{{#if featuresUrl24}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl24}}.png" alt="{{featuresUrl24}}" title="{{featuresUrl24}}"> {{/if}} -->
 		</div>
+
+		<script>
+
+		// Appel du controller de vote en AJAX
+		// Si on met ce JS dans main.js alors le bouton n'est pas reconnu
+
+	    $("#voteZen-{{id}}").unbind("click").click(function(){
+	    	//Vote pour que l'espace devienne Offre Zen
+	    	console.log('vote zen enclenché');
+	    	$.ajax(Routing.generate('becowo_core_vote_zen', {id: "{{id}}"}), {
+	            data: $('#form_voteZen').serialize(),
+	            type: "POST",
+	            success: function(data) {
+	            	console.log('OK vote JS : {{id}}');
+	            },
+	            error: function() {
+	            	console.log('probleme vote JS');
+	            }
+	        });
+	    	return false;
+	    });
+
+		</script>
 </li>
 {{/if}}
 {{/location}}
+
+
 

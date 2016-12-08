@@ -49,7 +49,7 @@ header .container{
   margin-right: 0px;
 }
 header .navbar-header{
-  margin-left: -60px !important;
+  margin-left: -90px !important;
 }
 
 header .navbar-default{
@@ -206,7 +206,7 @@ video{
 }
 
 #vid p{
-  text-align: justify;
+  text-align: justify !important;
   margin-top: 50px;
   color: var(--my-grey);
   font-size: 13pt;
@@ -449,9 +449,20 @@ footer{
 #bh-sl-map{
   padding-left: 0;
   margin-right: 15px;
+  height: 500px;
 }
 #map-results-container{
   padding-left: 10px;
+  position: relative;
+}
+#legende{
+  position: absolute;
+  top: 95%;
+  font-size: 12pt;
+  color: var(--my-grey);
+}
+#legende i{
+  color: var(--my-orange);
 }
 #bh-sl-map-container{
   margin-top: 20px;
@@ -610,6 +621,9 @@ footer{
   padding-left: 10px;
   font-weight: bold;
   line-height: 40px;
+}
+#vignette #price i{
+  color: var(--my-orange);
 }
 #vignette #btn{
   position: absolute;
@@ -827,6 +841,33 @@ footer{
 #filters, label {
   padding-left: 5px;
   padding-right: 10px;
+}
+
+#declare{
+  background-color: #e7e7e7;
+  text-align: center;
+  margin-bottom: 0;
+}
+#declare h1{
+  color: var(--my-blue) !important;
+}
+#declare p{
+  font-size: 14pt;
+  color: #555;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+#declare button{
+  background-color: var(--my-blue);
+  color: white;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 12pt;
+  padding: 15px 30px 15px 30px;
+  font-weight: bold;
+  border-radius: 5%;
 }
 
 /********************************** Page workspace *************************************/

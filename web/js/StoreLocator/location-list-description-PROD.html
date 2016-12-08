@@ -8,7 +8,12 @@
 					<img src="/Becowo/web/images/Workspaces/{{name}}/{{favoritePicture}}">
 				{{/if}}
 			</div>
-			<div id="price">147 <sup>€</sup></div>
+			<div id="price">
+				147 <sup>€</sup>
+				{{#if offerZen}}
+					<i class="fa fa-bolt" aria-hidden="true"></i>
+				{{/if}}
+			</div>
 			<div id="btn">
 				<!-- TO DO url à rendre dynamique -->
 				<a href="/ws/{{name}}"><button type="button">Découvrir</button></a>	

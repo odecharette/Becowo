@@ -19,6 +19,7 @@ class MapController extends Controller
     // Add Workspaces
     foreach ($workspaces as $workspaces) {
       $itemNode = $rootNode->addChild('marker');
+      $itemNode->addAttribute( 'id', $workspaces->getId() );
       $itemNode->addAttribute( 'name', $workspaces->getName() );
       $itemNode->addAttribute( 'lat', $workspaces->getLatitude() );
       $itemNode->addAttribute( 'lng', $workspaces->getLongitude() );
@@ -55,6 +56,19 @@ class MapController extends Controller
       $averageVote = round($averageVote, 0);
       $itemNode->addAttribute( 'averageVote', $averageVote );
 
+      $WsHasoffers = $WsService->getOffersByWorkspace($workspaces);
+      $i = 0;
+      foreach ($WsHasoffers as $WsHasoffer) {
+        if($WsHasoffer->getOffer()->getName() == 'Zen')
+        {
+          $itemNode->addAttribute( 'offerZen', "true" );
+        }else if($WsHasoffer->getOffer()->getName() == 'Link')
+        {
+          $itemNode->addAttribute( 'offerLink', "true" );
+        }
+        $i++;
+      }
+      
     }
 
 

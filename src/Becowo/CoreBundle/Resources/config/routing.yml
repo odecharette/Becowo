@@ -10,6 +10,11 @@ becowo_core_workspace:
     options:
         expose: true
 
+becowo_core_community:
+    path:     /communaute
+    defaults: { _controller: BecowoCoreBundle:Home:community }
+    methods: GET
+
 becowo_core_booking_myreservations:
     path: /booking
     defaults: { _controller: BecowoCoreBundle:Booking:myReservations }
@@ -33,6 +38,13 @@ becowo_core_comment_ca_marche:
 becowo_core_vote:
     path:     /vote/{name}
     defaults: { _controller: BecowoCoreBundle:Vote:vote }
+    methods: GET|POST
+    options:
+        expose: true
+
+becowo_core_vote_zen:
+    path:     /voteZen/{id}
+    defaults: { _controller: BecowoCoreBundle:Vote:voteWSdevenirZen }
     methods: GET|POST
     options:
         expose: true

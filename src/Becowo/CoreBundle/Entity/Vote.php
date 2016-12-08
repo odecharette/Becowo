@@ -64,6 +64,14 @@ class Vote
      * @ORM\Column(name="score_avg", type="decimal", precision=4, scale=2)
      */
     private $scoreAvg;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="devenir_zen", type="integer", nullable=false)
+     */
+    private $devenirZen = '0';
     
 
     /**
@@ -237,6 +245,30 @@ class Vote
     public function getScoreAvg()
     {
         return $this->scoreAvg;
+    }
+
+    /**
+     * Set devenirZen
+     *
+     * @param integer $devenirZen
+     *
+     * @return Vote
+     */
+    public function setDevenirZen($devenirZen)
+    {
+        $this->devenirZen = $devenirZen;
+
+        return $this;
+    }
+
+    /**
+     * Get devenirZen
+     *
+     * @return integer
+     */
+    public function getDevenirZen()
+    {
+        return $this->devenirZen;
     }
 
     /**

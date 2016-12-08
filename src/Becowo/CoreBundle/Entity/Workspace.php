@@ -229,22 +229,6 @@ class Workspace
      */
     private $amenities;
 
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Offer", inversedBy="workspace")
-     * @ORM\JoinTable(name="becowo_workspace_has_offer",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $offer;
-
     /**
      * @var string
      *
@@ -260,9 +244,7 @@ class Workspace
     {
         $this->poi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->teamMember = new \Doctrine\Common\Collections\ArrayCollection();
-       // $this->office = new \Doctrine\Common\Collections\ArrayCollection();
         $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->offer = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->isDeleted = false;
     }
@@ -908,44 +890,6 @@ class Workspace
         return $this->amenities;
     }
 
-    /**
-     * Add offer
-     *
-     * @param \Becowo\CoreBundle\Entity\Offer $offer
-     *
-     * @return Workspace
-     */
-    public function addOffer(\Becowo\CoreBundle\Entity\Offer $offer)
-    {
-        $this->offer[] = $offer;
-
-        return $this;
-    }
-
-    /**
-     * Remove offer
-     *
-     * @param \Becowo\CoreBundle\Entity\Offer $offer
-     */
-    public function removeOffer(\Becowo\CoreBundle\Entity\Offer $offer)
-    {
-        $this->offer->removeElement($offer);
-    }
-
-    /**
-     * Get offer
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOffer()
-    {
-        return $this->offer;
-    }
-
-    public function __toString()
-    {
-        return $this->name;
-    }
 
     /**
      * @Algolia\IndexIf
@@ -979,5 +923,10 @@ class Workspace
     public function getRegion()
     {
         return $this->region;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

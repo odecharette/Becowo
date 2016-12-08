@@ -74,6 +74,12 @@ class WorkspaceService
         return $repo->findOneByName($name);
     }
 
+    public function getWorkspaceById($id)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Workspace');
+        return $repo->findOneById($id);
+    }
+
     public function getPicturesByWorkspace($name)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Picture');
@@ -223,5 +229,11 @@ class WorkspaceService
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
         return $repo->findBookingByWsHasOfficeId($id);
+    }
+
+    public function getOffersByWorkspace($ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasOffer');
+        return $repo->findOffersByWorkspace($ws);
     }
 }

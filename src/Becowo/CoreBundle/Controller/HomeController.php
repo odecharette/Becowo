@@ -40,4 +40,10 @@ class HomeController extends Controller
       ));
   }
 
+  public function communityAction()
+  {
+    
+    return $this->render('Home/community.html.twig');
+  }
+
 }

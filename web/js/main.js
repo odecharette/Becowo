@@ -51,12 +51,9 @@ $(function () {
             	$('#VoteResults').html("Une erreur est survenue, veuillez réessayer plus tard");
             }
         });
-
-
     	return false;
-
-
     });
+
 
 });
 

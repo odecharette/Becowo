@@ -22,29 +22,23 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a title="Accueil" class="navbar-brand" href="{{ path('becowo_core_homepage') }}">
                     <img src="{{ asset('images/icons/Logo_becowo_tagline2.png') }}" alt="Becowo">
             		
                 </a>
             </div>
-            {# <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-left">
-					<h1>Becowo</h1>
-				</ul>
-			</div> #}
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav navbar-right">
 
                     <li class="dropdown ">
-                        <a title="Nos espaces" href="{{ path('becowo_core_homepage') }}">
-                            Nos espaces
+                        <a title="Ou travailler" href="{{ path('becowo_core_homepage') }}">
+                            Ou travailler ?
+                        </a>
+                    </li>
+                    <li class="dropdown ">
+                        <a title="Qui rencontrer" href="{{ path('becowo_core_community') }}">
+                            Qui rencontrer ?
                         </a>
                     </li>
                     <li class="dropdown ">
@@ -79,12 +73,12 @@
 						    </li>
 						    {% if is_granted('ROLE_MANAGER') %}
 								<li>
-									<a href="{{ path('becowo_manager_profile_identite') }}"><i class="fa fa-wrench"></i> Espace Manager</a>
+									<a href="{{ path('becowo_manager_profile_identite') }}" target="_blank"><i class="fa fa-wrench"></i> Espace Manager</a>
 								</li>
 							{% endif %}
 							{% if is_granted('ROLE_ADMIN') %}
 								<li>
-									<a href="{{ path('easyadmin') }}"><i class="fa fa-lock"></i> Espace Admin</a>
+									<a href="{{ path('easyadmin') }}" target="_blank"><i class="fa fa-lock"></i> Espace Admin</a>
 								</li>
 							{% endif %}
 						    <li>
