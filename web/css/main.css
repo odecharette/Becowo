@@ -960,6 +960,9 @@ footer{
 #PublicProfile .middle h2{
   padding-top: 20px;
 }
+#PublicProfile .skills h2{
+  padding-top: 0px;
+}
 /********************************** Page workspace *************************************/
 
 #wsHeader{
