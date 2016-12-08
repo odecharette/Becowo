@@ -13,6 +13,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  *              @ORM\AttributeOverride(name="email", column=@ORM\Column(nullable=true)),
  *              @ORM\AttributeOverride(name="emailCanonical", column=@ORM\Column(nullable=true))})
  * @ORM\Entity(repositoryClass="Becowo\MemberBundle\Repository\MemberRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Member extends BaseUser
 {
@@ -1117,5 +1118,40 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         $this->fillRate = $fillRate;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateFillRate()
+    {
+        $totalInfo = 22;
+        $totalFilled = 0;
+
+        $this->getFirstname() != '' ? $totalFilled++ : '';
+        $this->getName() != '' ? $totalFilled++ : '';
+        $this->getSex() != '' ? $totalFilled++ : '';
+        $this->getBirthDate() != '' ? $totalFilled++ : '';
+        $this->getPhone() != '' ? $totalFilled++ : '';
+        $this->getStreet() != '' ? $totalFilled++ : '';
+        $this->getPostCode() != '' ? $totalFilled++ : '';
+        $this->getCity() != '' ? $totalFilled++ : '';
+        $this->getJob() != '' ? $totalFilled++ : '';
+        $this->getSociety() != '' ? $totalFilled++ : '';
+        $this->getWebsite() != '' ? $totalFilled++ : '';
+        $this->getDescription() != '' ? $totalFilled++ : '';
+        $this->getFacebookLink() != '' ? $totalFilled++ : '';
+        $this->getTwitterLink() != '' ? $totalFilled++ : '';
+        $this->getInstagramLink() != '' ? $totalFilled++ : '';
+        $this->getLinkedinLink() != '' ? $totalFilled++ : '';
+        $this->getProfilePicture() != '' ? $totalFilled++ : '';
+        $this->getCountry() != '' ? $totalFilled++ : '';
+        $this->getPersonnalTweet() != '' ? $totalFilled++ : '';
+        $this->getSkills() != '' ? $totalFilled++ : '';
+        $this->getHobbies() != '' ? $totalFilled++ : '';
+        $this->getWishes() != '' ? $totalFilled++ : '';
+
+
+        $this->setFillRate(round($totalFilled / $totalInfo * 100, 2));
     }
 }
