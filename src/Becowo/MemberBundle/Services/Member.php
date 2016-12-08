@@ -30,4 +30,15 @@ class Member
         return $repo->findAllActiveMembers();
     }
 
+    public function getMemberById($id)
+    {
+        $repo = $this->em->getRepository('BecowoMemberBundle:Member');
+        return $repo->findOneById($id);
+    }
+
+    public function getAllActiveMembersWithWsBooked()
+    {
+        $repo = $this->em->getRepository('BecowoMemberBundle:Member');
+        return $repo->findAllActiveMembersWithWsBooked();
+    }
 }

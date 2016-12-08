@@ -93,7 +93,9 @@
 			</div>
 			<div class="coworking">
 				<h2>Mes coworking</h2>
-				TO DO
+					{% for ws in wsBooked %}
+						<a href="{{ path('becowo_core_workspace', { 'name': ws.name }) }}">{{ws.name}}</a> <br>
+					{% endfor %}
 			</div>
 			<div class="taux">
 				<h2>Taux de remplissage de mon profil</h2>
@@ -106,6 +108,5 @@
 		</div>
 	</div>
 </div>
-
 
 {% endblock %}

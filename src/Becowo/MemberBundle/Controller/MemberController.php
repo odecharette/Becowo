@@ -8,11 +8,13 @@ class MemberController extends Controller
 {
   public function viewPublicProfileAction($id)
   {
-  	$em = $this->getDoctrine()->getManager();
-  	$repo = $em->getRepository('BecowoMemberBundle:Member');
-  	$member = $repo->findOneById($id);
+  	$MemberService = $this->get('app.member');
+  	$member = $MemberService->getMemberById($id);
 
-  	return $this->render('Member/ViewPublicProfile.html.twig', array('member' => $member));
+  	$WsService = $this->get('app.workspace');
+  	$wsBooked = $WsService->getWsBookedByMemberId($id);
+
+  	return $this->render('Member/ViewPublicProfile.html.twig', array('member' => $member, 'wsBooked' =>$wsBooked));
   }
 
 
