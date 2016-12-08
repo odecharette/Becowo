@@ -2345,7 +2345,7 @@
       }
 
       // Handle clicks from the list
-  /*    $(document).on('click.' + pluginName, '.' + _this.settings.locationList + ' li', function () {
+      $(document).on('click.' + pluginName, '.' + _this.settings.locationList + ' li', function () {
         var markerId = $(this).data('markerid');
         var selectedMarker = markers[markerId];
 
@@ -2377,7 +2377,7 @@
         $('.' + _this.settings.locationList + ' li').removeClass('list-focus');
         $('.' + _this.settings.locationList + ' li[data-markerid=' + markerId + ']').addClass('list-focus');
       });
-*/
+
       // Prevent bubbling from list content links
       $(document).on('click.'+pluginName, '.' + _this.settings.locationList + ' li a', function(e) {
         e.stopPropagation();

@@ -67,6 +67,7 @@
 		{{#if featuresUrl22}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl22}}.png" alt="{{featuresUrl22}}" title="{{featuresUrl22}}"> {{/if}}
 		{{#if featuresUrl23}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl23}}.png" alt="{{featuresUrl23}}" title="{{featuresUrl23}}"> {{/if}}
 		{{#if featuresUrl24}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl24}}.png" alt="{{featuresUrl24}}" title="{{featuresUrl24}}"> {{/if}} -->
+
 		</div>
 
 		<script>
@@ -77,14 +78,17 @@
 	    $("#voteZen-{{id}}").unbind("click").click(function(){
 	    	//Vote pour que l'espace devienne Offre Zen
 	    	console.log('vote zen enclenché');
+	    	document.getElementById('voteZen-{{id}}').innerHTML = "<img src='/Becowo/web/images/icons/loading.gif'>";
 	    	$.ajax(Routing.generate('becowo_core_vote_zen', {id: "{{id}}"}), {
 	            data: $('#form_voteZen').serialize(),
 	            type: "POST",
 	            success: function(data) {
 	            	console.log('OK vote JS : {{id}}');
+	            	document.getElementById('voteZen-{{id}}').innerHTML = "Merci !";
 	            },
 	            error: function() {
 	            	console.log('probleme vote JS');
+	            	document.getElementById('voteZen-{{id}}').innerHTML = "Erreur";
 	            }
 	        });
 	    	return false;

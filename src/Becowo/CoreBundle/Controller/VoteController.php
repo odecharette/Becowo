@@ -53,8 +53,6 @@ class VoteController extends Controller
       $em->persist($vote);
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('success', 'Votre vote a bien été comptabilisé');
-
       return $this->redirectToRoute('becowo_core_vote_zen', array('id' => $request->get('id')));
     }
 
