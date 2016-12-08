@@ -20,6 +20,17 @@ class MemberRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findAllActiveMembers()
+	{
+		$qb = $this->createQueryBuilder('m');
+		$qb->select('p, m')
+		   ->Join('m.profilePicture', 'p')
+			->where('m.enabled = true')
+			->andWhere('m.isDeleted = false');
+
+		return $qb->getQuery()->getResult();
+	}
+
 	public function getAgeByRangeFromMembers()
 	{
 		$rsm = new ResultSetMapping();

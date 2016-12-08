@@ -14,11 +14,10 @@ class HomeController extends Controller
     $officesByWS = $WsService->getOfficesByWorkspaces($workspaces);
     $workspaceFavorite = $WsService->getFavoriteWorkspace();
 
-    $WsService = $this->get('app.member');
-    $members = $WsService->getLastActiveMembers(5);
+    
 
-    $WsService = $this->get('app.comment');
-    $comments = $WsService->getLastCommentsAndAuthor(3);
+    // $WsService = $this->get('app.comment');
+    // $comments = $WsService->getLastCommentsAndAuthor(3);
    
     // $WsService = $this->get('app.map');
     // $mapGeoJson = $WsService->getWsAndPoiInGeoJson($workspaces);
@@ -31,19 +30,21 @@ class HomeController extends Controller
 
   	return $this->render('Home/home.html.twig', array(
   		'workspaces' => $workspaces, 
-  		'members' => $members, 
+  		//'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
       'picturesByWs' => $picturesByWs,
-      'officesByWS' => $officesByWS,
-      'comments' => $comments
+      'officesByWS' => $officesByWS
+      // 'comments' => $comments
       // ,      'mapGeoJson' => $mapGeoJson
       ));
   }
 
   public function communityAction()
   {
+    $MemberService = $this->get('app.member');
+    $members = $MemberService->getAllActiveMembers();
     
-    return $this->render('Home/community.html.twig');
+    return $this->render('Home/community.html.twig', array('members' => $members));
   }
 
 }

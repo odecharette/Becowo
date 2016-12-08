@@ -1,44 +1,111 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}
-  {{ parent() }} - {{member.username}}
+  {{ parent() }} - {{member.firstname}}
 {% endblock %}
 
 {% block body %}
 
-<br><br>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-lg-1 col-lg-offset-5">
-		<img src="{{ asset('images/ProfilePictures/') }}{{member.profilepicture.url}}" alt="{{member.profilepicture.alt}}" width="100px" height="100px">
-		</div>
-		<div class="col-lg-6">
-		{{member.firstname}} {{member.name}}<br>
-		{{member.city}}<br>
-		Inscrit depuis le {{member.createdAt|date("d/m/Y")}}
-		</div>
+{# <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" > #}
+
+<div class="container-fluid" id="PublicProfile">
+	<div class="row name">
+		{{member.firstname}} {{member.name}}
 	</div>
-<br><br>	
 	<div class="row">
-		<div class="col-lg-6">
-			<h4>Coordonnées</h4>
-			Email : {{member.email}}<br>
-			Téléphone : {{member.phone}}<br>
-			<hr>
-			Rue : {{member.street}}<br>
-			Ville : {{member.postcode}} {{member.city}}<br>
-			Pays : {{member.country.name}}<br>
+		<div class="col-lg-3">
+			<div class="picture">
+				<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.profilePicture.url}}'); 
+			    width:200px; 
+			    height:200px; 
+			    background-position:center;
+			    background-size: cover;">&nbsp;</div>
+			</div>
+			<div class="identity">
+				<span><i class="fa fa-quote-left" aria-hidden="true"></i> {{member.personnalTweet}} <i class="fa fa-quote-right" aria-hidden="true"></i></span> <br>
+				<i class="fa fa-building-o" aria-hidden="true"></i> {{member.society}} <br>
+				<i class="fa fa-briefcase" aria-hidden="true"></i> {{member.job}} <br>
+				<i class="fa fa-home" aria-hidden="true"></i> {{member.city}} <br>
+				<i class="fa fa-external-link" aria-hidden="true"></i> <a href="{{member.website}}" target="_blank">{{member.website}}</a>	
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<h4>CV</h4>
-			Activité professionnelle : {{member.job}}<br>
-			Entreprise : {{member.society}}<br>
-			Site / Blog : {{member.website}}<br>
-			Présentation : {{member.description}}<br>
+		<div class="col-lg-6 middle" >
+			<div>
+				<h2>Compétences</h2>
+				{% set skills = member.skills|split(',') %}
+				{% for skill in skills %}
+				    <span class="label skill">{{skill}}</span>
+				{% endfor %}
+			</div>
+			<div>
+				<h2>Centres d'intérêts</h2>
+				{% set hobbies = member.hobbies|split(',') %}
+				{% for hobbie in hobbies %}
+				    <span class="label hobbie">{{hobbie}}</span>
+				{% endfor %}
+			</div>
+			<div>
+				<h2>Avec Becowo j'aimerais : </h2>
+				{% set wishes = member.wishes|split(',') %}
+				{% for wishe in wishes %}
+				    <span class="label wishe">{{wishe}}</span>
+				{% endfor %}
+			</div>
+			<div class="bio">
+				<h2>Bio</h2>
+				{{member.description|nl2br}}
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="rs">
+				<h2>Suivez-moi !</h2>
+				{% if member.facebookLink != '' %} 
+					<a href="{{member.facebookLink}}" target="_blank">
+						<img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook">
+					</a>
+				{% else %}
+					<img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook" style="opacity:0.4">
+				{% endif %}
+
+				{% if member.linkedinLink != '' %} 
+					<a href="{{member.linkedinLink}}" target="_blank">
+						<img src="{{ asset('images/RS/linkedin.png') }}" alt="LinkedIn">
+					</a>
+				{% else %}
+						<img src="{{ asset('images/RS/linkedin.png') }}" alt="LinkedIn" style="opacity:0.4">
+				{% endif %}
+
+				{% if member.twitterLink != '' %} 
+					<a href="{{member.twitterLink}}" target="_blank">
+						<img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter">
+					</a>
+				{% else %}
+						<img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter" style="opacity:0.4">
+				{% endif %}
+
+				{% if member.instagramLink != '' %} 
+					<a href="{{member.instagramLink}}" target="_blank">
+						<img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram">
+					</a>
+				{% else %}
+						<img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram" style="opacity:0.4">
+				{% endif %}
+			</div>
+			<div class="coworking">
+				<h2>Mes coworking</h2>
+				TO DO
+			</div>
+			<div class="taux">
+				<h2>Taux de remplissage de mon profil</h2>
+				<div class="progress">
+				    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{member.fillRate}}" aria-valuemin="0" aria-valuemax="100" style="width: {{member.fillRate}}%;">
+				        {{member.fillRate}} %
+				    </div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
-<br><br><br><br>
 
 {% endblock %}

@@ -870,6 +870,96 @@ footer{
   border-radius: 5%;
 }
 
+/********************************** Page Community *************************************/
+#community{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+#community .row{
+  margin-top: 30px;
+}
+#community .member{
+  position: relative;
+  width: 200px;
+}
+#community img{
+  width: 200px;
+}
+#community span{
+  position: absolute;
+  top: 10%;
+  left: 70%;
+  font-size: 10pt;
+}
+#community .name{
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 12pt;
+  color: var(--my-blue);
+  text-align: center;
+}
+
+/********************************** Public profile *************************************/
+
+#PublicProfile .name{
+  background-color: var(--my-orange);
+  color: white;
+  font-size: 14pt;
+  text-transform: capitalize;
+  line-height: 50px;
+  padding-left: 10px;
+}
+
+#PublicProfile .picture{
+  margin-top: 10px;
+}
+#PublicProfile h2{
+  color: var(--my-orange) !important;
+  font-size: 22pt;
+  text-align: left;
+}
+
+#PublicProfile .skill, #PublicProfile .hobbie, #PublicProfile .wishe{
+  background-color: var(--my-pink);
+  font-size: 12pt;
+  line-height: 2em;
+}
+#PublicProfile .identity span{
+  background-color: var(--my-orange);
+  color: white;
+  padding: 10px;
+  display: block;
+  width: 200px;
+  font-style: italic;
+}
+#PublicProfile .identity span i{
+  margin-right: 5px;
+  margin-left: 5px;
+}
+#PublicProfile .identity, #PublicProfile .identity a{
+  color: var(--my-orange);
+  font-weight: bold;
+}
+#PublicProfile .identity i{
+  margin-right: 10px;
+  color: var(--my-pink);
+}
+#PublicProfile .rs img{
+  width: 50px;
+}
+#PublicProfile .rs a{
+    display: inline-block;
+}
+#PublicProfile .bio{
+  background-color: var(--my-grey-light);
+  padding: 0 10px 10px 10px;
+}
+#PublicProfile .bio h2{
+  padding-top: 5px !important;
+}
+#PublicProfile .middle h2{
+  padding-top: 20px;
+}
 /********************************** Page workspace *************************************/
 
 #wsHeader{

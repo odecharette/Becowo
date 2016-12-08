@@ -24,4 +24,10 @@ class Member
         }
     }
 
+    public function getAllActiveMembers()
+    {
+        $repo = $this->em->getRepository('BecowoMemberBundle:Member');
+        return $repo->findAllActiveMembers();
+    }
+
 }

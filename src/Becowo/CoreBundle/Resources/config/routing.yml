@@ -155,7 +155,7 @@ becowo_core_extract:
     methods: GET
 
 becowo_member_public_profile:
-    path:     /profile/public/{username}
+    path:     /communaute/{id}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
     methods: GET
 
