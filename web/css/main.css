@@ -22,8 +22,8 @@
 --my-black: rgb(36, 38, 46); /* #24262e */
 --my-green: rgb(0, 161, 154); /* #00A19A */
 --my-green-strong: rgb(0, 135, 142); /* #00878E */
---my-orange: rgb(244, 147, 2);
 --my-pink: rgb(241, 95, 104);
+--my-orange: rgb(244, 147, 2);
 /* grey : #e9e9e9 */
 
   --my-green-opacity: rgba(0, 161, 154, 0.15);
@@ -326,7 +326,7 @@ footer{
   margin-bottom: 20px;
 }
 #page-simple p{
-  text-align: justify;
+  text-align: justify !important;
   color: var(--my-grey);
 }
 
@@ -428,7 +428,7 @@ footer{
 #home-image{
   position: relative;
 }
-#home-image span{
+#home-image div{
   position: absolute;
   top: 60%;
   color: white;
@@ -902,7 +902,7 @@ footer{
 /********************************** Public profile *************************************/
 
 #PublicProfile .name{
-  background-color: var(--my-orange);
+  background-color: var(--my-green);
   color: white;
   font-size: 14pt;
   text-transform: capitalize;
@@ -914,7 +914,7 @@ footer{
   margin-top: 10px;
 }
 #PublicProfile h2{
-  color: var(--my-orange) !important;
+  color: var(--my-green) !important;
   font-size: 22pt;
   text-align: left;
 }
@@ -924,28 +924,34 @@ footer{
   font-size: 12pt;
   line-height: 2em;
 }
-#PublicProfile .identity span{
-  background-color: var(--my-orange);
+#PublicProfile .tweet{
+  background-color: var(--my-green);
   color: white;
   padding: 10px;
   display: block;
-  width: 200px;
+  width: 100%;
   font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-#PublicProfile .identity span i{
+#PublicProfile .tweet i{
   margin-right: 5px;
   margin-left: 5px;
 }
 #PublicProfile .identity, #PublicProfile .identity a{
-  color: var(--my-orange);
+  color: var(--my-green);
   font-weight: bold;
 }
 #PublicProfile .identity i{
   margin-right: 10px;
   color: var(--my-pink);
 }
+#PublicProfile .identity i.fa.fa-building-o{
+  margin-right: 13px !important;
+}
 #PublicProfile .rs img{
-  width: 50px;
+  width: 40px;
+  height: 40px;
 }
 #PublicProfile .rs a{
     display: inline-block;
@@ -965,6 +971,88 @@ footer{
 }
 #PublicProfile .coworking a, #PublicProfile .coworking a:hover{
   color: var(--my-pink);
+}
+#PublicProfile .progress-bar{
+  background-color: var(--my-pink);
+}
+
+/********************************** Edit profile *************************************/
+
+.has-error{
+  display: inline !important;
+}
+.head{
+  background-color: var(--my-green);
+  color: white;
+}
+.head h1{
+  color: white;
+}
+.head p{
+  text-align: center;
+  font-size: 12pt;
+}
+.head a{
+  color: white;
+}
+.taux{
+  margin-top: 3%;
+  text-align: center;
+}
+.picture .form-group{
+  margin-bottom: 0;
+}
+.rs div{
+  display: inline-flex;
+}
+.rs img{
+  margin-right: 5px;
+}
+.rs input{
+  width: 250px;
+}
+.skills .label-info, .hobbies .label-info, .wishes .label-info{
+  background-color: var(--my-pink);
+}
+.identity .form-group{
+  margin-bottom: 10px;
+  display: inline-block;
+  width: 90%;
+}
+
+#fos_user_profile_form_sex{
+  display: inline-flex;
+}
+#fos_user_profile_form_sex .radio{
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#fos_user_profile_form_username{
+  display: none;
+  /* TO DO : le username doit être complètement désactivé et on n'utilise que l'email*/
+}
+#PublicProfile .btnMAJ, #PublicProfile .btnView{
+  color: white;
+  margin: 10px 10px 10px 10px;
+  line-height: 2em;
+  font-size: 12pt;
+}
+#PublicProfile .btnMAJ{
+  background-color: var(--my-blue);
+  border-color: var(--my-blue);
+}
+#PublicProfile .btnView{
+  background-color: var(--my-green);
+  border-color: var(--my-green);
+}
+#PublicProfile .btnView a{
+  display: block;
+  color: white;
+}
+#PublicProfile .btnView a:hover{
+  text-decoration: none;
 }
 /********************************** Page workspace *************************************/
 
@@ -1769,11 +1857,13 @@ color: var(--my-blue) !important;
   text-align: center;
   font-size: 8pt;
 }
-#offres #pourquoi h3, p{
+#offres #pourquoi h3{
   color: #484848;
   text-align: center !important;
 }
 #offres #pourquoi p{
+  color: #484848;
+  text-align: center !important;
   font-size: 12pt;
 }
 #offres #services{
@@ -2369,4 +2459,66 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
     text-decoration: line-through; }
 
 /* FIN CSS pour les elements Segmented */
+
+
+
+/************************** Bootstrap taginput *************************/
+/* https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/ */
+
+.bootstrap-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: inline-block;
+  padding: 4px 6px;
+  color: #555;
+  vertical-align: middle;
+  border-radius: 4px;
+  width: 100%;
+  line-height: 30px;
+  cursor: text;
+}
+.bootstrap-tagsinput input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0 6px;
+  margin: 0;
+  width: auto;
+  max-width: inherit;
+}
+.bootstrap-tagsinput.form-control input::-moz-placeholder {
+  color: #777;
+  opacity: 1;
+}
+.bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+  color: #777;
+}
+.bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+  color: #777;
+}
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+.bootstrap-tagsinput .tag {
+  margin: 2px;
+  color: white;
+  font-size: 10pt;
+}
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+  content: "x";
+  padding: 0px 2px;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
 

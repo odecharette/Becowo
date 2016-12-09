@@ -6,7 +6,7 @@
 
 {% block body %}
 
-{# <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" > #}
+
 
 <div class="container-fluid" id="PublicProfile">
 	<div class="row name">
@@ -21,8 +21,12 @@
 			    background-position:center;
 			    background-size: cover;">&nbsp;</div>
 			</div>
+			<div class="tweet">
+				<i class="fa fa-quote-left" aria-hidden="true"></i> 
+				{{member.personnalTweet}} 
+				<i class="fa fa-quote-right" aria-hidden="true"></i>	
+			</div>
 			<div class="identity">
-				<span><i class="fa fa-quote-left" aria-hidden="true"></i> {{member.personnalTweet}} <i class="fa fa-quote-right" aria-hidden="true"></i></span> <br>
 				<i class="fa fa-building-o" aria-hidden="true"></i> {{member.society}} <br>
 				<i class="fa fa-briefcase" aria-hidden="true"></i> {{member.job}} <br>
 				<i class="fa fa-home" aria-hidden="true"></i> {{member.city}} <br>
@@ -98,9 +102,9 @@
 					{% endfor %}
 			</div>
 			<div class="taux">
-				<h2>Taux de remplissage de mon profil</h2>
+				<h2>Taux de remplissage</h2>
 				<div class="progress">
-				    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{member.fillRate}}" aria-valuemin="0" aria-valuemax="100" style="width: {{member.fillRate}}%;">
+				    <div class="progress-bar" role="progressbar" aria-valuenow="{{member.fillRate}}" aria-valuemin="0" aria-valuemax="100" style="width: {{member.fillRate}}%;">
 				        {{member.fillRate}} %
 				    </div>
 				</div>

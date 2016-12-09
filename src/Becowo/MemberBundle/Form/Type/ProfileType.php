@@ -18,36 +18,58 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$builder
-            ->add('firstname', TextType::class, array('required' => false))
-    	    ->add('name', TextType::class, array('required' => false))
+            ->add('username', TextType::class, array('label' => false))
+            ->add('firstname', TextType::class, array('attr' => array(
+             'placeholder' => 'Prénom'),'required' => true, 'label' => false))
+    	    ->add('name', TextType::class, array('attr' => array(
+             'placeholder' => 'Nom'),'required' => true, 'label' => false))
     	    ->add('sex', ChoiceType::class, array(
         		'choices' => array(
         			'Male' => false,
         			'Female' => true),
         		'expanded'=> true,
         		'multiple' => false,
-        		'required' => false))
-    	    ->add('birthDate', BirthdayType::class, array('required' => false))
-            ->add('email', EmailType::class, array('required' => true))
-    	    ->add('phone', TextType::class, array('required' => false))
-    	    ->add('street', TextType::class, array('required' => false))
-    	    ->add('postcode', TextType::class, array('required' => false))
-    	    ->add('city', TextType::class, array('required' => false))
-    	    ->add('country', EntityType::class, array(
-			    'class'        => 'BecowoCoreBundle:Country',
-			    'choice_label' => 'name',
-			    'multiple'     => false,
-			    'expanded'	   => false))
-
-            ->add('job', TextType::class, array('required' => false))
-    	    ->add('society', TextType::class, array('required' => false))
-    	    ->add('website', TextType::class, array('required' => false))
-    	    ->add('description', TextareaType::class, array('required' => false))
-    	    ->add('facebookLink', UrlType::class, array('required' => false))
-    	    ->add('twitterLink', UrlType::class, array('required' => false))
-    	    ->add('instagramLink', UrlType::class, array('required' => false))
-    	    ->add('linkedinLink', UrlType::class, array('required' => false))
-    	    ->add('profilePicture', ProfilePictureType::class)
+        		'required' => false,
+                'label' => false))
+    	    ->add('birthDate', BirthdayType::class, array('widget' => 'choice','required' => false, 'label' => false))
+            ->add('email', EmailType::class, array('attr' => array('placeholder' => 'Email'),'required' => true, 'label' => false))
+    	    ->add('phone', TextType::class, array('attr' => array('placeholder' => 'Téléphone'),'required' => false, 'label' => false))
+    	    ->add('street', TextType::class, array('attr' => array('placeholder' => 'Adresse'),'required' => false, 'label' => false))
+    	    ->add('postcode', TextType::class, array('attr' => array('placeholder' => 'Code Postal'),'required' => false, 'label' => false))
+    	    ->add('city', TextType::class, array('attr' => array('placeholder' => 'Ville'),'required' => false, 'label' => false))
+    	  //   ->add('country', EntityType::class, array(
+			    // 'class'        => 'BecowoCoreBundle:Country',
+			    // 'choice_label' => 'name',
+			    // 'multiple'     => false,
+			    // 'expanded'	   => false, 
+       //          'label' => false))
+            ->add('job', TextType::class, array('attr' => array('placeholder' => 'Job'),'required' => false, 'label' => false))
+    	    ->add('society', TextType::class, array('attr' => array('placeholder' => 'Société'), 'label' => false))
+    	    ->add('website', TextType::class, array('attr' => array(
+                'placeholder' => 'URL de mon site'),
+                'required' => false, 
+                'label' => false))
+            ->add('personnalTweet', TextType::class, array('attr' => array(
+                'placeholder' => 'Mon humeur en un tweet'),
+                'required' => false, 
+                'label' => false))
+    	    ->add('description', TextareaType::class, array('required' => false, 'label' => false, 'attr' => array('rows' => '10')))
+    	    ->add('facebookLink', TextType::class, array('attr' => array(
+                'placeholder' => 'Ma page ou profil Facebook'),
+                'required' => false, 
+                'label' => false))
+    	    ->add('twitterLink', TextType::class, array('attr' => array(
+                'placeholder' => 'Mon profil Twitter'),'required' => false, 'label' => false))
+    	    ->add('instagramLink', TextType::class, array('attr' => array(
+                'placeholder' => 'Mon profil Instagram'),'required' => false, 'label' => false))
+    	    ->add('linkedinLink', TextType::class, array('attr' => array(
+                'placeholder' => 'Ma page ou profil LinkedIn'),
+                'required' => false, 
+                'label' => false))
+    	    ->add('profilePicture', ProfilePictureType::class, array('label' => false))
+            ->add('skills', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
+            ->add('hobbies', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
+            ->add('wishes', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ;
 
     	$builder->remove('current_password');

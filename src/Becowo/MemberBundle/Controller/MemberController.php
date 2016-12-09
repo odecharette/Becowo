@@ -14,8 +14,7 @@ class MemberController extends Controller
   	$WsService = $this->get('app.workspace');
   	$wsBooked = $WsService->getWsBookedByMemberId($id);
 
-  	return $this->render('Member/ViewPublicProfile.html.twig', array('member' => $member, 'wsBooked' =>$wsBooked));
+  	return $this->render('Member/viewPublicProfile.html.twig', array('member' => $member, 'wsBooked' =>$wsBooked));
   }
-
 
 }

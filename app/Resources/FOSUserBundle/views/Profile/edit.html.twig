@@ -8,11 +8,8 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
-<br>
 
-<div class="container-fluid">
-<div class="row">
-<div class="col-lg-12">
+<div class="container-fluid" id="PublicProfile">  
 
 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -20,71 +17,119 @@
 
     {# Les erreurs générales du formulaire. #}
     {{ form_errors(form) }}
+  <div class="row head">
+    <div class="col-lg-8">
+        <h1>Pourquoi remplir mon profil ?</h1>
+        <p>Plus votre taux de remplissage est élevé plus vous apparaissez en tête de liste dans la <a href="{{ path('becowo_core_community') }}">communauté</a> ! <br>
+        De plus, Becowo vous proposera bientôt de nouvelles fonctionnalités pour échanger avec les autres coworkers. <br>
+        C'est donc un bon moyen de rendre votre travail visible, alors n'hésitez plus ! 
+        </p>
+    </div>
+    <div class="col-lg-4 taux">
+      <p>Taux de remplissage</p>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ form.vars.value.fillRate }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ form.vars.value.fillRate }}%;">
+                {{ form.vars.value.fillRate }} %
+            </div>
+        </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="picture">
+          {% if form.children.profilePicture.children.url.vars.value != '' %}
+            {% if form.vars.data.signedUpWith != '' %}
+              <div style="background-image:url('{{ form.vars.value.profilePicture.url }}'); 
+                width:200px; 
+                height:200px; 
+                background-position:center;
+                background-size: cover;">&nbsp;</div>
+            {% else %}
+              <div style="background-image:url('{{asset('images/ProfilePictures/')}}{{ form.vars.value.profilePicture.url }}'); 
+                width:200px; 
+                height:200px; 
+                background-position:center;
+                background-size: cover;">&nbsp;</div>
+            {% endif %}
+            
+          {% endif %}
+          {{ form_row(form.profilePicture) }} <br>
+          {# {{ form.vars.value.profilePicture.url }} #}
+      </div>
+      <div class="tweet">
+        <i class="fa fa-quote-left" aria-hidden="true"></i> 
+        Mon humeur en un tweet 
+        <i class="fa fa-quote-right" aria-hidden="true"></i>
+        {{ form_row(form.personnalTweet) }}
+      </div>
+      <div class="identity">
+        <h2>Mon identité</h2>
+        <div>
+          <i class="fa fa-smile-o" aria-hidden="true"></i>{{ form_row(form.firstname) }}
+          <i class="fa fa-smile-o" aria-hidden="true"></i>{{ form_row(form.name) }}
+          <i class="fa fa-building-o" aria-hidden="true"></i>{{ form_row(form.society) }} <br>
+          <i class="fa fa-briefcase" aria-hidden="true"></i>{{ form_row(form.job) }} <br>
+          <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.city) }}  <br>
+          <i class="fa fa-external-link" aria-hidden="true"></i>{{ form_row(form.website) }}   <br>
+        </div>
+    </div>
+  </div>
+    <div class="col-lg-6 middle" >
+      <div class="skills">
+        <h2>Compétences</h2>
+          {{ form_row(form.skills) }}
+      </div>
+      <div class="hobbies">
+        <h2>Centres d'intérêts</h2>
+          {{ form_row(form.hobbies) }}
+      </div>
+      <div class="wishes">
+        <h2>Avec Becowo j'aimerais : </h2>
+          {{ form_row(form.wishes) }}
+      </div>
+      <div class="bio">
+        <h2>Bio</h2>
+        {{ form_row(form.description) }}
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="rs">
+        <h2>Suivez-moi !</h2>
+          <div>
+            <img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook">
+            {{ form_row(form.facebookLink) }}
+          </div><div>
+            <img src="{{ asset('images/RS/linkedin.png') }}" alt="LinkedIn">
+            {{ form_row(form.linkedinLink) }}
+          </div><div>
+            <img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter">
+            {{ form_row(form.twitterLink) }}
+          </div><div>
+            <img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram">
+            {{ form_row(form.instagramLink) }}
+          </div>
+      </div>
+      <div class="identity">
+        <h2>Informations privées</h2>
+          <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.street) }}  <br>
+          <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.postcode) }} <br>
+          <i class="fa fa-venus-mars" aria-hidden="true"></i>{{ form_row(form.sex) }} <br>
+          <i class="fa fa-birthday-cake" aria-hidden="true"></i>{{ form_row(form.birthDate) }} <br>
+          <i class="fa fa-at" aria-hidden="true"></i>{{ form_row(form.email) }} <br>
+          <i class="fa fa-phone" aria-hidden="true"></i>{{ form_row(form.phone) }} <br>
+          {# {{ form_row(form.country) }}  <br>#}
+          {# {{ form_row(form.username) }}  <br>#}
+      </div>
+    </div>
+  </div>
   <div class="row text-center">
-    {% if form.children.profilePicture.children.url.vars.value != '' %}
-      {% if form.vars.data.signedUpWith != '' %}
-        <img src="{{form.children.profilePicture.children.url.vars.value}}" alt="{{form.children.profilePicture.children.alt.vars.value}}" width="70px" height="70px">
-      {% else %}
-        <img src="{{asset('images/ProfilePictures/')}}{{form.children.profilePicture.children.url.vars.value}}" alt="{{form.children.profilePicture.children.alt.vars.value}}" width="70px" height="70px">
-      {% endif %}
-      
-    {% endif %}
+      <input type="submit" class="btnMAJ" value="Mettre à jour mon profil">
+      <button type="submit" class="btnView"><a href="{{ path('becowo_member_public_profile', {'id' : form.vars.value.id}) }}">Voir mon profil public</a></button>
   </div>
-
-
-  <div class="row"><div class="col-lg-6">
-
-	<h2>Mes coordonnées</h2>
-
-    {{ form_row(form.username) }}
-    {{ form_row(form.firstname) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.sex) }}
-    {{ form_row(form.birthDate) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.phone) }}
-
-    <hr>
-
-    {{ form_row(form.street) }}
-    {{ form_row(form.postcode) }}
-    {{ form_row(form.city) }}
-    {{ form_row(form.country) }}
-
-  </div>
-
-  <div class="col-lg-6">
-
-    <h2>Mon CV</h2>
-
-    {{ form_row(form.job) }}
-    {{ form_row(form.society) }}
-    {{ form_row(form.website) }}
-    {{ form_row(form.description) }}
-
-    <h2>Mes réseaux</h2>
-
-    {{ form_row(form.facebookLink) }}
-    {{ form_row(form.twitterLink) }}
-    {{ form_row(form.instagramLink) }}
-    {{ form_row(form.linkedinLink) }}
-
-    <h2>Ma photo de profil</h2>
-
-    {{ form_row(form.profilePicture) }}
-
-  </div></div>
-
-  <br>
   {{ form_rest(form) }}
-
-<div class="row text-center">
-      <input type="submit" class="btn btn-success" value="Mettre à jour mon profil">
-  </div>
   {{ form_end(form) }}
-</div>
-</div></div>
 
-<br><br>
+</div>
 
 {% endblock %}

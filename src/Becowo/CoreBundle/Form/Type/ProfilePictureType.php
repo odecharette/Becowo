@@ -3,6 +3,7 @@
 namespace Becowo\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,8 +18,8 @@ class ProfilePictureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', FileType::class, array('required' => false))
-            ->add('url', HiddenType::class, array('required' => false))
+            ->add('file', FileType::class, array('required' => false, 'label' => false))
+            ->add('url', HiddenType::class, array('required' => false, 'label' => false))
             ->add('alt', HiddenType::class, array('required' => false))
         ;
     }

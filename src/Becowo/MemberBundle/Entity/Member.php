@@ -4,6 +4,7 @@ namespace Becowo\MemberBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Member
@@ -107,6 +108,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="society", type="string", length=45, nullable=true)
+     *
      */
     private $society;
 
@@ -114,6 +116,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="website", type="string", length=255, nullable=true)
+     *
+     * @Assert\Url()
      */
     private $website;
 
@@ -163,6 +167,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="facebook_link", type="string", length=255, nullable=true)
+     *
+     * @Assert\Url()
      */
     private $facebookLink;
 
@@ -170,6 +176,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="twitter_link", type="string", length=255, nullable=true)
+     *
+     * @Assert\Url()
      */
     private $twitterLink;
 
@@ -177,6 +185,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="instagram_link", type="string", length=255, nullable=true)
+     *
+     * @Assert\Url()
      */
     private $instagramLink;
 
@@ -184,6 +194,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="linkedin_link", type="string", length=255, nullable=true)
+     *
+     * @Assert\Url()
      */
     private $linkedinLink;
 
@@ -238,6 +250,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="personnal_tweet", type="string", length=140, nullable=true)
+     * @Assert\Length(max = 140)
      */
     private $personnalTweet;
 
@@ -265,7 +278,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @var string
      *
-     * @ORM\Column(name="fill_rate", type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(name="fill_rate", type="decimal", precision=3, scale=0, nullable=true)
      */
     private $fillRate;
 
@@ -1152,6 +1165,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         $this->getWishes() != '' ? $totalFilled++ : '';
 
 
-        $this->setFillRate(round($totalFilled / $totalInfo * 100, 2));
+        $this->setFillRate(round($totalFilled / $totalInfo * 100, 0));
     }
 }

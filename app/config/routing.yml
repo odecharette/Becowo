@@ -36,7 +36,7 @@ fos_js_routing:
 # je surcharge pour ne pas utiliser la view show, mais uniquement edit
 
 fos_user_profile_show:
-    path: /profile/show
+    path: /profile/edit
     defaults: { _controller: FOSUserBundle:Profile:edit }
     requirements:
         _method: GET|POST
