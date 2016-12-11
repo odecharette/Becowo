@@ -97,6 +97,24 @@ $(function () {
     };
 */
 
+// Smooth scrolling for home button
+$("#goToMap").unbind("click").click(function(e){
+		e.preventDefault();
+		$('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
+});
+
+//Navbar Scroll Event
+var navbar = $('.navbar');
+$(window).scroll(function(event){
+   var st = $(this).scrollTop();
+   if (st > 70){
+       navbar.addClass('navbar-scroll-custom');
+   } 
+   if(st < 150) {
+      navbar.removeClass('navbar-scroll-custom');
+   }
+});
+
 /* Bouton Back to top */
 
     if ( ($(window).height() + 100) < $(document).height() ) {
@@ -683,7 +701,7 @@ function loadCalendar2(duree){
 };
 
 /********************************  JS construction form dans modal ******************/
-// test toto
+
 $('#myModalResaTest').on('show.bs.modal', function(e) {
   var modalData = e.relatedTarget.dataset;
 console.log(modalData);

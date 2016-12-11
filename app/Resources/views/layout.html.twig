@@ -19,9 +19,9 @@
 
 <header class="header">
     <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div>
                 <a title="Accueil" class="navbar-brand" href="{{ path('becowo_core_homepage') }}">
                     <img src="{{ asset('images/icons/Logo_becowo_tagline2.png') }}" alt="Becowo">
             		
@@ -39,11 +39,6 @@
                     <li class="dropdown ">
                         <a title="Qui rencontrer" href="{{ path('becowo_core_community') }}">
                             Qui rencontrer ?
-                        </a>
-                    </li>
-                    <li class="dropdown ">
-                        <a title="Nos offres" href="{{ path('becowo_core_offers') }}">
-                            Nos offres
                         </a>
                     </li>
                     <li class="dropdown ">
@@ -99,7 +94,6 @@
     </div>
 
 </header>
-
 
 
 {% block body %}

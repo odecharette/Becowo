@@ -63,6 +63,7 @@ header img{
   /* Pour mémo, typo : Vollkorn gras italique pour name et regular pour tagline*/
   width: 450px;
   margin-top: 5px;
+  margin-left: 10px;
 }
 header .navbar-brand {
   padding: 5px 5px 5px 5px;
@@ -81,6 +82,14 @@ header #login a:hover {
     color: var(--my-blue);
     border-bottom: solid 3px var(--my-blue);
 }
+header .navbar {
+  transition-duration: 0.2s;
+}
+header .navbar-scroll-custom {
+    transform: translateY(-73px); /* size of the header + bottom border */
+    transition-duration: 0.6s;    
+}
+
 header #login a {
     color: white;
     background-color: var(--my-blue);
@@ -445,15 +454,26 @@ footer{
     padding: 5px 13px 5px 13px;
     border-radius: 50%;
     left: 48%;
+    border: none;
+    outline: 0;
 }
 #bh-sl-map{
   padding-left: 0;
   margin-right: 15px;
-  height: 500px;
+  height: 470px;
+  margin-top: 30px;
 }
 #map-results-container{
   padding-left: 10px;
   position: relative;
+}
+.titre{
+  position: absolute;
+  top: 0%;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  font-size: 12pt;
+  color: var(--my-green);
 }
 #legende{
   position: absolute;
@@ -487,7 +507,7 @@ footer{
   display: inline-flex;
   position: absolute;
   z-index: 2;
-  margin-top: 15px;
+  margin-top: 45px;
   margin-left: 5px;
 }
 #region-filters-container{
@@ -625,18 +645,30 @@ footer{
 #vignette #price i{
   color: var(--my-orange);
 }
-#vignette #btn{
+#vignette #btn_decouvrir{
   position: absolute;
   right: 0;
   bottom: -5%;
 }
-#vignette #btn button{
+#vignette .btn_vignette{
   background-color: var(--my-green);
   border : var(--my-green-strong);
   color: white ;
   font-size: 14pt;
   line-height: 2em;
   width: 200px;
+}
+#vignette .modal-body{
+  color: var(--my-grey);
+  font-size: 12pt;
+}
+#vignette .modal_valid{
+  background-color: var(--my-blue);
+  color: white;
+  border: none;
+  font-size: 13pt;
+  padding: 5px 5px 5px 5px;
+  margin: 10px 10px 10px 10px;
 }
 #vignette table{
   width: 100%;
@@ -708,6 +740,7 @@ footer{
   line-height: 40px;
   font-size: 16px;
 }
+/*
 #NewEspaces{
   background: var(--my-green-opacity);
   padding-bottom: 30px;
@@ -793,9 +826,6 @@ footer{
   font-weight: bold;
 }
 #NewAvis #avis{
-  /*border-color: var(--my-green);
-  border-width: 2pt;
-  border-style: solid;*/
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
@@ -804,14 +834,6 @@ footer{
 }
 #avis #avisCol1{
 }
-/*#NewAvis h4,#NewAvis a{
-  color: var(--my-pink);
-  font-size: 14pt;
-  margin-bottom: 3px;
-}
-#NewAvis #pic{
-  text-align: center;
-}*/
 #avis .rating{
   display: flex;
 }
@@ -819,7 +841,7 @@ footer{
   text-align: justify;
   color: var(--my-grey);
 }
-
+*/
 
 /*#Instagram{
   background: var(--my-yellow-opacity);
@@ -867,13 +889,29 @@ footer{
   font-size: 12pt;
   padding: 15px 30px 15px 30px;
   font-weight: bold;
-  border-radius: 5%;
 }
-
+#declare a{
+  display: block;
+  color: white;
+}
+#declare a:hover{
+  text-decoration: none;
+}
 /********************************** Page Community *************************************/
 #community{
   margin-left: 30px;
   margin-right: 30px;
+}
+#community p{ 
+  color: white;
+  font-size: 13pt;
+  padding: 15px;
+}
+#community .texte1{
+  background-color: var(--my-green);
+}
+#community .texte2{
+  background-color: var(--my-pink);
 }
 #community .row{
   margin-top: 30px;
@@ -1063,6 +1101,9 @@ footer{
   margin-right: 0;
   margin-left: 0;
 }
+#wsHeader .name{
+  color: var(--my-grey);
+}
 .rating{
   display: inline;
 }
@@ -1149,7 +1190,19 @@ footer{
 #Services li img{
   margin-right: 10px;
 }
-#myCarouselTeam{
+#Services h2{
+  margin-top: 0px;
+}
+#Services .members{
+  position: relative;
+  text-align: center;
+}
+#Services .members div{
+  position: absolute;
+  top: 10%;
+  left: 40%;
+}
+/*#myCarouselTeam{
   margin-top: 10px;
 }
 #myCarouselTeam i{
@@ -1174,7 +1227,7 @@ footer{
   left: 15%;
   position: relative;
   margin-top: 10px;
-}
+}*/
 #Contact button{
   width: 100%;
   border: none;
@@ -1195,20 +1248,19 @@ footer{
 #jssor_1{
   /*Le style est directement dans le HTML du carroussel sinon ca bug*/
   border : solid #24262e 1px;
-  width: 1140px !important;
-  margin-left: 50px !important;
+  width: 1150px !important;
 }
 #jssor_1 #left{
   position: absolute;
   left: 25%;
   font-size: 20px;
-  color: var(--my-black);
+  color: var(--my-green);
 }
 #jssor_1 #right{
   position: absolute;
   left: 95%;
   font-size: 20px;
-  color: var(--my-black);
+  color: var(--my-green);
 }
 #map{
   /*Pour que la google map s'affiche correctement*/
@@ -1796,7 +1848,7 @@ color: var(--my-blue) !important;
 /*********************************** offers ****************************************/
 #top-image{
   position: relative;
-  height: 1950px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
+  height: 1800px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
 }
 #offres{
   position: absolute;
@@ -1869,6 +1921,8 @@ color: var(--my-blue) !important;
 #offres #services{
   background-color: var(--my-green);
   color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 #offres #services h1{
   color: white !important;
@@ -1893,22 +1947,9 @@ color: var(--my-blue) !important;
   color: white;
   text-decoration: underline;
 }
-#offres #question{
-  display: inline-flex;
-  margin-left: 1px;
-}
-#offres #question div{
-  margin-top: 60px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
 #offres #question h3, #offres #question a{
   color: #484848;
   text-align: center !important;
-}
-#offres #question img{
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 #offres #question #m{
   width: 20px;

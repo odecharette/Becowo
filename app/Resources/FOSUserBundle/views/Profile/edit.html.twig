@@ -76,6 +76,10 @@
     </div>
   </div>
     <div class="col-lg-6 middle" >
+      <div class="bio">
+        <h2>Bio</h2>
+        {{ form_row(form.description) }}
+      </div>
       <div class="skills">
         <h2>Compétences</h2>
           {{ form_row(form.skills) }}
@@ -87,10 +91,6 @@
       <div class="wishes">
         <h2>Avec Becowo j'aimerais : </h2>
           {{ form_row(form.wishes) }}
-      </div>
-      <div class="bio">
-        <h2>Bio</h2>
-        {{ form_row(form.description) }}
       </div>
     </div>
     <div class="col-lg-3">

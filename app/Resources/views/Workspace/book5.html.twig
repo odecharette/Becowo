@@ -54,19 +54,19 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 			    				>Réserver</button>
 			    			{% else %}
 			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect">Réserver</button>
-			    			<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						    <div class="modal-dialog">
-						        <div class="modal-content">
-						            <div class="modal-header modal-header-danger">
-						                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-						                <h4 class="modal-title">Réservation</h4>
-						            </div>
-						            <div class="modal-body">
-						                <p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
-						            </div>
-						        </div>
-						    </div>
-						</div>
+			    					<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						    			<div class="modal-dialog">
+						        			<div class="modal-content">
+									            <div class="modal-header modal-header-danger">
+									                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+									                <h4 class="modal-title">Réservation</h4>
+									            </div>
+									            <div class="modal-body">
+									                <p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
+									            </div>
+						        			</div>
+						    			</div>
+									</div>
 			    			{% endif %}
  
 		    				</div>

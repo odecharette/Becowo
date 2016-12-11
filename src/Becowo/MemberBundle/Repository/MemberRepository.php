@@ -26,7 +26,8 @@ class MemberRepository extends EntityRepository
 		$qb->select('p, m')
 		   ->Join('m.profilePicture', 'p')
 			->where('m.enabled = true')
-			->andWhere('m.isDeleted = false');
+			->andWhere('m.isDeleted = false')
+			->orderBy('m.fillRate', 'desc');
 
 		return $qb->getQuery()->getResult();
 	}

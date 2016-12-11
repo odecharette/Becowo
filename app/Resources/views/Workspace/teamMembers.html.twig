@@ -1,5 +1,23 @@
 {% if ws.teamMember|length != "0" %}
   <h2>L'équipe à votre service</h2>
+
+  {% for teamMember in ws.teamMember %}            
+    <div class="members">
+      <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}" width="150px" height="150px"><br>
+      {{teamMember.firstname}} {{teamMember.name}}
+      <div class="label label-info">{{teamMember.job}}</div>
+    </div>
+  {% endfor %}
+
+{% else %}
+  {% for p in pictures %}
+    {% if p.isFavorite %}
+      <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{p.url}}" alt="{{ws.name}}" width="100%">
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{# {% if ws.teamMember|length != "0" %}
+  <h2>L'équipe à votre service</h2>
   <br>
   <div id="myCarouselTeam" class="carousel slide" data-interval="false">
     <div class="carousel-inner">
@@ -17,7 +35,6 @@
 
       {% endfor %}
 
-      <!-- Left and right controls -->
       <a class="left carousel-control" href="#myCarouselTeam" role="button" data-slide="prev">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
       </a> 
@@ -27,10 +44,10 @@
     </div>
   </div>
 {% else %}
-  {# {{dump(pictures)}} #}
   {% for p in pictures %}
     {% if p.isFavorite %}
       <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{p.url}}" alt="{{ws.name}}" width="100%">
     {% endif %}
   {% endfor %}
 {% endif %}
+ #}

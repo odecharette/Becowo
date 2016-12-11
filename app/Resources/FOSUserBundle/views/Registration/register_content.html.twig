@@ -1,5 +1,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+{# On save en session soit l'URL d'ou vient le user soit la homepage pour le redériger correctement après login #}
+{% if app.request.headers.get('referer') == '' %}
+	{{ app.session.set('previousURL', path('becowo_core_homepage')) }}
+{% else %}
+	{{ app.session.set('previousURL', app.request.headers.get('referer')) }}
+{% endif %}
+
 <div class="container-fluid form-box">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">

@@ -16,7 +16,9 @@
 
 {############################################# Caroussel #########################################}
 	<div class="row text-center">
-		{% include 'Workspace/carroussel2.html.twig' %}				
+		{# <div class="col-lg-8 col-lg-offset-2"> #}
+			{% include 'Workspace/carroussel2.html.twig' %}	
+		{# </div>			 #}
 	</div>
 
 	<div class="row text-center">
@@ -28,8 +30,9 @@
 			</a>
 			{% endif %}
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6 name">
 			<h1>{{ws.name}} {{averageVote|rating}}</h1>
+			{{ws.street|capitalize}} {{ws.postCode}} {{ws.city|capitalize}}
 		</div>
 	</div>	
 

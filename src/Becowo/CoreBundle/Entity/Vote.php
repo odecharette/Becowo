@@ -95,6 +95,13 @@ class Vote
     private $member;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email_vote", type="string")
+     */
+    private $emailVote;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -329,8 +336,33 @@ class Vote
         return $this->member;
     }
 
+
+    /**
+     * Get emailVote
+     *
+     * @return \String
+     */
+    public function getEmailVote()
+    {
+        return $this->emailVote;
+    }
+
+    /**
+     * Set emailVote
+     *
+     * @param string $emailVote
+     *
+     * @return Vote
+     */
+    public function setEmailVote($emailVote)
+    {
+        $this->emailVote = $emailVote;
+
+        return $this;
+    }
+
     /** 
-     * Set Averafe 
+     * Set Average 
      * 
      * @ORM\PrePersist 
      */  

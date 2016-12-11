@@ -2,6 +2,8 @@
 {{#if listed}}
 <li>
 	<div class="container-fluid vignette" data-markerid="{{markerid}}" id="vignette">
+	<!-- TO DO url à rendre dynamique -->
+	<a href="/ws/{{name}}">
 		<div id="pic">
 			<div id="favoritePicture">
 				{{#if favoritePicture}}
@@ -16,16 +18,15 @@
 			</div>
 			<div id="btn">
 				{{#if offerZen}}
-					<!-- TO DO url à rendre dynamique -->
-					<a href="/ws/{{name}}"><button type="button">Découvrir</button></a>
+					<button type="button">Découvrir</button>
 				{{else}}
 					<form method="POST" action="/voteZen/{{id}}" id="form_voteZen">
-						<button type="submit" id="voteZen-{{id}}">Je vote pour cet espace</button>
+						<button type="submit" id="voteZen-{{id}}">Réclamer cet espace</button>
 					</form>	
 				{{/if}}
 			</div>
 		</div>
-		
+	</a>	
 		<table>
 			<td id="address">
 				<strong id="WSname">{{name}}</strong> <br>
@@ -42,14 +43,14 @@
 		
 			
 		<div id="listeLogo">
-		{{#if featuresUrl0}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl0}}.png" alt="{{featuresUrl0}}" title="{{featuresUrl0}}"> {{/if}}
-		{{#if featuresUrl1}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl1}}.png" alt="{{featuresUrl1}}" title="{{featuresUrl1}}"> {{/if}}
-		{{#if featuresUrl2}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl2}}.png" alt="{{featuresUrl2}}" title="{{featuresUrl2}}"> {{/if}}
-		{{#if featuresUrl3}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl3}}.png" alt="{{featuresUrl3}}" title="{{featuresUrl3}}"> {{/if}}
-		{{#if featuresUrl4}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl4}}.png" alt="{{featuresUrl4}}" title="{{featuresUrl4}}"> {{/if}}
-		{{#if featuresUrl5}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl5}}.png" alt="{{featuresUrl5}}" title="{{featuresUrl5}}"> {{/if}}
-		{{#if featuresUrl6}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl6}}.png" alt="{{featuresUrl6}}" title="{{featuresUrl6}}"> {{/if}}
-		{{#if featuresUrl7}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl7}}.png" alt="{{featuresUrl7}}" title="{{featuresUrl7}}"> {{/if}}
+		{{#if featuresUrl0}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl0}}.png" alt="{{featuresUrl0}}"> {{/if}}
+		{{#if featuresUrl1}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl1}}.png" alt="{{featuresUrl1}}"> {{/if}}
+		{{#if featuresUrl2}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl2}}.png" alt="{{featuresUrl2}}"> {{/if}}
+		{{#if featuresUrl3}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl3}}.png" alt="{{featuresUrl3}}"> {{/if}}
+		{{#if featuresUrl4}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl4}}.png" alt="{{featuresUrl4}}"> {{/if}}
+		{{#if featuresUrl5}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl5}}.png" alt="{{featuresUrl5}}"> {{/if}}
+		{{#if featuresUrl6}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl6}}.png" alt="{{featuresUrl6}}"> {{/if}}
+		{{#if featuresUrl7}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl7}}.png" alt="{{featuresUrl7}}"> {{/if}}
 		<!-- {{#if featuresUrl8}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl8}}.png" alt="{{featuresUrl8}}" title="{{featuresUrl8}}"> {{/if}}
 		{{#if featuresUrl9}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl9}}.png" alt="{{featuresUrl9}}" title="{{featuresUrl9}}"> {{/if}}
 		{{#if featuresUrl10}} <img src="/Becowo/web/images/icons/amenities/Bleu/{{featuresUrl10}}.png" alt="{{featuresUrl10}}" title="{{featuresUrl10}}"> {{/if}}

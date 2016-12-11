@@ -13,13 +13,12 @@
 	<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
 
 	<div>Réservez un espace de travail et intégrez une communauté de coworkers </div>
-	<a href="#ancre"><i class="fa fa-angle-down fa-3x" aria-hidden="true"></i></a>
+	<a href="#liste-espaces" id="goToMap"><i class="fa fa-angle-down fa-3x" aria-hidden="true"></i></a>
 	
 </div>
 
 
-<div id="ancre"></div>
-
+<div id="liste-espaces"></div>
 {# Navbar de recherche désativée le temps d'avoir plus d'espaces à proposer
 <nav class="navbar navbar-default" role="navigation" id="BarreRecherche">
   <div class="container-fluid">
@@ -106,10 +105,11 @@
     <div id="bh-sl-map-container" class="bh-sl-map-container">
 		<div class="row">
 			<div id="map-results-container" class="container-fluid">
+				<div class="titre">Trouvez votre prochain bureau à l'aide de la carte ou directement depuis la liste</div>
 				<div id="bh-sl-map" class="bh-sl-map col-lg-5">
 					{# Emplacement de la map #}
 				</div>
-				<div id="legende"><i class="fa fa-bolt" aria-hidden="true"></i> : Réservation en ligne disponible (sinon vous pouvez voter !)</div>
+				<div id="legende"><i class="fa fa-bolt" aria-hidden="true"></i> : Réservation en ligne disponible (sinon vous pouvez réclamer !)</div>
 				<div class="bh-sl-loc-list col-lg-7" style="direction: rtl;"> {# on force la scrollbar à gauche #}
 					{# Emplacement de la liste d'espace #}
 					<ul class="list list-unstyled" style="direction: ltr;"></ul>
@@ -137,7 +137,7 @@
 	</div>
 	<div class="col-lg-1" id="separateur"></div>
 	<div class="col-lg-3" id="Instagram">
-		<h4>Quoi de neuf sur Instagram ?</h4>
+		<h4>Quoi de neuf sur notre Instagram ?</h4>
 		<script src="https://snapwidget.com/js/snapwidget.js"></script>
 		<iframe src="https://snapwidget.com/embed/code/207854" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
 	</div>
@@ -148,7 +148,8 @@
 <div class="row" id="declare">
 <h1>Comment ajouter votre espace sur Becowo ?</h1>
 <p>Oportunum est, ut arbitror, explanare nunc causam, quae ad exitium praecipitem Aginatium inpulit iam inde a priscis maioribus nobilem, ut locuta est pertinacior fama. nec enim super hoc ulla documentorum rata est fides.</p>
-<button>Déclarer</button>
+<button type="button"><a href="{{ path('becowo_core_offers') }}">Découvrez nos offres</a></button>
+
 </div>
 
 

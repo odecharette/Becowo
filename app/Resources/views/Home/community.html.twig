@@ -9,26 +9,34 @@
 
 {% block body %}
 
-	<h1>Rencontrer les autres coworkers</h1>
 
 <div class="container-fluid" id="community">
-	{% for member in members %}
-		{% if loop.index % 5 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
-			<div class="col-lg-3">
-				<div class="member">
-					<a href="{{ path('becowo_member_public_profile', {'id' : member.id}) }}">
-						<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.profilePicture.url}}'); 
-						    width:200px; 
-						    height:200px; 
-						    background-position:center;
-						    background-size: cover;">&nbsp;</div>
-						<span class="label label-info">{{member.job}}</span>
-						<div class="name">{{member.firstname}} {{member.name}}</div>
-					</a>
-				</div>
-			</div>
-		{% if loop.index % 4 == 0 or loop.last %} </div> {% endif %}
-	{% endfor %}
+	<h1>Rencontrer les autres coworkers</h1>
+	<div class="row">
+		<div class="col-lg-3">
+			<p class="texte1">Rencontrer la communauté de Becowo c'est prendre contact avec des clients potentiels, trouver un copain pour le café, s'entraider etc</p>
+			<p class="texte2">Découvrez nos profils de freelances, entrpreuneurs, indépendants, journalistes etc</p>
+		</div>
+		<div class="col-lg-9">
+			{% for member in members %}
+				{% if loop.index % 4 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
+					<div class="col-lg-4">
+						<div class="member">
+							<a href="{{ path('becowo_member_public_profile', {'id' : member.id}) }}">
+								<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.profilePicture.url}}'); 
+								    width:200px; 
+								    height:200px; 
+								    background-position:center;
+								    background-size: cover;">&nbsp;</div>
+								<span class="label label-info">{{member.job}}</span>
+								<div class="name">{{member.firstname}} {{member.name}}</div>
+							</a>
+						</div>
+					</div>
+				{% if loop.index % 3 == 0 or loop.last %} </div> {% endif %}
+			{% endfor %}
+		</div>
+	</div>
 </div>
 
 

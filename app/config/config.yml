@@ -68,6 +68,8 @@ services:
        class: Twig_Extensions_Extension_Intl
        tags:
            - { name: twig.extension }
+    authentication_handler:
+        class: Becowo\MemberBundle\Handler\AuthenticationHandler
            
 # Doctrine Configuration
 doctrine:

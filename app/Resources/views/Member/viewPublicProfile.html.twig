@@ -34,6 +34,10 @@
 			</div>
 		</div>
 		<div class="col-lg-6 middle" >
+			<div class="bio">
+				<h2>Bio</h2>
+				{{member.description|nl2br}}
+			</div>
 			<div class="skills">
 				<h2>Compétences</h2>
 				{% set skills = member.skills|split(',') %}
@@ -55,44 +59,35 @@
 				    <span class="label wishe">{{wishe}}</span>
 				{% endfor %}
 			</div>
-			<div class="bio">
-				<h2>Bio</h2>
-				{{member.description|nl2br}}
-			</div>
 		</div>
 		<div class="col-lg-3">
 			<div class="rs">
-				<h2>Suivez-moi !</h2>
+				{% if member.facebookLink == '' and member.linkedinLink == '' and member.twitterLink == '' and member.instagramLink == '' %} 
+				{% else %}
+					<h2>Suivez-moi !</h2>
+				{% endif %}
 				{% if member.facebookLink != '' %} 
 					<a href="{{member.facebookLink}}" target="_blank">
 						<img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook">
 					</a>
-				{% else %}
-					<img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook" style="opacity:0.4">
 				{% endif %}
 
 				{% if member.linkedinLink != '' %} 
 					<a href="{{member.linkedinLink}}" target="_blank">
 						<img src="{{ asset('images/RS/linkedin.png') }}" alt="LinkedIn">
 					</a>
-				{% else %}
-						<img src="{{ asset('images/RS/linkedin.png') }}" alt="LinkedIn" style="opacity:0.4">
 				{% endif %}
 
 				{% if member.twitterLink != '' %} 
 					<a href="{{member.twitterLink}}" target="_blank">
 						<img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter">
 					</a>
-				{% else %}
-						<img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter" style="opacity:0.4">
 				{% endif %}
 
 				{% if member.instagramLink != '' %} 
 					<a href="{{member.instagramLink}}" target="_blank">
 						<img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram">
 					</a>
-				{% else %}
-						<img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram" style="opacity:0.4">
 				{% endif %}
 			</div>
 			<div class="coworking">

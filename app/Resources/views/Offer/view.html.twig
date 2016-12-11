@@ -19,7 +19,7 @@
                         <h1>Link</h1>
                         <h4>Gratuit</h4>
                         {# source : http://www.easy-ware.be/wp-content/uploads/2015/06/bonhomme-cable.jpg #}
-                        <div id="logo"><img src="{{ asset('images/icons/lien.jpg') }}" alt="Offre link" title="bonhomme lien"></div>
+                        <div id="logo"><img src="{{ asset('images/icons/lien.jpg') }}" alt="Offre link"></div>
                         <ul>
                             <li>Référencement</li>
                         </ul>
@@ -33,7 +33,7 @@
                         <h1>Zen</h1>
                         <h4>Prix sur demande</h4>
                         {# source : http://autoentrepreneurinfo.com/images/auto-entrepreneur-compte-bancaire-entreprise.jpg #}
-                        <div id="logo"><img src="{{ asset('images/icons/cb.jpg') }}" alt="Offre zen" title="bonhomme carte bleu"></div>
+                        <div id="logo"><img src="{{ asset('images/icons/cb.jpg') }}" alt="Offre zen"></div>
                         <ul>
                             <li>Référencement</li>
                             <li>Réservation en ligne</li>
@@ -53,7 +53,7 @@
                         <h1>Option Data</h1>
                         <h4>Bientôt disponible</h4>
                         {# source : http://fr.123rf.com/images-libres-de-droits/bonhomme_blanc_objectifs.html?mediapopup=14533010 #}
-                        <div id="logo"><img src="{{ asset('images/icons/stat.jpg') }}" alt="Offre zen +" title="bonhomme statistiques"></div>
+                        <div id="logo"><img src="{{ asset('images/icons/stat.jpg') }}" alt="Offre zen +"></div>
                         <ul>
                             <li>Statistiques de Becowo et de votre page</li>
                             <li>Vues sur votre page</li>
@@ -70,7 +70,7 @@
                         <h1>Visite à 360°</h1>
                         <h4>A partir de 199 € HT*</h4>
                         {# http://previews.123rf.com/images/johan2011/johan20111107/johan2011110700023/9976654-3d-little-human-character-with-a-camera--Stock-Photo-people.jpg #}
-                        <div id="logo"><img src="{{ asset('images/icons/photo.jpg') }}" alt="visite 360°" title="visite 360°" width="200px" height="50px"></div>
+                        <div id="logo"><img src="{{ asset('images/icons/photo.jpg') }}" alt="visite 360°" width="200px" height="50px"></div>
                         <ul>
                             <li>Réalisation de visite virtuelle à 360°</li>
                             <li>Prise des photos de l’espace</li>
@@ -124,7 +124,6 @@
             </div>
             
         </div>
-        <br><br>
         <div class="row" id="services">
             <h1>Les services déjà disponibles</h1>
             <div class="row">
@@ -166,13 +165,17 @@
             
         </div>
         <div class="row text-center" id="question">
-            <img src="{{ asset('images/icons/questions-vert.png') }}" alt="question">
-            <div>
+            <div class="col-lg-2">
+                <img src="{{ asset('images/icons/questions-vert.png') }}" alt="question">
+            </div>
+            <div class="col-lg-8">
                 <h1>Une question ? Une suggestion ? Contactez-nous ! </h1>
                 <h3><i class="fa fa-mobile" aria-hidden="true"></i> Par téléphone ou SMS au : <a href="tel:+33611706382">06 11 70 63 82</a></h3>
                 <h3><img src="{{ asset('images/icons/messenger.png') }}" alt="messenger" id="m"> Par messenger en <a href="http://m.me/becowo" target="_blank">cliquant ici</a></h3>
             </div>
-            <img src="{{ asset('images/icons/questions-rose.png') }}" alt="question">
+            <div class="col-lg-2">
+                <img src="{{ asset('images/icons/questions-rose.png') }}" alt="question">
+            </div>
         </div>
     </div>
 

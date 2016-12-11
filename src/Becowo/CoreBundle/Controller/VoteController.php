@@ -47,6 +47,7 @@ class VoteController extends Controller
       $vote = new Vote();
       $vote->setWorkspace($ws);
       $vote->setMember($this->getUser());
+      $vote->setEmailVote($request->request->get('emailVote'));
       $vote->setDevenirZen('1');
 
       $em = $this->getDoctrine()->getManager();
