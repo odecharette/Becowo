@@ -52,7 +52,7 @@ becowo_core_vote_zen:
 becowo_core_contact:
     path:     /contact
     defaults: { _controller: BecowoCoreBundle:Footer:contact }
-    methods: GET
+    methods: GET|POST
 
 becowo_core_apropos:
     path:     /apropos

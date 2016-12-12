@@ -19,15 +19,16 @@ class FooterController extends Controller
     
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $message = \Swift_Message::newInstance()
-                ->setSubject($form->get('subject')->getData())
-                ->setFrom($form->get('email')->getData())
-                ->setTo('webmaster@becowo.com')
+                ->setSubject('Becowo - Nouveau message')
+                ->setFrom('contact@becowo.com')
+                ->setTo('contact@becowo.com')
                 ->setBody(
                     $this->renderView(
-                        'CommonViews/Mail/contact.html.twig',
+                        'CommonViews/Mail/Footer-contact.html.twig',
                         array(
-                            'ip' => $request->getClientIp(),
                             'name' => $form->get('name')->getData(),
+                            'email' => $form->get('email')->getData(),
+                            'subject' => $form->get('subject')->getData(),
                             'message' => $form->get('message')->getData()
                         )
                     )

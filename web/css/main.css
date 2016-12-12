@@ -239,16 +239,18 @@ footer li {
   list-style-type: none;
 }
 
-footer #liensRS{
+#liensRS{
   padding-top: 30px;
   padding-bottom: 5px;
 }
-footer #liensRS img{
+#liensRS img{
   width: 30px;
   height: 30px;
+}
+footer #liensRS img{
   margin-left: -10px;
 }
-footer #liensRS a{
+#liensRS a{
   display: inline-block;
 }
 footer{
@@ -258,7 +260,7 @@ footer{
   /* Set the fixed height of the footer here */
   height: 90px;
 }
-
+/*
 #footer-contact form{
   border-left: solid 3px var(--my-blue);
   border-right: solid 3px var(--my-blue);
@@ -321,6 +323,38 @@ footer{
 #footer-contact #contact-content2 a{
   color: var(--my-blue);
   background-color: white;
+}
+*/
+#contact-form .labels{
+  text-align: right;
+  margin-right: 10px;
+  color: var(--my-grey);
+      display: table-cell;
+    vertical-align: middle;
+    line-height: 35px;
+}
+#contact-form input{
+  height: 35px;
+  margin: 0;
+  width: 100%;
+}
+#contact-form textarea{
+  border: 1px solid var(--my-grey);
+}
+#contact-form #logo{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#contact-form #vr{
+  height: 230px;
+}
+#contact-form button{
+  background-color: var(--my-green);
+    color: white;
+    border: none;
+    font-size: 14pt;
+    padding: 10px;
+    width: 150px;
 }
 #footer_menu ul{
   margin-bottom: 0;
@@ -1976,7 +2010,7 @@ color: var(--my-blue) !important;
   color: #484848;
   text-align: center !important;
 }
-#offres #question #m{
+#m{
   width: 20px;
 }
 #myModalOffres{
@@ -1986,12 +2020,9 @@ color: var(--my-blue) !important;
 #myModalOffres h3{
   color: var(--my-red);
 }
-#myModalOffres .labels{
+#myModalOffres .labels, {
   text-align: right;
   margin-right: 10px;
-}
-#myModalOffres .boxs input{
-  
 }
 #myModalOffres .form-group{
   display: inline-block;

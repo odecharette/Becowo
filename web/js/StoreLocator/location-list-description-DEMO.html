@@ -58,7 +58,9 @@
 				{{postal}}{{#if city}},{{/if}} {{city}}
 			</td>
 			<td id="stars">
-				<img src="/Becowo/web/images/icons/star{{averageVote}}.png">
+				{{#if averageVote }}
+					<img src="/Becowo/web/images/icons/star{{averageVote}}.png">
+				{{/if}}
 			</td>
 		</table>
 

@@ -1,87 +1,85 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-   <meta name="viewport" content="initial-scale=1.0"> {# Pour Google Map #}
-  <title>Becowo</title>
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/FosUserBundle/form-elements.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
-</head>
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Contact
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/FosUserBundle/form-elements.css') }}">
+{% endblock %}
+
+{% block body %}
 
 
-<body>
-
-<div class="container-fluid form-box">
 {% include "CommonViews/flashMessage.html.twig" %}
+
+<div class="container-fluid form-box" id="contact-form">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-      <div class="row" id="form-login">
-        <div class="col-lg-6">
-          <h3>Contacter notre équipe</h3>
-          
+    <div class="col-lg-10 col-lg-offset-1">
+      <div class="row" id="">
+        <div class="col-lg-5">
+          <h3>Contactez notre équipe</h3>
+          <br>
           {{ form_start(form) }}
           <div class="row">
-          <div class="col-lg-4">
-          {{ form_label(form.name) }}
+            <div class="col-lg-3 labels">
+              Nom *
+            </div>
+            <div class="col-lg-8">
+            {{ form_row(form.name) }}
+            </div>
           </div>
-          <div class="col-lg-7">
-          {{ form_errors(form.name) }}
-          {{ form_widget(form.name) }}
+          <div class="row">
+            <div class="col-lg-3 labels">
+              Email *
+            </div>
+            <div class="col-lg-8">
+              {{ form_row(form.email) }}
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4">
-            {{ form_label(form.email) }}
+          <div class="row">
+            <div class="col-lg-3 labels">
+              Sujet *
+            </div>
+            <div class="col-lg-8">
+              {{ form_row(form.subject) }}
+            </div>
           </div>
-          <div class="col-lg-7">
-            {{ form_errors(form.email) }}
-            {{ form_widget(form.email) }}
+          <div class="row">
+            <div class="col-lg-3 labels">
+              Message *
+            </div>
+            <div class="col-lg-8">
+              {{ form_row(form.message) }}
+            </div>
           </div>
-        </div>
-        <div class="row">
-        <div class="col-lg-4">
-          {{ form_label(form.subject) }}
-        </div>
-        <div class="col-lg-7">
-          {{ form_errors(form.subject) }}
-          {{ form_widget(form.subject) }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          {{ form_label(form.message) }}
-        </div>
-        <div class="col-lg-7">
-          {{ form_errors(form.message) }}
-          {{ form_widget(form.message) }}
-        </div>
-      </div>
       
-      {{ form_rest(form) }}
-      <button type="submit"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Envoyer</button>
-      {{ form_end(form) }}
+          {{ form_rest(form) }}
+          <div class="row text-center">
+            <button type="submit"><i class="fa fa-envelope-o" aria-hidden="true"></i> Envoyer</button>
+          {{ form_end(form) }}
+          </div>
    
-        </div>
-        <div class="col-lg-1">
-          <img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo">
-          <br>
-          <img src="{{ asset('images/icons/VR.png') }}" id="vr">
+          </div>
+        <div class="col-lg-2">
+          <div class="row text-center">
+            <img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo">
+            <br>
+            <img src="{{ asset('images/icons/VR.png') }}" id="vr">
+          </div>
         </div>
         <div class="col-lg-5">
-          <div class="row" id="rs">
-              <a href="https://www.facebook.com/becowo" target="_blank"><img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook"></a>
-              <a href="https://twitter.com/becowo_and_you" target="_blank"><img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter"></a>
-              <a href="https://www.linkedin.com/company/becowo"  target="_blank"><img src="{{ asset('images/RS/linkedin.png') }}" alt="Linkedin"></a>
-              <a href="https://www.instagram.com/becowo_and_you/" target="_blank"><img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram"></a>
+          <div class="row">
+              {% include 'CommonViews/RS/all_RS_small.html.twig' %}
           </div>
-              <br>
-              Imaginarium - Plaine Images<br>
-              99 A Boulevard Constantin Descat <br>
-              59200 Tourcoing<br>
-              <u>Tel</u> : 06.11.70.63.82<br><br>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10108.033872878754!2d3.1582131!3d50.7012274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2551d389c0607e14!2sImaginarium+-+Plaine+Images!5e0!3m2!1sfr!2sfr!4v1477660339025" width="300" height="200" frameborder="0" style="border:0"></iframe>
+          <div class="row">
+            <i class="fa fa-home" aria-hidden="true"></i> Imaginarium - Plaine Images<br>
+            99 A Boulevard Constantin Descat <br>
+            59200 Tourcoing<br>
+            <i class="fa fa-mobile" aria-hidden="true"></i> : <a href="tel:+33611706382">06 11 70 63 82</a><br>
+            <img src="{{ asset('images/icons/messenger.png') }}" alt="messenger" id="m"> Par messenger en <a href="http://m.me/becowo" target="_blank">cliquant ici</a><br><br>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10108.033872878754!2d3.1582131!3d50.7012274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2551d389c0607e14!2sImaginarium+-+Plaine+Images!5e0!3m2!1sfr!2sfr!4v1477660339025" width="300" height="200" frameborder="0" style="border:0"></iframe>
+          </div>
         </div>
 
       </div>
@@ -89,81 +87,8 @@
   </div>
 </div>
 
-  {# #####################################################################################"" #}
-{# 
-<div class="container-fluid" id="footer-contact">
-{% include "CommonViews/flashMessage.html.twig" %}
-	<div class="row">
-		<div class="col-lg-6">
-      <h2>Contactez-nous</h2>
-      {{ form_start(form) }}
-      <div class="row">
-        <div class="col-lg-4">
-          {{ form_label(form.name) }}
-        </div>
-        <div class="col-lg-7">
-          {{ form_errors(form.name) }}
-          {{ form_widget(form.name) }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          {{ form_label(form.email) }}
-        </div>
-        <div class="col-lg-7">
-          {{ form_errors(form.email) }}
-          {{ form_widget(form.email) }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          {{ form_label(form.subject) }}
-        </div>
-        <div class="col-lg-7">
-          {{ form_errors(form.subject) }}
-          {{ form_widget(form.subject) }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          {{ form_label(form.message) }}
-        </div>
-        <div class="col-lg-7">
-          {{ form_errors(form.message) }}
-          {{ form_widget(form.message) }}
-        </div>
-      </div>
-      
-      {{ form_rest(form) }}
-      <button type="submit"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Envoyer</button>
-      {{ form_end(form) }}
-		</div>
-    <div class="col-lg-6">
-        <h3>Becowo</h3>
-        <div>
-          Imaginarium - Plaine Images<br>
-          99 A Boulevard Constantin Descat <br>
-          59200 Tourcoing<br>
-          <u>Tel</u> : 06.11.70.63.82<br><br>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10108.033872878754!2d3.1582131!3d50.7012274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2551d389c0607e14!2sImaginarium+-+Plaine+Images!5e0!3m2!1sfr!2sfr!4v1477660339025" width="300" height="200" frameborder="0" style="border:0"></iframe>
-        </div>
-        <h3>Suivez nous via les réseaux sociaux</h3>
-        <div>
-          <div class="row">
-            <div class="col-lg-6">
-              <a href="https://www.facebook.com/becowo" target="_blank"><img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook">facebook.com/becowo</a><br>
-              <a href="https://twitter.com/becowo_and_you" target="_blank"><img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter">twitter.com/becowo_and_you</a>
-            </div>
-            <div class="col-lg-6">
-              <a href="https://www.linkedin.com/company/becowo"  target="_blank"><img src="{{ asset('images/RS/linkedin.png') }}" alt="Linkedin">www.linkedin.com/company/becowo</a><br>
-              <a href="https://www.instagram.com/becowo_and_you/" target="_blank"><img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram">instagram.com/becowo_and_you</a>
-            </div>
-          </div>
-          
-        </div>
-    </div>
-	</div>
-</div>
 
- #}
-</body>
+{% block javascripts %}    
+{% endblock javascripts %}
+
+{% endblock body %}
