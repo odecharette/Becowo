@@ -31,7 +31,7 @@
 			{% endif %}
 		</div>
 		<div class="col-lg-6 name">
-			<h1>{{ws.name}} {{averageVote|rating}}</h1>
+			<h1>{{ws.name}} {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}</h1>
 			{{ws.street|capitalize}} {{ws.postCode}} {{ws.city|capitalize}}
 		</div>
 	</div>	
@@ -51,7 +51,7 @@
 <div class="tab-content" id="myTabContent">
 {############################ Description ############################}
     <div id="Description" class="tab-pane fade active in">
-        <p>{{ws.description|nl2br}}</p>
+        <p>{{ws.description|raw|nl2br}}</p>
         <strong>Retrouvez tous nos bureaux et les tarifs en détail dans l'onglet "Réserver"</strong>
         <br>
         <br>
@@ -148,7 +148,7 @@
     		{% endif %}
     		{% if ws.instagramLink != '' %}
     			<a href="{{ws.instagramLink}}" target="_blank">
-    				<img src="{{ asset('images/RS/instagrampng') }}" alt="Profile Instagram" title="Profile Instagram {{ws.name}}">
+    				<img src="{{ asset('images/RS/instagram.png') }}" alt="Profile Instagram" title="Profile Instagram {{ws.name}}">
     			</a>
     		{% endif %}
     	</div>

@@ -54,6 +54,7 @@ class MapController extends Controller
 
       $averageVote = $WsService->getAverageVoteByWorkspace($workspaces);
       $averageVote = round($averageVote, 0);
+      $averageVote == 0 ? $averageVote = "" : "";
       $itemNode->addAttribute( 'averageVote', $averageVote );
 
       $WsHasoffers = $WsService->getOffersByWorkspace($workspaces);

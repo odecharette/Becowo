@@ -48,6 +48,10 @@ body {
 header .container{
   margin-right: 0px;
 }
+header .navbar-right a{
+  max-width: 190px;
+  max-height: 70px;
+}
 header .navbar-header{
   margin-left: -90px !important;
 }
@@ -615,11 +619,13 @@ footer{
 }
 #vignette #bonus{
   color: var(--my-red);
-  height: 14px;
+  height: 45px;
   font-weight: bold;
-  margin-bottom: 10px;
   text-align: center;
   letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #vignette #pic{
@@ -893,6 +899,7 @@ footer{
 #declare a{
   display: block;
   color: white;
+  text-decoration: none;
 }
 #declare a:hover{
   text-decoration: none;
@@ -1176,6 +1183,18 @@ footer{
   border-radius: 10%;
   height: 130px;
 }
+#Description span::before{
+  content: "\f08a";
+  font-family: FontAwesome;
+  color: var(--my-red) ;
+  margin-right: 10px;
+}
+#Description span{
+  color: var(--my-green);
+  font-weight: bold;
+  display: table;
+  margin: 0 auto;
+}
 #Services ul{
   overflow:hidden;
 }
@@ -1300,8 +1319,8 @@ footer{
   color: var(--my-blue);
 }
 #Réserver #btnResa{
-  width: 100%;
-  line-height: 3em;
+  line-height: 2em;
+  width: 80%;
   background-color: var(--my-green);
   color: white;
   font-size: 18pt;
@@ -1896,6 +1915,12 @@ color: var(--my-blue) !important;
   text-align: center;
   background-color: var(--my-green);
 }
+#offres .panel-footer button{
+  background-color: var(--my-green);
+  color: white;
+  border: none;
+  width: 100%;
+}
 #offres .panel-footer a, #offres .panel-footer{
   width: 100%;
   font-size: 22px;
@@ -1954,60 +1979,35 @@ color: var(--my-blue) !important;
 #offres #question #m{
   width: 20px;
 }
-
-
-/********** offers contact & coworker déclarez un WS *********/
-#offers-contact form, #coworker-declare form{
-  border-left: solid 3px var(--my-blue);
-  border-right: solid 3px var(--my-blue);
-  padding-top: 20px;
-  margin-bottom: 20px;
-}
-#offers-contact h2, #coworker-declare h2{
-  background-color: var(--my-blue);
-  color: white;
-  margin-bottom: 0;
-  line-height: 2;
-  text-align: center;
-}
-#offers-contact label, #coworker-declare label{
+#myModalOffres{
+  text-align: justify;
   color: var(--my-grey);
-  font-size: 14pt;
-  margin-top: 15px;
+}
+#myModalOffres h3{
+  color: var(--my-red);
+}
+#myModalOffres .labels{
   text-align: right;
-  width: 100%;
-  color: var(--my-blue);
-}
-#offers-contact .form-control, #coworker-declare .form-control{
-  border-radius: 8px;
-  margin-right: 20px;
-  border: 1px solid var(--my-blue);
-  margin-top: 15px;
-}
-#offers-contact button, #offers-contact a:visited, #coworker-declare button, #coworker-declare a:visited{
-  background-color: var(--my-blue);
-  color: white;
-  margin-bottom: 0;
-  line-height: 3;
-  text-align: center;
-  width: 100%;
-  font-size: 14pt;
-  border: none;
-  margin-top: 30px;
-}
-#offers-contact button:hover, #offers-contact a:active, #offers-contact a:link, #coworker-declare button:hover, #coworker-declare a:active, #coworker-declare a:link{
-  background-color: var(--my-blue);
-  font-weight: bold;
-}
-#offers-contact i, #coworker-declare i{
-  color: white;
   margin-right: 10px;
 }
-#offers-contact p, #coworker-declare p{
-  color: var(--my-grey);
-  font-size: 14pt;
-  margin-top: 15px;
-  margin-left: 10px;
+#myModalOffres .boxs input{
+  
+}
+#myModalOffres .form-group{
+  display: inline-block;
+  width: 100%;
+}
+#myModalOffres .valider{
+  background-color: var(--my-green);
+  color: white;
+  border: none;
+}
+#myModalOffres .modal-footer {
+  text-align: center !important;
+}
+#myModalOffres .modal-footer .btn{
+  font-size: 12pt;
+  margin: 10px 10px 10px 10px !important;
 }
 /**************************************************************************************/
 
@@ -2563,3 +2563,8 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
+
+#checkEmail p{
+  font-size: 14pt;
+  color: var(--my-grey);
+}

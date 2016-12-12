@@ -3,7 +3,9 @@
 <li>
 	<div class="container-fluid vignette" data-markerid="{{markerid}}" id="vignette">
 	<!-- TO DO url à rendre dynamique -->
+	{{#if offerZen }}
 	<a href="/ws/{{name}}">
+	{{/if}}
 		<div id="pic">
 			<div id="favoritePicture">
 				{{#if favoritePicture}}
@@ -16,17 +18,39 @@
 					<i class="fa fa-bolt" aria-hidden="true"></i>
 				{{/if}}
 			</div>
-			<div id="btn">
+			<div id="btn_decouvrir">
 				{{#if offerZen}}
-					<button type="button">Découvrir</button>
+					<button type="button" class="btn_vignette">Découvrir</button>
 				{{else}}
-					<form method="POST" action="/voteZen/{{id}}" id="form_voteZen">
-						<button type="submit" id="voteZen-{{id}}">Réclamer cet espace</button>
-					</form>	
+					<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>
+					<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    			<div class="modal-dialog">
+		        			<div class="modal-content">
+					            <div class="modal-header modal-header-info">
+					                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+					                <h4 class="modal-title">Réclamer cet espace</h4>
+					            </div>
+					            <div class="modal-body">
+					                <p>{{name}} n'a pas encore autorisé Becowo à permettre la réservation en ligne. <br>
+					                Si comme nous, vous trouvez ça dommage, alors cliquez sur "Je réclame !"</p>
+									<form method="POST" action="/Becowo/web/app_dev.php/voteZen/{{id}}" id="form_voteZen">
+									Votre email * : <input type="email" name="emailVote" required="true" width="200px">
+									<p>Nous vous préviendrons dès que {{name}} sera disponible sur Becowo.</p>
+									<div id="error-{{id}}"></div>
+					            </div>
+					            <div class="modal-footer">
+									<button type="submit" id="voteZen-{{id}}" class="modal_valid">Je réclame !</button>
+									</form>	
+					            </div>
+		        			</div>
+		    			</div>
+					</div>
+
+					
 				{{/if}}
 			</div>
 		</div>
-	</a>
+	{{#if offerZen}}</a>{{/if}}	
 		<table>
 			<td id="address">
 				<strong id="WSname">{{name}}</strong> <br>
@@ -78,22 +102,23 @@
 
 	    $("#voteZen-{{id}}").unbind("click").click(function(){
 	    	//Vote pour que l'espace devienne Offre Zen
-	    	console.log('vote zen enclenché');
 	    	document.getElementById('voteZen-{{id}}').innerHTML = "<img src='/Becowo/web/images/icons/loading.gif'>";
 	    	$.ajax(Routing.generate('becowo_core_vote_zen', {id: "{{id}}"}), {
 	            data: $('#form_voteZen').serialize(),
 	            type: "POST",
 	            success: function(data) {
-	            	console.log('OK vote JS : {{id}}');
 	            	document.getElementById('voteZen-{{id}}').innerHTML = "Merci !";
 	            },
 	            error: function() {
-	            	console.log('probleme vote JS');
-	            	document.getElementById('voteZen-{{id}}').innerHTML = "Erreur";
+	            	document.getElementById('error-{{id}}').innerHTML = "Une erreur est survenue, merci de reessayer plus tard.";
 	            }
 	        });
 	    	return false;
 	    });
+
+	    $('#myModalVote').on('hidden.bs.modal', function (e) {
+	    	document.getElementById('error-{{id}}').innerHTML = "";
+		})
 
 		</script>
 </li>

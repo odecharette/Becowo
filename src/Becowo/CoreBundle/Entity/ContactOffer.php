@@ -13,6 +13,8 @@ class ContactOffer
     private $phone;
     private $nbDesk;
     private $comments;
+    private $contactName;
+    private $offer;
 
 
     /**
@@ -203,6 +205,56 @@ class ContactOffer
     public function setComments($comments)
     {
         $this->comments = $comments;
+
+        return $this;
+    }
+
+
+    /**
+     * Gets the value of contactName.
+     *
+     * @return mixed
+     */
+    public function getContactName()
+    {
+        return $this->contactName;
+    }
+
+    /**
+     * Sets the value of contactName.
+     *
+     * @param mixed $contactName the contact name
+     *
+     * @return self
+     */
+    public function setContactName($contactName)
+    {
+        $this->contactName = $contactName;
+
+        return $this;
+    }
+
+
+    /**
+     * Gets the value of offer.
+     *
+     * @return mixed
+     */
+    public function getOffer()
+    {
+        return $this->offer;
+    }
+
+    /**
+     * Sets the value of offer.
+     *
+     * @param mixed $offer the offer
+     *
+     * @return self
+     */
+    public function setOffer($offer)
+    {
+        $this->offer = $offer;
 
         return $this;
     }

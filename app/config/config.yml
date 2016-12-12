@@ -97,9 +97,12 @@ doctrine:
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
+    auth_mode: "%mailer_auth_mode%"
     host:      "%mailer_host%"
+    port:      "%mailer_port%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+    encryption: "%mailer_encryption%"
     spool:     { type: memory }
 
 # FOSUser configuration
@@ -176,7 +179,7 @@ easy_admin:
         Workspace:
             class: Becowo\CoreBundle\Entity\Workspace
             list:
-                fields: ['id', 'name', 'description', 'descriptionBonus', { property: 'website', type: 'url' }, 'isAlwaysOpen', 'longitude', 'latitude', 'isVisible', 'isDeleted']
+                fields: ['id', 'name', 'description', 'descriptionBonus', { property: 'website', type: 'url' }, 'isVisible', 'isDeleted']
         Workspace_has_office:
             class: Becowo\CoreBundle\Entity\WorkspaceHasOffice
         Workspace_has_offer:
@@ -337,7 +340,8 @@ hwi_oauth:
             scope:          "r_basicprofile,r_emailaddress"
         twitter:
             type:                twitter
-            client_id:           JUpg6L4RaLkyajcW6AVa9lD86
-            client_secret:       OvUnSkEsgLbN9fxQ5gy3fopFPlB86z6iRtcb17ejMKTAs6XVR3
+            client_id:           Dh1p53EN2cVjULRJuVGeRr8Bq
+            client_secret:       JmBhMZlaFDri3em02uhJ9f2CTkunY7QQXFCRd22SSWmHRKeerN
             options:
                 include_email: true
+            

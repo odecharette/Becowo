@@ -24,6 +24,7 @@
 		    			<li><span class="glyphicon glyphicon-exclamation-sign"></span> 
 		    				{{ error.messageKey|trans(error.messageData, 'security') }}
 		    			</li>
+		    			{{dump(error)}}
 		    		</ul>
 	    			</span>
 					{% endif %}

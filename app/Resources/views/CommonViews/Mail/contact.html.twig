@@ -1,30 +1,14 @@
-{% if name is defined %}
-	Nom : {{ name }}
-{% endif %}
-{% if message is defined %}
-	Message : {{ message|raw }}
-{% endif %}
-{% if wsName is defined %}
-	Nom de l'espace : {{ wsName }}
-{% endif %}
-{% if street is defined %}
-	street : {{ street }}
-{% endif %}
-{% if postCode is defined %}
-	Post Code : {{ postCode }}
-{% endif %}
-{% if city is defined %}
-	Ville : {{ city }}
-{% endif %}
-{% if name is defined %}
-	Nom : {{ name }}
-{% endif %}
-{% if phone is defined %}
-	phone : {{ phone }}
-{% endif %}
-{% if nbDesk is defined %}
-	nbDesk : {{ nbDesk }}
-{% endif %}
-{% if comments is defined %}
-	comments : {{ comments }}
-{% endif %}
+Bonjour,  <br>
+<br>
+Un nouvel espace vient de souscrire en ligne : <br>
+<br>
+Nom de l'espace : {{ wsName }} <br>
+Adresse : {{ street }} <br>
+Post Code : {{ postCode }} <br>
+Ville : {{ city }} <br>
+Offre : {{ offer }} <br>
+Contact : {{ contactName }} <br>
+Email : {{ email }} <br>
+Téléphone : {{ phone }} <br>
+Nombre de bureaux : {{ nbDesk }} <br>
+Commentaires : {{ comments }} <br>

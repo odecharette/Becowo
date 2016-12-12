@@ -24,7 +24,7 @@
                             <li>Référencement</li>
                         </ul>
                     </div>
-                    <div class="panel-footer"><a href="">Je suis interessé</a></div>
+                    <div class="panel-footer"><button type="button" data-toggle="modal" data-target="#myModalOffres">Je suis interessé</button></div>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -44,7 +44,7 @@
                             <li>Suivi des réservations</li>
                         </ul>
                     </div>
-                    <div class="panel-footer"><a href="">Je suis interessé</a></div>
+                    <div class="panel-footer"><button type="button" data-toggle="modal" data-target="#myModalOffres">Je suis interessé</button></div>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -81,7 +81,7 @@
                             <li><a href="https://roundme.com/tour/89706/view/227184/" target="_blank">Voir un exemple de visite virtuelle</a></li>
                         </ul>
                     </div>
-                    <div class="panel-footer"><a href="">Je suis interessé</a></div>
+                    <div class="panel-footer"><button type="button" data-toggle="modal" data-target="#myModalOffres">Je suis interessé</button></div>
                 </div>
             </div>
         </div>
@@ -179,6 +179,113 @@
         </div>
     </div>
 
+</div>
+
+<div class="modal fade" id="myModalOffres" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Becowo - Nos Offres</h4>
+            </div>
+            <div class="modal-body">
+                <p>Quibus occurrere bene pertinax miles explicatis ordinibus parans hastisque feriens scuta qui habitus iram pugnantium concitat et dolorem proximos iam gestu terrebat sed eum in certamen alacriter consurgentem revocavere ductores rati intempestivum anceps subire certamen cum haut longe muri distarent, quorum tutela securitas poterat in solido locari cunctorum.</p>
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+                <h3>Votre espace de coworking</h3>
+                <div class="row">
+                    <div class="col-lg-5 labels">
+                        Le nom * :
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.wsName) }}
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 labels">
+                        Adresse : 
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.street) }} 
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 labels">
+                        Code postal :
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.postCode) }} 
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 labels">
+                        Ville :
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.city) }}
+                    </div>  
+                </div>
+                <div class="row"> 
+                    <div class="col-lg-5 labels">
+                        Nombre de places : 
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.nbDesk) }} 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 labels">
+                        Offre choisie : 
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.offer) }}
+                    </div>  
+                </div>
+
+                <h3>Vos coordonnées</h3>
+                <div class="row"> 
+                    <div class="col-lg-5 labels">
+                        Votre Prénom et Nom : 
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.contactName) }} 
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="col-lg-5 labels">
+                        Votre email * : 
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.email) }} 
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="col-lg-5 labels">
+                        Téléphone : 
+                    </div>
+                    <div class="col-lg-6 boxs">
+                        {{ form_row(form.phone) }} 
+                    </div>
+                </div>
+                <h3>Un commentaire à ajouter ?</h3>
+                <div class="row"> 
+                    <div class="col-lg-10 col-lg-offset-1">
+                        {{ form_row(form.comments) }}
+                    </div>
+
+                    {{ form_rest(form) }}
+                </div>
+                <i>* : Ces informations sont obligatoires</i>
+                <p>Nous vous recontacterons dans les plus brefs délai.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn valider" type="submit"><i class="icon icon-check icon-lg"></i> Valider</button>
+                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

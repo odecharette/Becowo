@@ -12,45 +12,45 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 class HeaderController extends Controller
 {
   
-  public function declarerEspaceAction(Request $request)
-  {
+  // public function declarerEspaceAction(Request $request)
+  // {
 
-    $defaultData = array('description' => '');
-    $form = $this->createFormBuilder($defaultData)
-        ->add('email', EmailType::class, array('label' => 'Votre email *', 'required' => true))
-        ->add('nomEspace', TextType::class, array('label' => 'Le nom de l\'espace'))
-        ->add('website', TextType::class, array('label' => 'Site web'))
-        ->add('description', TextareaType::class, array('label' => 'Racontez-nous votre expérience *', 'required' => true))
-        // ->add('Envoyer', SubmitType::class)
-        ->getForm();
+  //   $defaultData = array('description' => '');
+  //   $form = $this->createFormBuilder($defaultData)
+  //       ->add('email', EmailType::class, array('label' => 'Votre email *', 'required' => true))
+  //       ->add('nomEspace', TextType::class, array('label' => 'Le nom de l\'espace'))
+  //       ->add('website', TextType::class, array('label' => 'Site web'))
+  //       ->add('description', TextareaType::class, array('label' => 'Racontez-nous votre expérience *', 'required' => true))
+  //       // ->add('Envoyer', SubmitType::class)
+  //       ->getForm();
 
-    $form->handleRequest($request);
+  //   $form->handleRequest($request);
 
-    if ($form->isValid()) {
-       $data = $form->getData();
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Un coworker déclare un nouvel espace')
-                ->setFrom($data['email'])
-                ->setTo('webmaster@becowo.com')
-                ->setBody(
-                    $this->renderView(
-                        'CommonViews/Mail/declarer-espace.html.twig',
-                        array(
-                            'email' => $data['email'],
-                            'nomEspace' => $data['nomEspace'],
-                            'website' => $data['website'],
-                            'description' => $data['description']
-                        )
-                    )
-                );
+  //   if ($form->isValid()) {
+  //      $data = $form->getData();
+  //           $message = \Swift_Message::newInstance()
+  //               ->setSubject('Un coworker déclare un nouvel espace')
+  //               ->setFrom($data['email'])
+  //               ->setTo('webmaster@becowo.com')
+  //               ->setBody(
+  //                   $this->renderView(
+  //                       'CommonViews/Mail/declarer-espace.html.twig',
+  //                       array(
+  //                           'email' => $data['email'],
+  //                           'nomEspace' => $data['nomEspace'],
+  //                           'website' => $data['website'],
+  //                           'description' => $data['description']
+  //                       )
+  //                   )
+  //               );
 
-            $this->get('mailer')->send($message);
+  //           $this->get('mailer')->send($message);
 
-            $request->getSession()->getFlashBag()->add('success', 'Votre message a bien été envoyé');
+  //           $request->getSession()->getFlashBag()->add('success', 'Votre message a bien été envoyé');
 
-            return $this->redirectToRoute('becowo_core_declare_ws');
-    }
+  //           return $this->redirectToRoute('becowo_core_declare_ws');
+  //   }
 
-    return $this->render('Header/declarer-espace.html.twig', array('form' => $form->createView()));
-  }
+  //   return $this->render('Header/declarer-espace.html.twig', array('form' => $form->createView()));
+  // }
 }

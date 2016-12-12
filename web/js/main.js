@@ -700,11 +700,11 @@ function loadCalendar2(duree){
 	}
 };
 
-/********************************  JS construction form dans modal ******************/
+/********************************  JS construction form dans modal de réservation ******************/
 
 $('#myModalResaTest').on('show.bs.modal', function(e) {
   var modalData = e.relatedTarget.dataset;
-console.log(modalData);
+//console.log(modalData);
 
   // attention tout en minuscule pour lire le contenu de modalData
   document.getElementById('spaceName').innerHTML = modalData['spacename'];

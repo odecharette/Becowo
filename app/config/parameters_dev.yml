@@ -6,8 +6,11 @@ parameters:
     database_user: webmaster #id116531_webmaster
     database_password: Annapurna1985
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
+    mailer_auth_mode: login
+    mailer_host: localhost
+    mailer_port: null
     mailer_user: null
     mailer_password: null
+    mailer_encryption : tls
     secret: ThisIsTheSecretForBecowoAnnapurna
     site_url: http://localhost/Becowo/web/app_dev.php

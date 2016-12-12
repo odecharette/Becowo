@@ -23,12 +23,12 @@ becowo_core_booking_myreservations:
 becowo_core_offers:
     path:     /offres
     defaults: { _controller: BecowoCoreBundle:Offer:view }
-    methods: GET
+    methods: GET|POST
 
-becowo_core_offers_contact:
-    path:     /offres/{name}
-    defaults: { _controller: BecowoCoreBundle:Offer:contact }
-    methods: GET
+# becowo_core_offers_contact:
+#     path:     /offres/{name}
+#     defaults: { _controller: BecowoCoreBundle:Offer:contact }
+#     methods: GET
 
 becowo_core_comment_ca_marche:
     path:     /comment-ca-marche
@@ -139,10 +139,10 @@ becowo_core_visit_360:
 #     defaults: { _controller: BecowoCoreBundle:Footer:ambassadeur }
 #     methods: GET
 
-becowo_core_declare_ws:
-    path:     /declarer-un-espace
-    defaults: { _controller: BecowoCoreBundle:Header:declarerEspace }
-    methods: GET
+# becowo_core_declare_ws:
+#     path:     /declarer-un-espace
+#     defaults: { _controller: BecowoCoreBundle:Header:declarerEspace }
+#     methods: GET
 
 becowo_core_map:
     path:     /map
