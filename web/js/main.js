@@ -127,7 +127,7 @@ $(window).scroll(function(event){
 /* Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent */
     window.cookieconsent_options = {"message":"En poursuivant votre navigation sur ce site, vous acceptez que des cookies soient utilisés.","dismiss":"J'ai compris !","learnMore":"En savoir plus","link":"https://www.microsoft.com/fr-fr/security/resources/cookie-whatis.aspx","theme":"light-floating"};
 
-// Page d'un WS, Ouvrir le bon onglet via URL
+// Gestion des URL distincits pour chaque onglet dans page d'un WS
 $(function(){
 var hash = window.location.hash;
 if(hash != '')
@@ -146,6 +146,12 @@ else{
 	};
 	
 }
+
+// Qd clic sur un onglet, Change URL et onglet + décale de 33px l'ancre 
+$('.nav-tabs a').on('shown.bs.tab', function(event){                 
+    window.location.hash = $(event.target).text();
+    $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
+});
 
 });
 
