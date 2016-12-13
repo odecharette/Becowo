@@ -127,6 +127,19 @@ $(window).scroll(function(event){
 /* Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent */
     window.cookieconsent_options = {"message":"En poursuivant votre navigation sur ce site, vous acceptez que des cookies soient utilisés.","dismiss":"J'ai compris !","learnMore":"En savoir plus","link":"https://www.microsoft.com/fr-fr/security/resources/cookie-whatis.aspx","theme":"light-floating"};
 
+// Ouvrir le bon onglet via URL
+$(function(){
+var hash = window.location.hash;
+hash = hash.substring(1, hash.length);
+
+if(hash != '')
+{
+	var e = document.getElementById(hash);
+	e.classList.add("active");
+	e.classList.add("in");
+}
+
+});
 
 /*************** Vidéo on home page ****************
 $(document).ready(function () 
