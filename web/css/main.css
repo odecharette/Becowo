@@ -253,6 +253,7 @@ footer li {
 }
 footer #liensRS img{
   margin-left: -10px;
+  border-radius: 20%;
 }
 #liensRS a{
   display: inline-block;
@@ -1286,7 +1287,7 @@ footer{
   margin-top: 10px;
 }*/
 #Contact button{
-  width: 100%;
+  width: 40%;
   border: none;
   background: var(--my-green);
   color: white;

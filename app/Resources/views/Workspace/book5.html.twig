@@ -13,11 +13,19 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 
 		    	<div class="row">
 		    		<div class="col-lg-6">
-						{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
+						{# {% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
 		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}" width="100%" height="200px">
 		        		{% else %}
 		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
-		        		{% endif %}
+		        		{% endif %} #}
+		        		<div id="image" style="background-image: url('{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}');
+		        		background-size: cover;
+					    background-position: center;
+					    height: 200px;
+					    width: 400px;
+					    margin: 0 auto;
+					    background-repeat: no-repeat;">
+		        		</div>
 		    		</div>
 		    		<div class="col-lg-6">
 		    			<span class="office-name" id="{{priceandoffice.workspaceHasOffice.name}}">{{priceandoffice.workspaceHasOffice.name}}</span> - 
