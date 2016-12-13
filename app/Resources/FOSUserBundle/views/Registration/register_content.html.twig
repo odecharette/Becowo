@@ -10,7 +10,7 @@
 <div class="container-fluid form-box">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">
-			<div class="row" id="form-login">
+			<div class="row text-center" id="form-login">
 				<div class="col-lg-5">
 					<h3>Rejoignez Becowo !</h3>
 		    		<br>
@@ -20,20 +20,19 @@
 		        	{% endif %}
 		
 					{{form_start(form, {'method': 'POST', 'attr':{'class': 'register'}})}}
-
-					<label class="sr-only" for="username">{{ form_label(form.username) }}</label>
+					<div class="form-group">
 					  	{{ form_widget(form.username, {'attr': {'placeholder': 'form.username'|trans}}) }}
 					    {{ form_errors(form.username) }}
-					<label class="sr-only" for="email">{{ form_label(form.email) }}</label>
+					
 				    	{{ form_widget(form.email, {'attr': {'placeholder': 'form.email'|trans}}) }}
 				    	{{ form_errors(form.email) }}
-				    <label class="sr-only" for="password">{{ form_label(form.plainPassword.first) }}</label>
-				    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'form.password'|trans}}) }}
-				    {{ form_errors(form.plainPassword.first) }}
-				    <label class="sr-only" for="plainPassword.second">{{ form_label(form.plainPassword.second) }}</label>
+				    
+				    	{{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'form.password'|trans}}) }}
+				    	{{ form_errors(form.plainPassword.first) }}
+				    
 				    	{{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'form.password_confirmation'|trans}}) }}
 				    	{{ form_errors(form.plainPassword.second) }}
-
+				    </div>
 					<button type="submit" class="btn" id="_submit" name="_submit"> {{ 'registration.submit'|trans }}</button>
 					  
 					{{ form_end(form) }}

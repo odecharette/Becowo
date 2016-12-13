@@ -6,13 +6,15 @@ h3{
     color: var(--my-red);
     text-align: center;
 }
+.form-group{
+    margin: 0 !important;
+}
 input[type="text"],
 input[type="email"],  
 input[type="password"] {
 	height: 50px;
-    width: 90%;
-    margin-left: 25px;
-    margin-top: 10px;
+    width: 80%;
+    margin: 10px auto;
     padding: 0 20px;
     vertical-align: middle;
     border: 1px solid var(--my-grey);
@@ -27,11 +29,11 @@ input[type="password"] {
 
 button.btn {
 	height: 50px;
-    width: 100%;
+    width: 60%;
     margin-top: 15px;
     padding: 0 20px;
     vertical-align: middle;
-    background: var(--my-blue);
+    background: var(--my-green);
     font-weight: bold;
     border: 0;
     font-size: 16px;
