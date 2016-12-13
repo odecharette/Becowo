@@ -155,11 +155,8 @@ $('.nav-tabs a').on('shown.bs.tab', function(event){
 
 });
 
-$('#goToResa').click(function() {
+$('[id^="goToResa-"]').click(function() {
   $('#myTab a[href="#Réserver"]').tab('show');
-  //$('html, body').animate({'scrollTop': document.getElementById('Salle de Réunion 4 places-4D').top}, 1000);
-  var el = document.getElementById('Salle de Réunion 4 places-4D');
-  el.scrollIntoView();
 });
 
 /*************** Vidéo on home page ****************
