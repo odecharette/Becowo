@@ -130,11 +130,16 @@ $(window).scroll(function(event){
 // Ouvrir le bon onglet via URL
 $(function(){
 var hash = window.location.hash;
-hash = hash.substring(1, hash.length);
-
 if(hash != '')
 {
+	hash = hash.substring(1, hash.length);
 	var e = document.getElementById(hash);
+	e.classList.add("active");
+	e.classList.add("in");
+}
+else{
+	$('.nav-tabs a[href="#Description"]').tab('show')
+	var e = document.getElementById('Description');
 	e.classList.add("active");
 	e.classList.add("in");
 }
