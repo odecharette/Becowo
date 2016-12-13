@@ -58,27 +58,29 @@
         <div class="row text-center">
 	         {% for priceandoffice in pricesAndOffices %}
 	         	{% if loop.index < 6 %} {# on n'affiche que les 5 premiers bureaux #}
-	        	<div id="office">
-	        		{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
-	        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
-	        		{% else %}
-	        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
-	        		{% endif %} <br>
-	        		{{priceandoffice.WorkspaceHasOffice.name}} <br>
-	        		<strong>
-	        			{% if priceandoffice.priceHour > 0 %}
-		        			A partir de {{priceandoffice.priceHour}} € HT / heure
-		        		{% elseif priceandoffice.priceHalfDay > 0 %}
-		        			{{priceandoffice.priceHalfDay}} € HT / 1/2 journée
-		        		{% elseif priceandoffice.priceDay > 0 %}
-		        			{{priceandoffice.priceDay}} € HT / jour
-		        		{% elseif priceandoffice.priceWeek > 0 %}
-		        			{{priceandoffice.priceWeek}} € HT / semaine
-		        		{% elseif priceandoffice.priceMonth > 0 %}
-		        			{{priceandoffice.priceMonth}} € HT / mois
-		        		{% endif %}
-					</strong>
-		        </div>
+         		<a href="#Réserver" id="goToResa">
+		        	<div id="office">
+		        		{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
+		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+		        		{% else %}
+		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+		        		{% endif %} <br>
+		        		{{priceandoffice.WorkspaceHasOffice.name}} <br>
+		        		<strong>
+		        			{% if priceandoffice.priceHour > 0 %}
+			        			A partir de {{priceandoffice.priceHour}} € HT / heure
+			        		{% elseif priceandoffice.priceHalfDay > 0 %}
+			        			{{priceandoffice.priceHalfDay}} € HT / 1/2 journée
+			        		{% elseif priceandoffice.priceDay > 0 %}
+			        			{{priceandoffice.priceDay}} € HT / jour
+			        		{% elseif priceandoffice.priceWeek > 0 %}
+			        			{{priceandoffice.priceWeek}} € HT / semaine
+			        		{% elseif priceandoffice.priceMonth > 0 %}
+			        			{{priceandoffice.priceMonth}} € HT / mois
+			        		{% endif %}
+						</strong>
+			        </div>
+		    	</a>
 		    	{% endif %}
 	        {% endfor %} 
 	       

@@ -127,7 +127,7 @@ $(window).scroll(function(event){
 /* Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent */
     window.cookieconsent_options = {"message":"En poursuivant votre navigation sur ce site, vous acceptez que des cookies soient utilisés.","dismiss":"J'ai compris !","learnMore":"En savoir plus","link":"https://www.microsoft.com/fr-fr/security/resources/cookie-whatis.aspx","theme":"light-floating"};
 
-// Ouvrir le bon onglet via URL
+// Page d'un WS, Ouvrir le bon onglet via URL
 $(function(){
 var hash = window.location.hash;
 if(hash != '')
@@ -140,10 +140,20 @@ if(hash != '')
 else{
 	$('.nav-tabs a[href="#Description"]').tab('show')
 	var e = document.getElementById('Description');
-	e.classList.add("active");
-	e.classList.add("in");
+	if(e){
+		e.classList.add("active");
+		e.classList.add("in");
+	};
+	
 }
 
+});
+
+$('#goToResa').click(function() {
+  $('#myTab a[href="#Réserver"]').tab('show');
+  //$('html, body').animate({'scrollTop': document.getElementById('Salle de Réunion 4 places-4D').top}, 1000);
+  var el = document.getElementById('Salle de Réunion 4 places-4D');
+  el.scrollIntoView();
 });
 
 /*************** Vidéo on home page ****************
