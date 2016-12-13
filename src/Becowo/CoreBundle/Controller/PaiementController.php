@@ -75,27 +75,21 @@ class PaiementController extends Controller
   public function annuleAction(Request $request)
   {
     $error_code = $request->get('erreur'); 
-    if($error_code != "00000")
-    {
-      // La transaction a générée une erreur
-      $errorService = $this->get('app.error');
-      $error = $errorService->getErrorByCode($error_code);
-      $error_msg = $error[0]['sentence'];
-    }
-    return $this->render('Paiement/annule.html.twig');
+    // La transaction a générée une erreur
+    $errorService = $this->get('app.error');
+    $error = $errorService->getErrorByCode($error_code);
+    $error_msg = $error->getSentence();
+    return $this->render('Paiement/annule.html.twig', array('error_msg' => $error_msg));
   }
 
   public function refuseAction(Request $request)
   {
     $error_code = $request->get('erreur'); 
-    if($error_code != "00000")
-    {
-      // La transaction a générée une erreur
-      $errorService = $this->get('app.error');
-      $error = $errorService->getErrorByCode($error_code);
-      $error_msg = $error[0]['sentence'];
-    }
-    return $this->render('Paiement/refuse.html.twig');
+    // La transaction a générée une erreur
+    $errorService = $this->get('app.error');
+    $error = $errorService->getErrorByCode($error_code);
+    $error_msg = $error->getSentence();
+    return $this->render('Paiement/refuse.html.twig', array('error_msg' => $error_msg));
   }
 
 

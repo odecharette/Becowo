@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}
-  {{ parent() }} - Paiement effectué
+  {{ parent() }} - Paiement accepté
 {% endblock %}
 
 {% block stylesheets %}
@@ -10,14 +10,29 @@
 
 {% block body %}
 
-
-<center><b><h2>Votre paiement a été accepté</h2></center></b><br>
-Le paiement de votre réservation N° {{app.request.get('Ref')}} a été accepté<br>
-{{dump(app.request)}}
-{{error_msg}}
-
-<br><br>
-Un email vient de vous être envoyé avec toutes les informations concernant votre réservation.<br>
+<div class="container-fluid paiement">
+	<div class="row">
+		<h1>Votre paiement a été accepté</h1>
+	</div>
+	<div class="row">
+		<div class="col-lg-6">
+			<p>Le paiement de votre réservation N° {{app.request.get('Ref')}} a été accepté <br>
+				<br>
+			<strong>Détails du paiement : </strong><br>
+			Réservation N° : 	{{app.request.get('Ref')}} <br>
+			Montant : {{app.request.get('Montant') / 100 }} € TTC <br>
+			<br>
+			Un email vient de vous être envoyé avec toutes les informations concernant votre réservation.
+			</p>
+		</div>
+		<div class="col-lg-2 col-lg-offset-2">
+			<br><br>
+			<img src="{{ asset('images/icons/creditAgricole/e-transactions.png') }}" alt="e-transactions">
+		</div>
+	</div>
+	<hr>
+	{% include "CommonViews/bandeauQuestion.html.twig" %}
+</div>
 
 {% block javascripts %}    
 {% endblock javascripts %}

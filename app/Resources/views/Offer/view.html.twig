@@ -104,7 +104,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-lg-offset-2">
-                    <h3>Géstion</h3>
+                    <h3>Gestion</h3>
                     <p>Simplifier la gestion au quotidien, uniformiser les outils</p>
                 </div>
                 <div class="col-lg-3 col-lg-offset-2">
@@ -164,19 +164,7 @@
             <h3>Plus de services à venir bientôt</h3>
             
         </div>
-        <div class="row text-center" id="question">
-            <div class="col-lg-2">
-                <img src="{{ asset('images/icons/questions-vert.png') }}" alt="question">
-            </div>
-            <div class="col-lg-8">
-                <h1>Une question ? Une suggestion ? Contactez-nous ! </h1>
-                <h3><i class="fa fa-mobile" aria-hidden="true"></i> Par téléphone ou SMS au : <a href="tel:+33611706382">06 11 70 63 82</a></h3>
-                <h3><img src="{{ asset('images/icons/messenger.png') }}" alt="messenger" id="m"> Par messenger en <a href="http://m.me/becowo" target="_blank">cliquant ici</a></h3>
-            </div>
-            <div class="col-lg-2">
-                <img src="{{ asset('images/icons/questions-rose.png') }}" alt="question">
-            </div>
-        </div>
+        {% include "CommonViews/bandeauQuestion.html.twig" %}
     </div>
 
 </div>

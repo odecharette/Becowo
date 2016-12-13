@@ -6,15 +6,19 @@
 
 {% block body %}
 
-<div id="page-simple">
-<h1>Comment ca marche ?</h1>
-
-<p style="font-size:18px; text-align:center;">
-</p>
-<video id="video" height="200px" controls="controls">
-	<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
-</video>
+<div class="container-fluid">
+	<div class="row">
+	<h1>Comment ca marche ?</h1>
+	</div>
+	<div class="row">
+		<video id="video" height="200px" controls="controls">
+			<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
+		</video>
+	</div>
+	{% include "CommonViews/bandeauQuestion.html.twig" %}
 
 </div>
-<br><br>
+
+
+
 {% endblock %}

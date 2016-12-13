@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}
-  {{ parent() }} - Paiement effectu�
+  {{ parent() }} - Paiement refusé
 {% endblock %}
 
 {% block stylesheets %}
@@ -10,10 +10,32 @@
 
 {% block body %}
 
-
-<center><b><h2>Votre transaction a �t� refus�e</h2></center></b><br>
-{{dump(app.request)}}
-{{error_msg}}
+<div class="container-fluid paiement">
+	<div class="row">
+		<h1><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Votre paiement a été refusé <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h1>
+	</div>
+	<div class="row">
+		<div class="col-lg-6">
+			<p>Le paiement de votre réservation N° {{app.request.get('Ref')}} a été refusé <br>
+			<br>
+			<strong>Détails du paiement : </strong><br>
+			Réservation N° : 	{{app.request.get('Ref')}} <br>
+			Montant : {{app.request.get('Montant') / 100 }} € TTC <br>
+			Coder Erreur : {{app.request.get('erreur')}} <br>
+			{% if error_msg is defined %}Message d'erreur :  {{error_msg}} {% endif %} <br>
+			</p>
+		</div>
+		<div class="col-lg-2 col-lg-offset-2">
+			<br><br>
+			<img src="{{ asset('images/icons/creditAgricole/e-transactions.png') }}" alt="e-transactions">
+		</div>
+	</div>
+	<div class="row">
+		<p>Nous vous invitons à vérifier l'état de votre carte de payement puis à recommencer le process de réservation.</p>
+	</div>
+	<hr>
+	{% include "CommonViews/bandeauQuestion.html.twig" %}
+</div>
 
 {% block javascripts %}    
 {% endblock javascripts %}
