@@ -1219,7 +1219,7 @@ footer{
   border-top: none;
   height: 100%;
 }
-#Description, #Services, #Contact, #Réserver{
+#Description, #Services, #Contact, #Réservation{
   color: var(--my-grey);
   font-size: 16px;
   text-align: justify;
@@ -1358,18 +1358,18 @@ footer{
 #time a:hover{
   font-weight: bold;
 }
-#Réserver .office-name{
+#Réservation .office-name{
   font-size: 16pt;
   font-weight: bold;
   color: var(--my-red);
 }
-#Réserver #formules{
+#Réservation #formules{
   padding-left: 0px;
 }
-#Réserver i{
+#Réservation i{
   color: var(--my-blue);
 }
-#Réserver #btnResa{
+#Réservation #btnResa{
   line-height: 2em;
   width: 80%;
   background-color: var(--my-green);
@@ -1377,7 +1377,7 @@ footer{
   font-size: 18pt;
   border-color: var(--my-green-strong);
 }
-#Réserver #btnResa:hover {
+#Réservation #btnResa:hover {
 border: solid 3px var(--my-green-strong);
 }
 .office-name{
