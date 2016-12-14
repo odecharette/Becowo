@@ -52,7 +52,7 @@
 {############################ Description ############################}
     <div id="Description" class="tab-pane fade">
         <p>{{ws.description|raw|nl2br}}</p>
-        <strong>Retrouvez tous nos bureaux et les tarifs en détail dans l'onglet "Réservation"</strong>
+        <strong>Retrouvez toutes les informations nécessaires à votre réservation dans l'onglet "Réservation"</strong>
         <br>
         <br>
         <div class="row text-center">
@@ -90,7 +90,7 @@
     <div id="Services" class="tab-pane fade">
     	<div class="row">
     		<div class="col-lg-8">
-		        <p>Sed laeditur hic coetuum magnificus splendor levitate paucorum incondita, ubi nati sunt non reputantium, sed tamquam indulta licentia vitiis ad errores lapsorum ac lasciviam. ut enim Simonides lyricus docet, beate perfecta ratione vieturo ante alia patriam esse convenit gloriosam.</p>
+		        <p>Les services disponibles chez {{ws.name}}</p>
 		        <br>
 		        <ul>
 					{% for amenity in ws.amenities %}
@@ -108,7 +108,15 @@
     </div>
 {############################ Evenements ############################}
     <div id="Evènements" class="tab-pane fade">
-        {% include 'Workspace/events.html.twig' %}
+    	{% if listEvents|length > 0 %}
+    		<p>Retrouvez ici les événements organisés chez {{ws.name}}</p>
+        	{% include 'Workspace/events.html.twig' %}
+        {% else %}
+        	<div class="row text-center">
+        		<span style="font-size:14pt;">Aucun évènement n'est prévu pour le moment.</span>
+        		<br><br>
+        	</div>
+    	{% endif %}
     </div>
 {############################ Contact ############################}
     <div id="Contact" class="tab-pane fade">

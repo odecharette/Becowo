@@ -1,35 +1,47 @@
 {# TO DO : en dans le fichier de config mettre les infos de preprod puis prod données par le Crédit Agricole #}
 
 {# ATTENTION : l'ordre des champs est extrêmement important, il doit correspondre exactement à l'ordre des champs dans la chaîne hachée (PaiementController.php) #}
-{# #} {{dump(creditAgricole)}}
-{{dump(priceToPay)}}
-{{dump(bookingRef)}}
-{{dump(userEmail)}}
-{{dump(dateISO)}}
-{{dump(hmacCalculated)}}
+{#  
+{{dump(booking)}}#}
 
-Ici la page payer.html.twig
-mettre du blabla
-
-<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi" id="form-payer"> {# TO DO URL de prod  #}
-	<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
-	<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
-	<input type="hidden" name="PBX_IDENTIFIANT" value="{{creditAgricole.PBX_IDENTIFIANT}}"> 
-	<input type="hidden" name="PBX_TOTAL" value="{{priceToPay}}">
-	<input type="hidden" name="PBX_DEVISE" value="{{creditAgricole.PBX_DEVISE}}"> 
-	<input type="hidden" name="PBX_CMD" value="{{bookingRef}}">  
-	<input type="hidden" name="PBX_PORTEUR" value="{{userEmail}}">  
-	<input type="hidden" name="PBX_RETOUR" value="{{creditAgricole.PBX_RETOUR}}"> 
-	<input type="hidden" name="PBX_HASH" value="{{creditAgricole.PBX_HASH}}"> 
-	<input type="hidden" name="PBX_TIME" value="{{dateISO}}">
-	<input type="hidden" name="PBX_HMAC" value="{{hmacCalculated}}">
-	{# TO DO mettre les URL de retour ds BO du credit agricole, mais ici tant que pas de BO #}
-	<input type="hidden" name="PBX_EFFECTUE" value="{{creditAgricole.PBX_EFFECTUE}}"> 
-	<input type="hidden" name="PBX_REFUSE" value="{{creditAgricole.PBX_REFUSE}}">
-	<input type="hidden" name="PBX_ANNULE" value="{{creditAgricole.PBX_ANNULE}}">
-	<input type="hidden" name="PBX_REPONDRE_A" value="{{creditAgricole.PBX_REPONDRE_A}}">
-	{# <input type="hidden" name="PBX_ATTENTE" value="{{hmacCalculated}}"> #}
-	<input type="submit" value="Payer !" id="payer"> 
-</form> 
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
 
 
+Récapitulatif de votre réservation N° <strong style="font-size: 12pt;color:var(--my-blue);">{{booking.bookingRef}}</strong> : <br>
+<br>
+<strong>Location :</strong> {{booking.workspacehasoffice.name}} <br>
+<strong>Date :</strong> du {{booking.startDate|date("d/m/Y à h:i")}} au {{booking.endDate|date("d/m/Y à h:i")}} <br>
+<strong>Nombre de coworker :</strong> {{booking.nbPeople}} <br>
+<strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>
+<strong>Prix TTC :</strong> {{booking.priceInclTax|number_format(2)}} € <br>
+<br>
+<div class="row text-center">
+	<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi" id="form-payer"> {# TO DO URL de prod  #}
+		<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
+		<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
+		<input type="hidden" name="PBX_IDENTIFIANT" value="{{creditAgricole.PBX_IDENTIFIANT}}"> 
+		<input type="hidden" name="PBX_TOTAL" value="{{booking.priceInclTax * 100}}">
+		<input type="hidden" name="PBX_DEVISE" value="{{creditAgricole.PBX_DEVISE}}"> 
+		<input type="hidden" name="PBX_CMD" value="{{booking.bookingRef}}">  
+		<input type="hidden" name="PBX_PORTEUR" value="{{userEmail}}">  
+		<input type="hidden" name="PBX_RETOUR" value="{{creditAgricole.PBX_RETOUR}}"> 
+		<input type="hidden" name="PBX_HASH" value="{{creditAgricole.PBX_HASH}}"> 
+		<input type="hidden" name="PBX_TIME" value="{{dateISO}}">
+		<input type="hidden" name="PBX_HMAC" value="{{hmacCalculated}}">
+		{# TO DO mettre les URL de retour ds BO du credit agricole, mais ici tant que pas de BO #}
+		<input type="hidden" name="PBX_EFFECTUE" value="{{creditAgricole.PBX_EFFECTUE}}"> 
+		<input type="hidden" name="PBX_REFUSE" value="{{creditAgricole.PBX_REFUSE}}">
+		<input type="hidden" name="PBX_ANNULE" value="{{creditAgricole.PBX_ANNULE}}">
+		<input type="hidden" name="PBX_REPONDRE_A" value="{{creditAgricole.PBX_REPONDRE_A}}">
+		{# <input type="hidden" name="PBX_ATTENTE" value="{{hmacCalculated}}"> #}
+		<input type="submit" value="Procéder au paiement" id="payer"> 
+	</form> 
+</div>
+
+</body>
+</html>

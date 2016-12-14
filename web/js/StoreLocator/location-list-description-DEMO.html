@@ -31,8 +31,9 @@
 					                <h4 class="modal-title">Réclamer cet espace</h4>
 					            </div>
 					            <div class="modal-body">
-					                <p>{{name}} n'a pas encore autorisé Becowo à permettre la réservation en ligne. <br>
-					                Si comme nous, vous trouvez ça dommage, alors cliquez sur "Je réclame !"</p>
+					                <p>La réservation en ligne n'est malheureusement pas disponible chez {{name}}. <br>
+					                Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à {{name}} car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"
+									</p>
 									<form method="POST" action="/Becowo/web/app_dev.php/voteZen/{{id}}" id="form_voteZen">
 									Votre email * : <input type="email" name="emailVote" required="true" width="200px">
 									<p>Nous vous préviendrons dès que {{name}} sera disponible sur Becowo.</p>

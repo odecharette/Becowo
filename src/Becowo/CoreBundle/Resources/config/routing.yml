@@ -87,7 +87,7 @@ becowo_core_booking_form:
         expose: true
 
 becowo_core_booking:
-    path:     /ws/{name}/book
+    path:     /book/{name}
     defaults: { _controller: BecowoCoreBundle:Booking:book }
     methods: GET|POST
     options:
@@ -104,7 +104,7 @@ becowo_core_booking_refused:
     methods: GET|POST
 
 becowo_core_paiement_call_bank:
-    path:     /ws/{name}/bank
+    path:     /bank
     defaults: { _controller: BecowoCoreBundle:Paiement:callBank }
     methods: GET|POST
     options:

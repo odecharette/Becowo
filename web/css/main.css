@@ -1017,6 +1017,7 @@ footer{
   display: inline-block;
   font-weight: 700;
   color: #fff;
+  text-transform: capitalize;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
@@ -1419,7 +1420,6 @@ border: solid 3px var(--my-green-strong);
   width: 100% !important;
   padding: 0;
 }
-
 #calendarContainer .drp_top-bar, #calendarContainer .footer{
   padding: 0;
 }
@@ -1505,6 +1505,18 @@ border: solid 3px var(--my-green-strong);
 #booking .row{
   margin-bottom: 50px;
   margin-top: 20px;
+}
+#payer{
+  background-color: var(--my-green);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: white;
+  font-size: 22px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: none;
+  outline: none;
 }
 /*#booking-steps .steps ul, #booking-steps .actions ul{
   list-style: none!important;
@@ -1936,6 +1948,15 @@ color: var(--my-blue) !important;
   position: absolute;
   top: 10%;
   width: 100%;
+}
+#top-image span{
+  position: absolute;
+  top: 3%;
+  color: white;
+  font-size: 36px;
+  font-family: Georgia;
+  width: 100%;
+  text-align: center;
 }
 #offres h1{
   text-align: center;

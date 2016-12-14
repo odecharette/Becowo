@@ -11,14 +11,15 @@ class PaiementController extends Controller
 
   public function callBankAction(Request $request)
   {
-     $paiementInfos = $this->container->getParameter('creditAgricole');
-     $currentUser = $this->getUser();
-     $userEmail = $currentUser->getEmail();
+    if($request->isMethod('GET'))
+    {
+
+    $paiementInfos = $this->container->getParameter('creditAgricole');
+    $currentUser = $this->getUser();
+    $userEmail = $currentUser->getEmail();
 
     $session = $request->getSession();
-    $bookingRef = $session->get('bookingRef');
-    $priceToPay = $session->get('priceToPay');
-
+    $booking = $session->get('booking');
 
     /************************************/
     //On doit ici calculer l'empreinte du message pour assurer la sécurité du paiement
@@ -29,9 +30,9 @@ class PaiementController extends Controller
     $msg = "PBX_SITE=" . $paiementInfos['PBX_SITE'] . 
     "&PBX_RANG=" . $paiementInfos['PBX_RANG'] . 
     "&PBX_IDENTIFIANT=" . $paiementInfos['PBX_IDENTIFIANT'] . 
-    "&PBX_TOTAL=" . $priceToPay .
+    "&PBX_TOTAL=" . $booking->getPriceInclTax() * 100 . // on doit envoyer le prix à payer en cts à la banque
     "&PBX_DEVISE=" . $paiementInfos['PBX_DEVISE'] . 
-    "&PBX_CMD=" . $bookingRef . 
+    "&PBX_CMD=" . $booking->getBookingRef() . 
     "&PBX_PORTEUR=" . $userEmail . 
     "&PBX_RETOUR=" . $paiementInfos['PBX_RETOUR'] . 
     "&PBX_HASH=" . $paiementInfos['PBX_HASH'] .
@@ -54,7 +55,9 @@ class PaiementController extends Controller
     $hmacCalculated = strtoupper(hash_hmac($paiementInfos['PBX_HASH'], $msg, $binKey)); 
     // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
 
-    return $this->render('Paiement/payer.html.twig', array('paiementInfos' =>$paiementInfos, 'priceToPay' => $priceToPay, 'bookingRef' => $bookingRef, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated));
+    return $this->render('Paiement/payer.html.twig', array('creditAgricole' =>$paiementInfos, 'booking' => $booking, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated));
+
+    }
   }
 
   public function effectueAction(Request $request)

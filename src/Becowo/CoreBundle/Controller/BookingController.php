@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Entity\Booking;
 use Becowo\CoreBundle\Entity\Status;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class BookingController extends Controller
 {
@@ -26,13 +28,6 @@ class BookingController extends Controller
   	$closedDates = $WsService->getClosedDatesByWorkspace($ws);
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
 
-  	// if ($request->isMethod('POST'))
-  	// {
-  	// 	// TO DO : vérifier ici que le formulaire de résa est complet/valide
-
-  	// 	return $this->redirectToRoute('becowo_core_booking_form', array('name' => $request->get('name')));
-  	// 	//return $this->render('Workspace/book-validated.html.twig');
-  	// }
   	return $this->render('Workspace/book5.html.twig', array(
         'pricesAndOffices' => $pricesAndOffices,
         'ws' => $ws, 
@@ -42,8 +37,10 @@ class BookingController extends Controller
 
   public function bookAction($name, Request $request)
   {
-
-    if ($request->isMethod('POST'))
+    dump($request);
+    dump($request->isMethod('POST') );
+    dump($request->get('wshasofficeID') != null);
+    if ($request->isMethod('POST') && $request->get('wshasofficeID') != null)
     {
 
     $WsService = $this->get('app.workspace');
@@ -97,13 +94,13 @@ class BookingController extends Controller
   	  $em->flush();
 
       $session = $request->getSession();
-      $session->set('bookingRef', $booking->getBookingRef());
-      $session->set('priceToPay', $bookingPriceInclTax * 100); // on doit envoyer le prix à payer en cts à la banque
+      $session->set('booking', $booking);
 
-      return $this->redirectToRoute('becowo_core_paiement_call_bank', array('name' => $request->get('name')));
+      return $this->redirectToRoute('becowo_core_paiement_call_bank');
     }
 
-    return true;
+    return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
+    // return $this->redirect('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi');
 
   }
 

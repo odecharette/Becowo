@@ -50,11 +50,11 @@
 		<div class="col-lg-6 middle" >
 			<div class="bio">
 				<h2>Bio</h2>
-				{{member.description|nl2br}}
+				<p>{{member.description|nl2br}}</p>
 			</div>
 			<div class="skills">
 				<h2>Compétences</h2>
-				{% set skills = member.skills|split(',') %}
+				{% set skills = member.skills|split(',')%}
 				{% for skill in skills %}
 				    <span class="label skill">{{skill}}</span>
 				{% endfor %}
@@ -105,10 +105,12 @@
 				{% endif %}
 			</div>
 			<div class="coworking">
+				{% if wsBooked|length > 0 %}
 				<h2>Mes coworking</h2>
 					{% for ws in wsBooked %}
 						<a href="{{ path('becowo_core_workspace', { 'name': ws.name }) }}">{{ws.name}}</a> <br>
 					{% endfor %}
+				{% endif %}
 			</div>
 			<div class="taux">
 				<h2>Taux de remplissage</h2>
