@@ -24,7 +24,7 @@ class MemberRepository extends EntityRepository
 	{
 		$qb = $this->createQueryBuilder('m');
 		$qb->select('p, m')
-		   ->Join('m.profilePicture', 'p')
+		   ->leftJoin('m.profilePicture', 'p')
 			->where('m.enabled = true')
 			->andWhere('m.isDeleted = false')
 			->orderBy('m.fillRate', 'desc');

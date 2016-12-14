@@ -10,17 +10,30 @@
 
 <div class="container-fluid" id="PublicProfile">
 	<div class="row name">
-		{{member.firstname}} {{member.name}}
+		{% if member.firstname == '' and member.name == ''%}
+			anonyme
+		{% else %}
+			{{member.firstname}} {{member.name}}
+		{% endif %}
 	</div>
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="picture">
-				<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.profilePicture.url}}'); 
-			    width:200px; 
-			    height:200px; 
-			    background-position:center;
-			    background-size: cover;
-			    margin: 0 auto;">&nbsp;</div>
+				{% if member.profilePicture.url is defined %}
+					<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.profilePicture.url}}'); 
+				    width:200px; 
+				    height:200px; 
+				    background-position:center;
+				    background-size: cover;
+				    margin: 0 auto;">&nbsp;</div>
+			    {% else %}
+					<div style="background-image:url('{{ asset('images/ProfilePictures/avatar.png')}}'); 
+				    width:200px; 
+				    height:200px; 
+				    background-position:center;
+				    background-size: cover;
+				    margin: 0 auto;">&nbsp;</div>
+				{% endif %}
 			</div>
 			<div class="tweet">
 				<i class="fa fa-quote-left" aria-hidden="true"></i> 
