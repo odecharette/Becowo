@@ -1681,71 +1681,76 @@ color: var(--my-blue) !important;
 
 
 #panelEvent {
-  width: 350px; 
+  width: 30%; 
   display: inline-block;  
   border: none;
   overflow: hidden;
-  margin-bottom: 0;
-  padding: 0 10px 0px 10px;
-  box-shadow: none;
+  margin-right: 15px;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
-
-#Event-more{
-  font-family:FontAwesome;
-  background: none;
-  border: none;
-  color: grey;
-  font-size: 50px;
-  line-height: 25px;
-  position: relative;
-  left: 50%;
-}
-#Event-more.collapsed:before
-{
-  content:"\f103" ; /* fontAwesome down */
-}
-#Event-more:before
-{
-  content:"\f102" ; /* fontAwesome up */
-}
-
 #panelEvent .panel-heading{
-  background-color: var(--my-blue);
+  background-color: var(--my-green);
   color: white;
   font-size: 18px;
-  font-weight: bold;
 }
 #panelEvent .panel-body{
   margin-top: -2px;
   color: var(--my-grey);
   font-size: 12pt;
   text-align: justify;
-  height: 280px;
-  padding: none;
-  border: solid 1px var(--my-blue);
+  height: 250px;
+  border: solid 1px var(--my-green);
+  overflow: hidden;
+  padding-bottom: 10px;
+  background-color: white;
+  border-bottom: none;
 }
 #panelEvent .panel-body center{
     font-weight: bold;
     font-size: 15px;
     color: var(--my-blue);
+    margin: 10px 0 5px 0;
 }
-/*#panelEvent .panel-footer{
+#panelEvent .panel-body .title{
+    font-weight: bold;
+    font-size: 16pt;
+    color: var(--my-blue);
+}
+#panelEvent .panel-footer{
   background-color: white;
-  border: solid 2px var(--my-blue);
-  padding: none !important;
-}*/
-
+  border : solid 1px var(--my-green);
+  padding: 0 0 5px 0;
+  border-top: none;
+}
+#panelEvent .panel-footer .btn{
+  background-color: #F1F2F6;
+  color: var(--my-black);
+  font-size: 11pt;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  padding: 10px 15px 10px 15px;
+}
+#panelEvent .panel-footer .btn:focus{
+  outline: transparent;
+}
 .addthisevent-drop {
-  color: white !important;
-  background-color: white !important;
+  font-family: inherit !important;
+  background-color: inherit !important;
   border: none !important;
-  opacity: 0.5 !important;
+  opacity: 1 !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-size: inherit !important;
+  z-index: 0 !important;
 }
 .addthisevent-drop:hover {
   border: none !important;
-  opacity: 1 !important;
+  color: inherit !important;
 }
-
+.addthisevent_icon{
+  display: none !important;
+}
 
 /*
 #events{
