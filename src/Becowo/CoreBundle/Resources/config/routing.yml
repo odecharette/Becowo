@@ -80,7 +80,7 @@ becowo_core_paiement:
     methods: GET
 
 becowo_core_booking_form:
-    path:     /ws/{name}
+    path:     /book-form/{name}
     defaults: { _controller: BecowoCoreBundle:Booking:bookForm }
     methods: GET|POST
     options:

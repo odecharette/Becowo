@@ -100,7 +100,6 @@ class BookingController extends Controller
     }
 
     return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
-    // return $this->redirect('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi');
 
   }
 
