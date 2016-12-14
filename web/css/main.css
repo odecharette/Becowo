@@ -332,18 +332,19 @@ footer{
 */
 #contact-form .labels{
   text-align: right;
-  margin-right: 10px;
+  margin: 10px 0 0 0px;
   color: var(--my-grey);
-      display: table-cell;
-    vertical-align: middle;
-    line-height: 35px;
+  display: table-cell;
+  vertical-align: middle;
+  line-height: 35px;
 }
 #contact-form input{
   height: 35px;
-  margin: 0;
+  margin: 10px 0 0 0px;
   width: 100%;
 }
 #contact-form textarea{
+  margin: 10px 0 0 0px;
   border: 1px solid var(--my-grey);
 }
 #contact-form #logo{
@@ -355,11 +356,12 @@ footer{
 }
 #contact-form button{
   background-color: var(--my-green);
-    color: white;
-    border: none;
-    font-size: 14pt;
-    padding: 10px;
-    width: 150px;
+  color: white;
+  border: none;
+  font-size: 14pt;
+  padding: 10px;
+  width: 150px;
+  margin: 10px 0 30px 70px;
 }
 #footer_menu ul{
   margin-bottom: 0;
@@ -482,7 +484,7 @@ footer{
 }
 #home-image div{
   position: absolute;
-  top: 60%;
+  top: 70%;
   color: white;
   font-size: 36px;
   font-family: Georgia;
@@ -491,7 +493,7 @@ footer{
 }
 #home-image i{
     position: absolute;
-    top: 70%;
+    top: 80%;
     color: white;
     background-color: var(--my-green);
     padding: 5px 13px 5px 13px;
@@ -1006,8 +1008,18 @@ footer{
 #PublicProfile .skill, #PublicProfile .hobbie, #PublicProfile .wishe{
   background-color: var(--my-pink);
   font-size: 12pt;
+  display: inline-block;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  margin: 3px;
+  padding: 0 5px 0 5px;
   line-height: 2em;
 }
+
 #PublicProfile .tweet{
   background-color: var(--my-green);
   color: white;

@@ -133,6 +133,7 @@ var hash = window.location.hash;
 if(hash != '')
 {
 	hash = hash.substring(1, hash.length);
+	console.log(hash);
 	var e = document.getElementById(hash);
 	e.classList.add("active");
 	e.classList.add("in");

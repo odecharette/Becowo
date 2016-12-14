@@ -18,7 +18,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		        		{% else %}
 		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 		        		{% endif %} #}
-		        		<div id="image" style="background-image: url('{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}');
+		        		<div id="image" style="background-image: url('{{ asset('images/Workspaces/') }}{{ws.name|url_encode}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}');
 		        		background-size: cover;
 					    background-position: center;
 					    height: 200px;
