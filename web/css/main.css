@@ -1123,7 +1123,13 @@ footer{
   display: inline-block;
   width: 90%;
 }
-
+.identity .form-control{
+  display: inline !important;
+  width: 90%;
+}
+.form-inline .form-control{
+  width: auto !important;
+}
 #fos_user_profile_form_sex{
   display: inline-flex;
 }

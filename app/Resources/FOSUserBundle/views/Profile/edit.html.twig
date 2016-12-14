@@ -37,19 +37,27 @@
       <div class="picture">
           {% if form.children.profilePicture.children.url.vars.value != '' %}
             {% if form.vars.data.signedUpWith != '' %}
-              <div style="background-image:url('{{ form.vars.value.profilePicture.url }}'); 
-                width:200px; 
-                height:200px; 
-                background-position:center;
-                background-size: cover;">&nbsp;</div>
+                <div style="background-image:url('{{ form.vars.value.profilePicture.url }}'); 
+                  width:200px; 
+                  height:200px; 
+                  background-position:center;
+                  background-size: cover;
+                  margin: 0 auto;">&nbsp;</div>
             {% else %}
-              <div style="background-image:url('{{asset('images/ProfilePictures/')}}{{ form.vars.value.profilePicture.url }}'); 
+                <div style="background-image:url('{{asset('images/ProfilePictures/')}}{{ form.vars.value.profilePicture.url }}'); 
                 width:200px; 
                 height:200px; 
                 background-position:center;
-                background-size: cover;">&nbsp;</div>
+                background-size: cover;
+                margin: 0 auto;">&nbsp;</div>
             {% endif %}
-            
+          {% else %}
+                <div style="background-image:url('{{asset('images/ProfilePictures/avatar.png')}}'); 
+                width:200px; 
+                height:200px; 
+                background-position:center;
+                background-size: cover;
+                margin: 0 auto;">&nbsp;</div>  
           {% endif %}
           {{ form_row(form.profilePicture) }} <br>
           {# {{ form.vars.value.profilePicture.url }} #}
@@ -109,7 +117,8 @@
       </div>
       <div class="identity">
         <h2>Informations privées</h2>
-          <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.street) }}  <br>
+          <i class="fa fa-home" aria-hidden="true"></i>{{ form_widget(form.street) }}  <br>
+          {{ form_errors(form.street) }} <br>
           <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.postcode) }} <br>
           <i class="fa fa-venus-mars" aria-hidden="true"></i>{{ form_row(form.sex) }} <br>
           <i class="fa fa-birthday-cake" aria-hidden="true"></i>{{ form_row(form.birthDate) }} <br>
@@ -130,3 +139,12 @@
 </div>
 
 {% endblock %}
+
+{% block javascripts %}
+  
+
+<script>
+document.getElementById("fos_user_profile_form_personnalTweet").maxLength = "140";
+</script>
+{% endblock %}
+

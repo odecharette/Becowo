@@ -17,12 +17,15 @@ class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+// ici on desactive les required pour le mettre au format annotation dans l'entité member
+// Ainsi ce n'est pas le navigateur qui check mais bien symfony et donc meilleur affichage des erreurs
+
     	$builder
             ->add('username', TextType::class, array('label' => false))
             ->add('firstname', TextType::class, array('attr' => array(
-             'placeholder' => 'Prénom'),'required' => true, 'label' => false))
+             'placeholder' => 'Prénom'),'label' => false, 'required' => false))
     	    ->add('name', TextType::class, array('attr' => array(
-             'placeholder' => 'Nom'),'required' => true, 'label' => false))
+             'placeholder' => 'Nom'),'label' => false, 'required' => false))
     	    ->add('sex', ChoiceType::class, array(
         		'choices' => array(
         			'Male' => false,
@@ -44,7 +47,7 @@ class ProfileType extends AbstractType
 			    // 'expanded'	   => false, 
        //          'label' => false))
             ->add('job', TextType::class, array('attr' => array('placeholder' => 'Job'),'required' => false, 'label' => false))
-    	    ->add('society', TextType::class, array('attr' => array('placeholder' => 'Société'), 'label' => false))
+    	    ->add('society', TextType::class, array('attr' => array('placeholder' => 'Société'), 'label' => false, 'required' => false))
     	    ->add('website', TextType::class, array('attr' => array(
                 'placeholder' => 'URL de mon site'),
                 'required' => false, 
@@ -66,7 +69,7 @@ class ProfileType extends AbstractType
                 'placeholder' => 'Ma page ou profil LinkedIn'),
                 'required' => false, 
                 'label' => false))
-    	    ->add('profilePicture', ProfilePictureType::class, array('label' => false))
+    	    ->add('profilePicture', ProfilePictureType::class, array('label' => false,'required' => false))
             ->add('skills', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ->add('hobbies', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ->add('wishes', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
