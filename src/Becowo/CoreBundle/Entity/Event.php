@@ -12,6 +12,27 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Event
 {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+    /**
+     * @var \Becowo\CoreBundle\Entity\Workspace
+     *
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
+     * })
+     */
+    private $workspace;
+    
     /**
      * @var string
      *
@@ -40,27 +61,6 @@ class Event
      * @ORM\Column(name="end_date", type="datetime", nullable=true)
      */
     private $endDate;
-
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var \Becowo\CoreBundle\Entity\Workspace
-     *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     * })
-     */
-    private $workspace;
-
 
 
     /**

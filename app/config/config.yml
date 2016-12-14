@@ -264,10 +264,12 @@ easy_admin:
         WeekDay:
             class: Becowo\CoreBundle\Entity\WeekDay
             disabled_actions: ['new', 'edit', 'delete']
+        Event:
+            class: Becowo\CoreBundle\Entity\Event
     design:
         menu:
             - label: 'Workspaces'
-              children: ['Workspace', 'Workspace_has_office', 'Workspace_Category', 'Workspace_Favorite', 'Workspace_has_offer', 'Picture', 'Amenities', 'TeamMember', 'Price', 'Timetable']
+              children: ['Workspace', 'Workspace_has_office', 'Workspace_Category', 'Workspace_Favorite', 'Workspace_has_offer', 'Picture', 'Amenities', 'TeamMember', 'Price', 'Timetable', 'Event']
             - label: 'Booking'
               children: ['Booking', 'Booking_Status']
             - label: 'Members'
