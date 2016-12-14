@@ -1947,7 +1947,7 @@ color: var(--my-blue) !important;
  list-style-type: none;
 }
 #offres .panel li:before {
-  content: "\f043";
+  content: "\f00c";
   font-family: FontAwesome;
   display: inline-block;
   margin-right: 3px;
