@@ -23,7 +23,11 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface
         $previousURL = $request->getSession()->get('previousURL'); 
 
         // On renvoi vers l'URL précédente, sauvée en session via fichier login.html.twig ou register_content.html.twig
-        return new RedirectResponse($previousURL);
+        try {
+            return new RedirectResponse($previousURL);
+        } catch (Exception $e) {
+            return $this->redirectToRoute('becowo_core_homepage');
+        }
 
     }
 }
