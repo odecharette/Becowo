@@ -649,12 +649,6 @@ footer{
   -webkit-appearance: none; // Enlène l'arrow d'origine 
 }
 */
-#vignette{
-  /*border: solid 1px var(--my-grey);*/
-  padding: 0;
-  break-inside: avoid-column;
-  page-break-inside: avoid;
-}
 
 #vignette #address{
   color: var(--my-black);
@@ -766,7 +760,12 @@ footer{
   background: none !important;
   width: 100% !important;
   margin: 0 !important;
+  padding: 0;
+  break-inside: avoid-column;
+  page-break-inside: avoid;
+  float: left;
 }
+
 /*.bh-sl-loc-list::-webkit-scrollbar {
     width: 6px;
 }

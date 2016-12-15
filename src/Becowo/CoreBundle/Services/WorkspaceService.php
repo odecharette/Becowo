@@ -28,6 +28,18 @@ class WorkspaceService
         
     }
 
+    public function getActiveWorkspacesOrderByVoteAvg()
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Workspace');
+     
+        try {
+            return $repo->findActiveWorkspacesOrderByVoteAvg();
+        } catch (NoResultException $e) {
+            return false;
+        }
+        
+    }
+
     public function getPicturesByWorkspaces(array $Workspaces)
     {
         $picturesByWs = array();

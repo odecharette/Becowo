@@ -10,11 +10,18 @@ class MapController extends Controller
   public function viewAction(Request $request)
   {
     $WsService = $this->get('app.workspace');
-    $workspaces = $WsService->getActiveWorkspaces(); 
+    $WswithVote = $WsService->getActiveWorkspacesOrderByVoteAvg(); 
+    $AllActiveWs = $WsService->getActiveWorkspaces();
 
+    // En queryBuilder impossible de faire une requet en Union donc on récup 
+    // 1/ Tous les WS qui ont un vote, trié sur socreAVg en Desc
+    // 2/ Tous les WS
+    // 3/ On merge les 2 résultats
+    // 4/ On enlève les doublons
+    $workspaces = array_merge($WswithVote, $AllActiveWs);
+    $workspaces = array_unique($workspaces);
 
     $rootNode = new \SimpleXMLElement( "<?xml version='1.0' encoding='UTF-8'?><markers></markers>" );
-
 
     // Add Workspaces
     foreach ($workspaces as $workspaces) {
@@ -106,7 +113,6 @@ class MapController extends Controller
   // echo $xml;
 // $xml = json_encode($xml);
 
-dump($xml);
     return $this->render('Home/map.html.twig', array('xml_locations' => $xml));
   }
 }

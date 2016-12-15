@@ -20,20 +20,19 @@ class WorkspaceRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findActiveWorkspacesOrderByVoteAvg()
+	{
+		$qb = $this->createQueryBuilder('w')
+					->select('w')
+					->from('BecowoCoreBundle:Vote', 'v')
+					->leftJoin('v.workspace', 'score')
+					->andWhere('v.workspace = w.id')
+					->groupBy('w.name')
+					->orderBy('v.scoreAvg', 'DESC');
+			$this->whereIsActive($qb);
 
-	// public function findNewWorkspaces($nb)
-	// {
-	// 	// Récupère uniquement les X nouveaux WS actifs
-	// 	$qb = $this->createQueryBuilder('w');
-
-	// 	$this->whereIsActive($qb);
-
-	// 	$qb->orderBy('w.createdOn', 'DESC')
-	// 		->setFirstResult(0)
-	// 		->setMaxResults($nb);
-
-	// 	return $qb->getQuery()->getResult();
-	// }
+		return $qb->getQuery()->getResult();
+	}
 
 	public function whereIsActive(QueryBuilder $qb)
 	{

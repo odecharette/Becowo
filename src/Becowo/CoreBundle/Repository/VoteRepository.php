@@ -3,7 +3,7 @@
 namespace Becowo\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-
+use Doctrine\ORM\Query\ResultSetMapping;
 
 class VoteRepository extends EntityRepository
 {
@@ -36,4 +36,7 @@ class VoteRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+
+	
 }
