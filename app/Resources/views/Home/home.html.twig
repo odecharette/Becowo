@@ -283,6 +283,7 @@
 	// 	$("#PriceSliderMax").text(val.substring(3));
 	// });
 
+
 	$(function() {
 		var styles = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}];
 
@@ -290,13 +291,13 @@
 		var url = "{{site_url}}";
 		if(url.indexOf('localhost') !== -1)
 		{
-			var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-LOCAL.html') }}";
+			// var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-LOCAL.html') }}";
 			var listTemplatePath = "{{ asset('js/StoreLocator/location-list-description-LOCAL.html') }}";
 		}else if(url.indexOf('demo') !== -1){
-			var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-DEMO.html') }}";
+			// var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-DEMO.html') }}";
 			var listTemplatePath = "{{ asset('js/StoreLocator/location-list-description-DEMO.html') }}";
 		}else{
-			var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-PROD.html') }}";
+			// var infowindowTemplatePath = "{{ asset('js/StoreLocator/infowindow-description-PROD.html') }}";
 			var listTemplatePath = "{{ asset('js/StoreLocator/location-list-description-PROD.html') }}";
 		}
 
@@ -319,13 +320,14 @@
 				// 'city' : 'city-filter',
 				// 'postal': 'postal-filter'
 			},
-			'infowindowTemplatePath'   : infowindowTemplatePath,
+			'visibleMarkersList' : true, //active refresh de la list selon zoom de la carte
+			'infowindowTemplatePath'   : '',
 			'listTemplatePath'         : listTemplatePath,
     		'lengthUnit'	: 'km',
     		'fullMapStart' : true,	// show map by default
     		'nameSearch': true,
     		'dataType' : 'xml',
-    		'markerCluster' : {
+    		/*'markerCluster' : {
     			// https://googlemaps.github.io/js-marker-clusterer/docs/reference.html
     			//'maxZoom' : 12,
     			'zoomOnClick' : true,
@@ -334,7 +336,7 @@
     				// ne marche pas
     				'textColor' : 'white'
     			}
-    		},
+    		},*/
     		'dataLocation' : "{{ asset('js/StoreLocator/locations.xml') }}",
     		'catMarkers' : {'Coworking' : ["{{ asset('images/icons/marker-red.png') }}", 32, 32], 'Centre d\'affaires' : ["{{ asset('images/icons/marker-blue.png') }}", 32, 32], 'Creche' : ["{{ asset('images/icons/creche.png') }}", 32, 32], 'Salle de musculation' : ["{{ asset('images/icons/gym.png') }}", 32, 32]}, 
     		// TO DO : 1 marker par category d'espace

@@ -138,7 +138,7 @@
      */
     init: function () {
       var _this = this;
-      this.writeDebug('init');
+      console.log('init');
       // Calculate geocode distance functions
       if (this.settings.lengthUnit === 'km') {
         // Kilometers
@@ -212,7 +212,7 @@
      * Note: The Google map is not destroyed here because Google recommends using a single instance and reusing it (it's not really supported)
      */
     destroy: function () {
-      this.writeDebug('destroy');
+      console.log('destroy');
       // Reset
       this.reset();
       var $mapDiv = $('#' + this.settings.mapID);
@@ -252,7 +252,7 @@
      * Reset function
      */
     reset: function () {
-      this.writeDebug('reset');
+      console.log('reset');
       locationset = [];
       featuredset = [];
       normalset = [];
@@ -283,7 +283,7 @@
      * @param notifyText {string} the notification message
      */
     notify: function (notifyText) {
-      this.writeDebug('notify',notifyText);
+      console.log('notify',notifyText);
       if (this.settings.callbackNotify) {
         this.settings.callbackNotify.call(this, notifyText);
       }
@@ -296,15 +296,15 @@
      * Distance calculations
      */
     geoCodeCalcToRadian: function (v) {
-      this.writeDebug('geoCodeCalcToRadian',v);
+      console.log('geoCodeCalcToRadian',v);
       return v * (Math.PI / 180);
     },
     geoCodeCalcDiffRadian: function (v1, v2) {
-      this.writeDebug('geoCodeCalcDiffRadian',arguments);
+      console.log('geoCodeCalcDiffRadian',arguments);
       return this.geoCodeCalcToRadian(v2) - this.geoCodeCalcToRadian(v1);
     },
     geoCodeCalcCalcDistance: function (lat1, lng1, lat2, lng2, radius) {
-      this.writeDebug('geoCodeCalcCalcDistance',arguments);
+      console.log('geoCodeCalcCalcDistance',arguments);
       return radius * 2 * Math.asin(Math.min(1, Math.sqrt(( Math.pow(Math.sin((this.geoCodeCalcDiffRadian(lat1, lat2)) / 2.0), 2.0) + Math.cos(this.geoCodeCalcToRadian(lat1)) * Math.cos(this.geoCodeCalcToRadian(lat2)) * Math.pow(Math.sin((this.geoCodeCalcDiffRadian(lng1, lng2)) / 2.0), 2.0) ))));
     },
 
@@ -315,7 +315,7 @@
      * @returns {string} query string value
      */
     getQueryString: function(param) {
-      this.writeDebug('getQueryString',param);
+      console.log('getQueryString',param);
       if(param) {
         param = param.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + param + '=([^&#]*)'),
@@ -324,11 +324,12 @@
       }
     },
 
+
     /**
      * Load templates via Handlebars templates in /templates or inline via IDs - private
      */
     _loadTemplates: function () {
-      this.writeDebug('_loadTemplates');
+      console.log('_loadTemplates');
       var source;
       var _this = this;
       var templateError = '<div class="bh-sl-error">Error: Could not load plugin templates. Check the paths and ensure they have been uploaded. Paths will be wrong if you do not run this from a web server.</div>';
@@ -400,7 +401,7 @@
      * Primary locator function runs after the templates are loaded
      */
     locator: function () {
-      this.writeDebug('locator');
+      console.log('locator');
       if (this.settings.slideMap === true) {
         // Let's hide the map container to begin
         $this.hide();
@@ -414,7 +415,7 @@
      * Form event handler setup - private
      */
     _formEventHandler: function () {
-      this.writeDebug('_formEventHandler');
+      console.log('_formEventHandler');
       var _this = this;
       // ASP.net or regular submission?
       if (this.settings.noForm === true) {
@@ -432,6 +433,7 @@
           _this.processForm(e);
         });
       }
+
     },
 
     /**
@@ -444,7 +446,7 @@
      * @returns {Object} deferred object
      */
     _getData: function (lat, lng, address, geocodeData ) {
-      this.writeDebug('_getData',arguments);
+      console.log('_getData',arguments);
       var _this = this,
         northEast = '',
         southWest = '',
@@ -523,7 +525,7 @@
      * Checks for default location, full map, and HTML5 geolocation settings - private
      */
     _start: function () {
-      this.writeDebug('_start');
+      console.log('_start');
       var _this = this,
           doAutoGeo = this.settings.autoGeocode,
           latlng,
@@ -561,14 +563,14 @@
 
         // If there is already have a value in the address bar
         if ($.trim($('#' + this.settings.addressID).val()) !== ''){
-          _this.writeDebug('Using Address Field');
+          console.log('Using Address Field');
           _this.processForm(null);
           doAutoGeo = false; // No need for additional processing
         }
         // If show full map option is true
         else if (this.settings.fullMapStart === true) {
           if((this.settings.querystringParams === true && this.getQueryString(this.settings.addressID)) || (this.settings.querystringParams === true && this.getQueryString(this.settings.searchID)) || (this.settings.querystringParams === true && this.getQueryString(this.settings.maxDistanceID))) {
-            _this.writeDebug('Using Query String');
+            console.log('Using Query String');
             this.processForm(null);
             doAutoGeo = false; // No need for additional processing
           }
@@ -579,14 +581,14 @@
 
         // HTML5 auto geolocation API option
         if (this.settings.autoGeocode === true && doAutoGeo === true) {
-          _this.writeDebug('Auto Geo');
+          console.log('Auto Geo');
 
           _this.htmlGeocode();
         }
 
         // HTML5 geolocation API button option
         if (this.settings.autoGeocode !== null) {
-          _this.writeDebug('Button Geo');
+          console.log('Button Geo');
 
           $(document).on('click.'+pluginName, '#' + this.settings.geocodeID, function () {
             _this.htmlGeocode();
@@ -599,17 +601,17 @@
      * Geocode function used for auto geocode setting and geocodeID button
          */
     htmlGeocode: function() {
-      this.writeDebug('htmlGeocode',arguments);
+      console.log('htmlGeocode',arguments);
       var _this = this;
 
       if (this.settings.sessionStorage === true && window.sessionStorage && window.sessionStorage.getItem('myGeo')){
-        this.writeDebug('Using Session Saved Values for GEO');
+        console.log('Using Session Saved Values for GEO');
         this.autoGeocodeQuery(JSON.parse(window.sessionStorage.getItem('myGeo')));
         return false;
       }
       else if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
-          _this.writeDebug('Current Position Result');
+          console.log('Current Position Result');
           // To not break autoGeocodeQuery then we create the obj to match the geolocation format
           var pos = {
             coords: {
@@ -683,7 +685,7 @@
      * @returns {number}
      */
     roundNumber: function (num, dec) {
-      this.writeDebug('roundNumber',arguments);
+      console.log('roundNumber',arguments);
       return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
     },
 
@@ -694,7 +696,7 @@
      * @returns {boolean}
      */
     isEmptyObject: function (obj) {
-      this.writeDebug('isEmptyObject',arguments);
+      console.log('isEmptyObject',arguments);
       for (var key in obj) {
         if (obj.hasOwnProperty(key)) {
           return false;
@@ -710,7 +712,7 @@
      * @returns {boolean}
      */
     hasEmptyObjectVals: function (obj) {
-      this.writeDebug('hasEmptyObjectVals',arguments);
+      console.log('hasEmptyObjectVals',arguments);
         var objTest = true;
 
         for(var key in obj) {
@@ -728,7 +730,7 @@
      * Modal window close function
      */
     modalClose: function () {
-      this.writeDebug('modalClose');
+      console.log('modalClose');
       // Callback
       if (this.settings.callbackModalClose) {
         this.settings.callbackModalClose.call(this);
@@ -751,7 +753,7 @@
      * @param loopcount {number} current marker id
      */
     _createLocationVariables: function (loopcount) {
-      this.writeDebug('_createLocationVariables',arguments);
+      console.log('_createLocationVariables',arguments);
       var value;
       locationData = {};
 
@@ -774,7 +776,7 @@
      * @param locationsarray {array} locationset array
      */
     sortNumerically: function (locationsarray) {
-      this.writeDebug('sortNumerically',arguments);
+      console.log('sortNumerically',arguments);
       locationsarray.sort(function (a, b) {
         return ((a.distance < b.distance) ? -1 : ((a.distance > b.distance) ? 1 : 0));
       });
@@ -788,7 +790,7 @@
      * @returns {boolean}
      */
     filterData: function (data, filters) {
-      this.writeDebug('filterData',arguments);
+      console.log('filterData',arguments);
       var filterTest = true;
 
       for (var k in filters) {
@@ -829,7 +831,7 @@
      * @returns {string}
      */
     _paginationOutput: function(currentPage, totalPages) {
-      this.writeDebug('_paginationOutput',arguments);
+      console.log('_paginationOutput',arguments);
 
       currentPage = parseFloat(currentPage);
       var output = '';
@@ -867,7 +869,7 @@
      * @param currentPage {number} optional current page
      */
     paginationSetup: function (currentPage) {
-      this.writeDebug('paginationSetup',arguments);
+      console.log('paginationSetup',arguments);
       var pagesOutput = '';
       var totalPages;
       var $paginationList = $('.bh-sl-pagination-container .bh-sl-pagination');
@@ -910,7 +912,7 @@
      * @returns {Object} Google Maps icon object
      */
     markerImage: function (markerUrl, markerWidth, markerHeight) {
-      this.writeDebug('markerImage',arguments);
+      console.log('markerImage',arguments);
       var markerImg;
 
       // User defined marker dimensions
@@ -945,7 +947,7 @@
      * @returns {Object} Google Maps marker
      */
     createMarker: function (point, name, address, letter, map, category) {
-      this.writeDebug('createMarker',arguments);
+      console.log('createMarker',arguments);
       var marker, markerImg, letterMarkerImg;
       var categories = [];
 
@@ -1018,7 +1020,7 @@
      * @returns {Object} extended location data object
      */
     _defineLocationData: function (currentMarker, storeStart, page) {
-      this.writeDebug('_defineLocationData',arguments);
+      console.log('_defineLocationData',arguments);
       var indicator = '';
       this._createLocationVariables(currentMarker.get('id'));
 
@@ -1074,7 +1076,7 @@
      * @param page {number} optional current page
      */
     listSetup: function (marker, storeStart, page) {
-      this.writeDebug('listSetup',arguments);
+      console.log('listSetup',arguments);
       // Define the location data
       var locations = this._defineLocationData(marker, storeStart, page);
 
@@ -1122,7 +1124,7 @@
      * @param page {number}
      */
     createInfowindow: function (marker, location, infowindow, storeStart, page) {
-      this.writeDebug('createInfowindow',arguments);
+      console.log('createInfowindow',arguments);
       var _this = this;
       // Define the location data
       var locations = this._defineLocationData(marker, storeStart, page);
@@ -1133,13 +1135,18 @@
       // Opens the infowindow when list item is clicked
       if (location === 'left') {
         infowindow.setContent(formattedAddress);
-        infowindow.open(marker.get('map'), marker);
+        /********** Modif Olivia ***********/
+        // Désactiver l'ouverture de la pop-up sur le marker
+        // infowindow.open(marker.get('map'), marker);
       }
       // Opens the infowindow when the marker is clicked
       else {
+
         google.maps.event.addListener(marker, 'click', function () {
           infowindow.setContent(formattedAddress);
-          infowindow.open(marker.get('map'), marker);
+        /********** Modif Olivia ***********/
+        // Désactiver l'ouverture de la pop-up sur le marker
+        //infowindow.open(marker.get('map'), marker);
           // Focus on the list
           var markerId = marker.get('id');
           var $selectedLocation = $('.' + _this.settings.locationList + ' li[data-markerid=' + markerId + ']');
@@ -1174,7 +1181,7 @@
      * @param position {Object} coordinates
      */
     autoGeocodeQuery: function (position) {
-      this.writeDebug('autoGeocodeQuery',arguments);
+      console.log('autoGeocodeQuery',arguments);
       var _this = this,
         distance = null,
         $distanceInput = $('#' + this.settings.maxDistanceID),
@@ -1227,7 +1234,7 @@
      *
      */
     _autoGeocodeError: function () {
-      this.writeDebug('_autoGeocodeError');
+      console.log('_autoGeocodeError');
       // If automatic detection doesn't work show an error
       this.notify(this.settings.autoGeocodeErrorAlert);
     },
@@ -1236,7 +1243,7 @@
      * Default location method
      */
     defaultLocation: function() {
-      this.writeDebug('defaultLocation');
+      console.log('defaultLocation');
       var _this = this,
         distance = null,
         $distanceInput = $('#' + this.settings.maxDistanceID),
@@ -1290,7 +1297,7 @@
      * @param newPage {number} page to change to
      */
     paginationChange: function (newPage) {
-      this.writeDebug('paginationChange',arguments);
+      console.log('paginationChange',arguments);
 
       // Page change callback
       if (this.settings.callbackPageChange) {
@@ -1308,7 +1315,7 @@
      * @returns {string} formatted address
      */
     getAddressByMarker: function(markerID) {
-      this.writeDebug('getAddressByMarker',arguments);
+      console.log('getAddressByMarker',arguments);
       var formattedAddress = "";
       // Set up formatted address
       if(locationset[markerID].address){ formattedAddress += locationset[markerID].address + ' '; }
@@ -1325,7 +1332,7 @@
      * Clear the markers from the map
      */
     clearMarkers: function() {
-      this.writeDebug('clearMarkers');
+      console.log('clearMarkers');
       var locationsLimit = null;
 
       if (locationset.length < this.settings.storeLimit) {
@@ -1348,7 +1355,7 @@
      * @param map {Object} Google Map
      */
     directionsRequest: function(origin, locID, map) {
-      this.writeDebug('directionsRequest',arguments);
+      console.log('directionsRequest',arguments);
 
       // Directions request callback
       if (this.settings.callbackDirectionsRequest) {
@@ -1397,7 +1404,7 @@
      * Close the directions panel and reset the map with the original locationset and zoom
      */
     closeDirections: function() {
-      this.writeDebug('closeDirections');
+      console.log('closeDirections');
 
       // Close directions callback
       if (this.settings.callbackCloseDirections) {
@@ -1426,7 +1433,7 @@
      * @param e {Object} event
      */
     processForm: function (e) {
-      this.writeDebug('processForm',arguments);
+      console.log('processForm',arguments);
       var _this = this;
       var distance = null;
       var $addressInput = $('#' + this.settings.addressID);
@@ -1533,7 +1540,7 @@
      * @param maxDistance {number} maximum distance if set
      */
     locationsSetup: function (data, lat, lng, origin, maxDistance) {
-      this.writeDebug('locationsSetup',arguments);
+      console.log('locationsSetup',arguments);
       if (typeof origin !== 'undefined') {
         if (!data.distance) {
           data.distance = this.geoCodeCalcCalcDistance(lat, lng, data.lat, data.lng, GeoCodeCalc.EarthRadius);
@@ -1568,7 +1575,7 @@
      * @returns {number}
      */
     countFilters: function () {
-      this.writeDebug('countFilters');
+      console.log('countFilters');
       var filterCount = 0;
 
       if (!this.isEmptyObject(filters)) {
@@ -1588,7 +1595,7 @@
      * @param key {string} object key
      */
     _existingCheckedFilters: function(key) {
-      this.writeDebug('_existingCheckedFilters',arguments);
+      console.log('_existingCheckedFilters',arguments);
       $('#' + this.settings.taxonomyFilters[key] + ' input[type=checkbox]').each(function () {
         if ($(this).prop('checked')) {
           var filterVal = $(this).val();
@@ -1607,7 +1614,7 @@
      * @param key {string} object key
      */
     _existingSelectedFilters: function(key) {
-      this.writeDebug('_existingSelectedFilters',arguments);
+      console.log('_existingSelectedFilters',arguments);
       $('#' + this.settings.taxonomyFilters[key] + ' select').each(function () {
         var filterVal = $(this).val();
 
@@ -1624,7 +1631,7 @@
      * @param key {string} object key
      */
     _existingRadioFilters: function(key) {
-      this.writeDebug('_existingRadioFilters',arguments);
+      console.log('_existingRadioFilters',arguments);
       $('#' + this.settings.taxonomyFilters[key] + ' input[type=radio]').each(function () {
         if ($(this).prop('checked')) {
           var filterVal = $(this).val();
@@ -1642,7 +1649,7 @@
      *
      */
     checkFilters: function () {
-      this.writeDebug('checkFilters');
+      console.log('checkFilters');
       for(var key in this.settings.taxonomyFilters) {
         if(this.settings.taxonomyFilters.hasOwnProperty(key)) {
           // Find the existing checked boxes for each checkbox filter
@@ -1663,7 +1670,7 @@
      * @param filterContainer {string} ID of the changed filter's container
      */
     getFilterKey: function (filterContainer) {
-      this.writeDebug('getFilterKey',arguments);
+      console.log('getFilterKey',arguments);
       for (var key in this.settings.taxonomyFilters) {
         if (this.settings.taxonomyFilters.hasOwnProperty(key)) {
           for (var i = 0; i < this.settings.taxonomyFilters[key].length; i++) {
@@ -1679,10 +1686,11 @@
      * Taxonomy filtering
      */
     taxonomyFiltering: function() {
-      this.writeDebug('taxonomyFiltering');
+      console.log('taxonomyFiltering');
       var _this = this;
 
       // Set up the filters
+
       for(var key in this.settings.taxonomyFilters) {
         if(this.settings.taxonomyFilters.hasOwnProperty(key)) {
           filters[key] = [];
@@ -1794,7 +1802,7 @@
      * @param map {Object} Google map
      */
     checkVisibleMarkers: function(markers, map) {
-      this.writeDebug('checkVisibleMarkers',arguments);
+      console.log('checkVisibleMarkers',arguments);
       var _this = this;
       var locations, listHtml;
 
@@ -1824,7 +1832,7 @@
      * @param map {Object} Google map
          */
     dragSearch: function(map) {
-      this.writeDebug('dragSearch',arguments);
+      console.log('dragSearch',arguments);
       var newCenter = map.getCenter(),
         newCenterCoords,
         _this = this;
@@ -1853,7 +1861,7 @@
      * Handle no results
      */
     emptyResult: function() {
-      this.writeDebug('emptyResult',arguments);
+      console.log('emptyResult',arguments);
       var center,
         locList =  $('.' + this.settings.locationList + ' ul'),
         myOptions = this.settings.mapSettings,
@@ -1894,7 +1902,7 @@
      * @param mappingObject {Object} all the potential mapping properties - latitude, longitude, origin, name, max distance, page
      */
     mapping: function (mappingObject) {
-      this.writeDebug('mapping',mappingObject);
+      console.log('mapping',mappingObject);
       var _this = this;
       var orig_lat, orig_lng, geocodeData, origin, originPoint, page;
       if (!this.isEmptyObject(mappingObject)) {
@@ -1959,7 +1967,7 @@
      * @param page {number} current page number
      */
     processData: function (mappingObject, originPoint, data, page) {
-      this.writeDebug('processData',mappingObject);
+      console.log('processData',mappingObject);
       var _this = this;
       var i = 0;
       var orig_lat, orig_lng, origin, name, maxDistance, marker, bounds, storeStart, storeNumToShow, myOptions, distError, openMap;
@@ -2345,7 +2353,9 @@
       }
 
       // Handle clicks from the list
-      $(document).on('click.' + pluginName, '.' + _this.settings.locationList + ' li', function () {
+      /***************Modif olivia *******************/
+      // déclenche event sur mouseover au lieu de sur click ***********/
+      $(document).on('mouseover.' + pluginName, '.' + _this.settings.locationList + ' li', function () {
         var markerId = $(this).data('markerid');
         var selectedMarker = markers[markerId];
 
@@ -2354,7 +2364,9 @@
           _this.settings.callbackListClick.call(this, markerId, selectedMarker);
         }
 
-        map.panTo(selectedMarker.getPosition());
+        /***************Modif olivia *******************/
+        // on empêche la carte de bouger au survol de la liste
+        // map.panTo(selectedMarker.getPosition());
         var listLoc = 'left';
         if (_this.settings.bounceMarker === true) {
           selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
@@ -2425,14 +2437,14 @@
       if (window.console && this.settings.debug) {
         // Only run on the first time through - reset this function to the appropriate console.log helper
         if (Function.prototype.bind) {
-          this.writeDebug = Function.prototype.bind.call(console.log, console, 'StoreLocator :');
+          console.log = Function.prototype.bind.call(console.log, console, 'StoreLocator :');
         } else {
-          this.writeDebug = function () {
+          console.log = function () {
             arguments[0] = 'StoreLocator : ' + arguments[0];
             Function.prototype.apply.call(console.log, console, arguments);
           };
         }
-        this.writeDebug.apply(this, arguments);
+        console.log.apply(this, arguments);
       }
     }
 

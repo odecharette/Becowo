@@ -220,6 +220,7 @@ video{
 }
 #vid{
   margin-top: 50px;
+  background-color: #e7e7e7;
 }
 
 #vid p{
@@ -505,7 +506,7 @@ footer{
 #bh-sl-map{
   padding-left: 0;
   margin-right: 15px;
-  height: 470px;
+  height: 540px;
   margin-top: 30px;
 }
 #map-results-container{
@@ -522,7 +523,7 @@ footer{
 }
 #legende{
   position: absolute;
-  top: 95%;
+  top: 97%;
   font-size: 12pt;
   color: var(--my-grey);
 }
@@ -534,20 +535,19 @@ footer{
 
 }
 #bh-sl-map-container ul{
-  padding: 0;
-    margin: 0;
-    -webkit-column-count: 2;
-       -moz-column-count: 2;
-            column-count: 2;
-    -webkit-column-width: 50%;
-       -moz-column-width: 50%;
-            column-width: 50%; 
+  padding: 0 0 0 3px;
+  margin: 0;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+  -webkit-column-width: 50%;
+  -moz-column-width: 50%;
+  column-width: 50%; 
 }
-/*#bh-sl-map-container li{
-  width: 50%;
-  float: left;
-  display: inline;
-}*/
+.bh-sl-container .bh-sl-loc-list .list-focus{
+  box-shadow: 0 0 20px var(--my-blue) !important;
+  border: 2px solid var(--my-blue) !important;
+}
 #bh-sl-user-location{
   display: inline-flex;
   position: absolute;
@@ -652,11 +652,15 @@ footer{
 #vignette{
   /*border: solid 1px var(--my-grey);*/
   padding: 0;
+  break-inside: avoid-column;
+  page-break-inside: avoid;
 }
 
 #vignette #address{
   color: var(--my-black);
   font-size: 10pt;
+  text-align: center;
+  width: 40%;
 }
 #vignette #bonus{
   color: var(--my-red);
@@ -719,19 +723,17 @@ footer{
 }
 #vignette table{
   width: 100%;
-  margin-top: 10px;
-}
-#vignette #stars {
-  text-align: right;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 #vignette #stars img{
   width: 90px;
   height: 20px;
-  margin-top: -10px;
 }
 #vignette #listeLogo{
   margin-bottom: 5px;
   text-align: center;
+  padding-top: 10px;
 }
 #vignette #listeLogo img{
   width: 30px;
@@ -753,7 +755,7 @@ footer{
 
 
 .bh-sl-loc-list{
-  height: 200px;
+  height: 600px !important;
   overflow-x: hidden !important;
   overflow-y: scroll;
   border: none;
@@ -913,7 +915,6 @@ footer{
 }
 
 #declare{
-  background-color: #e7e7e7;
   text-align: center;
   margin-bottom: 0;
 }
