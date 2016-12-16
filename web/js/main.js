@@ -160,6 +160,69 @@ $('[id^="goToResa-"]').click(function() {
   $('#myTab a[href="#Réserver"]').tab('show');
 });
 
+/*********** Vidéo big size *********/
+$(document).ready(function ()    
+{if(document.getElementById("video-big") != null){
+   
+var video = document.getElementById("video-big");
+var playButton = document.getElementById("play");
+var pauseButton = document.getElementById("pause");
+var fullScreenButton = document.getElementById("expand");
+var fond = document.getElementById('fond');
+
+function clickVideo(){
+    if(video.paused)
+        {
+            video.play();
+            playButton.style.display = "none";
+            pauseButton.style.display = "none";
+            video.style.opacity = 1;
+            fond.style.display = "none";
+        }else{
+            video.pause();
+            playButton.style.display = "inline-flex";
+            pauseButton.style.display = "none";
+            video.style.opacity = 0.5;
+        } 
+};
+
+video.addEventListener("click", function(){clickVideo()});
+playButton.addEventListener("click", function(){clickVideo()});
+pauseButton.addEventListener("click", function(){clickVideo()});
+fond.addEventListener("click", function(){clickVideo()});
+
+function over(){
+    if(video.paused == false)
+    {
+        pauseButton.style.display = "inline-flex";
+    }
+}
+
+video.addEventListener("mouseover", function() {over()});
+pauseButton.addEventListener("mouseover", function() {over()});
+
+function out(){
+    if(video.paused == false)
+    {
+        pauseButton.style.display = "none";
+    }
+}
+
+video.addEventListener("mouseout", function() {out()});
+pauseButton.addEventListener("mouseout", function() {out()});
+
+fullScreenButton.addEventListener("click", function() {
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (video.mozRequestFullScreen) {
+    video.mozRequestFullScreen(); // Firefox
+  } else if (video.webkitRequestFullscreen) {
+    video.webkitRequestFullscreen(); // Chrome and Safari
+  }
+});
+};
+});
+
 /*************** Vidéo on home page ****************
 $(document).ready(function () 
     { 
@@ -178,6 +241,7 @@ $(document).ready(function ()
         };
     }); 
 */
+
 
 
 /************************ blackknight467/star-rating-bundle    rating.js *************************/

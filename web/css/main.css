@@ -214,13 +214,37 @@ header #liensRS a{
 
 
 
-/*#hideVideo{
-  
-}*/
-video{
+#video-small{
   border: 1px solid grey;
   margin-top: 50px;
 }
+#video-big{
+  border: none;
+}
+#videoPanel{
+  position: relative;
+  margin-bottom: 70px;
+}
+#videoPanel #play, #videoPanel #pause, #videoPanel #expand{
+  position: absolute;
+  top: 42%;
+  left: 48%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+#videoPanel #expand{
+  top: 5%;
+  left: 95%;
+}
+#videoPanel img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
 #vid{
   margin-top: 50px;
   background-color: #e7e7e7;
