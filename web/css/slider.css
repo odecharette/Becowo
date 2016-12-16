@@ -35,10 +35,13 @@
 .carousel a:hover, .carousel a:active, .carousel a{
 	color: var(--my-green) !important;
 }
-
+.span3{
+	display: inline-flex;
+}
 .span3 a{
 	display: block;
 	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
 /*For top Indicator*/
@@ -125,5 +128,4 @@
 
 .single-container img{
 	width: inherit;
-	margin-left: 12px;
 }

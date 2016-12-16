@@ -22,4 +22,9 @@ $(document).ready(function () {
     $('#DataDisplay').attr("src", $(this).attr("data-display"));
   });
 
+  // Modif Olivia sinon le slider ajoute l'image dans l'image et ca casse mes onglets
+  $('#myCarousel').bind('click', function (e) {
+    e.preventDefault();
+	});
+
 });
