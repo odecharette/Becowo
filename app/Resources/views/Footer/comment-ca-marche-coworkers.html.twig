@@ -25,20 +25,56 @@
 			<button type="button" id="expand"><i class="fa fa-expand fa-2x" aria-hidden="true"></i></button>
 		</div>
 	</div>
-</div><div class="container-fluid">
-	<div class="row content">
-		<p>Becowo est une plateforme web collaborative de référencement d'espaces de travail partagé. Becowo est également une solution simple et complète pour les coworkers souhaitant réserver un espace de travail et intégrer une communauté de coworkers, ainsi que pour les managers d'espaces de travail souhaitant accroitre leur visibilité, marquer leur différence, faciliter la gestion de leur espace et participer à la production de ressources partagées. </p>
+</div><div class="container-fluid" id="comment">
+	<div class="row text-center">
 
-		<h2>Pour les coworkers</h2>
-
-		<p>Becowo vous donne la possibilité d'intégrer une communauté de coworkers souhaitant partager leurs expériences ou juste faire connaissance. Vous recherchez un web designer avec qui travailler sur un projet commun ? Ou juste pour boire un café avec d'autres coworkers dans le prochain espace de coworking ou vous irez ? Vous cherchez un moyen simple et gratuit de mettre en avant vos projets pro et vos compétences ? Alors n'hésitez plus à créer votre profil et à remplir les informations demandées.
-		Pour vous, l’accès à nos services est entièrement gratuit. Vous avez la possibilité de réserver un espace de travail via notre plateforme sans frais supplémentaire. Si la réservation en ligne d'un espace n'est pas possible, vous avez la possibilité d'alerter l'espace qui vous intéresse afin de lui demander d’ajouter cette fonctionnalité sur notre plateforme.
-		Vous êtes également vivement encouragés à noter et laisser un commentaire concernant les espaces où vous êtes déjà allés travailler. Cela permet ainsi d’aider les autres coworkers de la plateforme dans leur choix. 
-		Chez Becowo, nous considérons que travailler dans un espace de travail qui valorise votre potentiel humain ne doit pas être un luxe. C'est pourquoi nous nous appuyons sur l'avis de la communauté pour identifier, en cohérence avec notre charte de qualité, les espaces bénéficiant du label Becowo vers lesquels vous pouvez sans craintes réserver.
-		</p>
-
-
-		<p>Les fonctionnalités et services mis à disposition de la communauté Becowo évoluent constamment. La logique contributive est une valeur importante pour nous et nous n'envisageons pas de développer des outils qui vous sont destinés sans vous concerter. Aussi, n'hésitez pas à nous contacter si vous avez des idées, des suggestions, nous serions ravis d'en discuter avec vous.</p>
+		<h3>Chez Becowo, nous pensons que valoriser son potentiel humain ne doit pas être un luxe</h3>
+		<br>
+		<div class="row">
+			<div class="col-lg-5 col-lg-offset-1">
+				<p>Becowo vous offre la possibilité de <mark>réserver</mark> facilement une place dans un espace de travail qui vous convient. Pour une heure ou pour la vie, vous verez ici uniquement des lieux de qualité. Les espaces proposent tous des services pour vous simplifier la vie : des casiers sécurisés pour vos affaires, une salle de réunion pour les RDV importants et même parfois un service de domiciliation pour les entrepreuneurs. <br></p>
+			</div>
+			<div class="col-lg-5">
+				<p>Becowo vous donne la possibilité d'intégrer une <mark>communauté</mark> de coworkers souhaitant partager leurs expériences ou juste faire connaissance. Vous recherchez un web designer avec qui travailler sur un projet commun ? Ou juste pour boire un café avec d'autres coworkers dans le prochain espace de coworking ou vous irez ? Vous cherchez un moyen simple et gratuit de mettre en avant vos projets pro et vos compétences ? Alors n'hésitez plus à créer votre profil et à remplir les informations demandées. <br>
+				Pour vous, l’accès à nos services est entièrement <strong>gratuit</strong>.</p>
+			</div>
+		</div>
+		<div class="row text-center bande">
+			<div class="col-lg-3 col-lg-offset-1">
+				<h4>Inscription gratuite</h4>
+				<i class="fa fa-user fa-2x" aria-hidden="true"></i>
+				<p>Créez votre profil gratuitement à l'aide de votre réseau social préféré</p>
+			</div>
+			<div class="col-lg-3">
+				<h4>Réservation en ligne</h4>
+				<i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
+				<p>Grâce à notre système de paiement sécurisé, vous réglez votre réservation en ligne</p>
+			</div>
+			<div class="col-lg-3">
+				<h4>Communauté active</h4>
+				<i class="fa fa-users fa-2x" aria-hidden="true"></i>
+				<p>Intégrez notre communauté et rompez l'isolement</p>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-lg-4 col-lg-offset-2">
+				<h3>Trouvez votre bureau idéal </h3>
+				<img src="{{ asset('images/icons/bulle.jpg') }}" alt="La maison d'Alfred">
+				<br><br>
+				<p>Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.</p>
+			</div>
+			<div class="col-lg-4">
+				<h3>Trouvez votre coworker idéal </h3>
+				<img src="{{ asset('images/icons/femme.jpg') }}" alt="coworker ideal">
+				<br><br>
+				<p>Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.</p>
+			</div>
+		</div>
+		<div class="row text-center rejoindre">
+			Alors, prêt à rejoindre notre communauté de coworkers audacieux ?
+			<button type="button"><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></button>
+		</div>
+		
 	</div>
 
 	{% include "CommonViews/bandeauQuestion.html.twig" %}
