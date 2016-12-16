@@ -1,1 +1,81 @@
+<div class="container">
+      <div class="row">
+        <div class="col-lg-2">
+        	{# Vertical navigator #}
+            <div id="myCarousel" class="carousel vertical slide pull-left" >
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+              	<i class="fa fa-chevron-up fa-2x" aria-hidden="true"></i>
+              </a>
 
+              <!-- thumbnails -->
+              <div class="custom-carousel-inner carousel-inner">
+                <div class="item active">
+                  <div class="row-fluid">
+                	{% for picture in pictures %}
+                		{% if loop.index < 5 %}
+                        	<div class="span3">
+	                        	<a href="#x" class="small-thumbnail">
+	                        		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="max-width:100%;">
+	                        	</a>
+                        	</div>
+                  {% endif %}
+                	{% endfor %}
+                  </div><!--/row-fluid-->
+                </div><!--/item-->
+
+                <div class="item">
+                  <div class="row-fluid">
+                	{% for picture in pictures %}
+                		{% if loop.index >= 5 and loop.index < 9 %}
+                      	<div class="span3">
+	                        	<a href="#x" class="small-thumbnail">
+	                        		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="max-width:100%;">
+	                        	</a>
+                        	</div>
+                  {% endif %}
+                	{% endfor %}
+                  </div><!--/row-fluid-->
+                </div><!--/item-->
+
+                <div class="item">
+                  <div class="row-fluid">
+                	{% for picture in pictures %}
+                		{% if loop.index >= 9 and loop.index < 12 %}
+                      <div class="span3">
+	                        	<a href="#x" class="small-thumbnail">
+	                        		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="max-width:100%;">
+	                        	</a>
+                        	</div>
+                  {% endif %}
+                	{% endfor %}
+                  </div><!--/row-fluid-->
+                </div><!--/item-->
+
+                <div class="item">
+                  <div class="row-fluid">
+                	{% for picture in pictures %}
+                		{% if loop.index >= 12 and loop.index < 15 %}
+                      <div class="span3">
+	                        	<a href="#x" class="small-thumbnail">
+	                        		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="max-width:100%;">
+	                        	</a>
+                        	</div>
+                  {% endif %}
+                	{% endfor %}
+                  </div><!--/row-fluid-->
+                </div><!--/item-->
+
+              </div><!--/carousel-inner--> 
+
+              <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i></a>    
+            </div><!--/myCarousel-->
+
+        </div><div class="col-lg-10">
+
+            {# Panel où s'affiche l'image #}
+            <div class="pull-left single-container">
+              <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictures[0].url}}" id="DataDisplay"/>
+            </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,129 @@
+/* ===========================================================
+ * style.css v1.0
+ * ===========================================================
+ * Copyright 2015 Shivam Pandya - Tutorial Drive.
+ * https://www.github.com/tutorialdrive
+ *
+ * Bootstrap Vertical Image Showcase v1.0
+ * Create an Vertical Thumbnail Carousel For Twitter Bootstrap v3.0.3
+ *
+ * 
+ * License: MIT License
+ * http://opensource.org/licenses/MIT
+ *
+ * ========================================================== */
+.carousel-indicators .active {
+	position: absolute;
+	top: 12% !important;
+	width: 53px;
+	height: 53px;
+	background: #222;
+}
+
+.carousel-control {
+	position: relative;
+	font-weight: 100;
+	line-height: 44px !important;
+	text-align: center;
+	background-image: none !important;
+	background: transparent;
+	opacity: 1;
+}
+
+/* --------- END --------- */
+
+.carousel a:hover, .carousel a:active, .carousel a{
+	color: var(--my-green) !important;
+}
+
+.span3 a{
+	display: block;
+	margin-bottom: 10px;
+}
+
+/*For top Indicator*/
+
+.carousel-indicators-top {
+	right: 50%;
+	top: auto;
+	bottom: 0px;
+	margin-right: -19px;
+}
+
+.carousel-indicators-top li {
+	background: #333333;
+}
+
+.carousel-indicators-top .active {
+	background: #333333;
+}
+ 
+ /* vertical start*/
+
+.vertical .carousel-inner {
+
+}
+
+.carousel.vertical .item {
+	-webkit-transition: 0.6s ease-in-out top;
+	-moz-transition: 0.6s ease-in-out top;
+	-ms-transition: 0.6s ease-in-out top;
+	-o-transition: 0.6s ease-in-out top;
+	transition: 0.6s ease-in-out top;
+}
+
+.carousel.vertical .active {
+	top: 0;
+}
+
+.carousel.vertical .next {
+	top: 100%;
+}
+
+.carousel.vertical .prev {
+	top: -100%;
+}
+
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+	top: 0;
+}
+
+.carousel.vertical .active.left {
+	top: -100%;
+}
+
+.carousel.vertical .active.right {
+	top: 100%;
+}
+
+.carousel.vertical .item {
+	left: 0;
+}​
+
+/*Overwriten Bootstrap Classis*/
+.small-thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 1px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+}
+.custom-carousel-inner{
+	overflow: hidden;
+    position: relative;
+
+}
+.single-container{
+	margin-top: 10px;
+	width: 100%;
+}
+
+.single-container img{
+	width: inherit;
+	margin-left: 12px;
+}
