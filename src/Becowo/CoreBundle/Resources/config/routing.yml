@@ -30,9 +30,14 @@ becowo_core_offers:
 #     defaults: { _controller: BecowoCoreBundle:Offer:contact }
 #     methods: GET
 
-becowo_core_comment_ca_marche:
-    path:     /comment-ca-marche
-    defaults: { _controller: BecowoCoreBundle:Footer:commentCaMarche }
+becowo_core_comment_ca_marche_coworkers:
+    path:     /comment-ca-marche-coworker
+    defaults: { _controller: BecowoCoreBundle:Footer:commentCaMarcheCoworkers }
+    methods: GET
+
+becowo_core_comment_ca_marche_espaces:
+    path:     /comment-ca-marche-tiers-lieux
+    defaults: { _controller: BecowoCoreBundle:Footer:commentCaMarcheEspaces }
     methods: GET
 
 becowo_core_vote:

@@ -49,7 +49,7 @@ header .container{
   margin-right: 0px;
 }
 header .navbar-right a{
-  max-width: 190px;
+  max-width: 200px;
   max-height: 70px;
 }
 header .navbar-header{
@@ -63,6 +63,9 @@ header .navbar-default{
     bottom: 2px;
     height: 70px;
 }
+.navbar-nav .normal-ul{
+  width: 100%;
+}
 header img{
   /* Pour mémo, typo : Vollkorn gras italique pour name et regular pour tagline*/
   width: 450px;
@@ -72,7 +75,7 @@ header img{
 header .navbar-brand {
   padding: 5px 5px 5px 5px;
 }
-header.header .navbar-default .navbar-nav>li>a {
+header.header .navbar-default .navbar-nav>li>a, header .normal-ul a {
     color: gray;
     font-size: 16px;
     font-weight: 700;
@@ -98,7 +101,7 @@ header #login a {
     color: white;
     background-color: var(--my-blue);
 }
-header .dropdown-toggle{
+header .login-menu{
   color: white !important;
   background-color: var(--my-blue) !important;
 }
