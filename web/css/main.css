@@ -610,16 +610,16 @@ footer{
 #bh-sl-map-container ul{
   padding: 0 0 0 3px;
   margin: 0;
-  -webkit-column-count: 2;
+ /* -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
   -webkit-column-width: 50%;
   -moz-column-width: 50%;
-  column-width: 50%; 
+  column-width: 50%;*/ 
 }
 .bh-sl-container .bh-sl-loc-list .list-focus{
   box-shadow: 0 0 20px var(--my-blue) !important;
-  border: 2px solid var(--my-blue) !important;
+  border: 1px solid var(--my-blue) !important;
 }
 #bh-sl-user-location{
   display: inline-flex;
@@ -831,11 +831,13 @@ footer{
 }
 .bh-sl-loc-list li{
   background: none !important;
-  width: 100% !important;
-  margin: 0 !important;
+  margin: 0 5px 10px 0 !important;
   padding: 0;
-  break-inside: avoid-column;
-  page-break-inside: avoid;
+/*  break-inside: avoid-column;
+  page-break-inside: avoid;*/
+  display: inline-block !important;
+  width: 49% !important;
+  clear: right !important;
   float: left;
 }
 
