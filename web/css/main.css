@@ -1329,23 +1329,7 @@ footer{
   border-radius: 25%;
   margin-right: 20px;
 }
-#jssor_1{
-  /*Le style est directement dans le HTML du carroussel sinon ca bug*/
-  border : solid #24262e 1px;
-  width: 1150px !important;
-}
-#jssor_1 #left{
-  position: absolute;
-  left: 25%;
-  font-size: 20px;
-  color: var(--my-green);
-}
-#jssor_1 #right{
-  position: absolute;
-  left: 95%;
-  font-size: 20px;
-  color: var(--my-green);
-}
+
 #map{
   /*Pour que la google map s'affiche correctement*/
   width: 100%;
