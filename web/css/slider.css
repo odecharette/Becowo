@@ -28,6 +28,7 @@
 	background-image: none !important;
 	background: transparent;
 	opacity: 1;
+	color: var(--my-green) !important;
 }
 
 /* --------- END --------- */
