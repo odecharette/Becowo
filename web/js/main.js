@@ -350,7 +350,8 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 	mySliderPeople.on('change', function(ev){
 		var nbPeople = mySliderPeople.data('slider').getValue();
 		document.getElementById('nbPeople').innerHTML = nbPeople;
-
+        //On rafraichit la durée sélectionnée
+        duree = document.querySelector('input[name="booking-duration"]:checked').value;
 		loadPrice(duree, modalData);
 	});
 
