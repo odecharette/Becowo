@@ -1210,7 +1210,8 @@ border: solid 3px var(--my-green-strong);
   color: white;
   font-size: 14pt;
   text-align: center;
-  line-height: 2.2em;
+  line-height: 2.9em;
+  padding-bottom: 1px;
 }
 #btn_confirm{
   width: 100%;

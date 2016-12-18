@@ -353,6 +353,9 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 		loadPrice(duree, modalData);
 	});
 
+    // Prix par défaut
+    loadPrice(duree, modalData);
+
 	// On reload des éléments à chaque fois que la duration change :
 	$('#booking-duration').on('change', function() { 
 	    var duree = document.querySelector('input[name="booking-duration"]:checked').value;
@@ -537,5 +540,7 @@ function loadPrice(duree, modalData){
 
 	document.getElementById('price-excl-tax').value = total;
 	document.getElementById('price-incl-tax').value = total * (1 + modalData['tva']/100);
+    document.getElementById('price-excl-tax-div').innerHTML = total;
+    document.getElementById('price-incl-tax-div').innerHTML = total * (1 + modalData['tva']/100);
 
 }
