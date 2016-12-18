@@ -1,4 +1,4 @@
-{{dump(priceandofficeSelected)}}
+
 <span class="office-name">{{priceandofficeSelected.workspaceHasOffice.name}}</span> - 
 <span class="capacity">Capacité : {{priceandofficeSelected.workspaceHasOffice.deskQty}} <i class="fa fa-male" aria-hidden="true"></i></span>
 
@@ -7,7 +7,7 @@
 <h3>Choisir un créneau de réservation</h3>
 <br>
 {# DUREE #}
-Durée : 
+Durée test : 
 <div class="segmented-control" style="width: 400px; color: #20385e" id="booking-duration-{{priceandofficeSelected.id}}">
 	{# on ne propose le choix que s'il y a un prix, donc dispo#}
 	{% if priceandofficeSelected.priceHour != '' %} 
