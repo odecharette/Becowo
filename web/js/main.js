@@ -323,6 +323,7 @@ $('#myModalResa').on('show.bs.modal', function(e) {
   		document.getElementById('booking-duration').style.width="500px";
   		document.getElementById('booking-duration').style.border="solid";
   		document.getElementById('booking-duration').style.textTransform="uppercase";
+        maDiv.style.display = "block"; // on force l'affichage s'il a été caché on fermant une précédante modale
   	}
   
   // CONSTRUCTION DATE
@@ -375,6 +376,7 @@ $('#myModalResa').on('hidden.bs.modal', function (e) {
 	while (element.firstChild) {
   		element.removeChild(element.firstChild);
 	}
+    element.style.display = "none";
 	// reset calendar
 	$('#booking-calendar').data('dateRangePicker').destroy();
 })
