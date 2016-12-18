@@ -268,7 +268,7 @@ $(function(){
 
 $('#myModalResa').on('show.bs.modal', function(e) {
   var modalData = e.relatedTarget.dataset;
-//console.log(modalData);
+// console.log(modalData);
 
   // attention tout en minuscule pour lire le contenu de modalData
   document.getElementById('spaceName').innerHTML = modalData['spacename'];
@@ -282,6 +282,7 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 
   	// CONSTRUCTION DURATION
   	var listeDuration = ['heure', 'demijournee', 'journee', 'semaine', 'mois']; // doit être en minuscule
+    var listeDurationAffichee = ['Heure', 'Demi-journée', 'Journée', 'Semaine', 'Mois'];
 //  	var listeDurationEN = ['hour', 'halfday', 'day', 'week', 'month']; // doit être en minuscule
   	var premier = true;
   	var maDiv = document.getElementById('booking-duration');
@@ -306,7 +307,7 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 			maDiv.appendChild(i);
 		}
   	};
-  	//on est obligé de charger tous les input et ensuite tous les label
+  	//on est obligé de charger tous les input et ensuite tous les labels
   	for (j=0 ; j < listeDuration.length ; j++)
   	{
   		//On ne rajoute la valeur que s'il y a un prix
@@ -314,8 +315,8 @@ $('#myModalResa').on('show.bs.modal', function(e) {
   		{
 			var l = document.createElement('label');
 			l.setAttribute("for", "booking-duration-" + listeDuration[j]);
-			l.setAttribute("data-value",listeDuration[j]);
-			l.innerHTML = listeDuration[j];
+			l.setAttribute("data-value",listeDurationAffichee[j]);
+			l.innerHTML = listeDurationAffichee[j];
 
 			maDiv.appendChild(l);
 		}
@@ -327,7 +328,6 @@ $('#myModalResa').on('show.bs.modal', function(e) {
   	}else{
   		document.getElementById('booking-duration').style.width="500px";
   		document.getElementById('booking-duration').style.border="solid";
-  		document.getElementById('booking-duration').style.textTransform="uppercase";
         maDiv.style.display = "block"; // on force l'affichage s'il a été caché on fermant une précédante modale
   	}
   
@@ -381,6 +381,8 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 
 });
 
+
+
 // on reset le formulaire quand la modal se ferme
 $('#myModalResa').on('hidden.bs.modal', function (e) {
   	var element = document.getElementById("booking-duration");
@@ -390,6 +392,10 @@ $('#myModalResa').on('hidden.bs.modal', function (e) {
     element.style.display = "none";
 	// reset calendar
 	$('#booking-calendar').data('dateRangePicker').destroy();
+    //reset slider time
+    $("#booking-time-slider").slider().data('slider').destroy();
+
+ 
 })
 
 
@@ -470,11 +476,12 @@ function loadCalendar(duree, modalData)
 
 function loadTime(duree, modalData){
 
+    // on doit reset le slider à chaque fois sinon ca bug
+    $("#booking-time-slider").slider().data('slider').destroy();
+
 	if(duree == 'heure'){ 
 		document.getElementById('calendar-halftime').style.display = 'none';
 		document.getElementById('calendar-time').style.display = 'block';
-		document.getElementById('time-min').innerHTML = modalData['openhour'].replace(':', 'h');
-		document.getElementById('time-max').innerHTML = modalData['closehour'].replace(':', 'h');
 
 		var ouverture = modalData['openhour'].split(':');
 		var ouvertureMinutes = Number(ouverture[0]) * 60 + Number(ouverture[1]);
@@ -490,30 +497,22 @@ function loadTime(duree, modalData){
 
 		});
 
-		mySliderTime.on('slide', function(ev){
+        //Initi selected heures
+        var valeursMinutes = mySliderTime.data('slider').getValue();
+        valeursTransformed = transformSliderValuesIntoHourMinute(valeursMinutes);
+        remplirMinMaxTimeSlider(valeursTransformed);
 
-		var valeurs = mySliderTime.data('slider').getValue();
+		mySliderTime.on('slide', function(ev){	
 
-		var hours1 = Math.floor(valeurs[0] / 60);
-        var minutes1 = valeurs[0] - (hours1 * 60);
+            var valeursMinutes = mySliderTime.data('slider').getValue();
 
-        if (hours1 < 10) hours1 = '0' + hours1;
-        if (minutes1.length == 1) minutes1 = '0' + minutes1;
-        if (minutes1 == 0) minutes1 = '00';
+    		var nbHeures = (valeursMinutes[1] - valeursMinutes[0])/60;
+    		document.getElementById('nbHeures').innerHTML = nbHeures;
 
-        var hours2 = Math.floor(valeurs[1] / 60);
-        var minutes2 = valeurs[1] - (hours2 * 60);
+            valeursTransformed = transformSliderValuesIntoHourMinute(valeursMinutes);
+            remplirMinMaxTimeSlider(valeursTransformed);
 
-        if (hours2 < 10) hours2 = '0' + hours2;
-        if (minutes2.length == 1) minutes2 = '0' + minutes2;
-        if (minutes2 == 0) minutes2 = '00';
-
-		$('.slideTime .tooltip-inner').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
-	
-		var nbHeures = (valeurs[1] - valeurs[0])/60;
-		document.getElementById('nbHeures').innerHTML = nbHeures;
-
-		loadPrice(duree, modalData);
+    		loadPrice(duree, modalData);
 		});
 
 
@@ -536,6 +535,10 @@ function loadTime(duree, modalData){
 function loadPrice(duree, modalData){
 
 	var prix = modalData['price' + duree]; 
+
+    console.log(duree);
+    console.log(prix);
+    console.log(modalData);
 	var total = prix;
 	var officeType = modalData['spacetype'];
 	var nbHeures = document.getElementById('nbHeures').innerHTML;
@@ -556,4 +559,31 @@ function loadPrice(duree, modalData){
     document.getElementById('price-excl-tax-div').innerHTML = total;
     document.getElementById('price-incl-tax-div').innerHTML = total * (1 + modalData['tva']/100);
 
+}
+
+function transformSliderValuesIntoHourMinute(valeurs)
+{
+    var hours1 = Math.floor(valeurs[0] / 60);
+    var minutes1 = valeurs[0] - (hours1 * 60);
+
+    if (hours1 < 10) hours1 = '0' + hours1;
+    if (minutes1.length == 1) minutes1 = '0' + minutes1;
+    if (minutes1 == 0) minutes1 = '00';
+
+    var hours2 = Math.floor(valeurs[1] / 60);
+    var minutes2 = valeurs[1] - (hours2 * 60);
+
+    if (hours2 < 10) hours2 = '0' + hours2;
+    if (minutes2.length == 1) minutes2 = '0' + minutes2;
+    if (minutes2 == 0) minutes2 = '00';
+
+    valeurs[0] = hours1 + ':' + minutes1;
+    valeurs[1] = hours2 + ':' + minutes2;
+    return valeurs;
+}
+
+function remplirMinMaxTimeSlider(valeurs){
+
+    document.getElementById('time-min').innerHTML = valeurs[0];
+    document.getElementById('time-max').innerHTML = valeurs[1];
 }
