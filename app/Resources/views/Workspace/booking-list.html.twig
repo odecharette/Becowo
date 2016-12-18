@@ -41,7 +41,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    				</div>
 		    				<div class="col-lg-6">
 	    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResaTest"  
+			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResa"  
 			    				data-wshasofficeid="{{priceandoffice.id}}" 
 			    				data-priceheure="{{priceandoffice.priceHour}}" 
 			    				data-pricedemijournee="{{priceandoffice.priceHalfDay}}" 
@@ -86,7 +86,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 
 
 {# Modal de test #}
-	<div class="modal fade" id="myModalResaTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myModalResa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">

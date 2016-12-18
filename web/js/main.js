@@ -223,27 +223,6 @@ fullScreenButton.addEventListener("click", function() {
 };
 });
 
-/*************** Vidéo on home page ****************
-$(document).ready(function () 
-    { 
-        if (document.getElementById("video")){
-            $('#video').videocontrols( 
-            {  
-                theme: 
-                { 
-                    progressbar: 'pink', 
-                    range: 'pink', 
-                    volume: 'pink' 
-                },
-                fillscreen: false,
-                mediumscreen: false 
-            }); 
-        };
-    }); 
-*/
-
-
-
 /************************ blackknight467/star-rating-bundle    rating.js *************************/
 
 $(function(){
@@ -283,522 +262,11 @@ $(function(){
 });
 /***************** fin rating.js ****************************/
 
-/***************** Booking steps ****************************/
-//http://www.jquery-steps.com/Examples#basic
-/*
-$("#booking-steps").steps({
-    headerTag: "titre",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    autoFocus: true,
-    onStepChanging: function (event, currentIndex, newIndex)
-    {
-    	console.log(currentIndex);
-    	console.log(newIndex);
-    	
-    	if(newIndex == 1) //Passage à l'étape paiement
-    	{
-	    	if(document.getElementById('booking-recap-price').innerHTML > 0)
-	    	{
-	    		document.getElementById('booking-error').innerHTML = "";
-    			document.getElementById('barre-steps-0').style.borderColor = "var(--my-blue)";
-    			document.getElementById('booking-steps-t-1').style.background = "var(--my-blue)";
-	    		return true;
-	    	}else{
-	    		document.getElementById('booking-error').innerHTML = "Il manque un élément pour réserver";
-	    		return false;
-	    	}
-	    }else if(newIndex == 2) // Passage à l'étape confirmation
-	    {
-	    		document.getElementById('barre-steps-1').style.borderColor = "var(--my-blue)";
-    			document.getElementById('booking-steps-t-2').style.background = "var(--my-blue)";
-	    }else if(newIndex == 3) // Finish
-	    {
-    			document.getElementById('booking-steps-t-3').style.background = "var(--my-blue)";
-	    }
 
-    }
-});
-*/
-
-/***************** Booking calendar ****************************/
-// http://www.daterangepicker.com
-
-// Le calendrier s'adapte en fonction de la durée de location choisie
-function loadCalendar(id, duree, prix){
-
-	var closedDates = document.getElementById('closedDates').innerHTML;
-	closedDates = closedDates.replace(/(?:\r\n|\r|\n)/g, '');
-	closedDates = closedDates.trim();
-	var closedDatesTab = closedDates.split(',');
-
-	if(duree == 'Heure' || duree == '1/2 journée' || duree == 'Journée') {
- 
-		$('#booking-calendar-' + id).daterangepicker({
-	        timePicker: false,
-	        singleDatePicker: true,
-	        locale: {
-	            format: 'DD/MM/YYYY',
-	            separator: '/',
-	            applyLabel: 'Valider',
-	            cancelLabel: 'Annuler',
-	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
-	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
-	            firstDay: '2'
-	        },
-	        startDate: new Date(),
-	        minDate: new Date(),
-	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
-	    	isInvalidDate: function(date) {
-
-	    		if ($.inArray(date.format('DD/MM/YYYY'), closedDatesTab) != -1) {
-			        return true;
-			    } else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
-			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
-	    			return (date.day() == 6 || date < new Date() );
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML == 1){
-	    			return (date.day() == 5 || date < new Date() );
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == 1){
-	    			return (date < new Date() );
-	    		}
-			  }
-	    });
-	} else if (duree == 'Semaine' || duree == 'Mois'){
-		$('#booking-calendar-' + id).daterangepicker({
-	        timePicker: false,
-	        singleDatePicker: false,
-	        locale: {
-	            format: 'DD/MM/YYYY',
-	            separator: '/',
-	            applyLabel: 'Valider',
-	            cancelLabel: 'Annuler',
-	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
-	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
-	            firstDay: '2'
-	        },
-	        startDate: new Date(),
-	        minDate: new Date(),
-	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
-	    	isInvalidDate: function(date) {
-
-	    		if ($.inArray(date.format('DD/MM/YYYY'), closedDatesTab) != -1) {
-			        return true;
-			    } else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
-			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
-	    			return (date.day() == 6 || date < new Date() );
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML == 1){
-	    			return (date.day() == 5 || date < new Date() );
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == 1){
-	    			return (date < new Date() );
-	    		}
-			  }
-	    });
-
-
-	    $('#booking-calendar-' + id).on('apply.daterangepicker', function (e, picker) {
-
-	    	$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-
-	    	var end = new Date(picker.endDate);
-	    	var begin = new Date(picker.startDate);
-	    	// end = moment(end).add(1, 'm'); // Add 1 minute
-
-	    	var diff = moment.preciseDiff(begin, end, true); // http://codebox.org.uk/pages/moment-date-range-plugin
-
-			if (duree == 'Semaine'){
-		        
-		        	document.getElementById('calendar-error').innerHTML = "TO DO vérifier saisie est en semaine";
-					document.getElementById('booking-recap-date-calculated').innerHTML = "TO DO calculer le nb de semaines"
-		    }else{
-		    	if(diff.months > 0 && diff.days == 0){
-		        	document.getElementById('calendar-error').innerHTML = "";
-		        	document.getElementById('booking-recap-date-calculated').innerHTML = diff.months;
-		        }
-		        else{
-		        	document.getElementById('calendar-error').innerHTML = "Pour profiter du tarif mois, veuillez sélectionner un mois complet.";
-		        }
-		    };
-
-	    });
-
-	}
-
-
-	// $('#booking-calendar-' + id).on('apply.daterangepicker', function(ev, picker) {
-	// 	if(picker.startDate.date() == picker.endDate.date()){
-	// 		document.getElementById('booking-recap-date').innerHTML = picker.startDate.format('DD/MM/YYYY');
-	// 	}else{
-	// 		$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-	// 		document.getElementById('booking-recap-date').innerHTML = "Du ";
-	// 		document.getElementById('booking-recap-date').innerHTML += picker.startDate.format('DD/MM/YYYY');
-	// 		document.getElementById('booking-recap-date').innerHTML += " Au ";
-	// 		document.getElementById('booking-recap-date').innerHTML += picker.endDate.format('DD/MM/YYYY');
-
-	// 	}
-	// });
-
-	loadTime(id, duree, prix);
-	loadPeople(id, duree, prix);
-	loadPrice(id, duree, prix); 
-//	bookCalculatePrice();
-};
-
-/***************** Booking time ****************************/
-// http://seiyria.com/bootstrap-slider/
-
-function loadTime(id, duree, prix){
-	if(duree == 'Heure'){ 
-		document.getElementById('calendar-halftime-' + id).style.display = 'none';
-		document.getElementById('calendar-time-' + id).style.display = 'block';
-		var ouverture = document.getElementById('calendar-time-min').innerHTML.split(':');
-		var ouvertureMinutes = Number(ouverture[0]) * 60 + Number(ouverture[1]);
-		var fermeture = document.getElementById('calendar-time-max').innerHTML.split(':');
-		var fermetureMinutes = Number(fermeture[0]) * 60 + Number(fermeture[1]);
-
-		var mySliderTime = $("#booking-time-slider-" + id).slider({
-		range: true,
-    	min: ouvertureMinutes,	// every values are in minutes
-    	max: fermetureMinutes,
-    	step: 30,
-    	value: [ouvertureMinutes, ouvertureMinutes+60]
-
-		});
-
-		mySliderTime.on('change', function(ev){
-
-		var valeurs = mySliderTime.data('slider').getValue();
-
-		var hours1 = Math.floor(valeurs[0] / 60);
-        var minutes1 = valeurs[0] - (hours1 * 60);
-
-        if (hours1 < 10) hours1 = '0' + hours1;
-        if (minutes1.length == 1) minutes1 = '0' + minutes1;
-        if (minutes1 == 0) minutes1 = '00';
-
-        var hours2 = Math.floor(valeurs[1] / 60);
-        var minutes2 = valeurs[1] - (hours2 * 60);
-
-        if (hours2 < 10) hours2 = '0' + hours2;
-        if (minutes2.length == 1) minutes2 = '0' + minutes2;
-        if (minutes2 == 0) minutes2 = '00';
-
-		$('.slideTime .tooltip-inner').html(hours1 + ':' + minutes1 + ' - ' + hours2 + ':' + minutes2);
-//		mySliderTime.data('slider').setValue(""); pour changer le tooltip black mais pb de format de value
-	
-	//	document.getElementById('booking-recap-time').innerHTML = 'De ' + hours1 + ':' + minutes1 + ' à ' + hours2 + ':' + minutes2;
-	//	document.getElementById('booking-recap-time-calculated').innerHTML = (valeurs[1] - valeurs[0])/60;
-		var nbHeures = (valeurs[1] - valeurs[0])/60;
-		document.getElementById('recap-nbHeures-' + id).innerHTML = nbHeures;
-
-		loadPrice(id, duree, prix);
-	//	bookCalculatePrice();
-		});
-
-	}else if(duree == '1/2 journée'){ 
-		document.getElementById('calendar-time-' + id).style.display = 'none';
-		document.getElementById('calendar-halftime-' + id).style.display = 'block';
-	}else{
-		document.getElementById('calendar-time-' + id).style.display = 'none';
-		document.getElementById('calendar-halftime-' + id).style.display = 'none';
-	}
-
-	loadPrice(id, duree, prix);
-//	bookCalculatePrice();
-}
-
-// function loadHalfTime(boo){
-// 	if(boo){
-// 		document.getElementById('calendar-halftime').style.display = 'block';
-// 	}else{
-// 		document.getElementById('calendar-halftime').style.display = 'none';
-// 	}
-
-// 	bookCalculatePrice();
-// }
-/***************** Booking people ****************************/
-function loadPeople(id, duree, prix, nbHeures) {
-	var mySliderPeople = $("#booking-people-" + id).slider({});
-	if(mySliderPeople != null)
-	{
-	mySliderPeople.on('change', function(ev){
-		// document.getElementById('booking-recap-people').innerHTML = mySliderPeople.data('slider').getValue();
-		// document.getElementById('booking-recap-people-txt').innerHTML = " personne(s)"; 
-		// bookCalculatePrice();
-		var nbPeople = mySliderPeople.data('slider').getValue();
-		document.getElementById('recap-nbPeople-' + id).innerHTML = nbPeople;
-
-		loadPrice(id, duree, prix);
-	});
-	}
-};
-
-/***************** Booking offices ****************************/
-function bookOffice() { 
-	var off = document.querySelector('input[name="office"]:checked').value.split('*');
-    document.getElementById('booking-recap-office').innerHTML = off[0];
-    document.getElementById('booking-recap-office-type').innerHTML = off[1];
-    // Change la valeur max du slider de personnes, en fonction du 'deskQty' de l'office sélectionné
-    $("#booking-people").slider('setAttribute', 'max', document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML);
-    $("#booking-people").slider('refresh');
-    document.getElementById('booking-people-max').innerHTML = document.getElementById('SelectedOffice-' + document.querySelector('input[name="office"]:checked').value + '-deskQty').innerHTML;
-    bookCalculatePrice();
-};
-
-/***************** Booking duration choices ****************************/
-function chooseDuration() {
-	//Récup la liste des bureaux
-	var oInput = document.getElementById('booking-office'),
-            oChild;
-    if(oInput != null)
-    {
-
-    for(i = 0; i < oInput.childNodes.length; i++){
-        oChild = oInput.childNodes[i];
-        if(oChild.nodeName == 'INPUT'){ // Boucle sur chaque input dont l'ID est un type d'espace
-        	// Inscrit le prix par durée sélectionnée, pour chaque bureau
-	        var p = document.getElementById('SelectedOffice-' + oChild.id + '-price' + document.querySelector('input[name="booking-duration"]:checked').value).innerHTML;
-			document.getElementById('pricePerOffice-' + oChild.id).innerHTML = p;
-        	
-
-        	// si un prix est à zéro on cache le choix du bureau car ca veut dire qu'il n'est pas réservable pour cette durée de tps
-        	if(p == 0)
-        	{
-				$('label[for="' + oChild.id + '"]').hide();
-        	} else
-        	{
-        		$('label[for="' + oChild.id + '"]').show();
-
-	        	switch(document.querySelector('input[name="booking-duration"]:checked').value) {
-	        		case 'Heure':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / heure*';
-	        			loadTime(true);
-	        			loadHalfTime(false);
-	        			break;
-	        		case '1/2 journée':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / 1/2 journée*';
-	        			loadTime(false);
-	        			loadHalfTime(true);
-	        			break;
-	        		case 'Journée':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / jour*';
-	        			loadTime(false);
-	        			loadHalfTime(false);
-	        			break;
-	        		case 'Semaine':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / Semaine*';
-	        			loadTime(false);
-	        			loadHalfTime(false);
-	        			break;
-	        		case 'Mois':
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' € / Mois*';
-	        			loadTime(false);
-	        			loadHalfTime(false);
-	        			break;
-	        		default:
-	        			document.getElementById('pricePerOffice-' + oChild.id).innerHTML += ' €*';
-	        			loadTime(false);
-	        			loadHalfTime(false);
-	        	}
-        	}
-        }
-    }
-    document.getElementById('booking-recap-duration').innerHTML = document.querySelector('input[name="booking-duration"]:checked').value;
-
- //   loadCalendar();
-    bookCalculatePrice();
-    
-    }
-
-}
-$( document ).ready(function() {
-	//Affichage des prix au démarrage
-    chooseDuration();
-});
-/************************* Booking calculate price 2 *******************/
-function loadPrice(id, duree, prix){
-
-	var total = prix;
-	var officeType = document.getElementById('recap-officeType-' + id).innerHTML;
-	var nbHeures = document.getElementById('recap-nbHeures-' + id).innerHTML;
-	var nbPeople = document.getElementById('recap-nbPeople-' + id).innerHTML;
-
-
-	if(duree == 'Heure'){
-		total = prix * nbHeures;
-	}else{
-		total = prix;
-	}
-
-	if(officeType == 'Open space'){
-		total = total * nbPeople;
-	}
-
-
-	document.getElementById('booking-recap-price-'+id).innerHTML = total;
-	document.getElementById('booking-price-excl-tax-'+id).value = total;
-
-}
-
-
-/************************* Booking calculate price *******************/
-
-function bookCalculatePrice()
-{
-	// SelectedOffice-{{office.office.name}}-priceHeure
-
-	var officeReserved = document.getElementById('booking-recap-office').innerHTML;
-	var officeTypeReserved = document.getElementById('booking-recap-office-type').innerHTML;
-	var dateReserved = document.getElementById('booking-recap-date').innerHTML;
-	var dateCalculatedReserved = document.getElementById('booking-recap-date-calculated').innerHTML;
-	var durationReserved = document.getElementById('booking-recap-duration').innerHTML;
-	var timeReserved = document.getElementById('booking-recap-time').innerHTML;
-	var timeCalculatedReserved = document.getElementById('booking-recap-time-calculated').innerHTML;
-	var peopleReserved = document.getElementById('booking-recap-people').innerHTML;
-	var pricePerOffice = 0;
-	console.log('**********************');
-	console.log('SelectedOffice-' + officeReserved + '*' + officeTypeReserved + '-price' + durationReserved);
-	if(document.getElementById('SelectedOffice-' + officeReserved + '*' + officeTypeReserved + '-price' + durationReserved) != null)
-	{
-		pricePerOffice = Number(document.getElementById('SelectedOffice-' + officeReserved + '*' + officeTypeReserved + '-price' + durationReserved).innerHTML);
-	}else{
-		pricePerOffice = 0;
-	}
-	var finalPrice = 0;
-
-
-	if(officeTypeReserved == 'Open space')
-	{
-		// le prix est par personne (sinon il est par bureau)
-		pricePerOffice = pricePerOffice * peopleReserved;
-	}
-
-	// A la 1/2 journée et journée, pas besoin de multipler le prix car un seul 'espace temps' réservable
-	if(durationReserved == 'Heure')
-	{
-		finalPrice = pricePerOffice * timeCalculatedReserved;
-	}else if(durationReserved == 'Semaine')
-	{
-		// TO DO calculer le nb de semaine sélectionnée
-	}else if(durationReserved == 'Mois')
-	{
-		finalPrice = pricePerOffice * dateCalculatedReserved;
-	}else
-	{
-		finalPrice = pricePerOffice;
-	}
-
-
-	document.getElementById('booking-recap-price').innerHTML = finalPrice;
-	document.getElementById('booking-recap-price-txt').innerHTML = " € TTC";
-	document.getElementById('booking-price-incl-tax').value = finalPrice;
-}
-
-
-
-// Le calendrier s'adapte en fonction de la durée de location choisie
-function loadCalendar2(duree){
-
-	var closedDates = document.getElementById('closedDates').innerHTML;
-	closedDates = closedDates.replace(/(?:\r\n|\r|\n)/g, '');
-	closedDates = closedDates.trim();
-	var closedDatesTab = closedDates.split(',');
-
-	if(duree == 'heure' || duree == 'demijournee' || duree == 'journee') {
- 
-		$('#booking-calendar').daterangepicker({
-	        timePicker: false,
-	        singleDatePicker: true,
-	        locale: {
-	            format: 'DD/MM/YYYY',
-	            separator: '/',
-	            applyLabel: 'Valider',
-	            cancelLabel: 'Annuler',
-	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
-	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
-	            firstDay: '2'
-	        },
-	        startDate: new Date(),
-	        minDate: new Date(),
-	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
-	    	isInvalidDate: function(date) {
-
-	    		if ($.inArray(date.format('DD/MM/YYYY'), closedDatesTab) != -1) {
-			        return true;
-			    } else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
-			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
-	    			return (date.day() == 6 || date < new Date() );
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML == 1){
-	    			return (date.day() == 5 || date < new Date() );
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == 1){
-	    			return (date < new Date() );
-	    		}
-			  }
-	    });
-	} else if (duree == 'semaine' || duree == 'mois'){
-		var cal = $('#booking-calendar').daterangepicker({
-	        timePicker: false,
-	        singleDatePicker: false,
-	        autoApply: true, // Pas de buton valider/Annuler
-	        locale: {
-	            format: 'DD/MM/YYYY',
-	            separator: '/',
-	            //applyLabel: 'Valider',
-	            //cancelLabel: 'Annuler',
-	            daysOfWeek: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
-	            monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aôut','Septembre','Octobre','Novembre','Décembre'],
-	            firstDay: '2'
-	        },
-	        startDate: new Date(),
-	        minDate: new Date(),
-	        maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), // 1 year
-	    	isInvalidDate: function(date) {
-
-	    		if ($.inArray(date.format('DD/MM/YYYY'), closedDatesTab) != -1) {
-			        return true;
-			    } else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML != 1){
-			    	return (date.day() == 5 || date.day() == 6 || date < new Date() ); // disable saturday, sunday and past dates
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML != 1){
-	    			return (date.day() == 6 || date < new Date() );
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML != 1 && document.getElementById('isOpenSunday').innerHTML == 1){
-	    			return (date.day() == 5 || date < new Date() );
-	    		}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == 1){
-	    			return (date < new Date() );
-	    		}
-			  }
-	    });
-
-	    $('#booking-calendar').on('apply.daterangepicker', function (e, picker) {
-
-	    	$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-
-	    	var end = new Date(picker.endDate);
-	    	var begin = new Date(picker.startDate);
-	    	// end = moment(end).add(1, 'm'); // Add 1 minute
-
-	    	var diff = moment.preciseDiff(begin, end, true); // http://codebox.org.uk/pages/moment-date-range-plugin
-
-			if (duree == 'semaine'){
-		        	document.getElementById('calendar-error').innerHTML = "TO DO vérifier saisie est en semaine";
-		    }else{
-		    	if(diff.months > 0 && diff.days == 0){
-		        	document.getElementById('calendar-error').innerHTML = "";
-		        }
-		        else{
-		        	document.getElementById('calendar-error').innerHTML = "Pour profiter du tarif mois, veuillez sélectionner un mois complet.";
-		        }
-		    };
-
-	    });
-
-	}
-};
 
 /********************************  JS construction form dans modal de réservation ******************/
 
-$('#myModalResaTest').on('show.bs.modal', function(e) {
+$('#myModalResa').on('show.bs.modal', function(e) {
   var modalData = e.relatedTarget.dataset;
 //console.log(modalData);
 
@@ -867,10 +335,11 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 
 	// CONSTRUCTION CALENDAR
 	var duree = document.querySelector('input[name="booking-duration"]:checked').value;
-	loadCalendar3(duree, modalData);
+	loadCalendar(duree, modalData);
 
 	// CONSTRUCTION HORAIRE
-	loadTime2(duree, modalData);
+    // http://seiyria.com/bootstrap-slider/
+	loadTime(duree, modalData);
 
 	// CONSTRUCTION PEOPLE
 	var mySliderPeople = $("#booking-people").slider({
@@ -881,7 +350,7 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 		var nbPeople = mySliderPeople.data('slider').getValue();
 		document.getElementById('nbPeople').innerHTML = nbPeople;
 
-		loadPrice2(duree, modalData);
+		loadPrice(duree, modalData);
 	});
 
 	// On reload des éléments à chaque fois que la duration change :
@@ -889,16 +358,16 @@ $('#myModalResaTest').on('show.bs.modal', function(e) {
 	    var duree = document.querySelector('input[name="booking-duration"]:checked').value;
 	    // reset calendar
 		$('#booking-calendar').data('dateRangePicker').destroy();
-	    loadCalendar3(duree, modalData);
-	    loadTime2(duree, modalData);
-	    loadPrice2(duree, modalData);
+	    loadCalendar(duree, modalData);
+	    loadTime(duree, modalData);
+	    loadPrice(duree, modalData);
 	});
 
 
 });
 
 // on reset le formulaire quand la modal se ferme
-$('#myModalResaTest').on('hidden.bs.modal', function (e) {
+$('#myModalResa').on('hidden.bs.modal', function (e) {
   	var element = document.getElementById("booking-duration");
 	while (element.firstChild) {
   		element.removeChild(element.firstChild);
@@ -910,7 +379,7 @@ $('#myModalResaTest').on('hidden.bs.modal', function (e) {
 
 
 // config : http://longbill.github.io/jquery-date-range-picker/
-function loadCalendar3(duree, modalData)
+function loadCalendar(duree, modalData)
 {
 	var closedDates = document.getElementById('closedDates').innerHTML;
 	closedDates = closedDates.replace(/(?:\r\n|\r|\n)/g, '');
@@ -932,7 +401,7 @@ function loadCalendar3(duree, modalData)
 			startDate: moment().format('DD-MM-YYYY')
 		}).bind('datepicker-change',function(event,obj){
 			/* This event will be triggered when second date is selected */
-			loadPrice2(duree, modalData);
+			loadPrice(duree, modalData);
 		});
 
 	}else if (duree == 'semaine'){
@@ -952,7 +421,7 @@ function loadCalendar3(duree, modalData)
 			startDate: moment().format('DD-MM-YYYY')
 		}).bind('datepicker-change',function(event,obj){
 			/* This event will be triggered when second date is selected */
-			loadPrice2(duree, modalData);
+			loadPrice(duree, modalData);
 		});
 
 	}else if (duree == 'mois'){
@@ -972,7 +441,7 @@ function loadCalendar3(duree, modalData)
 			startDate: moment().format('DD-MM-YYYY')
 		}).bind('datepicker-change',function(event,obj){
 			/* This event will be triggered when second date is selected */
-			loadPrice2(duree, modalData);
+			loadPrice(duree, modalData);
 		});
 
 	};
@@ -983,7 +452,7 @@ function loadCalendar3(duree, modalData)
 	// Désactiver jours fermés
 }
 
-function loadTime2(duree, modalData){
+function loadTime(duree, modalData){
 
 	if(duree == 'heure'){ 
 		document.getElementById('calendar-halftime').style.display = 'none';
@@ -1028,7 +497,7 @@ function loadTime2(duree, modalData){
 		var nbHeures = (valeurs[1] - valeurs[0])/60;
 		document.getElementById('nbHeures').innerHTML = nbHeures;
 
-		loadPrice2(duree, modalData);
+		loadPrice(duree, modalData);
 		});
 
 
@@ -1036,7 +505,7 @@ function loadTime2(duree, modalData){
 		document.getElementsByClassName('tooltip-main')[0].style.display = 'none';
 		document.getElementsByClassName('tooltip-inner')[0].style.display = 'none';
 		document.getElementsByClassName('tooltip-arrow')[0].style.display = 'none';
-		loadPrice2(duree, modalData);
+		loadPrice(duree, modalData);
 
 	}else if(duree == 'demijournee'){ 
 		document.getElementById('calendar-time').style.display = 'none';
@@ -1048,7 +517,7 @@ function loadTime2(duree, modalData){
 
 }
 
-function loadPrice2(duree, modalData){
+function loadPrice(duree, modalData){
 
 	var prix = modalData['price' + duree]; 
 	var total = prix;

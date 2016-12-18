@@ -1,8 +1,0 @@
-Ici blabla pour expliquer le process
-<br><br>
-Puis bouton "Payer"
-
-{# TO DO , cette page n'est pas utlisée ??? #}
-
-{# Appel à la procédure de paiement via le module e-transactions du crédit agricole : https://e-transactions.aveo-groupe.com #}
-{{ render(controller('BecowoCoreBundle:Paiement:callBank', {priceToPay: priceToPay, bookingRef: bookingRef})) }}

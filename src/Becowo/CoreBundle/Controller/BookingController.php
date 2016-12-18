@@ -28,7 +28,7 @@ class BookingController extends Controller
   	$closedDates = $WsService->getClosedDatesByWorkspace($ws);
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
 
-  	return $this->render('Workspace/book5.html.twig', array(
+  	return $this->render('Workspace/booking-list.html.twig', array(
         'pricesAndOffices' => $pricesAndOffices,
         'ws' => $ws, 
         'times' => $times, 
