@@ -391,10 +391,12 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 // on reset le formulaire quand la modal se ferme
 $('#myModalResa').on('hidden.bs.modal', function (e) {
   	var element = document.getElementById("booking-duration");
-	while (element.firstChild) {
-  		element.removeChild(element.firstChild);
-	}
-    element.style.display = "none";
+    if(element != null){
+    	while (element.firstChild) {
+      		element.removeChild(element.firstChild);
+    	}
+        element.style.display = "none";
+    }
 	// reset calendar
 	$('#booking-calendar').data('dateRangePicker').destroy();
     //reset slider time
