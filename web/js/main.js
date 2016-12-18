@@ -272,7 +272,12 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 
   // attention tout en minuscule pour lire le contenu de modalData
   document.getElementById('spaceName').innerHTML = modalData['spacename'];
-  document.getElementById('capacity').innerHTML = modalData['capacity'];
+
+  if(modalData['spacetype'] == 'Open space'){
+    document.getElementById('capacity').innerHTML = 'Quantité : ' + modalData['capacity'] + ' <i class="fa fa-briefcase" aria-hidden="true"></i>';
+  }else{
+    document.getElementById('capacity').innerHTML = 'Capacité : ' + modalData['capacity'] + ' <i class="fa fa-male" aria-hidden="true"></i>';
+  }
   document.getElementById('wshasofficeID').value = modalData['wshasofficeid'];
 
   	// CONSTRUCTION DURATION
@@ -347,6 +352,11 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 		max: modalData['capacity']
 	});
 	document.getElementById('booking-people-max').innerHTML = modalData['capacity'];
+    if(modalData['spacetype'] == 'Open space'){
+        document.getElementById('nbPeople-text').innerHTML = 'Nombre de coworkers : ';
+    }else{
+        document.getElementById('nbPeople-text').innerHTML = 'Nombre de coworkers (à titre indicatif) : ';
+    }
 	mySliderPeople.on('change', function(ev){
 		var nbPeople = mySliderPeople.data('slider').getValue();
 		document.getElementById('nbPeople').innerHTML = nbPeople;
