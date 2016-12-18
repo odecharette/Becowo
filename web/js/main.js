@@ -378,6 +378,11 @@ $('#myModalResa').on('show.bs.modal', function(e) {
 	    loadPrice(duree, modalData);
 	});
 
+    // On désactive le bouton 'confirmer' tant que le mois n'est pas sélectionné (pour tous les autres champs il y a une valeur par défaut)
+    if(duree == 'mois')
+    {
+        document.getElementById('btn_confirm').disabled = true;
+    }
 
 });
 
@@ -464,6 +469,7 @@ function loadCalendar(duree, modalData)
 		}).bind('datepicker-change',function(event,obj){
 			/* This event will be triggered when second date is selected */
 			loadPrice(duree, modalData);
+            document.getElementById('btn_confirm').disabled = false;
 		});
 
 	};
@@ -587,3 +593,5 @@ function remplirMinMaxTimeSlider(valeurs){
     document.getElementById('time-min').innerHTML = valeurs[0];
     document.getElementById('time-max').innerHTML = valeurs[1];
 }
+
+

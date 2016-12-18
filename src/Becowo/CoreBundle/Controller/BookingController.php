@@ -37,9 +37,7 @@ class BookingController extends Controller
 
   public function bookAction($name, Request $request)
   {
-    dump($request);
-    dump($request->isMethod('POST') );
-    dump($request->get('wshasofficeID') != null);
+
     if ($request->isMethod('POST') && $request->get('wshasofficeID') != null)
     {
 

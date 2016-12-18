@@ -95,7 +95,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 	<div class="modal fade" id="myModalResa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form">
+        	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form" >
     		
             <div class="modal-header">
                 <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
@@ -150,7 +150,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 					  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
 					</div>
 				    <br>
-				<br><br>
+				<br>
 				</span>
 				<span id="nbPeople-text"></span>
 				{# TO DO : min et max en fonction des places dispos #}
@@ -162,6 +162,8 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 				</span>
 				<span id="nbPeople" hidden="true">1</span>
 				<br>
+				{# Error msg #}
+				<span id="error_msg"></span>
 
             </div>
             <div class="modal-footer" id="modal-footer">

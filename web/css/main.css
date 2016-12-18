@@ -1222,6 +1222,10 @@ border: solid 3px var(--my-green-strong);
   border: none;
   margin: 0px;
 }
+#btn_confirm:disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .modal-footer, .modal-footer .col-lg-4{
   padding: 0;
 }
