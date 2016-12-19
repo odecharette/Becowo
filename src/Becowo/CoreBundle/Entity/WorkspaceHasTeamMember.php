@@ -39,6 +39,12 @@ class WorkspaceHasTeamMember
      */
     private $receiveEmailBooking;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="receive_email_contact", type="boolean", nullable=true)
+     */
+    private $receiveEmailContact;
   
 
     public function __toString()
@@ -139,6 +145,30 @@ class WorkspaceHasTeamMember
     public function setReceiveEmailBooking($receiveEmailBooking)
     {
         $this->receiveEmailBooking = $receiveEmailBooking;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of receiveEmailContact.
+     *
+     * @return boolean
+     */
+    public function getReceiveEmailContact()
+    {
+        return $this->receiveEmailContact;
+    }
+
+    /**
+     * Sets the value of receiveEmailContact.
+     *
+     * @param boolean $receiveEmailContact the receive email booking
+     *
+     * @return self
+     */
+    public function setReceiveEmailContact($receiveEmailContact)
+    {
+        $this->receiveEmailContact = $receiveEmailContact;
 
         return $this;
     }

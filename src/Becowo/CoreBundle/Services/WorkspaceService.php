@@ -261,10 +261,10 @@ class WorkspaceService
         return $repo->findWsByBooking($booking);
     }
 
-    public function getTeamMemberByWorkspace($ws)
+    public function getWsHasTeamMemberByWorkspace($ws)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasTeamMember');
-        return $repo->findTeamMemberByWorkspace($ws);
+        return $repo->findWsHasTeamMemberByWorkspace($ws);
     }
     
     public function getWsHasTeamMemberForEmailBookingByWorkspace($ws)

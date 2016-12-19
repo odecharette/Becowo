@@ -23,7 +23,8 @@ class WorkspaceController extends Controller
     // $times = $WsService->getTimesByWorkspace($ws);
     // $closedDates = $WsService->getClosedDatesByWorkspace($ws);
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
-
+    $WsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
+dump($WsHasTeamMembers);
   	return $this->render('Workspace/view.html.twig', 
       array('ws' => $ws, 
         'listEvents' => $listEvents, 
@@ -33,7 +34,8 @@ class WorkspaceController extends Controller
         //'listOffices' => $listOffices,
         // 'prices' => $prices,
         'pricesAndOffices' => $pricesAndOffices,
-        'averageVote' => $averageVote
+        'averageVote' => $averageVote,
+        'WsHasTeamMembers' => $WsHasTeamMembers
         // 'times' => $times,
         // 'closedDates' => $closedDates
         ));

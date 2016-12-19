@@ -1,12 +1,12 @@
-{% if ws.teamMember|length != "0" %}
+{% if WsHasTeamMembers|length != "0" %}
   <h2>L'équipe à votre service</h2>
 
-  {% for teamMember in ws.teamMember %}            
-    <div class="members">
-      <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}" width="150px" height="150px"><br>
-      {{teamMember.firstname}} {{teamMember.name}}
-      <div class="label label-info">{{teamMember.job}}</div>
-    </div>
+  {% for wsHasTeamMember in WsHasTeamMembers %}           
+      <div class="members">
+        <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{wsHasTeamMember.teamMember.urlProfilePicture}}" alt="{{wsHasTeamMember.teamMember.urlProfilePicture}}" width="150px" height="150px"><br>
+        {{wsHasTeamMember.teamMember.firstname}} {{wsHasTeamMember.teamMember.name}}
+        <div class="label label-info">{{wsHasTeamMember.teamMember.job}}</div>
+      </div>
   {% endfor %}
 
 {% else %}
@@ -16,38 +16,3 @@
     {% endif %}
   {% endfor %}
 {% endif %}
-{# {% if ws.teamMember|length != "0" %}
-  <h2>L'équipe à votre service</h2>
-  <br>
-  <div id="myCarouselTeam" class="carousel slide" data-interval="false">
-    <div class="carousel-inner">
-      {% for teamMember in ws.teamMember %}     
-        <div class={% if loop.first %}"item active"{% else %}"item"{% endif %}>       
-        <div class="card">
-          <img class="card-img-top" src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}" width="100px" height="100px">
-          <div class="card-block">
-            <div class="card-title">{{teamMember.firstname}} {{teamMember.name}}</div>
-            <span class="label label-info">{{teamMember.job}}</span>
-            <p class="card-text">{{teamMember.description}}</p>
-          </div>
-        </div>
-        </div>
-
-      {% endfor %}
-
-      <a class="left carousel-control" href="#myCarouselTeam" role="button" data-slide="prev">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-      </a> 
-      <a class="right carousel-control" href="#myCarouselTeam" role="button" data-slide="next">
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-    </div>
-  </div>
-{% else %}
-  {% for p in pictures %}
-    {% if p.isFavorite %}
-      <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{p.url}}" alt="{{ws.name}}" width="100%">
-    {% endif %}
-  {% endfor %}
-{% endif %}
- #}
