@@ -124,6 +124,26 @@ class PaiementController extends Controller
     $WsService = $this->get('app.workspace');
     $booking = $WsService->getBookingByRef($booking_ref);
 
+    //Récupération de l'email du manager de l'espace réservé
+    // Multi email accepté si plusieurs teamMembers
+    // Si aucun teammeber => envoi email à olivia.decharette@becowo.com
+    // Si env != Prod => envoi email à olivia.decharette@becowo.com
+    $objectBookingComplet = $WsService->getWsByBooking($booking);
+    $ws = $objectBookingComplet->getWorkspaceHasOffice()->getWorkspace();
+    $wsHasTeamMembers = $WsService->getWsHasTeamMemberForEmailBookingByWorkspace($ws);
+
+    $emailManager = [];
+    $i = 0;
+    if($wsHasTeamMembers == null or $this->container->get( 'kernel' )->getEnvironment() != 'prod')
+    {
+      $emailManager[0] = 'olivia.decharette@becowo.com';
+    }else{
+      foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
+        $emailManager[$i] = $wsHasTeamMember->getTeamMember()->getEmail();
+        $i ++;
+      }
+    }
+   
     // Construction de l'objet Error correspond au code retour de la transaction
     $errorService = $this->get('app.error');
     $error = $errorService->getErrorByCode($error_code);
@@ -157,8 +177,8 @@ class PaiementController extends Controller
     // * $trusted_Signature = true
 
     // ************* if désactivé juste pour tester l'envoi de l'email
-   if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
-//    if(true)
+   // if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
+    if(true)
     {
       $transaction_valide = true;
 
@@ -171,7 +191,7 @@ class PaiementController extends Controller
       $message = \Swift_Message::newInstance()
         ->setSubject("Nouvelle demande de réservation - " . $booking_ref)
         ->setFrom($this->getUser()->getEmail())
-        ->setTo('odecharette@gmail.com') // TO DO récup email du manager
+        ->setTo($emailManager) 
         ->setBody(
             $this->renderView(
                 'CommonViews/Mail/New-dme-resa.html.twig',

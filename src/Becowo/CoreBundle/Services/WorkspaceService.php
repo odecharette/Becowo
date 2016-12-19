@@ -254,4 +254,22 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
         return $repo->findWsBookedByMemberId($id);
     }
+
+    public function getWsByBooking($booking)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        return $repo->findWsByBooking($booking);
+    }
+
+    public function getTeamMemberByWorkspace($ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasTeamMember');
+        return $repo->findTeamMemberByWorkspace($ws);
+    }
+    
+    public function getWsHasTeamMemberForEmailBookingByWorkspace($ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasTeamMember');
+        return $repo->findWsHasTeamMemberForEmailBookingByWorkspace($ws);
+    }
 }

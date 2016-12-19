@@ -86,4 +86,17 @@ class BookingRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findWsByBooking($booking)
+	{
+		$qb = $this->createQueryBuilder('b');
+		$qb->select(['b', 'who', 'w'])
+			->Join('b.workspacehasoffice', 'who')
+			->Join('who.workspace', 'w')
+			->where('b.id = :booking')
+			->setParameter('booking', $booking);
+
+		return $qb->getQuery()->getSingleResult();
+	}
+
 }

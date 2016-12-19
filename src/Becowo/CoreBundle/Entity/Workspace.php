@@ -199,20 +199,7 @@ class Workspace
      */
     private $poi;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\TeamMember", inversedBy="workspace", cascade={"persist"})
-     * @ORM\JoinTable(name="becowo_workspace_has_team_member",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="team_member_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $teamMember;
+
 
     /**
      * @var \Doctrine\Common\Collections\Collection

@@ -266,6 +266,7 @@ $(function(){
 
 /********************************  JS construction form dans modal de réservation ******************/
 
+
 $('#myModalResa').on('show.bs.modal', function(e) {
   var modalData = e.relatedTarget.dataset;
 // console.log(modalData);
