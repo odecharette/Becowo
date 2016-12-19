@@ -56,7 +56,7 @@
         <div class="row text-center">
 	         {% for priceandoffice in pricesAndOffices %}
 	         	{% if loop.index < 6 %} {# on n'affiche que les 5 premiers bureaux #}
-         		<a href="#Réserver" id="goToResa-{{priceandoffice.WorkspaceHasOffice.id}}">
+         		<a href="#Réservation" id="goToResa-{{priceandoffice.WorkspaceHasOffice.id}}">
 		        	<div id="office">
 		        		{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
 		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
