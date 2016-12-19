@@ -16,12 +16,13 @@ Récapitulatif de votre réservation N° <strong style="font-size: 12pt;color:va
 <br>
 <strong>Location :</strong> {{booking.workspacehasoffice.name}} <br>
 <strong>Date :</strong> du {{booking.startDate|date("d/m/Y à h:i")}} au {{booking.endDate|date("d/m/Y à h:i")}} <br>
-<strong>Nombre de coworker :</strong> {{booking.nbPeople}} <br>
+<strong>Nombre de coworker(s) :</strong> {{booking.nbPeople}} <br>
 <strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>
 <strong>Prix TTC :</strong> {{booking.priceInclTax|number_format(2)}} € <br>
 <br>
+
 <div class="row text-center">
-	<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi" id="form-payer"> {# TO DO URL de prod  #}
+<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi" id="form-payer"> {# TO DO URL de prod  #}
 		<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
 		<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
 		<input type="hidden" name="PBX_IDENTIFIANT" value="{{creditAgricole.PBX_IDENTIFIANT}}"> 
@@ -40,7 +41,8 @@ Récapitulatif de votre réservation N° <strong style="font-size: 12pt;color:va
 		<input type="hidden" name="PBX_REPONDRE_A" value="{{creditAgricole.PBX_REPONDRE_A}}">
 		{# <input type="hidden" name="PBX_ATTENTE" value="{{hmacCalculated}}"> #}
 		<input type="submit" value="Procéder au paiement" id="payer"> 
-	</form> 
+</form> 
+
 </div>
 
 </body>

@@ -20,6 +20,9 @@ class PaiementController extends Controller
 
     $session = $request->getSession();
     $booking = $session->get('booking');
+    $WsService = $this->get('app.workspace');
+    $WsHasOffice = $WsService->getWsHasOfficeById($booking->getWorkspaceHasOffice());
+    $ws = $WsHasOffice->getWorkspace();
 
     /************************************/
     //On doit ici calculer l'empreinte du message pour assurer la sécurité du paiement
@@ -55,7 +58,7 @@ class PaiementController extends Controller
     $hmacCalculated = strtoupper(hash_hmac($paiementInfos['PBX_HASH'], $msg, $binKey)); 
     // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
 
-    return $this->render('Paiement/payer.html.twig', array('creditAgricole' =>$paiementInfos, 'booking' => $booking, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated));
+    return $this->render('Paiement/payer.html.twig', array('creditAgricole' =>$paiementInfos, 'booking' => $booking, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated, 'ws' => $ws));
 
     }
   }
@@ -80,8 +83,14 @@ class PaiementController extends Controller
     $error_code = $request->get('erreur'); 
     // La transaction a générée une erreur
     $errorService = $this->get('app.error');
-    $error = $errorService->getErrorByCode($error_code);
-    $error_msg = $error->getSentence();
+    if($error_code != null)
+    {     
+      $error = $errorService->getErrorByCode($error_code);
+      $error_msg = $error->getSentence();
+    }
+    else{
+      $error_msg = "";
+    }
     return $this->render('Paiement/annule.html.twig', array('error_msg' => $error_msg));
   }
 
@@ -149,7 +158,7 @@ class PaiementController extends Controller
 
     // ************* if désactivé juste pour tester l'envoi de l'email
    if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
- //   if(true)
+//    if(true)
     {
       $transaction_valide = true;
 

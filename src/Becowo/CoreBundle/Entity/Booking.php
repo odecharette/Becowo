@@ -123,6 +123,14 @@ class Booking
      */
     private $member;
 
+
+    /**
+     * @var \string
+     *
+     * @ORM\Column(name="message", type="string", length=500, nullable=true)
+     */
+    private $message;
+
     /**
      * Constructor
      */
@@ -469,5 +477,28 @@ class Booking
         return $this;
     }
 
+    /**
+     * Gets the value of message.
+     *
+     * @return \string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Sets the value of message.
+     *
+     * @param \string $message the message
+     *
+     * @return self
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
 }
 

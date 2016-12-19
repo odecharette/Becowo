@@ -37,12 +37,12 @@ class BookingController extends Controller
 
   public function bookAction($name, Request $request)
   {
+    $WsService = $this->get('app.workspace');
 
     if ($request->isMethod('POST') && $request->get('wshasofficeID') != null)
     {
 
-    $WsService = $this->get('app.workspace');
-    $ws = $WsService->getWorkspaceByName($name);
+      $ws = $WsService->getWorkspaceByName($name);
     	//SAVE le booking en cours en BDD
       $currentWsHasOfficeId = (int)$request->get('wshasofficeID'); 
 
@@ -85,6 +85,7 @@ class BookingController extends Controller
     	$booking->setNbPeople($bookingPeople);
     	$booking->setPriceInclTax($bookingPriceInclTax);
     	$booking->setPriceExclTax($bookingPriceExclTax);
+      $booking->setMessage($request->get('message'));
     	// TO DO : déterminer si isFirstBook
 
     	$em = $this->getDoctrine()->getManager();
@@ -96,6 +97,8 @@ class BookingController extends Controller
 
       return $this->redirectToRoute('becowo_core_paiement_call_bank');
     }
+
+// Pour voir l'url complète envoyée à la banque : dump($request->getContent());
 
     return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
 

@@ -48,7 +48,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    				<div class="col-lg-6">
 	    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResa"  
-			    				data-wshasofficeid="{{priceandoffice.id}}" 
+			    				data-wshasofficeid="{{priceandoffice.workspaceHasOffice.id}}" 
 			    				data-priceheure="{{priceandoffice.priceHour}}" 
 			    				data-pricedemijournee="{{priceandoffice.priceHalfDay}}" 
 			    				data-pricejournee="{{priceandoffice.priceDay}}" 
@@ -161,9 +161,10 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 				<b id="booking-people-max"> </b>
 				</span>
 				<span id="nbPeople" hidden="true">1</span>
-				<br>
-				{# Error msg #}
-				<span id="error_msg"></span>
+				<br><br>
+				{# msg #}
+				Vous pouvez adresser ici un message à {{ws.name}} : <br>
+				<textarea form="booking-form" name="message" id="message" cols="70" rows="3" wrap="soft"></textarea>
 
             </div>
             <div class="modal-footer" id="modal-footer">
