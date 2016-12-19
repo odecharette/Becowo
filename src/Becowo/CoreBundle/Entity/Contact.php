@@ -10,14 +10,23 @@ class Contact
 
     /**
     * @Assert\Email()
+    * @Assert\NotBlank()
     */
     private $email;
     
+    /**
+    * @Assert\NotBlank()
+    */
     private $subject;
+
+    /**
+    * @Assert\NotBlank()
+    */
     private $message;
 
     /**
      * Gets the value of name.
+     * @Assert\NotBlank()
      *
      * @return mixed
      */

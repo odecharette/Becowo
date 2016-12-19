@@ -10,6 +10,13 @@ becowo_core_workspace:
     options:
         expose: true
 
+becowo_core_workspace_contact:
+    path:     /contact/{name}
+    defaults: { _controller: BecowoCoreBundle:Workspace:contact }
+    methods: GET|POST
+    options:
+        expose: true
+
 becowo_core_community:
     path:     /communaute
     defaults: { _controller: BecowoCoreBundle:Home:community }

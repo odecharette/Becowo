@@ -72,12 +72,27 @@ $(function () {
                 $('#modal-footer').html('');
             }
         });
-
     	return false;
-
-
     });
+});
 
+// Page d'un WS, envoye le formulaire de contact manager en AJAX
+$(function () {
+    $("#submitContactManager").unbind("click").click(function(){
+        console.log('ajax contact');
+        // $('#myModalManagerContact').modal({});
+        $.ajax(Routing.generate('becowo_core_workspace_contact', {name: document.getElementById('wsName').innerHTML}), {
+            data: $('#contact-form').serialize(),
+            type: "POST",
+            success: function(data) {
+                $('#modal-body').html(data);
+            },
+            error: function() {
+                $('#modal-body').html("Une erreur est survenue, veuillez réessayer plus tard");
+            }
+        });
+        return false;
+    });
 });
 
 // Page d'un WS, envoye le vote seul en AJAX

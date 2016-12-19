@@ -1,0 +1,36 @@
+
+				                {{ form_start(form) }}
+						          <div class="row">
+						            <div class="col-lg-3 labels">
+						              Nom *
+						            </div>
+						            <div class="col-lg-8">
+						            {{ form_row(form.name) }}
+						            </div>
+						          </div>
+						          <div class="row">
+						            <div class="col-lg-3 labels">
+						              Email *
+						            </div>
+						            <div class="col-lg-8">
+						              {{ form_row(form.email) }}
+						            </div>
+						          </div>
+						          <div class="row">
+						            <div class="col-lg-3 labels">
+						              Sujet *
+						            </div>
+						            <div class="col-lg-8">
+						              {{ form_row(form.subject) }}
+						            </div>
+						          </div>
+						          <div class="row">
+						            <div class="col-lg-3 labels">
+						              Message *
+						            </div>
+						            <div class="col-lg-8">
+						              {{ form_row(form.message) }}
+						            </div>
+						          </div>
+						      <button type="submit">go</button>
+						          {{ form_rest(form) }}

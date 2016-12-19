@@ -15,10 +15,10 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('label' => false, 'required' => true))
-            ->add('email', EmailType::class, array('label' => false, 'required' => true))
-            ->add('subject', TextType::class, array('label' => false, 'required' => true))
-            ->add('message', TextareaType::class, array('label' => false, 'required' => true, 'attr' => array('rows' => '8')));
+            ->add('name', TextType::class, array('label' => false, 'required' => false))
+            ->add('email', EmailType::class, array('label' => false, 'required' => false))
+            ->add('subject', TextType::class, array('label' => false, 'required' => false))
+            ->add('message', TextareaType::class, array('label' => false, 'required' => false, 'attr' => array('rows' => '8')));
     }
     /**
      * @param OptionsResolver $resolver
@@ -26,7 +26,8 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Becowo\CoreBundle\Entity\Contact'
+            'data_class' => 'Becowo\CoreBundle\Entity\Contact',
+            'attr' => ['id' => 'contact-form']
         ));
     }
 }

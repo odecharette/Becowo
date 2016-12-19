@@ -129,27 +129,31 @@
 					<center><i class="fa fa-globe fa-2x" aria-hidden="true"></i></center>
 					<a href="{{ws.website}}" target="_blank">{{ws.name}}</a>
 				</div>
-				<button type="button" data-toggle="modal" class="btn btn-primary btn-lg" data-target="#myModalManagerContact"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button> <br>
+				<button type="button" data-toggle="modal" class="btn btn-primary btn-lg" 
+				 data-target="#myModalManagerContact" id="contactManager"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button> <br>
+				 {# data-remote="{{ path('becowo_core_workspace_contact', {'name': ws.name}) }}" #}
+				 {# {{ render(controller('BecowoCoreBundle:Workspace:contact', {name: ws.name})) }} #}
 
-				{# Modal #}
-				<div class="modal fade" id="myModalManagerContact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				 {# Modal #}
+				 <div class="modal fade" id="myModalManagerContact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				    <div class="modal-dialog">
 				        <div class="modal-content">
 				            <div class="modal-header">
 				                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-				                <h4 class="modal-title">Contacter {{ws.name}}</h4>
+				                <h4 class="modal-title">Titre de la modale</h4>
 				            </div>
-				            <div class="modal-body">
-				                <p>Corps de la modale</p>
+				            <div class="modal-body" id="modal-body">
+				                {{ render(controller('BecowoCoreBundle:Workspace:contact', {name: ws.name})) }}
 				            </div>
 				            <div class="modal-footer">
-				                <button class="btn btn-primary" type="button"><i class="icon icon-check icon-lg"></i> Envoyer</button>
+				                <button class="btn btn-primary" type="submit" id="submitContactManager"><i class="icon icon-check icon-lg"></i> Valide</button>
 				                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
 				            </div>
 				        </div>
 				    </div>
 				</div>
 				{# Fin modal #}
+
     		</div>
     		<div class="col-lg-6">
 		        {# La taille de la carte joue sur les options affichées : itinéraire... #}
