@@ -44,12 +44,28 @@ class WorkspaceController extends Controller
   {
     $contact = new Contact();
     $form = $this->createForm(ContactType::class, $contact);
+
+    $WsService = $this->get('app.workspace');
+    $ws = $WsService->getWorkspaceByName($name);
+    $wsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
+
+    $emailManager = [];
+    $i = 0;
+    if($wsHasTeamMembers == null or $this->container->get( 'kernel' )->getEnvironment() != 'prod')
+    {
+      $emailManager[0] = 'olivia.decharette@becowo.com';
+    }else{
+      foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
+        $emailManager[$i] = $wsHasTeamMember->getTeamMember()->getEmail();
+        $i ++;
+      }
+    }
     
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $message = \Swift_Message::newInstance()
-          ->setSubject('Becowo - Nouveau message')
+          ->setSubject('Becowo - Nouveau message d\'un coworker')
           ->setFrom('contact@becowo.com')
-          ->setTo('contact@becowo.com') // TO DO envoyer au manager de l'espace
+          ->setTo($emailManager) 
           ->setBody(
               $this->renderView(
                   'CommonViews/Mail/Manager-contact.html.twig',
@@ -64,9 +80,10 @@ class WorkspaceController extends Controller
 
       $this->get('mailer')->send($message);
 
-      $request->getSession()->getFlashBag()->add('success', 'Votre message a bien été envoyé');
+      $session = $request->getSession();
+      $session->set('contactManager', 'ok');
 
-      return $this->redirectToRoute('becowo_core_workspace', array('name' => $name));
+      return $this->redirectToRoute('becowo_core_workspace_contact', array('name' => $name));
     }
 
     return $this->render('Workspace/manager-contact.html.twig', 

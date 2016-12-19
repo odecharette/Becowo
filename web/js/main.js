@@ -80,7 +80,6 @@ $(function () {
 $(function () {
     $("#submitContactManager").unbind("click").click(function(){
         console.log('ajax contact');
-        // $('#myModalManagerContact').modal({});
         $.ajax(Routing.generate('becowo_core_workspace_contact', {name: document.getElementById('wsName').innerHTML}), {
             data: $('#contact-form').serialize(),
             type: "POST",
@@ -89,6 +88,7 @@ $(function () {
             },
             error: function() {
                 $('#modal-body').html("Une erreur est survenue, veuillez réessayer plus tard");
+                $('#modal-footer').html('');
             }
         });
         return false;

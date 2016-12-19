@@ -124,6 +124,14 @@ p{
   color: var(--my-grey);
   text-align: justify;
 }
+.close{
+  background-color: transparent !important;
+  color: var(--my-black) !important;
+  opacity: 1 !important;
+  width: 20px !important;
+  margin: 0 !important;
+  height: 20px !important;
+}
 #Instagram{
   margin-bottom: 30px;
 }
@@ -1000,24 +1008,24 @@ footer{
   font-size: 14pt;
   margin: 10px 0 30px 0;
 }
-#wsHeader ul,#wsHeader .tab-content{
+#myTab,#wsHeader .tab-content{
   width: 90%;
   left: 5%;
   position: relative;
 }
-#wsHeader li{
+#wsHeader .nav li{
   width: 20%;
   line-height: 14px;
   font-size: 16px;
   text-align: center;
 }
-#wsHeader li a{
+#wsHeader .nav li a{
   border-width: 2px;
   color: var(--my-blue);
   border-color: var(--my-blue);
 }
 
-#wsHeader li.active a{
+#wsHeader .nav li.active a{
   color: white;
   background-color: var(--my-blue);
 }
@@ -1095,7 +1103,7 @@ footer{
   background: var(--my-green);
   color: white;
   margin-top: 10px;
-  height: 40px;
+  outline: none;
 }
 #Contact button i{
   color: white;
@@ -1106,7 +1114,19 @@ footer{
   border-radius: 25%;
   margin-right: 20px;
 }
-
+#Contact #submitContactManager{
+  border-radius: 4px;
+  font-size: 14pt;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  line-height: 2em;
+}
+#Contact #dismiss{
+  border-radius: 4px;
+  font-size: 14pt;
+  background-color: var(--my-blue);
+  line-height: 2em;
+}
 #map{
   /*Pour que la google map s'affiche correctement*/
   width: 100%;
