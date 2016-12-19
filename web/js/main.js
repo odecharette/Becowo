@@ -172,7 +172,7 @@ $('.nav-tabs a').on('shown.bs.tab', function(event){
 });
 
 $('[id^="goToResa-"]').click(function() {
-  $('#myTab a[href="#Réserver"]').tab('show');
+  $('#myTab a[href="#Réservation"]').tab('show');
 });
 
 /*********** Vidéo big size *********/
