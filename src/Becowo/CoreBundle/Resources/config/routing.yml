@@ -91,12 +91,10 @@ becowo_core_paiement:
     defaults: { _controller: BecowoCoreBundle:Footer:paiement }
     methods: GET
 
-becowo_core_booking_form:
-    path:     /book-form/{name}
-    defaults: { _controller: BecowoCoreBundle:Booking:bookForm }
-    methods: GET|POST
-    options:
-        expose: true
+becowo_core_booking_list:
+    path:     /booking-list/{name}
+    defaults: { _controller: BecowoCoreBundle:Booking:bookingList }
+    methods: GET
 
 becowo_core_booking:
     path:     /book/{name}

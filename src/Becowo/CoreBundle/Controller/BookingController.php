@@ -20,7 +20,7 @@ class BookingController extends Controller
     return $this->render('Booking/myReservations.html.twig', array('bookings' => $bookings));
   }
 
-  public function bookFormAction($name, Request $request)
+  public function bookingListAction($name, Request $request)
   {
   	$WsService = $this->get('app.workspace');
   	$ws = $WsService->getWorkspaceByName($name);

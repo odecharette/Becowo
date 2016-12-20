@@ -189,7 +189,7 @@
     <div id="Réservation" class="tab-pane fade">
     	<h2 style="color:var(--my-blue);">Choisissez votre espace et cliquez sur le bouton "Réserver" associé</h2>
     	<br><br>
-        {{ render(controller('BecowoCoreBundle:Booking:bookForm', {name: ws.name})) }}
+        {{ render(controller('BecowoCoreBundle:Booking:bookingList', {name: ws.name})) }}
     </div>
 </div>
 
