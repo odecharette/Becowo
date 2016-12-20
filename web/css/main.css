@@ -23,7 +23,7 @@
 --my-green: rgb(0, 161, 154); /* #00A19A */
 --my-green-strong: rgb(0, 135, 142); /* #00878E */
 --my-pink: rgb(241, 95, 104);
---my-orange: rgb(244, 147, 2); /*#F49302*/
+--my-orange: rgb(244, 147, 2); /*F49302*/
 /* grey : #e9e9e9 */
 
   --my-green-opacity: rgba(0, 161, 154, 0.15);
@@ -1659,6 +1659,11 @@ color: var(--my-blue) !important;
 #offres #question h3, #offres #question a{
   color: #484848;
   text-align: center !important;
+}
+#question p{
+  text-align: center;
+  font-size: 14pt;
+  color: var(--my-black);
 }
 #m{
   width: 20px;
