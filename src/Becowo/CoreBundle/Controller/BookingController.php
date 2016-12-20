@@ -39,6 +39,8 @@ class BookingController extends Controller
   {
     $WsService = $this->get('app.workspace');
 
+    dump($request);
+
     if ($request->isMethod('POST') && $request->get('wshasofficeID') != null)
     {
 

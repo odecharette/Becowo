@@ -59,17 +59,17 @@ $(function () {
 
 // Page d'un WS, envoye le booking en AJAX
 $(function () {
-    $("#btn_confirm").unbind("click").click(function(){
+    $("#btn_confirm").unbind("click").click(function(){   
     	$.ajax(Routing.generate('becowo_core_booking', {name: document.getElementById('wsName').innerHTML}), {
             data: $('#booking-form').serialize(),
             type: "POST",
             success: function(data) {
-                $('#modal-body').html(data);
-                $('#modal-footer').html('');
+                $('#modal-body-booking').html(data);
             },
-            error: function() {
-            	$('#modal-body').html("Une erreur est survenue, veuillez réessayer plus tard");
-                $('#modal-footer').html('');
+            error: function(e) {
+            	$('#modal-body-booking').html("Une erreur est survenue, veuillez réessayer plus tard");
+                console.log(e);
+                $('#modal-footer-booking').html('');
             }
         });
     	return false;
