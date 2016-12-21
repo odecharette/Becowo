@@ -17,4 +17,14 @@ class PriceRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
+
+	public function findPricesByWsHasOfficeId($id)
+	{
+		$qb = $this->createQueryBuilder('p');
+		$qb->where('p.workspaceHasOffice = :id')
+		   ->setParameter('id', $id);
+
+		return $qb->getQuery()->getResult();
+	}
 }

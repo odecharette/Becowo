@@ -9,13 +9,13 @@
 </div>
 {% else %}
 
-{{ form_start(form) }}
+{{ form_start(managerContactForm) }}
   <div class="row">
     <div class="col-lg-3 labels">
       Nom *
     </div>
     <div class="col-lg-8">
-    {{ form_row(form.name) }}
+    {{ form_row(managerContactForm.name) }}
     </div>
   </div>
   <div class="row">
@@ -23,7 +23,7 @@
       Email *
     </div>
     <div class="col-lg-8">
-      {{ form_row(form.email) }}
+      {{ form_row(managerContactForm.email) }}
     </div>
   </div>
   <div class="row">
@@ -31,7 +31,7 @@
       Sujet *
     </div>
     <div class="col-lg-8">
-      {{ form_row(form.subject) }}
+      {{ form_row(managerContactForm.subject) }}
     </div>
   </div>
   <div class="row">
@@ -39,10 +39,10 @@
       Message *
     </div>
     <div class="col-lg-8">
-      {{ form_row(form.message) }}
+      {{ form_row(managerContactForm.message) }}
     </div>
   </div>
-  {{ form_rest(form) }}
+  {{ form_rest(managerContactForm) }}
 
 {% endif %}
 </div>

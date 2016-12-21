@@ -4,7 +4,7 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Becowo\CoreBundle\Form\Type\ContactType;
+use Becowo\CoreBundle\Form\Type\ManagerContactType;
 use Becowo\CoreBundle\Entity\Contact;
 
 class WorkspaceController extends Controller
@@ -43,7 +43,7 @@ class WorkspaceController extends Controller
   public function contactAction($name, Request $request)
   {
     $contact = new Contact();
-    $form = $this->createForm(ContactType::class, $contact);
+    $managerContactForm = $this->createForm(ManagerContactType::class, $contact);
 
     $WsService = $this->get('app.workspace');
     $ws = $WsService->getWorkspaceByName($name);
@@ -61,7 +61,8 @@ class WorkspaceController extends Controller
       }
     }
     
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      // On vérifie que c'est bien le form de contact manager qui est envoyé
+    if ($request->isMethod('POST') && $managerContactForm->handleRequest($request)->isValid() && $request->request->has('manager_contact')) {
       $message = \Swift_Message::newInstance()
           ->setSubject('Becowo - Nouveau message d\'un coworker')
           ->setFrom('contact@becowo.com')
@@ -70,10 +71,10 @@ class WorkspaceController extends Controller
               $this->renderView(
                   'CommonViews/Mail/Manager-contact.html.twig',
                   array(
-                      'name' => $form->get('name')->getData(),
-                      'email' => $form->get('email')->getData(),
-                      'subject' => $form->get('subject')->getData(),
-                      'message' => $form->get('message')->getData()
+                      'name' => $managerContactForm->get('name')->getData(),
+                      'email' => $managerContactForm->get('email')->getData(),
+                      'subject' => $managerContactForm->get('subject')->getData(),
+                      'message' => $managerContactForm->get('message')->getData()
                   )
               )
           );
@@ -87,7 +88,7 @@ class WorkspaceController extends Controller
     }
 
     return $this->render('Workspace/manager-contact.html.twig', 
-      array('form' => $form->createView(),
+      array('managerContactForm' => $managerContactForm->createView(),
         'name' =>$name));
   }
 

@@ -127,7 +127,7 @@ class Booking
     /**
      * @var \string
      *
-     * @ORM\Column(name="message", type="string", length=500, nullable=true)
+     * @ORM\Column(name="message", type="string", length=255, nullable=true)
      */
     private $message;
 

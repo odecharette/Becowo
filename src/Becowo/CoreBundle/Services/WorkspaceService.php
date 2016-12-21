@@ -167,6 +167,12 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Price');
         return $repo->findPricesByWorkspace($ws);
     }
+    
+    public function getPricesByWsHasOfficeId($id)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Price');
+        return $repo->findPricesByWsHasOfficeId($id);
+    }
 
     public function getAverageVoteByWorkspace(Workspace $ws)
     {

@@ -58,37 +58,41 @@ $(function () {
 });
 
 // Page d'un WS, envoye le booking en AJAX
-$(function () {
-    $("#btn_confirm").unbind("click").click(function(){   
-    	$.ajax(Routing.generate('becowo_core_booking', {name: document.getElementById('wsName').innerHTML}), {
-            data: $('#booking-form').serialize(),
-            type: "POST",
-            success: function(data) {
-                $('#modal-body-booking').html(data);
-            },
-            error: function(e) {
-            	$('#modal-body-booking').html("Une erreur est survenue, veuillez réessayer plus tard");
-                console.log(e);
-                $('#modal-footer-booking').html('');
-            }
-        });
-    	return false;
-    });
-});
+// $(document).ready(function() {
+//     $("#booking_confirmer").unbind("click").click(function(e){  
+//         e.preventDefault();
+//         $('form[name="booking"]').submit();
+//         console.log('ajax booking submit');
+//         console.log($('form[name="booking"]').serialize());
+//     	$.ajax(Routing.generate('becowo_core_booking', {name: document.getElementById('wsName').innerHTML}), {
+//             data: $('#booking').serialize(),
+//             type: "POST",
+//             success: function(data) {
+//                 $('#modal-body-booking').html(data);
+//             },
+//             error: function(e) {
+//             	$('#modal-body-booking').html("Une erreur est survenue, veuillez réessayer plus tard");
+
+//                 console.log(e);
+//                 $('#modal-footer-booking').html('');
+//             }
+//         });
+//     	return false;
+//     });
+// });
 
 // Page d'un WS, envoye le formulaire de contact manager en AJAX
 $(function () {
     $("#submitContactManager").unbind("click").click(function(){
         console.log('ajax contact');
         $.ajax(Routing.generate('becowo_core_workspace_contact', {name: document.getElementById('wsName').innerHTML}), {
-            data: $('#contact-form').serialize(),
+            data: $('#manager-contact-form').serialize(),
             type: "POST",
             success: function(data) {
-                $('#modal-body').html(data);
+                $('#modal-body-manager-contact').html(data);
             },
             error: function() {
-                $('#modal-body').html("Une erreur est survenue, veuillez réessayer plus tard");
-                $('#modal-footer').html('');
+                $('#modal-body-manager-contact').html("Une erreur est survenue, veuillez réessayer plus tard");
             }
         });
         return false;
@@ -279,8 +283,9 @@ $(function(){
 
 
 
-/********************************  JS construction form dans modal de réservation ******************/
+/********************************  JS construction form dans modal de réservation 
 
+// TO DO Delete tout le js cbooking si je finalise le code de booking ds new page
 
 $('#myModalResa').on('show.bs.modal', function(e) {
   var modalData = e.relatedTarget.dataset;
@@ -397,7 +402,7 @@ $('#myModalResa').on('show.bs.modal', function(e) {
     // On désactive le bouton 'confirmer' tant que le mois n'est pas sélectionné (pour tous les autres champs il y a une valeur par défaut)
     if(duree == 'mois')
     {
-        document.getElementById('btn_confirm').disabled = true;
+        document.getElementById('booking_confirmer').disabled = true;
     }
 
 });
@@ -445,7 +450,7 @@ function loadCalendar(duree, modalData)
 			customTopBar: ' ',
 			startDate: moment().format('DD-MM-YYYY')
 		}).bind('datepicker-change',function(event,obj){
-			/* This event will be triggered when second date is selected */
+			// This event will be triggered when second date is selected //
 			loadPrice(duree, modalData);
 		});
 
@@ -465,7 +470,7 @@ function loadCalendar(duree, modalData)
 			maxDays: 7,
 			startDate: moment().format('DD-MM-YYYY')
 		}).bind('datepicker-change',function(event,obj){
-			/* This event will be triggered when second date is selected */
+			// This event will be triggered when second date is selected //
 			loadPrice(duree, modalData);
 		});
 
@@ -485,9 +490,9 @@ function loadCalendar(duree, modalData)
 			maxDays:31,
 			startDate: moment().format('DD-MM-YYYY')
 		}).bind('datepicker-change',function(event,obj){
-			/* This event will be triggered when second date is selected */
+			// This event will be triggered when second date is selected //
 			loadPrice(duree, modalData);
-            document.getElementById('btn_confirm').disabled = false;
+            document.getElementById('booking_confirmer').disabled = false;
 		});
 
 	};
@@ -612,4 +617,4 @@ function remplirMinMaxTimeSlider(valeurs){
     document.getElementById('time-max').innerHTML = valeurs[1];
 }
 
-
+******************/

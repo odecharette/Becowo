@@ -8,6 +8,7 @@ use Becowo\CoreBundle\Entity\Booking;
 use Becowo\CoreBundle\Entity\Status;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Becowo\CoreBundle\Form\Type\BookingType;
 
 class BookingController extends Controller
 {
@@ -24,31 +25,29 @@ class BookingController extends Controller
   {
   	$WsService = $this->get('app.workspace');
   	$ws = $WsService->getWorkspaceByName($name);
-  	$times = $WsService->getTimesByWorkspace($ws);
-  	$closedDates = $WsService->getClosedDatesByWorkspace($ws);
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
 
   	return $this->render('Workspace/booking-list.html.twig', array(
-        'pricesAndOffices' => $pricesAndOffices,
-        'ws' => $ws, 
-        'times' => $times, 
-        'closedDates' => $closedDates));
+        'pricesAndOffices' => $pricesAndOffices,'ws' => $ws));
   }
 
-  public function bookAction($name, Request $request)
+  public function bookAction($id, Request $request)
   {
     $WsService = $this->get('app.workspace');
 
-    dump($request);
+    $booking = new Booking();
+    $bookingForm = $this->createForm(BookingType::class, $booking);
+ 
+    $WsHasOffice = $WsService->getWsHasOfficeById($id);
+    $ws = $WsHasOffice->getWorkspace(); 
+    $prices = $WsService->getPricesByWsHasOfficeId($id);
+    $times = $WsService->getTimesByWorkspace($ws);
+    $closedDates = $WsService->getClosedDatesByWorkspace($ws);
 
-    if ($request->isMethod('POST') && $request->get('wshasofficeID') != null)
+    if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
     {
 
-      $ws = $WsService->getWorkspaceByName($name);
-    	//SAVE le booking en cours en BDD
-      $currentWsHasOfficeId = (int)$request->get('wshasofficeID'); 
-
-      $WsHasOffice = $WsService->getWsHasOfficeById($currentWsHasOfficeId);
+      //SAVE le booking en cours en BDD
 
     	$bookingDuration = $request->get('booking-duration');
 
@@ -76,7 +75,6 @@ class BookingController extends Controller
 
     	$status = $WsService->getStatusById(1); // "Id 1 : En cours"
 
-    	$booking = New Booking();
     	$booking->setWorkspaceHasOffice($WsHasOffice);
     	$booking->setMember($currentUser);
     	$booking->setStatus($status);
@@ -87,7 +85,7 @@ class BookingController extends Controller
     	$booking->setNbPeople($bookingPeople);
     	$booking->setPriceInclTax($bookingPriceInclTax);
     	$booking->setPriceExclTax($bookingPriceExclTax);
-      $booking->setMessage($request->get('message'));
+      $booking->setMessage($bookingForm->get('message')->getData());
     	// TO DO : déterminer si isFirstBook
 
     	$em = $this->getDoctrine()->getManager();
@@ -101,9 +99,9 @@ class BookingController extends Controller
     }
 
 // Pour voir l'url complète envoyée à la banque : dump($request->getContent());
-
-    return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
-
+//return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
+    return $this->render('Workspace/booking-form.html.twig', 
+      array('bookingForm' => $bookingForm->createView(),'id' =>$id, 'WsHasOffice' => $WsHasOffice, 'ws' => $ws, 'prices' => $prices[0], 'times' => $times[0], 'closedDates' => $closedDates));
   }
 
   	public function validateAction($bookRef, Request $request)

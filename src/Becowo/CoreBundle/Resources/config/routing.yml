@@ -97,11 +97,9 @@ becowo_core_booking_list:
     methods: GET
 
 becowo_core_booking:
-    path:     /book/{name}
+    path:     /booking/{id}
     defaults: { _controller: BecowoCoreBundle:Booking:book }
     methods: GET|POST
-    options:
-        expose: true
 
 becowo_core_booking_validated:
     path:     /book/validated/{bookRef}

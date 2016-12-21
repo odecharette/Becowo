@@ -47,7 +47,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    				</div>
 		    				<div class="col-lg-6">
 	    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResa"  
+			    				{# <button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResa"  
 			    				data-wshasofficeid="{{priceandoffice.workspaceHasOffice.id}}" 
 			    				data-priceheure="{{priceandoffice.priceHour}}" 
 			    				data-pricedemijournee="{{priceandoffice.priceHalfDay}}" 
@@ -63,7 +63,8 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 			    				data-capacity="{{priceandoffice.workspaceHasOffice.deskQty}}" 
 			    				data-wsName="{{ws.name}}"
 			    				data-tva="{{tva}}"
-			    				>Réserver</button>
+			    				>Réserver</button> #}
+			    				<button type="button" id="btnResa"><a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}" target="_blank">Réserver</a></button>
 			    			{% else %}
 			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect">Réserver</button>
 			    					<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -91,99 +92,34 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		</div>
 
 
-{# Modal de Résa #}
+{# Modal de Résa 
 	<div class="modal fade" id="myModalResa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        	<form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form" >
+        	// <form method="POST" action="{{ path('becowo_core_booking', {'name': ws.name}) }}" id="booking-form" > 
     		
             <div class="modal-header">
                 <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
                 <h4 class="modal-title">Votre réservation chez {{ws.name}}</h4>
             </div>
             <div class="modal-body" id="modal-body-booking">
-            	{# EMAIL non renseigné #}
-		    	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.email == "" %}
-		    		<div id="email-error">
-		    			<div class="alert alert-danger alert-dismissable fade in">
-						  <h4><i class="icon icon-times-circle icon-lg"></i> Aucun email renseigné</h4>
-						  <p>ATTENTION, vous devez renseigner votre email dans <a href="{{ path('fos_user_profile_edit') }}">votre profil</a>, afin de valider la réservation.</p>
-						</div>
-		    			
-		    		</div>
-		    	{% endif %}
-
-            	<input type="text" name="wshasofficeID" id="wshasofficeID" hidden="true">
-            		{# Le contenu de la form est construit dans main.js #}
-            	<span class="office-name" id="spaceName"></span> - 
-            	{# Capacité ou Quantité #}
-				<span class="capacity" id="capacity"></span> 
-				<br>
-				<h3>Choisir un créneau de réservation</h3>
-				<div class="segmented-control" style="color: #20385e;border: none;" id="booking-duration">
-				</div>
-				<div id="isOpenSaturday" style="display:none"></div>
-				<div id="isOpenSunday" style="display:none"></div> 
-				<div id="closedDates" style="display:none"></div>
-				<input type="text" name="booking-calendar" id="booking-calendar" hidden="true" />
-				<div id='calendarContainer'></div>
-				<br>
-				<span id="calendar-error"></span>
-
-				{# HORAIRE #}
-				<span id="calendar-time" style="display:none"> {# caché par défaut, affiché en JS si besoin #}
-				Horaire : 
-				    <strong><span id="time-min"></span></strong>
-				    <span class="slideTime">
-				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
-				    </span>
-				    <strong><span id="time-max"></span></strong>
-				    <span id="nbHeures" hidden="true">1</span>
-				    <br><br>
-				</span>
-				{# 1/2 JOURNEE #}
-				<span id="calendar-halftime" style="display:none">	 {# caché par défaut, affiché en JS si besoin #}
-				    <div class="segmented-control" style="width: 300px; color: #20385e" id="booking-duration-day">
-					  <input type="radio" name="booking-duration-day" id="booking-duration-day-1" checked value="Matin">
-					  <input type="radio" name="booking-duration-day" id="booking-duration-day-2" value="Après-midi">
-					  <label for="booking-duration-day-1" data-value="Matin">Matin</label>
-					  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
-					</div>
-				    <br>
-				<br>
-				</span>
-				<span id="nbPeople-text"></span>
-				{# TO DO : min et max en fonction des places dispos #}
-				{# Nb PEOPLE #}
-				<span class="slidePeople">
-				<b> 1 </b>
-					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="" data-slider-value="1" name="booking-people"/>
-				<b id="booking-people-max"> </b>
-				</span>
-				<span id="nbPeople" hidden="true">1</span>
-				<br><br>
-				{# msg #}
-				Vous pouvez adresser ici un message à {{ws.name}} : <br>
-				<textarea form="booking-form" name="message" id="message" cols="70" rows="3" wrap="soft"></textarea>
+            	{{ render(controller('BecowoCoreBundle:Booking:book', {name: ws.name})) }}
 
             </div>
             <div class="modal-footer" id="modal-footer-booking">
                 <div class="col-lg-8" id="total">
-					{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
-					<input id="price-excl-tax" type="number" step="any" name="price-excl-tax" value="" hidden="true">
-					<input id="price-incl-tax" type="number" step="any" name="price-incl-tax" value="" hidden="true">
-					<strong>Total : </strong><span id="price-excl-tax-div"></span> € HT (soit <span id="price-incl-tax-div"></span> € TTC)
+					
 				</div>
 				<div class="col-lg-4">
-					{# <input type="text" name="bookingRef" id="bookingRef" value="" hidden="true"> #}
-					<button type="submit" id="btn_confirm">Confirmer</button>
+					// <input type="text" name="bookingRef" id="bookingRef" value="" hidden="true"> 
+					
 				</div>
             </div>
-        	</form>
+        	// </form> 
         </div>
     </div>
 </div>
-
+#}
 {# Modal de test #}
 
 </div>
