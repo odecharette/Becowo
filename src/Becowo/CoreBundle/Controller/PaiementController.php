@@ -5,6 +5,8 @@ namespace Becowo\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Entity\PaiementTransaction;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class PaiementController extends Controller
 {
@@ -57,9 +59,13 @@ class PaiementController extends Controller
 
     $hmacCalculated = strtoupper(hash_hmac($paiementInfos['PBX_HASH'], $msg, $binKey)); 
     // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
+   dump($request->getContent());
+     return $this->render('Paiement/payer.html.twig', array('creditAgricole' =>$paiementInfos, 'booking' => $booking, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated, 'ws' => $ws));
+  
+// Pour voir l'url complète envoyée à la banque : dump($request->getContent());
 
-    return $this->render('Paiement/payer.html.twig', array('creditAgricole' =>$paiementInfos, 'booking' => $booking, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated, 'ws' => $ws));
 
+    // return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
     }
   }
 

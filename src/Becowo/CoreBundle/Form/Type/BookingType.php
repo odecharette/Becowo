@@ -14,7 +14,7 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('message', TextareaType::class, array('label' => false, 'required' => false, 'attr' => array('rows' => '8')))
+            ->add('message', TextareaType::class, array('label' => false, 'required' => false, 'attr' => array('rows' => '6')))
             ->add('confirmer', SubmitType::class);
     }
     /**

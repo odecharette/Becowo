@@ -2155,3 +2155,28 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   margin-bottom: 30px; 
   margin-top: 20px;
 }
+
+#bookingPage .panelForm{
+  background-color: white;
+  padding: 5px 30px 30px 30px;
+  margin-left: 40px;
+  border-top-left-radius: 5px;
+}
+#bookingPage .panelForm, #bookingPage .panelRecap{
+  margin-top: -275px;
+}
+
+
+#bookingPage .panelAdresse{
+  color: var(--my-grey);
+  margin-left: 20px;
+  margin-right: -20px;
+}
+
+#bookingPage .star-full,#bookingPage .star-empty{
+  font-size: 20px !important;
+}
+
+#bookingPage textarea{
+  width: 80%;
+}

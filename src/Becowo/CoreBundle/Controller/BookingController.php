@@ -43,6 +43,8 @@ class BookingController extends Controller
     $prices = $WsService->getPricesByWsHasOfficeId($id);
     $times = $WsService->getTimesByWorkspace($ws);
     $closedDates = $WsService->getClosedDatesByWorkspace($ws);
+    $pictures = $WsService->getPicturesByWorkspace($ws->getName());
+    $averageVote = $WsService->getAverageVoteByWorkspace($ws);
 
     if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
     {
@@ -96,12 +98,13 @@ class BookingController extends Controller
       $session->set('booking', $booking);
 
       return $this->redirectToRoute('becowo_core_paiement_call_bank');
-    }
-
+      
 // Pour voir l'url complète envoyée à la banque : dump($request->getContent());
 //return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
+    }
+
     return $this->render('Workspace/booking-form.html.twig', 
-      array('bookingForm' => $bookingForm->createView(),'id' =>$id, 'WsHasOffice' => $WsHasOffice, 'ws' => $ws, 'prices' => $prices[0], 'times' => $times[0], 'closedDates' => $closedDates));
+      array('bookingForm' => $bookingForm->createView(),'id' =>$id, 'WsHasOffice' => $WsHasOffice, 'ws' => $ws, 'prices' => $prices[0], 'times' => $times[0], 'closedDates' => $closedDates, 'pictures' => $pictures, 'averageVote' => $averageVote));
   }
 
   	public function validateAction($bookRef, Request $request)

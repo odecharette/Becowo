@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
 // CONSTRUCTION CALENDAR
 var duree = document.querySelector('input[name="booking-duration"]:checked').value;
 loadCalendar(duree);
@@ -9,7 +10,7 @@ loadCalendar(duree);
 loadTime(duree);
 
 // CONSTRUCTION PEOPLE
-	var mySliderPeople = $("#booking-people").slider({});
+var mySliderPeople = $("#booking-people").slider({});
 
 // Prix par défaut
 loadPrice(duree);
@@ -222,3 +223,5 @@ function remplirMinMaxTimeSlider(valeurs){
     document.getElementById('time-min').innerHTML = valeurs[0];
     document.getElementById('time-max').innerHTML = valeurs[1];
 }
+
+
