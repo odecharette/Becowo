@@ -30,12 +30,6 @@ loadPrice(duree);
 	    loadPrice(duree);
 	});
 
-    // On désactive le bouton 'confirmer' tant que le mois n'est pas sélectionné (pour tous les autres champs il y a une valeur par défaut)
-    if(duree == 'Mois')
-    {
-        document.getElementById('booking_confirmer').disabled = true;
-    }
-
 });
 
 
@@ -50,146 +44,47 @@ function loadCalendar(duree)
 	closedDates = closedDates.trim();
 	var closedDatesTab = closedDates.split(',');
 
-	if(duree == 'Heure' || duree == 'Demi journée' || duree == 'Journée' || duree == 'Mois') {
 
-		$('#booking-calendar').dateRangePicker({
-			inline:true,
-			singleDate : true,
-			singleMonth: true,
-			container: '#calendarContainer',
-			alwaysOpen:true,
-			language:'fr',
-			startOfWeek: 'monday',
-			format: 'DD/MM/YYYY',
-			customTopBar: ' ',
-			startDate: moment().format('DD-MM-YYYY'),
-			beforeShowDay: function(t)
-			{
-				// Disable les dates de fermeture + Samedi/dimanche selon BDD
-			    var Tsrting = ("0" + t.getDate()).slice(-2) + "/" + ("0"+(t.getMonth()+1)).slice(-2) + "/" + t.getFullYear();
-			    var isDisabled = ($.inArray(Tsrting, closedDatesTab) != -1);
+	$('#booking-calendar').dateRangePicker({
+		inline:true,
+		singleDate : true,
+		singleMonth: true,
+		container: '#calendarContainer',
+		alwaysOpen:true,
+		language:'fr',
+		startOfWeek: 'monday',
+		format: 'DD/MM/YYYY',
+		customTopBar: ' ',
+		startDate: moment().format('DD-MM-YYYY'),
+		beforeShowDay: function(t)
+		{
+			// Disable les dates de fermeture + Samedi/dimanche selon BDD
+		    var Tsrting = ("0" + t.getDate()).slice(-2) + "/" + ("0"+(t.getMonth()+1)).slice(-2) + "/" + t.getFullYear();
+		    var isDisabled = ($.inArray(Tsrting, closedDatesTab) != -1);
 
-				if (document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == ''){
-					var valid = t.getDay() != 0 && t.getDay() != 6 && !isDisabled;
-					var _tooltip = valid ? '' : 'Fermé';
-				}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == ''){
-					var valid =t.getDay() != 0 && !isDisabled; 
-					var _tooltip = valid ? '' : 'Fermé';
-				}else if(document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == 1){
-					var valid = t.getDay() != 6 && !isDisabled; 
-					var _tooltip = valid ? '' : 'Fermé';
-				}else{
-					var valid = !isDisabled;
-					var _tooltip = valid ? '' : 'Fermé';
-				}
-				
-				return [valid,'',_tooltip];
-				
+			if (document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == ''){
+				var valid = t.getDay() != 0 && t.getDay() != 6 && !isDisabled;
+				var _tooltip = valid ? '' : 'Fermé';
+			}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == ''){
+				var valid =t.getDay() != 0 && !isDisabled; 
+				var _tooltip = valid ? '' : 'Fermé';
+			}else if(document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == 1){
+				var valid = t.getDay() != 6 && !isDisabled; 
+				var _tooltip = valid ? '' : 'Fermé';
+			}else{
+				var valid = !isDisabled;
+				var _tooltip = valid ? '' : 'Fermé';
 			}
-		}).bind('datepicker-change',function(event,obj){
-			/* This event will be triggered when second date is selected */
-			 loadPrice(duree);
-			document.getElementById('recapDate').innerHTML = loadRecapDate(duree, obj.value);
-		});
+			
+			return [valid,'',_tooltip];
+			
+		}
+	}).bind('datepicker-change',function(event,obj){
+		/* This event will be triggered when second date is selected */
+		 loadPrice(duree);
+		document.getElementById('recapDate').innerHTML = loadRecapDate(duree, obj.value);
+	});
 
-	}else if (duree == 'Semaine'){
-
-		$('#booking-calendar').dateRangePicker({
-			inline:true,
-			container: '#calendarContainer',
-			alwaysOpen:true,
-			language:'fr',
-			startOfWeek: 'monday',
-			format: 'DD/MM/YYYY',
-			separator: ' au ',
-			stickyMonths: true,
-			customTopBar: ' ',
-			minDays: 5,
-			maxDays: 7,
-			startDate: moment().format('DD-MM-YYYY'),
-			beforeShowDay: function(t)
-			{
-				// Disable les dates de fermeture + Samedi/dimanche selon BDD
-			    var Tsrting = ("0" + t.getDate()).slice(-2) + "/" + ("0"+(t.getMonth()+1)).slice(-2) + "/" + t.getFullYear();
-			    var isDisabled = ($.inArray(Tsrting, closedDatesTab) != -1);
-
-				if (document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == ''){
-					var valid = t.getDay() != 0 && t.getDay() != 6 && !isDisabled;
-					var _tooltip = valid ? '' : 'Fermé';
-				}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == ''){
-					var valid =t.getDay() != 0 && !isDisabled; 
-					var _tooltip = valid ? '' : 'Fermé';
-				}else if(document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == 1){
-					var valid = t.getDay() != 6 && !isDisabled; 
-					var _tooltip = valid ? '' : 'Fermé';
-				}else{
-					var valid = !isDisabled;
-					var _tooltip = valid ? '' : 'Fermé';
-				}
-				
-				return [valid,'',_tooltip];
-				
-			}
-		}).bind('datepicker-change',function(event,obj){
-			/* This event will be triggered when second date is selected */
-			 loadPrice(duree);
-			document.getElementById('recapDate').innerHTML = loadRecapDate(duree, obj.value);
-		});
-
-	}
-	// else if (duree == 'Mois'){
-
-	// 	$('#booking-calendar').dateRangePicker({
-	// 		inline:true,
-	// 		container: '#calendarContainer',
-	// 		alwaysOpen:true,
-	// 		language:'fr',
-	// 		startOfWeek: 'monday',
-	// 		format: 'DD/MM/YYYY',
-	// 		separator: ' au ',
-	// 		stickyMonths: true,
-	// 		customTopBar: ' ',
-	// 		minDays: 28,
-	// 		maxDays: 31,
-	// 		startDate: moment().format('DD-MM-YYYY'),
-	// 		beforeShowDay: function(t)
-	// 		{
-	// 			// Disable les dates de fermeture + Samedi/dimanche selon BDD
-	// 		    var Tsrting = ("0" + t.getDate()).slice(-2) + "/" + ("0"+(t.getMonth()+1)).slice(-2) + "/" + t.getFullYear();
-	// 		    var isDisabled = ($.inArray(Tsrting, closedDatesTab) != -1);
-
-	// 			if (document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == ''){
-	// 				var valid = t.getDay() != 0 && t.getDay() != 6 && !isDisabled;
-	// 				var _tooltip = valid ? '' : 'Fermé';
-	// 			}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == ''){
-	// 				var valid =t.getDay() != 0 && !isDisabled; 
-	// 				var _tooltip = valid ? '' : 'Fermé';
-	// 			}else if(document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == 1){
-	// 				var valid = t.getDay() != 6 && !isDisabled; 
-	// 				var _tooltip = valid ? '' : 'Fermé';
-	// 			}else{
-	// 				var valid = !isDisabled;
-	// 				var _tooltip = valid ? '' : 'Fermé';
-	// 			}
-				
-	// 			return [valid,'',_tooltip];
-				
-	// 		}
-	// 	}).bind('datepicker-change',function(event,obj){
-	// 		/* This event will be triggered when second date is selected */
-	// 		loadPrice(duree);
- //            document.getElementById('booking_confirmer').disabled = false;
-	// 		document.getElementById('recapDate').innerHTML = obj.value;
-	// 	});
-
-	// }
-
-	;
-
-
-	// TO DO
-	// Désactiver samedi / dimanche selon BDD
-	// Désactiver jours fermés
 }
 
 function loadTime(duree){
@@ -315,11 +210,18 @@ function loadRecapDate(duree, value)
 {
 	if(duree == "Mois")
 	{
-		var d = Date.parse(value).add(1).months().add(-1).days();
+		var d = Date.parse(value);
+		d = d.add(1).months();
+		d = d.add(-1).days();
 		d = d.toLocaleDateString();
 		return 'Du ' + value + " au " + d;
-	}
-	else{
+	}else if(duree == 'Semaine')
+	{
+		var d = Date.parse(value).add(6).days();
+		d = d.toLocaleDateString();
+		return 'Du ' + value + " au " + d;
+	}else
+	{
 		return 'Le ' + value;
 	}
 }
