@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+// Duration
+
+var duration = $("#booking-duration");
+if(duration.length == 1)
+{
+	duration.hide();
+}
+
 
 // CONSTRUCTION CALENDAR
 var duree = document.querySelector('input[name="booking-duration"]:checked').value;
