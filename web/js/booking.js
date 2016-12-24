@@ -38,6 +38,9 @@ loadPrice(duree);
 	    loadPrice(duree);
 	});
 
+
+document.getElementById('booking_confirmer').disabled = true;
+
 });
 
 
@@ -89,8 +92,9 @@ function loadCalendar(duree)
 		}
 	}).bind('datepicker-change',function(event,obj){
 		/* This event will be triggered when second date is selected */
-		 loadPrice(duree);
+		loadPrice(duree);
 		document.getElementById('recapDate').innerHTML = loadRecapDate(duree, obj.value);
+		document.getElementById('booking_confirmer').disabled = false;
 	});
 
 }
@@ -222,14 +226,19 @@ function loadRecapDate(duree, value)
 		d = d.add(1).months();
 		d = d.add(-1).days();
 		d = d.toLocaleDateString();
+
+		document.getElementById('dateEnd').value = d;
 		return 'Du ' + value + " au " + d;
 	}else if(duree == 'Semaine')
 	{
 		var d = Date.parse(value).add(6).days();
 		d = d.toLocaleDateString();
+
+		document.getElementById('dateEnd').value = d;
 		return 'Du ' + value + " au " + d;
 	}else
 	{
+		document.getElementById('dateEnd').value = value;
 		return 'Le ' + value;
 	}
 }

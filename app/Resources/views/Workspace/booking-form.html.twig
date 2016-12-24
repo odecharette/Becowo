@@ -10,8 +10,6 @@
 
 {% block body %} 
 
-{{dump(times)}}
-
 
 <div class="container-fluid" id="bookingPage">
 	{{ form_start(bookingForm) }}
@@ -177,6 +175,7 @@
 				<center>- VOTRE RESERVATION - </center><br>
 				N° : {{ bookingForm.bookingRef.vars.value }} <br>
 				<span id="recapDate"></span> <br>
+				<input type="text" name="dateEnd" id="dateEnd" hidden="true">
 				Nombre de coworker(s) : <span id="nbPeople">1</span> <br>
 				<br>
 				{# Prices #}

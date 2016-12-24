@@ -48,18 +48,16 @@ class BookingController extends Controller
 
     if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
     {
-
+dump($request);
       //SAVE le booking en cours en BDD
 
     	$bookingDuration = $request->get('booking-duration');
 
-    	// Pour les dates, on récupère séparement les dates et heure, puis on convertit puis on concatene le tout
+      $startDate = $request->get('booking-calendar');
+      $endDate = $request->get('dateEnd');
+      $startDate = str_replace('/', '-', $startDate);
+      $endDate = str_replace('/', '-', $endDate);
 
-    	$bookingCalendar = explode(" au ",$request->get('booking-calendar'));
-    	isset($bookingCalendar[0]) ? $startDate = $bookingCalendar[0] : $startDate = null;
-    	isset($bookingCalendar[1]) ? $endDate = $bookingCalendar[1] : $endDate = $startDate;
-    	// $startDate = str_replace('/', '-', $startDate);
-    	// $endDate = str_replace('/', '-', $endDate);
 
     	$bookingTimeSlider = explode(",",$request->get('booking-time-slider'));
     	isset($bookingTimeSlider[0]) ? $startTime = floor($bookingTimeSlider[0] / 60) . ':' . ($bookingTimeSlider[0] % 60) : $startTime = "00:00";
@@ -68,6 +66,8 @@ class BookingController extends Controller
     	$startDate = $startDate . 'T' . $startTime;
     	$endDate = $endDate . 'T' . $endTime;
 
+      dump($startDate);
+      dump($endDate);
     	$bookingPriceExclTax = $request->get('price-excl-tax');
       $bookingPriceInclTax = $request->get('price-incl-tax');
     	$bookingDurationDay = $request->get('booking-duration-day');
@@ -82,7 +82,7 @@ class BookingController extends Controller
     	$booking->setStatus($status);
     	$booking->setDuration($bookingDuration);
     	$booking->setStartDate(New \DateTime($startDate));
-    	$booking->setEndDate(New \DateTime($endDate));
+      $booking->setEndDate(New \DateTime($endDate));
     	$booking->setDurationDay($bookingDurationDay);
     	$booking->setNbPeople($bookingPeople);
     	$booking->setPriceInclTax($bookingPriceInclTax);
