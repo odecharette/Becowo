@@ -12,6 +12,11 @@ loadTime(duree);
 // CONSTRUCTION PEOPLE
 var mySliderPeople = $("#booking-people").slider({});
 
+	mySliderPeople.on('slide', function(ev){	
+
+        document.getElementById('nbPeople').innerHTML = mySliderPeople.data('slider').getValue();
+	});
+
 // Prix par défaut
 loadPrice(duree);
 
@@ -55,12 +60,13 @@ function loadCalendar(duree)
 			alwaysOpen:true,
 			language:'fr',
 			startOfWeek: 'monday',
-			format: 'DD-MM-YYYY',
+			format: 'DD/MM/YYYY',
 			customTopBar: ' ',
 			startDate: moment().format('DD-MM-YYYY')
 		}).bind('datepicker-change',function(event,obj){
 			/* This event will be triggered when second date is selected */
 			 loadPrice(duree);
+			document.getElementById('recapDate').innerHTML = obj.value;
 		});
 
 	}else if (duree == 'Semaine'){
@@ -71,7 +77,7 @@ function loadCalendar(duree)
 			alwaysOpen:true,
 			language:'fr',
 			startOfWeek: 'monday',
-			format: 'DD-MM-YYYY',
+			format: 'DD/MM/YYYY',
 			separator: ' au ',
 			stickyMonths: true,
 			customTopBar: ' ',
@@ -81,6 +87,7 @@ function loadCalendar(duree)
 		}).bind('datepicker-change',function(event,obj){
 			/* This event will be triggered when second date is selected */
 			 loadPrice(duree);
+			document.getElementById('recapDate').innerHTML = obj.value;
 		});
 
 	}else if (duree == 'Mois'){
@@ -91,7 +98,7 @@ function loadCalendar(duree)
 			alwaysOpen:true,
 			language:'fr',
 			startOfWeek: 'monday',
-			format: 'DD-MM-YYYY',
+			format: 'DD/MM/YYYY',
 			separator: ' au ',
 			stickyMonths: true,
 			customTopBar: ' ',
@@ -102,6 +109,7 @@ function loadCalendar(duree)
 			/* This event will be triggered when second date is selected */
 			loadPrice(duree);
             document.getElementById('booking_confirmer').disabled = false;
+			document.getElementById('recapDate').innerHTML = obj.value;
 		});
 
 	};
@@ -190,10 +198,12 @@ function loadPrice(duree){
 	}
 
 	var tva = document.getElementById('tva').innerHTML;
-	document.getElementById('price-excl-tax').value = total;
-	document.getElementById('price-incl-tax').value = total * (1 + tva/100);
-    document.getElementById('price-excl-tax-div').innerHTML = total;
-    document.getElementById('price-incl-tax-div').innerHTML = total * (1 + tva/100);
+	var tot = precise_round(total, 2);
+	var totTTC = precise_round(tot * (1 + tva/100), 2);
+	document.getElementById('price-excl-tax').value = tot;
+	document.getElementById('price-incl-tax').value = totTTC;
+    document.getElementById('price-excl-tax-div').innerHTML = tot;
+    document.getElementById('price-incl-tax-div').innerHTML = totTTC;
 
 }
 
@@ -224,4 +234,7 @@ function remplirMinMaxTimeSlider(valeurs){
     document.getElementById('time-max').innerHTML = valeurs[1];
 }
 
-
+function precise_round(num, decimals) {
+   var t = Math.pow(10, decimals);   
+   return (Math.round((num * t) + (decimals>0?1:0)*(Math.sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals);
+}

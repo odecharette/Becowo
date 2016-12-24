@@ -23,7 +23,7 @@
 		      		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{p.url}}" alt="{{ws.name}}" width="100%">
 		    	{% endif %}
 		  	{% endfor %} #}
-		  	<img src="{{ asset('images/icons/booking-guy.png') }}" alt="{{ws.name}}" width="100%">
+		  	<img src="{{ asset('images/icons/booking-guy.png') }}" alt="{{ws.name}}" width="103%">
 		</div>
 	</div>
 	<div class="row">
@@ -172,11 +172,10 @@
 				<br>
 				<br>
 				<center>- VOTRE RESERVATION - </center><br>
-				sdfsdf <br>
-				sdfsdf <br>
-				sdfsdf <br>
-				sdfsdf <br>
-				sdfsdf <br>
+				N° : {{ bookingForm.bookingRef.vars.value }} <br>
+				Du <span id="recapDate"></span> <br>
+				Nombre de coworker(s) : <span id="nbPeople">1</span> <br>
+				<br>
 				{# Prices #}
 				<span id="priceHeure" hidden="true">{{prices.priceHour}}</span>
 				<span id="priceDemi journée" hidden="true">{{prices.priceHalfDay}}</span>
@@ -189,8 +188,7 @@
 				{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
 				<input id="price-excl-tax" type="number" step="any" name="price-excl-tax" value="" hidden="true"  form="booking">
 				<input id="price-incl-tax" type="number" step="any" name="price-incl-tax" value="" hidden="true">
-				<strong>Total : </strong><span id="price-excl-tax-div"></span> € HT (soit <span id="price-incl-tax-div"></span> € TTC)
-				<br>
+				<span id="price"><span id="price-excl-tax-div"></span> € HT (soit <span id="price-incl-tax-div"></span> € TTC)</span>
 				{{form_row(bookingForm.confirmer)}}
 
 			</div>

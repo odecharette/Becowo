@@ -1190,17 +1190,22 @@ border: solid 3px var(--my-green-strong);
   background-color: none !important;
   border: none !important;
   padding: 0 !important;
+  width: 100% !important;
+}
+#calendarContainer .month-name{
+  font-size : 12pt;
 }
 #calendarContainer .week-name{
   text-transform: capitalize;
+  font-size : 10pt;
 }
 #calendarContainer .day{
   color: var(--my-black) !important;
   cursor: pointer !important;
-  height: 35px !important;
-  width: 35px !important;
+  height: 40px !important;
+  width: 40px !important;
   border: solid 0.01em var(--my-grey-light) !important;
-  padding: 10px !important;
+  padding: 12px !important;
   margin: 0 !important;
   font-size: 10pt !important;
 }
@@ -1211,9 +1216,20 @@ border: solid 3px var(--my-green-strong);
 #calendarContainer .month-wrapper{
   width: 100% !important;
   padding: 0;
+  padding: 10px 5% 10px 5%;
 }
 #calendarContainer .drp_top-bar, #calendarContainer .footer{
   padding: 0;
+}
+#calendarContainer table{
+  width: 45% !important;
+}
+#calendarContainer table th{
+  width: 15px;
+}
+#calendarContainer .gap{
+  height: 100% !important;
+  width: 4%;
 }
 .slidePeople b{
   margin-right: 10px;
@@ -2165,7 +2181,9 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #bookingPage .panelForm, #bookingPage .panelRecap{
   margin-top: -275px;
 }
-
+#bookingPage .panelRecap{
+  padding: 50px 0 0 0;
+}
 
 #bookingPage .panelAdresse{
   color: var(--my-grey);
@@ -2179,4 +2197,22 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 
 #bookingPage textarea{
   width: 80%;
+}
+
+#bookingPage #price{
+      background-color: var(--my-blue);
+    color: white;
+    line-height: 50px;
+    display: block;
+    text-align: center;
+    font-size: 11pt;
+}
+
+#bookingPage button{
+  background-color: var(--my-green);
+  color: white;
+  width: 100%;
+  font-size: 16pt;
+  border-color: var(--my-green);
+  border-radius: 0;
 }
