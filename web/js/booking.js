@@ -104,7 +104,30 @@ function loadCalendar(duree)
 			customTopBar: ' ',
 			minDays: 28,
 			maxDays:31,
-			startDate: moment().format('DD-MM-YYYY')
+			startDate: moment().format('DD-MM-YYYY'),
+			beforeShowDay: function(t)
+			{
+				// Disable les dates de fermeture + Samedi/dimanche selon BDD
+			    var Tsrting = ("0" + t.getDate()).slice(-2) + "/" + ("0"+(t.getMonth()+1)).slice(-2) + "/" + t.getFullYear();
+			    var isDisabled = ($.inArray(Tsrting, closedDatesTab) != -1);
+
+				if (document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == ''){
+					var valid = t.getDay() != 0 && t.getDay() != 6 && !isDisabled;
+					var _tooltip = valid ? '' : 'Fermé';
+				}else if(document.getElementById('isOpenSaturday').innerHTML == 1 && document.getElementById('isOpenSunday').innerHTML == ''){
+					var valid =t.getDay() != 0 && !isDisabled; 
+					var _tooltip = valid ? '' : 'Fermé';
+				}else if(document.getElementById('isOpenSaturday').innerHTML == '' && document.getElementById('isOpenSunday').innerHTML == 1){
+					var valid = t.getDay() != 6 && !isDisabled; 
+					var _tooltip = valid ? '' : 'Fermé';
+				}else{
+					var valid = !isDisabled;
+					var _tooltip = valid ? '' : 'Fermé';
+				}
+				
+				return [valid,'',_tooltip];
+				
+			}
 		}).bind('datepicker-change',function(event,obj){
 			/* This event will be triggered when second date is selected */
 			loadPrice(duree);
