@@ -7,9 +7,6 @@
 {% block body %}
 
 <div class="container-fluid">
-	<div class="row">
-	<h1>Comment ca marche ?</h1>
-	</div>
 	<div class="row text-center" id="videoPanel">
 		<video id="video-big" width="60%" poster="" style="opacity:0.5;">
 			<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
@@ -28,32 +25,31 @@
 </div><div class="container-fluid" id="comment">
 	<div class="row text-center">
 
-		<h3>Chez Becowo, nous pensons que valoriser son potentiel humain ne doit pas être un luxe</h3>
+		<h3>Chez Becowo, nous pensons que valoriser votre potentiel humain ne doit pas être un luxe</h3>
 		<br>
 		<div class="row">
 			<div class="col-lg-5 col-lg-offset-1">
-				<p>Becowo vous offre la possibilité de <mark>réserver</mark> facilement une place dans un espace de travail qui vous convient. Pour une heure ou pour la vie, vous verez ici uniquement des lieux de qualité. Les espaces proposent tous des services pour vous simplifier la vie : des casiers sécurisés pour vos affaires, une salle de réunion pour les RDV importants et même parfois un service de domiciliation pour les entrepreuneurs. <br></p>
+				<p>Becowo, c’est non seulement une plateforme qui vous permet de <mark>réserver</mark> un espace de coworking, mais c’est également une communauté.</p>
 			</div>
 			<div class="col-lg-5">
-				<p>Becowo vous donne la possibilité d'intégrer une <mark>communauté</mark> de coworkers souhaitant partager leurs expériences ou juste faire connaissance. Vous recherchez un web designer avec qui travailler sur un projet commun ? Ou juste pour boire un café avec d'autres coworkers dans le prochain espace de coworking ou vous irez ? Vous cherchez un moyen simple et gratuit de mettre en avant vos projets pro et vos compétences ? Alors n'hésitez plus à créer votre profil et à remplir les informations demandées. <br>
-				Pour vous, l’accès à nos services est entièrement <strong>gratuit</strong>.</p>
+				<p>Que vous soyez coworker, freelance, télétravailleur ou simple curieux, Becowo vous met en relation avec des personnes qui partagent vos problématiques, et vous permet de <mark>développer votre réseau</mark> professionnel.</p>
 			</div>
 		</div>
 		<div class="row text-center bande">
 			<div class="col-lg-3 col-lg-offset-1">
-				<h4>Inscription gratuite</h4>
+				<h4>S'inscrire</h4>
 				<i class="fa fa-user fa-2x" aria-hidden="true"></i>
 				<p>Créez votre profil gratuitement à l'aide de votre réseau social préféré</p>
 			</div>
 			<div class="col-lg-3">
-				<h4>Réservation en ligne</h4>
+				<h4>Réserver</h4>
 				<i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
 				<p>Grâce à notre système de paiement sécurisé, vous réglez votre réservation en ligne</p>
 			</div>
 			<div class="col-lg-3">
-				<h4>Communauté active</h4>
+				<h4>Echanger</h4>
 				<i class="fa fa-users fa-2x" aria-hidden="true"></i>
-				<p>Intégrez notre communauté et rompez l'isolement</p>
+				<p>Collaborez avec les membres de notre communauté</p>
 			</div>
 		</div>
 		<div class="row text-center">
@@ -61,16 +57,35 @@
 				<h3>Trouvez votre bureau idéal </h3>
 				<img src="{{ asset('images/icons/bureau-ideal.png') }}" alt="Bureau idéal">
 				<br><br>
-				<p>Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.</p>
+				<p>Un lieu accueillant <br>
+				   Adaptable à vos besoins <br>
+				   Une équipe à l’écoute <br>
+				   Une oreille attentive à vos projets <br>
+				</p>
 			</div>
 			<div class="col-lg-4">
 				<h3>Trouvez votre coworker idéal </h3>
 				<img src="{{ asset('images/icons/coworker-ideal.png') }}" alt="Coworker ideal">
 				<br><br>
-				<p>Victus universis caro ferina est lactisque abundans copia qua sustentantur, et herbae multiplices et siquae alites capi per aucupium possint, et plerosque mos vidimus frumenti usum et vini penitus ignorantes.</p>
+				<p>Accès gratuit <br>
+				   Partage d’expériences <br>
+				   Facilité de mise en réseau <br>
+				   Echange et entraide <br>
+				</p>
+			</div>
+		</div>
+		<br><br>
+		<div class="row text-center">
+			<div class="col-lg-10 col-lg-offset-1">
+			<p style="text-align:center;">Becowo étant encore une jeune Startup, nous travaillons activement afin de vous proposer de nouvelles fonctionnalités. <br>
+			Et parce que chez Becowo, la logique <mark>contributive</mark> est une valeur importante, nous n'envisageons pas de développer des outils qui vous sont destinés sans vous concerter. <br>
+			Aussi, n'hésitez plus : <a href="{{ path('becowo_core_contact') }}">envoyez vos idées, suggestions,</a> nous serons ravis d'en discuter avec vous. 
+			</p>
+			<p style="text-align:center;">Très bientôt, vous pourrez trouver un espace de coworking dans de nouvelles régions.</p>
 			</div>
 		</div>
 		<div class="row text-center rejoindre">
+			{# <img src="{{ asset('images/icons/inscriptionBoy.png') }}" alt="s'inscrire"> #}
 			Alors, prêt à rejoindre notre communauté de coworkers audacieux ?
 			<button type="button"><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></button>
 		</div>

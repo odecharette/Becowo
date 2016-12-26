@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Event
  *
- * @ORM\Table(name="becowo_event", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"})})
+ * @ORM\Table(name="becowo_event", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"})}, indexes={@ORM\Index(name="fk_category_id_idx", columns={"category_id"})})
  * @ORM\Entity
  */
 class Event
@@ -62,6 +62,15 @@ class Event
      */
     private $endDate;
 
+    /**
+     * @var \Becowo\CoreBundle\Entity\EventCategory
+     *
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\EventCategory")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * })
+     */
+    private $category;
 
     /**
      * Set title
@@ -193,5 +202,29 @@ class Event
     public function getWorkspace()
     {
         return $this->workspace;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Becowo\CoreBundle\Entity\EventCategory $category
+     *
+     * @return Faq
+     */
+    public function setCategory(\Becowo\CoreBundle\Entity\EventCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Becowo\CoreBundle\Entity\EventCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

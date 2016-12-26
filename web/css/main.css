@@ -205,7 +205,9 @@ p{
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
+
 #comment .rejoindre button{
   background-color: var(--my-blue);
   border : none;
