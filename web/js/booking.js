@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
 // Duration
-
-var duration = $("#booking-duration");
-if(duration.length == 1)
-{
-	duration.hide();
-}
+//ne marche pas
+// var duration = $("#booking-duration");
+// if(duration.length == 1)
+// {
+// 	duration.hide();
+// }
 
 
 // CONSTRUCTION CALENDAR
@@ -57,11 +57,12 @@ function loadCalendar(duree)
 
 
 	$('#booking-calendar').dateRangePicker({
-		inline:true,
+		inline:false,
 		singleDate : true,
-		singleMonth: true,
+		singleMonth: false,
+		autoClose: true, 
 		container: '#calendarContainer',
-		alwaysOpen:true,
+		alwaysOpen:false,
 		language:'fr',
 		startOfWeek: 'monday',
 		format: 'DD/MM/YYYY',
