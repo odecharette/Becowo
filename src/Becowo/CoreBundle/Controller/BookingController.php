@@ -98,6 +98,7 @@ dump($request);
       $session->set('booking', $booking);
 
       return $this->redirectToRoute('becowo_core_paiement_call_bank');
+      // return  $this->forward("BecowoCoreBundle:Paiement:callBank");
       
 // Pour voir l'url complète envoyée à la banque : dump($request->getContent());
 //return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
