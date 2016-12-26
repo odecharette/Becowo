@@ -1188,9 +1188,19 @@ border: solid 3px var(--my-green-strong);
 }
 
 /* booking calendar */
-.date-picker-wrapper{
-/*  top: 0 !important;
-  left: 0 !important;*/
+#booking-calendar{
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #ccc;
+  line-height: 25px;
+}
+#spaceName, #votreResa{
+  color: var(--my-blue);
+  text-align: center;
+  display: block;
+}
+#recapDate{
+  color: #a94442;
 }
 #calendarContainer{
   position: relative;
@@ -1336,8 +1346,21 @@ font-family: FontAwesome;
 color: var(--my-blue) !important;
 }*/
 
-
-
+#bookingPage{
+  color: var(--my-grey);
+}
+#bookingPage h3{
+  color: var(--my-blue);
+}
+#booking-duration{
+  width: 80%;
+}
+#duration-txt{
+  line-height: 30px;
+}
+#duration{
+  display: flex;
+}
 
 #panelEvent {
   width: 30%; 

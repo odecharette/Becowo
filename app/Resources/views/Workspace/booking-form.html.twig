@@ -47,9 +47,10 @@
 
 				
 				<center><h3>Choisir un créneau de réservation</h3></center>
-
+				<br>
 				{% set nbDuration = 0 %}
-				<center>
+				<div id="duration">
+				<span id="duration-txt"><strong>Durée : </strong></span>
 				<div class="segmented-control" style="color: #20385e;border: none;" id="booking-duration">
 					{% if prices.priceHour != null %}
 						{% set nbDuration = nbDuration + 1 %}
@@ -58,7 +59,8 @@
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-Heure" value="Heure">
 							{% endif %}
-						<label for="booking-duration-Heure" data-value="Heure">Heure</label>
+					{% else %}
+						<input type="radio" name="booking-duration" id="booking-duration-Heure" value="Heure" disabled="true">
 					{% endif %}
 
 					{% if prices.priceHalfDay != null %}
@@ -68,7 +70,8 @@
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-HalfDay" value="Demi journée">
 							{% endif %}
-						<label for="booking-duration-HalfDay" data-value="Demi journée">Demi journée</label>
+					{% else %}
+						<input type="radio" name="booking-duration" id="booking-duration-HalfDay" value="Demi journée" disabled="true">
 					{% endif %}
 
 					{% if prices.priceDay != null %}
@@ -78,7 +81,8 @@
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-Day" value="Journée">
 							{% endif %}
-						<label for="booking-duration-Day" data-value="Journée">Journée</label>
+					{% else %}
+						<input type="radio" name="booking-duration" id="booking-duration-Day" value="Journée" disabled="true">
 					{% endif %}
 
 					{% if prices.priceWeek != null %}
@@ -88,7 +92,8 @@
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-Week" value="Semaine">
 							{% endif %}
-						<label for="booking-duration-Week" data-value="Semaine">Semaine</label>
+					{% else %}
+						<input type="radio" name="booking-duration" id="booking-duration-Week" value="Semaine" disabled="true">
 					{% endif %}
 
 					{% if prices.priceMonth != null %}
@@ -98,27 +103,34 @@
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-Month" value="Mois">
 							{% endif %}
-						<label for="booking-duration-Month" data-value="Mois">Mois</label>
+					{% else %}
+						<input type="radio" name="booking-duration" id="booking-duration-Month" value="Mois" disabled="true">
 					{% endif %}
+
+					<label for="booking-duration-Heure" data-value="Heure">Heure</label>
+					<label for="booking-duration-HalfDay" data-value="Demi journée">Demi journée</label>
+					<label for="booking-duration-Day" data-value="Journée">Journée</label>
+					<label for="booking-duration-Week" data-value="Semaine">Semaine</label>
+					<label for="booking-duration-Month" data-value="Mois">Mois</label>
+				</div>
 				</div>
 				<div id="isOpenSaturday" style="display:none">{{times.isOpenSaturday}}</div>
 				<div id="isOpenSunday" style="display:none">{{times.isOpenSunday}}</div> 
 				<div id="closedDates" style="display:none">{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}</div> {# TO DO vérifier que ca marche et finir #}
-				</center>
-				<br>
+				<br><br>
 
 				{# CALENDAR #}
 				<div id='calendarContainer'>
-					Date : <input type="text" name="booking-calendar" id="booking-calendar" />
+					<strong>Date : </strong><input type="text" name="booking-calendar" id="booking-calendar" />
 				</div>
-				<br>
+				<br><br>
 				<span id="calendar-error"></span>
 
 				{# HORAIRE #}
 				<div id="openHour" style="display:none">{{times.openHour|date('H:i')}}</div> 
 				<div id="closeHour" style="display:none">{{times.closeHour|date('H:i')}}</div> 
 				<span id="calendar-time" style="display:none"> {# caché par défaut, affiché en JS si besoin #}
-				Horaire : 
+				<strong>Horaire : </strong>
 				    <strong><span id="time-min"></span></strong>
 				    <span class="slideTime">
 				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
@@ -140,27 +152,27 @@
 				</span>
 				{# TO DO : min et max en fonction des places dispos #}
 				{# Nb PEOPLE #}
-
+				<strong>
 				{% if WsHasOffice.office.name == 'Open space' %}
 					Nombre de coworkers : 
 				{% else %}
 					Nombre de coworkers (à titre indicatif) : 
 				{% endif %}
-
+				</strong>
 				<span class="slidePeople">
 				<b> 1 </b>
 					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="{{WsHasOffice.deskQty}}" data-slider-value="1" name="booking-people"/>
 				<b> {{WsHasOffice.deskQty}} </b>
 				</span>
 
-				<br><br>
+				<br><br><br>
 				{# msg #}
-				Vous pouvez adresser ici un message à {{ws.name}} : <br>
+				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}
 			</div>
 			<div class="col-lg-2 panelRecap">
 
-				<center>- <span id="spaceName">{{WsHasOffice.name|upper}}</span> - </center>
+				<span id="spaceName">- {{WsHasOffice.name|upper}} -</span> 
 						{# Capacité ou Quantité 
 						<span class="capacity" id="capacity">
 						{% if WsHasOffice.office.name == 'Open space' %}
@@ -173,11 +185,11 @@
 				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{WsHasOffice.UrlProfilePicture}}" alt="{{ws.name}}" width="100%">
 				<br>
 				<br>
-				<center>- VOTRE RESERVATION - </center><br>
-				N° : {{ bookingForm.bookingRef.vars.value }} <br>
-				<span id="recapDate"></span> <br>
+				<span id="votreResa">- VOTRE RESERVATION - </span><br>
+				<strong>N° : </strong>{{ bookingForm.bookingRef.vars.value }} <br>
+				<span id="recapDate">Veuillez choisir une date</span> <br>
 				<input type="text" name="dateEnd" id="dateEnd" hidden="true">
-				Nombre de coworker(s) : <span id="nbPeople">1</span> <br>
+				<strong>Nombre de coworker(s) : </strong><span id="nbPeople">1</span> <br>
 				<br>
 				{# Prices #}
 				<span id="priceHeure" hidden="true">{{prices.priceHour}}</span>
