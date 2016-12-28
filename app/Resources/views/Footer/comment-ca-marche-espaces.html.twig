@@ -22,13 +22,15 @@
 			<button type="button" id="expand"><i class="fa fa-expand fa-2x" aria-hidden="true"></i></button>
 		</div>
 	</div>
-</div><div class="container-fluid" id="comment">
+</div><div class="container-fluid" id="commentEspace">
 	<div class="row text-center">
 
 		<h3>Chez Becowo nous nous sommes donnés pour mission de valoriser ce qui rend votre espace de coworking si particulier</h3>
 		<br>
 		<div class="row text-center">
-			Becowo permet non seulement d’accroitre la <mark>visibilité</mark> de votre espace de coworking, mais également d’intégrer une <mark>communauté</mark>
+			<div class="col-lg-10 col-lg-offset-1">
+				<p>Becowo permet non seulement d’accroitre la <mark>visibilité</mark> de votre espace de coworking, mais également d’intégrer une <mark>communauté</mark></p>
+			</div>
 		</div>
 		<div class="row text-center bande">
 			<div class="col-lg-3 col-lg-offset-1">
@@ -52,25 +54,26 @@
 				<h3>Des fonctionnalités innovantes </h3>
 				<img src="{{ asset('images/icons/bureau-ideal.png') }}" alt="Bureau idéal">
 				<br><br>
-				<p>Gestion centralisées de vos réservations <br>
-					Mise en avant de vos évènements <br>
-					Intégration de votre communauté de coworkers au réseau Becowo <br>
-					Communiquer facilement avec les autres membres du réseau <br>
+				<p><i class="fa fa-check" aria-hidden="true"></i> Gestion centralisées de vos réservations <br>
+					<i class="fa fa-check" aria-hidden="true"></i> Mise en avant de vos évènements <br>
+					<i class="fa fa-check" aria-hidden="true"></i> Intégration de votre communauté de coworkers au réseau Becowo <br>
+					<i class="fa fa-check" aria-hidden="true"></i> Communication facilité avec les autres membres du réseau <br>
 				</p>
 			</div>
 			<div class="col-lg-4">
 				<h3>Un réseau d’espaces de coworking  </h3>
 				<img src="{{ asset('images/icons/coworker-ideal.png') }}" alt="Coworker ideal">
 				<br><br>
-				<p>Faciliter les échanges de compétences <br>
-				Échanger autour de problématiques communes <br>
-				Profiter de recommandations croisées <br>
-				Participer à améliorer le modèle du coworking en France <br>
+				<p><i class="fa fa-check" aria-hidden="true"></i> Faciliter les échanges de compétences <br>
+				<i class="fa fa-check" aria-hidden="true"></i> Échanger autour de problématiques communes <br>
+				<i class="fa fa-check" aria-hidden="true"></i> Profiter de recommandations croisées <br>
+				<i class="fa fa-check" aria-hidden="true"></i> Participer à améliorer le modèle du coworking en France <br>
 				</p>
 			</div>
 		</div>
 		<br><br>
 		{% include 'CommonViews/declarerEspace.html.twig' %} 
+		<br><br>
 		<div class="row text-center">
 			<div class="col-lg-10 col-lg-offset-1">
 			<p style="text-align:center;">Becowo étant encore une jeune Startup, nous travaillons activement afin de vous proposer de nouvelles fonctionnalités. <br>
@@ -82,6 +85,9 @@
 		</div>
 		
 	</div>	
+	<br>
+	<hr>
+	<br>
 	{% include "CommonViews/bandeauQuestion.html.twig" %}
 
 </div>
