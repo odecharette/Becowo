@@ -2209,26 +2209,26 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   margin-top: 20px;
 }
 
-#bookingPage .panelForm{
+#bookingPage .panelForm, #paiementPage .panelForm{
   background-color: white;
   padding: 5px 30px 30px 30px;
   margin-left: 40px;
   border-top-left-radius: 5px;
 }
-#bookingPage .panelForm, #bookingPage .panelRecap{
+#bookingPage .panelForm, #bookingPage .panelRecap, #paiementPage .panelForm, #paiementPage .panelRecap{ 
   margin-top: -275px;
 }
 #bookingPage .panelRecap{
   padding: 50px 0 0 0;
 }
 
-#bookingPage .panelAdresse{
+#bookingPage .panelAdresse, #paiementPage .panelAdresse{
   color: var(--my-grey);
   margin-left: 20px;
   margin-right: -20px;
 }
 
-#bookingPage .star-full,#bookingPage .star-empty{
+#bookingPage .star-full,#bookingPage .star-empty, #paiementPage .star-full, #paiementPage .star-empty{
   font-size: 20px !important;
 }
 

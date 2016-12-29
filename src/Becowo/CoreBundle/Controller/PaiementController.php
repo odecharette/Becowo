@@ -13,9 +13,6 @@ class PaiementController extends Controller
 
   public function callBankAction(Request $request)
   {
-    // if($request->isMethod('GET'))
-    // {
-
     $paiementInfos = $this->container->getParameter('creditAgricole');
     $currentUser = $this->getUser();
     $userEmail = $currentUser->getEmail();
@@ -25,6 +22,7 @@ class PaiementController extends Controller
     $WsService = $this->get('app.workspace');
     $WsHasOffice = $WsService->getWsHasOfficeById($booking->getWorkspaceHasOffice());
     $ws = $WsHasOffice->getWorkspace();
+    $averageVote = $WsService->getAverageVoteByWorkspace($ws);
 
     /************************************/
     //On doit ici calculer l'empreinte du message pour assurer la sécurité du paiement
@@ -59,14 +57,8 @@ class PaiementController extends Controller
 
     $hmacCalculated = strtoupper(hash_hmac($paiementInfos['PBX_HASH'], $msg, $binKey)); 
     // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
-   dump($request->getContent());
-      return $this->render('Paiement/payer.html.twig', array('creditAgricole' =>$paiementInfos, 'booking' => $booking, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated, 'ws' => $ws));
-  
-// Pour voir l'url complète envoyée à la banque : dump($request->getContent());
 
-
-    // return new RedirectResponse('https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi', Response::HTTP_TEMPORARY_REDIRECT);
-    // }
+    return $this->render('Paiement/payer.html.twig', array('creditAgricole' =>$paiementInfos, 'booking' => $booking, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated, 'ws' => $ws, 'averageVote' => $averageVote));
   }
 
   public function effectueAction(Request $request)

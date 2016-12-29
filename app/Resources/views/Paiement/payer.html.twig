@@ -1,49 +1,88 @@
 {# TO DO : en dans le fichier de config mettre les infos de preprod puis prod données par le Crédit Agricole #}
 
 {# ATTENTION : l'ordre des champs est extrêmement important, il doit correspondre exactement à l'ordre des champs dans la chaîne hachée (PaiementController.php) #}
-{#  
-{{dump()}}#}
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends "layout.html.twig" %}
 
+{% block title %}
+  {{ parent() }} - Paiement
+{% endblock %}
 
-Récapitulatif de votre réservation N° <strong style="font-size: 12pt;color:var(--my-blue);">{{booking.bookingRef}}</strong> : <br>
-<br>
-<strong>Location :</strong> {{booking.workspacehasoffice.name}} <br>
-<strong>Date :</strong> du {{booking.startDate|date("d/m/Y à h:i")}} au {{booking.endDate|date("d/m/Y à h:i")}} <br>
-<strong>Nombre de coworker(s) :</strong> {{booking.nbPeople}} <br>
-<strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>
-<strong>Prix TTC :</strong> {{booking.priceInclTax|number_format(2)}} € <br>
-<br>
+{% block stylesheets %}
+	
+{% endblock %}
 
-<div class="row text-center">
-<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi" id="form-payer"> {# TO DO URL de prod  #}
-		<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
-		<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
-		<input type="hidden" name="PBX_IDENTIFIANT" value="{{creditAgricole.PBX_IDENTIFIANT}}"> 
-		<input type="hidden" name="PBX_TOTAL" value="{{booking.priceInclTax * 100}}">
-		<input type="hidden" name="PBX_DEVISE" value="{{creditAgricole.PBX_DEVISE}}"> 
-		<input type="hidden" name="PBX_CMD" value="{{booking.bookingRef}}">  
-		<input type="hidden" name="PBX_PORTEUR" value="{{userEmail}}">  
-		<input type="hidden" name="PBX_RETOUR" value="{{creditAgricole.PBX_RETOUR}}"> 
-		<input type="hidden" name="PBX_HASH" value="{{creditAgricole.PBX_HASH}}"> 
-		<input type="hidden" name="PBX_TIME" value="{{dateISO}}">
-		<input type="hidden" name="PBX_HMAC" value="{{hmacCalculated}}">
-		{# TO DO mettre les URL de retour ds BO du credit agricole, mais ici tant que pas de BO #}
-		<input type="hidden" name="PBX_EFFECTUE" value="{{creditAgricole.PBX_EFFECTUE}}"> 
-		<input type="hidden" name="PBX_REFUSE" value="{{creditAgricole.PBX_REFUSE}}">
-		<input type="hidden" name="PBX_ANNULE" value="{{creditAgricole.PBX_ANNULE}}">
-		<input type="hidden" name="PBX_REPONDRE_A" value="{{creditAgricole.PBX_REPONDRE_A}}">
-		{# <input type="hidden" name="PBX_ATTENTE" value="{{hmacCalculated}}"> #}
-		<input type="submit" value="Procéder au paiement" id="payer"> 
-</form> 
+{% block body %} 
 
+<div class="container-fluid" id="paiementPage">
+
+	<div class="row text-center">
+		<div class="col-lg-9">
+		  	<img src="{{ asset('images/icons/booking-guy.png') }}" alt="{{ws.name}}" width="103%">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 panelAdresse">
+			<br>
+			<strong>{{ws.name}}</strong> <br>
+			{{ws.street|capitalize}} <br> 
+			{{ws.postCode}} {{ws.city|capitalize}} <br>
+			{% if averageVote > 0 %} {{averageVote|rating}} {% endif %}
+		</div>
+		<div class="col-lg-7 panelForm">
+
+			<center><h3>Récapitulatif de votre réservation N° {{booking.bookingRef}} </h3></center>
+			<br>
+			<p>
+			<strong>Location :</strong> {{booking.workspacehasoffice.name}} <br>
+			<strong>Date :</strong> du {{booking.startDate|date("d/m/Y à h:i")}} au {{booking.endDate|date("d/m/Y à h:i")}} <br>
+			<strong>Nombre de coworker(s) :</strong> {{booking.nbPeople}} <br>
+			<strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>
+			<strong>Prix TTC :</strong> {{booking.priceInclTax|number_format(2)}} € <br>
+			</p>
+			<br>
+			<br>
+			<center>
+			<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi" id="form-payer"> {# TO DO URL de prod  #}
+				<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
+				<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
+				<input type="hidden" name="PBX_IDENTIFIANT" value="{{creditAgricole.PBX_IDENTIFIANT}}"> 
+				<input type="hidden" name="PBX_TOTAL" value="{{booking.priceInclTax * 100}}">
+				<input type="hidden" name="PBX_DEVISE" value="{{creditAgricole.PBX_DEVISE}}"> 
+				<input type="hidden" name="PBX_CMD" value="{{booking.bookingRef}}">  
+				<input type="hidden" name="PBX_PORTEUR" value="{{userEmail}}">  
+				<input type="hidden" name="PBX_RETOUR" value="{{creditAgricole.PBX_RETOUR}}"> 
+				<input type="hidden" name="PBX_HASH" value="{{creditAgricole.PBX_HASH}}"> 
+				<input type="hidden" name="PBX_TIME" value="{{dateISO}}">
+				<input type="hidden" name="PBX_HMAC" value="{{hmacCalculated}}">
+				{# TO DO mettre les URL de retour ds BO du credit agricole, mais ici tant que pas de BO #}
+				<input type="hidden" name="PBX_EFFECTUE" value="{{creditAgricole.PBX_EFFECTUE}}"> 
+				<input type="hidden" name="PBX_REFUSE" value="{{creditAgricole.PBX_REFUSE}}">
+				<input type="hidden" name="PBX_ANNULE" value="{{creditAgricole.PBX_ANNULE}}">
+				<input type="hidden" name="PBX_REPONDRE_A" value="{{creditAgricole.PBX_REPONDRE_A}}">
+				{# <input type="hidden" name="PBX_ATTENTE" value="{{hmacCalculated}}"> #}
+				<input type="submit" value="Procéder au paiement" id="payer"> 
+			</form> 
+			</center>
+			<br><br><br><br>
+		</div>
+		<div class="col-lg-2 panelRecap">
+			<p>Le paiement en ligne est sécurisé par le Crédit Agricole</p>
+			<center><img src="{{ asset('images/icons/creditAgricole/e-transactions.png') }}" alt="Crédit Agricole" width="150px"></center>
+			<br>
+			{# <p>
+			Vous pourrez choisir votre mode de paiement :
+			</p>
+			<center>
+			<img src="{{ asset('images/icons/creditAgricole/visa.png') }}" alt="Visa" width="80px"> 
+			<img src="{{ asset('images/icons/creditAgricole/mastercard.png') }}" alt="Mastercard" width="80px"> 
+			</center> #}
+			<p>Tous les paiements sont sécurisés par 3D secure</p>
+			<img src="{{ asset('images/icons/creditAgricole/3dsecure.png') }}" alt="3D Secure" width="200px" height="55px">
+			<br><br>
+			<p>Pour en savoir plus sur le paiement par Internet, vous pouvez consulter l'article de <a href="http://www.lafinancepourtous.com/Banque-au-quotidien/Moyens-de-paiement/La-carte-bancaire/Payer-par-carte-bancaire-sur-Internet-avec-3D-Secure" target="_blank">La finance pour tous</a></p>
+		</div>
+	</div>
 </div>
 
-</body>
-</html>
+{% endblock body %}

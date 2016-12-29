@@ -66,8 +66,6 @@ dump($request);
     	$startDate = $startDate . 'T' . $startTime;
     	$endDate = $endDate . 'T' . $endTime;
 
-      dump($startDate);
-      dump($endDate);
     	$bookingPriceExclTax = $request->get('price-excl-tax');
       $bookingPriceInclTax = $request->get('price-incl-tax');
     	$bookingDurationDay = $request->get('booking-duration-day');

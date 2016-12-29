@@ -244,3 +244,6 @@ function loadRecapDate(duree, value)
 		return 'Le ' + value;
 	}
 }
+
+
+
