@@ -16,7 +16,7 @@ class BookingType extends AbstractType
     {
         $builder
             ->add('bookingRef', HiddenType::class)
-            ->add('message', TextareaType::class, array('label' => false, 'required' => false, 'attr' => array('rows' => '6')))
+            ->add('message', TextareaType::class, array('label' => false, 'required' => false, 'attr' => array('rows' => '4')))
             ->add('confirmer', SubmitType::class);
     }
     /**

@@ -10,30 +10,15 @@
 
 {% block body %} 
 
+<div id="bookingGuy">
+	<img src="{{ asset('images/icons/booking-guy2.png') }}" alt="Réservation">
 
-<div class="container-fluid" id="bookingPage">
-	{{ form_start(bookingForm) }}
-{# Le contenu de la form est construit dans booking.js #}
-	<div class="row text-center">
-		<div class="col-lg-9">
-		{# 	{% for p in pictures %}
-		    	{% if p.isFavorite %}
-		      		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{p.url}}" alt="{{ws.name}}" width="100%">
-		    	{% endif %}
-		  	{% endfor %} #}
-		  	<img src="{{ asset('images/icons/booking-guy.png') }}" alt="{{ws.name}}" width="103%">
-		</div>
-	</div>
-	<div class="row">
-			<div class="col-lg-2 panelAdresse">
-				<br>
-				<strong>{{ws.name}}</strong> <br>
-				{{ws.street|capitalize}} <br> 
-				{{ws.postCode}} {{ws.city|capitalize}} <br>
-				{% if averageVote > 0 %} {{averageVote|rating}} {% endif %}
-			</div>
-			<div class="col-lg-7 panelForm">
 
+	<div class="container-fluid" id="bookingPage">
+		{{ form_start(bookingForm) }}
+	{# Le contenu de la form est construit dans booking.js #}
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-2 panelForm">
 				{# EMAIL non renseigné #}
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.email == "" %}
 					<div id="email-error">
@@ -170,26 +155,22 @@
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}
 			</div>
-			<div class="col-lg-2 panelRecap">
+			<div class="col-lg-3 panelRecap">
 
-				<span id="spaceName">- {{WsHasOffice.name|upper}} -</span> 
-						{# Capacité ou Quantité 
-						<span class="capacity" id="capacity">
-						{% if WsHasOffice.office.name == 'Open space' %}
-							Quantité : {{WsHasOffice.deskQty}} <i class="fa fa-briefcase" aria-hidden="true"></i>
-						{% else %}
-							Capacité : {{WsHasOffice.deskQty}} <i class="fa fa-male" aria-hidden="true"></i>
-						{% endif %}
-						</span> #}
+				<strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
+				{{ws.street|capitalize}} <br> 
+				{{ws.postCode}} {{ws.city|capitalize}} <br>
+					<br>
+				<span id="votreResa">VOTRE RESERVATION N° {{ bookingForm.bookingRef.vars.value }}</span>
 				<br>
-				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{WsHasOffice.UrlProfilePicture}}" alt="{{ws.name}}" width="100%">
+				<center>
+				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{WsHasOffice.UrlProfilePicture}}" alt="{{ws.name}}" width="200px"     height="120px">
+				</center>
 				<br>
+				{{WsHasOffice.name}}
 				<br>
-				<span id="votreResa">- VOTRE RESERVATION - </span><br>
-				<strong>N° : </strong>{{ bookingForm.bookingRef.vars.value }} <br>
-				<span id="recapDate">Veuillez choisir une date</span> <br>
+				<span id="recapDate"></span> <br>
 				<input type="text" name="dateEnd" id="dateEnd" hidden="true">
-				<strong>Nombre de coworker(s) : </strong><span id="nbPeople">1</span> <br>
 				<br>
 				{# Prices #}
 				<span id="priceHeure" hidden="true">{{prices.priceHour}}</span>
@@ -207,15 +188,13 @@
 				{{form_row(bookingForm.confirmer)}}
 
 			</div>
+		</div>	
 
+		{{ form_rest(bookingForm) }}
+		{{ form_end(bookingForm) }}
 	</div>
-	
 
-	{{ form_rest(bookingForm) }}
-	{{ form_end(bookingForm) }}
 </div>
-
-
 
 {% endblock body %}
 

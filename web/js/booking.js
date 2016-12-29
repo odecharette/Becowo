@@ -95,7 +95,6 @@ function loadCalendar(duree)
 		/* This event will be triggered when second date is selected */
 		loadPrice(duree);
 		document.getElementById('recapDate').innerHTML = loadRecapDate(duree, obj.value);
-		document.getElementById('recapDate').style.color = "var(--my-grey)";
 		document.getElementById('booking_confirmer').disabled = false;
 	});
 

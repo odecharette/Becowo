@@ -1190,6 +1190,11 @@ footer{
 #Réservation #btnResa:hover {
 border: solid 3px var(--my-green-strong);
 }
+#Réservation #btnResa a{
+  color: white;
+  display: block;
+  text-decoration: none;
+}
 .office-name{
   color: var(--my-red);
 }
@@ -1203,15 +1208,14 @@ border: solid 3px var(--my-green-strong);
   outline: none;
   border: 1px solid #ccc;
   line-height: 25px;
+  margin-left: 20px;
 }
-#spaceName, #votreResa{
+#votreResa{
   color: var(--my-blue);
   text-align: center;
   display: block;
 }
-#recapDate{
-  color: #a94442;
-}
+
 #calendarContainer{
   position: relative;
 }
@@ -1356,21 +1360,6 @@ font-family: FontAwesome;
 color: var(--my-blue) !important;
 }*/
 
-#bookingPage{
-  color: var(--my-grey);
-}
-#bookingPage h3{
-  color: var(--my-blue);
-}
-#booking-duration{
-  width: 80%;
-}
-#duration-txt{
-  line-height: 30px;
-}
-#duration{
-  display: flex;
-}
 
 #panelEvent {
   width: 30%; 
@@ -2209,27 +2198,64 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   margin-top: 20px;
 }
 
-#bookingPage .panelForm, #paiementPage .panelForm{
+#paiementPage .panelForm{
   background-color: white;
   padding: 5px 30px 30px 30px;
   margin-left: 40px;
   border-top-left-radius: 5px;
 }
-#bookingPage .panelForm, #bookingPage .panelRecap, #paiementPage .panelForm, #paiementPage .panelRecap{ 
+#paiementPage .panelForm, #paiementPage .panelRecap{ 
   margin-top: -275px;
 }
-#bookingPage .panelRecap{
-  padding: 50px 0 0 0;
+
+#bookingPage h3{
+  color: var(--my-blue);
+  margin-top: 10px;
+}
+#booking-duration{
+  width: 80%;
+}
+#duration-txt{
+  line-height: 30px;
+  margin-right: 20px;
+}
+#duration{
+  display: flex;
 }
 
-#bookingPage .panelAdresse, #paiementPage .panelAdresse{
+#bookingGuy{
+  position: relative;
+  width: 100%;
+  background-color: var(--my-green); 
+}
+#bookingPage{
+  width: 100%;
+  position: absolute;
+  top: 6%;
+  color: var(--my-grey);
+}
+#bookingPage .panelForm, #bookingPage .panelRecap{
+  background-color: white;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  border: none;
+  padding-top: 10px;
+  height: 450px;
+}
+#bookingPage .panelForm{
+  margin-right: 30px;
+}
+#paiementPage .panelAdresse{
   color: var(--my-grey);
   margin-left: 20px;
   margin-right: -20px;
 }
-
+#bookingPage .rating{
+  margin-left: 20px;
+}
 #bookingPage .star-full,#bookingPage .star-empty, #paiementPage .star-full, #paiementPage .star-empty{
-  font-size: 20px !important;
+  font-size: 16px !important;
+  width: 16px !important;
 }
 
 #bookingPage textarea{
@@ -2237,12 +2263,12 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 
 #bookingPage #price{
-      background-color: var(--my-blue);
-    color: white;
-    line-height: 50px;
-    display: block;
-    text-align: center;
-    font-size: 11pt;
+  background-color: var(--my-blue);
+  color: white;
+  line-height: 50px;
+  display: block;
+  text-align: center;
+  font-size: 11pt;
 }
 
 #bookingPage button{
