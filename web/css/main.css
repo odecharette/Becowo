@@ -1209,6 +1209,7 @@ border: solid 3px var(--my-green-strong);
   border: 1px solid #ccc;
   line-height: 25px;
   margin-left: 20px;
+  text-align: center;
 }
 #votreResa{
   color: var(--my-blue);
@@ -1228,6 +1229,9 @@ border: solid 3px var(--my-green-strong);
   border: none !important;
   padding: 0 !important;
 }
+#calendarContainer .gap{
+  width: 0px !important;
+}
 #calendarContainer .month-name{
   font-size : 12pt;
 }
@@ -1238,8 +1242,8 @@ border: solid 3px var(--my-green-strong);
 #calendarContainer .day{
   color: var(--my-black) !important;
   cursor: pointer !important;
-  height: 40px !important;
-  width: 40px !important;
+  height: 35px !important;
+  width: 35px !important;
   border: solid 0.01em var(--my-grey-light) !important;
   padding: 12px !important;
   margin: 0 !important;
@@ -1250,7 +1254,7 @@ border: solid 3px var(--my-green-strong);
   background-color: ghostwhite !important;
 }
 #calendarContainer .month-wrapper{
-  padding: 10px 20px 10px 20px;
+  padding: 10px 10px 10px 10px;
   width: 100% !important;
 }
 #calendarContainer .drp_top-bar, #calendarContainer .footer{
@@ -1261,6 +1265,9 @@ border: solid 3px var(--my-green-strong);
 }
 #calendarContainer table th{
   width: 15px;
+}
+.slidePeople{
+  margin-left: 10px;
 }
 .slidePeople b{
   margin-right: 10px;
