@@ -1342,6 +1342,7 @@ border: solid 3px var(--my-green-strong);
   text-decoration: none;
   border: none;
   outline: none;
+  margin-left: 20px;
 }
 #cancel{
   background-color: var(--my-blue);
@@ -1354,7 +1355,6 @@ border: solid 3px var(--my-green-strong);
   text-decoration: none;
   border: none;
   outline: none;
-  margin-left: 20px;
 }
 #cancel a{
   display: block;
