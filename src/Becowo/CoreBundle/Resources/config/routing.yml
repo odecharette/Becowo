@@ -142,6 +142,10 @@ becowo_core_visit_360:
     path:     /ws/{name}/visit-360
     defaults: { _controller: BecowoCoreBundle:Workspace:visit }
 
+becowo_core_blog_last_article:
+    path:     /blog/{nbArticles}
+    defaults: { _controller: BecowoCoreBundle:Blog:viewLastArticle }
+
 # becowo_core_ambassadeur:
 #     path:     /devenir-ambassadeur
 #     defaults: { _controller: BecowoCoreBundle:Footer:ambassadeur }

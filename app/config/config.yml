@@ -10,6 +10,7 @@ imports:
 parameters:
     locale: fr
     tva: 20
+    blogRSS: http://www.blog.becowo.com/feed/
     # config pour le paiement via e-transactions du Crédit Agricole
     # Config de test public TO DO mettre la config de pre-prod puis prod
     creditAgricole:
@@ -62,6 +63,7 @@ twig:
         creditAgricole: '%creditAgricole%'
         kernelRootDir: '%kernel.root_dir%'
         site_url: '%site_url%'
+        blogRSS: '%blogRSS%'
 
 services:
     twig.extension.intl:

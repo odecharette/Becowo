@@ -231,17 +231,22 @@ p{
 #commentEspace #declare p, #commentEspace #declare h1{
   color: white !important;
 }
-
-#vid{
-  margin-top: 50px;
+#actu{
   background-color: #e7e7e7;
 }
+#actu a{
+  color: var(--my-blue);
+  font-weight: bold;
+  font-size: 12pt;
+}
+#actu a:hover{
+  text-decoration: none;
+}
 
-#vid p{
-  text-align: justify !important;
-  margin-top: 50px;
-  color: var(--my-grey);
-  font-size: 13pt;
+.vCenter{
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
 }
 
 footer, footer a{

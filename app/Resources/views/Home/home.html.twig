@@ -123,18 +123,24 @@
 <div class="container-fluid">
 
 {############################################ Vidéo ##############################################}
-<div class="row" id="vid">
-	<div class="col-lg-4 col-lg-offset-1">
+<div class="row">
 		<video id="video-small" height="200px" controls="controls">
 			<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
 		</video>
+</div>
+
+{##########################################" Blog et instagram ###################################}
+<div class="row" id="actu">
+	<div class="col-lg-2 vCenter">
+		<center><img src="{{ asset('images/icons/rss.png') }}" alt="RSS blog"  class="center-block"></center>
 	</div>
-	<div class="col-lg-3">
-		<p>Oportunum est, ut arbitror, explanare nunc causam, quae ad exitium praecipitem Aginatium inpulit iam inde a priscis maioribus nobilem, ut locuta est pertinacior fama. nec enim super hoc ulla documentorum rata est fides. </p>
-		<button type="button" id="btn_comment">Comment ça marche ?</button>
+	<div class="col-lg-5 vCenter">
+		<h4>Quoi de neuf sur notre blog ?</h4>
+		<br>
+		{{ render(controller('BecowoCoreBundle:Blog:viewLastArticle', {nbArticles: 2})) }}
 	</div>
-	<div class="col-lg-1" id="separateur"></div>
-	<div class="col-lg-3" id="Instagram">
+	<div class="col-lg-1 vCenter" id="separateur"></div>
+	<div class="col-lg-3 vCenter" id="Instagram">
 		<h4>Quoi de neuf sur notre Instagram ?</h4>
 		<script src="https://snapwidget.com/js/snapwidget.js"></script>
 		<iframe src="https://snapwidget.com/embed/code/207854" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
