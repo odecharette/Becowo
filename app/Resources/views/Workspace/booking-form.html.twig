@@ -106,7 +106,7 @@
 
 				{# CALENDAR #}
 				<div id='calendarContainer'>
-					<strong>Date : </strong><input type="text" name="booking-calendar" id="booking-calendar" />
+					<strong>Date : </strong><input type="text" name="booking-calendar" id="booking-calendar" value="{{ booking.startDate|date("d/m/Y") }}" />
 				</div>
 				<br><br>
 				<span id="calendar-error"></span>
@@ -146,11 +146,11 @@
 				</strong>
 				<span class="slidePeople">
 				<b> 1 </b>
-					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="{{WsHasOffice.deskQty}}" data-slider-value="1" name="booking-people"/>
+					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="{{WsHasOffice.deskQty}}" name="booking-people" data-slider-value="{% if booking.nbPeople != null %}{{booking.nbPeople}}{% else %} 1 {% endif %}"/>
 				<b> {{WsHasOffice.deskQty}} </b>
 				</span>
 
-				<br><br><br>
+				<br><br>
 				{# msg #}
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}

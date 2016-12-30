@@ -63,6 +63,10 @@ class PaiementController extends Controller
 
   public function effectueAction(Request $request)
   {
+    // On retire le booking de la session
+    $session = $request->getSession();
+    $session->remove('booking');
+
     $error_code = $request->get('erreur'); 
     $error_msg = "";
     if($error_code != "00000")
@@ -78,6 +82,10 @@ class PaiementController extends Controller
 
   public function annuleAction(Request $request)
   {
+    // On retire le booking de la session
+    $session = $request->getSession();
+    $session->remove('booking');
+
     $error_code = $request->get('erreur'); 
     // La transaction a générée une erreur
     $errorService = $this->get('app.error');
@@ -94,6 +102,10 @@ class PaiementController extends Controller
 
   public function refuseAction(Request $request)
   {
+    // On retire le booking de la session
+    $session = $request->getSession();
+    $session->remove('booking');
+
     $error_code = $request->get('erreur'); 
     // La transaction a générée une erreur
     $errorService = $this->get('app.error');
@@ -105,6 +117,7 @@ class PaiementController extends Controller
 
   public function ipnAction(Request $request)
   {
+
     /* Cette action est appelée par le Crédit Agricole pour faire un retour sur le paiement */
     /* Cette action doit renvoyer une page HTML vide */
 

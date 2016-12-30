@@ -1,14 +1,5 @@
 $(document).ready(function () {
 
-// Duration
-//ne marche pas
-// var duration = $("#booking-duration");
-// if(duration.length == 1)
-// {
-// 	duration.hide();
-// }
-
-
 // CONSTRUCTION CALENDAR
 var duree = document.querySelector('input[name="booking-duration"]:checked').value;
 loadCalendar(duree);
@@ -20,10 +11,10 @@ loadTime(duree);
 // CONSTRUCTION PEOPLE
 var mySliderPeople = $("#booking-people").slider({});
 
-	mySliderPeople.on('slide', function(ev){	
+mySliderPeople.on('slide', function(ev){	
 
-        document.getElementById('nbPeople').innerHTML = mySliderPeople.data('slider').getValue();
-	});
+    document.getElementById('nbPeople').innerHTML = mySliderPeople.data('slider').getValue();
+});
 
 // Prix par défaut
 loadPrice(duree);
@@ -38,8 +29,14 @@ loadPrice(duree);
 	    loadPrice(duree);
 	});
 
+if(document.querySelector('input[id="booking-calendar"]').value != ''){
+	// Cas où on revient sur la page
+	document.getElementById('recapDate').innerHTML = loadRecapDate(duree,document.querySelector('input[id="booking-calendar"]').value);
+	document.getElementById('booking_confirmer').disabled = false;
+}else{
+	document.getElementById('booking_confirmer').disabled = true;
+}
 
-document.getElementById('booking_confirmer').disabled = true;
 
 });
 
@@ -109,9 +106,9 @@ function loadTime(duree){
 		document.getElementById('calendar-halftime').style.display = 'none';
 		document.getElementById('calendar-time').style.display = 'block';
 
-		var ouverture = document.getElementById('openHour').split(':');
+		var ouverture = document.getElementById('openHour').innerHTML.split(':');
 		var ouvertureMinutes = Number(ouverture[0]) * 60 + Number(ouverture[1]);
-		var fermeture = document.getElementById('closeHour').split(':');
+		var fermeture = document.getElementById('closeHour').innerHTML.split(':');
 		var fermetureMinutes = Number(fermeture[0]) * 60 + Number(fermeture[1]);
 
 		var mySliderTime = $("#booking-time-slider").slider({

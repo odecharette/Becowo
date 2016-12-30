@@ -30,9 +30,9 @@
 				{% if booking.duration == 'Mois' or booking.duration == 'Semaine' %}
 					du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} <br>
 				{% elseif booking.duration == 'Journée' %}
-					le {{booking.startDate|date("d/m/Y")}}
+					le {{booking.startDate|date("d/m/Y")}}<br>
 				{% else %}
-					le {{booking.startDate|date("d/m/Y à h:i")}}
+					le {{booking.startDate|date("d/m/Y à H:i")}}<br>
 				{% endif %}
 				<strong>Nombre de coworker(s) :</strong> {{booking.nbPeople}} <br>
 				<strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>

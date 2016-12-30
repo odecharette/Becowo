@@ -34,9 +34,18 @@ class BookingController extends Controller
   public function bookAction($id, Request $request)
   {
     $WsService = $this->get('app.workspace');
+    $session = $request->getSession();
 
-    $booking = new Booking();
+    if($session->get('booking') != null)
+    {
+      // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
+      $booking = $WsService->getBookingByRef($session->get('booking')->getBookingRef());
+    }else{
+      $booking = new Booking();
+    }
     $bookingForm = $this->createForm(BookingType::class, $booking);
+    dump($booking);
+    dump($bookingForm);
  
     $WsHasOffice = $WsService->getWsHasOfficeById($id);
     $ws = $WsHasOffice->getWorkspace(); 
@@ -48,7 +57,7 @@ class BookingController extends Controller
 
     if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
     {
-dump($request);
+
       //SAVE le booking en cours en BDD
 
     	$bookingDuration = $request->get('booking-duration');
@@ -92,7 +101,7 @@ dump($request);
     	$em->persist($booking);
   	  $em->flush();
 
-      $session = $request->getSession();
+      
       $session->set('booking', $booking);
 
       return $this->redirectToRoute('becowo_core_paiement_call_bank');
@@ -103,7 +112,7 @@ dump($request);
     }
 
     return $this->render('Workspace/booking-form.html.twig', 
-      array('bookingForm' => $bookingForm->createView(),'id' =>$id, 'WsHasOffice' => $WsHasOffice, 'ws' => $ws, 'prices' => $prices[0], 'times' => $times[0], 'closedDates' => $closedDates, 'pictures' => $pictures, 'averageVote' => $averageVote));
+      array('booking' => $booking, 'bookingForm' => $bookingForm->createView(),'id' =>$id, 'WsHasOffice' => $WsHasOffice, 'ws' => $ws, 'prices' => $prices[0], 'times' => $times[0], 'closedDates' => $closedDates, 'pictures' => $pictures, 'averageVote' => $averageVote));
   }
 
   	public function validateAction($bookRef, Request $request)
