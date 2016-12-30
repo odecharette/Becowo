@@ -32,7 +32,7 @@
 				{% elseif booking.duration == 'Journée' %}
 					le {{booking.startDate|date("d/m/Y")}}<br>
 				{% else %}
-					le {{booking.startDate|date("d/m/Y à H:i")}}<br>
+					le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
 				{% endif %}
 				<strong>Nombre de coworker(s) :</strong> {{booking.nbPeople}} <br>
 				<strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>
@@ -41,7 +41,7 @@
 				<br>
 				<p>En cliquant sur "Procéder au paiement" vous allez être redirigé vers le site sécurisé du Crédit agricole pour effectuer le paiement de votre réservation. <br>
 				Nous vous enverrons une facture par email sous quelques jours.</p>
-				<br>
+				<br><br>
 				<center>
 				<form method="POST" action="https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi" id="form-payer"> {# TO DO URL de prod  #}
 					<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
@@ -62,9 +62,10 @@
 					<input type="hidden" name="PBX_REPONDRE_A" value="{{creditAgricole.PBX_REPONDRE_A}}">
 					{# <input type="hidden" name="PBX_ATTENTE" value="{{hmacCalculated}}"> #}
 					<input type="submit" value="Procéder au paiement" id="payer"> 
+					<button type="button" id="cancel"><a href="{{app.request.headers.get('referer')}}"> Modifier</button>
 				</form> 
 				</center>
-				<br><br><br><br>
+				<br><br><br>
 			</div>
 			<div class="col-lg-3 panelRecap">
 				<strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>

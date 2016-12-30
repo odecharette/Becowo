@@ -1337,11 +1337,30 @@ border: solid 3px var(--my-green-strong);
   -moz-border-radius: 28;
   border-radius: 28px;
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   border: none;
   outline: none;
+}
+#cancel{
+  background-color: var(--my-blue);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  margin-left: 20px;
+}
+#cancel a{
+  display: block;
+  outline: none;
+  color: white;
+  text-decoration: none;
 }
 
 
@@ -2265,7 +2284,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   font-size: 11pt;
 }
 
-#bookingPage button, #paiementPage button{
+#bookingPage button{
   background-color: var(--my-green);
   color: white;
   width: 100%;
