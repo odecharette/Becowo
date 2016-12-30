@@ -10,22 +10,15 @@ use \Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class AuthenticationHandler implements AuthenticationSuccessHandlerInterface
 {
-    // private $router;
-
-    // public function __construct(Router $router)
-    // {
-    //     $this->router = $router;
-
-    // }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {       
         $previousURL = $request->getSession()->get('previousURL'); 
 
         // On renvoi vers l'URL précédente, sauvée en session via fichier login.html.twig ou register_content.html.twig
-        try {
+        if($previousURL != null or $previousURL != ''){
             return new RedirectResponse($previousURL);
-        } catch (Exception $e) {
+        } else{
             return $this->redirectToRoute('becowo_core_homepage');
         }
 

@@ -89,6 +89,12 @@ header #login a:hover {
     color: var(--my-blue);
     border-bottom: solid 3px var(--my-blue);
 }
+.noActive a{
+  /* Pour corriger un bug...*/
+  background-color: transparent !important;
+  color: gray !important;
+  border-bottom: none !important;
+}
 header .navbar {
   transition-duration: 0.2s;
 }
