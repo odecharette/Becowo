@@ -6,54 +6,34 @@
 
 {% block body %}
 
-<div id="page-simple">
-<h1>A propos de Becowo</h1>
+<div class="container-fluid" id="aPropos">
+	<h1>A propos de Becowo</h1>
+	<div class="row text-center">
+		<br><br>
+		{% include 'CommonViews/video.html.twig' %} 
+		<br><br>
+	</div>
+	<br>
+	<div class="row text-center">
+		<a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">Je suis (futur) coworker </a>
+		<a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_espaces') }}">Je gère un espace </a>
+	</div>
+	<br><br>
+	<div class="row">
+		<h2>Notre BecoTeam</h2>
+		<div class="col-lg-6">
+			<center><img src="{{ asset('images/fiona.png') }}" alt="Fiona Delannoy" height="80px"></center>
+			<h4>FIONA DELANNOY</h4>
+			<center><strong>CEO / Founder</strong></center>
+			<p>Après avoir constaté qu’un CDI ne lui permettait pas d’assouvir sa créativité et son besoin de liberté, Fiona s’est découverte une véritable vocation pour l’entrepreneuriat. Chez Becowo, elle indique les orientations à suivre afin d’assurer la vision du projet sur le long terme. En charge de la partie business et communication, Fiona apporte une dose de créativité au projet.</p>
+		</div>
+		<div class="col-lg-6">
+			<center><img src="{{ asset('images/olivia.png') }}" alt="Olivia de Charette" height="80px"></center>
+			<h4>OLIVIA DE CHARETTE</h4>
+			<center><strong>CTO / Co-founder</strong></center>
+			<p>Passionnée d’informatique, Olivia est toujours à la recherche de nouveaux challenges et considère son travail comme une passion et une manière de s’accomplir. Après des expériences riches en gestion de projet et management d’équipes, elle souhaite désormais entreprendre et créer de la valeur. Son rôle chez Becowo est de développer un site web attractif et d’apporter une dose d’organisation au projet.</p>
+		</div>
+	</div>
+</div>
 
-<p style="font-size:18px; text-align:center;">
-Vous êtes freelance et vous vous sentez isolé dans votre travail ? Vous êtes télétravailleur et vous avez du mal à vous motiver à travailler à la maison ? Vous êtes un nomade digital et vous cherchez un espace de travail dans la prochaine ville que vous traverserez ?
-<br><br>
-<strong>Alors rejoignez la communauté Becowo !</strong>
-<br><br>
-Becowo est une plate-forme web qui sélectionne pour vous des espaces de travail de qualité en fonction de vos besoins.  Ces espaces se situent aux quatre coins du monde, ce qui vous permet d’être libre dans votre mobilité.
-<br><br>
-<strong>Becowo, enfin une bonne raison d’aller au travail !</strong>
-</p>
-<br>
-<hr>
-<div class="row">
-	<div class="col-lg-4">
-		<center><img src="{{ asset('images/icons/volonte.png') }}" alt="Notre Volonté"></center>
-		<h2>NOTRE VOLONTE</h2>
-		<p>Vous permettre d’associer « connectivité » avec « sociabilité ». Avec Becowo, vous intégrez une communauté de coworkers où le travail et l’entraide sont des valeurs importantes.</p>
-	</div>
-	<div class="col-lg-4">
-		<center><img src="{{ asset('images/icons/engagement.png') }}" alt="Notre Engagement"></center>
-		<h2>NOTRE ENGAGEMENT</h2>
-		<p>Faire du monde votre bureau. 
-		Sans contrainte, nous vous donnons les moyens de travailler à un pas de chez vous ou à deux pas de votre client à New York.</p>
-	</div>
-	<div class="col-lg-4">
-		<center><img src="{{ asset('images/icons/priorite.png') }}" alt="Notre Priorité"></center>
-		<h2>NOTRE PRIORITE</h2>
-		<p>Vous proposer des espaces de travail de qualité qui vous correspondent. Car nous considérons que travailler dans un espace de travail qui valorise votre potentiel humain et votre créativité ne doit pas être un luxe.</p>
-	</div>
-</div>
-<br>
-<div class="row">
-	<h1>Notre BecoTeam</h1>
-	<div class="col-lg-6">
-		<center><img src="{{ asset('images/fiona.png') }}" alt="Fiona Delannoy" height="80px"></center>
-		<h2>FIONA DELANNOY</h2>
-		<center><strong>CEO / Founder</strong></center>
-		<p>Après avoir constaté qu’un CDI ne lui permettait pas d’assouvir sa créativité et son besoin de liberté, Fiona s’est découverte une véritable vocation pour l’entrepreneuriat. Chez Becowo, elle indique les orientations à suivre afin d’assurer la vision du projet sur le long terme. En charge de la partie business et communication, Fiona apporte une dose de créativité au projet.</p>
-	</div>
-	<div class="col-lg-6">
-		<center><img src="{{ asset('images/olivia.png') }}" alt="Olivia de Charette" height="80px"></center>
-		<h2>OLIVIA DE CHARETTE</h2>
-		<center><strong>CTO / Co-founder</strong></center>
-		<p>Passionnée d’informatique, Olivia est toujours à la recherche de nouveaux challenges et considère son travail comme une passion et une manière de s’accomplir. Après des expériences riches en gestion de projet et management d’équipes, elle souhaite désormais entreprendre et créer de la valeur. Son rôle chez Becowo est de développer un site web attractif et d’apporter une dose d’organisation au projet.</p>
-	</div>
-</div>
-</div>
-<br><br>
 {% endblock %}
