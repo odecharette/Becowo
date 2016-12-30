@@ -369,10 +369,19 @@ footer{
   left: 75%;
   z-index: 2;
 }
+#FAQ .cat-1, #FAQ .cat-3, #FAQ .cat-1  .faqHeader h2, #FAQ .cat-3  .faqHeader h2{
+  background-color: var(--my-blue);
+  color: white;
+}
+#FAQ .cat-2{
+  background-color: rgba(32, 56, 94,0.2);
+}
 #FAQ .faqHeader h2{
   text-align: left;
+  color: var(--my-blue);
 }
 #FAQ .panel{
+  background-color: transparent;
   box-shadow: none;
 }
 #FAQ .panel-heading{
@@ -388,6 +397,15 @@ footer{
   margin-right: 15px;
   float: left;
 }
+#FAQ .cat-1 .panel-heading [data-toggle="collapse"]:after, #FAQ .cat-3 .panel-heading [data-toggle="collapse"]:after {
+  color: white ;
+}
+#FAQ .cat-1 .panel-heading [data-toggle="collapse"].collapsed:after, #FAQ .cat-3 .panel-heading [data-toggle="collapse"].collapsed:after {
+  color: white ;
+}
+#FAQ .cat-1 .panel, #FAQ .cat-3 .panel{
+  background-color: transparent;
+}
 
 #FAQ .panel-heading [data-toggle="collapse"].collapsed:after {
   font-family: FontAwesome;
@@ -399,6 +417,9 @@ footer{
 }
 #FAQ .panel-default>.panel-heading+.panel-collapse>.panel-body, #FAQ .panel{
   border: none;
+}
+#FAQ .cat-1 .panel-title, #FAQ .cat-3 .panel-title{
+  color: white;
 }
 #FAQ .panel-title{
   color: var(--my-blue);
@@ -412,12 +433,15 @@ footer{
   font-family: "aniversregular", Helvetica, Arial, sans-serif;
   text-align: justify;
   font-size: 12pt;
-  color: var(--my-grey);
 }
 #FAQ .panel-group{
-  padding: 10px 10px 20px 10px;
-  box-shadow: 5px 5px 5px 0px var(--my-blue);
-  border-radius: 5px;
+  margin-left: 20px;
+}
+#FAQ .cat-1 .panel-body, #FAQ .cat-3 .panel-body{
+  color: white;
+}
+#FAQ .cat-2 .panel-body{
+  color: var(--my-blue);
 }
 /********************************** Bouton de retour haut de page *************************************/
 #top-link-block i{
