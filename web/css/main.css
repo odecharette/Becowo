@@ -345,27 +345,10 @@ footer{
   border-radius: 0;
 }
 #FAQ-bulle{
-  width: 350px;
-  border: solid 3px var(--my-blue);
-  padding: 15px;
-  border-radius: 5%;
-  height: 200px;
   top: 100px;
   position: absolute;
-  left: 68%;
+  left: 75%;
   z-index: 2;
-}
-#FAQ-bulle span{
-  text-align: center;
-  font-size: 14pt;
-  color: var(--my-blue);
-  font-family: "aniversregular", Helvetica, Arial, sans-serif;
-}
-#FAQ-bulle p{
-  font-family: "aniversregular", Helvetica, Arial, sans-serif;
-  color: var(--my-grey);
-  font-size: 14pt;
-  text-align: justify;
 }
 #FAQ .faqHeader h2{
   text-align: left;
@@ -381,9 +364,9 @@ footer{
   content: "\f0d8"; /* caret up */
   float: right;
   color: var(--my-blue);
-  font-size: 26pt;
+  font-size: 20pt;
   line-height: 22px;
-  margin-right: 20px;
+  margin-right: 15px;
   float: left;
 }
 
@@ -391,8 +374,8 @@ footer{
   font-family: FontAwesome;
   content: "\f0d7"; /* caret down */
   color: var(--my-blue);
-  font-size: 26pt;
-  margin-right: 20px;
+  font-size: 20pt;
+  margin-right: 15px;
   float: left;
 }
 #FAQ .panel-default>.panel-heading+.panel-collapse>.panel-body, #FAQ .panel{
@@ -401,13 +384,21 @@ footer{
 #FAQ .panel-title{
   color: var(--my-blue);
   text-align: left;
-  font-size: 14pt;
+  font-size: 12pt;
+}
+#FAQ .panel-title a:hover{
+  text-decoration: none;
 }
 #FAQ .panel-body{
   font-family: "aniversregular", Helvetica, Arial, sans-serif;
   text-align: justify;
   font-size: 12pt;
   color: var(--my-grey);
+}
+#FAQ .panel-group{
+  padding: 10px 10px 20px 10px;
+  box-shadow: 5px 5px 5px 0px var(--my-blue);
+  border-radius: 5px;
 }
 /********************************** Bouton de retour haut de page *************************************/
 #top-link-block i{

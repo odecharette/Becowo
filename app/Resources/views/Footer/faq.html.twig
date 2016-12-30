@@ -10,15 +10,13 @@
 <h1>Foire Aux Questions</h1>
 {# TO DO , voir en BDD les questions qui ont un TO DO à compléter #}
 <div id="FAQ-bulle">
-<span>Votre question n’est pas dans la FAQ ?</span>	
-<br><br>
-<p>Envoyez-nous un mail à <strong>contact@becowo.com</strong> pour nous poser directement votre question et nous vous répondrons dans les meilleurs délais.</p>
+	<img src="{{ asset('images/icons/faq.png') }}" alt="FAQ">
 </div>
 
 <br>
 <div class="container" id="FAQ">
 	<div class="row">
-		<div class="col-lg-10">
+		<div class="col-lg-9">
     {% for cat in faqCategory %}
     	<br>
 	    <div class="panel-group" id="accordion">
@@ -42,6 +40,9 @@
 		</div>
 	</div>
 </div>
+
+{% include 'CommonViews/bandeauQuestion.html.twig' %} 
+
 {% endblock %}
 
 {% block javascripts %}
