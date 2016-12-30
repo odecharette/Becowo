@@ -186,22 +186,25 @@ function loadPrice(duree){
 
 function transformSliderValuesIntoHourMinute(valeurs)
 {
-    var hours1 = Math.floor(valeurs[0] / 60);
-    var minutes1 = valeurs[0] - (hours1 * 60);
 
-    if (hours1 < 10) hours1 = '0' + hours1;
-    if (minutes1.length == 1) minutes1 = '0' + minutes1;
-    if (minutes1 == 0) minutes1 = '00';
+	if(String(valeurs[0]).indexOf(':') == -1){
+	    var hours1 = Math.floor(valeurs[0] / 60);
+	    var minutes1 = valeurs[0] - (hours1 * 60);
 
-    var hours2 = Math.floor(valeurs[1] / 60);
-    var minutes2 = valeurs[1] - (hours2 * 60);
+	    if (hours1 < 10) hours1 = '0' + hours1;
+	    if (minutes1.length == 1) minutes1 = '0' + minutes1;
+	    if (minutes1 == 0) minutes1 = '00';
 
-    if (hours2 < 10) hours2 = '0' + hours2;
-    if (minutes2.length == 1) minutes2 = '0' + minutes2;
-    if (minutes2 == 0) minutes2 = '00';
+	    var hours2 = Math.floor(valeurs[1] / 60);
+	    var minutes2 = valeurs[1] - (hours2 * 60);
 
-    valeurs[0] = hours1 + ':' + minutes1;
-    valeurs[1] = hours2 + ':' + minutes2;
+	    if (hours2 < 10) hours2 = '0' + hours2;
+	    if (minutes2.length == 1) minutes2 = '0' + minutes2;
+	    if (minutes2 == 0) minutes2 = '00';
+
+	    valeurs[0] = hours1 + ':' + minutes1;
+	    valeurs[1] = hours2 + ':' + minutes2;
+	}
     return valeurs;
 }
 
