@@ -8,6 +8,7 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
+{{ app.session.set('previousPage', app.request.headers.get('referer')) }}
 
 <div class="container-fluid" id="PublicProfile">  
 
