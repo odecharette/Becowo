@@ -5,7 +5,7 @@
 {% block fos_user_content %}
 
 {# On save en session soit l'URL d'ou vient le user soit la homepage pour le redériger correctement après login #}
-{% if app.request.headers.get('referer') == '' %}
+{% if app.request.headers.get('referer') == '' or 'login' in app.request.headers.get('referer') or 'register' in app.request.headers.get('referer') %}
 	{{ app.session.set('previousURL', path('becowo_core_homepage')) }}
 {% else %}
 	{{ app.session.set('previousURL', app.request.headers.get('referer')) }}
