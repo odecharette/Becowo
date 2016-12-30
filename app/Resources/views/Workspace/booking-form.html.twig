@@ -20,14 +20,15 @@
 		<div class="row">
 			<div class="col-lg-6 col-lg-offset-2 panelForm">
 				{# EMAIL non renseigné #}
-				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.email == "" %}
-					<div id="email-error">
-						<div class="alert alert-danger alert-dismissable fade in">
-						  <h4><i class="icon icon-times-circle icon-lg"></i> Aucun email renseigné</h4>
-						  <p>ATTENTION, vous devez renseigner votre email dans <a href="{{ path('fos_user_profile_edit') }}">votre profil</a>, afin de valider la réservation.</p>
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					{% if app.user.email == "" or app.user.name == "" or app.user.street == "" or app.user.postCode == "" or app.user.city == "" %}
+						<div id="email-error">
+							<div class="alert alert-danger alert-dismissable fade in">
+							  <h4>Profil incomplet</h4>
+							  <p>ATTENTION, afin de poursuivre votre réservation, vous devez <a href="{{ path('fos_user_profile_edit') }}">compléter votre profil</a> avec vos informations de facturation (Nom, adresse, email).</p>
+							</div>
 						</div>
-						
-					</div>
+					{% endif %}
 				{% endif %}
 
 				

@@ -37,6 +37,11 @@ if(document.querySelector('input[id="booking-calendar"]').value != ''){
 	document.getElementById('booking_confirmer').disabled = true;
 }
 
+// Si profil incomplet on bloque le bouton de confirmation
+if(document.getElementById('email-error') != null){
+	document.getElementById('booking_confirmer').disabled = true;
+}
+
 
 });
 

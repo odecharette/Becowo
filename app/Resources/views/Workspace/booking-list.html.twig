@@ -23,7 +23,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 						    background-repeat: no-repeat;">
 			        		</div>
 		        		{% else %}
-		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+		        			<img src="{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 		        		{% endif %}
 		    		</div>
 		    		<div class="col-lg-6">
@@ -64,7 +64,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 			    				data-wsName="{{ws.name}}"
 			    				data-tva="{{tva}}"
 			    				>Réserver</button> #}
-			    				<button type="button" id="btnResa"><a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}" target="_blank">Réserver</a></button>
+			    				<button type="button" id="btnResa"><a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}">Réserver</a></button>
 			    			{% else %}
 			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect">Réserver</button>
 			    					<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

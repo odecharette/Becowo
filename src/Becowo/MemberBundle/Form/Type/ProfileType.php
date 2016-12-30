@@ -35,7 +35,7 @@ class ProfileType extends AbstractType
         		'required' => false,
                 'label' => false))
     	    ->add('birthDate', BirthdayType::class, array('widget' => 'choice','required' => false, 'label' => false))
-            ->add('email', EmailType::class, array('attr' => array('placeholder' => 'Email'),'required' => true, 'label' => false))
+            ->add('email', EmailType::class, array('attr' => array('placeholder' => 'Email'),'required' => false, 'label' => false))
     	    ->add('phone', TextType::class, array('attr' => array('placeholder' => 'Téléphone'),'required' => false, 'label' => false))
     	    ->add('street', TextType::class, array('attr' => array('placeholder' => 'Adresse'),'required' => false, 'label' => false))
     	    ->add('postcode', TextType::class, array('attr' => array('placeholder' => 'Code Postal'),'required' => false, 'label' => false))

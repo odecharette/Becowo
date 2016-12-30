@@ -75,7 +75,6 @@
           <i class="fa fa-smile-o" aria-hidden="true"></i>{{ form_row(form.name) }}
           <i class="fa fa-building-o" aria-hidden="true"></i>{{ form_row(form.society) }} <br>
           <i class="fa fa-briefcase" aria-hidden="true"></i>{{ form_row(form.job) }} <br>
-          <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.city) }}  <br>
           <i class="fa fa-external-link" aria-hidden="true"></i>{{ form_row(form.website) }}   <br>
         </div>
     </div>
@@ -117,9 +116,9 @@
       </div>
       <div class="identity">
         <h2>Informations privées</h2>
-          <i class="fa fa-home" aria-hidden="true"></i>{{ form_widget(form.street) }}  <br>
-          {{ form_errors(form.street) }} <br>
+          <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.street) }}  <br>
           <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.postcode) }} <br>
+          <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.city) }} <br>
           <i class="fa fa-venus-mars" aria-hidden="true"></i>{{ form_row(form.sex) }} <br>
           <i class="fa fa-birthday-cake" aria-hidden="true"></i>{{ form_row(form.birthDate) }} <br>
           <i class="fa fa-at" aria-hidden="true"></i>{{ form_row(form.email) }} <br>

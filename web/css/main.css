@@ -2258,7 +2258,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-radius: 5px;
   border: none;
   padding-top: 10px;
-  height: 450px;
+  height: 500px;
 }
 #bookingPage .panelForm, #paiementPage .panelForm{
   margin-right: 30px;
