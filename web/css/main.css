@@ -646,9 +646,8 @@ footer{
   position: absolute;
   top: 5%;
   left: 0%;
-  width: 20%;
   font-size: large;
-  padding-left: 10px;
+  padding: 0 10px;
   font-weight: bold;
   line-height: 40px;
 }

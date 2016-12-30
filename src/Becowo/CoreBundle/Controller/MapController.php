@@ -38,6 +38,7 @@ class MapController extends Controller
       $itemNode->addAttribute( 'listed', "true" ); // Pour que seuls les espaces soient affichés dans la liste
       $itemNode->addAttribute( 'featured', "true" );
       $itemNode->addAttribute( 'region', utf8_encode($workspaces->getRegion()) );
+      $itemNode->addAttribute( 'lowestPrice', $WsService->getLowestPriceByWorkspace($workspaces) );
 
       $amenities = $workspaces->getAmenities();
       $listeAmenities = "";

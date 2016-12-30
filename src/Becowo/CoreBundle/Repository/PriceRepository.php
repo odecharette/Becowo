@@ -27,4 +27,5 @@ class PriceRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
 }
