@@ -1,0 +1,20 @@
+<p>Bonjour {{member.firstName}} {{member.name}}, <br>
+<br>
+Bienvenue chez Becowo ! <br>
+<br>
+Vous êtes inscrit depuis peu et nous vous en remercions ! <br>
+<br>
+Avez-vous trouvé votre bureau idéal ? Si ce n'est pas encore le cas, n'hésitez pas à nous contacter en répondant directement à cet email et nous ferons de notre mieux pour vous aider. <br>
+<br><br>
+<h1>La communauté Becowo</h1>
+Afin d'intégrer notre communauté et de pouvoir partager avec les autres coworkers, nous vous invitons à <a href="{{ absolute_url(path('fos_user_profile_edit')) }}">remplir votre page profil </a>. <br>
+Ainsi les autres membres sauront qui vous êtes et ce que vous cherchez. <br>
+A votre tour, <a href="{{ absolute_url(path('becowo_core_community')) }}">parcourez la communauté </a> et identifiez des profils avec qui communiquer. <br>
+Bientôt, vous pourrez facilement interragir, postes des annonces, demander de l'aide, et même trouver un client ! <br>
+<br><br>
+En attendant, nous vous souhaitons une belle aventure avec Becowo
+<br>
+L'équipe Becowo
+<br><br>
+{% include 'CommonViews/RS/all_RS_small.html.twig' %}	
+</p>

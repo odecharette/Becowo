@@ -32,8 +32,6 @@ class MemberRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-
-
 	public function getAgeByRangeFromMembers()
 	{
 		$rsm = new ResultSetMapping();
@@ -83,4 +81,14 @@ class MemberRepository extends EntityRepository
 		return $this->getEntityManager()->createNativeQuery($sql, $rsm)->getScalarResult();
 	}
 	
+	public function findMembersHasNotReceivedMailNewUser()
+	{
+		$qb = $this->createQueryBuilder('m');
+		$qb->select('m')
+			->where('m.enabled = true')
+			->andWhere('m.isDeleted = false')
+			->andWhere('m.hasReceivedEmailNewUser = false');
+
+		return $qb->getQuery()->getResult();
+	}
 }

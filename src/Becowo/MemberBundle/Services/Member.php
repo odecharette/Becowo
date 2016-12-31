@@ -41,4 +41,10 @@ class Member
         $repo = $this->em->getRepository('BecowoMemberBundle:Member');
         return $repo->findAllActiveMembersWithWsBooked();
     }
+
+    public function getMembersHasNotReceivedMailNewUser()
+    {
+        $repo = $this->em->getRepository('BecowoMemberBundle:Member');
+        return $repo->findMembersHasNotReceivedMailNewUser();
+    }
 }

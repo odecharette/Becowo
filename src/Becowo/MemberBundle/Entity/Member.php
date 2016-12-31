@@ -288,6 +288,14 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      */
     private $fillRate;
 
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="has_received_email_new_user", type="boolean", nullable=false)
+     */
+    private $hasReceivedEmailNewUser = '0';
+
     /**
      * Constructor
      */
@@ -1172,5 +1180,29 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
 
 
         $this->setFillRate(round($totalFilled / $totalInfo * 100, 0));
+    }
+
+    /**
+     * Gets the value of hasReceivedEmailNewUser.
+     *
+     * @return boolean
+     */
+    public function getHasReceivedEmailNewUser()
+    {
+        return $this->hasReceivedEmailNewUser;
+    }
+
+    /**
+     * Sets the value of hasReceivedEmailNewUser.
+     *
+     * @param boolean $hasReceivedEmailNewUser the has received email new user
+     *
+     * @return self
+     */
+    public function setHasReceivedEmailNewUser($hasReceivedEmailNewUser)
+    {
+        $this->hasReceivedEmailNewUser = $hasReceivedEmailNewUser;
+
+        return $this;
     }
 }
