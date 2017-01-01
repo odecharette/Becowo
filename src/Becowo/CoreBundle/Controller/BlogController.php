@@ -10,7 +10,12 @@ class BlogController extends Controller
   {
     $urlBlogRSS = $this->container->getParameter('blogRSS');
 
-    $content = file_get_contents($urlBlogRSS);
+    try {
+      $content = file_get_contents($urlBlogRSS);
+    } catch (Exception $e) {
+      return $this->render('Home/blog.html.twig', array('articles' => ""));
+    }
+    
     $node = new \SimpleXmlElement($content);
      
     $articles = array();

@@ -24,11 +24,11 @@ class WorkspaceRepository extends EntityRepository
 	{
 		$qb = $this->createQueryBuilder('w')
 					->select('w')
-					->from('BecowoCoreBundle:Vote', 'v')
-					->leftJoin('v.workspace', 'score')
-					->andWhere('v.workspace = w.id')
+					->from('BecowoCoreBundle:Comment', 'c')
+					->leftJoin('c.workspace', 'score')
+					->andWhere('c.workspace = w.id')
 					->groupBy('w.name')
-					->orderBy('v.scoreAvg', 'DESC');
+					->orderBy('c.scoreAvg', 'DESC');
 			$this->whereIsActive($qb);
 
 		return $qb->getQuery()->getResult();

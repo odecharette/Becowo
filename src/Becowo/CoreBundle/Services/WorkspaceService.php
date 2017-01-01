@@ -176,31 +176,27 @@ class WorkspaceService
 
     public function getAverageVoteByWorkspace(Workspace $ws)
     {
-        $repo = $this->em->getRepository('BecowoCoreBundle:Vote');
+        $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
         return $repo->getAverage($ws);
     }
 
     public function getVotesByWorkspace(Workspace $ws)
     {
-        $repo = $this->em->getRepository('BecowoCoreBundle:Vote');
+        $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
         return $repo->getVotesByWorkspace($ws);
     }
 
     public function memberAlreadyVoteAndCommentForWorkspace(Workspace $ws, $member)
     {
-        $repo = $this->em->getRepository('BecowoCoreBundle:Vote');
-        $vote = $repo->getMemberVoteForWorkspace($ws, $member);
-
         $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
         $comment = $repo->getMemberCommentForWorkspace($ws, $member);
-
-        if(empty($vote) && empty($Comment))
+        if(sizeof($comment)>0)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
         
     }

@@ -7,24 +7,9 @@ use Doctrine\ORM\Query\ResultSetMapping;
 
 class VoteRepository extends EntityRepository
 {
-	public function getAverage($ws)
-	{
-		$qb = $this->createQueryBuilder('v');
-		$qb->select('AVG(v.scoreAvg) AS Average')
-			->where('v.workspace = :ws')
-			->setParameter('ws', $ws);
+	
 
-		return $qb->getQuery()->getSingleScalarResult();
-	}
-
-	public function getVotesByWorkspace($ws)
-	{
-		$qb = $this->createQueryBuilder('v');
-		$qb->where('v.workspace = :ws')
-			->setParameter('ws', $ws);
-
-		return $qb->getQuery()->getResult();
-	}
+	
 
 	public function getMemberVoteForWorkspace($ws, $member)
 	{

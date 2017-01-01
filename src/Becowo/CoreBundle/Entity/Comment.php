@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="becowo_comment", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_member_id_idx", columns={"member_id"}), @ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\CommentRepository")
+ *
+  * @ORM\HasLifecycleCallbacks() 
  */
 class Comment
 {
@@ -27,6 +29,41 @@ class Comment
      * @ORM\Column(name="post", type="text", nullable=true)
      */
     private $post;
+
+/**
+     * @var integer
+     *
+     * @ORM\Column(name="score1", type="integer", nullable=false)
+     */
+    private $score1 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="score2", type="integer", nullable=false)
+     */
+    private $score2 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="score3", type="integer", nullable=false)
+     */
+    private $score3 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="score4", type="integer", nullable=false)
+     */
+    private $score4 = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="score_avg", type="decimal", precision=4, scale=2)
+     */
+    private $scoreAvg;
 
     /**
      * @var \DateTime
@@ -170,4 +207,137 @@ class Comment
     {
         return $this->member;
     }
+
+     /**
+     * Set score1
+     *
+     * @param integer $score1
+     *
+     * @return Vote
+     */
+    public function setScore1($score1)
+    {
+        $this->score1 = $score1;
+
+        return $this;
+    }
+
+    /**
+     * Get score1
+     *
+     * @return integer
+     */
+    public function getScore1()
+    {
+        return $this->score1;
+    }
+
+    /**
+     * Set score2
+     *
+     * @param integer $score2
+     *
+     * @return Vote
+     */
+    public function setScore2($score2)
+    {
+        $this->score2 = $score2;
+
+        return $this;
+    }
+
+    /**
+     * Get score2
+     *
+     * @return integer
+     */
+    public function getScore2()
+    {
+        return $this->score2;
+    }
+
+    /**
+     * Set score3
+     *
+     * @param integer $score3
+     *
+     * @return Vote
+     */
+    public function setScore3($score3)
+    {
+        $this->score3 = $score3;
+
+        return $this;
+    }
+
+    /**
+     * Get score3
+     *
+     * @return integer
+     */
+    public function getScore3()
+    {
+        return $this->score3;
+    }
+
+    /**
+     * Set score4
+     *
+     * @param integer $score4
+     *
+     * @return Vote
+     */
+    public function setScore4($score4)
+    {
+        $this->score4 = $score4;
+
+        return $this;
+    }
+
+    /**
+     * Get score4
+     *
+     * @return integer
+     */
+    public function getScore4()
+    {
+        return $this->score4;
+    }
+
+    /**
+     * Set scoreAvg
+     *
+     * @param string $scoreAvg
+     *
+     * @return Vote
+     */
+    public function setScoreAvg($scoreAvg)
+    {
+        $this->scoreAvg = $scoreAvg;
+
+        return $this;
+    }
+
+    /**
+     * Get scoreAvg
+     *
+     * @return string
+     */
+    public function getScoreAvg()
+    {
+        return $this->scoreAvg;
+    }
+
+
+    /** 
+     * Set Average 
+     * 
+     * @ORM\PrePersist 
+     */  
+    public function setAverage()  
+    {  
+        $this->scoreAvg = ($this->score1 + $this->score2 + $this->score3 + $this->score4) / 4;  
+    }  
+
+
 }

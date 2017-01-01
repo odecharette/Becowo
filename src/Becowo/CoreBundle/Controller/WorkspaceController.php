@@ -43,7 +43,8 @@ class WorkspaceController extends Controller
   public function contactAction($name, Request $request)
   {
     $contact = new Contact();
-    $managerContactForm = $this->createForm(ManagerContactType::class, $contact);
+    // $managerContactForm = $this->createForm(ManagerContactType::class, $contact);
+    $managerContactForm = $this->get('form.factory')->createNamedBuilder('manager_contact', ManagerContactType::class, $contact)->getForm();
 
     $WsService = $this->get('app.workspace');
     $ws = $WsService->getWorkspaceByName($name);

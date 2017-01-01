@@ -15,14 +15,16 @@ class CommentController extends Controller
     $WsService = $this->get('app.workspace');
     $ws = $WsService->getWorkspaceByName($request->get('name'));
     $listComments = $WsService->getCommentsByWorkspace($ws);
-    $votes = $WsService->getVotesByWorkspace($ws);
     $voteAlreadyDone = $WsService->memberAlreadyVoteAndCommentForWorkspace($ws, $this->getUser());
 
     // Création du formulaire de commentaires
     $comment = new Comment($ws, $this->getUser());
-    $form = $this->get('form.factory')->create(CommentType::class, $comment);
+    // Important : il faut utiliser createNamedBuilder si plusieurs form dans la meme page !!!!
+    $formComment = $this->get('form.factory')->createNamedBuilder('comment', CommentType::class, $comment)->getForm();
 
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+    if ($request->isMethod('POST') && $formComment->handleRequest($request)->isValid() && $request->request->has('comment'))
+    { 
       $em = $this->getDoctrine()->getManager();
       $em->persist($comment);
       $em->flush();
@@ -32,6 +34,6 @@ class CommentController extends Controller
       return $this->redirectToRoute('becowo_comment', array('name' => $request->get('name')));
     }
 
-    return $this->render('Workspace/comments.html.twig', array('form' => $form->createView(), 'listComments' => $listComments, 'ws' =>$ws, 'votes' =>$votes, 'voteAlreadyDone' => $voteAlreadyDone));
+    return $this->render('Workspace/comments.html.twig', array('formComment' => $formComment->createView(), 'listComments' => $listComments, 'ws' =>$ws, 'voteAlreadyDone' => $voteAlreadyDone));
   }
 }
