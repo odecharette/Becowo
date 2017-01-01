@@ -1498,38 +1498,17 @@ color: var(--my-blue) !important;
 }
 
 
-#CommentResults{
-  border: 1px solid var(--my-green);
-  margin-left: 20px;
-  margin-right: 20px;
-  padding-left: 20px;
-  color: var(--my-grey);
-  margin-bottom: 10px;
-}
-#CommentResults h2{
-  color: var(--my-green);
-}
-#CommentResults hr{
-  width: 70%;
-  border-top: solid 1px #ffa500;
-}
 #CommentResults p{
   font-size: 12pt;
   text-align: justify;
   padding-right: 50px;
 }
-#CommentResults img{
-  width: 70px;
-  height: 70px;
-}
+
 #CommentResults span{
   font-weight: bold;
   display: flex;
 }
-#CommentResults .memberPic{
-  display: block;
-  margin-top: 10px;
-}
+
 #CommentResults .rating{
   margin-top: -10px;
 }
@@ -1553,42 +1532,27 @@ color: var(--my-blue) !important;
   background: #00a199;
   text-decoration: none;
 }
-#comment label{
-  display: none;
-}
 #comment textarea{
   margin-top: 10px;
 }
-#comment-form #comment{
-  width: 80%;
-}
-#CommentResults button{
-  margin-left: -90%;
-  background-color: var(--my-green-opacity-4);
-  border: none;
-  color: white;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  text-transform: uppercase;
-  height: 120px; 
-}
-#CommentResults button:hover{
-  text-decoration: none;
+#comment_Envoyer{
   background-color: var(--my-green);
+  color: white;
+  border: none;
+  line-height: 50px;
+  margin-top: 10px;
+  width: 100px;
+  float: left;
+  border-radius: 4px;
+  font-size: 13pt;
+  margin-left: -10px;
 }
+
 #listComments{
   padding-top: 20px;
   margin-top: 20px;
-  /* scrollbar désactivée
-  height: 300px;
-  overflow-y: auto;
-  overflow-x: hidden;*/
 }
-#listComments img{
-  width: 70px;
-  margin-left: 15px;
-}
+
 #listComments h4{
   text-align: left;
 }
@@ -1597,6 +1561,10 @@ color: var(--my-blue) !important;
 }
 #listComments .rating{
   float: left;
+  margin-top: -5px;
+}
+#listComments .star-empty, #listComments .star-full{
+  font-size: 15pt;
 }
 #listComments .speech-bubble {
   position:relative;
