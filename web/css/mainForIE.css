@@ -34,7 +34,7 @@
   --my-pink-opacity-4: rgba(241, 95, 104, 0.4);
   --my-yellow: rgb(252, 231, 99); 
   --my-yellow-opacity: rgba(252, 231, 99, 0.5);*/
-  /* to use it : color: var(--my-red); */
+  /* to use it : color: rgb(231, 46, 70); */
 }
 html {
   position: relative;
@@ -89,8 +89,8 @@ header.header .navbar-default .navbar-nav>li>a, header .normal-ul a {
 header .navbar-default .navbar-nav>li.active>a,
 header #login a:hover {
     background-color: #e9e9e9;
-    color: var(--my-blue);
-    border-bottom: solid 3px var(--my-blue);
+    color: rgb(32, 56, 94);
+    border-bottom: solid 3px rgb(32, 56, 94);
     outline: none;
 }
 .noActive a{
@@ -109,34 +109,34 @@ header .navbar-scroll-custom {
 
 header #login a {
     color: white;
-    background-color: var(--my-blue);
+    background-color: rgb(32, 56, 94);
 }
 header .login-menu{
   color: white !important;
-  background-color: var(--my-blue) !important;
+  background-color: rgb(32, 56, 94) !important;
 }
 h1{
-  color: var(--my-red);
+  color: rgb(231, 46, 70);
   text-align: center;
 }
 h2{
-  color: var(--my-red);
+  color: rgb(231, 46, 70);
   text-align: center;
   font-weight: 700;
   font-size: 22px;
 }
 h4{
-  color: var(--my-red);
+  color: rgb(231, 46, 70);
   font-weight: 700;
   text-align: center;
 }
 p{
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
   text-align: justify;
 }
 .close{
   background-color: transparent !important;
-  color: var(--my-black) !important;
+  color: rgb(36, 38, 46) !important;
   opacity: 1 !important;
   width: 20px !important;
   margin: 0 !important;
@@ -146,7 +146,7 @@ p{
   margin-bottom: 30px;
 }
 #separateur{
-  border-left: solid var(--my-blue) 3px;
+  border-left: solid rgb(32, 56, 94) 3px;
   height: 230px;
   width: 3px;
   margin-left: 50px;
@@ -186,10 +186,10 @@ p{
 }
 
 #aPropos h4{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #aPropos a{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   padding: 15px;
   font-size: 14pt;
@@ -201,7 +201,7 @@ p{
   text-decoration: none;
 }
 #comment mark, #commentEspace mark{
-  color: var(--my-green);
+  color: rgb(0, 161, 154);
   font-weight: bold;
   background-color: transparent;
 }
@@ -209,19 +209,19 @@ p{
   font-size: 13pt;
 }
 #comment .bande, #commentEspace .bande{
-  background-color: var(--my-grey-light);
+  background-color: rgb(233, 233, 233);
   margin: 30px 0 30px 0;
   padding: 20px 0 20px 0;
 }
 #comment i, #commentEspace i{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   margin-bottom: 10px;
 }
 #comment .bande div, #commentEspace .bande div{
   margin-right: 40px;
 }
 #comment .rejoindre{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   font-size: 18pt;
   height: 100px;
@@ -233,7 +233,7 @@ p{
 }
 
 #comment .rejoindre #inscription{
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   border : none;
   font-size: 20pt;
   line-height: 2em;
@@ -250,7 +250,7 @@ p{
 }
 
 #commentEspace #declare{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
 }
 #commentEspace #declare p, #commentEspace #declare h1{
   color: white !important;
@@ -259,7 +259,7 @@ p{
   background-color: #e7e7e7;
 }
 #actu a{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   font-weight: bold;
   font-size: 12pt;
 }
@@ -275,7 +275,7 @@ p{
 
 footer, footer a{
   padding-left: 20px;
-  background: var(--my-blue);
+  background: rgb(32, 56, 94);
   color: white;
   line-height: 2; 
   outline: none;
@@ -314,7 +314,7 @@ footer{
 #contact-form .labels{
   text-align: right;
   margin: 10px 0 0 0px;
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
   display: table-cell;
   vertical-align: middle;
   line-height: 35px;
@@ -326,7 +326,7 @@ footer{
 }
 #contact-form textarea{
   margin: 10px 0 0 0px;
-  border: 1px solid var(--my-grey);
+  border: 1px solid rgb(140, 142, 144);
 }
 #contact-form #logo{
   margin-top: 10px;
@@ -336,7 +336,7 @@ footer{
   height: 230px;
 }
 #contact-form button{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   border: none;
   font-size: 14pt;
@@ -353,17 +353,17 @@ footer{
   margin-top: 90px;
 }
 #page-simple h1{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   margin-bottom: 26px;
   text-align: center;
 }
 #page-simple h2{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   margin-bottom: 20px;
 }
 #page-simple p{
   text-align: justify !important;
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
 }
 
 .navbar{
@@ -377,7 +377,7 @@ footer{
   z-index: 2;
 }
 #FAQ .cat-1, #FAQ .cat-3, #FAQ .cat-1  .faqHeader h2, #FAQ .cat-3  .faqHeader h2{
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   color: white;
 }
 #FAQ .cat-2{
@@ -385,7 +385,7 @@ footer{
 }
 #FAQ .faqHeader h2{
   text-align: left;
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #FAQ .panel{
   background-color: transparent;
@@ -398,7 +398,7 @@ footer{
   font-family: FontAwesome;
   content: "\f0d8"; /* caret up */
   float: right;
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   font-size: 20pt;
   line-height: 22px;
   margin-right: 15px;
@@ -417,7 +417,7 @@ footer{
 #FAQ .panel-heading [data-toggle="collapse"].collapsed:after {
   font-family: FontAwesome;
   content: "\f0d7"; /* caret down */
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   font-size: 20pt;
   margin-right: 15px;
   float: left;
@@ -429,7 +429,7 @@ footer{
   color: white;
 }
 #FAQ .panel-title{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   text-align: left;
   font-size: 12pt;
 }
@@ -448,7 +448,7 @@ footer{
   color: white;
 }
 #FAQ .cat-2 .panel-body{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 /********************************** Bouton de retour haut de page *************************************/
 #top-link-block i{
@@ -492,7 +492,7 @@ footer{
     position: absolute;
     top: 80%;
     color: white;
-    background-color: var(--my-green);
+    background-color: rgb(0, 161, 154);
     padding: 5px 13px 5px 13px;
     border-radius: 50%;
     left: 48%;
@@ -515,16 +515,16 @@ footer{
   margin-top: 0px;
   margin-bottom: 5px;
   font-size: 12pt;
-  color: var(--my-green);
+  color: rgb(0, 161, 154);
 }
 #legende{
   position: absolute;
   top: 97%;
   font-size: 12pt;
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
 }
 #legende i{
-  color: var(--my-orange);
+  color: rgb(244, 147, 2);
 }
 #bh-sl-map-container{
   margin-top: 20px;
@@ -541,8 +541,8 @@ footer{
   column-width: 50%;*/ 
 }
 .bh-sl-container .bh-sl-loc-list .list-focus{
-  box-shadow: 0 0 20px var(--my-blue) !important;
-  border: 1px solid var(--my-blue) !important;
+  box-shadow: 0 0 20px rgb(32, 56, 94) !important;
+  border: 1px solid rgb(32, 56, 94) !important;
 }
 #bh-sl-user-location{
   display: inline-flex;
@@ -552,7 +552,7 @@ footer{
   margin-left: 5px;
 }
 #region-filters-container{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   background-color: white;
   width: 359px;
   margin-right: 0;
@@ -560,7 +560,7 @@ footer{
   border-right: none;
 }
 #region-filters-container label{
-  border-right: solid 1px var(--my-blue);
+  border-right: solid 1px rgb(32, 56, 94);
   height: 33px;
 }
 #region-filters-container input{
@@ -568,9 +568,9 @@ footer{
 }
 #findMe{
   width: 50px;
-  border: solid 1px var(--my-blue);
+  border: solid 1px rgb(32, 56, 94);
   background-color: white;
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   height: 33px;
   margin-top: 15px;
 }
@@ -632,13 +632,13 @@ footer{
   border:none;
   padding:6px 0 6px 0;
   border-radius:75%;
-  border-bottom:3px solid var(--my-blue);
-  color:var(--my-blue);
+  border-bottom:3px solid rgb(32, 56, 94);
+  color:rgb(32, 56, 94);
   background:#fff;
   margin-left: 10px;
 }
 #BarreRecherche .fa {
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #BarreRecherche select, #BarreRecherche button{
   background: url(../images/icons/caret-down-blue.png) no-repeat 90% #fff;
@@ -647,13 +647,13 @@ footer{
 */
 
 #vignette #address{
-  color: var(--my-black);
+  color: rgb(36, 38, 46);
   font-size: 10pt;
   text-align: center;
   width: 40%;
 }
 #vignette #bonus{
-  color: var(--my-red);
+  color: rgb(231, 46, 70);
   height: 45px;
   font-weight: bold;
   text-align: center;
@@ -683,7 +683,7 @@ footer{
   line-height: 40px;
 }
 #vignette #price i{
-  color: var(--my-orange);
+  color: rgb(244, 147, 2);
 }
 #vignette #btn_decouvrir{
   position: absolute;
@@ -691,19 +691,19 @@ footer{
   bottom: -5%;
 }
 #vignette .btn_vignette{
-  background-color: var(--my-green);
-  border : var(--my-green-strong);
+  background-color: rgb(0, 161, 154);
+  border : rgb(0, 135, 142);
   color: white ;
   font-size: 14pt;
   line-height: 2em;
   width: 200px;
 }
 #vignette .modal-body{
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
   font-size: 12pt;
 }
 #vignette .modal_valid{
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   color: white;
   border: none;
   font-size: 13pt;
@@ -758,15 +758,15 @@ footer{
     border-left: 1px solid #ccc;
 }
 .bh-sl-loc-list::-webkit-scrollbar-thumb {
-    background-color: var(--my-blue);
+    background-color: rgb(32, 56, 94);
 }
 .bh-sl-loc-list::-webkit-scrollbar-thumb:hover {
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
 }*/
 
 #btn_comment{
-  background-color: var(--my-green);
-  border: var(--my-green);
+  background-color: rgb(0, 161, 154);
+  border: rgb(0, 161, 154);
   color: white;
   width: 100%;
   line-height: 40px;
@@ -783,7 +783,7 @@ footer{
   margin-bottom: 0;
 }
 #declare h1{
-  color: var(--my-blue) !important;
+  color: rgb(32, 56, 94) !important;
 }
 #declare p{
   font-size: 14pt;
@@ -794,7 +794,7 @@ footer{
   margin-right: 50px;
 }
 #declare a{
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   color: white;
   border: none;
   margin-bottom: 20px;
@@ -818,10 +818,10 @@ footer{
   padding: 15px;
 }
 #community .texte1{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
 }
 #community .texte2{
-  background-color: var(--my-pink);
+  background-color: rgb(241, 95, 104);
 }
 #community .row{
   margin-top: 30px;
@@ -851,14 +851,14 @@ footer{
   margin-top: 10px;
   font-weight: bold;
   font-size: 12pt;
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   text-align: center;
 }
 
 /********************************** Public profile *************************************/
 
 #PublicProfile .name{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   font-size: 14pt;
   text-transform: capitalize;
@@ -870,13 +870,13 @@ footer{
   margin-top: 10px;
 }
 #PublicProfile h2{
-  color: var(--my-green) !important;
+  color: rgb(0, 161, 154) !important;
   font-size: 22pt;
   text-align: left;
 }
 
 #PublicProfile .skill, #PublicProfile .hobbie, #PublicProfile .wishe{
-  background-color: var(--my-pink);
+  background-color: rgb(241, 95, 104);
   font-size: 12pt;
   display: inline-block;
   font-weight: 700;
@@ -892,7 +892,7 @@ footer{
 }
 
 #PublicProfile .tweet{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   padding: 10px;
   display: block;
@@ -906,12 +906,12 @@ footer{
   margin-left: 5px;
 }
 #PublicProfile .identity, #PublicProfile .identity a{
-  color: var(--my-green);
+  color: rgb(0, 161, 154);
   font-weight: bold;
 }
 #PublicProfile .identity i{
   margin-right: 10px;
-  color: var(--my-pink);
+  color: rgb(241, 95, 104);
 }
 #PublicProfile .identity i.fa.fa-building-o{
   margin-right: 13px !important;
@@ -924,7 +924,7 @@ footer{
     display: inline-block;
 }
 #PublicProfile .bio{
-  background-color: var(--my-grey-light);
+  background-color: rgb(233, 233, 233);
   padding: 0 10px 10px 10px;
 }
 #PublicProfile .bio h2{
@@ -937,10 +937,10 @@ footer{
   padding-top: 0px;
 }
 #PublicProfile .coworking a, #PublicProfile .coworking a:hover{
-  color: var(--my-pink);
+  color: rgb(241, 95, 104);
 }
 #PublicProfile .progress-bar{
-  background-color: var(--my-pink);
+  background-color: rgb(241, 95, 104);
 }
 
 /********************************** Edit profile *************************************/
@@ -949,7 +949,7 @@ footer{
   display: inline !important;
 }
 .head{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
 }
 .head h1{
@@ -980,7 +980,7 @@ footer{
   width: 250px;
 }
 .skills .label-info, .hobbies .label-info, .wishes .label-info{
-  background-color: var(--my-pink);
+  background-color: rgb(241, 95, 104);
 }
 .identity .form-group{
   margin-bottom: 10px;
@@ -1014,12 +1014,12 @@ footer{
   font-size: 12pt;
 }
 #PublicProfile .btnMAJ{
-  background-color: var(--my-blue);
-  border-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
+  border-color: rgb(32, 56, 94);
 }
 #PublicProfile .btnView{
-  background-color: var(--my-green);
-  border-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
+  border-color: rgb(0, 161, 154);
 }
 #PublicProfile .btnView a{
   display: block;
@@ -1038,7 +1038,7 @@ footer{
   margin-left: 0;
 }
 #wsHeader .name{
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
 }
 .rating{
   display: inline;
@@ -1054,8 +1054,8 @@ footer{
   left: 20%;
 }
 #wsHeader #bonus{
-  background-color: var(--my-grey-light);
-  color: var(--my-blue);
+  background-color: rgb(233, 233, 233);
+  color: rgb(32, 56, 94);
   line-height: 50px;
   display: block;
   font-weight: 600;
@@ -1075,21 +1075,21 @@ footer{
 }
 #wsHeader .nav li a{
   border-width: 2px;
-  color: var(--my-blue);
-  border-color: var(--my-blue);
+  color: rgb(32, 56, 94);
+  border-color: rgb(32, 56, 94);
 }
 
 #wsHeader .nav li.active a{
   color: white;
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
 }
 #wsHeader #resa a{
   color: white;
-  background-color: var(--my-green);
-  border-color: var(--my-green-strong);
+  background-color: rgb(0, 161, 154);
+  border-color: rgb(0, 135, 142);
 }
 #wsHeader #resa.active a{
-  background-color: var(--my-green-strong);
+  background-color: rgb(0, 135, 142);
 }
 #wsHeader .tab-content{
   padding: 30px 10px 10px 10px;
@@ -1098,7 +1098,7 @@ footer{
   height: 100%;
 }
 #Description, #Services, #Contact, #Réservation{
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
   font-size: 16px;
   text-align: justify;
 }
@@ -1115,11 +1115,11 @@ footer{
 #Description span::before{
   content: "\f08a";
   font-family: FontAwesome;
-  color: var(--my-red) ;
+  color: rgb(231, 46, 70) ;
   margin-right: 10px;
 }
 #Description span{
-  color: var(--my-green);
+  color: rgb(0, 161, 154);
   font-weight: bold;
   display: table;
   margin: 0 auto;
@@ -1157,7 +1157,7 @@ footer{
 
 #Contact button{
   border: none;
-  background: var(--my-green);
+  background: rgb(0, 161, 154);
   color: white;
   margin-top: 10px;
   outline: none;
@@ -1181,7 +1181,7 @@ footer{
 #Contact #dismiss{
   border-radius: 4px;
   font-size: 14pt;
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   line-height: 2em;
 }
 #map{
@@ -1193,19 +1193,19 @@ footer{
   margin-top: 10px;
 }
 #time{
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
   font-size: 14pt;
   text-align: center;
 }
 #time i, #map i{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #time p{
   margin-left: 10px;
 }
 #time a{
   margin-left: 10px;
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #time a:hover{
   font-weight: bold;
@@ -1213,13 +1213,13 @@ footer{
 #Réservation .office-name{
   font-size: 16pt;
   font-weight: bold;
-  color: var(--my-red);
+  color: rgb(231, 46, 70);
 }
 #Réservation #formules{
   padding-left: 0px;
 }
 #Réservation i{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #Réservation #btnResa{
   color: white;
@@ -1227,20 +1227,20 @@ footer{
   text-decoration: none;
   line-height: 2em;
   width: 80%;
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   font-size: 18pt;
-  border-color: var(--my-green);
+  border-color: rgb(0, 161, 154);
   text-align: center;
 }
 #Réservation #btnResa:hover {
-  border: solid 1px var(--my-green);
+  border: solid 1px rgb(0, 161, 154);
   text-decoration: none;
 }
 .office-name{
-  color: var(--my-red);
+  color: rgb(231, 46, 70);
 }
 #booking-content i{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 
 /* booking calendar */
@@ -1253,7 +1253,7 @@ footer{
   text-align: center;
 }
 #votreResa{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   text-align: center;
   display: block;
 }
@@ -1281,17 +1281,17 @@ footer{
   font-size : 10pt;
 }
 #calendarContainer .day{
-  color: var(--my-black) !important;
+  color: rgb(36, 38, 46) !important;
   cursor: pointer !important;
   height: 35px !important;
   width: 35px !important;
-  border: solid 0.01em var(--my-grey-light) !important;
+  border: solid 0.01em rgb(233, 233, 233) !important;
   padding: 12px !important;
   margin: 0 !important;
   font-size: 10pt !important;
 }
 #calendarContainer .invalid{
-  color: var(--my-grey) !important;
+  color: rgb(140, 142, 144) !important;
   background-color: ghostwhite !important;
 }
 #calendarContainer .month-wrapper{
@@ -1318,7 +1318,7 @@ footer{
  margin-left: 10px;
 }
 #price-excl-tax, #price-incl-tax{
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   color: white;
   border: none;
   width: 80px;
@@ -1326,7 +1326,7 @@ footer{
 }
 
 #total{
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   color: white;
   font-size: 14pt;
   text-align: center;
@@ -1336,7 +1336,7 @@ footer{
 #btn_confirm{
   width: 100%;
   line-height: 2.2em;
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   font-size: 18pt;
   border: none;
@@ -1352,12 +1352,12 @@ footer{
 
 
 #booking{
-  background-color: var(--my-grey-light);
+  background-color: rgb(233, 233, 233);
   width: 100%;
 }
 
 #booking h2{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   margin-left: 20px;
   margin-right: 20px;
   padding-top: 20px;
@@ -1373,7 +1373,7 @@ footer{
   margin-top: 20px;
 }
 #payer{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;
@@ -1386,7 +1386,7 @@ footer{
   margin-left: 20px;
 }
 #cancel{
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;
@@ -1409,22 +1409,22 @@ footer{
 .slideTime .slider-handle.custom::before {
 content: "\f017" !important; /*code from fontawesome icons : http://fontawesome.io/cheatsheet/*/
 font-family: FontAwesome;
-color: var(--my-blue) !important;
+color: rgb(32, 56, 94) !important;
 }
 /*.slider-handle .min-slider-handle .custom:last-child::before {
 content: "\f017" !important; code from fontawesome icons : http://fontawesome.io/cheatsheet/
 font-family: FontAwesome;
-color: var(--my-blue) !important;
+color: rgb(32, 56, 94) !important;
 }*/
 .slidePeople .slider-handle.custom::before {
 content: "\f183" !important; /*code from fontawesome icons : http://fontawesome.io/cheatsheet/*/
 font-family: FontAwesome;
-color: var(--my-blue) !important;
+color: rgb(32, 56, 94) !important;
 }
 /*.slider-handle.max-slider-handle::before {
 content: "\f017" !important; code from fontawesome icons : http://fontawesome.io/cheatsheet/
 font-family: FontAwesome;
-color: var(--my-blue) !important;
+color: rgb(32, 56, 94) !important;
 }*/
 
 
@@ -1437,17 +1437,17 @@ color: var(--my-blue) !important;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
 #panelEvent .panel-heading{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   font-size: 18px;
 }
 #panelEvent .panel-body{
   margin-top: -2px;
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
   font-size: 12pt;
   text-align: justify;
   height: 250px;
-  border: solid 1px var(--my-green);
+  border: solid 1px rgb(0, 161, 154);
   overflow: hidden;
   padding-bottom: 10px;
   background-color: white;
@@ -1456,23 +1456,23 @@ color: var(--my-blue) !important;
 #panelEvent .panel-body center{
     font-weight: bold;
     font-size: 15px;
-    color: var(--my-blue);
+    color: rgb(32, 56, 94);
     margin: 10px 0 5px 0;
 }
 #panelEvent .panel-body .title{
     font-weight: bold;
     font-size: 16pt;
-    color: var(--my-blue);
+    color: rgb(32, 56, 94);
 }
 #panelEvent .panel-footer{
   background-color: white;
-  border : solid 1px var(--my-green);
+  border : solid 1px rgb(0, 161, 154);
   padding: 0 0 5px 0;
   border-top: none;
 }
 #panelEvent .panel-footer .btn{
   background-color: #F1F2F6;
-  color: var(--my-black);
+  color: rgb(36, 38, 46);
   font-size: 11pt;
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
@@ -1539,7 +1539,7 @@ color: var(--my-blue) !important;
   margin-top: 10px;
 }
 #comment_Envoyer{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   border: none;
   line-height: 50px;
@@ -1560,7 +1560,7 @@ color: var(--my-blue) !important;
   text-align: left;
 }
 #listComments h4 a{
-  color: var(--my-red);
+  color: rgb(231, 46, 70);
 }
 #listComments .rating{
   float: left;
@@ -1618,10 +1618,10 @@ color: var(--my-blue) !important;
 
 #filtre-bureaux{
   width: 600px;
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #filtre-bureaux label{
-  border-right: solid 1px var(--my-blue);
+  border-right: solid 1px rgb(32, 56, 94);
   margin-bottom: 0;
 }
 .listed-values{
@@ -1655,7 +1655,7 @@ color: var(--my-blue) !important;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
   border-radius: 5px;
   border: none;
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #offres .panel ul{
   padding-left: 5px;
@@ -1669,7 +1669,7 @@ color: var(--my-blue) !important;
   margin-bottom: 5px;
 }
 #offres .panel i{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
 }
 #offres .panel-body
 {
@@ -1686,10 +1686,10 @@ color: var(--my-blue) !important;
 }
 #offres .panel-footer{
   text-align: center;
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
 }
 #offres .panel-footer button{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   border: none;
   width: 100%;
@@ -1717,7 +1717,7 @@ color: var(--my-blue) !important;
   font-size: 12pt;
 }
 #offres #services{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -1752,17 +1752,17 @@ color: var(--my-blue) !important;
 #question p{
   text-align: center;
   font-size: 14pt;
-  color: var(--my-black);
+  color: rgb(36, 38, 46);
 }
 #m{
   width: 20px;
 }
 #myModalOffres{
   text-align: justify;
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
 }
 #myModalOffres h3{
-  color: var(--my-red);
+  color: rgb(231, 46, 70);
 }
 #myModalOffres .labels, {
   text-align: right;
@@ -1773,7 +1773,7 @@ color: var(--my-blue) !important;
   width: 100%;
 }
 #myModalOffres .valider{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   border: none;
 }
@@ -2235,7 +2235,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 
 #checkEmail p{
   font-size: 14pt;
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
 }
 
 .paiement p{
@@ -2248,7 +2248,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 
 
 #bookingPage h3, #paiementPage h3{
-  color: var(--my-blue);
+  color: rgb(32, 56, 94);
   margin-top: 10px;
 }
 #booking-duration{
@@ -2265,13 +2265,13 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #bookingGuy{
   position: relative;
   width: 100%;
-  background-color: var(--my-green); 
+  background-color: rgb(0, 161, 154); 
 }
 #bookingPage, #paiementPage{
   width: 100%;
   position: absolute;
   top: 6%;
-  color: var(--my-grey);
+  color: rgb(140, 142, 144);
 }
 #bookingPage .panelForm, #bookingPage .panelRecap, #paiementPage .panelForm, #paiementPage .panelRecap{
   background-color: white;
@@ -2297,7 +2297,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 
 #bookingPage #price{
-  background-color: var(--my-blue);
+  background-color: rgb(32, 56, 94);
   color: white;
   line-height: 50px;
   display: block;
@@ -2306,11 +2306,11 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 
 #bookingPage button{
-  background-color: var(--my-green);
+  background-color: rgb(0, 161, 154);
   color: white;
   width: 100%;
   font-size: 16pt;
-  border-color: var(--my-green);
+  border-color: rgb(0, 161, 154);
   border-radius: 0;
   outline: none;
 }

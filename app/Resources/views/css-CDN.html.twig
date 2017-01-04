@@ -1,6 +1,13 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">{#  Doit être déclaré après bootstrap #}
+
+{# Change CSS file for IE compatibility  #}
+{% if 'MSIE' in app.request.server.get("HTTP_USER_AGENT") or 'Trident/' in app.request.server.get("HTTP_USER_AGENT") or 'Edge/' in app.request.server.get("HTTP_USER_AGENT") %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/mainForIE.css') }}">
+{% else %}
+   <link rel="stylesheet" type="text/css" href='{{ asset('css/main.css') }}'>
+{% endif %}
+
     {# Pour la Map, version StoreLocator #}
     <link rel="stylesheet" href="{{ asset('css/StoreLocator/bootstrap-example.min.css') }}">
     {# booking calendar #}
