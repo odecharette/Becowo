@@ -37,7 +37,6 @@
         "javiereguiluz/easyadmin-bundle": "~1.14",
         "vich/uploader-bundle": "~1.1",
         "cmen/google-charts-bundle": "1.*",
-        "algolia/algolia-search-bundle": "~1.0",
         "blackknight467/star-rating-bundle": "^2.0",
         "hwi/oauth-bundle": "0.5.x-dev"
     },

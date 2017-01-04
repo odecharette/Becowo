@@ -879,16 +879,6 @@ class Workspace
 
 
     /**
-     * @Algolia\IndexIf
-     */
-    public function isIndexable()
-    {
-        if($this->isDeleted === false && $this->isVisible === true)
-            return true;
-    }
-
-
-    /**
      * Set region
      *
      * @param string $region

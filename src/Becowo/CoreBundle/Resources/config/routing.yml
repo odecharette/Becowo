@@ -171,14 +171,6 @@ becowo_member_public_profile:
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
     methods: GET
 
-
-becowo_search:
-    path:    /search
-    defaults: { _controller: BecowoCoreBundle:Search:search }
-    methods: GET
-    options:
-        expose: true
-
 becowo_comment:
     path:    /comment/{name}
     defaults: { _controller: BecowoCoreBundle:Comment:view }

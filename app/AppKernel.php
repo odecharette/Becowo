@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Becowo\ManagerBundle\BecowoManagerBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
-            new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
             new blackknight467\StarRatingBundle\StarRatingBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         ];
