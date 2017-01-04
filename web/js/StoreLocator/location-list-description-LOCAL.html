@@ -86,6 +86,7 @@
 	            type: "POST",
 	            success: function(data) {
 	            	document.getElementById('voteZen-{{id}}').innerHTML = "Merci !";
+	            	document.getElementById('voteZen-{{id}}').disabled = true;
 	            },
 	            error: function() {
 	            	document.getElementById('error-{{id}}').innerHTML = "Une erreur est survenue, merci de reessayer plus tard.";
