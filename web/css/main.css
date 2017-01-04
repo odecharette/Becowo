@@ -1613,6 +1613,17 @@ color: var(--my-blue) !important;
   font-weight: bold;
 }
 
+#filtre-bureaux{
+  width: 600px;
+  color: var(--my-blue);
+}
+#filtre-bureaux label{
+  border-right: solid 1px var(--my-blue);
+  margin-bottom: 0;
+}
+.listed-values{
+  list-style-type: none; 
+}
 /*********************************** offers ****************************************/
 #top-image{
   position: relative;

@@ -188,7 +188,18 @@
 {############################ Réserver ############################}
     <div id="Réservation" class="tab-pane fade">
     	<h2 style="color:var(--my-blue);">Choisissez votre espace et cliquez sur le bouton "Réserver" associé</h2>
-    	<br><br>
+    	<br><center>
+    	<div class="segmented-control" id="filtre-bureaux">
+		  <input type="radio" name="filtre-bureaux" id="choice1" value="" checked>
+		  <input type="radio" name="filtre-bureaux" id="choice2" value="Open space">
+		  <input type="radio" name="filtre-bureaux" id="choice3" value="Bureau" >
+		  <input type="radio" name="filtre-bureaux" id="choice4" value="Salle de réunion" >
+		  <label for="choice1" data-value="Tous">Tous</label>
+		  <label for="choice2" data-value="Open space">Open space</label>
+		  <label for="choice3" data-value="Bureau">Bureau</label>
+		  <label for="choice4" data-value="Salle de réunion">Salle de réunion</label>
+		</div>
+		</center><br><br>
         {{ render(controller('BecowoCoreBundle:Booking:bookingList', {name: ws.name})) }}
     </div>
 </div>

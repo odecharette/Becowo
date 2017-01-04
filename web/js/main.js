@@ -133,7 +133,7 @@ $(window).scroll(function(event){
 /* Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent */
     window.cookieconsent_options = {"message":"En poursuivant votre navigation sur ce site, vous acceptez que des cookies soient utilisés.","dismiss":"J'ai compris !","learnMore":"En savoir plus","link":"https://www.microsoft.com/fr-fr/security/resources/cookie-whatis.aspx","theme":"light-floating"};
 
-// Gestion des URL distincits pour chaque onglet dans page d'un WS
+// Gestion des URL distincts pour chaque onglet dans page d'un WS
 $(function(){
 var hash = window.location.hash;
 if(hash != '')
@@ -164,6 +164,16 @@ $('.nav-tabs a').on('shown.bs.tab', function(event){
 
 $('[id^="goToResa-"]').click(function() {
   $('#myTab a[href="#Réservation"]').tab('show');
+});
+
+/****************** Page d'un WS, onglet réservation, filtre les bureaux ****************/
+
+$('#filtre-bureaux').on('change', function() { 
+  var text = document.querySelector('input[name="filtre-bureaux"]:checked').value;
+    $('ul.listed-values li').hide();
+    $('ul.listed-values li').filter(function(){
+       return $(this).attr('class').indexOf(text) != -1;
+    }).show();
 });
 
 /*********** Vidéo big size *********/

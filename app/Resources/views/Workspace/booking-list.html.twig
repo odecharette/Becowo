@@ -8,9 +8,10 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		<div class="row" id="booking-content">
 
 	    	<div id="booking-error"></div>
+<ul class="listed-values">
 
 		    {% for priceandoffice in pricesAndOffices %}
-
+<li class="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 		    	<div class="row">
 		    		<div class="col-lg-6">
 						{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
@@ -87,7 +88,9 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    		</div>
 		    	</div>
 		    	<br>
+</li>
 				{% endfor %}			
+</ul>
 			{# </form> #}
 		</div>
 
