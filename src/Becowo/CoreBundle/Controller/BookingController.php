@@ -14,9 +14,8 @@ class BookingController extends Controller
 {
   public function myReservationsAction(Request $request)
   {
-    $bookings = $this->getDoctrine()->getManager()->getRepository('BecowoCoreBundle:Booking')->findBy(
-        array('member' => $this->getUser() ),
-        array('createdOn' => 'DESC'));
+    $WsService = $this->get('app.workspace');
+    $bookings = $WsService->getBookingByMember($this->getUser());
 
     return $this->render('Booking/myReservations.html.twig', array('bookings' => $bookings));
   }

@@ -296,4 +296,10 @@ class WorkspaceService
 
         return min($allWsMinPrices);
     }
+
+    public function getBookingByMember($user)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        return $repo->findBookingByMember($user);
+    }
 }

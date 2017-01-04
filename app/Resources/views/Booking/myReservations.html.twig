@@ -4,76 +4,46 @@
 
 {% block body %}
 
+<div class="container-fluid">
 	<h2> Historique de mes réservations</h2>
-<br>
-	<table class="table table-striped">
-	    <thead>
-	        <tr>
-	            <th>Espace</th>
-	            <th>Date de début</th>
-	            <th>Date de fin</th>
-	            <th>Statut</th>
-	            <th>Total € HT</th>
-	            <th>Total € TTC</th>
-	            <th>Actions</th>
-	        </tr>
-	    </thead>
-	    <tbody>
-
-			{% for booking in bookings %}
-				
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<table class="table table-striped">
+			    <thead>
+			        <tr>
+			            <th>Référence</th>
+			            <th>Espace</th>
+			            <th>Bureau</th>
+			            <th>Durée</th>
+			            <th>Date de début</th>
+			            <th>Date de fin</th>
+			            <th>Total € HT</th>
+			            <th>Total € TTC</th>
+			            <th>Statut</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+					{% for booking in bookings %}
 				        <tr>
-				            <td><a href="{{ path('becowo_core_workspace', { 'name': booking.workspace.name }) }}">{{booking.workspace.name}}</a></td>
+				        	<td>{{booking.bookingRef}}</td>
+				            <td><a href="{{ path('becowo_core_workspace', { 'name': booking.workspacehasoffice.workspace.name }) }}">{{booking.workspacehasoffice.workspace.name}}</a></td>
+				            <td>{{booking.workspacehasoffice.name}}</td>
+				            <td>{{booking.duration}}</td>
 				            <td>{{booking.startDate|date("d/m/Y")}}</td>
 				            <td>{{booking.endDate|date("d/m/Y")}}</td>
-				            <td>{{booking.status.name}}</td>
 				            <td>{{booking.priceExclTax}}</td>
 				            <td>{{booking.priceInclTax}}</td>
-				            <td>
-				            	<button type="button" class="btn btn-primary">Contacter le Manager</button>
-				            	{% if booking.status.name != 'Terminée' and booking.status.name != 'Annulée' %}
-				            		<button type="button" class="btn btn-danger" onclick="deleteAction({{booking.id}})"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-				            		{# TO DO bouton delete #}
-				            	{% endif %}
-				            </td>
+				            <td>{{booking.status.name}}</td>
 				        </tr>
-			{% else %}
-				<p>Vous n'avez encore aucune réservation.</p>
-			{% endfor %}
+					{% else %}
+						<p>Vous n'avez encore aucune réservation.</p>
+					{% endfor %}
 
-	    </tbody>
-	</table>
-
-<br><br><br>
+			    </tbody>
+			</table>
+		</div>
+	</div>
+</div>
 
 {% endblock body %}
 
-{% block javascripts %}
-	<script>
-
-  	function deleteAction($id)
-    {
-	   	BootstrapDialog.show({
-    		title: 'Annulation',
-        	message: 'Etes vous sûre de vouloir annuler cette réservation ?',
-        	buttons: [{
-                label: 'Confirmer',
-                cssClass: 'btn-danger',
-                action: function(){
-                    alert('confirmer');
-                    // http://stackoverflow.com/questions/13835579/what-is-the-best-way-to-add-a-confirm-option-to-a-delete-form-in-symfony2
-                	}
-            	},
-            	{
-                label: 'Annuler',
-                cssClass: 'btn-default',
-                action: function(dialogItself){
-                    dialogItself.close();
-                	}
-            	}],
-        	draggable: true
-        	});
-	}
-    </script>
-
-{% endblock javascripts %}
