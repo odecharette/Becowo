@@ -3,6 +3,7 @@
 namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class BlogController extends Controller
 {

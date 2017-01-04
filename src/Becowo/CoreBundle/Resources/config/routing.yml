@@ -47,13 +47,6 @@ becowo_core_comment_ca_marche_espaces:
     defaults: { _controller: BecowoCoreBundle:Footer:commentCaMarcheEspaces }
     methods: GET
 
-becowo_core_vote:
-    path:     /vote/{name}
-    defaults: { _controller: BecowoCoreBundle:Vote:vote }
-    methods: GET|POST
-    options:
-        expose: true
-
 becowo_core_vote_zen:
     path:     /voteZen/{id}
     defaults: { _controller: BecowoCoreBundle:Vote:voteWSdevenirZen }
@@ -121,22 +114,22 @@ becowo_core_paiement_call_bank:
 becowo_core_paiement_effectue:
     path:     /ws/paiement/effectue
     defaults: { _controller: BecowoCoreBundle:Paiement:effectue }
-    methods: GET|POST
+    methods: GET
 
 becowo_core_paiement_annule:
     path:     /ws/paiement/annule
     defaults: { _controller: BecowoCoreBundle:Paiement:annule }
-    methods: GET|POST
+    methods: GET
 
 becowo_core_paiement_refuse:
     path:     /ws/paiement/refuse
     defaults: { _controller: BecowoCoreBundle:Paiement:refuse }
-    methods: GET|POST
+    methods: GET
 
 becowo_core_paiement_ipn:
     path:     /ws/paiement/ipn
     defaults: { _controller: BecowoCoreBundle:Paiement:ipn }
-    methods: GET|POST
+    methods: GET
 
 becowo_core_visit_360:
     path:     /ws/{name}/visit-360

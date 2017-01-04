@@ -27,7 +27,7 @@ class MemberController extends Controller
 
   	foreach ($members as $member) {
   		$nbMembers++;
-  		if($member->getEmail() != null)
+  		if($member->getEmail() !== null)
   		{
   			$message = \Swift_Message::newInstance()
 	        ->setSubject("Becowo - Intégrez notre communauté")
@@ -46,10 +46,9 @@ class MemberController extends Controller
 	      	$member->setHasReceivedEmailNewUser(true);
 	      	$em = $this->getDoctrine()->getManager();
 	  		$em->persist($member);
-			$em->flush();
   		}
-  		
   	}
+      $em->flush();
 
   	$result = "Nombre de nouveaux membres : " . $nbMembers . "<br> Nombre d'emails envoyés : " . $nbEmails . "<br> Liste des emails : " . $listEmails ;
 

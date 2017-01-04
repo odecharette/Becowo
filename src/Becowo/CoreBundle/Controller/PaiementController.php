@@ -89,7 +89,7 @@ class PaiementController extends Controller
     $error_code = $request->get('erreur'); 
     // La transaction a générée une erreur
     $errorService = $this->get('app.error');
-    if($error_code != null)
+    if($error_code !== null)
     {     
       $error = $errorService->getErrorByCode($error_code);
       $error_msg = $error->getSentence();
@@ -145,7 +145,7 @@ class PaiementController extends Controller
 
     $emailManager = [];
     $i = 0;
-    if($wsHasTeamMembers == null or $this->container->get( 'kernel' )->getEnvironment() != 'prod')
+    if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
     {
       $emailManager[0] = 'olivia.decharette@becowo.com';
     }else{
@@ -166,7 +166,7 @@ class PaiementController extends Controller
 
     // Vérifier la signature de l'URL pour assurer que ca provient bien de la banque
     // Récupération de l'URL reçue pour récup la liste des paramètres
-    $uri = $_SERVER['REQUEST_URI'];
+    $uri = $request->server('REQUEST_URI');
     $paramList = explode('?', $uri);
     $data = $paramList[1]; 
     // Lecture de la clé publique depuis le certificat
@@ -188,7 +188,7 @@ class PaiementController extends Controller
     // * $trusted_Signature = true
 
     // ************* if désactivé juste pour tester l'envoi de l'email
-   if($error_code = "00000" && $authorization_number != null && $trusted_IP && $trusted_Signature)
+   if($error_code = "00000" && $authorization_number !== null && $trusted_IP && $trusted_Signature)
     // if(true)
     {
       $transaction_valide = true;

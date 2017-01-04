@@ -35,7 +35,7 @@ class BookingController extends Controller
     $WsService = $this->get('app.workspace');
     $session = $request->getSession();
 
-    if($session->get('booking') != null)
+    if($session->get('booking') !== null)
     {
       // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
       $booking = $WsService->getBookingByRef($session->get('booking')->getBookingRef());

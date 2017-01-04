@@ -52,7 +52,7 @@ class WorkspaceController extends Controller
 
     $emailManager = [];
     $i = 0;
-    if($wsHasTeamMembers == null or $this->container->get( 'kernel' )->getEnvironment() != 'prod')
+    if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
     {
       $emailManager[0] = 'olivia.decharette@becowo.com';
     }else{
