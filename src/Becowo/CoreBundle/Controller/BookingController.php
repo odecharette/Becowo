@@ -44,8 +44,6 @@ class BookingController extends Controller
       $booking = new Booking();
     }
     $bookingForm = $this->createForm(BookingType::class, $booking);
-    dump($booking);
-    dump($bookingForm);
  
     $WsHasOffice = $WsService->getWsHasOfficeById($id);
     $ws = $WsHasOffice->getWorkspace(); 

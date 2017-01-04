@@ -45,6 +45,9 @@ body {
   margin-top: 69px;
   margin-bottom: 100px;
 }
+a, button{
+  outline: none !important;
+}
 header .container{
   margin-right: 0px;
 }
@@ -88,6 +91,7 @@ header #login a:hover {
     background-color: #e9e9e9;
     color: var(--my-blue);
     border-bottom: solid 3px var(--my-blue);
+    outline: none;
 }
 .noActive a{
   /* Pour corriger un bug...*/
@@ -191,6 +195,7 @@ p{
   font-size: 14pt;
   margin: 20px;
   border-radius: 4px;
+  outline: none;
 }
 #aPropos a:hover{
   text-decoration: none;
@@ -227,7 +232,7 @@ p{
   position: relative;
 }
 
-#comment .rejoindre button{
+#comment .rejoindre #inscription{
   background-color: var(--my-blue);
   border : none;
   font-size: 20pt;
@@ -273,8 +278,9 @@ footer, footer a{
   background: var(--my-blue);
   color: white;
   line-height: 2; 
+  outline: none;
 }
-footer a:hover, footer a:active{
+footer a:hover, footer a:active, footer a:focus{
   color: white;
   font-weight: bold;
 }
@@ -344,6 +350,7 @@ footer{
 #page-simple{
   margin-left: 25px;
   margin-right: 25px;
+  margin-top: 90px;
 }
 #page-simple h1{
   color: var(--my-blue);
@@ -786,7 +793,7 @@ footer{
   margin-left: 50px;
   margin-right: 50px;
 }
-#declare button{
+#declare a{
   background-color: var(--my-blue);
   color: white;
   border: none;
@@ -794,11 +801,8 @@ footer{
   font-size: 12pt;
   padding: 15px 30px 15px 30px;
   font-weight: bold;
-}
-#declare a{
-  display: block;
-  color: white;
   text-decoration: none;
+  outline: none;
 }
 #declare a:hover{
   text-decoration: none;
@@ -1122,6 +1126,7 @@ footer{
 }
 #Description a{
   display: inline-block;
+  outline: none;
 }
 #Services ul{
   overflow:hidden;
@@ -1151,7 +1156,6 @@ footer{
 }
 
 #Contact button{
-  width: 40%;
   border: none;
   background: var(--my-green);
   color: white;
@@ -1218,19 +1222,18 @@ footer{
   color: var(--my-blue);
 }
 #Réservation #btnResa{
+  color: white;
+  display: block;
+  text-decoration: none;
   line-height: 2em;
   width: 80%;
   background-color: var(--my-green);
-  color: white;
   font-size: 18pt;
-  border-color: var(--my-green-strong);
+  border-color: var(--my-green);
+  text-align: center;
 }
 #Réservation #btnResa:hover {
-border: solid 3px var(--my-green-strong);
-}
-#Réservation #btnResa a{
-  color: white;
-  display: block;
+  border: solid 1px var(--my-green);
   text-decoration: none;
 }
 .office-name{
@@ -1628,13 +1631,14 @@ color: var(--my-blue) !important;
 #top-image{
   position: relative;
   height: 1800px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
+  overflow: hidden;
 }
 #offres{
   position: absolute;
   top: 10%;
   width: 100%;
 }
-#top-image span{
+#top-image .tagline{
   position: absolute;
   top: 3%;
   color: white;
@@ -2308,4 +2312,5 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   font-size: 16pt;
   border-color: var(--my-green);
   border-radius: 0;
+  outline: none;
 }

@@ -48,24 +48,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    				</div>
 		    				<div class="col-lg-6">
 	    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-			    				{# <button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalResa"  
-			    				data-wshasofficeid="{{priceandoffice.workspaceHasOffice.id}}" 
-			    				data-priceheure="{{priceandoffice.priceHour}}" 
-			    				data-pricedemijournee="{{priceandoffice.priceHalfDay}}" 
-			    				data-pricejournee="{{priceandoffice.priceDay}}" 
-			    				data-pricesemaine="{{priceandoffice.priceWeek}}"
-			    				data-pricemois="{{priceandoffice.priceMonth}}" 
-			    				data-isOpenSaturday="{{times[0].isOpenSaturday}}" 
-			    				data-isOpenSunday="{{times[0].isOpenSunday}}" 
-			    				data-openHour="{{times[0].openHour|date("H:i")}}" 
-			    				data-closeHour="{{times[0].closeHour|date("H:i")}}" 
-			    				data-spaceName="{{priceandoffice.workspaceHasOffice.name}}" 
-			    				data-spaceType="{{priceandoffice.workspaceHasOffice.office.name}}" 
-			    				data-capacity="{{priceandoffice.workspaceHasOffice.deskQty}}" 
-			    				data-wsName="{{ws.name}}"
-			    				data-tva="{{tva}}"
-			    				>Réserver</button> #}
-			    				<button type="button" id="btnResa"><a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}">Réserver</a></button>
+			    				<a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}" id="btnResa">Réserver</a>
 			    			{% else %}
 			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect">Réserver</button>
 			    					<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

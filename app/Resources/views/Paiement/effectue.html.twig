@@ -15,17 +15,16 @@
 		<h1>Votre paiement a été accepté</h1>
 	</div>
 	<div class="row">
-		<div class="col-lg-6">
-			<p>Le paiement de votre réservation N° {{app.request.get('Ref')}} a été accepté <br>
-				<br>
-			<strong>Détails du paiement : </strong><br>
-			Réservation N° : 	{{app.request.get('Ref')}} <br>
-			Montant : {{app.request.get('Montant') / 100 }} € TTC <br>
+		<div class="col-lg-7">
+			<p>Le paiement de votre réservation a été accepté <br>
+			<br>
+			<strong>Réservation N°</strong> {{app.request.get('Ref')}} <br>
+			<strong>Montant :</strong> {{app.request.get('Montant') / 100 }} € TTC <br>
 			<br>
 			Un email vient de vous être envoyé avec toutes les informations concernant votre réservation.
 			</p>
 		</div>
-		<div class="col-lg-2 col-lg-offset-2">
+		<div class="col-lg-2 col-lg-offset-1">
 			<br><br>
 			<img src="{{ asset('images/icons/creditAgricole/e-transactions.png') }}" alt="e-transactions">
 		</div>

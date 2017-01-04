@@ -29,7 +29,7 @@ class ContactOfferType extends AbstractType
             ->add('city', TextType::class, array('label' => false, 'required' => false))
             ->add('phone', TextType::class, array('label' => false, 'required' => false))
             ->add('nbDesk', IntegerType::class, array('label' => false, 'required' => false))
-            ->add('comments', TextareaType::class, array('label' => false, 'required' => false, 'attr' => array('rows' => '8')));
+            ->add('comments', TextareaType::class, array('label' => false, 'required' => false, 'attr' => array('rows' => '5')));
             // ->add('envoyer', SubmitType::class);
     }
 
