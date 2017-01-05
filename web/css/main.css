@@ -45,6 +45,7 @@ body {
   margin-top: 69px;
   margin-bottom: 100px;
 }
+
 a, button{
   outline: none !important;
 }
@@ -70,10 +71,84 @@ header .navbar-default{
   width: 100%;
 }
 header img{
-  /* Pour mémo, typo : Vollkorn gras italique pour name et regular pour tagline*/
   width: 100%;
-  margin-top: 5px;
-  margin-left: 10px;
+}
+/*  CSS FOR MOBILE ONLY - Mode portrait */
+@media (max-width: 767px){
+  body {
+    margin-top: 50px ;
+  }
+  header a{
+    width: 100%;
+    margin-left: 80px;
+  }
+  header img{
+    margin-top: 15px;
+  }
+  #navbar{
+    background-color: white;
+    overflow-x: hidden;
+    width: 200px;
+    margin-left: 70px;
+  }
+  #navbar a{
+    font-size: 14px;
+    line-height: 30px;
+    margin-left: 0px;
+    padding-left: 10px;
+  }
+  header .navbar-default{
+    height: 50px;
+  }
+  #home-image div{
+    top: 50% !important;
+  }
+  #video{
+    height: 200px !important;
+  }
+  h1{
+    font-size: 30px;
+  }
+  h2{
+    font-size: 18px !important;
+  }
+  h3{
+    font-size: 16px !important;
+  }
+  p{
+    font-size: 12pt !important;
+  }
+  #declare p{
+    font-size: 11pt !important;
+    margin: 15px !important;
+  }
+  footer{
+    height: 320px !important;
+    padding-left: 0 !important;
+  }
+  #top-image .tagline{
+    top: 10px !important;
+    font-size: 20px !important;
+  }
+  #top-image{
+    height: 3870px !important;
+  }
+  #offres{
+    top: 90px !important;
+  }
+  #offres .panel-body{
+    height: 100% !important;
+  }
+  #offres #services ul{
+    padding-left: 10px !important;
+  }
+}
+@media (min-width: 768px){
+  header img{
+    /* Pour mémo, typo : Vollkorn gras italique pour name et regular pour tagline*/
+    margin-top: 5px;
+    margin-left: 10px;
+  }
 }
 header .navbar-brand {
   padding: 5px 5px 5px 5px;
@@ -232,12 +307,16 @@ p{
   background-color: var(--my-green);
   color: white;
   font-size: 18pt;
-  height: 100px;
   margin: 30px 0 30px 0;
-  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+@media (min-width: 768px){
+ #comment .rejoindre{
+  display: flex;
+  height: 100px;
+ }
 }
 
 #comment .rejoindre #inscription{
@@ -313,10 +392,14 @@ footer #liensRS img{
 }
 footer{
   position: absolute !important;
-  bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 90px;
+}
+@media (min-width: 768px){
+   footer{
+    bottom: 0;
+    /* Set the fixed height of the footer here */
+    height: 90px;
+  }
 }
 
 #contact-form .labels{
@@ -835,9 +918,11 @@ footer{
   text-decoration: none;
 }
 /********************************** Page Community *************************************/
-#community{
-  margin-left: 30px;
-  margin-right: 30px;
+@media (min-width: 768px){
+  #community{
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
 #community p{ 
   color: white;
@@ -1762,6 +1847,11 @@ color: var(--my-blue) !important;
   position: absolute;
   top: 10%;
   width: 100%;
+}
+@media (min-width: 768px){
+   #offres{
+    top: 10%;
+  }
 }
 #top-image .tagline{
   position: absolute;

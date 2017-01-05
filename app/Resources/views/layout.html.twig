@@ -20,15 +20,33 @@
 <header class="header">
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
+        	{# For mobile only #}
+        	<div class="navbar-header">
+        		<div class="row visible-xs-block">
+        			<div class="col-xs-8">
+		        		<a title="Accueil" href="{{ path('becowo_core_homepage') }}">
+		                    <img src="{{ asset('images/icons/Logo_becowo_tagline2.png') }}" alt="Becowo">
+		                </a>
+        			</div>
+        			<div class="col-xs-4">
+			        	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				            <span class="sr-only">Toggle navigation</span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+			            </button>
+        			</div>
+        		</div>
+        	</div>
+
         	<div class="row">
-        		<div class="col-lg-4 col-md-4">
+        		<div class="col-lg-4 col-md-4 hidden-xs">
 	                <a title="Accueil" class="navbar-brand" href="{{ path('becowo_core_homepage') }}">
 	                    <img src="{{ asset('images/icons/Logo_becowo_tagline2.png') }}" alt="Becowo">
-	            		
 	                </a>
         		</div>
         		<div class="col-lg-8">
-		            <div class="collapse navbar-collapse navbar-responsive-collapse">
+		            <div id="navbar" class="collapse navbar-collapse navbar-responsive-collapse">
 		                <ul class="nav navbar-nav navbar-right">
 
 		                    <li class="dropdown ">
@@ -125,28 +143,28 @@
 	<footer class="navbar">
 		<div class="container-fluid">
 		<div class="row">
-		<div id="footer_menu" class="col-lg-3 col-md-2">
+		<div id="footer_menu" class="col-lg-3 col-md-2 col-xs-12">
 			<ul>
 			    <li><a href="{{ path('becowo_core_contact') }}">Contactez-nous</a></li>
 			    <li><a href="{{ path('becowo_core_apropos') }}">A propos</a></li>
 			    <li><a href="{{ path('becowo_core_faq') }}">FAQ</a></li>
 			</ul>
 		</div>
-		<div id="footer_menu" class="col-lg-3 col-md-4">
+		<div id="footer_menu" class="col-lg-3 col-md-4 col-xs-12">
 			<ul>
 			    <li><a href="{{ path('becowo_core_cgu') }}">Condigitions générales d'utilisation</a></li>
 			    <li><a href="{{ path('becowo_core_cookies') }}">Gestion des cookies</a></li>
 			    <li><a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a></li>
 			</ul>
 		</div>
-		<div id="footer_menu" class="col-lg-3 col-md-3">
+		<div id="footer_menu" class="col-lg-3 col-md-3 col-xs-12">
 			<ul>
 			    <li><a href="http://www.blog.becowo.com/" target="_blank">Blog</a></li>
 			    <li><a href="{{ path('becowo_core_paiement') }}">Paiement en ligne by <img src="{{ asset('images/icons/creditAgricole/ca.png') }}" alt="Crédit Agricole"></a></li>
 			    <li><a href="http://m.me/becowo" target="_blank">Tchater via messenger</a></li>
 			</ul>
 		</div>
-		<div id="footer_menu" class="col-lg-3 col-md-3">
+		<div id="footer_menu" class="col-lg-3 col-md-3 col-xs-12">
 			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
 		</div>
 		</div>

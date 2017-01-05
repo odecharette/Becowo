@@ -13,7 +13,7 @@
 	<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
 
 	<div>Réservez un espace de travail et intégrez une communauté de coworkers </div>
-	<a href="#liste-espaces" id="goToMap"><i class="fa fa-angle-down fa-3x" aria-hidden="true"></i></a>
+	<a href="#liste-espaces" id="goToMap" class="hidden-xs"><i class="fa fa-angle-down fa-3x" aria-hidden="true"></i></a>
 	
 </div>
 
@@ -78,7 +78,7 @@
   </div>
 </nav>
 #}
-<div class="bh-sl-container container-fluid">
+<div class="bh-sl-container container-fluid hidden-xs">
 	{###################### Barre de recherche #######################}
 	<form id="bh-sl-user-location" method="post" action="#">
 		{# 
@@ -131,16 +131,16 @@
 
 {##########################################" Blog et instagram ###################################}
 <div class="row" id="actu">
-	<div class="col-lg-2 col-md-1 vCenter">
+	<div class="col-lg-2 col-md-1 vCenter hidden-xs">
 		<center><img src="{{ asset('images/icons/rss.png') }}" alt="RSS blog" class="center-block" width="100%"></center>
 	</div>
-	<div class="col-lg-5 col-md-5 vCenter">
+	<div class="col-lg-5 col-md-5 vCenter col-xs-12">
 		<h4>Quoi de neuf sur notre blog ?</h4>
 		<br>
 		{{ render(controller('BecowoCoreBundle:Blog:viewLastArticle', {nbArticles: 2})) }}
 	</div>
-	<div class="col-lg-1 vCenter" id="separateur"></div>
-	<div class="col-lg-3 vCenter" id="Instagram">
+	<div class="col-lg-1 vCenter hidden-xs" id="separateur"></div>
+	<div class="col-lg-3 vCenter col-xs-12" id="Instagram">
 		<h4>Quoi de neuf sur notre Instagram ?</h4>
 		<script src="https://snapwidget.com/js/snapwidget.js"></script>
 		<iframe src="https://snapwidget.com/embed/code/207854" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
