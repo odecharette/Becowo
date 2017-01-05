@@ -28,55 +28,63 @@
 		<h3>Chez Becowo, nous pensons que valoriser votre potentiel humain ne doit pas être un luxe</h3>
 		<br>
 		<div class="row">
-			<div class="col-lg-5 col-lg-offset-1">
+			<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1">
 				<p>Becowo, c’est non seulement une plateforme qui vous permet de <mark>réserver</mark> un espace de coworking, mais c’est également une communauté.</p>
 			</div>
-			<div class="col-lg-5">
+			<div class="col-lg-5 col-md-5">
 				<p>Que vous soyez coworker, freelance, télétravailleur ou simple curieux, Becowo vous met en relation avec des personnes qui partagent vos problématiques, et vous permet de <mark>développer votre réseau</mark> professionnel.</p>
 			</div>
 		</div>
 		<div class="row text-center bande">
-			<div class="col-lg-3 col-lg-offset-1">
+			<div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1">
 				<h4>S'inscrire</h4>
 				<i class="fa fa-user fa-2x" aria-hidden="true"></i>
 				<p>Créez votre profil gratuitement à l'aide de votre réseau social préféré</p>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 col-md-3">
 				<h4>Réserver</h4>
 				<i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
 				<p>Grâce à notre système de paiement sécurisé, vous réglez votre réservation en ligne</p>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 col-md-3">
 				<h4>Echanger</h4>
 				<i class="fa fa-users fa-2x" aria-hidden="true"></i>
 				<p>Collaborez avec les membres de notre communauté</p>
 			</div>
 		</div>
 		<div class="row text-center">
-			<div class="col-lg-4 col-lg-offset-2">
+			<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1">
 				<h3>Trouvez votre bureau idéal </h3>
 				<img src="{{ asset('images/icons/bureau-ideal.png') }}" alt="Bureau idéal">
 				<br><br>
-				<p>Un lieu accueillant <br>
-				   Adaptable à vos besoins <br>
-				   Une équipe à l’écoute <br>
-				   Une oreille attentive à vos projets <br>
-				</p>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-3 col-md-9 col-md-offset-2">
+						<p>Un lieu accueillant <br>
+						   Adaptable à vos besoins <br>
+						   Une équipe à l’écoute <br>
+						   Une oreille attentive à vos projets <br>
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-5 col-md-5">
 				<h3>Trouvez votre coworker idéal </h3>
 				<img src="{{ asset('images/icons/coworker-ideal.png') }}" alt="Coworker ideal">
 				<br><br>
-				<p>Accès gratuit <br>
-				   Partage d’expériences <br>
-				   Facilité de mise en réseau <br>
-				   Echange et entraide <br>
-				</p>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-3 col-md-9 col-md-offset-2">
+						<p>Accès gratuit <br>
+						   Partage d’expériences <br>
+						   Facilité de mise en réseau <br>
+						   Echange et entraide <br>
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<br><br>
 		<div class="row text-center">
-			<div class="col-lg-10 col-lg-offset-1">
+			<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
 			<p style="text-align:center;">Becowo étant encore une jeune Startup, nous travaillons activement afin de vous proposer de nouvelles fonctionnalités. <br>
 			Et parce que chez Becowo, la logique <mark>contributive</mark> est une valeur importante, nous n'envisageons pas de développer des outils qui vous sont destinés sans vous concerter. <br>
 			Aussi, n'hésitez plus : <a href="{{ path('becowo_core_contact') }}">envoyez vos idées, suggestions,</a> nous serons ravis d'en discuter avec vous. 
@@ -93,7 +101,7 @@
 	</div>
 
 	{% include "CommonViews/bandeauQuestion.html.twig" %}
-
+	<br>
 </div>
 
 

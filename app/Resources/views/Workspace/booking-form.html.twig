@@ -18,7 +18,7 @@
 		{{ form_start(bookingForm) }}
 	{# Le contenu de la form est construit dans booking.js #}
 		<div class="row">
-			<div class="col-lg-6 col-lg-offset-2 panelForm">
+			<div class="col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2 panelForm">
 				{# EMAIL non renseigné #}
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					{% if app.user.email == "" or app.user.name == "" or app.user.street == "" or app.user.postCode == "" or app.user.city == "" %}
@@ -156,7 +156,7 @@
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}
 			</div>
-			<div class="col-lg-3 panelRecap">
+			<div class="col-lg-3 col-md-3 panelRecap">
 
 				<strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
 				{{ws.street|capitalize}} <br> 

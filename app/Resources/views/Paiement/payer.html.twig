@@ -16,11 +16,9 @@
 
 <div id="bookingGuy">
 	<img src="{{ asset('images/icons/booking-guy.png') }}" alt="Réservation">
-
 	<div class="container-fluid" id="paiementPage">
-
 		<div class="row">
-			<div class="col-lg-6 col-lg-offset-2 panelForm">
+			<div class="col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2 panelForm">
 
 				<center><h3>Récapitulatif de votre réservation N° {{booking.bookingRef}} </h3></center>
 				<br>
@@ -67,7 +65,7 @@
 				</center>
 				<br><br><br>
 			</div>
-			<div class="col-lg-3 panelRecap">
+			<div class="col-lg-3 col-md-3 panelRecap">
 				<strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
 				{{ws.street|capitalize}} <br> 
 				{{ws.postCode}} {{ws.city|capitalize}} <br>

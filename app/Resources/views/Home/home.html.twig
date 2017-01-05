@@ -106,7 +106,7 @@
 		<div class="row">
 			<div id="map-results-container" class="container-fluid">
 				<div class="titre">Trouvez votre prochain bureau à l'aide de la carte ou directement depuis la liste</div>
-				<div id="bh-sl-map" class="bh-sl-map col-lg-5">
+				<div id="bh-sl-map" class="bh-sl-map col-lg-5 col-md-7">
 					{# Emplacement de la map #}
 				</div>
 				<div id="legende"><i class="fa fa-bolt" aria-hidden="true"></i> : Réservation en ligne disponible (sinon vous pouvez réclamer !)</div>
@@ -131,10 +131,10 @@
 
 {##########################################" Blog et instagram ###################################}
 <div class="row" id="actu">
-	<div class="col-lg-2 vCenter">
-		<center><img src="{{ asset('images/icons/rss.png') }}" alt="RSS blog"  class="center-block"></center>
+	<div class="col-lg-2 col-md-1 vCenter">
+		<center><img src="{{ asset('images/icons/rss.png') }}" alt="RSS blog" class="center-block" width="100%"></center>
 	</div>
-	<div class="col-lg-5 vCenter">
+	<div class="col-lg-5 col-md-5 vCenter">
 		<h4>Quoi de neuf sur notre blog ?</h4>
 		<br>
 		{{ render(controller('BecowoCoreBundle:Blog:viewLastArticle', {nbArticles: 2})) }}

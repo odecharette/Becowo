@@ -20,88 +20,90 @@
 <header class="header">
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div>
-                <a title="Accueil" class="navbar-brand" href="{{ path('becowo_core_homepage') }}">
-                    <img src="{{ asset('images/icons/Logo_becowo_tagline2.png') }}" alt="Becowo">
-            		
-                </a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-right">
+        	<div class="row">
+        		<div class="col-lg-4 col-md-4">
+	                <a title="Accueil" class="navbar-brand" href="{{ path('becowo_core_homepage') }}">
+	                    <img src="{{ asset('images/icons/Logo_becowo_tagline2.png') }}" alt="Becowo">
+	            		
+	                </a>
+        		</div>
+        		<div class="col-lg-8">
+		            <div class="collapse navbar-collapse navbar-responsive-collapse">
+		                <ul class="nav navbar-nav navbar-right">
 
-                    <li class="dropdown ">
-                        <a title="Ou travailler" href="{{ path('becowo_core_homepage') }}">
-                            Où travailler ?
-                        </a>
-                    </li>
-                    <li class="dropdown ">
-                        <a title="Qui rencontrer" href="{{ path('becowo_core_community') }}">
-                            Qui rencontrer ?
-                        </a>
-                    </li>
-                    <li class="dropdown noActive">
-                    	<a href="" class="dropdown-toggle normal-menu" data-toggle="dropdown">
-				          	Comment ça marche ? <b class="caret"></b>
-				          </a>
-                    	<ul class="dropdown-menu dropdown-menu-default normal-ul">
-                    	    <li>
-		                        <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">
-		                            Pour les coworkers
+		                    <li class="dropdown ">
+		                        <a title="Ou travailler" href="{{ path('becowo_core_homepage') }}">
+		                            Où travailler ?
 		                        </a>
-                    	    </li>
-                    	    <li>
-		                        <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_espaces') }}">
-		                            Pour les tiers-lieux
+		                    </li>
+		                    <li class="dropdown ">
+		                        <a title="Qui rencontrer" href="{{ path('becowo_core_community') }}">
+		                            Qui rencontrer ?
 		                        </a>
-                    	    </li>
-                    	</ul>
-                    </li>
-                    <li class="dropdown ">
-                        <a title="blog" href="http://www.blog.becowo.com/" target="_blank">
-                            Le blog
-                        </a>
-                    </li>
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}		
-						<li class="dropdown ">
-				          <a href="" class="dropdown-toggle login-menu" data-toggle="dropdown">
-				          	Bonjour {{ app.user.firstname }} <b class="caret"></b>
-				          </a>
-				          <ul class="dropdown-menu dropdown-menu-default">
-				            <li>
-				            	<a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a>
-				            </li>
-						    <li>
-						    	<a href="{{ path('fos_user_change_password') }}"><i class="fa fa-key"></i> Changer mon mot de passe</a>
-						    </li>
-						    <li>
-						    	<a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a>
-						    </li>
-						    {% if is_granted('ROLE_MANAGER') %}
-								<li>
-									<a href="{{ path('becowo_manager_profile_identite') }}" target="_blank"><i class="fa fa-wrench"></i> Espace Manager</a>
-								</li>
-							{% endif %}
-							{% if is_granted('ROLE_ADMIN') %}
-								<li>
-									<a href="{{ path('easyadmin') }}" target="_blank"><i class="fa fa-lock"></i> Espace Admin</a>
-								</li>
-							{% endif %}
-						    <li>
-						    	<a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a>
-						    </li>
-				          </ul>
-				        </li>
-					{% else %}
-						<li class="dropdown "  id="login">
-	                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-	                    </li>
-				    
-				{% endif %}
-                    
-                </ul>
-            </div><!-- /navbar-collapse -->
+		                    </li>
+		                    <li class="dropdown noActive">
+		                    	<a href="" class="dropdown-toggle normal-menu" data-toggle="dropdown">
+						          	Comment ça marche ? <b class="caret"></b>
+						          </a>
+		                    	<ul class="dropdown-menu dropdown-menu-default normal-ul">
+		                    	    <li>
+				                        <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">
+				                            Pour les coworkers
+				                        </a>
+		                    	    </li>
+		                    	    <li>
+				                        <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_espaces') }}">
+				                            Pour les tiers-lieux
+				                        </a>
+		                    	    </li>
+		                    	</ul>
+		                    </li>
+		                    <li class="dropdown ">
+		                        <a title="blog" href="http://www.blog.becowo.com/" target="_blank">
+		                            Le blog
+		                        </a>
+		                    </li>
+		                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}		
+								<li class="dropdown ">
+						          <a href="" class="dropdown-toggle login-menu" data-toggle="dropdown">
+						          	Bonjour {{ app.user.firstname }} <b class="caret"></b>
+						          </a>
+						          <ul class="dropdown-menu dropdown-menu-default">
+						            <li>
+						            	<a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a>
+						            </li>
+								    <li>
+								    	<a href="{{ path('fos_user_change_password') }}"><i class="fa fa-key"></i> Changer mon mot de passe</a>
+								    </li>
+								    <li>
+								    	<a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a>
+								    </li>
+								    {% if is_granted('ROLE_MANAGER') %}
+										<li>
+											<a href="{{ path('becowo_manager_profile_identite') }}" target="_blank"><i class="fa fa-wrench"></i> Espace Manager</a>
+										</li>
+									{% endif %}
+									{% if is_granted('ROLE_ADMIN') %}
+										<li>
+											<a href="{{ path('easyadmin') }}" target="_blank"><i class="fa fa-lock"></i> Espace Admin</a>
+										</li>
+									{% endif %}
+								    <li>
+								    	<a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a>
+								    </li>
+						          </ul>
+						        </li>
+							{% else %}
+								<li class="dropdown "  id="login">
+			                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+			                    </li>
+						    
+						{% endif %}
+		                    
+		                </ul>
+		            </div><!-- /navbar-collapse -->
+        		</div>
+        	</div>
         </div>
     </div>
 
@@ -123,28 +125,28 @@
 	<footer class="navbar">
 		<div class="container-fluid">
 		<div class="row">
-		<div id="footer_menu" class="col-lg-3">
+		<div id="footer_menu" class="col-lg-3 col-md-2">
 			<ul>
 			    <li><a href="{{ path('becowo_core_contact') }}">Contactez-nous</a></li>
 			    <li><a href="{{ path('becowo_core_apropos') }}">A propos</a></li>
 			    <li><a href="{{ path('becowo_core_faq') }}">FAQ</a></li>
 			</ul>
 		</div>
-		<div id="footer_menu" class="col-lg-3">
+		<div id="footer_menu" class="col-lg-3 col-md-4">
 			<ul>
 			    <li><a href="{{ path('becowo_core_cgu') }}">Condigitions générales d'utilisation</a></li>
 			    <li><a href="{{ path('becowo_core_cookies') }}">Gestion des cookies</a></li>
 			    <li><a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a></li>
 			</ul>
 		</div>
-		<div id="footer_menu" class="col-lg-3">
+		<div id="footer_menu" class="col-lg-3 col-md-3">
 			<ul>
 			    <li><a href="http://www.blog.becowo.com/" target="_blank">Blog</a></li>
 			    <li><a href="{{ path('becowo_core_paiement') }}">Paiement en ligne by <img src="{{ asset('images/icons/creditAgricole/ca.png') }}" alt="Crédit Agricole"></a></li>
 			    <li><a href="http://m.me/becowo" target="_blank">Tchater via messenger</a></li>
 			</ul>
 		</div>
-		<div id="footer_menu" class="col-lg-3">
+		<div id="footer_menu" class="col-lg-3 col-md-3">
 			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
 		</div>
 		</div>
