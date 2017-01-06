@@ -26,93 +26,7 @@ var q=encodeURIComponent($('#address_ws').text());
        $('#map_ws')
         .attr('src','https://www.google.com/maps/embed/v1/place?key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&q='+q);
 
-// Page d'un WS, envoye le commentaire et le vote en AJAX
-/*
-$(function () {
-    $("#comment_Envoyer").unbind("click").click(function(){
-    	$.ajax(Routing.generate('becowo_comment', {name: document.getElementById('wsName').innerHTML}), {
-            data: $('#comment-form').serialize(),
-            type: "POST",
-            success: function(data) {
-                $('#CommentResults').html(data);
-            },
-            error: function() {
-            	$('#CommentResults').html("Une erreur est survenue, veuillez réessayer plus tard");
-            }
-        });
-    	return false;
-    });
-});
-*/
 // Page d'un WS, envoye le formulaire de contact manager en AJAX
-/*
-$(function () {
-    $("#submitContactManager").unbind("click").click(function(){
-        $.ajax(Routing.generate('becowo_core_workspace_contact', {name: document.getElementById('wsName').innerHTML}), {
-            data: $('#manager-contact-form').serialize(),
-            type: "POST",
-            success: function(data) {
-                $('#modal-body-manager-contact').html(data);
-            },
-            error: function() {
-                $('#modal-body-manager-contact').html("Une erreur est survenue, veuillez réessayer plus tard");
-            }
-        });
-        return false;
-    });
-});
-*/
-
-// Page d'un WS, envoye le vote seul en AJAX
- /*   function goVote(){
-
-    	$.ajax(Routing.generate('becowo_core_vote', {name: document.getElementById('wsName').innerHTML}), {
-    				data: $('#vote-form').serialize(),
-                    type: "POST",
-                    success: function(data) {
-                    	$('#VoteResults').html("Merci, vote comptabilisé !");
-                    },
-                    error: function() {
-                    	$('#VoteResults').html("Une erreur est survenue, veuillez réessayer plus tard");
-                    }
-                });
-    		return false;
-    };
-*/
-
-// Page d'un WS envoi les formulaires en AJAX (contact manager et vote/Comment)
-// 2 AJAX EN UN
-// $("#manager-contact-form, #comment-form").submit(function (e){
-//     e.preventDefault();
-//     $form = $(e.target);
-//     console.log($form);
-//     console.log($form.attr('action'));
-//     $.ajax($form.attr('action'), {
-//         data: $form.serialize(),
-//         type: "POST",
-//         success: function(data) {
-//           if($form == $("#manager-contact-form"))
-//           {
-//             $('#modal-body-manager-contact').html(data);
-//           }else
-//           {
-//             console.log('c est le commentaire');
-//             $('#CommentResults').html(data);
-//           };
-          
-//         },
-//         error: function() {
-//           if($form == $("#manager-contact-form"))
-//           {
-//             $('#modal-body-manager-contact').html("Une erreur est survenue, veuillez réessayer plus tard");
-//           }else
-//           {
-//             $('#CommentResults').html("Une erreur est survenue, veuillez réessayer plus tard");
-//           };
-//         }
-//     });
-// });
-
 $("#manager-contact-form").submit(function (e){
     e.preventDefault();
     $form = $(e.target);
@@ -128,7 +42,7 @@ $("#manager-contact-form").submit(function (e){
         }
     });
 });
-
+// Page d'un WS, envoye le commentaire et le vote en AJAX
 $("#comment-form").submit(function (e){
     e.preventDefault();
     $form = $(e.target);

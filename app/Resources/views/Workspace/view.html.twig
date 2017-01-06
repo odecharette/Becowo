@@ -10,8 +10,6 @@
 
 {% block body %}
 
-<span id="wsName" hidden="true">{{ws.name}}</span>   {# Important, permet de router pour les comment et vote#}
-
 <div class="container-fluid" id="wsHeader">
 
 {############################################# Caroussel #########################################}
@@ -120,7 +118,7 @@
     </div>
 {############################ Contact ############################}
     <div id="Contact" class="tab-pane fade">
-    	
+
     	<div class="row text-center">
     		<div class="col-lg-6 col-md-6">
 				<div id="time">
@@ -144,7 +142,6 @@
 				            </div>
 				            <div class="modal-body" id="modal-body-manager-contact">
 				                {{ render(controller('BecowoCoreBundle:Workspace:contact', {name: ws.name})) }}
-				                {# {% include 'Workspace/manager-contact.html.twig' %}	 #}
 				            </div>
 				        </div>
 				    </div>
@@ -204,7 +201,6 @@
 {############################################# Commentaires #########################################}
 <div class="row text-center">
 	{{ render(controller('BecowoCoreBundle:Workspace:voteAndComment', {name: ws.name})) }}
-	{# {% include 'Workspace/comments.html.twig' %}	 #}
 </div>
 
 </div>{# end of container #}
