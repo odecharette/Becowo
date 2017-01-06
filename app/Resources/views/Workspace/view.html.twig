@@ -120,6 +120,7 @@
     </div>
 {############################ Contact ############################}
     <div id="Contact" class="tab-pane fade">
+    	
     	<div class="row text-center">
     		<div class="col-lg-6 col-md-6">
 				<div id="time">
@@ -143,13 +144,7 @@
 				            </div>
 				            <div class="modal-body" id="modal-body-manager-contact">
 				                {{ render(controller('BecowoCoreBundle:Workspace:contact', {name: ws.name})) }}
-					            <div id="modal-footer">
-					            	<hr>
-					            	<div class="row text-center">
-					                <button type="submit" id="submitContactManager"><i class="fa fa-envelope-o" aria-hidden="true"></i> Envoyer</button>
-					                <button type="button" data-dismiss="modal" id="dismiss"><i class="icon icon-times icon-lg"></i> Annuler</button>
-					                </div>
-					            </div>
+				                {# {% include 'Workspace/manager-contact.html.twig' %}	 #}
 				            </div>
 				        </div>
 				    </div>
@@ -208,7 +203,8 @@
 
 {############################################# Commentaires #########################################}
 <div class="row text-center">
-	{{ render(controller('BecowoCoreBundle:Comment:view', {name: ws.name})) }}
+	{{ render(controller('BecowoCoreBundle:Workspace:voteAndComment', {name: ws.name})) }}
+	{# {% include 'Workspace/comments.html.twig' %}	 #}
 </div>
 
 </div>{# end of container #}

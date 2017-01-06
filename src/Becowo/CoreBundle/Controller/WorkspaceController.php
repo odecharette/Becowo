@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Form\Type\ManagerContactType;
 use Becowo\CoreBundle\Entity\Contact;
+use Becowo\CoreBundle\Entity\Comment;
+use Becowo\CoreBundle\Form\Type\CommentType;
 
 class WorkspaceController extends Controller
 {
@@ -43,8 +45,10 @@ class WorkspaceController extends Controller
   public function contactAction($name, Request $request)
   {
     $contact = new Contact();
-    // $managerContactForm = $this->createForm(ManagerContactType::class, $contact);
-    $managerContactForm = $this->get('form.factory')->createNamedBuilder('manager_contact', ManagerContactType::class, $contact)->getForm();
+    $managerContactForm = $this->get('form.factory')->createNamedBuilder('manager-contact-form', ManagerContactType::class, $contact)
+      ->setAction($this->generateUrl('becowo_core_workspace_contact', array('name' => $name)))
+      ->setMethod('POST')
+      ->getForm();
 
     $WsService = $this->get('app.workspace');
     $ws = $WsService->getWorkspaceByName($name);
@@ -63,7 +67,7 @@ class WorkspaceController extends Controller
     }
     
       // On vérifie que c'est bien le form de contact manager qui est envoyé
-    if ($request->isMethod('POST') && $managerContactForm->handleRequest($request)->isValid() && $request->request->has('manager_contact')) {
+    if ($request->isMethod('POST') && $managerContactForm->handleRequest($request)->isValid() && $request->request->has('manager-contact-form')) {
       $message = \Swift_Message::newInstance()
           ->setSubject('Becowo - Nouveau message d\'un coworker')
           ->setFrom('contact@becowo.com')
@@ -82,15 +86,43 @@ class WorkspaceController extends Controller
 
       $this->get('mailer')->send($message);
 
-      $session = $request->getSession();
-      $session->set('contactManager', 'ok');
+      $this->addFlash('success', 'Merci ! Email bien envoyé.');
 
       return $this->redirectToRoute('becowo_core_workspace_contact', array('name' => $name));
     }
 
     return $this->render('Workspace/manager-contact.html.twig', 
       array('managerContactForm' => $managerContactForm->createView(),
-        'name' =>$name));
+        'ws' =>$ws));
+  }
+
+   public function voteAndCommentAction($name, Request $request)
+  {
+    $WsService = $this->get('app.workspace');
+    $ws = $WsService->getWorkspaceByName($request->get('name'));
+    $listComments = $WsService->getCommentsByWorkspace($ws);
+    $voteAlreadyDone = $WsService->memberAlreadyVoteAndCommentForWorkspace($ws, $this->getUser());
+
+    // Création du formulaire de commentaires
+    $comment = new Comment($ws, $this->getUser());
+    $formComment = $this->get('form.factory')->createNamedBuilder('comment-form', CommentType::class, $comment)
+      ->setAction($this->generateUrl('becowo_comment', array('name' => $name)))
+      ->setMethod('POST')
+      ->getForm();
+
+
+    if ($request->isMethod('POST') && $formComment->handleRequest($request)->isValid() && $request->request->has('comment-form'))
+    { 
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($comment);
+      $em->flush();
+
+      $this->addFlash('success', 'Merci ! Commentaire et vote bien enregistrés.');
+
+      return $this->redirectToRoute('becowo_comment', array('name' => $request->get('name')));
+    }
+
+    return $this->render('Workspace/comments.html.twig', array('formComment' => $formComment->createView(), 'listComments' => $listComments, 'ws' =>$ws, 'voteAlreadyDone' => $voteAlreadyDone));
   }
 
 

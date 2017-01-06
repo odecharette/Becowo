@@ -27,6 +27,7 @@ var q=encodeURIComponent($('#address_ws').text());
         .attr('src','https://www.google.com/maps/embed/v1/place?key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&q='+q);
 
 // Page d'un WS, envoye le commentaire et le vote en AJAX
+/*
 $(function () {
     $("#comment_Envoyer").unbind("click").click(function(){
     	$.ajax(Routing.generate('becowo_comment', {name: document.getElementById('wsName').innerHTML}), {
@@ -42,34 +43,9 @@ $(function () {
     	return false;
     });
 });
-
-
-
-// Page d'un WS, envoye le booking en AJAX
-// $(document).ready(function() {
-//     $("#booking_confirmer").unbind("click").click(function(e){  
-//         e.preventDefault();
-//         $('form[name="booking"]').submit();
-//         console.log('ajax booking submit');
-//         console.log($('form[name="booking"]').serialize());
-//     	$.ajax(Routing.generate('becowo_core_booking', {name: document.getElementById('wsName').innerHTML}), {
-//             data: $('#booking').serialize(),
-//             type: "POST",
-//             success: function(data) {
-//                 $('#modal-body-booking').html(data);
-//             },
-//             error: function(e) {
-//             	$('#modal-body-booking').html("Une erreur est survenue, veuillez réessayer plus tard");
-
-//                 console.log(e);
-//                 $('#modal-footer-booking').html('');
-//             }
-//         });
-//     	return false;
-//     });
-// });
-
+*/
 // Page d'un WS, envoye le formulaire de contact manager en AJAX
+/*
 $(function () {
     $("#submitContactManager").unbind("click").click(function(){
         $.ajax(Routing.generate('becowo_core_workspace_contact', {name: document.getElementById('wsName').innerHTML}), {
@@ -85,6 +61,7 @@ $(function () {
         return false;
     });
 });
+*/
 
 // Page d'un WS, envoye le vote seul en AJAX
  /*   function goVote(){
@@ -102,6 +79,70 @@ $(function () {
     		return false;
     };
 */
+
+// Page d'un WS envoi les formulaires en AJAX (contact manager et vote/Comment)
+// 2 AJAX EN UN
+// $("#manager-contact-form, #comment-form").submit(function (e){
+//     e.preventDefault();
+//     $form = $(e.target);
+//     console.log($form);
+//     console.log($form.attr('action'));
+//     $.ajax($form.attr('action'), {
+//         data: $form.serialize(),
+//         type: "POST",
+//         success: function(data) {
+//           if($form == $("#manager-contact-form"))
+//           {
+//             $('#modal-body-manager-contact').html(data);
+//           }else
+//           {
+//             console.log('c est le commentaire');
+//             $('#CommentResults').html(data);
+//           };
+          
+//         },
+//         error: function() {
+//           if($form == $("#manager-contact-form"))
+//           {
+//             $('#modal-body-manager-contact').html("Une erreur est survenue, veuillez réessayer plus tard");
+//           }else
+//           {
+//             $('#CommentResults').html("Une erreur est survenue, veuillez réessayer plus tard");
+//           };
+//         }
+//     });
+// });
+
+$("#manager-contact-form").submit(function (e){
+    e.preventDefault();
+    $form = $(e.target);
+    $.ajax($form.attr('action'), {
+        data: $form.serialize(),
+        type: "POST",
+        success: function(data) { 
+          $('#contentToRefresh').html(data);  
+        },
+        error: function() {
+          $('#contentToRefresh').html("Une erreur est survenue, veuillez réessayer plus tard");  
+          $('#modal-footer-manager-contact').html('');         
+        }
+    });
+});
+
+$("#comment-form").submit(function (e){
+    e.preventDefault();
+    $form = $(e.target);
+    $.ajax($form.attr('action'), {
+        data: $form.serialize(),
+        type: "POST",
+        success: function(data) {
+          $('#CommentResults').html(data);         
+        },
+        error: function() {
+          $('#CommentResults').html("Une erreur est survenue, veuillez réessayer plus tard");
+        }
+    });
+});
 
 // Smooth scrolling for home button
 $("#goToMap").unbind("click").click(function(e){

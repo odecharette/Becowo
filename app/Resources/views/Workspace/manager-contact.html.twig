@@ -1,48 +1,52 @@
-<div class="container-fluid">
+<div class="container-fluid" id="contentToRefresh">
 
-{% if app.session.get('contactManager') == 'ok' %}
-<div class="row text-center">
-	<p>Votre message a bien été envoyé.</p>
-	<p>Merci</p>
+{% if app.session.flashBag.peek('success') is empty %}
+{# Evite de réafficher la form si le mail vient d'être envoyé #}
+  {{ form_start(managerContactForm) }}
+    <div class="row">
+      <div class="col-lg-3 labels">
+        Nom *
+      </div>
+      <div class="col-lg-8">
+      {{ form_row(managerContactForm.name) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 labels">
+        Email *
+      </div>
+      <div class="col-lg-8">
+        {{ form_row(managerContactForm.email) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 labels">
+        Sujet *
+      </div>
+      <div class="col-lg-8">
+        {{ form_row(managerContactForm.subject) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 labels">
+        Message *
+      </div>
+      <div class="col-lg-8">
+        {{ form_row(managerContactForm.message) }}
+      </div>
+    </div>
+    {{ form_rest(managerContactForm) }}
 
-	{{app.session.set('contactManager', '')}}
-</div>
-{% else %}
-
-{{ form_start(managerContactForm) }}
-  <div class="row">
-    <div class="col-lg-3 labels">
-      Nom *
-    </div>
-    <div class="col-lg-8">
-    {{ form_row(managerContactForm.name) }}
-    </div>
+  <div id="modal-footer-manager-contact">
+    <hr>
+    <div class="row text-center">
+      <button type="submit" id="submitContactManager"><i class="fa fa-envelope-o" aria-hidden="true"></i> Envoyer</button>
+      <button type="button" data-dismiss="modal" id="dismiss"><i class="icon icon-times icon-lg"></i> Annuler</button>
+      </div>
   </div>
-  <div class="row">
-    <div class="col-lg-3 labels">
-      Email *
-    </div>
-    <div class="col-lg-8">
-      {{ form_row(managerContactForm.email) }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-3 labels">
-      Sujet *
-    </div>
-    <div class="col-lg-8">
-      {{ form_row(managerContactForm.subject) }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-3 labels">
-      Message *
-    </div>
-    <div class="col-lg-8">
-      {{ form_row(managerContactForm.message) }}
-    </div>
-  </div>
-  {{ form_rest(managerContactForm) }}
+  {{ form_end(managerContactForm) }}
 
 {% endif %}
+{% include "CommonViews/flashMessage.html.twig" %}
 </div>
+                      

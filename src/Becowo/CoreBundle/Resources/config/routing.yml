@@ -166,7 +166,7 @@ becowo_member_public_profile:
 
 becowo_comment:
     path:    /comment/{name}
-    defaults: { _controller: BecowoCoreBundle:Comment:view }
+    defaults: { _controller: BecowoCoreBundle:Workspace:voteAndComment }
     methods: GET|POST
     options:
         expose: true
