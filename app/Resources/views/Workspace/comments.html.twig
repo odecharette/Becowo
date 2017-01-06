@@ -4,62 +4,64 @@
 <br>
 {% include "CommonViews/flashMessage.html.twig" %}
 	<div class="row">
-		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-			{% if voteAlreadyDone %}
-				<p>Vous avez déjà voté/commenté</p>
-			{% else %}
-				<div class="row">
-					<div class="col-lg-9 col-lg-offset-2">
- 						{{ form_start(formComment) }}
-						<div class="row">
-						<div class="col-lg-2">
-							{{ form_label(formComment.score1) }}
-						</div>
-						<div class="col-lg-3">
-						    {{ form_errors(formComment.score1) }}
-						    {{ form_widget(formComment.score1) }}
-						</div>
-						<div class="col-lg-2">
-						    {{ form_label(formComment.score2) }}
-						</div>
-						<div class="col-lg-3">
-						    {{ form_errors(formComment.score2) }}
-						    {{ form_widget(formComment.score2) }}
-						</div>
-						</div>
-						<div class="row">
-						<div class="col-lg-2">
-							{{ form_label(formComment.score3) }}
-						</div>
-						<div class="col-lg-3">
-						    {{ form_errors(formComment.score3) }}
-						    {{ form_widget(formComment.score3) }}
-						</div>
-						<div class="col-lg-2">
-						    {{ form_label(formComment.score4) }}
-						</div>
-						<div class="col-lg-3">
-						    {{ form_errors(formComment.score4) }}
-						    {{ form_widget(formComment.score4) }}
-						</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-8">
-								{{form_row(formComment.post)}}
+		<div class="col-lg-12 col-md-12">
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				{% if voteAlreadyDone %}
+					<p>Vous avez déjà voté/commenté</p>
+				{% else %}
+					<div class="row">
+						<div class="col-lg-9 col-lg-offset-2 col-md-9 col-md-offset-2">
+	 						{{ form_start(formComment) }}
+							<div class="row">
+							<div class="col-lg-2 col-md-2">
+								{{ form_label(formComment.score1) }}
 							</div>
-							<div class="col-lg-2">
-								<button type="submit" id="comment_Envoyer" class="vCenter">Envoyer</button>				    	
+							<div class="col-lg-3 col-md-3">
+							    {{ form_errors(formComment.score1) }}
+							    {{ form_widget(formComment.score1) }}
 							</div>
-						</div>
-						{{ form_rest(formComment) }}
-						{{ form_end(formComment) }}
+							<div class="col-lg-2 col-md-2">
+							    {{ form_label(formComment.score2) }}
+							</div>
+							<div class="col-lg-3 col-md-3">
+							    {{ form_errors(formComment.score2) }}
+							    {{ form_widget(formComment.score2) }}
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-lg-2 col-md-2">
+								{{ form_label(formComment.score3) }}
+							</div>
+							<div class="col-lg-3 col-md-3">
+							    {{ form_errors(formComment.score3) }}
+							    {{ form_widget(formComment.score3) }}
+							</div>
+							<div class="col-lg-2 col-md-2">
+							    {{ form_label(formComment.score4) }}
+							</div>
+							<div class="col-lg-3 col-md-3">
+							    {{ form_errors(formComment.score4) }}
+							    {{ form_widget(formComment.score4) }}
+							</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-8 col-md-8">
+									{{form_row(formComment.post)}}
+								</div>
+								<div class="col-lg-2 col-md-2">
+									<button type="submit" id="comment_Envoyer" class="vCenter">Envoyer</button>				    	
+								</div>
+							</div>
+							{{ form_rest(formComment) }}
+							{{ form_end(formComment) }}
 
+						</div>
 					</div>
-				</div>
+				{% endif %}
+			{% else %}
+				<p>Pour voter et saisir des commentaires, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
 			{% endif %}
-		{% else %}
-			<p>Pour voter et saisir des commentaires, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
-		{% endif %}
+		</div>
 	</div>
 	{% if listComments is empty %}
 		<div id="noComment">
@@ -69,7 +71,7 @@
 	<div id="listComments">
 		{% for comment in listComments %}
 			<div class="row">
-				<div class="col-lg-1">
+				<div class="col-lg-1 col-md-1">
 					{% if comment.member.profilePicture.url is defined %}
 						<a href="{{ path('becowo_member_public_profile', {'id' : comment.member.id}) }}" class="memberPic">
 							<div style="background-image:url('{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}'); 
@@ -88,22 +90,22 @@
 					    margin: 0 auto;">&nbsp;</div>
 					{% endif %}
 				</div>
-				<div class="col-lg-8">
+				<div class="col-lg-8 col-md-8">
 					<div class="speech-time">Le {{comment.postedOn|date("d/m/Y - H:i")}}</div>
 					<div class="row vCenter">
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-md-2">
 							Connectivité <br>
 							Services
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-3 col-md-3">
 							{{comment.score1|rating}}
 							{{comment.score2|rating}}
 						</div>
-						<div class="col-lg-2">
+						<div class="col-lg-2 col-md-2">
 							Cosy/Confort <br>
 							Ambiance
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-3 col-md-3">
 							{{comment.score3|rating}}
 							{{comment.score4|rating}}
 						</div>
@@ -111,9 +113,11 @@
 				</div>
 			</div>
 			<div class="row">
-				<blockquote class="speech-bubble">
-			    	<p>{{comment.post}}</p>
-			    </blockquote>
+				<div class="col-lg-12 col-md-12">
+					<blockquote class="speech-bubble">
+				    	<p>{{comment.post}}</p>
+				    </blockquote>
+				</div>
 			</div>
 		{% endfor %}
 	</div>
