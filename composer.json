@@ -38,8 +38,7 @@
         "vich/uploader-bundle": "~1.1",
         "cmen/google-charts-bundle": "1.*",
         "blackknight467/star-rating-bundle": "^2.0",
-        "hwi/oauth-bundle": "0.5.x-dev",
-        "bes/mobiledetect-twig-extension":"v1.0"
+        "hwi/oauth-bundle": "0.5.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

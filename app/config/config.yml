@@ -13,9 +13,10 @@ parameters:
     blogRSS: http://www.blog.becowo.com/feed/
     # config pour le paiement via e-transactions du Crédit Agricole
     # TO DO URL de prod : https://tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi
-    # TO DO URL mobile : https://preprod-tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi OU https://tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi
+    # TO DO URL mobile : https://tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi
     creditAgricole:
         PBX_URL: https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi
+        PBX_URL_MOBILE: https://preprod-tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi
         PBX_SITE: 1612671
         PBX_RANG: '01'
         PBX_IDENTIFIANT: 677217297
@@ -70,10 +71,6 @@ services:
            - { name: twig.extension }
     authentication_handler:
         class: Becowo\MemberBundle\Handler\AuthenticationHandler
-    twig.mobile_detect_extension:
-            class: Bes\Twig\Extension\MobileDetectExtension
-            tags:
-                - { name: twig.extension }
            
 # Doctrine Configuration
 doctrine:
