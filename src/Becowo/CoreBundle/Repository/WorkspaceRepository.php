@@ -41,5 +41,16 @@ class WorkspaceRepository extends EntityRepository
 			->andWhere('w.isVisible = true');
 	}
 
+	public function findWsByWsNetwork($network, $name)
+	{
+		$qb = $this->createQueryBuilder('w')
+			->andWhere('w.network = :network')
+			->andWhere('w.name != :name')
+			->setParameter('network', $network)
+			->setParameter('name', $name);
+		$this->whereIsActive($qb);
+
+		return $qb->getQuery()->getResult();
+	}
 
 }

@@ -17,20 +17,29 @@ class WorkspaceController extends Controller
 
     $ws = $WsService->getWorkspaceByName($name);
     $pictures = $WsService->getPicturesByWorkspace($name);
-    $pictureLogo = $WsService->getLogoByWorkspace($name);
+    // $pictureLogo = $WsService->getLogoByWorkspace($name);
     $listEvents = $WsService->getEventsByWorkspace($ws);
     $averageVote = $WsService->getAverageVoteByWorkspace($ws);
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
     $WsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
+    $wsSameNetwork = $WsService->getWsByWsNetwork($ws->getNetwork(), $name);
+    $wsSameNetworkWithFavoritePic = array();
+
+    foreach ($wsSameNetwork as $w) {
+      array_push($wsSameNetworkWithFavoritePic, 
+        array('ws' => $w, 
+              'pic' => $WsService->getFavoritePictureUrlByWorkspace($w->getName())));
+    }
 
   	return $this->render('Workspace/view.html.twig', 
       array('ws' => $ws, 
         'listEvents' => $listEvents, 
         'pictures' => $pictures, 
-        'pictureLogo' => $pictureLogo,
+        // 'pictureLogo' => $pictureLogo,
         'pricesAndOffices' => $pricesAndOffices,
         'averageVote' => $averageVote,
-        'WsHasTeamMembers' => $WsHasTeamMembers
+        'WsHasTeamMembers' => $WsHasTeamMembers,
+        'wsSameNetworkWithFavoritePic' => $wsSameNetworkWithFavoritePic
         ));
   }
 

@@ -198,6 +198,32 @@
     </div>
 </div>
 
+{############################################# Réseaux #########################################}
+{% if ws.network != null%}
+<div class="row text-center">
+	<div class="col-lg-12 col-md-12">
+		<h2>Les espaces du même réseau</h2>
+		<div class="row text-center">
+			<div id="sliderNetwork">
+			{% for w in wsSameNetworkWithFavoritePic %}
+				<div class="slide">
+					<a href="{{ path('becowo_core_workspace', {'name' : w.ws.name}) }}">	
+						<span class="nom">{{ w.ws.name }}</span> <br>
+						<center>
+						<img src="{{ asset('images/Workspaces/') }}{{w.ws.name}}/{{w.pic.url}}" alt="{{w.ws.name}}" width="300px"> <br>
+						</center>
+						{% for amenity in w.ws.amenities %}
+							<img src="{{ asset('images/icons/amenities/Bleu/') }}{{amenity.urlLogo}}" alt="{{amenity.name}}" width="30px" style="display: inline-block !important;"> 
+						{% endfor %} <br>
+						{{w.ws.street}} - {{w.ws.postCode}} {{w.ws.city}} <br><br>
+					</a>
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
 {############################################# Commentaires #########################################}
 <div class="row text-center">
 	<div class="col-lg-12 col-md-12">

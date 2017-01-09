@@ -29,6 +29,13 @@ class Workspace
     /**
      * @var string
      *
+     * @ORM\Column(name="network", type="string", length=255, nullable=true)
+     */
+    private $network;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description_bonus", type="string", length=255, nullable=true)
      */
     private $descriptionBonus;
@@ -282,6 +289,30 @@ class Workspace
         return $this->description;
     }
 
+    /**
+     * Set network
+     *
+     * @param string $network
+     *
+     * @return Workspace
+     */
+    public function setNetwork($network)
+    {
+        $this->network = $network;
+
+        return $this;
+    }
+
+    /**
+     * Get network
+     *
+     * @return string
+     */
+    public function getNetwork()
+    {
+        return $this->network;
+    }
+    
     /**
      * Set descriptionBonus
      *

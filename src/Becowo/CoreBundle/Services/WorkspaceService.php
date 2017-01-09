@@ -302,4 +302,11 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
         return $repo->findBookingByMember($user);
     }
+
+
+    public function getWsByWsNetwork($network, $name)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Workspace');
+        return $repo->findWsByWsNetwork($network, $name);
+    }
 }

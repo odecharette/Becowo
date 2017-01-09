@@ -131,6 +131,17 @@ $('#filtre-bureaux').on('change', function() {
     }).show();
 });
 
+/****************** Page d'un WS, slider liste de WS en réseau ****************/
+$(document).ready(function(){
+  $('#sliderNetwork').bxSlider({
+    slideWidth: 400,
+    minSlides: 2,
+    maxSlides: 3,
+    moveSlides: 1,
+    slideMargin: 20
+  });
+});
+
 /*********** Vidéo big size *********/
 $(document).ready(function ()    
 {if(document.getElementById("video-big") != null){

@@ -1711,6 +1711,17 @@ color: var(--my-blue) !important;
   top: -190px !important;
 }
 
+#sliderNetwork a,#sliderNetwork a:hover,#sliderNetwork a:active,#sliderNetwork a:focus{
+  text-decoration: none;
+  color: var(--my-grey);
+}
+#sliderNetwork{
+  color: var(--my-grey);
+}
+#sliderNetwork .nom{
+  font-size: 14pt;
+  color: var(--my-blue);
+}
 #CommentResults p{
   font-size: 12pt;
   text-align: justify;
