@@ -70,6 +70,10 @@ services:
            - { name: twig.extension }
     authentication_handler:
         class: Becowo\MemberBundle\Handler\AuthenticationHandler
+    twig.mobile_detect_extension:
+            class: Bes\Twig\Extension\MobileDetectExtension
+            tags:
+                - { name: twig.extension }
            
 # Doctrine Configuration
 doctrine:
