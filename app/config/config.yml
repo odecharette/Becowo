@@ -12,20 +12,18 @@ parameters:
     tva: 20
     blogRSS: http://www.blog.becowo.com/feed/
     # config pour le paiement via e-transactions du Crédit Agricole
-    # Config de test public TO DO mettre la config de pre-prod puis prod
+    # TO DO URL de prod : https://tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi
+    # TO DO URL mobile : https://preprod-tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi OU https://tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi
     creditAgricole:
-        PBX_SITE: 1999887
-        PBX_RANG: 32
-        PBX_IDENTIFIANT: 213
+        PBX_URL: https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi
+        PBX_SITE: 1612671
+        PBX_RANG: '01'
+        PBX_IDENTIFIANT: 677217297
         PBX_DEVISE: 978
         PBX_RETOUR: Montant:M;Ref:R;call_number:T;authorization_number:A;erreur:E;sign:K    #Le param K doit tjs être en dernier
         PBX_HASH: SHA512
-        PBX_HMAC: 0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
-        PBX_EFFECTUE: "%site_url%/ws/paiement/effectue"
-        PBX_ANNULE: "%site_url%/ws/paiement/annule"
-        PBX_REFUSE: "%site_url%/ws/paiement/refuse"
-        PBX_REPONDRE_A: "%site_url%/ws/paiement/ipn"
-
+        PBX_HMAC: 4aa0576c7c116b6dfd889063e973205cf378b22aff0f710d55d3e56238a4c00aa38e70f22989ce08d4140daa86bb7cff92a3ea71629f761ed3858e14a0103d87
+       
 framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
