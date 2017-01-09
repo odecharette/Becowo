@@ -1631,9 +1631,7 @@ color: var(--my-blue) !important;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
 #panelEvent .panel-heading{
-  background-color: var(--my-green);
-  color: white;
-  font-size: 18px;
+  padding: 0 0 1px 0; 
 }
 #panelEvent .panel-body{
   margin-top: -2px;
