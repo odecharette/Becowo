@@ -39,14 +39,10 @@ class PaiementController extends Controller
     "&PBX_PORTEUR=" . $userEmail . 
     "&PBX_RETOUR=" . $paiementInfos['PBX_RETOUR'] . 
     "&PBX_HASH=" . $paiementInfos['PBX_HASH'] .
-    "&PBX_TIME=".$dateISO .
-    "&PBX_EFFECTUE=".$paiementInfos['PBX_EFFECTUE'] .
-    "&PBX_REFUSE=".$paiementInfos['PBX_REFUSE'] .
-    "&PBX_ANNULE=".$paiementInfos['PBX_ANNULE'] .
-    "&PBX_REPONDRE_A=".$paiementInfos['PBX_REPONDRE_A']; 
+    "&PBX_TIME=".$dateISO; 
 
 
-    // On récupère la clé secrète HMAC (stockée dans une base de données cryptée) et que l’on renseigne dans la variable 
+    // On récupère la clé secrète HMAC et que l’on renseigne dans la variable 
     $keyTest = $paiementInfos['PBX_HMAC'];
     // Si la clé est en ASCII, On la transforme en binaire
     $binKey = pack("H*", $keyTest);  
@@ -166,7 +162,7 @@ class PaiementController extends Controller
 
     // Vérifier la signature de l'URL pour assurer que ca provient bien de la banque
     // Récupération de l'URL reçue pour récup la liste des paramètres
-    $uri = $request->server('REQUEST_URI');
+    $uri = $request->getRequestUri();
     $paramList = explode('?', $uri);
     $data = $paramList[1]; 
     // Lecture de la clé publique depuis le certificat
