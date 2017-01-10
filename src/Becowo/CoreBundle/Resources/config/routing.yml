@@ -74,6 +74,11 @@ becowo_core_cgu:
     defaults: { _controller: BecowoCoreBundle:Footer:cgu }
     methods: GET
 
+becowo_core_mentions:
+    path:     /mentions-legales
+    defaults: { _controller: BecowoCoreBundle:Footer:mentions }
+    methods: GET
+
 becowo_core_cookies:
     path:     /cookies
     defaults: { _controller: BecowoCoreBundle:Footer:cookies }

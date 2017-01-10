@@ -70,6 +70,11 @@ class FooterController extends Controller
     return $this->render('Footer/cgu.html.twig');
   }
 
+  public function mentionsAction()
+  {
+    return $this->render('Footer/mentions.html.twig');
+  }
+
   public function cookiesAction()
   {
     return $this->render('Footer/cookies.html.twig');
