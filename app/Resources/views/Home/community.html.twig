@@ -21,7 +21,7 @@
 		<div class="col-lg-9 col-xs-12">
 			{% for member in members %}
 				{% if loop.index % 4 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
-					<div class="col-lg-4 col-md-4 col-xs-11 col-xs-offset-1">
+					<div class="col-lg-4 col-md-4 col-xs-12">
 						<div class="member">
 							<a href="{{ path('becowo_member_public_profile', {'id' : member.id}) }}">
 								{% if member.profilePicture.url is defined %}
