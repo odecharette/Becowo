@@ -284,14 +284,20 @@ class WorkspaceService
         $i = 0;
 
         foreach ($prices as $price) {
-            $a = array('Hour' => $price->getPriceHour(), 
-                        'HalfDay' => $price->getPriceHalfDay(),
-                        'Day' => $price->getPriceDay(),
-                        'Week' => $price->getPriceWeek(),
-                        'Month' => $price->getPriceMonth());
-            $minPrice = min(array_diff(array_map('intval', $a), array(0))); // renvoi le plus petit prix en excluant les valeurs NULL
+            if($price->getPriceHour() == null && $price->getPriceHalfDay() == null && $price->getPriceDay() == null && $price->getPriceWeek() == null && $price->getPriceMonth() == null)
+            {
+                //
+            }else{
+                $a = array('Hour' => $price->getPriceHour(), 
+                            'HalfDay' => $price->getPriceHalfDay(),
+                            'Day' => $price->getPriceDay(),
+                            'Week' => $price->getPriceWeek(),
+                            'Month' => $price->getPriceMonth());
+                $minPrice = min(array_diff(array_map('intval', $a), array(0))); // renvoi le plus petit prix en excluant les valeurs NULL
             $allWsMinPrices[$i] = $minPrice;
             $i++;
+            }
+
         }
 
         return min($allWsMinPrices);
