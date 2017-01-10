@@ -40,12 +40,12 @@ class MapController extends Controller
       $itemNode->addAttribute( 'region', utf8_encode($workspaces->getRegion()) );
       $itemNode->addAttribute( 'lowestPrice', $WsService->getLowestPriceByWorkspace($workspaces) );
 
-      $amenities = $workspaces->getAmenities();
+      $amenities = $WsService->getAmenitiesByWorkspace($workspaces);
       $listeAmenities = "";
       $i = 0;
       foreach ($amenities as $amenity) {
-        $listeAmenities = $amenity->getName() . ", " . $listeAmenities ;
-        $itemNode->addAttribute( 'featuresUrl' . $i, substr($amenity->getUrlLogo(), 0,-4));
+        $listeAmenities = $amenity->getAmenities()->getName() . ", " . $listeAmenities ;
+        $itemNode->addAttribute( 'featuresUrl' . $i, substr($amenity->getAmenities()->getUrlLogo(), 0,-4));
         $i++;
       }
       $itemNode->addAttribute( 'features', $listeAmenities );
