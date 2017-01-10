@@ -156,6 +156,8 @@ easy_admin:
             class: Becowo\CoreBundle\Entity\WorkspaceFavorite
             form:
                 fields: ['workspace']
+        Workspace_has_amenities:
+            class: Becowo\CoreBundle\Entity\WorkspaceHasAmenities
         Picture:
             class: Becowo\CoreBundle\Entity\Picture
         Office:
@@ -203,8 +205,6 @@ easy_admin:
             class: Becowo\CoreBundle\Entity\Poi
         Poi_Category:
             class: Becowo\CoreBundle\Entity\PoiCategory
-        Amenities:
-            class: Becowo\CoreBundle\Entity\Amenities
         TeamMember:
             class: Becowo\CoreBundle\Entity\TeamMember
         Vote:
@@ -235,7 +235,7 @@ easy_admin:
     design:
         menu:
             - label: 'Workspaces'
-              children: ['Workspace', 'Workspace_has_office', 'Workspace_Category', 'Workspace_Favorite', 'Workspace_has_offer', 'Picture', 'Amenities', 'TeamMember', 'Price', 'Timetable', 'Event']
+              children: ['Workspace', 'Workspace_has_office', 'Workspace_Category', 'Workspace_Favorite', 'Workspace_has_offer', 'Picture', 'TeamMember', 'Price', 'Timetable', 'Event']
             - label: 'Booking'
               children: ['Booking', 'Booking_Status']
             - label: 'Members'

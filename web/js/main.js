@@ -121,6 +121,11 @@ $('[id^="goToResa-"]').click(function() {
   $('#myTab a[href="#Réservation"]').tab('show');
 });
 
+$('[id^="goToContact-"]').click(function() {
+  $('#myTab a[href="#Contact"]').tab('show');
+  $('#myModalManagerContact').modal({});
+});
+
 /****************** Page d'un WS, onglet réservation, filtre les bureaux ****************/
 
 $('#filtre-bureaux').on('change', function() { 

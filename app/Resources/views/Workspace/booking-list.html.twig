@@ -34,37 +34,43 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    			<i class="fa fa-male" aria-hidden="true"></i>
 		    			{% endif %}
 		    			<br><br>
-		    			<div class="row">
-		    				<div class="col-lg-6 col-md-8" id="formules">
-		    					<strong><i class="fa fa-money" aria-hidden="true"></i> Nos formules : </strong><br>
-				    			{% if priceandoffice.priceHour > 0 %} {{priceandoffice.priceHour}} € HT / heure<br> {% endif %}
-			    				{% if priceandoffice.priceHalfDay > 0 %} {{priceandoffice.priceHalfDay}} € HT / demi journée<br> {% endif %}
-		    					{% if priceandoffice.priceDay > 0 %} {{priceandoffice.priceDay}} € HT / jour<br> {% endif %}
-								{% if priceandoffice.priceWeek > 0 %} {{priceandoffice.priceWeek}} € HT / semaine<br> {% endif %}
-								{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € HT / mois<br> {% endif %}
-		    				</div>
-		    				<div class="col-lg-6 col-md-4">
-	    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-			    				<a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}" id="btnResa">Réserver</a>
-			    			{% else %}
-			    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect">Réserver</button>
-			    					<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						    			<div class="modal-dialog">
-						        			<div class="modal-content">
-									            <div class="modal-header modal-header-danger">
-									                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-									                <h4 class="modal-title">Réservation</h4>
-									            </div>
-									            <div class="modal-body">
-									                <p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
-									            </div>
-						        			</div>
-						    			</div>
-									</div>
-			    			{% endif %}
- 
-		    				</div>
-		    			</div>
+		    			{% if priceandoffice.priceHour > 0 or priceandoffice.priceHalfDay > 0 or priceandoffice.priceDay > 0 or  priceandoffice.priceWeek > 0 or priceandoffice.priceMonth > 0 %}
+			    			<div class="row">
+			    				<div class="col-lg-6 col-md-8" id="formules">
+				    					<strong><i class="fa fa-money" aria-hidden="true"></i> Nos formules : </strong><br>
+						    			{% if priceandoffice.priceHour > 0 %} {{priceandoffice.priceHour}} € HT / heure<br> {% endif %}
+					    				{% if priceandoffice.priceHalfDay > 0 %} {{priceandoffice.priceHalfDay}} € HT / demi journée<br> {% endif %}
+				    					{% if priceandoffice.priceDay > 0 %} {{priceandoffice.priceDay}} € HT / jour<br> {% endif %}
+										{% if priceandoffice.priceWeek > 0 %} {{priceandoffice.priceWeek}} € HT / semaine<br> {% endif %}
+										{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € HT / mois<br> {% endif %}
+			    				</div>
+			    				<div class="col-lg-6 col-md-4">
+		    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				    				<a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}" id="btnResa">Réserver</a>
+				    			{% else %}
+				    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect">Réserver</button>
+				    					<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							    			<div class="modal-dialog">
+							        			<div class="modal-content">
+										            <div class="modal-header modal-header-danger">
+										                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+										                <h4 class="modal-title">Réservation</h4>
+										            </div>
+										            <div class="modal-body">
+										                <p>Pour réserver, vous devez être <a href="{{ path('fos_user_security_login') }}">connecté</a></p>
+										            </div>
+							        			</div>
+							    			</div>
+										</div>
+				    			{% endif %}
+	 
+			    				</div>
+			    			</div>
+			    		{% else %}
+			    			<div class="row">
+								Prix sur demande, veuillez <a href="#Contact" id="goToContact-{{priceandoffice.WorkspaceHasOffice.id}}"> contacter le manager </a>
+			    			</div>
+						{% endif %}
 		    			<div class="row">
 		    				<br>
 		    				<p>{{priceandoffice.workspaceHasOffice.description}}</p>
