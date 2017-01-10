@@ -36,7 +36,7 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=55, nullable=true)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
 

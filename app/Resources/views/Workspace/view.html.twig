@@ -120,7 +120,6 @@
 {############################ Evenements ############################}
     <div id="Evènements" class="tab-pane fade">
     	{% if listEvents|length > 0 %}
-    		<p>Retrouvez ici les événements organisés chez {{ws.name}}</p>
         	{% include 'Workspace/events.html.twig' %}
         {% else %}
         	<div class="row text-center">

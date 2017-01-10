@@ -1697,6 +1697,7 @@ color: var(--my-blue) !important;
   overflow: hidden;
   margin-right: 15px;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+  vertical-align: top;
 }
 #panelEvent .panel-heading{
   padding: 0 0 1px 0; 
@@ -1706,7 +1707,6 @@ color: var(--my-blue) !important;
   color: var(--my-grey);
   font-size: 12pt;
   text-align: justify;
-  height: 250px;
   border: solid 1px var(--my-green);
   overflow: hidden;
   padding-bottom: 10px;

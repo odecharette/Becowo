@@ -17,9 +17,9 @@
             {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}
           </center>
           {% if event.description|length > 200 %}
-            <p>{{event.description|nl2br|slice(0,200)}}...</p>
+            <p>{{event.description|slice(0,200)}}...</p>
           {% else %}
-            <p>{{event.description|nl2br}}</p>
+            <p>{{event.description}}</p>
           {% endif %}
         </div>
       </div>
