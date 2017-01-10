@@ -150,6 +150,7 @@
 					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="{{WsHasOffice.deskQty}}" name="booking-people" data-slider-value="{% if booking.nbPeople != null %}{{booking.nbPeople}}{% else %} 1 {% endif %}"/>
 				<b> {{WsHasOffice.deskQty}} </b>
 				</span>
+				<span id="nbPeople" hidden="true"></span>
 
 				<br><br>
 				{# msg #}

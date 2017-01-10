@@ -14,6 +14,7 @@ var mySliderPeople = $("#booking-people").slider({});
 mySliderPeople.on('slide', function(ev){	
 
     document.getElementById('nbPeople').innerHTML = mySliderPeople.data('slider').getValue();
+    loadPrice(duree);
 });
 
 // Prix par défaut
@@ -44,10 +45,6 @@ if(document.getElementById('email-error') != null){
 
 
 });
-
-
-
-
 
 // config : http://longbill.github.io/jquery-date-range-picker/
 function loadCalendar(duree)
@@ -165,7 +162,7 @@ function loadPrice(duree){
 	var prix = document.getElementById('price' + duree).innerHTML;
 
 	var total = prix;
-	var officeType = document.getElementById('officeType');
+	var officeType = document.getElementById('officeType').innerHTML;
 	var nbHeures = document.getElementById('nbHeures').innerHTML;
 	var nbPeople = document.getElementById('booking-people').value;
 
