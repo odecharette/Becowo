@@ -8,19 +8,7 @@
 
 <div class="container-fluid">
 	<div class="row text-center" id="videoPanel">
-		<video id="video-big" width="60%" poster="" style="opacity:0.5;">
-			<source src="{{ asset('video/coworking.mp4') }}" type="video/mp4"> 
-			<p>
-		      Votre navigateur ne supporte pas la vidéo HTML5
-		      <a href="{{ asset('video/coworking.mp4') }}">Télécharger ici la vidéo</a>.
-		    </p>
-		</video>
-		<div id="video-controls">
-			<img src="{{ asset('video/becowo.png') }}" alt="Vidéo Becowo" id="fond">
-			<button type="button" id="play"><i class="fa fa-play-circle-o fa-5x" aria-hidden="true"></i></button>
-			<button type="button" id="pause" style="display:none;"><i class="fa fa-pause-circle-o fa-5x" aria-hidden="true"></i></button>
-			<button type="button" id="expand"><i class="fa fa-expand fa-2x" aria-hidden="true"></i></button>
-		</div>
+		{% include 'CommonViews/video-big.html.twig' %} 
 	</div>
 </div><div class="container-fluid" id="commentEspace">
 	<div class="row text-center">

@@ -239,7 +239,6 @@ p{
 }
 #videoPanel{
   position: relative;
-  margin-bottom: 70px;
 }
 #videoPanel #play, #videoPanel #pause, #videoPanel #expand{
   position: absolute;
