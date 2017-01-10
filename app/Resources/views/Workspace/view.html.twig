@@ -91,10 +91,10 @@
 		        <p>Les services disponibles chez {{ws.name}}</p>
 		        <br>
 		        <ul>
-					{% for amenity in ws.amenities %}
+					{% for WsHasAmenity in WsHasAmenities %}
 						<li>
-							<img src="{{ asset('images/icons/amenities/Bleu/') }}{{amenity.urlLogo}}" alt="{{amenity.name}}" title="{{amenity.name}}"> 
-							{{amenity.name}}
+							<img src="{{ asset('images/icons/amenities/Bleu/') }}{{WsHasAmenity.amenities.urlLogo}}" alt="{{WsHasAmenity.amenities.name}}" title="{{WsHasAmenity.amenities.name}}"> 
+							{{WsHasAmenity.amenities.name}}
 						</li>
 					{% endfor %}
 		        </ul>
@@ -212,8 +212,8 @@
 						<center>
 						<img src="{{ asset('images/Workspaces/') }}{{w.ws.name}}/{{w.pic.url}}" alt="{{w.ws.name}}" width="300px"> <br>
 						</center>
-						{% for amenity in w.ws.amenities %}
-							<img src="{{ asset('images/icons/amenities/Bleu/') }}{{amenity.urlLogo}}" alt="{{amenity.name}}" width="30px" style="display: inline-block !important;"> 
+						{% for amenity in w.amenities %}
+							<img src="{{ asset('images/icons/amenities/Bleu/') }}{{amenity.amenities.urlLogo}}" alt="{{amenity.amenities.name}}" width="30px" style="display: inline-block !important;"> 
 						{% endfor %} <br>
 						{{w.ws.street}} - {{w.ws.postCode}} {{w.ws.city}} <br><br>
 					</a>

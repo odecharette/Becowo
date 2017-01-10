@@ -309,4 +309,10 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Workspace');
         return $repo->findWsByWsNetwork($network, $name);
     }
+
+    public function getAmenitiesByWorkspace($ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasAmenities');
+        return $repo->findAmenitiesByWorkspace($ws);
+    }
 }

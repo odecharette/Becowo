@@ -42,6 +42,7 @@ class Amenities
      */
     private $workspace;
 
+
     /**
      * Constructor
      */
@@ -142,6 +143,7 @@ class Amenities
     {
         return $this->workspace;
     }
+
 
     public function __toString()
     {

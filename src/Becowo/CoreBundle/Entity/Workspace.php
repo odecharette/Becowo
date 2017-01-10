@@ -204,22 +204,6 @@ class Workspace
     private $poi;
 
 
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Amenities", inversedBy="workspace")
-     * @ORM\JoinTable(name="becowo_workspace_has_amenities",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="amenities_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $amenities;
-
     /**
      * @var string
      *
@@ -869,40 +853,6 @@ class Workspace
     public function getTeamMember()
     {
         return $this->teamMember;
-    }
-
-    /**
-     * Add amenity
-     *
-     * @param \Becowo\CoreBundle\Entity\Amenities $amenity
-     *
-     * @return Workspace
-     */
-    public function addAmenity(\Becowo\CoreBundle\Entity\Amenities $amenity)
-    {
-        $this->amenities[] = $amenity;
-
-        return $this;
-    }
-
-    /**
-     * Remove amenity
-     *
-     * @param \Becowo\CoreBundle\Entity\Amenities $amenity
-     */
-    public function removeAmenity(\Becowo\CoreBundle\Entity\Amenities $amenity)
-    {
-        $this->amenities->removeElement($amenity);
-    }
-
-    /**
-     * Get amenities
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAmenities()
-    {
-        return $this->amenities;
     }
 
 
