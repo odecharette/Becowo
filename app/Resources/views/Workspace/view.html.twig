@@ -89,12 +89,25 @@
     	<div class="row">
     		<div class="col-lg-8 col-md-8" style="padding: 0;">
 		        <p>Les services disponibles chez {{ws.name}}</p>
+		        <p>{{ws.amenitiesDesc}}</p>
 		        <br>
 		        <ul>
 					{% for WsHasAmenity in WsHasAmenities %}
 						<li>
-							<img src="{{ asset('images/icons/amenities/Bleu/') }}{{WsHasAmenity.amenities.urlLogo}}" alt="{{WsHasAmenity.amenities.name}}" title="{{WsHasAmenity.amenities.name}}"> 
-							{{WsHasAmenity.amenities.name}}
+							<table>
+								<tr>
+									<td><img src="{{ asset('images/icons/amenities/Bleu/') }}{{WsHasAmenity.amenities.urlLogo}}" alt="{{WsHasAmenity.amenities.name}}"> </td>
+									<td style="line-height: 30px;">
+										{{WsHasAmenity.amenities.name}}
+										{% if WsHasAmenity.description != null %}
+											<div class="help-tip">
+												<p>{{WsHasAmenity.description}}</p>
+											</div>
+										{% endif %} <br>
+										<div class="label label-info">{{WsHasAmenity.label}}</div> <br>
+									</td>
+								</tr>
+							</table>
 						</li>
 					{% endfor %}
 		        </ul>

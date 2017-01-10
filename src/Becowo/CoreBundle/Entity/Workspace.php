@@ -213,6 +213,14 @@ class Workspace
     private $region;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="amenities_desc", type="string", length=255, nullable=true)
+     *
+     */
+    private $amenitiesDesc;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -878,6 +886,30 @@ class Workspace
     public function getRegion()
     {
         return $this->region;
+    }
+
+    /**
+     * Set amenitiesDesc
+     *
+     * @param string $amenitiesDesc
+     *
+     * @return Workspace
+     */
+    public function setAmenitiesDesc($amenitiesDesc)
+    {
+        $this->amenitiesDesc = $amenitiesDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get amenitiesDesc
+     *
+     * @return string
+     */
+    public function getAmenitiesDesc()
+    {
+        return $this->amenitiesDesc;
     }
 
     public function __toString()

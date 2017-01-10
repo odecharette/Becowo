@@ -35,6 +35,13 @@ class WorkspaceHasOffice
     /**
      * @var string
      *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url_profile_picture", type="string", length=255, nullable=true)
      */
     private $urlProfilePicture;
@@ -192,6 +199,30 @@ class WorkspaceHasOffice
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of description.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Sets the value of description.
+     *
+     * @param string $description the description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }
