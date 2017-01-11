@@ -1,0 +1,128 @@
+{% block stylesheets %}
+	<style>
+		.container-fluid{
+			padding-right: 0 !important;
+			padding-left: 0 !important;
+		}
+		#image{
+			position: relative;
+		}
+		#image div{
+			position: absolute;
+			top: 10px;
+			color: white;
+			background-color: rgba(45,45,45,0.9);
+			padding: 0 5px;
+			font-weight: bold;
+			line-height: 30px;
+		}
+		#image div i{
+			color: var(--my-orange);
+		}
+		button{
+			width: 100%;
+			background-color: var(--my-green);
+			border : var(--my-green-strong);
+			color: white ;
+			font-size: 12pt;
+			line-height: 2em;
+		}
+		input{
+			width: 100%;
+		}
+		.bonus{
+			text-align: center;
+			color: var(--my-red);
+			letter-spacing: 0.1em;
+		}
+		.amenities{
+			text-align: center;
+			margin: 10px 0 10px 0;
+		}
+		p{
+			font-size: 11pt !important;
+		}
+		.name{
+			text-align: center;
+			color: var(--my-blue);
+		}
+	</style>
+{% endblock %}
+<br>
+<div class="container-fluid">
+
+{% for ws in wsFullInfo %}
+	<div class="row">
+	{% set offerZen = false %}
+	{% for o in ws.WsHasOffers %}
+		{% if o.offer.name == 'Zen' %}
+			{% set offerZen = true %}
+		{% endif %}
+	{% endfor %}
+
+	{% if offerZen %}
+	<a href="{{ path('becowo_core_workspace', { 'name': ws.ws.name }) }}">
+	{% endif %}
+
+	<div class="col-xs-12">
+		<div class="name">{{ws.ws.name}}
+		{% if ws.averageVote %}
+			<img src="{{ asset('images/icons/star') }}{{ws.averageVote}}.png" width="100px">
+		{% endif %}
+		</div>
+		<div id="image">
+		<img src="{{ asset('images/Workspaces/') }}{{ws.ws.name}}/{{ws.favoritePicture.url}}" alt="{{ws.ws.name}}" width="100%">
+			<div>
+				A partir de {{ws.lowestPrice}} <sup>€</sup>
+				{% if offerZen %}
+					 <i class="fa fa-bolt" aria-hidden="true"></i>
+				{% endif %}
+			</div>
+		</div>
+
+		{% if offerZen %}
+			<button type="button">Découvrir</button>
+		{% else %}
+			<button type="button" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>
+			<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    			<div class="modal-dialog">
+        			<div class="modal-content">
+			            <div class="modal-header modal-header-info">
+			                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+			                <h4 class="modal-title">Réclamer cet espace</h4>
+			            </div>
+						<form method="POST" action="{{ path('becowo_core_vote_zen', { 'id': ws.ws.id }) }}" id="form_voteZen">
+			            <div class="modal-body">
+			                <p>La réservation en ligne n'est malheureusement pas disponible chez {{ws.ws.name}}. <br>
+			                Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à {{ws.ws.name}} car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"
+							</p>
+							<p>Votre email * :</p> <input type="email" name="emailVote" required="true" width="200px">
+							<p>Nous vous préviendrons dès que {{ws.ws.name}} sera disponible sur Becowo.</p>
+							<div id="error-{{ws.ws.id}}"></div>
+			            </div>
+			            <div class="modal-footer">
+							<button type="submit" id="voteZen-{{ws.ws.id}}" class="modal_valid">Je réclame !</button>
+			            </div>
+						</form>	
+        			</div>
+    			</div>
+			</div>
+		{% endif %}
+		
+		<div class="amenities">
+			{% for amenity in ws.amenities %}
+				{% if loop.index <= 10 %}
+				<img src="{{ asset('images/icons/amenities/Bleu/') }}{{amenity.amenities.urlLogo}}" width="20px">
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div class="bonus"> {{ws.ws.descriptionBonus}}</div>
+		<br>
+	</div>
+			
+	{% if offerZen %}</a>{% endif %}	
+
+	</div>
+{% endfor %}
+
+</div>

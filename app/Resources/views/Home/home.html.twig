@@ -12,8 +12,11 @@
 
 {% include 'Home/home-image.html.twig' %} 
 
-
-{% include 'Home/map-and-list.html.twig' %} 
+{% if is_mobile() %}
+	{{ render(controller('BecowoCoreBundle:Home:mobile')) }}
+{% else %}
+	{% include 'Home/map-and-list.html.twig' %} 
+{% endif %}
 
 <div class="container-fluid">
 
