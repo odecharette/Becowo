@@ -73,6 +73,10 @@ header .navbar-default{
 header img{
   width: 100%;
 }
+.row{
+  margin-right: 0px;
+  margin-left: 0px;
+}
 /*  CSS FOR MOBILE ONLY - Mode portrait */
 @media (max-width: 767px){
   body {
