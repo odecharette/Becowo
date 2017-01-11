@@ -20,12 +20,17 @@
 
 <div class="container-fluid">
 
-<div class="row text-center">
-	<br><br>
-	{% include 'CommonViews/video.html.twig' %} 
-	<br><br>
-</div>
-
+{% if is_mobile() %}
+	<div class="row text-center">
+		{% include 'CommonViews/video-mobile.html.twig' %}
+	</div>
+{% else %}
+	<div class="row text-center">
+		<br><br>
+		{% include 'CommonViews/video.html.twig' %} 
+		<br><br>
+	</div>
+{% endif %}
 
 {% include 'Home/blog-and-insta.html.twig' %} 
 
