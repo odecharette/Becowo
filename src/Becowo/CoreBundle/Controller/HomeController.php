@@ -8,6 +8,7 @@ class HomeController extends Controller
 {
   public function homeAction()
   {
+    /*
     $WsService = $this->get('app.workspace');
     $workspaces = $WsService->getActiveWorkspaces(); 
     $picturesByWs = $WsService->getPicturesByWorkspaces($workspaces);
@@ -16,13 +17,12 @@ class HomeController extends Controller
 
   	return $this->render('Home/home.html.twig', array(
   		'workspaces' => $workspaces, 
-  		//'members' => $members, 
   		'workspaceFavorite' => $workspaceFavorite,
       'picturesByWs' => $picturesByWs,
       'officesByWS' => $officesByWS
-      // 'comments' => $comments
-      // ,      'mapGeoJson' => $mapGeoJson
       ));
+    */
+      return $this->render('Home/home.html.twig');
   }
 
   public function communityAction()

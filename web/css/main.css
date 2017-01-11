@@ -100,12 +100,6 @@ header img{
   header .navbar-default{
     height: 50px;
   }
-  #home-image div{
-    top: 50% !important;
-  }
-  #video{
-    height: 200px !important;
-  }
   h1{
     font-size: 30px;
   }
