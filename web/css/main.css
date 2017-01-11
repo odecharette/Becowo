@@ -103,7 +103,7 @@ header img{
     height: 50px;
   }
   h1{
-    font-size: 30px;
+    font-size: 28px;
   }
   h2{
     font-size: 18px !important;
@@ -1686,9 +1686,17 @@ font-family: FontAwesome;
 color: var(--my-blue) !important;
 }*/
 
-
+@media (min-width: 768px){
+  #panelEvent {
+    width: 30%; 
+  }
+}
+@media (max-width: 768px){
+  #panelEvent {
+    width: 100%; 
+  }
+}
 #panelEvent {
-  width: 30%; 
   display: inline-block;  
   border: none;
   overflow: hidden;

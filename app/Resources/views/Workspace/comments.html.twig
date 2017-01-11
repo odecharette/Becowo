@@ -4,7 +4,7 @@
 <br>
 {% include "CommonViews/flashMessage.html.twig" %}
 	<div class="row">
-		<div class="col-lg-12 col-md-12">
+		<div class="col-lg-12 col-md-12 hidden-xs">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				{% if voteAlreadyDone %}
 					<p>Vous avez déjà voté/commenté</p>
@@ -64,14 +64,14 @@
 		</div>
 	</div>
 	{% if listComments is empty %}
-		<div id="noComment">
+		<div id="noComment" class="hidden-xs">
 			Soyez le premier à saisir un commentaire !
 		</div>
 	{% else %}
 	<div id="listComments">
 		{% for comment in listComments %}
 			<div class="row">
-				<div class="col-lg-1 col-md-1">
+				<div class="col-lg-1 col-md-1 col-xs-4">
 					{% if comment.member.profilePicture.url is defined %}
 						<a href="{{ path('becowo_member_public_profile', {'id' : comment.member.id}) }}" class="memberPic">
 							<div style="background-image:url('{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}'); 
@@ -90,22 +90,22 @@
 					    margin: 0 auto;">&nbsp;</div>
 					{% endif %}
 				</div>
-				<div class="col-lg-8 col-md-8">
+				<div class="col-lg-8 col-md-8 col-xs-8">
 					<div class="speech-time">Le {{comment.postedOn|date("d/m/Y - H:i")}}</div>
 					<div class="row vCenter">
-						<div class="col-lg-2 col-md-2">
+						<div class="col-lg-2 col-md-2 hidden-xs">
 							Connectivité <br>
 							Services
 						</div>
-						<div class="col-lg-3 col-md-3">
+						<div class="col-lg-3 col-md-3 hidden-xs">
 							{{comment.score1|rating}}
 							{{comment.score2|rating}}
 						</div>
-						<div class="col-lg-2 col-md-2">
+						<div class="col-lg-2 col-md-2 hidden-xs">
 							Cosy/Confort <br>
 							Ambiance
 						</div>
-						<div class="col-lg-3 col-md-3">
+						<div class="col-lg-3 col-md-3 hidden-xs">
 							{{comment.score3|rating}}
 							{{comment.score4|rating}}
 						</div>
@@ -113,7 +113,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-md-12">
+				<div class="col-lg-12 col-md-12 col-xs-12">
 					<blockquote class="speech-bubble">
 				    	<p>{{comment.post}}</p>
 				    </blockquote>

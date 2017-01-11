@@ -1,0 +1,173 @@
+{############################################# Onglets #########################################}
+<ul class="nav nav-tabs nav-inverse" id="myTab">
+    <li><a data-toggle="tab" href="#Description">Description</a></li>
+    <li><a data-toggle="tab" href="#Services">Services</a></li>
+    <li><a data-toggle="tab" href="#Evènements">Evènements</a></li>
+    <li><a data-toggle="tab" href="#Contact">Contact</a></li>
+    <li id="resa"><a data-toggle="tab" href="#Réservation">Réservation</a></li>
+</ul>
+<div class="tab-content" id="myTabContent">
+{############################ Description ############################}
+    <div id="Description" class="tab-pane fade">
+        <p>{{ws.description|raw|nl2br}}</p>
+        <strong>Retrouvez toutes les informations nécessaires à votre réservation dans l'onglet "Réservation"</strong>
+        <br>
+        <br>
+        <div class="row text-center">
+	         {% for priceandoffice in pricesAndOffices %}
+	         	{% if loop.index < 6 %} {# on n'affiche que les 5 premiers bureaux #}
+         		<a href="#Réservation" id="goToResa-{{priceandoffice.WorkspaceHasOffice.id}}">
+		        	<div id="office">
+		        		{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
+		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+		        		{% else %}
+		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
+		        		{% endif %} <br>
+		        		<div class="row" style="width: 190px;">
+		        			{{priceandoffice.WorkspaceHasOffice.name}} <br>
+		        		</div>
+		        		<strong>
+		        			{% if priceandoffice.priceHour > 0 %}
+			        			A partir de {{priceandoffice.priceHour}} € HT / heure
+			        		{% elseif priceandoffice.priceHalfDay > 0 %}
+			        			{{priceandoffice.priceHalfDay}} € HT / 1/2 journée
+			        		{% elseif priceandoffice.priceDay > 0 %}
+			        			{{priceandoffice.priceDay}} € HT / jour
+			        		{% elseif priceandoffice.priceWeek > 0 %}
+			        			{{priceandoffice.priceWeek}} € HT / semaine
+			        		{% elseif priceandoffice.priceMonth > 0 %}
+			        			{{priceandoffice.priceMonth}} € HT / mois
+			        		{% endif %}
+						</strong>
+			        </div>
+		    	</a>
+		    	{% endif %}
+	        {% endfor %} 
+	       
+        </div>
+    </div>
+{############################ Services ############################}
+    <div id="Services" class="tab-pane fade">
+    	<div class="row">
+    		<div class="col-lg-8 col-md-8" style="padding: 0;">
+		        <p>Les services disponibles chez {{ws.name}}</p>
+		        <p>{{ws.amenitiesDesc}}</p>
+		        <br>
+		        <ul>
+					{% for WsHasAmenity in WsHasAmenities %}
+						<li>
+							<table>
+								<tr>
+									<td><img src="{{ asset('images/icons/amenities/Bleu/') }}{{WsHasAmenity.amenities.urlLogo}}" alt="{{WsHasAmenity.amenities.name}}"> </td>
+									<td style="line-height: 30px;">
+										{{WsHasAmenity.amenities.name}}
+										{% if WsHasAmenity.description != null %}
+											<div class="help-tip">
+												<p>{{WsHasAmenity.description}}</p>
+											</div>
+										{% endif %} <br>
+										<div class="label label-info">{{WsHasAmenity.label}}</div> <br>
+									</td>
+								</tr>
+							</table>
+						</li>
+					{% endfor %}
+		        </ul>
+    		</div>
+			<div class="col-lg-4 col-md-4">
+				{% include 'Workspace/teamMembers.html.twig' %} 
+    		</div>
+    	</div>
+    </div>
+{############################ Evenements ############################}
+    <div id="Evènements" class="tab-pane fade">
+    	{% if listEvents|length > 0 %}
+        	{% include 'Workspace/events.html.twig' %}
+        {% else %}
+        	<div class="row text-center">
+        		<span style="font-size:14pt;">Aucun évènement n'est prévu pour le moment.</span>
+        		<br><br>
+        	</div>
+    	{% endif %}
+    </div>
+{############################ Contact ############################}
+    <div id="Contact" class="tab-pane fade">
+
+    	<div class="row text-center">
+    		<div class="col-lg-6 col-md-6">
+				<div id="time">
+					<center><i class="fa fa-map-signs fa-2x" aria-hidden="true"></i></center>
+					{{ws.street|capitalize}} <br>
+					{{ws.postCode}} {{ws.city|capitalize}} <br>
+					<center><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></center>
+					{{ws.openHoursInfo|nl2br}}<br>
+					<center><i class="fa fa-globe fa-2x" aria-hidden="true"></i></center>
+					<a href="{{ws.website}}" target="_blank">{{ws.name}}</a>
+				</div>
+				<button type="button" data-toggle="modal" class="btn btn-primary btn-lg" data-target="#myModalManagerContact" id="contactManager"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button> <br>
+
+				 {# Modal #}
+				 <div class="modal fade" id="myModalManagerContact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+				                <h4 class="modal-title">Contacter {{ws.name}}</h4>
+				            </div>
+				            <div class="modal-body" id="modal-body-manager-contact">
+				                {{ render(controller('BecowoCoreBundle:Workspace:contact', {name: ws.name})) }}
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				{# Fin modal #}
+
+    		</div>
+    		<div class="col-lg-6 col-md-6">
+		        {# La taille de la carte joue sur les options affichées : itinéraire... #}
+				<div id="map">
+					<iframe frameborder="0" style="border:0;width: inherit;height: inherit;" src="https://www.google.com/maps/embed/v1/place?q={{ws.name|replace({'&': "and"})}} {{ws.street}} {{ws.postcode}} {{ws.city}}&key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&zoom=15" ></iframe>
+
+				{# 	<a href="http://maps.google.fr/maps?f=q&hl=fr&q={{ws.name}} {{ws.street}} {{ws.postcode}} {{ws.city}}" target="_blank">
+					<button type="button">Agrandir le plan</button></a> #}
+				</div>
+    		</div>
+    	</div>
+    	<br>
+    	<h4>Suivez {{ws.name}} sur les réseaux sociaux :</h4>
+    	<div class="row text-center">
+    		{% if ws.facebookLink != '' %}
+    			<a href="{{ws.facebookLink}}" target="_blank">
+    				<img src="{{ asset('images/RS/facebook.png') }}" alt="Profile facebook" title="Profile facebook {{ws.name}}">
+    			</a>
+    		{% endif %}
+    		{% if ws.twitterLink != '' %}
+    			<a href="{{ws.twitterLink}}" target="_blank">
+    				<img src="{{ asset('images/RS/twitter.png') }}" alt="Profile Twitter" title="Profile Twitter {{ws.name}}">
+    			</a>
+    		{% endif %}
+    		{% if ws.instagramLink != '' %}
+    			<a href="{{ws.instagramLink}}" target="_blank">
+    				<img src="{{ asset('images/RS/instagram.png') }}" alt="Profile Instagram" title="Profile Instagram {{ws.name}}">
+    			</a>
+    		{% endif %}
+    	</div>
+    </div>
+{############################ Réserver ############################}
+    <div id="Réservation" class="tab-pane fade">
+    	<h2 style="color:var(--my-blue);">Choisissez votre espace et cliquez sur le bouton "Réserver" associé</h2>
+    	<br><center>
+    	<div class="segmented-control" id="filtre-bureaux">
+		  <input type="radio" name="filtre-bureaux" id="choice1" value="" checked>
+		  <input type="radio" name="filtre-bureaux" id="choice2" value="Open space">
+		  <input type="radio" name="filtre-bureaux" id="choice3" value="Bureau" >
+		  <input type="radio" name="filtre-bureaux" id="choice4" value="Salle de réunion" >
+		  <label for="choice1" data-value="Tous">Tous</label>
+		  <label for="choice2" data-value="Open space">Open space</label>
+		  <label for="choice3" data-value="Bureau">Bureau</label>
+		  <label for="choice4" data-value="Salle de réunion">Salle de réunion</label>
+		</div>
+		</center><br><br>
+        {{ render(controller('BecowoCoreBundle:Booking:bookingList', {name: ws.name})) }}
+    </div>
+</div>
