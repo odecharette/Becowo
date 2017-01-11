@@ -46,12 +46,31 @@
 			text-align: center;
 			color: var(--my-blue);
 		}
+		.listed-values{
+		  list-style-type: none; 
+		  padding-left: 0;
+		}
+		#filtre-mobile{
+			width: 100%;
+			color: var(--my-blue);
+			margin-bottom: 10px;
+		}
 	</style>
 {% endblock %}
 <br>
 <div class="container-fluid">
 
+<div class="segmented-control" id="filtre-mobile">
+    <input type="radio" name="filtre-mobile" id="choice1" value="" checked>
+    <input type="radio" name="filtre-mobile" id="choice2" value="Hauts de France">
+    <input type="radio" name="filtre-mobile" id="choice3" value="Ile de France" >
+    <label for="choice1" data-value="Tous">Tous</label>
+    <label for="choice2" data-value="Hauts de France">Hauts de France</label>
+    <label for="choice3" data-value="Ile de France">Ile de France</label>
+</div>
+<ul class="listed-values">
 {% for ws in wsFullInfo %}
+	<li class="{{ws.ws.region}}">
 	<div class="row">
 	{% set offerZen = false %}
 	{% for o in ws.WsHasOffers %}
@@ -123,6 +142,8 @@
 	{% if offerZen %}</a>{% endif %}	
 
 	</div>
+	</li>
 {% endfor %}
-
+</ul>
 </div>
+

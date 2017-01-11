@@ -136,6 +136,16 @@ $('#filtre-bureaux').on('change', function() {
     }).show();
 });
 
+/***************** Mobile only - filtre sur home page *************************/
+$('#filtre-mobile').on('change', function() { 
+  console.log('OK');
+  var text = document.querySelector('input[name="filtre-mobile"]:checked').value;
+    $('ul.listed-values li').hide();
+    $('ul.listed-values li').filter(function(){
+       return $(this).attr('class').indexOf(text) != -1;
+    }).show();
+});
+
 /****************** Page d'un WS, slider liste de WS en réseau ****************/
 $(document).ready(function(){
   $('#sliderNetwork').bxSlider({
