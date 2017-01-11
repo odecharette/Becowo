@@ -1,0 +1,7 @@
+<div id="slider-mobile">
+	{% for picture in pictures %}
+    <div class="slide">
+  		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}"> 	
+    </div>
+	{% endfor %}
+</div>

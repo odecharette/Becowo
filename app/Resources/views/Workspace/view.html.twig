@@ -14,7 +14,11 @@
 
 {############################################# Caroussel #########################################}
 	<div class="row text-center">
-		{% include 'Workspace/carroussel.html.twig' %}	
+		{% if is_mobile() %}
+			{% include 'Workspace/carroussel-mobile.html.twig' %}
+		{% else %}
+			{% include 'Workspace/carroussel.html.twig' %}
+		{% endif %}	
 	</div>
 
 	<div class="row text-center">

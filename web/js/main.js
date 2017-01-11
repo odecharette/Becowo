@@ -157,6 +157,16 @@ $(document).ready(function(){
   });
 });
 
+/****************** Mobile only - slider des images d'un WS ****************/
+$(document).ready(function(){
+  $('#slider-mobile').bxSlider({
+    slideWidth: 400,
+    minSlides: 1,
+    maxSlides: 1,
+    moveSlides: 1,
+    slideMargin: 0
+  });
+});
 
 /************************ blackknight467/star-rating-bundle    rating.js *************************/
 
