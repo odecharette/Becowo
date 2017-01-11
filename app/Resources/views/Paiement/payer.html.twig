@@ -41,7 +41,11 @@
 				Nous vous enverrons une facture par email sous quelques jours.</p>
 				<br><br>
 				<center>
-				<form method="POST" action="{{creditAgricole.PBX_URL}}" id="form-payer"> {# TO DO URL de prod  #}
+				{% if is_mobile() %}
+					<form method="POST" action="{{creditAgricole.PBX_URL_MOBILE}}" id="form-payer">
+				{% else %}
+					<form method="POST" action="{{creditAgricole.PBX_URL}}" id="form-payer">
+				{% endif %}	
 					<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
 					<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
 					<input type="hidden" name="PBX_IDENTIFIANT" value="{{creditAgricole.PBX_IDENTIFIANT}}"> 
