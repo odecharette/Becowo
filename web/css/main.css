@@ -83,7 +83,9 @@ header img{
     margin-left: 80px;
   }
   header img{
-    margin-top: 15px;
+    margin-top: 10px;
+    width: 75%;
+    margin-left: 15px;
   }
   #navbar{
     background-color: white;
