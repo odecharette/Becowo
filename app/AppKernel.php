@@ -22,7 +22,6 @@ class AppKernel extends Kernel
             new \JMS\SerializerBundle\JMSSerializerBundle(),
             new \FOS\ElasticaBundle\FOSElasticaBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
-            new Vich\UploaderBundle\VichUploaderBundle(),
             new Becowo\ManagerBundle\BecowoManagerBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new blackknight467\StarRatingBundle\StarRatingBundle(),
@@ -30,7 +29,7 @@ class AppKernel extends Kernel
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
         ];
 
-        if (in_array($this->getEnvironment(), ['dev', 'test', 'demo'], true)) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

@@ -121,14 +121,6 @@ fos_user:
         confirmation:
             enabled:    true
 
-# vich/uploader-bundle / Easy to upload pictures
-vich_uploader:
-    db_driver: orm
-    mappings:
-        member_profile_picture:
-            uri_prefix:         /images/ProfilePictures
-            upload_destination: %kernel.root_dir%/../web/images/ProfilePictures
-
 # EasyAdmin bundle
 easy_admin:
     site_name: 'Becowo - Admin'
@@ -196,11 +188,6 @@ easy_admin:
                     - { property: 'roles' }
         ProfilePicture:
             class: Becowo\CoreBundle\Entity\ProfilePicture
-            # TO DO corriger affichage image
-            list:
-                fields: ['id', { property: 'file', type: 'image', base_path: "% vich_uploader.mappings.member_profile_picture%"}, 'url', 'alt']
-            form:
-                fields: [{ property: 'url', format: 'image', base_path: '/images/ProfilePicture/' }, 'alt', { property: 'file', type: 'file', label: 'Upload Picture', help: 'Select file to upload' }]
         Poi:
             class: Becowo\CoreBundle\Entity\Poi
         Poi_Category:
