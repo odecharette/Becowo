@@ -18,7 +18,7 @@
 		{{ form_start(bookingForm) }}
 	{# Le contenu de la form est construit dans booking.js #}
 		<div class="row">
-			<div class="col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2 panelForm">
+			<div class="col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2 col-xs-12 col-xs-offset-0 panelForm">
 				{# EMAIL non renseigné #}
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					{% if app.user.email == "" or app.user.name == "" or app.user.street == "" or app.user.postCode == "" or app.user.city == "" %}
@@ -36,7 +36,7 @@
 				<br>
 				{% set nbDuration = 0 %}
 				<div id="duration">
-				<span id="duration-txt"><strong>Durée : </strong></span>
+				<span id="duration-txt" class="hidden-xs"><strong>Durée : </strong></span>
 				<div class="segmented-control" style="color: #20385e;border: none;" id="booking-duration">
 					{% if prices.priceHour != null %}
 						{% set nbDuration = nbDuration + 1 %}
@@ -107,7 +107,7 @@
 
 				{# CALENDAR #}
 				<div id='calendarContainer'>
-					<strong>Date : </strong><input type="text" name="booking-calendar" id="booking-calendar" value="{{ booking.startDate|date("d/m/Y") }}" />
+					<strong class="hidden-xs">Date : </strong><input type="text" name="booking-calendar" id="booking-calendar" value="{{ booking.startDate|date("d/m/Y") }}" />
 				</div>
 				<br><br>
 				<span id="calendar-error"></span>
@@ -116,7 +116,7 @@
 				<div id="openHour" style="display:none">{{times.openHour|date('H:i')}}</div> 
 				<div id="closeHour" style="display:none">{{times.closeHour|date('H:i')}}</div> 
 				<span id="calendar-time" style="display:none"> {# caché par défaut, affiché en JS si besoin #}
-				<strong>Horaire : </strong>
+				<strong class="hidden-xs">Horaire : </strong>
 				    <strong><span id="time-min"></span></strong>
 				    <span class="slideTime">
 				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
@@ -157,7 +157,7 @@
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}
 			</div>
-			<div class="col-lg-3 col-md-3 panelRecap">
+			<div class="col-lg-3 col-md-3 hidden-xs panelRecap">
 
 				<strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
 				{{ws.street|capitalize}} <br> 
