@@ -9,153 +9,23 @@
 
 {% block body %}
 
-<div id="home-image">
-	<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
 
-	<div class="phrase">Réservez un espace de travail et intégrez une communauté de coworkers</div>
-	<div class="homeIcon">
-		<a href="#liste-espaces" id="goToMap" class="hidden-xs">
-			<img src="{{ asset('images/icons/Home-espace.png') }}">
-			<img src="{{ asset('images/icons/Home-bureau.png') }}" class="deux">
-			<img src="{{ asset('images/icons/Home-reunion.png') }}">
-		</a>
-	</div>
-	
-	
-</div>
+{% include 'Home/home-image.html.twig' %} 
 
 
-<div id="liste-espaces"></div>
-{# Navbar de recherche désativée le temps d'avoir plus d'espaces à proposer
-<nav class="navbar navbar-default" role="navigation" id="BarreRecherche">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex2-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse navbar-ex2-collapse">
-    	<form id="bh-sl-user-location" method="post" action="#">
-
-    		
-	        <ul class="nav navbar-nav">
-		        <li>
-			        <input type="text" class="form-control" placeholder="Saisir une adresse ici" id="bh-sl-address" name="bh-sl-address">
-			        <button id='findMe' type="button"> <u>Me géolocaliser</u></button></input>
-			    </li>
-			    <li>      
-			    	<select id="bh-sl-maxdistance" name="bh-sl-maxdistance" class="form-control">
-						<option value="10">10 Km</option>
-						<option value="20">20 Km</option>
-						<option value="30">30 Km</option>
-						<option value="40">40 Km</option>
-					</select>
-		        </li>
-		        <li class="dropdown bh-sl-filters-container">
-		          	<button href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Catégories </button>
-		          	<ul class="dropdown-menu bh-sl-filters" id="category-filters-container1" >
-					    <li><input type="checkbox" name="category" value="Coworking" id="choice1"/><label for="choice1"> Espace de coworking</label></li>
-						<li><input type="checkbox" name="category" value="cafe" id="choice2"/><label for="choice2"> Café</label></li>
-						<li><input type="checkbox" name="category" value="coffice" id="choice3"/><label for="choice3"> Coffice</label></li>
-						<li role="separator" class="divider"></li>
-			            <li><input type="checkbox" name="category" value="creche" id="choice4"/><label for="choice4"> Crèche</label></li>
-			            <li><input type="checkbox" name="category" value="Salle de musculation" id="choice5"/><label for="choice5"> Salle de musculation</label></li>
-				    </ul>
-		        </li>
-	        	<li class="dropdown bh-sl-filters-container">
-		          	<button href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Equipements </button>
-		          	<ul class="dropdown-menu bh-sl-filters" id="category-filters-container2" class="bh-sl-filters">
-						<li><input type="checkbox" name="feature" value="Casier sécurisé" id="choiceA"><label for="choiceA"> Casier sécurisé</label></li>
-						<li><input type="checkbox" name="feature" value="Thé Café" id="choiceB"><label for="choiceB"> Thé Café</label></li>
-						<li><input type="checkbox" name="feature" value="Imprimante" id="choiceC"><label for="choiceC"> Imprimante</label></li>
-						<li><input type="checkbox" name="feature" value="Wifi" id="choiceD"><label for="choiceD"> Wifi</label></li>
-						<li><input type="checkbox" name="feature" value="Espace Cuisine" id="choiceE"><label for="choiceE"> Espace Cuisine</label></li>
-					</ul>
-		        </li>
-		        <li>
-		        	<button type="submit" class="btn btn-default" id="BtnSearch">Rechercher</button>
-	        	</li>
-	        </ul>
-	        
-        </form>
-    </div>
-  </div>
-</nav>
-#}
-<div class="bh-sl-container container-fluid">
-	{###################### Barre de recherche #######################}
-	<form id="bh-sl-user-location" method="post" action="#">
-		{# 
-		Pour qu'un filtre fonctionne :
-			1. Le tag parent doit avoir la class "bh-sl-filters-container"
-			2. Le tag enfant doit avoir la class  "bh-sl-filters"
-			3. Le tag enfant doit avoir un id "toto" 
-			4. cet id doit être déclaré dans le taxonomyFilters de $('#bh-sl-map-container').storeLocator
-		#}
-		<div class="bh-sl-filters-container">
-	        <div class="segmented-control bh-sl-filters" id="region-filters-container">
-			  <input type="radio" name="region" id="choice1" value="" checked>
-			  <input type="radio" name="region" id="choice2" value="Hauts de France">
-			  <input type="radio" name="region" id="choice3" value="Ile de France" >
-			  <label for="choice1" data-value="Tous">Tous</label>
-			  <label for="choice2" data-value="Hauts de France">Hauts de France</label>
-			  <label for="choice3" data-value="Ile de France">Ile de France</label>
-			</div>
-		</div>
-
-	    <button id='findMe' type="button"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></button></input>
-	</form>
-    {############# Map #############}
-    <div id="bh-sl-map-container" class="bh-sl-map-container">
-		<div class="row">
-			<div id="map-results-container" class="container-fluid">
-				<div class="titre">Trouvez votre prochain bureau à l'aide de la carte ou directement depuis la liste</div>
-				<div id="bh-sl-map" class="bh-sl-map col-lg-5 col-md-7 col-xs-12">
-					{# Emplacement de la map #}
-				</div>
-				<div id="legende"><i class="fa fa-bolt" aria-hidden="true"></i> : Réservation en ligne disponible (sinon vous pouvez réclamer !)</div>
-				<div class="bh-sl-loc-list col-lg-7 col-xs-12" style="direction: rtl;"> {# on force la scrollbar à gauche #}
-					{# Emplacement de la liste d'espace #}
-					<ul style="direction: ltr;"></ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div><!-- /.container-fluid -->
-
+{% include 'Home/map-and-list.html.twig' %} 
 
 <div class="container-fluid">
 
-{############################################ Vidéo ##############################################}
 <div class="row text-center">
 	<br><br>
 	{% include 'CommonViews/video.html.twig' %} 
 	<br><br>
 </div>
 
-{##########################################" Blog et instagram ###################################}
-<div class="row" id="actu">
-	<div class="col-lg-2 col-md-1 vCenter hidden-xs">
-		<center><img src="{{ asset('images/icons/rss.png') }}" alt="RSS blog" class="center-block" width="100%"></center>
-	</div>
-	<div class="col-lg-5 col-md-5 vCenter col-xs-12">
-		<h4>Quoi de neuf sur notre blog ?</h4>
-		<br>
-		{{ render(controller('BecowoCoreBundle:Blog:viewLastArticle', {nbArticles: 2})) }}
-	</div>
-	<div class="col-lg-1 vCenter hidden-xs" id="separateur"></div>
-	<div class="col-lg-3 vCenter col-xs-12" id="Instagram">
-		<h4>Quoi de neuf sur notre Instagram ?</h4>
-		<script src="https://snapwidget.com/js/snapwidget.js"></script>
-		<iframe src="https://snapwidget.com/embed/code/207854" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
-	</div>
-</div>
 
+{% include 'Home/blog-and-insta.html.twig' %} 
 
-{####################################### declarer espace ############################################}
 
 {% include 'CommonViews/declarerEspace.html.twig' %} 
 
