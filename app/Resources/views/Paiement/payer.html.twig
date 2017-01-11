@@ -25,7 +25,7 @@
 				<p>
 				<strong>Location :</strong> {{booking.workspacehasoffice.name}} <br>
 				<strong>Date :</strong>
-				{% if booking.duration == 'Mois' or booking.duration == 'Semaine' %}
+				{% if booking.duration == 'Mois' %}
 					du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} <br>
 				{% elseif booking.duration == 'Journée' %}
 					le {{booking.startDate|date("d/m/Y")}}<br>

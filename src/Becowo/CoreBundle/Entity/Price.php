@@ -45,13 +45,6 @@ class Price
     /**
      * @var string
      *
-     * @ORM\Column(name="price_week", type="decimal", precision=6, scale=2, nullable=true)
-     */
-    private $priceWeek;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="price_month", type="decimal", precision=6, scale=2, nullable=true)
      */
     private $priceMonth;
@@ -137,30 +130,6 @@ class Price
     public function getPriceDay()
     {
         return $this->priceDay;
-    }
-
-    /**
-     * Set priceWeek
-     *
-     * @param string $priceWeek
-     *
-     * @return Price
-     */
-    public function setPriceWeek($priceWeek)
-    {
-        $this->priceWeek = $priceWeek;
-
-        return $this;
-    }
-
-    /**
-     * Get priceWeek
-     *
-     * @return string
-     */
-    public function getPriceWeek()
-    {
-        return $this->priceWeek;
     }
 
     /**

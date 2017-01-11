@@ -71,17 +71,6 @@
 						<input type="radio" name="booking-duration" id="booking-duration-Day" value="Journée" disabled="true">
 					{% endif %}
 
-					{% if prices.priceWeek != null %}
-						{% set nbDuration = nbDuration + 1 %}
-							{% if nbDuration == 1 %}
-								<input type="radio" name="booking-duration" id="booking-duration-Week" value="Semaine" checked="true">
-							{% else %}
-								<input type="radio" name="booking-duration" id="booking-duration-Week" value="Semaine">
-							{% endif %}
-					{% else %}
-						<input type="radio" name="booking-duration" id="booking-duration-Week" value="Semaine" disabled="true">
-					{% endif %}
-
 					{% if prices.priceMonth != null %}
 						{% set nbDuration = nbDuration + 1 %}
 							{% if nbDuration == 1 %}
@@ -96,7 +85,6 @@
 					<label for="booking-duration-Heure" data-value="Heure">Heure</label>
 					<label for="booking-duration-HalfDay" data-value="Demi journée">Demi journée</label>
 					<label for="booking-duration-Day" data-value="Journée">Journée</label>
-					<label for="booking-duration-Week" data-value="Semaine">Semaine</label>
 					<label for="booking-duration-Month" data-value="Mois">Mois</label>
 				</div>
 				</div>
@@ -178,7 +166,6 @@
 				<span id="priceHeure" hidden="true">{{prices.priceHour}}</span>
 				<span id="priceDemi journée" hidden="true">{{prices.priceHalfDay}}</span>
 				<span id="priceJournée" hidden="true">{{prices.priceDay}}</span>
-				<span id="priceSemaine" hidden="true">{{prices.priceWeek}}</span>
 				<span id="priceMois" hidden="true">{{prices.priceMonth}}</span>
 				<span id="officeType" hidden="true">{{WsHasOffice.office.name}}</span>
 				<span id="tva" hidden="true">{{tva}}</span>
