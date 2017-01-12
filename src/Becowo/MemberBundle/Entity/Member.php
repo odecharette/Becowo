@@ -46,7 +46,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="firstname", type="string", length=50, nullable=true)
      *
-     * @Assert\NotBlank()
      */
     private $firstname;
 
@@ -55,7 +54,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      *
-     * @Assert\NotBlank()
      */
     private $name;
 
@@ -99,7 +97,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="city", type="string", length=50, nullable=true)
      *
-     * @Assert\NotBlank()
      */
     private $city;
 

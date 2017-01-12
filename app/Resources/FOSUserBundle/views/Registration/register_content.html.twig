@@ -21,7 +21,7 @@
 		
 					{{form_start(form, {'method': 'POST', 'attr':{'class': 'register'}})}}
 					<div class="form-group">
-					  	{{ form_widget(form.username, {'attr': {'placeholder': 'form.username'|trans}}) }}
+					  	{{ form_widget(form.username, {'required': false, 'attr': {'placeholder': 'form.username'|trans}}) }}
 					    {{ form_errors(form.username) }}
 					
 				    	{{ form_widget(form.email, {'attr': {'placeholder': 'form.email'|trans}}) }}
