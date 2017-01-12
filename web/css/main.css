@@ -591,7 +591,7 @@ footer{
 #home-image .homeIcon{
   position: absolute;
   top: 70%;
-  left: 28%;
+  left: calc((100% - 517px)/2);
   outline: 0;
 }
 #home-image .deux{
