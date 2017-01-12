@@ -123,7 +123,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="website", type="string", length=255, nullable=true)
      *
-     * @Assert\Url()
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
      */
     private $website;
 
@@ -174,7 +174,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="facebook_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Url()
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
      */
     private $facebookLink;
 
@@ -183,7 +183,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="twitter_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Url()
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|(www|twitter)\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
      */
     private $twitterLink;
 
@@ -192,7 +192,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="instagram_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Url()
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
      */
     private $instagramLink;
 
@@ -201,7 +201,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="linkedin_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Url()
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
      */
     private $linkedinLink;
 
