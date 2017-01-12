@@ -1053,6 +1053,7 @@ footer{
 #PublicProfile .rs img{
   width: 30px;
   height: 30px;
+  border-radius: 20%;
 }
 #PublicProfile .rs a{
     display: inline-block;
