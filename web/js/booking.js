@@ -11,8 +11,7 @@ loadTime(duree);
 // CONSTRUCTION PEOPLE
 var mySliderPeople = $("#booking-people").slider({});
 
-mySliderPeople.on('slide', function(ev){	
-
+mySliderPeople.on('change', function(ev){	
     document.getElementById('nbPeople').innerHTML = mySliderPeople.data('slider').getValue();
     loadPrice(duree);
 });
@@ -127,7 +126,7 @@ function loadTime(duree){
         valeursTransformed = transformSliderValuesIntoHourMinute(valeursMinutes);
         remplirMinMaxTimeSlider(valeursTransformed);
 
-		mySliderTime.on('slide', function(ev){	
+		mySliderTime.on('change', function(ev){	
 
             var valeursMinutes = mySliderTime.data('slider').getValue();
 
