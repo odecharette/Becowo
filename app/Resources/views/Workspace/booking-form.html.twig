@@ -147,9 +147,9 @@
 			</div>
 			<div class="col-lg-3 col-md-3 hidden-xs panelRecap">
 
-				<strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
+				<center><strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
 				{{ws.street|capitalize}} <br> 
-				{{ws.postCode}} {{ws.city|capitalize}} <br>
+				{{ws.postCode}} {{ws.city|capitalize}} </center><br>
 					<br>
 				<span id="votreResa">VOTRE RESERVATION N° {{ bookingForm.bookingRef.vars.value }}</span>
 				<br>
