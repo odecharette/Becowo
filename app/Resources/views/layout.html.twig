@@ -59,9 +59,9 @@
 		                            Qui rencontrer ?
 		                        </a>
 		                    </li>
-		                    <li class="dropdown noActive">
+		                    <li class="dropdown noActive sousMenu">
 		                    	<a href="" class="dropdown-toggle normal-menu" data-toggle="dropdown">
-						          	Comment ça marche ? <b class="caret"></b>
+						          	Comment ça marche ? <i class="fa fa-caret-down" aria-hidden="true"></i>
 						          </a>
 		                    	<ul class="dropdown-menu dropdown-menu-default normal-ul">
 		                    	    <li>
@@ -84,7 +84,7 @@
 		                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}		
 								<li class="dropdown ">
 						          <a href="" class="dropdown-toggle login-menu" data-toggle="dropdown">
-						          	Bonjour {{ app.user.firstname }} <b class="caret"></b>
+						          	Bonjour {{ app.user.firstname }} <i class="fa fa-caret-down" aria-hidden="true"></i>
 						          </a>
 						          <ul class="dropdown-menu dropdown-menu-default">
 						            <li>

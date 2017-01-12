@@ -176,6 +176,17 @@ header #login a:hover {
   color: gray !important;
   border-bottom: none !important;
 }
+.sousMenu li:hover, .sousMenu li:focus{
+  background-color: #e7e7e7 !important;
+}
+.sousMenu li>a:hover, .active>a:hover, .active>a:focus{
+  color: var(--my-blue) !important;
+  background-color: #e7e7e7 !important;
+}
+.sousMenu .active>a{
+  background-color: transparent !important;
+  color: gray;
+}
 header .navbar {
   transition-duration: 0.2s;
 }
