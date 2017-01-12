@@ -275,6 +275,9 @@ p{
 #aPropos a:hover{
   text-decoration: none;
 }
+#comment h3, #commentEspace h3{
+  color: var(--my-blue);
+}
 #comment mark, #commentEspace mark{
   color: var(--my-green);
   font-weight: bold;
