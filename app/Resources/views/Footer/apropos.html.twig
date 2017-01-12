@@ -7,14 +7,15 @@
 {% block body %}
 
 <div class="container-fluid" id="aPropos">
-	<h1>A propos de Becowo</h1>
+	<h1>Découvrez Becowo en image</h1>
 	<div class="row text-center">
-		<br><br>
+		<br>
 		{% include 'CommonViews/video.html.twig' %} 
-		<br><br>
+		<br>
 	</div>
-	<br>
 	<div class="row text-center">
+		<h2>Pour en savoir plus</h2>
+		<br><br>
 		<a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">Je suis (futur) coworker </a>
 		<a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_espaces') }}">Je gère un espace </a>
 	</div>
