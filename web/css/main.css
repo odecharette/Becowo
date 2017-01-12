@@ -1385,7 +1385,7 @@ footer{
 }
 @media (min-width: 1200px){
   #Services li img{
-    width: 50px;
+    width: initial;
   }
 }
 #Services h2{
