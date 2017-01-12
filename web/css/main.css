@@ -44,7 +44,7 @@ body {
   font-family: "aniversregular", Helvetica, Arial, sans-serif;
   font-size: 12pt;
   margin-top: 69px;
-  margin-bottom: 100px;
+  margin-bottom: 90px;
 }
 
 a, a:hover, a:active, a:focus, button{
@@ -138,6 +138,7 @@ header img{
     top: 90px !important;
   }
   #offres .panel-body{
+    font-size: 12pt;
     height: 100% !important;
   }
   #offres #services ul{
@@ -1935,13 +1936,15 @@ color: var(--my-blue) !important;
 /*********************************** offers ****************************************/
 #top-image{
   position: relative;
-  height: 1800px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
+  height: 1820px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
   overflow: hidden;
 }
 #offres{
   position: absolute;
   top: 10%;
   width: 100%;
+  padding-right: 0;
+  padding-left: 0;
 }
 @media (min-width: 768px){
    #offres{
@@ -1997,7 +2000,7 @@ color: var(--my-blue) !important;
 }
 #offres .panel-body
 {
-  padding-top: 0;
+  padding: 0 10px 10px 10px;
   height: 410px;
 }
 #offres #logo{
