@@ -24,7 +24,8 @@ class MemberController extends Controller
   	$nbMembers = 0;
   	$nbEmails = 0;
   	$listEmails = "";
-
+    $em = $this->getDoctrine()->getManager();
+    
   	foreach ($members as $member) {
   		$nbMembers++;
   		if($member->getEmail() !== null)
@@ -44,7 +45,7 @@ class MemberController extends Controller
 	      	$listEmails = $listEmails . "<br>" . $member->getEmail() ;
 
 	      	$member->setHasReceivedEmailNewUser(true);
-	      	$em = $this->getDoctrine()->getManager();
+	      	
 	  		$em->persist($member);
   		}
   	}
