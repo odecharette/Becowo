@@ -1915,8 +1915,9 @@ color: var(--my-blue) !important;
 
 #noComment{
   margin-bottom: 10px;
-  font-size: 14pt;
+  font-size: 12pt;
   font-weight: bold;
+  color: var(--my-blue);
 }
 
 #filtre-bureaux{

@@ -5,6 +5,12 @@
 {% include "CommonViews/flashMessage.html.twig" %}
 	<div class="row">
 		<div class="col-lg-12 col-md-12 hidden-xs">
+			{% if listComments is empty %}
+				<div id="noComment" class="hidden-xs">
+					Il n'y a pas encore d'avis pour cet espace, soyez le premier à saisir un commentaire !
+				</div>
+				<br>
+			{% endif %}
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				{% if voteAlreadyDone %}
 					<p>Vous avez déjà voté/commenté</p>
@@ -63,11 +69,7 @@
 			{% endif %}
 		</div>
 	</div>
-	{% if listComments is empty %}
-		<div id="noComment" class="hidden-xs">
-			Soyez le premier à saisir un commentaire !
-		</div>
-	{% else %}
+	{% if listComments is not empty %}
 	<div id="listComments">
 		{% for comment in listComments %}
 			<div class="row">
