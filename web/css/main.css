@@ -1200,6 +1200,9 @@ footer{
 .rating{
   display: inline;
 }
+#wsHeader #visite360 a{
+  display: inline-block;
+}
 #wsHeader #visite360 img{
   border-radius: 10px;
 }
