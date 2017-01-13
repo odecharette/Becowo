@@ -1582,7 +1582,7 @@ footer{
 }
 @media (min-width: 1200px){
  #calendarContainer .month-wrapper{
-  width: 100% !important;
+  width: 105% !important;
 }
 }
 #calendarContainer .drp_top-bar, #calendarContainer .footer{
@@ -1940,7 +1940,7 @@ color: var(--my-blue) !important;
 }
 
 #filtre-bureaux{
-  width: 660px;
+  width: 700px;
   color: var(--my-blue);
 }
 #filtre-bureaux label{
