@@ -8,6 +8,16 @@
 
 {% include "CommonViews/flashMessage.html.twig" %}
 
+{% if form.vars.data.firstName == null or form.vars.data.name == null or form.vars.data.email == null or form.vars.data.street == null or form.vars.data.postCode == null or form.vars.data.city == null %}
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">X</span>
+  </button>
+    Si vous souhaitez effectuer une réservation, pensez à remplir les informations suivantes pour la facturation : prénom, nom, email et adresse.
+  </div>
+{% endif %}
+
 {{ app.session.set('previousPage', app.request.headers.get('referer')) }}
 
 <div class="container-fluid" id="PublicProfile">  
