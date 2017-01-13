@@ -22,6 +22,7 @@ class FooterController extends Controller
                 ->setSubject('Becowo - Nouveau message')
                 ->setFrom('contact@becowo.com')
                 ->setTo('contact@becowo.com')
+                ->setContentType("text/html")
                 ->setBody(
                     $this->renderView(
                         'CommonViews/Mail/Footer-contact.html.twig',

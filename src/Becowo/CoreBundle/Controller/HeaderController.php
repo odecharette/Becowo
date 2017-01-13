@@ -32,6 +32,7 @@ class HeaderController extends Controller
   //               ->setSubject('Un coworker déclare un nouvel espace')
   //               ->setFrom($data['email'])
   //               ->setTo('webmaster@becowo.com')
+  //                  ->setContentType("text/html")
   //               ->setBody(
   //                   $this->renderView(
   //                       'CommonViews/Mail/declarer-espace.html.twig',

@@ -201,6 +201,7 @@ class PaiementController extends Controller
         ->setSubject("Nouvelle demande de réservation - " . $booking_ref)
         ->setFrom($this->getUser()->getEmail())
         ->setTo($emailManager) 
+        ->setContentType("text/html")
         ->setBody(
             $this->renderView(
                 'CommonViews/Mail/New-dme-resa.html.twig',
@@ -215,6 +216,7 @@ class PaiementController extends Controller
         ->setSubject("Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref)
         ->setFrom('contact@becowo.com')
         ->setTo($this->getUser()->getEmail())
+        ->setContentType("text/html")
         ->setBody(
             $this->renderView(
                 'CommonViews/Mail/Coworker-ResaPayee.html.twig',

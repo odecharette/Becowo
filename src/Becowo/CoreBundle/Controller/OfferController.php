@@ -20,6 +20,7 @@ class OfferController extends Controller
                 ->setSubject('[Becowo] - Nouveaux contact d\'un espace de coworking')
                 ->setFrom('contact@becowo.com')
                 ->setTo('contact@becowo.com')
+                ->setContentType("text/html")
                 ->setBody(
                     $this->renderView(
                         'CommonViews/Mail/contact.html.twig',

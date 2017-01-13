@@ -123,6 +123,7 @@ class BookingController extends Controller
         ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
         ->setFrom('contact@becowo.com')
         ->setTo($booking->getMember()->getEmail())
+        ->setContentType("text/html")
         ->setBody(
             $this->renderView(
                 'CommonViews/Mail/Coworker-ResaValidee.html.twig',
@@ -149,6 +150,7 @@ class BookingController extends Controller
         ->setSubject("Becowo - Réservation N°" . $bookRef . " refusée")
         ->setFrom('contact@becowo.com')
         ->setTo($booking->getMember()->getEmail())
+        ->setContentType("text/html")
         ->setBody(
             $this->renderView(
                 'CommonViews/Mail/Coworker-ResaRefusee.html.twig',
@@ -162,6 +164,7 @@ class BookingController extends Controller
         ->setSubject("Becowo - Rembourser réservation N°" . $bookRef)
         ->setFrom('contact@becowo.com')
         ->setTo('webmaster@becowo.com')
+        ->setContentType("text/html")
         ->setBody(
             $this->renderView(
                 'CommonViews/Mail/Admin-Rembourser.html.twig',

@@ -84,6 +84,7 @@ class WorkspaceController extends Controller
           ->setSubject('Becowo - Nouveau message d\'un coworker')
           ->setFrom('contact@becowo.com')
           ->setTo($emailManager) 
+          ->setContentType("text/html")
           ->setBody(
               $this->renderView(
                   'CommonViews/Mail/Manager-contact.html.twig',

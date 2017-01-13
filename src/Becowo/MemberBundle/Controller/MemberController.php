@@ -34,6 +34,7 @@ class MemberController extends Controller
 	        ->setSubject("Becowo - Intégrez notre communauté")
 	        ->setFrom('contact@becowo.com')
 	        ->setTo($member->getEmail())
+          ->setContentType("text/html")
 	        ->setBody(
 	            $this->renderView(
 	                'CommonViews/Mail/NewMember.html.twig',
