@@ -63,17 +63,12 @@ class PaiementController extends Controller
     $session = $request->getSession();
     $session->remove('booking');
 
-    $error_code = $request->get('erreur'); 
-    $error_msg = "";
-    if($error_code != "00000")
-    {
-      // La transaction a générée une erreur
-      $errorService = $this->get('app.error');
-      $error = $errorService->getErrorByCode($error_code);
-      $error_msg = $error[0]['sentence'];
-    }
+    $WsService = $this->get('app.workspace');
+    $booking = $WsService->getBookingByRef($request->get('Ref'));  
+    $who = $WsService->getWsHasOfficeById($booking->getWorkspaceHasOffice()); 
+    $ws = $WsService->getWorkspaceById($who->getWorkspace()); 
 
-    return $this->render('Paiement/effectue.html.twig', array('error_msg' => $error_msg));
+    return $this->render('Paiement/effectue.html.twig', array('booking' => $booking, 'ws' => $ws));
   }
 
   public function annuleAction(Request $request)
@@ -119,6 +114,8 @@ class PaiementController extends Controller
 
     // pour tester (supprimer la transaction en BDD) : URL : http://localhost/Becowo/web/app_dev.php/ws/paiement/ipn?Montant=1000&Ref=5832be24b67bb&call_number=71256&authorization_number=30258&erreur=00000
 
+    if ($request->isMethod('GET'))
+    {
     // Récupération des paramètres envoyés par le CréditAgricole (liste configurable dans le fichier de config) 
     $total = $request->get('Montant'); // Montant de la transaction 
     $booking_ref = $request->get('Ref'); // Référence de la réservation
@@ -165,14 +162,19 @@ class PaiementController extends Controller
     $uri = $request->getRequestUri();
     $paramList = explode('?', $uri);
     $data = $paramList[1]; 
+
+    dump($data);
     // Lecture de la clé publique depuis le certificat
       //  $pubkeyid = openssl_pkey_get_public($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem');
     $fp = fopen($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem', "r");
+    dump($fp);
     $pubkeyid = fread($fp, 8192);
+    dump($pubkeyid);
     fclose($fp);
     /***************************************************************/
     $trusted_Signature = openssl_verify($data, $signature, $pubkeyid);
-
+    dump($signature);
+    dump($trusted_Signature);
 
     $em = $this->getDoctrine()->getManager();
 
@@ -243,6 +245,7 @@ class PaiementController extends Controller
     $em->persist($transaction);
 
     $em->flush();
+    }
 
     // On renvoi une page HTML vide
     return $this->render('Paiement/ipn.html.twig');

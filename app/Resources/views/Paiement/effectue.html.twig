@@ -16,12 +16,24 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-7 col-md-7">
-			<p>Le paiement de votre réservation a été accepté <br>
+			<p>Merci pour votre réservation ! <br>
 			<br>
-			<strong>Réservation N°</strong> {{app.request.get('Ref')}} <br>
-			<strong>Montant :</strong> {{app.request.get('Montant') / 100 }} € TTC <br>
+			<strong>Réservation N°</strong> {{booking.bookingRef}} <br>
+			<strong>Nom : </strong> {{ws.name}} <br>
+			<strong>Adresse : </strong> {{ws.street}} {{ws.postCode}} {{ws.city}} <br>
+			<strong>Espace réservé : </strong> {{booking.workspacehasoffice.name}} <br>
+			<strong>Date : </strong>
+			{% if booking.duration == 'Mois' %}
+				du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} <br>
+			{% elseif booking.duration == 'Journée' %}
+				le {{booking.startDate|date("d/m/Y")}}<br>
+			{% else %}
+				le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
+			{% endif %}
+			<strong>Montant HT :</strong> {{booking.priceExclTax }} € <br>
+			<strong>Montant TTC :</strong> {{booking.priceInclTax }} € <br>
 			<br>
-			Un email vient de vous être envoyé avec toutes les informations concernant votre réservation.
+			Un email de confirmation vous a également été envoyé.
 			</p>
 		</div>
 		<div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1">
