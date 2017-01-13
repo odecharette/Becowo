@@ -2098,7 +2098,7 @@ color: rgb(32, 56, 94) !important;
   margin-bottom: 5px;
   color: white;
 }
-#offres #services a, #offres #question a{
+#offres #services a{
   color: white;
   text-decoration: underline;
 }
