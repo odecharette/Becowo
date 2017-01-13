@@ -291,6 +291,10 @@ p{
 #aPropos a:hover{
   text-decoration: none;
 }
+#aPropos p{
+      padding-left: 70px;
+    padding-right: 70px;
+}
 #comment h3, #commentEspace h3{
   color: var(--my-blue);
 }
@@ -2632,7 +2636,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-radius: 5px;
   border: none;
   padding-top: 10px;
-  height: 520px;
+  height: 540px;
 }
 #bookingPage .panelForm, #paiementPage .panelForm{
   margin-right: 30px;
