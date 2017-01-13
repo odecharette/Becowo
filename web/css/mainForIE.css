@@ -42,17 +42,23 @@ html {
 }
 body {
   font-family: "aniversregular", Helvetica, Arial, sans-serif;
+  font-size: 12pt;
   margin-top: 69px;
-  margin-bottom: 100px;
+  margin-bottom: 90px;
 }
-a, button{
+
+a, a:hover, a:active, a:focus, button{
   outline: none !important;
+}
+.container-fluid{
+  padding-right: 0px;
+  padding-left: 0px;
 }
 header .container{
   margin-right: 0px;
 }
 header .navbar-right a{
-  max-width: 200px;
+  max-width: 210px;
   max-height: 70px;
 }
 header .navbar-header{
@@ -70,10 +76,85 @@ header .navbar-default{
   width: 100%;
 }
 header img{
-  /* Pour mémo, typo : Vollkorn gras italique pour name et regular pour tagline*/
-  width: 450px;
-  margin-top: 5px;
-  margin-left: 10px;
+  width: 100%;
+}
+.row{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+/*  CSS FOR MOBILE ONLY - Mode portrait */
+@media (max-width: 767px){
+  body {
+    margin-top: 50px ;
+  }
+  header a{
+    width: 100%;
+    margin-left: 80px;
+  }
+  header img{
+    margin-top: 10px;
+    width: 75%;
+    margin-left: 15px;
+  }
+  #navbar{
+    background-color: white;
+    overflow-x: hidden;
+    width: 200px;
+    margin-left: 70px;
+  }
+  #navbar a{
+    font-size: 12pt;
+    line-height: 30px;
+    margin-left: 0px;
+    padding-left: 10px;
+  }
+  header .navbar-default{
+    height: 50px;
+  }
+  h1{
+    font-size: 28px;
+  }
+  h2{
+    font-size: 18px !important;
+  }
+  h3{
+    font-size: 16px !important;
+  }
+  p{
+    font-size: 12pt !important;
+  }
+  #declare p{
+    font-size: 11pt !important;
+    margin: 15px !important;
+  }
+  footer{
+    height: 320px !important;
+    padding-left: 0 !important;
+  }
+  #top-image .tagline{
+    top: 10px !important;
+    font-size: 20px !important;
+  }
+  #top-image{
+    height: 3870px !important;
+  }
+  #offres{
+    top: 90px !important;
+  }
+  #offres .panel-body{
+    font-size: 12pt;
+    height: 100% !important;
+  }
+  #offres #services ul{
+    padding-left: 10px !important;
+  }
+}
+@media (min-width: 768px){
+  header img{
+    /* Pour mémo, typo : Vollkorn gras italique pour name et regular pour tagline*/
+    margin-top: 5px;
+    margin-left: 10px;
+  }
 }
 header .navbar-brand {
   padding: 5px 5px 5px 5px;
@@ -83,6 +164,9 @@ header.header .navbar-default .navbar-nav>li>a, header .normal-ul a {
     font-size: 16px;
     font-weight: 700;
     line-height: 40px;
+}
+a.blog_link{
+  color: rgb(244, 147, 2) !important;
 }
 .navbar-default .navbar-nav>li>a:focus, 
 .navbar-default .navbar-nav>li>a:hover, 
@@ -98,6 +182,18 @@ header #login a:hover {
   background-color: transparent !important;
   color: gray !important;
   border-bottom: none !important;
+}
+.sousMenu li:hover, .sousMenu li:focus{
+  background-color: #e7e7e7 !important;
+}
+.sousMenu li>a:hover, .active>a:hover, .active>a:focus{
+  color: gray !important;
+  background-color: #e7e7e7 !important;
+  border-bottom: solid 3px rgb(32, 56, 94) !important;
+}
+.sousMenu .active>a{
+  background-color: transparent !important;
+  color: gray;
 }
 header .navbar {
   transition-duration: 0.2s;
@@ -115,6 +211,7 @@ header .login-menu{
   color: white !important;
   background-color: rgb(32, 56, 94) !important;
 }
+
 h1{
   color: rgb(231, 46, 70);
   text-align: center;
@@ -164,7 +261,6 @@ p{
 }
 #videoPanel{
   position: relative;
-  margin-bottom: 70px;
 }
 #videoPanel #play, #videoPanel #pause, #videoPanel #expand{
   position: absolute;
@@ -200,6 +296,13 @@ p{
 #aPropos a:hover{
   text-decoration: none;
 }
+#aPropos p{
+      padding-left: 70px;
+    padding-right: 70px;
+}
+#comment h3, #commentEspace h3{
+  color: rgb(32, 56, 94);
+}
 #comment mark, #commentEspace mark{
   color: rgb(0, 161, 154);
   font-weight: bold;
@@ -207,6 +310,14 @@ p{
 }
 #comment p, #commentEspace p{
   font-size: 13pt;
+}
+@media (min-width: 992px){
+  #commentEspace .title{
+    text-align: center;
+  }
+  #commentEspace .liste{
+    text-align: left;
+  }
 }
 #comment .bande, #commentEspace .bande{
   background-color: rgb(233, 233, 233);
@@ -224,12 +335,16 @@ p{
   background-color: rgb(0, 161, 154);
   color: white;
   font-size: 18pt;
-  height: 100px;
   margin: 30px 0 30px 0;
-  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+@media (min-width: 768px){
+ #comment .rejoindre{
+  display: flex;
+  height: 100px;
+ }
 }
 
 #comment .rejoindre #inscription{
@@ -305,10 +420,14 @@ footer #liensRS img{
 }
 footer{
   position: absolute !important;
-  bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 90px;
+}
+@media (min-width: 768px){
+   footer{
+    bottom: 0;
+    /* Set the fixed height of the footer here */
+    height: 90px;
+  }
 }
 
 #contact-form .labels{
@@ -346,6 +465,7 @@ footer{
 }
 #footer_menu ul{
   margin-bottom: 0;
+  padding-left: 0;
 }
 #page-simple{
   margin-left: 25px;
@@ -479,26 +599,40 @@ footer{
 #home-image{
   position: relative;
 }
-#home-image div{
+#home-image a{
+  display: inline-block;
+}
+#home-image .phrase{
   position: absolute;
-  top: 70%;
+  top: 40px;
   color: white;
-  font-size: 36px;
   font-family: Georgia;
   width: 100%;
   text-align: center;
 }
-#home-image i{
-    position: absolute;
-    top: 80%;
-    color: white;
-    background-color: rgb(0, 161, 154);
-    padding: 5px 13px 5px 13px;
-    border-radius: 50%;
-    left: 48%;
-    border: none;
-    outline: 0;
+#home-image .homeIcon{
+  position: absolute;
+  top: 70%;
+  left: calc((100% - 517px)/2);
+  outline: 0;
 }
+#home-image .deux{
+  margin: 0px 100px 0 100px;
+}
+@media (min-width: 768px)
+{
+  #home-image div{
+    font-size: 30px;
+  }
+}
+@media (min-width: 1200px)
+{
+  #home-image div{
+    font-size: 36px;
+  }
+}
+
+
 #bh-sl-map{
   padding-left: 0;
   margin-right: 15px;
@@ -749,6 +883,11 @@ footer{
   clear: right !important;
   float: left;
 }
+@media (max-width: 992px){
+  .bh-sl-loc-list li{
+    width: 100% !important;
+  }
+}
 
 /*.bh-sl-loc-list::-webkit-scrollbar {
     width: 6px;
@@ -808,14 +947,22 @@ footer{
   text-decoration: none;
 }
 /********************************** Page Community *************************************/
-#community{
-  margin-left: 30px;
-  margin-right: 30px;
+@media (min-width: 768px){
+  #community{
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
 #community p{ 
   color: white;
   font-size: 13pt;
   padding: 15px;
+}
+@media (min-width: 992px){
+  #community p{
+    font-size: 12pt;
+    text-align: center;
+  }
 }
 #community .texte1{
   background-color: rgb(0, 161, 154);
@@ -874,6 +1021,11 @@ footer{
   font-size: 22pt;
   text-align: left;
 }
+@media (min-width: 992px){
+ #PublicProfile h2{
+  font-size: 18pt;
+  }
+}
 
 #PublicProfile .skill, #PublicProfile .hobbie, #PublicProfile .wishe{
   background-color: rgb(241, 95, 104);
@@ -910,15 +1062,25 @@ footer{
   font-weight: bold;
 }
 #PublicProfile .identity i{
-  margin-right: 10px;
   color: rgb(241, 95, 104);
 }
-#PublicProfile .identity i.fa.fa-building-o{
-  margin-right: 13px !important;
+@media (min-width: 992px){
+  #PublicProfile .identity i{
+    margin-right: 5px;
+  }
+}
+@media (min-width: 1200px){
+  #PublicProfile .identity i{
+    margin-right: 10px;
+  }
+  #PublicProfile .identity i.fa.fa-building-o{
+    margin-right: 13px !important;
+  }
 }
 #PublicProfile .rs img{
   width: 30px;
   height: 30px;
+  border-radius: 20%;
 }
 #PublicProfile .rs a{
     display: inline-block;
@@ -941,6 +1103,12 @@ footer{
 }
 #PublicProfile .progress-bar{
   background-color: rgb(241, 95, 104);
+}
+@media (min-width: 992px){
+  #fos_user_profile_form_birthDate select
+  {
+    padding: 5px;
+  }
 }
 
 /********************************** Edit profile *************************************/
@@ -1043,15 +1211,19 @@ footer{
 .rating{
   display: inline;
 }
+#wsHeader #visite360 a{
+  display: inline-block;
+}
 #wsHeader #visite360 img{
   border-radius: 10px;
 }
 #wsHeader #visite360 #txt{
   position: absolute;
-  top: 65%;
+  top: 55px;
   color: white;
   font-size: 18px;
-  left: 20%;
+  left: 80px;
+  width: 150px;
 }
 #wsHeader #bonus{
   background-color: rgb(233, 233, 233);
@@ -1127,6 +1299,17 @@ footer{
 #Description a{
   display: inline-block;
   outline: none;
+  vertical-align: text-top;
+}
+@media (min-width: 992px){
+  #Description a:nth-child(5){
+    display: none;
+  }
+}
+@media (min-width: 1200px){
+  #Description a:nth-child(5){
+    display: inline-block;
+  }
 }
 #Services ul{
   overflow:hidden;
@@ -1137,10 +1320,99 @@ footer{
   float:left;
   display:inline;
   text-align: left;
-  margin-top: 10px;
+  margin-top: 30px;
+}
+.help-tip{
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  background-color: rgb(0, 161, 154);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 12pt;
+  line-height: 26px;
+  cursor: default;
+}
+
+.help-tip:before{
+  content:'?';
+  font-weight: bold;
+  color:#fff;
+}
+
+.help-tip:hover p{
+  display:block;
+  transform-origin: 100% 0%;
+  -webkit-animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out;
+
+}
+
+.help-tip p{  /* The tooltip */
+  display: none;
+  position: absolute;
+  z-index: 999;
+  text-align: justify;
+  background-color: rgb(0, 161, 154);
+  padding: 15px;
+  width: 200px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.help-tip p:after{ /* Prevents the tooltip from being hidden */
+  width:100%;
+  height:40px;
+  content:'';
+  position: absolute;
+  top:-40px;
+  left:0;
+}
+
+/* CSS animation */
+
+@-webkit-keyframes fadeIn {
+  0% { 
+    opacity:0; 
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity:100%;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity:0; }
+  100% { opacity:100%; }
+}
+
+@media (min-width: 992px){
+  #Services li{
+    font-size: 12pt;
+  }
+}
+@media (min-width: 1200px){
+  #Services li{
+    font-size: 11pt;
+  }
 }
 #Services li img{
   margin-right: 10px;
+}
+@media (min-width: 992px){
+  #Services li img{
+    width: 40px;
+  }
+}
+@media (min-width: 1200px){
+  #Services li img{
+    width: initial;
+  }
 }
 #Services h2{
   margin-top: 0px;
@@ -1226,11 +1498,24 @@ footer{
   display: block;
   text-decoration: none;
   line-height: 2em;
-  width: 80%;
   background-color: rgb(0, 161, 154);
   font-size: 18pt;
   border-color: rgb(0, 161, 154);
   text-align: center;
+}
+@media (min-width: 992px){
+ #Réservation #btnResa{
+  width: 150%;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-left: -10px;
+  }
+}
+@media (min-width: 1200px){
+  #Réservation #btnResa{
+  width: 80%;
+  }
 }
 #Réservation #btnResa:hover {
   border: solid 1px rgb(0, 161, 154);
@@ -1296,7 +1581,16 @@ footer{
 }
 #calendarContainer .month-wrapper{
   padding: 10px 10px 10px 10px;
-  width: 100% !important;
+}
+@media (min-width: 992px){
+ #calendarContainer .month-wrapper{
+  width: 130% !important;
+}
+}
+@media (min-width: 1200px){
+ #calendarContainer .month-wrapper{
+  width: 105% !important;
+}
 }
 #calendarContainer .drp_top-bar, #calendarContainer .footer{
   padding: 0;
@@ -1427,42 +1721,64 @@ font-family: FontAwesome;
 color: rgb(32, 56, 94) !important;
 }*/
 
-
+@media (min-width: 768px){
+  #panelEvent {
+    width: 30%; 
+  }
+}
+@media (max-width: 768px){
+  #panelEvent {
+    width: 100%; 
+  }
+}
 #panelEvent {
-  width: 30%; 
   display: inline-block;  
   border: none;
   overflow: hidden;
   margin-right: 15px;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+  vertical-align: top;
 }
 #panelEvent .panel-heading{
-  background-color: rgb(0, 161, 154);
-  color: white;
-  font-size: 18px;
+  padding: 0 0 1px 0; 
 }
 #panelEvent .panel-body{
   margin-top: -2px;
   color: rgb(140, 142, 144);
   font-size: 12pt;
   text-align: justify;
-  height: 250px;
   border: solid 1px rgb(0, 161, 154);
   overflow: hidden;
   padding-bottom: 10px;
   background-color: white;
   border-bottom: none;
 }
-#panelEvent .panel-body center{
+#panelEvent .panel-body center, .modalEvent center{
     font-weight: bold;
     font-size: 15px;
     color: rgb(32, 56, 94);
     margin: 10px 0 5px 0;
 }
-#panelEvent .panel-body .title{
+#panelEvent .panel-body .title, .modalEvent .title{
     font-weight: bold;
-    font-size: 16pt;
     color: rgb(32, 56, 94);
+}
+@media (min-width: 992px){
+  #panelEvent .panel-body{
+      font-size: 11pt;
+  }
+  #panelEvent .panel-body .title, .modalEvent .title{
+      font-size: 14pt;
+  }
+}
+@media (min-width: 1200px){
+  #panelEvent .panel-body{
+      font-size: 12pt;
+  }
+  #panelEvent .panel-body .title, .modalEvent .title{
+      font-size: 16pt;
+  }
+ 
 }
 #panelEvent .panel-footer{
   background-color: white;
@@ -1499,8 +1815,21 @@ color: rgb(32, 56, 94) !important;
 .addthisevent_icon{
   display: none !important;
 }
+#atedrop1-drop{
+  top: -190px !important;
+}
 
-
+#sliderNetwork a,#sliderNetwork a:hover,#sliderNetwork a:active,#sliderNetwork a:focus{
+  text-decoration: none;
+  color: rgb(140, 142, 144);
+}
+#sliderNetwork{
+  color: rgb(140, 142, 144);
+}
+#sliderNetwork .nom{
+  font-size: 14pt;
+  color: rgb(32, 56, 94);
+}
 #CommentResults p{
   font-size: 12pt;
   text-align: justify;
@@ -1584,7 +1913,7 @@ color: rgb(32, 56, 94) !important;
 #listComments .speech-time{
   text-align: left;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12pt;
 }
 #listComments .speech-bubble p {
   font-size : 16px; 
@@ -1612,12 +1941,13 @@ color: rgb(32, 56, 94) !important;
 
 #noComment{
   margin-bottom: 10px;
-  font-size: 14pt;
+  font-size: 12pt;
   font-weight: bold;
+  color: rgb(32, 56, 94);
 }
 
 #filtre-bureaux{
-  width: 600px;
+  width: 700px;
   color: rgb(32, 56, 94);
 }
 #filtre-bureaux label{
@@ -1626,17 +1956,25 @@ color: rgb(32, 56, 94) !important;
 }
 .listed-values{
   list-style-type: none; 
+  padding-left: 0;
 }
 /*********************************** offers ****************************************/
 #top-image{
   position: relative;
-  height: 1800px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
+  height: 1820px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
   overflow: hidden;
 }
 #offres{
   position: absolute;
   top: 10%;
   width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+}
+@media (min-width: 768px){
+   #offres{
+    top: 10%;
+  }
 }
 #top-image .tagline{
   position: absolute;
@@ -1657,6 +1995,20 @@ color: rgb(32, 56, 94) !important;
   border: none;
   color: rgb(32, 56, 94);
 }
+@media (min-width: 992px) and (max-width: 1200px){
+ #offres .panel{
+  margin-left: -10px;
+  margin-right: -10px;
+ }
+ #offres .panel-body
+  {
+    padding: 0;
+    font-size: 10pt;
+  }
+  #top-image .tagline{
+    font-size: 34px;
+  }
+}
 #offres .panel ul{
   padding-left: 5px;
  list-style-type: none;
@@ -1673,7 +2025,7 @@ color: rgb(32, 56, 94) !important;
 }
 #offres .panel-body
 {
-  padding-top: 0;
+  padding: 0 10px 10px 10px;
   height: 410px;
 }
 #offres #logo{
@@ -1732,6 +2084,11 @@ color: rgb(32, 56, 94) !important;
 #offres #services ul{
   padding-left: 70px;
  list-style-type: none;
+}
+@media (min-width: 992px) and (max-width: 1200px){
+  #offres #services ul{
+    padding-left: 35px;
+  }
 }
 #offres #services li:before {
   content: "\f12e";
@@ -2089,7 +2446,9 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
     -moz-transition-timing-function: inherit;
     -o-transition-timing-function: inherit;
     -webkit-transition-timing-function: inherit;
-    transition-timing-function: inherit; }
+    transition-timing-function: inherit; 
+    overflow: visible !important;
+    padding: 0;}
     .segmented-control > label:before, .segmented-control > label:after {
       position: absolute;
       left: 0;
@@ -2100,7 +2459,8 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
       -moz-transform: translateX(-100%);
       -ms-transform: translateX(-100%);
       -webkit-transform: translateX(-100%);
-      transform: translateX(-100%); }
+      transform: translateX(-100%);
+       }
     .segmented-control > label:after {
       color: white;
       content: attr(data-value);
@@ -2127,7 +2487,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
       text-align: center;
       text-overflow: ellipsis;
       white-space: nowrap;
-      overflow: hidden;
+      overflow: visible;
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
       box-sizing: border-box; }
@@ -2279,10 +2639,18 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-radius: 5px;
   border: none;
   padding-top: 10px;
-  height: 500px;
+  height: 540px;
 }
 #bookingPage .panelForm, #paiementPage .panelForm{
   margin-right: 30px;
+}
+@media (min-width: 992px) and (max-width: 1199px){
+  #bookingPage .panelForm, #paiementPage .panelForm{
+    margin-left: 20%;
+  }
+  .slider.slider-horizontal{
+    width: 180px !important;
+  }
 }
 #bookingPage .rating, #paiementPage .rating{
   margin-left: 20px;
