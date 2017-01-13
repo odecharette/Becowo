@@ -158,9 +158,11 @@
 					<br>
 				<span id="votreResa">VOTRE RESERVATION N° {{ bookingForm.bookingRef.vars.value }}</span>
 				<br>
+				{% if WsHasOffice.UrlProfilePicture != null %}
 				<center>
-				<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{WsHasOffice.UrlProfilePicture}}" alt="{{ws.name}}" width="200px"     height="120px">
+					<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{WsHasOffice.UrlProfilePicture}}" alt="{{ws.name}}" width="200px" height="120px">
 				</center>
+				{% endif %}
 				<br>
 				{{WsHasOffice.name}}
 				<br>
