@@ -62,10 +62,11 @@
 				<br><br><br>
 			</div>
 			<div class="col-lg-3 col-md-3 panelRecap">
+				<center>
 				<strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
 				{{ws.street|capitalize}} <br> 
 				{{ws.postCode}} {{ws.city|capitalize}} <br>
-				<br>
+				</center><br>
 
 				<p>Le paiement en ligne est sécurisé par le Crédit Agricole</p>
 				<center><img src="{{ asset('images/icons/creditAgricole/e-transactions.png') }}" alt="Crédit Agricole" width="150px"></center>
