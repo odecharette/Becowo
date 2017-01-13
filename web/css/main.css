@@ -1755,13 +1755,13 @@ color: var(--my-blue) !important;
   background-color: white;
   border-bottom: none;
 }
-#panelEvent .panel-body center{
+#panelEvent .panel-body center, .modalEvent center{
     font-weight: bold;
     font-size: 15px;
     color: var(--my-blue);
     margin: 10px 0 5px 0;
 }
-#panelEvent .panel-body .title{
+#panelEvent .panel-body .title, .modalEvent .title{
     font-weight: bold;
     color: var(--my-blue);
 }
@@ -1769,7 +1769,7 @@ color: var(--my-blue) !important;
   #panelEvent .panel-body{
       font-size: 11pt;
   }
-  #panelEvent .panel-body .title{
+  #panelEvent .panel-body .title, .modalEvent .title{
       font-size: 14pt;
   }
 }
@@ -1777,7 +1777,7 @@ color: var(--my-blue) !important;
   #panelEvent .panel-body{
       font-size: 12pt;
   }
-  #panelEvent .panel-body .title{
+  #panelEvent .panel-body .title, .modalEvent .title{
       font-size: 16pt;
   }
  

@@ -51,15 +51,23 @@
 
 
 <!-- Modale -->
-<div class="modal fade" id="myModalEvent-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade modalEvent" id="myModalEvent-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">{{event.title}}</h4>
             </div>
-            <div class="modal-body">
-                <p>{{event.description|nl2br}}</p>
+            <div class="modal-body" style="overflow-y: scroll;">
+                <center><img src="{{ asset('images/icons/events/')}}{{event.category.name}}.png" alt="{{event.category.name}}" style="width: 80%;"></center>
+                <br>
+                <span class="title"> {{event.title}}</span> 
+                <center>
+                  {{ event.startDate|localizeddate('full', 'none')|title }} <br>
+                  {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}
+                </center>
+                <br>
+                  <p>{{event.description|nl2br}}</p>
             </div>
         </div>
     </div>
