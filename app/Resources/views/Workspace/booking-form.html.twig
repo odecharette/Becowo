@@ -126,14 +126,19 @@
 				</span>
 				{# TO DO : min et max en fonction des places dispos #}
 				{# Nb PEOPLE #}
+				
 				<strong>
-				{% if WsHasOffice.office.name == 'Open space' %}
+				{% if WsHasOffice.deskQty > 1 and WsHasOffice.office.name == 'Open space' %}
 					Nombre de coworkers : 
-				{% else %}
+				{% elseif WsHasOffice.deskQty > 1 %}
 					Nombre de coworkers (à titre indicatif) : 
 				{% endif %}
 				</strong>
-				<span class="slidePeople">
+				{% if WsHasOffice.deskQty > 1 %} 
+					<span class="slidePeople">
+				{% else %}
+					<span class="slidePeople hidden">
+				{% endif %}
 				<b> 1 </b>
 					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="{{WsHasOffice.deskQty}}" name="booking-people" data-slider-value="{% if booking.nbPeople != null %}{{booking.nbPeople}}{% else %} 1 {% endif %}"/>
 				<b> {{WsHasOffice.deskQty}} </b>
