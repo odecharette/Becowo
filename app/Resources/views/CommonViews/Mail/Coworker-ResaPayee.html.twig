@@ -15,10 +15,16 @@ Vous recevrez alors un email de confirmation. <br>
 Dans le cas où la réservation ne serait pas validée, nous procéderons au remboursement immédiat de votre réservation.<br>
 <br><br>
 Rappel de votre réservation : <br>
-Salle : {{booking.workspacehasoffice.name}} - {{booking.workspacehasoffice.office.name}}
-Date de début : {{booking.startDate|date('d/m/Y h:i')}} <br>
-Date de fin : {{booking.endDate|date('d/m/Y h:i')}} <br>
-Durée : {{booking.duration}} {{booking.durationDay}} <br>
+Espace : {{booking.workspacehasoffice.workspace.name}} <br>
+Adresse : {{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}<br>
+Salle : {{booking.workspacehasoffice.name}} <br>
+Date : {% if booking.duration == 'Mois' %}
+du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} <br>
+{% elseif booking.duration == 'Journée' %}
+le {{booking.startDate|date("d/m/Y")}}<br>
+{% else %}
+le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
+{% endif %}
 Nombre de coworkers : {{booking.nbPeople}} <br>
 Prix de la réservation : {{booking.priceInclTax}} € TTC <br>
 <br>
