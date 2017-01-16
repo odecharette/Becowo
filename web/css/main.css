@@ -1274,7 +1274,7 @@ footer{
   text-align: justify;
 }
 #Description #office{
-  margin-right: 10px;
+  margin-right: 15px;
   display: inline-block;
   text-align: center;
 }
@@ -1284,9 +1284,9 @@ footer{
   height: 130px;
 }
 #Description span::before{
-  content: "\f08a";
+  content: "\f004";
   font-family: FontAwesome;
-  color: var(--my-red) ;
+  color: var(--my-green) ;
   margin-right: 10px;
 }
 #Description span{
@@ -1299,6 +1299,7 @@ footer{
   display: inline-block;
   outline: none;
   vertical-align: text-top;
+  color: var(--my-blue);
 }
 @media (min-width: 992px){
   #Description a:nth-child(5){
