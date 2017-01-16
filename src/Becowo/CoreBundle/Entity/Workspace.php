@@ -221,6 +221,14 @@ class Workspace
     private $amenitiesDesc;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="arrival_desc", type="string", length=255, nullable=true)
+     *
+     */
+    private $arrivalDesc;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -910,6 +918,30 @@ class Workspace
     public function getAmenitiesDesc()
     {
         return $this->amenitiesDesc;
+    }
+
+    /**
+     * Set arrivalDesc
+     *
+     * @param string $arrivalDesc
+     *
+     * @return Workspace
+     */
+    public function setArrivalDesc($arrivalDesc)
+    {
+        $this->arrivalDesc = $arrivalDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get arrivalDesc
+     *
+     * @return string
+     */
+    public function getArrivalDesc()
+    {
+        return $this->arrivalDesc;
     }
 
     public function __toString()
