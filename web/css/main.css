@@ -1176,17 +1176,19 @@ footer{
 }
 #PublicProfile .btnMAJ, #PublicProfile .btnView{
   color: white;
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
   line-height: 2em;
   font-size: 12pt;
+  padding: 5px 10px 5px 10px;
 }
 #PublicProfile .btnMAJ{
   background-color: var(--my-blue);
-  border-color: var(--my-blue);
+  border: none;
 }
 #PublicProfile .btnView{
   background-color: var(--my-green);
-  border-color: var(--my-green);
+  display: inline-block;
+  text-decoration: none;
 }
 #PublicProfile .btnView a{
   display: block;

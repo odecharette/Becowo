@@ -142,7 +142,7 @@
   </div>
   <div class="row text-center">
       <input type="submit" class="btnMAJ" value="Mettre à jour mon profil">
-      <button type="submit" class="btnView"><a href="{{ path('becowo_member_public_profile', {'id' : form.vars.value.id}) }}">Voir mon profil public</a></button>
+      <a href="{{ path('becowo_member_public_profile', {'id' : form.vars.value.id}) }}" class="btnView">Voir mon profil public</a>
   </div>
   {{ form_rest(form) }}
   {{ form_end(form) }}
