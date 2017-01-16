@@ -59,9 +59,9 @@ becowo_core_contact:
     defaults: { _controller: BecowoCoreBundle:Footer:contact }
     methods: GET|POST
 
-becowo_core_apropos:
-    path:     /apropos
-    defaults: { _controller: BecowoCoreBundle:Footer:aPropos }
+becowo_core_quisommesnous:
+    path:     /qui-sommes-nous
+    defaults: { _controller: BecowoCoreBundle:Footer:quiSommesNous }
     methods: GET
 
 becowo_core_faq:

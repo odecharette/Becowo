@@ -49,9 +49,9 @@ class FooterController extends Controller
   
   }
 
-  public function aProposAction()
+  public function quiSommesNousAction()
   {
-    return $this->render('Footer/apropos.html.twig');
+    return $this->render('Footer/qui-sommes-nous.html.twig');
   }
 
   public function faqAction()
