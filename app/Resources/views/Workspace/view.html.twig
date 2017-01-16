@@ -66,7 +66,11 @@
 						<img src="{{ asset('images/Workspaces/') }}{{w.ws.name}}/{{w.pic.url}}" alt="{{w.ws.name}}" width="300px"> <br>
 						</center>
 						{% for amenity in w.amenities %}
+							{% if loop.index < 9 %}
 							<img src="{{ asset('images/icons/amenities/Bleu/') }}{{amenity.amenities.urlLogo}}" alt="{{amenity.amenities.name}}" width="30px" style="display: inline-block !important;"> 
+							{% elseif loop.index == 9 %}
+							<span style="font-size:16pt;font-weight:bold;color: var(--my-blue);">...</span>
+							{% endif %}
 						{% endfor %} <br>
 						{{w.ws.street}} - {{w.ws.postCode}} {{w.ws.city}} <br><br>
 					</a>
