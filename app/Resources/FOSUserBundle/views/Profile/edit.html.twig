@@ -27,7 +27,6 @@
   {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
 
     {# Les erreurs générales du formulaire. #}
-    {{ form_errors(form) }}
   <div class="row head">
     <div class="col-lg-8 col-md-8">
         <h1>Pourquoi remplir mon profil ?</h1>
@@ -44,6 +43,7 @@
 
   </div>
   <div class="row">
+    {{ form_errors(form) }}
     <div class="col-lg-3 col-md-3">
       <div class="picture">
           {% if form.children.profilePicture.children.url.vars.value != '' %}

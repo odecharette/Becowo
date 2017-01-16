@@ -75,6 +75,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=10, nullable=true)
+     * @Assert\Length(min = 10, max = 10)
+     * @Assert\Regex(pattern="/\A0\d{9}/", message="Le N° doit commencer par zéro et ne contenir que des chiffres")
      */
     private $phone;
 
@@ -89,6 +91,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="post_code", type="string", length=5, nullable=true)
+     * @Assert\Regex(pattern="/\d{5}/", message="Le code postal doit contenir 5 chiffres")
      */
     private $postCode;
 
