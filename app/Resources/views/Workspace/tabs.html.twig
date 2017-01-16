@@ -10,20 +10,19 @@
 {############################ Description ############################}
     <div id="Description" class="tab-pane fade">
         <p>{{ws.description|raw|nl2br}}</p>
-        <strong>Retrouvez toutes les informations nécessaires à votre réservation dans l'onglet "Réservation"</strong>
-        <br>
         <br>
         <div class="row text-center">
 	         {% for priceandoffice in pricesAndOffices %}
 	         	{% if loop.index < 6 %} {# on n'affiche que les 5 premiers bureaux #}
-         		<a href="#Réservation" id="goToResa-{{priceandoffice.WorkspaceHasOffice.id}}">
+         		
+	        		<a href="#Réservation" id="goToResa-{{priceandoffice.WorkspaceHasOffice.id}}">
 		        	<div id="office">
 		        		{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
 		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 		        		{% else %}
 		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 		        		{% endif %} <br>
-		        		<div class="row" style="width: 190px;">
+		        		<div class="row" style="width: 200px;">
 		        			{{priceandoffice.WorkspaceHasOffice.name}} <br>
 		        		</div>
 		        		<strong>
@@ -38,11 +37,11 @@
 			        		{% endif %}
 						</strong>
 			        </div>
-		    	</a>
+		        	 </a>
 		    	{% endif %}
 	        {% endfor %} 
-	       
         </div>
+        <br>
     </div>
 {############################ Services ############################}
     <div id="Services" class="tab-pane fade">
