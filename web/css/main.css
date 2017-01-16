@@ -186,7 +186,7 @@ header #login a:hover {
 .sousMenu li:hover, .sousMenu li:focus{
   background-color: #e7e7e7 !important;
 }
-.sousMenu li>a:hover, .active>a:hover, .active>a:focus{
+.sousMenu li>a:hover,.sousMenu .active>a:hover,.sousMenu .active>a:focus{
   color: gray !important;
   background-color: #e7e7e7 !important;
   border-bottom: solid 3px var(--my-blue) !important;
