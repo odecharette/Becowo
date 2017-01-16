@@ -606,7 +606,6 @@ footer{
   position: absolute;
   top: 40px;
   color: white;
-  font-family: Georgia;
   width: 100%;
   text-align: center;
 }
@@ -622,13 +621,13 @@ footer{
 @media (min-width: 768px)
 {
   #home-image div{
-    font-size: 30px;
+    font-size: 32px;
   }
 }
 @media (min-width: 1200px)
 {
   #home-image div{
-    font-size: 36px;
+    font-size: 38px;
   }
 }
 
@@ -1980,8 +1979,7 @@ color: var(--my-blue) !important;
   position: absolute;
   top: 3%;
   color: white;
-  font-size: 36px;
-  font-family: Georgia;
+  font-size: 38px;
   width: 100%;
   text-align: center;
 }
