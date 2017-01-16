@@ -45,6 +45,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=50, nullable=true)
+     * @Assert\Length(min = 3, max = 25)
      *
      */
     private $firstname;
@@ -53,6 +54,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @Assert\Length(min = 3, max = 30)
      *
      */
     private $name;
@@ -107,6 +109,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="job", type="string", length=255, nullable=true)
+     * @Assert\Length(min = 3, max = 30)
      */
     private $job;
 
@@ -114,6 +117,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="society", type="string", length=45, nullable=true)
+     * @Assert\Length(min = 3, max = 30)
      *
      */
     private $society;
