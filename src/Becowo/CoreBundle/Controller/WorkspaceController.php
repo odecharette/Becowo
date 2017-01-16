@@ -64,26 +64,27 @@ class WorkspaceController extends Controller
 
     $WsService = $this->get('app.workspace');
     $ws = $WsService->getWorkspaceByName($name);
-    $wsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
+    // Pour le moment, on recoit les emails puis FW aux manager, afin de contrôler le flux
+    // $wsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
 
-    $emailManager = [];
-    $i = 0;
-    if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
-    {
-      $emailManager[0] = 'olivia.decharette@becowo.com';
-    }else{
-      foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
-        $emailManager[$i] = $wsHasTeamMember->getTeamMember()->getEmail();
-        $i ++;
-      }
-    }
+    // $emailManager = [];
+    // $i = 0;
+    // if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
+    // {
+    //   $emailManager[0] = 'olivia.decharette@becowo.com';
+    // }else{
+    //   foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
+    //     $emailManager[$i] = $wsHasTeamMember->getTeamMember()->getEmail();
+    //     $i ++;
+    //   }
+    // }
     
       // On vérifie que c'est bien le form de contact manager qui est envoyé
     if ($request->isMethod('POST') && $managerContactForm->handleRequest($request)->isValid() && $request->request->has('manager-contact-form')) {
       $message = \Swift_Message::newInstance()
           ->setSubject('Becowo - Nouveau message d\'un coworker')
           ->setFrom('contact@becowo.com')
-          ->setTo($emailManager) 
+          ->setTo('contact@becowo.com') 
           ->setContentType("text/html")
           ->setBody(
               $this->renderView(
@@ -92,7 +93,8 @@ class WorkspaceController extends Controller
                       'name' => $managerContactForm->get('name')->getData(),
                       'email' => $managerContactForm->get('email')->getData(),
                       'subject' => $managerContactForm->get('subject')->getData(),
-                      'message' => $managerContactForm->get('message')->getData()
+                      'message' => $managerContactForm->get('message')->getData(),
+                      'wsName' => $ws->getName()
                   )
               )
           );
