@@ -62,8 +62,8 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				    				<a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}" id="btnResa">Réserver</a>
 				    			{% else %}
-				    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect">Réserver</button>
-				    					<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    				<button type="button" id="btnResa"  data-toggle="modal" data-target="#myModalConnect-{{priceandoffice.workspaceHasOffice.id}}">Réserver</button>
+				    					<div class="modal fade" id="myModalConnect-{{priceandoffice.workspaceHasOffice.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							    			<div class="modal-dialog">
 							        			<div class="modal-content">
 										            <div class="modal-header modal-header-danger">
