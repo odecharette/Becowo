@@ -612,7 +612,7 @@ footer{
 #home-image .homeIcon{
   position: absolute;
   top: 70%;
-  left: calc((100% - 517px)/2);
+  left: calc((100% - 579px)/2);
   outline: 0;
 }
 #home-image .deux{
