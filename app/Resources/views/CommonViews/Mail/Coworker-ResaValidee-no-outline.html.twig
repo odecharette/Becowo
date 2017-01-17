@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Becowo</title>
+</head>
+
+<body>
+  <!-- <style> -->
+  <table class="body" data-made-with-foundation>
+    <tr>
+      <td class="float-center" align="center" valign="top">
+        <center>
+          <!-- Main full width container for the email -->
+          <table class="container"> 
+          	<table class="wrapper" align="center">
+			  <tr>
+			    <td class="wrapper-inner">
+			    	<a href="http://www.becowo.com" target="_blank">
+			      		<img src="http://demo.becowo.com/images/Emails/Logo_becowo_tagline.png" alt="Becowo, Enfin une bonne raison d'aller au travail !">
+			      	</a>
+			    </td>
+			  </tr>
+			</table>
+          	<table class="row">
+			    <br><br>
+<h3 style="text-align:center;">Réservation validée ! </h3>
+<p style="margin-left:20px;margin-right:20px;Margin-left:20px;Margin-right:20px;">Bonjour {{ booking.member.firstname }} {{ booking.member.name }}, <br>
+<br>
+Votre réservation N° {{booking.bookingRef}} est validée ! <br>
+<br>
+Voici un rappel de votre réservation : <br>
+Espace : {{booking.workspacehasoffice.workspace.name}} <br>
+Adresse : {{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}<br>
+Salle : {{booking.workspacehasoffice.name}} <br>
+Date : {% if booking.duration == 'Mois' %}
+du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} <br>
+{% elseif booking.duration == 'Journée' %}
+le {{booking.startDate|date("d/m/Y")}}<br>
+{% else %}
+le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
+{% endif %}
+Nombre de coworkers : {{booking.nbPeople}} <br>
+Total HT : {{booking.priceExclTax}} € <br>
+Total TTC : {{booking.priceInclTax}} € <br>
+<br> <br>
+{% if booking.workspacehasoffice.workspace.arrivalDesc != null %}
+Voici les instructions pour votre arrivée : <br>
+{{booking.workspacehasoffice.workspace.arrivalDesc|raw}}
+{% endif %}
+<br>
+Si vous avez une question, vous pouvez répondre directement à cet email.
+<br>
+A très vite ! <br>
+<br>
+La BecoTeam
+</p>
+<br><br>
+			</table>
+			<table class="wrapper" align="center" style="background-color: #00A19A;">
+			  <tr>
+			    <td class="wrapper-inner" style="padding-top: 20px;">
+			      <table class="row">
+				  <tr>
+				    <th class="small-3 large-2 first columns">
+						<img src="http://demo.becowo.com/images/Emails/Logo_becowo.png" alt="Logo Becowo">
+					</th>
+					<th class="small-8 large-5">
+						<table class="row">
+							<tr>
+								<th class="small-12 large-12 last columns" style="padding-bottom: 5px;">
+									<a href="http://www.becowo.com" target="_blank" style="color:#FFFFFF;">www.becowo.com</a>
+								</th>
+							</tr>
+							<tr>
+								<th class="small-12 large-12 last columns" style="padding-bottom: 5px;">
+									<a href="tel:+33769119310" style="color:#FFFFFF;">07 69 11 93 10</a>
+								</th>
+							</tr>
+							<tr>
+								<th class="small-12 large-12 last columns" style="padding-bottom: 5px;">
+									<a href="http://m.me/becowo" style="color:#FFFFFF;">Tchat via Messenger</a>
+								</th>
+							</tr>
+						</table>
+					</th>
+					<th class="small-6 large-3">
+						<table class="row">
+							<tr>
+								<th class="small-6 large-6 first columns" style="padding-bottom: 5px;">
+									<a href="https://www.facebook.com/becowo" target="_blank">
+										<img src="http://demo.becowo.com/images/Emails/facebook.png" alt="Facebook">
+									</a>
+								</th>
+								<th class="small-6 large-6 last columns" style="padding-bottom: 5px;">
+									<a href="https://www.linkedin.com/company/becowo"  target="_blank">
+										<img src="http://demo.becowo.com/images/Emails/linkedin.png" alt="Linkedin">
+									</a>
+								</th>
+							</tr><tr>
+								<th class="small-6 large-6 first columns" style="padding-bottom: 5px;">
+									<a href="https://www.instagram.com/becowo_and_you/" target="_blank">
+										<img src="http://demo.becowo.com/images/Emails/instagram.png" alt="Instagram">
+									</a>
+								</th>
+								<th class="small-6 large-6 last columns" style="padding-bottom: 5px;">
+									<a href="https://twitter.com/becowo_and_you" target="_blank">
+										<img src="http://demo.becowo.com/images/Emails/twitter.png" alt="Twitter">
+									</a>
+								</th>
+							</tr>
+						</table>
+					</th>
+					<th class="small-12 large-2 last columns" style="width: inherit;padding-left: 25px;padding-right: 25px;">
+						<table class="button warning radius expanded" style="margin: 5px 0 16px 0;">
+						  <tr>
+						    <td>
+						      <table align="center">
+						        <tr>
+						          <td><a href="http://www.blog.becowo.com" target="_blank" style="font-size: 22px;text-align:center;">Visitez notre <br> Blog</a></td>
+						        </tr>
+						      </table>
+						    </td>
+						  </tr>
+						</table>
+					</th>
+					<th class="expander"></th>
+				  </tr>
+				</table>
+			    </td>
+			  </tr>
+			</table>
+			</table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
+
+
+
