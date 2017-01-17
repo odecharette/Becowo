@@ -21,7 +21,7 @@
 --my-grey-light: rgb(233, 233, 233); /* #e9e9e9 */
 --my-black: rgb(36, 38, 46); /* #24262e */
 --my-green: rgb(0, 161, 154); /* #00A19A */
---my-green-strong: rgb(0, 135, 142); /* #00878E */
+--my-green-strong: rgb(0, 179, 170); /* #00b3aa */
 --my-pink: rgb(241, 95, 104);
 --my-orange: rgb(244, 147, 2); /*F49302*/
 /* grey : #e9e9e9 
@@ -186,7 +186,7 @@ header #login a:hover {
 .sousMenu li:hover, .sousMenu li:focus{
   background-color: #e7e7e7 !important;
 }
-.sousMenu li>a:hover, .active>a:hover, .active>a:focus{
+.sousMenu li>a:hover,.sousMenu .active>a:hover,.sousMenu .active>a:focus{
   color: gray !important;
   background-color: #e7e7e7 !important;
   border-bottom: solid 3px rgb(32, 56, 94) !important;
@@ -606,14 +606,13 @@ footer{
   position: absolute;
   top: 40px;
   color: white;
-  font-family: Georgia;
   width: 100%;
   text-align: center;
 }
 #home-image .homeIcon{
   position: absolute;
   top: 70%;
-  left: calc((100% - 517px)/2);
+  left: calc((100% - 579px)/2);
   outline: 0;
 }
 #home-image .deux{
@@ -622,13 +621,13 @@ footer{
 @media (min-width: 768px)
 {
   #home-image div{
-    font-size: 30px;
+    font-size: 32px;
   }
 }
 @media (min-width: 1200px)
 {
   #home-image div{
-    font-size: 36px;
+    font-size: 38px;
   }
 }
 
@@ -1177,17 +1176,19 @@ footer{
 }
 #PublicProfile .btnMAJ, #PublicProfile .btnView{
   color: white;
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
   line-height: 2em;
   font-size: 12pt;
+  padding: 5px 10px 5px 10px;
 }
 #PublicProfile .btnMAJ{
   background-color: rgb(32, 56, 94);
-  border-color: rgb(32, 56, 94);
+  border: none;
 }
 #PublicProfile .btnView{
   background-color: rgb(0, 161, 154);
-  border-color: rgb(0, 161, 154);
+  display: inline-block;
+  text-decoration: none;
 }
 #PublicProfile .btnView a{
   display: block;
@@ -1275,7 +1276,7 @@ footer{
   text-align: justify;
 }
 #Description #office{
-  margin-right: 10px;
+  margin-right: 15px;
   display: inline-block;
   text-align: center;
 }
@@ -1285,9 +1286,9 @@ footer{
   height: 130px;
 }
 #Description span::before{
-  content: "\f08a";
+  content: "\f004";
   font-family: FontAwesome;
-  color: rgb(231, 46, 70) ;
+  color: rgb(0, 161, 154) ;
   margin-right: 10px;
 }
 #Description span{
@@ -1300,6 +1301,7 @@ footer{
   display: inline-block;
   outline: none;
   vertical-align: text-top;
+  color: rgb(32, 56, 94);
 }
 @media (min-width: 992px){
   #Description a:nth-child(5){
@@ -1980,8 +1982,7 @@ color: rgb(32, 56, 94) !important;
   position: absolute;
   top: 3%;
   color: white;
-  font-size: 36px;
-  font-family: Georgia;
+  font-size: 38px;
   width: 100%;
   text-align: center;
 }
