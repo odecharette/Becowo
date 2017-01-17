@@ -32,7 +32,7 @@ class MemberController extends Controller
   		{
   			$message = \Swift_Message::newInstance()
 	        ->setSubject("Becowo - Intégrez notre communauté")
-	        ->setFrom('contact@becowo.com')
+	        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
 	        ->setTo($member->getEmail())
           ->setContentType("text/html")
 	        ->setBody(

@@ -214,7 +214,7 @@ class PaiementController extends Controller
       //Puis on envoi un mail au coworker pour l'informer que le paiement est valide
       $message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref)
-        ->setFrom('contact@becowo.com')
+        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($this->getUser()->getEmail())
         ->setContentType("text/html")
         ->setBody(

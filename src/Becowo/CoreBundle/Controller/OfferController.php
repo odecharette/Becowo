@@ -18,7 +18,7 @@ class OfferController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $message = \Swift_Message::newInstance()
                 ->setSubject('[Becowo] - Nouveaux contact d\'un espace de coworking')
-                ->setFrom('contact@becowo.com')
+                ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
                 ->setTo('contact@becowo.com')
                 ->setContentType("text/html")
                 ->setBody(

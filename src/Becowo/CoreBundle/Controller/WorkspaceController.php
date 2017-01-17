@@ -83,7 +83,7 @@ class WorkspaceController extends Controller
     if ($request->isMethod('POST') && $managerContactForm->handleRequest($request)->isValid() && $request->request->has('manager-contact-form')) {
       $message = \Swift_Message::newInstance()
           ->setSubject('Becowo - Nouveau message d\'un coworker')
-          ->setFrom('contact@becowo.com')
+          ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
           ->setTo('contact@becowo.com') 
           ->setContentType("text/html")
           ->setBody(

@@ -121,7 +121,7 @@ class BookingController extends Controller
 		//On envoi un mail au coworker pour l'informer que la résa est confirmée
       	$message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
-        ->setFrom('contact@becowo.com')
+        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($booking->getMember()->getEmail())
         ->setContentType("text/html")
         ->setBody(
@@ -148,7 +148,7 @@ class BookingController extends Controller
 		//On envoi un mail au coworker pour l'informer que la résa est refusée
       	$message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Réservation N°" . $bookRef . " refusée")
-        ->setFrom('contact@becowo.com')
+        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($booking->getMember()->getEmail())
         ->setContentType("text/html")
         ->setBody(
@@ -162,7 +162,7 @@ class BookingController extends Controller
       	//Puis on envoi un mail à l'admin de Becowo pour procéder au remboursement
       	$message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Rembourser réservation N°" . $bookRef)
-        ->setFrom('contact@becowo.com')
+        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo('webmaster@becowo.com')
         ->setContentType("text/html")
         ->setBody(
