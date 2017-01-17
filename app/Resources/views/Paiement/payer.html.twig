@@ -27,6 +27,8 @@
 					du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} <br>
 				{% elseif booking.duration == 'Journée' %}
 					le {{booking.startDate|date("d/m/Y")}}<br>
+				{% elseif booking.duration == 'Demi journée' %}
+					le {{booking.startDate|date("d/m/Y")}} {{booking.durationDay}}<br>
 				{% else %}
 					le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
 				{% endif %}
