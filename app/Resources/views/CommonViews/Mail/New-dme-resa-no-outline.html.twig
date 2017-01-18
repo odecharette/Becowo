@@ -49,7 +49,7 @@ Prix de la réservation : {{booking.priceInclTax}} € TTC <br>
 Informations sur le coworker : <br>
 Prénom : {{booking.member.Firstname}} <br>
 Nom : {{booking.member.name}} <br>
-Sexe : {{booking.member.sex}} <br>
+Sexe : {% if booking.member.sex == '1' %} Femme {% elseif booking.member.sex == '0' %} Homme {% else %} NA {% endif %} <br>
 Téléphone : {{booking.member.phone}} <br>
 Email : {{booking.member.email}} <br>
 Job : {{booking.member.job}} <br>
@@ -59,7 +59,6 @@ Job : {{booking.member.job}} <br>
 	{{booking.message}} 
 {% endif %}
 
-<br>
 
 <a href="http://demo.becowo.com/book/validated/{{booking.bookingRef}}">Valider la réservation</a><br>
 <br>
