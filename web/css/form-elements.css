@@ -1,6 +1,5 @@
 #form-login{
     margin-top: 50px;
-    margin-bottom: 40px;
 }
 h3{
     color: var(--my-red);
@@ -132,4 +131,18 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     background-color: white;
     margin-top: 80px;
     border-radius: 6pt;
+}
+
+#lienRegister a{
+    background-color: var(--my-green);
+    color: white;
+    text-decoration: none;
+    line-height: 5em;
+    padding: 20px 40px;
+    font-size: 14pt;
+    border-radius: 5px;
+}
+
+#lienRegister a:hover{
+    text-decoration: none;
 }

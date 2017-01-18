@@ -36,8 +36,6 @@
 				        <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
 				    </div>
 
-				    <button type="submit" class="btn" id="_submit" name="_submit"> {{ 'security.login.submit'|trans }}</button>
-
 				    <div class="row text-center" id="remember">
 				    	<div class="col-lg-5 col-md-6">
 				       		<label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
@@ -52,6 +50,8 @@
 			        	{% endif %}
 				    	</div>
 					</div>
+
+				    <button type="submit" class="btn" id="_submit" name="_submit"> {{ 'security.login.submit'|trans }}</button>
 					</form>
 				</div>
 				<div class="col-lg-2 col-md-2 hidden-xs">
@@ -68,12 +68,16 @@
 			    	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('linkedin')}}" id="li"><i class="fa fa-linkedin"></i> LinkedIn</a><br>
 			    	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('facebook')}}" id="fb"><i class="fa fa-facebook"></i> Facebook</a><br><a class="btn btn-link-2" href="{{ hwi_oauth_login_url('twitter')}}" id="tw"><i class="fa fa-twitter"></i> Twitter</a>
 			    	<br><br>
-			    	<div id="lienRegister">Vous n'avez pas de compte, <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a> !</div>
+			    	
 			    	</center>
 				</div>
 
 			</div>
 		</div>
+	</div>
+	<div class="row text-center">
+		<h3>Vous n'avez pas de compte ?</h3>
+		<div id="lienRegister"><a href="{{ path('fos_user_registration_register') }}">Inscription</a></div>
 	</div>
 </div>
 

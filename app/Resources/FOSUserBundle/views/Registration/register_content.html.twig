@@ -52,10 +52,13 @@
 			    	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('facebook')}}" id="fb"><i class="fa fa-facebook"></i> Facebook</a><br>
 			    	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('twitter')}}" id="tw"><i class="fa fa-twitter"></i> Twitter</a>
 			    	<br><br>
-			    	<div id="lienRegister">Vous êtes déjà inscrit, <a href="{{ path('fos_user_security_login') }}">connectez-vous</a> !
 			    	</center>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="row text-center">
+		<h3>Vous êtes déjà inscrit ?</h3>
+		<div id="lienRegister"><a href="{{ path('fos_user_security_login') }}">Connexion</a></div>
 	</div>
 </div>
