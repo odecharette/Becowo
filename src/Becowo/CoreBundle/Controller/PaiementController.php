@@ -211,8 +211,8 @@ class PaiementController extends Controller
 
       //Puis on envoi un mail au manager pour valider la résa
       $message = \Swift_Message::newInstance()
-        ->setSubject("Nouvelle demande de réservation - " . $booking_ref)
-        ->setFrom($booking->getMember()->getEmail())
+        ->setSubject("Becowo - Nouvelle demande de réservation - " . $booking_ref)
+        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($emailManager) 
         ->setContentType("text/html")
         ->setBody(
