@@ -157,24 +157,37 @@ class PaiementController extends Controller
     $CreditAgricoleIP = ['195.101.99.76', '194.2.122.158', '194.2.122.190', '195.25.7.166', '195.25.67.22'];
     $trusted_IP = in_array($clientIP, $CreditAgricoleIP);
 
+    /******** methode 1 *********
     // Vérifier la signature de l'URL pour assurer que ca provient bien de la banque
     // Récupération de l'URL reçue pour récup la liste des paramètres
     $uri = $request->getRequestUri();
     $paramList = explode('?', $uri);
     $data = $paramList[1]; 
 
-    dump($data);
     // Lecture de la clé publique depuis le certificat
       //  $pubkeyid = openssl_pkey_get_public($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem');
     $fp = fopen($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem', "r");
-    dump($fp);
     $pubkeyid = fread($fp, 8192);
-    dump($pubkeyid);
     fclose($fp);
-    /***************************************************************/
     $trusted_Signature = openssl_verify($data, $signature, $pubkeyid);
-    dump($signature);
-    dump($trusted_Signature);
+    *******************/
+    // ouverture de la clé publique Paybox
+   $fp = $filedata = $key = FALSE;                         // initialisation variables
+   $fsize =  filesize($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem');            // taille du fichier
+   $fp = fopen($this->get('kernel')->getRootDir(). '/../web/KeyCreditAgricole/pubkey.pem', 'r' );             // ouverture fichier
+   $filedata = fread( $fp, $fsize );                       // lecture contenu fichier
+   fclose( $fp );                                          // fermeture fichier
+   $key = openssl_pkey_get_public( $filedata );          // recuperation de la cle publique
+
+   $uri = $request->getRequestUri();
+   $first = strpos($uri,'?');                // recherche le ?
+   $qrystr = substr($uri, $first+1);                                // recupere les variables passées en parametres
+   $pos = strrpos( $qrystr, '&' );                                                     // cherche dernier separateur
+   $data = substr( $qrystr, 0, $pos );                                  // recupere les variables non codées
+   $pos= strpos( $qrystr, '=', $pos ) + 1;                 // cherche debut valeur signature
+   $sig = substr( $qrystr, $pos );                         // et voila la signature
+   $sig = base64_decode( urldecode( $sig ));               // decodage signature
+   $trusted_Signature = openssl_verify( $data, $sig, $key ); // si $trusted_Signature=0 => pas autorisé si $trusted_Signature=1 autorisé
 
     $em = $this->getDoctrine()->getManager();
 
@@ -199,13 +212,13 @@ class PaiementController extends Controller
       //Puis on envoi un mail au manager pour valider la résa
       $message = \Swift_Message::newInstance()
         ->setSubject("Nouvelle demande de réservation - " . $booking_ref)
-        ->setFrom($this->getUser()->getEmail())
+        ->setFrom($booking->getMember()->getEmail())
         ->setTo($emailManager) 
         ->setContentType("text/html")
         ->setBody(
             $this->renderView(
                 'CommonViews/Mail/New-dme-resa.html.twig',
-                array('user' => $this->getUser()->getFirstname() . ' ' . $this->getUser()->getName(),
+                array('user' => $booking->getMember()->getFirstname() . ' ' . $booking->getMember()->getName(),
                     'booking' => $booking)
             ));
 
@@ -215,7 +228,7 @@ class PaiementController extends Controller
       $message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref)
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-        ->setTo($this->getUser()->getEmail())
+        ->setTo($booking->getMember()->getEmail())
         ->setContentType("text/html")
         ->setBody(
             $this->renderView(
@@ -233,6 +246,15 @@ class PaiementController extends Controller
       $status = $WsService->getStatusById(3); // "Id 3 : Paiement refusé"
       $booking->setStatus($status);
       $em->persist($booking);
+
+      $message = \Swift_Message::newInstance()
+        ->setSubject("Becowo - Transaction refusée " . $booking_ref)
+        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
+        ->setTo('contact@becowo.com') 
+        ->setContentType("text/html")
+        ->setBody('Transaction refusée pour le booking N° : ' . $booking_ref);
+
+      $this->get('mailer')->send($message);
     }
     
 
