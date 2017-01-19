@@ -112,27 +112,36 @@ class BookingController extends Controller
   	{
   		$WsService = $this->get('app.workspace');
     	$booking = $WsService->getBookingByRef($bookRef);
-    	$status = $WsService->getStatusById(4); // "Id 4 : Réservation validée"
+
+      if($booking->getStatus()->getId() == 4 )
+      {
+        $msg = "ATTENTION, Réservation déjà validée !";
+      }else
+      {
+      	$status = $WsService->getStatusById(4); // "Id 4 : Réservation validée"
       	$booking->setStatus($status);
       	$em = $this->getDoctrine()->getManager();
-  		$em->persist($booking);
-		$em->flush();
+    		$em->persist($booking);
+  		  $em->flush();
 
-		//On envoi un mail au coworker pour l'informer que la résa est confirmée
-      	$message = \Swift_Message::newInstance()
-        ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
-        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-        ->setTo($booking->getMember()->getEmail())
-        ->setContentType("text/html")
-        ->setBody(
-            $this->renderView(
-                'CommonViews/Mail/Coworker-ResaValidee.html.twig',
-                array('booking' => $booking)
-            ));
+  		  //On envoi un mail au coworker pour l'informer que la résa est confirmée
+        	$message = \Swift_Message::newInstance()
+          ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
+          ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
+          ->setTo($booking->getMember()->getEmail())
+          ->setContentType("text/html")
+          ->setBody(
+              $this->renderView(
+                  'CommonViews/Mail/Coworker-ResaValidee.html.twig',
+                  array('booking' => $booking)
+              ));
 
-      	$this->get('mailer')->send($message);
+        	$this->get('mailer')->send($message);
 
-		return $this->render('Booking/validated.html.twig');
+        $msg = "Réservation validée, merci !";
+      }
+
+		return $this->render('Booking/validated.html.twig', array('msg' => $msg));
   	}
 
   	public function refuseAction($bookRef, Request $request)
