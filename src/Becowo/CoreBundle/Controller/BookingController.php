@@ -148,13 +148,22 @@ class BookingController extends Controller
   	{
   		$WsService = $this->get('app.workspace');
     	$booking = $WsService->getBookingByRef($bookRef);
-    	$status = $WsService->getStatusById(5); // "Id 5 : Réservation refusée"
+
+      if($booking->getStatus()->getId() == 5 )
+      {
+        $msg = "ATTENTION, Réservation déjà refusée !";
+      }elseif($booking->getStatus()->getId() == 4 )
+      {
+        $msg = "ATTENTION, Cette réservation a déjà été validée. Merci de contacter Becowo : contact@becowo.com";
+      }else
+      {
+    	  $status = $WsService->getStatusById(5); // "Id 5 : Réservation refusée"
       	$booking->setStatus($status);
       	$em = $this->getDoctrine()->getManager();
-  		$em->persist($booking);
-		$em->flush();
+  		  $em->persist($booking);
+		    $em->flush();
 
-		//On envoi un mail au coworker pour l'informer que la résa est refusée
+		    //On envoi un mail au coworker pour l'informer que la résa est refusée
       	$message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Réservation N°" . $bookRef . " refusée")
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
@@ -182,7 +191,10 @@ class BookingController extends Controller
 
       	$this->get('mailer')->send($message);
 
-		return $this->render('Booking/refused.html.twig');
+        $msg = "Réservation refusée, merci.";
+      }
+
+		return $this->render('Booking/refused.html.twig', array('msg' => $msg));
   	}
 
 }
