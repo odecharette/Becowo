@@ -1270,6 +1270,14 @@ footer{
   border-top: none;
   height: 100%;
 }
+.BtnRowResa{
+    color: white !important;
+    background-color: var(--my-green);
+    font-size: 14pt;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none !important;
+}
 #Description, #Services, #Contact, #Réservation{
   color: var(--my-grey);
   font-size: 16px;
