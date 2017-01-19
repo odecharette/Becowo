@@ -47,20 +47,20 @@
     <div class="col-lg-3 col-md-3">
       <div class="picture">
           {% if form.children.profilePicture.children.url.vars.value != '' %}
-            {% if form.vars.data.signedUpWith != '' %}
-                <div style="background-image:url('{{ form.vars.value.profilePicture.url }}'); 
-                  width:200px; 
-                  height:200px; 
-                  background-position:center;
-                  background-size: cover;
-                  margin: 0 auto;">&nbsp;</div>
-            {% else %}
+            {% if form.vars.data.signedUpWith == null %}
                 <div style="background-image:url('{{asset('images/ProfilePictures/')}}{{ form.vars.value.profilePicture.url }}'); 
                 width:200px; 
                 height:200px; 
                 background-position:center;
                 background-size: cover;
                 margin: 0 auto;">&nbsp;</div>
+            {% else %}
+                <div style="background-image:url('{{ form.vars.value.profilePicture.url }}'); 
+                  width:200px; 
+                  height:200px; 
+                  background-position:center;
+                  background-size: cover;
+                  margin: 0 auto;">&nbsp;</div>
             {% endif %}
           {% else %}
                 <div style="background-image:url('{{asset('images/ProfilePictures/avatar.png')}}'); 
