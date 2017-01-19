@@ -14,28 +14,20 @@
         <center>
           <!-- Main full width container for the email -->
           <table class="container"> 
-          	<table class="wrapper" align="center">
-			  <tr>
-			    <td class="wrapper-inner">
-			    	<a href="http://www.becowo.com" target="_blank">
-			      		<img src="http://demo.becowo.com/images/Emails/Logo_becowo_tagline.png" alt="Becowo, Enfin une bonne raison d'aller au travail !">
-			      	</a>
-			    </td>
-			  </tr>
-			</table>
           	<table class="row">
 			    <br><br>
-<h3 style="text-align:center;">Nouvelle réservation ! </h3>
+<h3 style="text-align:center;">Becowo - Nouvelle réservation ! </h3>
 <br>
 <p style="margin-left:20px;margin-right:20px;Margin-left:20px;Margin-right:20px;">Bonjour, <br>
 <br>
 {{ booking.member.firstName }} {{ booking.member.name }} souhaite réserver dans votre espace.<br>
 <br>
-Détails de la réservation N° {{booking.bookingRef}} : <br>
+<u>Détails de la réservation N° {{booking.bookingRef}} </u>: <br>
 <br>
-Salle : {{booking.workspacehasoffice.name}} - {{booking.workspacehasoffice.office.name}}
+Nom : {{booking.workspacehasoffice.name}} <br>
+Type : {{booking.workspacehasoffice.office.name}} <br>
 Date : {% if booking.duration == 'Mois' %}
-du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} <br>
+du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} inclus<br>
 {% elseif booking.duration == 'Journée' %}
 le {{booking.startDate|date("d/m/Y")}}<br>
 {% elseif booking.duration == 'Demi journée' %}
@@ -43,31 +35,56 @@ le {{booking.startDate|date("d/m/Y")}} {{booking.durationDay}}<br>
 {% else %}
 le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
 {% endif %}
-Nombre de coworkers : {{booking.nbPeople}} <br>
-Prix de la réservation : {{booking.priceInclTax}} € TTC <br>
+Nombre de coworker(s) : {{booking.nbPeople}} <br>
+Montant HT : {{booking.priceExclTax}} € <br>
+Montant TTC : {{booking.priceInclTax}} € <br>
 <br><br>
-Informations sur le coworker : <br>
+<u>Informations sur le coworker </u>: <br>
+<br>
 Prénom : {{booking.member.Firstname}} <br>
 Nom : {{booking.member.name}} <br>
 Sexe : {% if booking.member.sex == '1' %} Femme {% elseif booking.member.sex == '0' %} Homme {% else %} NA {% endif %} <br>
-Téléphone : {{booking.member.phone}} <br>
-Email : {{booking.member.email}} <br>
 Job : {{booking.member.job}} <br>
 <br>
 {% if booking.message != null %}
 	Le coworker vous laisse le message suivant : <br>
-	{{booking.message}} 
+	<i>" {{booking.message}} "</i>
 {% endif %}
+<br><br>
 
+<table class="button success radius expanded" style="margin: 5px 0 16px 0;">
+  <tr>
+    <td>
+      <table align="center">
+        <tr>
+          <td>
+          	<a href="http://demo.becowo.com/book/validated/{{booking.bookingRef}}" target="_blank" style="font-size: 22px;text-align:center;">Valider la réservation</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 
-<a href="http://demo.becowo.com/book/validated/{{booking.bookingRef}}">Valider la réservation</a><br>
+<table class="button alert radius expanded" style="margin: 5px 0 16px 0;">
+  <tr>
+    <td>
+      <table align="center">
+        <tr>
+          <td>
+          	<a href="http://demo.becowo.com/book/refused/{{booking.bookingRef}}" target="_blank" style="font-size: 22px;text-align:center;">Refuser la réservation</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
 <br>
-<a href="http://demo.becowo.com/book/refused/{{booking.bookingRef}}">Refuser la réservation</a> <br>
 <br>
 Si vous refusez la réservation, le coworker sera prévenu par email puis remboursé.<br>
 <br>
-Si vous avez une question, vous pouvez répondre directement à cet email.
-<br>
+Si vous souhaitez laisser un message au coworker ou nous contacter, n'hésitez pas à répondre directement à cet email. <br>
 <br>
 A très vite ! <br>
 <br>
