@@ -32,6 +32,19 @@ class MemberRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findActiveMembersByFillRate($rate)
+	{
+		$qb = $this->createQueryBuilder('m');
+		$qb->select('p, m')
+		   ->leftJoin('m.profilePicture', 'p')
+			->where('m.enabled = true')
+			->andWhere('m.isDeleted = false')
+			->andWhere('m.fillRate >= :rate')
+			->setParameter('rate', $rate)
+			->orderBy('m.fillRate', 'desc');
+
+		return $qb->getQuery()->getResult();
+	}
 	public function getAgeByRangeFromMembers()
 	{
 		$rsm = new ResultSetMapping();

@@ -44,7 +44,7 @@ class HomeController extends Controller
   public function communityAction()
   {
     $MemberService = $this->get('app.member');
-    $members = $MemberService->getAllActiveMembers();
+    $members = $MemberService->getActiveMembersByFillRate(50);
     
     return $this->render('Home/community.html.twig', array('members' => $members));
   }
