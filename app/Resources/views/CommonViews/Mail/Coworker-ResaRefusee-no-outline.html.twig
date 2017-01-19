@@ -14,33 +14,23 @@
         <center>
           <!-- Main full width container for the email -->
           <table class="container"> 
-          	<table class="wrapper" align="center">
-			  <tr>
-			    <td class="wrapper-inner">
-			    	<a href="http://www.becowo.com" target="_blank">
-			      		<img src="http://demo.becowo.com/images/Emails/Logo_becowo_tagline.png" alt="Becowo, Enfin une bonne raison d'aller au travail !">
-			      	</a>
-			    </td>
-			  </tr>
-			</table>
           	<table class="row">
 			    <br><br>
-<h3 style="text-align:center;">Réservation refusée </h3>
+<h3 style="text-align:center;">Réservation refusée :( </h3>
 <p style="margin-left:20px;margin-right:20px;Margin-left:20px;Margin-right:20px;">Bonjour {{ booking.member.firstname }} {{ booking.member.name }}, <br>
 <br>
-Nous vous remercions pour votre réservation N° {{booking.bookingRef}} <br>
+Votre réservation N° {{booking.bookingRef}} a été refusée par {{booking.workspacehasoffice.workspace.name}}. <br>
 <br>
-Malheureusement, celle-ci a été refusée par {{booking.workspacehasoffice.workspace.name}}
-<br>
-Nous sommes désolés de ce désagrément et allons procéder de suite au remboursement de votre réservation (soit {{booking.priceInclTax}} € TTC). <br>
-Nous vous invitons à procéder à une nouvelle réservation.
+Nous nous excusons de ce désagrément et allons procéder de suite au remboursement de votre réservation (soit {{booking.priceInclTax}} € TTC). <br>
+Nous vous invitons à procéder à une nouvelle réservation sur <a href="http://www.becowo.com">Becowo</a>.
 <br><br>
-Rappel de votre réservation : <br>
+<u>Rappel de votre réservation</u> : <br>
+<br>
 Espace : {{booking.workspacehasoffice.workspace.name}} <br>
 Adresse : {{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}<br>
-Salle : {{booking.workspacehasoffice.name}} <br>
+Nom : {{booking.workspacehasoffice.name}} <br>
 Date : {% if booking.duration == 'Mois' %}
-du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} <br>
+du {{booking.startDate|date("d/m/Y")}} au {{booking.endDate|date("d/m/Y")}} inclus <br>
 {% elseif booking.duration == 'Journée' %}
 le {{booking.startDate|date("d/m/Y")}}<br>
 {% elseif booking.duration == 'Demi journée' %}
@@ -48,10 +38,11 @@ le {{booking.startDate|date("d/m/Y")}} {{booking.durationDay}}<br>
 {% else %}
 le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
 {% endif %}
-Nombre de coworkers : {{booking.nbPeople}} <br>
-Prix de la réservation : {{booking.priceInclTax}} € TTC <br>
+Nombre de coworker(s) : {{booking.nbPeople}} <br>
+Montant HC : {{booking.priceExclTax}} € TTC <br>
+Montant TTC : {{booking.priceInclTax}} € TTC <br>
 <br><br>
-Si vous avez une question, vous pouvez répondre directement à cet email.
+Pour toute question, n'hésitez pas à répondre directement à cet email. <br>
 <br>
 A très vite ! <br>
 <br>
