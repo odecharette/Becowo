@@ -38,7 +38,9 @@
         "cmen/google-charts-bundle": "1.*",
         "blackknight467/star-rating-bundle": "^2.0",
         "hwi/oauth-bundle": "0.5.x-dev",
-        "suncat/mobile-detect-bundle": "1.0.*"
+        "suncat/mobile-detect-bundle": "1.0.*",
+        "cspoo/swiftmailer-mailgun-bundle": "^0.3.1",
+        "php-http/guzzle5-adapter": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
