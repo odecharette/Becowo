@@ -39,6 +39,18 @@ Nombre de coworker(s) : {{booking.nbPeople}} <br>
 Montant HT : {{booking.priceExclTax}} € <br>
 Montant TTC : {{booking.priceInclTax}} € <br>
 <br> <br>
+<strong>Ajouter à mon calendrier</strong> <br>
+<a id="fl_ical" href="http://addtocalendar.com/atc/ical?f=m&e[0][date_start]={{booking.startDate|date("d/m/Y H:i")}}[0][date_end]={{booking.endDate|date("d/m/Y H:i")}}[0][timezone]=Europe%2FParis&e[0][title]={{booking.workspacehasoffice.workspace.name}}&e[0][description]=Réservation N° {{booking.bookingRef}} effectuée via www.becowo.com &e[0][location]={{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}&e[0][organizer]=&e[0][organizer_email]=&e[0][privacy]=public" target="_blank">iCalendar</a> 
+-
+<a id="fl_google" href="http://addtocalendar.com/atc/ical?f=m&e[0][date_start]={{booking.startDate|date("d/m/Y H:i")}}[0][date_end]={{booking.endDate|date("d/m/Y H:i")}}[0][timezone]=Europe%2FParis&e[0][title]={{booking.workspacehasoffice.workspace.name}}&e[0][description]=Réservation N° {{booking.bookingRef}} effectuée via www.becowo.com &e[0][location]={{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}&e[0][organizer]=&e[0][organizer_email]=&e[0][privacy]=public" target="_blank">Google Calendar</a> 
+-
+<a id="fl_outlook" href="http://addtocalendar.com/atc/ical?f=m&e[0][date_start]={{booking.startDate|date("d/m/Y H:i")}}[0][date_end]={{booking.endDate|date("d/m/Y H:i")}}[0][timezone]=Europe%2FParis&e[0][title]={{booking.workspacehasoffice.workspace.name}}&e[0][description]=Réservation N° {{booking.bookingRef}} effectuée via www.becowo.com &e[0][location]={{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}&e[0][organizer]=&e[0][organizer_email]=&e[0][privacy]=public" target="_blank">Outlook</a> 
+-
+<a id="fl_outlookonline" href="http://addtocalendar.com/atc/ical?f=m&e[0][date_start]={{booking.startDate|date("d/m/Y H:i")}}[0][date_end]={{booking.endDate|date("d/m/Y H:i")}}[0][timezone]=Europe%2FParis&e[0][title]={{booking.workspacehasoffice.workspace.name}}&e[0][description]=Réservation N° {{booking.bookingRef}} effectuée via www.becowo.com &e[0][location]={{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}&e[0][organizer]=&e[0][organizer_email]=&e[0][privacy]=public" target="_blank">Outlook Online</a> 
+-
+<a id="fl_yahoo" href="http://addtocalendar.com/atc/ical?f=m&e[0][date_start]={{booking.startDate|date("d/m/Y H:i")}}[0][date_end]={{booking.endDate|date("d/m/Y H:i")}}[0][timezone]=Europe%2FParis&e[0][title]={{booking.workspacehasoffice.workspace.name}}&e[0][description]=Réservation N° {{booking.bookingRef}} effectuée via www.becowo.com &e[0][location]={{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}&e[0][organizer]=&e[0][organizer_email]=&e[0][privacy]=public" target="_blank">Yahoo! Calendar</a>
+
+<br><br>
 {% if booking.workspacehasoffice.workspace.arrivalDesc != null %}
 Pour faciliter votre arrivée chez {{booking.workspacehasoffice.workspace.name}} : <br>
 {{booking.workspacehasoffice.workspace.arrivalDesc|raw}}
