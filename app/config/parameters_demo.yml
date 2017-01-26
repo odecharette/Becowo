@@ -20,4 +20,4 @@ parameters:
     mailer_password: Annapurna
     mailer_encryption : tls
     secret: ThisIsTheSecretForBecowoAnnapurna
-    site_url: http://www.demo.becowo.com
+    site_url: https://www.demo.becowo.com
