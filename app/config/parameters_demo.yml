@@ -1,10 +1,17 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: coworkinwqadmin.mysql.db
+    # BDD OVH offre Perso
+    # database_host: coworkinwqadmin.mysql.db
+    # database_port: null
+    # database_name: coworkinwqadmin
+    # database_user: coworkinwqadmin
+    # database_password: Annapurna16
+    # BDD OVH offre Performance 1
+    database_host: coworkinwqbec0w0.mysql.db
     database_port: null
-    database_name: coworkinwqadmin
-    database_user: coworkinwqadmin
-    database_password: Annapurna16
+    database_name: coworkinwqbec0w0
+    database_user: coworkinwqbec0w0
+    database_password: Annapurna85
     mailer_transport: smtp
     mailer_auth_mode:  login
     mailer_host: ssl0.ovh.net
