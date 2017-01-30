@@ -117,27 +117,27 @@ becowo_core_paiement_call_bank:
         expose: true
 
 becowo_core_paiement_effectue:
-    path:     /ws/paiement/effectue
+    path:     /paiement/effectue
     defaults: { _controller: BecowoCoreBundle:Paiement:effectue }
     methods: GET
 
 becowo_core_paiement_annule:
-    path:     /ws/paiement/annule
+    path:     /paiement/annule
     defaults: { _controller: BecowoCoreBundle:Paiement:annule }
     methods: GET
 
 becowo_core_paiement_refuse:
-    path:     /ws/paiement/refuse
+    path:     /paiement/refuse
     defaults: { _controller: BecowoCoreBundle:Paiement:refuse }
     methods: GET
 
 becowo_core_paiement_ipn:
-    path:     /ws/paiement/ipn
+    path:     /paiement/ipn
     defaults: { _controller: BecowoCoreBundle:Paiement:ipn }
     methods: GET
 
 becowo_core_visit_360:
-    path:     /ws/{name}/visit-360
+    path:     /{name}/visit-360
     defaults: { _controller: BecowoCoreBundle:Workspace:visit }
 
 becowo_core_blog_last_article:
