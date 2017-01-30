@@ -1001,6 +1001,7 @@ footer{
   text-align: center;
 }
 
+
 /********************************** Public profile *************************************/
 
 #PublicProfile .name{
@@ -1010,6 +1011,10 @@ footer{
   text-transform: capitalize;
   line-height: 50px;
   padding-left: 10px;
+}
+#PublicProfile .name a{
+  color: white ;
+  text-decoration: underline;
 }
 
 #PublicProfile .picture{

@@ -11,9 +11,9 @@
 <div class="container-fluid" id="PublicProfile">
 	<div class="row name">
 		{% if member.firstname == '' and member.name == ''%}
-			anonyme
+			<a href="{{ path('becowo_core_community') }}">La communauté</a> / Anonyme
 		{% else %}
-			{{member.firstname}} {{member.name}}
+			<a href="{{ path('becowo_core_community') }}">La communauté</a> / {{member.firstname}} {{member.name}}
 		{% endif %}
 	</div>
 	<div class="row">
