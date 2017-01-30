@@ -27,7 +27,6 @@ class AppKernel extends Kernel
             new blackknight467\StarRatingBundle\StarRatingBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
-            new cspoo\Swiftmailer\MailgunBundle\cspooSwiftmailerMailgunBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

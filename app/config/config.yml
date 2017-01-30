@@ -97,13 +97,12 @@ doctrine:
 
 # Bundle pour Mailgun
 # https://mailgun.com/app/domains/mailgun.becowo.com
-cspoo_swiftmailer_mailgun:
-    key: "key-47a9d9c74b4b7603b9c13e27f3dda892"
-    domain: "mailgun.becowo.com"
+# cspoo_swiftmailer_mailgun:
+#     key: "key-47a9d9c74b4b7603b9c13e27f3dda892"
+#     domain: "mailgun.becowo.com"
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "mailgun"
     auth_mode: "%mailer_auth_mode%"
     host:      "%mailer_host%"
     port:      "%mailer_port%"

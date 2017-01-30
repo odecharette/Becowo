@@ -12,6 +12,8 @@ parameters:
     database_name: coworkinwqbec0w0
     database_user: coworkinwqbec0w0
     database_password: Annapurna85
+
+    # Email via OVH
     mailer_transport: smtp
     mailer_auth_mode:  login
     mailer_host: ssl0.ovh.net
@@ -19,5 +21,6 @@ parameters:
     mailer_user: contact@becowo.com
     mailer_password: Annapurna
     mailer_encryption : tls
+
     secret: ThisIsTheSecretForBecowoAnnapurna
     site_url: https://www.demo.becowo.com
