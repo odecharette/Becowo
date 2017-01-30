@@ -19,6 +19,7 @@ class MemberController extends Controller
 
   public function sendEmailToNewUsersAction()
   {
+    
   	$MemberService = $this->get('app.member');
   	$members = $MemberService->getMembersHasNotReceivedMailNewUser();
   	$nbMembers = 0;
@@ -53,6 +54,7 @@ class MemberController extends Controller
       $em->flush();
 
   	$result = "Nombre de nouveaux membres : " . $nbMembers . "<br> Nombre d'emails envoyés : " . $nbEmails . "<br> Liste des emails : " . $listEmails ;
+    
 
   	return $this->render('CommonViews/Mail/NewMemberResult.html.twig', array('result' => $result));
   }
