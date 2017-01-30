@@ -135,6 +135,10 @@ $('[id^="goToResa-"]').click(function() {
   $('#myTab a[href="#Réservation"]').tab('show');
 });
 
+$('[id^="goToContact"]').click(function() {
+  $('#myTab a[href="#Contact"]').tab('show');
+});
+
 $('[id^="goToContact-"]').click(function() {
   $('#myTab a[href="#Contact"]').tab('show');
   $('#myModalManagerContact').modal({});

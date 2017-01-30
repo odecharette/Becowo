@@ -1214,6 +1214,9 @@ footer{
 #wsHeader .name{
   color: var(--my-grey);
 }
+#wsHeader .name a{
+  color: var(--my-grey);
+}
 .rating{
   display: inline;
 }

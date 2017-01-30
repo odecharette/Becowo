@@ -38,7 +38,8 @@
 				<h1>{{ws.name}} {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}</h1>
 			{% endif %}	
 
-			{{ws.street|capitalize}} {{ws.postCode}} {{ws.city|capitalize}}
+			<a href="#Contact" id="goToContact">{{ws.street|capitalize}} {{ws.postCode}} {{ws.city|capitalize}}</a>
+			
 		</div>
 	</div>	
 
