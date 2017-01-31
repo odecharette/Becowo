@@ -219,6 +219,20 @@ $(function(){
 });
 /***************** fin rating.js ****************************/
 
+
+/********** Home filter menu ***********/
+// jplist.com
+
+$(document).ready(function(){
+   $('#WsFilters').jplist({       
+      itemsBox: '.list' 
+      ,itemPath: '.list-item' 
+      ,panelPath: '.jplist-panel' 
+   });
+   
+});
+
+
 }
 else
 { ///////////////////////////////////////////////////////////////////////////// JS for mobile only

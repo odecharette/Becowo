@@ -809,7 +809,11 @@ footer{
   -webkit-appearance: none; // Enlène l'arrow d'origine 
 }
 */
-
+#vignette{
+  width: 30%;
+  display: inline-block;
+  margin: 20px;
+}
 #vignette #address{
   color: var(--my-black);
   font-size: 10pt;
@@ -892,10 +896,10 @@ footer{
   width: 30px;
   height: 30px;
 }
-#listeEspaces li:hover{
+/*#listeEspaces li:hover{
   box-shadow: 0 0 20px var(--my-blue) !important;
   border: 1px solid var(--my-blue) !important;
-}
+}*/
 
 .bh-sl-loc-list{
   height: 600px !important;
