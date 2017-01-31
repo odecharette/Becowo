@@ -2740,15 +2740,42 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   outline: none;
 }
 
+
+#filtersBar{
+  margin: 20px;
+  background-color: var(--my-green);
+  color: white !important;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+}
+
+#filtersBar .titles{
+  font-size: 14pt;
+  margin-bottom: 40px;
+}
+
+.fb_iframe_widget{
+  margin-left: 140px;
+  width: inherit;
+}
+.fb_iframe_widget span{
+  width: 100% !important;
+}
+.fb-page iframe{
+  /*Pour cacher le nombre de likes et réduire le plugin*/
+  width: 205px !important;
+}
+
 /* jplist.checkbox-dropdown.min.css personalized*/
 
 .jplist-checkbox-dropdown {
   float: left;
   height: 40px;
   width: 300px;
-  margin: 10px 10px 0 0;
+  margin: 10px 0 0 50px;
   text-align: left;
-  border-bottom: 3px solid var(--my-blue);
+  border-bottom: 3px solid white;
   background: none;
   font-size: 16pt;
   font-weight: 700;
@@ -2762,29 +2789,29 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   text-indent: 10px;
 }
 
-.jplist-checkbox-dropdown input[type=checkbox] { display:none !important; } /* to hide the checkbox itself */
-.jplist-checkbox-dropdown input[type=checkbox] + label:after {
+.jplist-panel input[type=checkbox] { display:none !important; } /* to hide the checkbox itself */
+.jplist-panel input[type=checkbox] + label:after {
   font-family: FontAwesome !important;
   display: inline-block !important;
 }
 
-.jplist-checkbox-dropdown input[type=checkbox] + label:after { content: "\f096" !important; } /* unchecked icon */
-.jplist-checkbox-dropdown input[type=checkbox] + label:after {
-  color: var(--my-blue);    
+.jplist-panel input[type=checkbox] + label:after { content: "\f096" !important; } /* unchecked icon */
+.jplist-panel input[type=checkbox] + label:after {    
   position: absolute;
   right: 20px; 
  }
 
-.jplist-checkbox-dropdown input[type=checkbox]:checked + label:after { content: "\f046" !important; } /* checked icon */
-.jplist-checkbox-dropdown input[type=checkbox]:checked + label:after { 
+.jplist-panel input[type=checkbox]:checked + label:after { content: "\f046" !important; } /* checked icon */
+.jplist-panel input[type=checkbox]:checked + label:after { 
   position: absolute;
   right: 20px;
 } 
-
+.jplist-panel label{
+  color: white !important;
+}
 
 .jplist-checkbox-dropdown .jplist-dd-panel:after {
   content: '\25BC';
-  color: var(--my-blue);
   display: inline-block;
   margin: 0 10px;
   position: absolute;
@@ -2793,24 +2820,17 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 
 .jplist-checkbox-dropdown ul {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid #dbdbdb;
-    border-radius: 0 0 3px 3px;
+    border-radius: 3px;
     position: relative;
     top: 0;
     z-index: 1000;
     width: 100%;
     display: none;
     overflow: hidden;
-    background:white;
+    background: #f4f4f4;
     list-style: none;
     margin: 0;
     padding: 0;
-    box-shadow: 0 3px 6px #bbb
 }
 
 .jplist-checkbox-dropdown ul li {
@@ -2824,14 +2844,11 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 
 .jplist-checkbox-dropdown ul li:hover {
-    background-color: #ececec
+    background-color: var(--my-grey-light);
 }
 
-.jplist-checkbox-dropdown:hover .jplist-dd-panel {
-  color: var(--my-black);
-}
 
-.jplist-panel label{
+.jplist-checkbox-dropdown label{
   width: 100% !important;
   color: var(--my-black) !important;
 }
@@ -2840,31 +2857,20 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
     display: block !important;
 }
 
-#filtersBar{
-  margin: 20px;
-}
 
 /* JPList Filter toggle button personalized */
 
-.jplist-panel .jplist-group {
-    float: left;
-    height: 30px;
-    box-shadow: 0 0 1px #fff;
-    background: #fff;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid #dbdbdb;
-    border-radius: 3px;
-    text-shadow: 1px 1px 1px #fff;
-    color: #27252a;
-    margin: 10px 10px 0 0;
-    padding: 0 0 0 5px;
-    height: auto
+.jplist-group label{
+  position: relative;
 }
-
+.jplist-panel .jplist-group {
+  float: left;
+  margin: 10px 0 0 0;
+  padding: 0 0 0 5px;
+  font-size: 14pt;
+  display: inline-flex;
+  width: 600px;
+}
 .jplist-panel .jplist-group input,
 .jplist-panel .jplist-group label {
     height: 28px;

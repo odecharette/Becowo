@@ -9,70 +9,64 @@
             <div class="jplist-panel">	
 
             <div class="row" id="filtersBar">
-            <!-- checkbox dropdown -->
-	        <div 
-	            class="jplist-checkbox-dropdown"
-	            data-control-type="checkbox-dropdown" 
-	            data-control-name="category-checkbox-dropdown" 
-	            data-control-action="filter"
-	            data-no-selected-text="Ville"
-	            data-one-item-text="{selected}"
-	            data-many-items-text="{num} villes" 
-	            id="filterCity">
-	            
-	            <ul>
-	            	{% for city in listCities %}
-	            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
-	               	<li>
-	                  	<input data-path=".{{ville}}" id="{{ville}}" type="checkbox"/>
-	                  	<label for="{{ville}}">{{city|capitalize}}</label>
-	               	</li>
-	               {% endfor %}
-	            </ul>
-	         </div>		
+            
+            <div class="row text-center titles">
+            	<div class="col-lg-4"><span>Ville des Hauts de France</span></div>
+            	<div class="col-lg-4"><span>Type d'espace de travail</span></div>
+            	<div class="col-lg-4"><span>Suivez l'arrivée de nouveaux espaces</span></div>
+            </div>
+            <div class="row">
+            	<div class="col-lg-4">
+            		<!-- checkbox dropdown -->
+			        <div 
+			            class="jplist-checkbox-dropdown"
+			            data-control-type="checkbox-dropdown" 
+			            data-control-name="category-checkbox-dropdown" 
+			            data-control-action="filter"
+			            data-no-selected-text="Ville"
+			            data-one-item-text="{selected}"
+			            data-many-items-text="{num} villes" 
+			            id="filterCity">
 
-		    <!-- Button Path Filters Group Control -->
-		      <div class="jplist-group"
-		         data-control-type="button-filter-group"
-		         data-control-action="filter"
-		         data-control-name="button-filter-group-1">
-		         <ul>
-		           <li>
-		             <span
-		               data-path=".coworking"
-		               data-button="true">
-		                  <i class="fa fa-home"></i>
-		                  Coworking
-		             </span>
-		             <span
-               data-control-type="counter"
-               data-control-action="counter"
-               data-control-name="coworking-counter"
-               data-format="({count})"
-               data-path=".coworking"
-               data-mode="filter"
-               data-type="path"></span>
-		           </li>
-		           
-		            <li>
-		             <span
-		               data-path=".caféwifi"
-		               data-button="true">
-		                  <i class="fa fa-home"></i>
-		                  cafewifi
-		             </span>
-		             <span
-               data-control-type="counter"
-               data-control-action="counter"
-               data-control-name="caféwifi-counter"
-               data-format="({count})"
-               data-path=".caféwifi"
-               data-mode="filter"
-               data-type="path"></span>
-		           </li>
-		         </ul>
-		      </div>
-
+			            <ul>
+			            	{% for city in listCities %}
+			            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
+			               	<li>
+			                  	<input data-path=".{{ville}}" id="{{ville}}" type="checkbox"/>
+			                  	<label for="{{ville}}">{{city|capitalize}}</label>
+			               	</li>
+			               {% endfor %}
+			            </ul>
+			        </div>
+			    </div>	
+			    <div class="col-lg-4">
+ 				<!-- checkbox path filters -->
+	      			<div 
+				        class="jplist-group"
+				        data-control-type="checkbox-group-filter"
+				        data-control-action="filter"
+				        data-control-name="themes">
+	         
+			         <input data-path=".coworking" 
+			           id="coworking" 
+			           type="checkbox"/> 
+			         <label for="coworking" style="width:160px;"><i class="fa fa-home"></i> Coworking</label>
+			         
+			         <input data-path=".caféwifi" 										
+			           id="caféwifi" 
+			           type="checkbox"/> 
+			         <label for="caféwifi" style="width:160px;"><i class="fa fa-coffee"></i> Café wifi</label>
+			         
+			         <input data-path=".centredaffaires" 
+			           id="centredaffaires" 
+			           type="checkbox"/> 
+			         <label for="nature" style="width:200px;"><i class="fa fa-building"></i> Centre d'affaires</label>
+		        	</div>
+	        	</div>
+	        	<div class="col-lg-4">
+	        		<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" ><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
+	        	</div>
+      		</div>
             </div>	
 
              
