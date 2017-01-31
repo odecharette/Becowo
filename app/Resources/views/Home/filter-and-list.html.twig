@@ -10,11 +10,11 @@
 
             <div class="row" id="filtersBar">
             
-            <div class="row text-center titles">
+           {#  <div class="row text-center titles">
             	<div class="col-lg-4"><span>Ville des Hauts de France</span></div>
             	<div class="col-lg-4"><span>Type d'espace de travail</span></div>
             	<div class="col-lg-4"><span>Suivez l'arrivée de nouveaux espaces</span></div>
-            </div>
+            </div> #}
             <div class="row">
             	<div class="col-lg-4">
             		<!-- checkbox dropdown -->
@@ -60,12 +60,12 @@
 			         <input data-path=".centredaffaires" 
 			           id="centredaffaires" 
 			           type="checkbox"/> 
-			         <label for="nature" style="width:200px;"><i class="fa fa-building"></i> Centre d'affaires</label>
+			         <label for="centredaffaires" style="width:200px;"><i class="fa fa-building"></i> Centre d'affaires</label>
 		        	</div>
 	        	</div>
-	        	<div class="col-lg-4">
+	        	{# <div class="col-lg-4">
 	        		<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" ><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
-	        	</div>
+	        	</div> #}
       		</div>
             </div>	
 
@@ -86,7 +86,11 @@
 				{% endif %}
 			{% endfor %}
 
-			<div class="list-item" id="vignette">
+			{% if loop.index > 5 %}
+				<div class="list-item" id="vignette" style="display:none;">
+			{% else %}
+				<div class="list-item" id="vignette">
+			{% endif %}
 				{# Filtered class #}
 				<span hidden="true" class="{{wsInfo.ws.city|lower|replace({"'": ""," ":""})}}"></span>
 				<span hidden="true" class="{{wsInfo.category|lower|replace({"'": ""," ":""})}}"></span>
@@ -171,10 +175,17 @@
 
             {# On ajoute un item de pub #}
             <div class="list-item" id="vignette">
-            	<span hidden="true" class="{{listCities|join(' ')}}"></span>
-				<span hidden="true" class="coworking caféwifi centredaffaires"></span>
+            	{% for city in listCities %}
+            		<span hidden="true" class="{{city|lower|replace({"'": ""," ":""})}}"></span>
+            	{% endfor %}
+				<span hidden="true" class="coworking"></span>
+				<span hidden="true" class="caféwifi"></span>
+				<span hidden="true" class="centredaffaires"></span>
             	<div class="pub">
-            		<div class="texte">Envie d'autres espaces ? <br> bla bla bla</div>
+            		<div class="texte">Envie d'autres espaces ? <br> bla bla bla <br>
+            			<br>
+            		<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" ><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
+            	</div>
             	</div>
             </div>
            	</div>
@@ -183,12 +194,15 @@
            <!-- no results found -->
            <div class="row">
            <div class="jplist-no-results">
-              <p>No results found</p>
+              <p>Aucun résultat</p>
            </div>
   	 		</div>
         </div>		
 </div>
 
+<div class="row text-center">
+	<button type="button" id="viewMore">Voir plus</button>
+</div>
 
 
 {# TO DO ADD script vote et modal (voir location-list-description-local) #}

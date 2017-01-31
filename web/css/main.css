@@ -813,6 +813,7 @@ footer{
   width: 30%;
   display: inline-block;
   margin: 20px;
+  vertical-align: top;
 }
 #vignette #address{
   color: var(--my-black);
@@ -2769,7 +2770,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 
 .fb_iframe_widget{
-  margin-left: 140px;
+  margin-left: -200px;
   width: inherit;
 }
 .fb_iframe_widget span{
@@ -2923,4 +2924,15 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 
 [data-control-type="range-filter"] {
     cursor: pointer
+}
+
+#viewMore{
+  background-color: var(--my-blue);
+  border: none;
+  color: white;
+  line-height: 60px;
+  padding: 0 30px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 14pt;
 }
