@@ -1,0 +1,104 @@
+<div id="liste-espaces"></div>
+
+{# Filters bar #}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="btn-group">
+		    <button class="btn btn-default btn-lg" type="button">Ville</button>
+		    <button data-toggle="dropdown" class="btn btn-lg btn-default dropdown-toggle" type="button"> <i class="fa fa-home" aria-hidden="true"></i></button>
+		    <ul role="menu" class="dropdown-menu dropdown-menu-default">
+		        <li class="active"><a href="#">Toutes</a></li>
+		        <li><a href="#">Lille</a></li>
+		        <li><a href="#">Roubaix</a></li>
+		        <li><a href="#">Tourcoing</a></li>
+		        <li><a href="#">Villeneuve d'acsq</a></li>
+		        <li><a href="#">Roncq</a></li>
+		    </ul>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+{{dump(wsFullInfo)}}
+
+<ul>
+{% for wsInfo in wsFullInfo %}
+
+{% set offerZen = false %}
+{% for o in wsInfo.WsHasOffers %}
+	{% if o.offer.name == 'Zen' %}
+		{% set offerZen = true %}
+	{% endif %}
+{% endfor %}
+
+	{% if loop.index % 3 == 0 %}<div class="row">{% endif %}
+		<li class="container-fluid vignette" id="vignette">
+			{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
+			<div id="pic">
+				<div id="favoritePicture">
+					{% if wsInfo.favoritePicture.url != "" %}
+						<img src="{{ asset('images/Workspaces/')}}{{wsInfo.ws.name}}/{{wsInfo.favoritePicture.url}}" alt="{{wsInfo.ws.name}}">
+					{% endif %}
+				</div>
+				<div id="price">
+					A partir de {{wsInfo.lowestPrice}} <sup>€</sup>
+					{% if offerZen %}
+						 <i class="fa fa-bolt" aria-hidden="true"></i>
+					{% endif %}
+				</div>
+				<div id="btn_decouvrir">
+					{% if offerZen %}
+						<button type="button" class="btn_vignette">Découvrir</button>
+					{% else %}
+						<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>
+						<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    			<div class="modal-dialog">
+			        			<div class="modal-content">
+						            <div class="modal-header modal-header-info">
+						                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+						                <h4 class="modal-title">Réclamer cet espace</h4>
+						            </div>
+									<form method="POST" action="{{ path('becowo_core_vote_zen', { 'id' : wsInfo.ws.id }) }}" id="form_voteZen">
+						            <div class="modal-body">
+						                <p>La réservation en ligne n'est malheureusement pas disponible chez {{wsInfo.ws.name}}. <br>
+						                Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à {{wsInfo.ws.name}} car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"
+										</p>
+										Votre email * : <input type="email" name="emailVote" required="true" width="200px">
+										<p>Nous vous préviendrons dès que {{wsInfo.ws.name}} sera disponible sur Becowo.</p>
+										<div id="error-{{wsInfo.ws.id}}"></div>
+						            </div>
+						            <div class="modal-footer">
+										<button type="submit" id="voteZen-{{wsInfo.ws.id}}" class="modal_valid">Je réclame !</button>
+						            </div>
+									</form>	
+			        			</div>
+			    			</div>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+			{% if offerZen %}</a>{% endif %}
+
+			<table>
+			<td id="address">
+				<strong id="WSname">{{wsInfo.ws.name}}</strong> <br>
+				<div id="stars">
+					{% if wsInfo.averageVote != null %}
+						<img src="{{ asset('images/icons/star')}}{{wsInfo.averageVote}}.png" alt="Vote">
+					{% endif %}
+				</div>
+			</td>
+			<td id="listeLogo">
+				{% for wha in wsInfo.amenities %}
+					{% if loop.index < 6 %}
+						<img src="{{ asset('images/icons/amenities/Bleu/')}}{{wha.amenities.urlLogo}}" alt="{{wha.amenities.name}}') }}">
+					{% endif %}
+				{% endfor %}
+			</td>
+			</table>
+		</li>
+	{% if loop.index % 3 == 0 %}</div>{% endif %}
+{% endfor %}
+</ul>
+</div>

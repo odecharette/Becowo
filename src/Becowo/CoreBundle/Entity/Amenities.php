@@ -35,20 +35,12 @@ class Amenities
      */
     private $urlLogo;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace", mappedBy="amenities")
-     */
-    private $workspace;
-
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->workspace = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -109,41 +101,6 @@ class Amenities
     {
         return $this->id;
     }
-
-    /**
-     * Add workspace
-     *
-     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
-     *
-     * @return Amenities
-     */
-    public function addWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace)
-    {
-        $this->workspace[] = $workspace;
-
-        return $this;
-    }
-
-    /**
-     * Remove workspace
-     *
-     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
-     */
-    public function removeWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace)
-    {
-        $this->workspace->removeElement($workspace);
-    }
-
-    /**
-     * Get workspace
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWorkspace()
-    {
-        return $this->workspace;
-    }
-
 
     public function __toString()
     {

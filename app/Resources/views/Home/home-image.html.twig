@@ -1,12 +1,20 @@
 <div id="home-image">
 	<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo" width="100%">
 
-	<div class="phrase">Réservez un espace de travail et intégrez une communauté de coworkers</div>
-	<div class="homeIcon">
-		<a href="#liste-espaces" id="goToMap" class="hidden-xs">
-			<img src="{{ asset('images/icons/Home-espace.png') }}">
-			<img src="{{ asset('images/icons/Home-bureau.png') }}" class="deux">
-			<img src="{{ asset('images/icons/Home-reunion.png') }}">
-		</a>
+	<div class="phrase">
+		Réservez un espace de travail et intégrez une communauté de coworkers
+	</div> 
+	<div class="categories">
+		Coworking &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Salle de réunion &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Café-wifi
+	</div>
+	{# <div class="homeIcon">
+		<img src="{{ asset('images/icons/Home-coworking.png') }}">
+		<img src="{{ asset('images/icons/Home-reunion.png') }}" class="deux">
+		<img src="{{ asset('images/icons/Home-cafe.png') }}">
+	</div> #}
+	<div class="homeButtons">
+		<a href="#liste-espaces" id="goToMap" class="hidden-xs">Réserver un <br> espace de travail</a>
+		<a href="{{ path('becowo_core_community') }}" class="deux">Rencontrer la <br> communauté</a>
+		<a href="#declare" id="goToDeclare">Proposer un <br> espace</a>
 	</div>
 </div>

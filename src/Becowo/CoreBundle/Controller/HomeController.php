@@ -8,7 +8,23 @@ class HomeController extends Controller
 {
   public function homeAction()
   {
-    return $this->render('Home/home.html.twig');
+    $WsService = $this->get('app.workspace');
+    $workspaces = $WsService->getActiveWorkspacesOrderByVoteAvgAndWithoutVote();
+
+    $wsFullInfo = array();
+    foreach ($workspaces as $ws)
+    {
+      array_push($wsFullInfo, array('ws' => $ws,
+        'lowestPrice' => $WsService->getLowestPriceByWorkspace($ws),
+        'amenities' => $WsService->getAmenitiesByWorkspace($ws),
+        'favoritePicture' => $WsService->getFavoritePictureUrlByWorkspace($ws->getName()),
+        'averageVote' => round($WsService->getAverageVoteByWorkspace($ws), 0),
+        'WsHasOffers' => $WsService->getOffersByWorkspace($ws)) );
+    }
+
+    dump($wsFullInfo);
+
+    return $this->render('Home/home.html.twig', array('wsFullInfo' => $wsFullInfo));
   }
 
   public function mobileAction()
@@ -16,16 +32,7 @@ class HomeController extends Controller
     // This view in called only on mobiles
   
     $WsService = $this->get('app.workspace');
-    $WswithVote = $WsService->getActiveWorkspacesOrderByVoteAvg(); 
-    $AllActiveWs = $WsService->getActiveWorkspaces();
-
-    // En queryBuilder impossible de faire une requet en Union donc on récup 
-    // 1/ Tous les WS qui ont un vote, trié sur socreAVg en Desc
-    // 2/ Tous les WS
-    // 3/ On merge les 2 résultats
-    // 4/ On enlève les doublons
-    $workspaces = array_merge($WswithVote, $AllActiveWs);
-    $workspaces = array_unique($workspaces);
+    $workspaces = $WsService->getActiveWorkspacesOrderByVoteAvgAndWithoutVote();
 
     $wsFullInfo = array();
     foreach ($workspaces as $w)

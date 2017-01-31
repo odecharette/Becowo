@@ -72,11 +72,7 @@ $("#comment-form").submit(function (e){
     });
 });
 
-// Smooth scrolling for home button
-$("#goToMap").unbind("click").click(function(e){
-		e.preventDefault();
-		$('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
-});
+
 
 //Navbar Scroll Event
 var navbar = $('.navbar');
@@ -129,6 +125,17 @@ $('.nav-tabs a').on('shown.bs.tab', function(event){
     $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
 });
 
+});
+
+// Smooth scrolling for home button
+$("#goToMap").unbind("click").click(function(e){
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
+});
+
+$("#goToDeclare").unbind("click").click(function(e){
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
 });
 
 $('[id^="goToResa-"]').click(function() {
