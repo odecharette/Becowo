@@ -19,10 +19,10 @@
 	</div>
 </div>
 
-<div class="container-fluid">
-{{dump(wsFullInfo)}}
 
-<ul>
+<div class="container-fluid">
+
+<ul style="list-style:none;" id="listeEspaces">
 {% for wsInfo in wsFullInfo %}
 
 {% set offerZen = false %}
@@ -33,7 +33,8 @@
 {% endfor %}
 
 	{% if loop.index % 3 == 0 %}<div class="row">{% endif %}
-		<li class="container-fluid vignette" id="vignette">
+		<div class="col-lg-4">
+		<li class="container-fluid" id="vignette">
 			{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
 			<div id="pic">
 				<div id="favoritePicture">
@@ -97,8 +98,12 @@
 				{% endfor %}
 			</td>
 			</table>
+			<div id="bonus">{{wsInfo.ws.descriptionBonus}}</div>
 		</li>
-	{% if loop.index % 3 == 0 %}</div>{% endif %}
+		</div>
+	{% if loop.index % 3 == 0 %}</div> <br> {% endif %}
 {% endfor %}
 </ul>
 </div>
+
+{# TO DO ADD script vote et modal (voir location-list-description-local) #}
