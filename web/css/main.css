@@ -896,6 +896,19 @@ footer{
   width: 30px;
   height: 30px;
 }
+
+#vignette .pub{
+  background-color: var(--my-green);
+    color: white;
+    font-size: 20pt;
+    height: 310px;
+    width: 100%;
+    top: 0;
+    vertical-align: bottom;
+    display: inline-block;
+    padding: 30px;
+    text-align: center;
+}
 /*#listeEspaces li:hover{
   box-shadow: 0 0 20px var(--my-blue) !important;
   border: 1px solid var(--my-blue) !important;
@@ -2773,7 +2786,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   float: left;
   height: 40px;
   width: 300px;
-  margin: 10px 0 0 50px;
+  margin: 10px 0 0 20px;
   text-align: left;
   border-bottom: 3px solid white;
   background: none;
@@ -2865,11 +2878,10 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 .jplist-panel .jplist-group {
   float: left;
-  margin: 10px 0 0 0;
+  margin: 10px 0 0 -40px;
   padding: 0 0 0 5px;
   font-size: 14pt;
   display: inline-flex;
-  width: 600px;
 }
 .jplist-panel .jplist-group input,
 .jplist-panel .jplist-group label {

@@ -86,8 +86,6 @@
 				{% endif %}
 			{% endfor %}
 
-           {#  {% if loop.index % 3 == 0 %}<div class="row">{% endif %}
-			<div class="col-lg-4"> #}
 			<div class="list-item" id="vignette">
 				{# Filtered class #}
 				<span hidden="true" class="{{wsInfo.ws.city|lower|replace({"'": ""," ":""})}}"></span>
@@ -100,9 +98,13 @@
 						{% endif %}
 					</div>
 					<div id="price">
-						A partir de {{wsInfo.lowestPrice}} <sup>€</sup>
-						{% if offerZen %}
-							 <i class="fa fa-bolt" aria-hidden="true"></i>
+						{% if wsInfo.category == 'Café Wifi' %}
+							Gratuit
+						{% else %}
+							A partir de {{wsInfo.lowestPrice}} <sup>€</sup>
+							{% if offerZen %}
+								 <i class="fa fa-bolt" aria-hidden="true"></i>
+							{% endif %}
 						{% endif %}
 					</div>
 					<div id="btn_decouvrir">
@@ -155,13 +157,26 @@
 					{% endfor %}
 				</td>
 				</table>
-				<div id="bonus">{{wsInfo.ws.descriptionBonus}}</div>
+				<div id="bonus">
+					{% if wsInfo.category == 'Café Wifi' %}
+						Tous nos cafés wifi sont testés et approuvés ! <br>
+						Internet, prises, confort
+					{% else %}
+						{{wsInfo.ws.descriptionBonus}}
+					{% endif %}
+				</div>
 			 </div> {# end vignette #}
-			{# </div> #}
-			{# {% if loop.index % 3 == 0 %}</div> <br> {% endif %} #}
-
-              
+             
             {% endfor %}
+
+            {# On ajoute un item de pub #}
+            <div class="list-item" id="vignette">
+            	<span hidden="true" class="{{listCities|join(' ')}}"></span>
+				<span hidden="true" class="coworking caféwifi centredaffaires"></span>
+            	<div class="pub">
+            		<div class="texte">Envie d'autres espaces ? <br> bla bla bla</div>
+            	</div>
+            </div>
            	</div>
            </div>
    
