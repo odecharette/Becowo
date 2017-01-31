@@ -315,8 +315,10 @@ class WorkspaceService
             }
 
         }
-
-        return min($allWsMinPrices);
+        if(count($allWsMinPrices) > 0)
+            return min($allWsMinPrices);
+        else
+            return 0;
     }
 
     public function getBookingByMember($user)

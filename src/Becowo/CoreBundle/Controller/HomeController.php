@@ -20,12 +20,15 @@ class HomeController extends Controller
         'amenities' => $WsService->getAmenitiesByWorkspace($ws),
         'favoritePicture' => $WsService->getFavoritePictureUrlByWorkspace($ws->getName()),
         'averageVote' => round($WsService->getAverageVoteByWorkspace($ws), 0),
-        'WsHasOffers' => $WsService->getOffersByWorkspace($ws)) );
+        'WsHasOffers' => $WsService->getOffersByWorkspace($ws),
+        'category' => $ws->getCategory()->getName()));
 
       array_push($listCities, $ws->getCity());
     }
 
     $listCities = array_unique($listCities);
+
+dump($wsFullInfo);
 
     return $this->render('Home/home.html.twig', array('wsFullInfo' => $wsFullInfo, 'listCities' => $listCities));
   }

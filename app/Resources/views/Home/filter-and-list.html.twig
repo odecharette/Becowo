@@ -8,8 +8,8 @@
             <!-- Filter panel -->
             <div class="jplist-panel">	
 
+            <div class="row" id="filtersBar">
             <!-- checkbox dropdown -->
-            <div class="row">
 	        <div 
 	            class="jplist-checkbox-dropdown"
 	            data-control-type="checkbox-dropdown" 
@@ -29,8 +29,54 @@
 	               	</li>
 	               {% endfor %}
 	            </ul>
-	         </div>	
-            </div>				 
+	         </div>		
+
+		    <!-- Button Path Filters Group Control -->
+		      <div class="jplist-group"
+		         data-control-type="button-filter-group"
+		         data-control-action="filter"
+		         data-control-name="button-filter-group-1">
+		         <ul>
+		           <li>
+		             <span
+		               data-path=".coworking"
+		               data-button="true">
+		                  <i class="fa fa-home"></i>
+		                  Coworking
+		             </span>
+		             <span
+               data-control-type="counter"
+               data-control-action="counter"
+               data-control-name="coworking-counter"
+               data-format="({count})"
+               data-path=".coworking"
+               data-mode="filter"
+               data-type="path"></span>
+		           </li>
+		           
+		            <li>
+		             <span
+		               data-path=".caféwifi"
+		               data-button="true">
+		                  <i class="fa fa-home"></i>
+		                  cafewifi
+		             </span>
+		             <span
+               data-control-type="counter"
+               data-control-action="counter"
+               data-control-name="caféwifi-counter"
+               data-format="({count})"
+               data-path=".caféwifi"
+               data-mode="filter"
+               data-type="path"></span>
+		           </li>
+		         </ul>
+		      </div>
+
+            </div>	
+
+             
+
    			</div>
 
             <!-- Filtered data -->   
@@ -48,12 +94,14 @@
 
            {#  {% if loop.index % 3 == 0 %}<div class="row">{% endif %}
 			<div class="col-lg-4"> #}
-			<div class="list-item {{wsInfo.ws.city|lower|replace({"'": "",
-			" ":""})}}" id="vignette">
+			<div class="list-item" id="vignette">
+				{# Filtered class #}
+				<span hidden="true" class="{{wsInfo.ws.city|lower|replace({"'": ""," ":""})}}"></span>
+				<span hidden="true" class="{{wsInfo.category|lower|replace({"'": ""," ":""})}}"></span>
 				{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
 				<div id="pic">
 					<div id="favoritePicture">
-						{% if wsInfo.favoritePicture.url != "" %}
+						{% if wsInfo.favoritePicture %}
 							<img src="{{ asset('images/Workspaces/')}}{{wsInfo.ws.name}}/{{wsInfo.favoritePicture.url}}" alt="{{wsInfo.ws.name}}">
 						{% endif %}
 					</div>
