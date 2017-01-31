@@ -1,6 +1,5 @@
 <div id="liste-espaces"></div>
 
-
 <div class="container-fluid">
 
 		
@@ -16,19 +15,19 @@
 	            data-control-type="checkbox-dropdown" 
 	            data-control-name="category-checkbox-dropdown" 
 	            data-control-action="filter"
-	            data-no-selected-text="Filter by category:"
-	            data-one-item-text="Filtered by {selected}"
-	            data-many-items-text="{num} selected">
+	            data-no-selected-text="Ville"
+	            data-one-item-text="{selected}"
+	            data-many-items-text="{num} villes" 
+	            id="filterCity">
 	            
 	            <ul>
-	               <li>
-	                  <input data-path=".roubaix" id="roubaix" type="checkbox"/>
-	                  <label for="roubaix">Roubaix</label>
-	               </li>
-	               <li>
-	                  <input data-path=".lille" id="lille" type="checkbox"/>
-	                  <label for="lille">lille</label>
-	               </li>
+	            	{% for city in listCities %}
+	            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
+	               	<li>
+	                  	<input data-path=".{{ville}}" id="{{ville}}" type="checkbox"/>
+	                  	<label for="{{ville}}">{{city|capitalize}}</label>
+	               	</li>
+	               {% endfor %}
 	            </ul>
 	         </div>	
             </div>				 
@@ -49,7 +48,8 @@
 
            {#  {% if loop.index % 3 == 0 %}<div class="row">{% endif %}
 			<div class="col-lg-4"> #}
-			<div class="list-item {{wsInfo.ws.city|lower}}" id="vignette">
+			<div class="list-item {{wsInfo.ws.city|lower|replace({"'": "",
+			" ":""})}}" id="vignette">
 				{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
 				<div id="pic">
 					<div id="favoritePicture">

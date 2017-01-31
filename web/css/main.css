@@ -2739,3 +2739,105 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-radius: 0;
   outline: none;
 }
+
+/* jplist.checkbox-dropdown.min.css personalized*/
+
+.jplist-checkbox-dropdown {
+  float: left;
+  height: 40px;
+  width: 300px;
+  margin: 10px 10px 0 0;
+  text-align: left;
+  border-bottom: 3px solid var(--my-blue);
+  background: none;
+  font-size: 16pt;
+  font-weight: 700;
+}
+
+.jplist-checkbox-dropdown .jplist-dd-panel {
+  float: left;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-indent: 10px;
+}
+
+.jplist-checkbox-dropdown input[type=checkbox] { display:none !important; } /* to hide the checkbox itself */
+.jplist-checkbox-dropdown input[type=checkbox] + label:after {
+  font-family: FontAwesome !important;
+  display: inline-block !important;
+}
+
+.jplist-checkbox-dropdown input[type=checkbox] + label:after { content: "\f096" !important; } /* unchecked icon */
+.jplist-checkbox-dropdown input[type=checkbox] + label:after {
+  color: var(--my-blue);    
+  position: absolute;
+  right: 20px; 
+ }
+
+.jplist-checkbox-dropdown input[type=checkbox]:checked + label:after { content: "\f046" !important; } /* checked icon */
+.jplist-checkbox-dropdown input[type=checkbox]:checked + label:after { 
+  position: absolute;
+  right: 20px;
+} 
+
+
+.jplist-checkbox-dropdown .jplist-dd-panel:after {
+  content: '\25BC';
+  color: var(--my-blue);
+  display: inline-block;
+  margin: 0 10px;
+  position: absolute;
+  right: 0;
+  top: 0
+}
+
+.jplist-checkbox-dropdown ul {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+    border-radius: 0 0 3px 3px;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    display: none;
+    overflow: hidden;
+    background:white;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 3px 6px #bbb
+}
+
+.jplist-checkbox-dropdown ul li {
+  width: 100%;
+  float: left;
+  height: 50px;
+  text-indent: 10px;
+  cursor: pointer;
+  border-bottom: 2px solid #eaeaea;
+  padding: 10px;
+}
+
+.jplist-checkbox-dropdown ul li:hover {
+    background-color: #ececec
+}
+
+.jplist-checkbox-dropdown:hover .jplist-dd-panel {
+  color: var(--my-black);
+}
+
+.jplist-panel label{
+  width: 100% !important;
+  color: var(--my-black) !important;
+}
+
+#filterCity:hover ul {
+    display: block !important;
+}
+
+

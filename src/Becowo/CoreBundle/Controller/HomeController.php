@@ -12,6 +12,7 @@ class HomeController extends Controller
     $workspaces = $WsService->getActiveWorkspacesOrderByVoteAvgAndWithoutVote();
 
     $wsFullInfo = array();
+    $listCities = array();
     foreach ($workspaces as $ws)
     {
       array_push($wsFullInfo, array('ws' => $ws,
@@ -20,11 +21,13 @@ class HomeController extends Controller
         'favoritePicture' => $WsService->getFavoritePictureUrlByWorkspace($ws->getName()),
         'averageVote' => round($WsService->getAverageVoteByWorkspace($ws), 0),
         'WsHasOffers' => $WsService->getOffersByWorkspace($ws)) );
+
+      array_push($listCities, $ws->getCity());
     }
 
-    dump($wsFullInfo);
+    $listCities = array_unique($listCities);
 
-    return $this->render('Home/home.html.twig', array('wsFullInfo' => $wsFullInfo));
+    return $this->render('Home/home.html.twig', array('wsFullInfo' => $wsFullInfo, 'listCities' => $listCities));
   }
 
   public function mobileAction()

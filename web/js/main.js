@@ -228,6 +228,7 @@ $(document).ready(function(){
       itemsBox: '.list' 
       ,itemPath: '.list-item' 
       ,panelPath: '.jplist-panel' 
+      ,noResults: '.jplist-no-results'
    });
    
 });
