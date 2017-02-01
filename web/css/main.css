@@ -87,6 +87,9 @@ color: var(--my-green);
 font-weight: bold;
 background-color: transparent;
 }
+#commentEspace mark{
+  color: var(--my-orange);
+}
 /*  CSS FOR MOBILE ONLY - Mode portrait */
 @media (max-width: 767px){
   body {

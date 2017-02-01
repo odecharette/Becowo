@@ -82,6 +82,11 @@ header img{
   margin-right: 0px;
   margin-left: 0px;
 }
+mark{
+color: rgb(0, 161, 154);
+font-weight: bold;
+background-color: transparent;
+}
 /*  CSS FOR MOBILE ONLY - Mode portrait */
 @media (max-width: 767px){
   body {
@@ -303,11 +308,7 @@ p{
 #comment h3, #commentEspace h3{
   color: rgb(32, 56, 94);
 }
-#comment mark, #commentEspace mark{
-  color: rgb(0, 161, 154);
-  font-weight: bold;
-  background-color: transparent;
-}
+
 #comment p, #commentEspace p{
   font-size: 13pt;
 }
@@ -604,19 +605,53 @@ footer{
 }
 #home-image .phrase{
   position: absolute;
-  top: 40px;
+  top: 20px;
   color: white;
   width: 100%;
   text-align: center;
 }
+#home-image .categories{
+  position: absolute;
+  top: 100px;
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 26pt;
+  font-weight: bold;
+}
 #home-image .homeIcon{
   position: absolute;
-  top: 70%;
+  top: 20%;
   left: calc((100% - 579px)/2);
   outline: 0;
 }
 #home-image .deux{
   margin: 0px 100px 0 100px;
+}
+#home-image .homeButtons{
+  position: absolute;
+  top: 75%;
+  left: calc((100% - 1158px)/2);
+  outline: 0;
+}
+#home-image .homeButtons a{
+  background-color: rgb(0, 161, 154);
+  color: white;
+  padding: 10px 20px;
+  font-size: 18pt;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
+}
+#home-image .homeButtons a:hover, #home-image .homeButtons a:active{
+  text-decoration: none;
+  background: rgb(244, 147, 2);
+}
+#home-image .homeButtons a:focus{
+  text-decoration: none;
+}
+#home-image .homeButtons .deux{
+  margin: 0px 300px 0 300px;
 }
 @media (min-width: 768px)
 {
@@ -632,158 +667,20 @@ footer{
 }
 
 
-#bh-sl-map{
-  padding-left: 0;
-  margin-right: 15px;
-  height: 540px;
-  margin-top: 30px;
+#vignette{
+  width: 30%;
+  display: inline-block;
+  margin: 20px;
+  vertical-align: top;
 }
-#map-results-container{
-  padding-left: 10px;
-  position: relative;
-}
-.titre{
-  position: absolute;
-  top: 0%;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  font-size: 12pt;
-  color: rgb(0, 161, 154);
-}
-#legende{
-  position: absolute;
-  top: 97%;
-  font-size: 12pt;
-  color: rgb(140, 142, 144);
-}
-#legende i{
-  color: rgb(244, 147, 2);
-}
-#bh-sl-map-container{
-  margin-top: 20px;
-
-}
-#bh-sl-map-container ul{
-  padding: 0 0 0 3px;
-  margin: 0;
- /* -webkit-column-count: 2;
-  -moz-column-count: 2;
-  column-count: 2;
-  -webkit-column-width: 50%;
-  -moz-column-width: 50%;
-  column-width: 50%;*/ 
-}
-.bh-sl-container .bh-sl-loc-list .list-focus{
-  box-shadow: 0 0 20px rgb(32, 56, 94) !important;
-  border: 1px solid rgb(32, 56, 94) !important;
-}
-#bh-sl-user-location{
-  display: inline-flex;
-  position: absolute;
-  z-index: 2;
-  margin-top: 45px;
-  margin-left: 5px;
-}
-#region-filters-container{
-  color: rgb(32, 56, 94);
-  background-color: white;
-  width: 359px;
-  margin-right: 0;
-  height: 33px;
-  border-right: none;
-}
-#region-filters-container label{
-  border-right: solid 1px rgb(32, 56, 94);
-  height: 33px;
-}
-#region-filters-container input{
-  margin-bottom: 0px;
-}
-#findMe{
-  width: 50px;
-  border: solid 1px rgb(32, 56, 94);
-  background-color: white;
-  color: rgb(32, 56, 94);
-  height: 33px;
-  margin-top: 15px;
-}
-/*
-#BarreRecherche{
-  background-color: white;
-  border: none;
-  margin-left: 10%;
-}
-#BarreRecherche li{
-  margin-top: 30px; 
-  margin-right: -1px;
-}
-#BarreRecherche #bh-sl-address, #BarreRecherche select, #BarreRecherche button{
-  border-radius: 0px;
-}
-#BarreRecherche #bh-sl-address { 
-  width: 300px;
-  height: 50px;
-}
-#BarreRecherche select{
-  width: 100px;
-  height: 50px;
-}
-#BarreRecherche button{
-  width: 170px;
-  height: 50px;
-}
-#BarreRecherche input[type=checkbox] {
-    display:none;
-} 
-#BarreRecherche input[type=checkbox] + label
-{
-  background: url(../images/icons/unchecked.png) no-repeat;
-  display:inline-block;
-  background-position-x: 5px;
-  padding-left: 25px;
-}
-#BarreRecherche input[type=checkbox]:checked + label
-{
-  background: url(../images/icons/checked.png) no-repeat;
-  display:inline-block;
-  background-position-x: 5px;
-  padding-left: 25px;
-}
-
-#BarreRecherche #findMe{
-  background: none;
-  border: none;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  height: 20px;
-  width: 120px;
-  color: grey;
-}
-#BarreRecherche #BtnSearch{
-  font-size: 16pt;
-  border:none;
-  padding:6px 0 6px 0;
-  border-radius:75%;
-  border-bottom:3px solid rgb(32, 56, 94);
-  color:rgb(32, 56, 94);
-  background:#fff;
-  margin-left: 10px;
-}
-#BarreRecherche .fa {
-  color: rgb(32, 56, 94);
-}
-#BarreRecherche select, #BarreRecherche button{
-  background: url(../images/icons/caret-down-blue.png) no-repeat 90% #fff;
-  -webkit-appearance: none; // Enlène l'arrow d'origine 
-}
-*/
-
 #vignette #address{
   color: rgb(36, 38, 46);
   font-size: 10pt;
   text-align: center;
-  width: 40%;
+  width: 45%;
+}
+#vignette #address .city{
+  color: rgb(140, 142, 144);
 }
 #vignette #bonus{
   color: rgb(231, 46, 70);
@@ -794,6 +691,7 @@ footer{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 5px;
 }
 
 #vignette #pic{
@@ -817,6 +715,11 @@ footer{
 }
 #vignette #price i{
   color: rgb(244, 147, 2);
+}
+#vignette #stars{
+  position: absolute;
+  top: 5%;
+  right: 5px;
 }
 #vignette #btn_decouvrir{
   position: absolute;
@@ -860,47 +763,25 @@ footer{
 #vignette #listeLogo img{
   width: 30px;
   height: 30px;
+  margin: 0 2px;
 }
 
-
-.bh-sl-loc-list{
-  height: 600px !important;
-  overflow-x: hidden !important;
-  overflow-y: scroll;
-  border: none;
-  padding-right: 0px;
-  margin-right: -15px;
+#vignette .pub{
+  background-color: rgb(0, 161, 154);
+    color: white;
+    font-size: 20pt;
+    height: 310px;
+    width: 100%;
+    top: 0;
+    vertical-align: bottom;
+    display: inline-block;
+    padding: 29px;
+    text-align: center;
 }
-.bh-sl-loc-list li{
-  background: none !important;
-  margin: 0 5px 10px 0 !important;
-  padding: 0;
-/*  break-inside: avoid-column;
-  page-break-inside: avoid;*/
-  display: inline-block !important;
-  width: 49% !important;
-  clear: right !important;
-  float: left;
-}
-@media (max-width: 992px){
-  .bh-sl-loc-list li{
-    width: 100% !important;
-  }
+#vignette .texte{
+  font-size: 16pt;
 }
 
-/*.bh-sl-loc-list::-webkit-scrollbar {
-    width: 6px;
-}
-.bh-sl-loc-list::-webkit-scrollbar-track {
-    background-color: #eaeaea;
-    border-left: 1px solid #ccc;
-}
-.bh-sl-loc-list::-webkit-scrollbar-thumb {
-    background-color: rgb(32, 56, 94);
-}
-.bh-sl-loc-list::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(32, 56, 94);
-}*/
 
 #btn_comment{
   background-color: rgb(0, 161, 154);
@@ -932,7 +813,7 @@ footer{
   margin-right: 50px;
 }
 #declare a{
-  background-color: rgb(32, 56, 94);
+  background-color: rgb(244, 147, 2);
   color: white;
   border: none;
   margin-bottom: 20px;
@@ -1001,6 +882,7 @@ footer{
   text-align: center;
 }
 
+
 /********************************** Public profile *************************************/
 
 #PublicProfile .name{
@@ -1010,6 +892,10 @@ footer{
   text-transform: capitalize;
   line-height: 50px;
   padding-left: 10px;
+}
+#PublicProfile .name a{
+  color: white ;
+  text-decoration: underline;
 }
 
 #PublicProfile .picture{
@@ -1209,14 +1095,30 @@ footer{
 #wsHeader .name{
   color: rgb(140, 142, 144);
 }
+#wsHeader .name a{
+  color: rgb(140, 142, 144);
+}
 .rating{
   display: inline;
+}
+#wsHeader #OfficeQuantity{
+  margin-top: -80px;
+  border: solid 2px rgb(0, 161, 154);
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+  padding-top: 10px;
+}
+#wsHeader #OfficeQuantity .txt{
+  margin-bottom: 20px;
+}
+#wsHeader #OfficeQuantity .callToActionResa{
+  margin-bottom: -15px;
 }
 #wsHeader #visite360 a{
   display: inline-block;
 }
 #wsHeader #visite360 img{
   border-radius: 10px;
+  margin-top: 5px;
 }
 #wsHeader #visite360 #txt{
   position: absolute;
@@ -1269,6 +1171,14 @@ footer{
   border: solid 2px #ddd;
   border-top: none;
   height: 100%;
+}
+.BtnRowResa{
+    color: white !important;
+    background-color: rgb(0, 161, 154);
+    font-size: 14pt;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none !important;
 }
 #Description, #Services, #Contact, #Réservation{
   color: rgb(140, 142, 144);
@@ -1995,6 +1905,8 @@ color: rgb(32, 56, 94) !important;
   border-radius: 5px;
   border: none;
   color: rgb(32, 56, 94);
+  margin-left: -8px;
+  margin-right: -8px;
 }
 @media (min-width: 992px) and (max-width: 1200px){
  #offres .panel{
@@ -2640,7 +2552,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-radius: 5px;
   border: none;
   padding-top: 10px;
-  height: 540px;
+  height: 580px;
 }
 #bookingPage .panelForm, #paiementPage .panelForm{
   margin-right: 30px;
@@ -2682,4 +2594,238 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-color: rgb(0, 161, 154);
   border-radius: 0;
   outline: none;
+}
+
+
+#filtersBar{
+  margin: 20px;
+  background-color: rgb(0, 161, 154);
+  color: white !important;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+}
+
+#filtersBar .titles{
+  font-size: 14pt;
+  margin-bottom: 40px;
+}
+#filtersBar #modalMap{
+  background: white;
+  margin-left: 50%;
+  font-size: 14pt;
+  color: rgb(36, 38, 46);
+  line-height: 40px;
+  height: 40px;
+  border: none;
+  width: 150px;
+}
+#filtersBar #modalMap i{
+  color: rgb(0, 161, 154);
+  margin-right: 5px;
+}
+.fb_iframe_widget{
+  margin-left: -200px;
+  width: inherit;
+}
+.fb_iframe_widget span{
+  width: 100% !important;
+}
+.fb-page iframe{
+  /*Pour cacher le nombre de likes et réduire le plugin*/
+  width: 205px !important;
+}
+
+/* jplist.checkbox-dropdown.min.css personalized*/
+
+.jplist-checkbox-dropdown {
+  float: left;
+  height: 40px;
+  width: 300px;
+  margin: 10px 0 0 20px;
+  text-align: left;
+  border-bottom: 3px solid white;
+  background: none;
+  font-size: 16pt;
+  font-weight: 700;
+}
+
+.jplist-checkbox-dropdown .jplist-dd-panel {
+  float: left;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-indent: 10px;
+}
+
+.jplist-panel input[type=checkbox] { display:none !important; } /* to hide the checkbox itself */
+.jplist-panel input[type=checkbox] + label:after {
+  font-family: FontAwesome !important;
+  display: inline-block !important;
+}
+
+.jplist-panel input[type=checkbox] + label:after { content: "\f096" !important; } /* unchecked icon */
+.jplist-panel input[type=checkbox] + label:after {    
+  position: absolute;
+  right: 20px; 
+ }
+
+.jplist-panel input[type=checkbox]:checked + label:after { content: "\f046" !important; } /* checked icon */
+.jplist-panel input[type=checkbox]:checked + label:after { 
+  position: absolute;
+  right: 20px;
+} 
+.jplist-panel label{
+  color: white !important;
+}
+
+.jplist-checkbox-dropdown .jplist-dd-panel:after {
+  content: '\25BC';
+  display: inline-block;
+  margin: 0 10px;
+  position: absolute;
+  right: 0;
+  top: 0
+}
+
+.jplist-checkbox-dropdown ul {
+    border-radius: 3px;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    display: none;
+    overflow: hidden;
+    background: #f4f4f4;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jplist-checkbox-dropdown ul li {
+  width: 100%;
+  float: left;
+  height: 50px;
+  text-indent: 10px;
+  cursor: pointer;
+  border-bottom: 2px solid #eaeaea;
+  padding: 10px;
+}
+
+.jplist-checkbox-dropdown ul li:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+
+.jplist-checkbox-dropdown label{
+  width: 100% !important;
+  color: rgb(36, 38, 46) !important;
+}
+
+#filterCity:hover ul {
+    display: block !important;
+}
+
+
+/* JPList Filter toggle button personalized */
+
+.jplist-group label{
+  position: relative;
+}
+.jplist-panel .jplist-group {
+  float: left;
+  margin: 10px 0 0 -40px;
+  padding: 0 0 0 5px;
+  font-size: 14pt;
+  display: inline-flex;
+}
+.jplist-panel .jplist-group input,
+.jplist-panel .jplist-group label {
+    height: 28px;
+    line-height: 30px
+}
+
+.jplist-panel .jplist-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 10px;
+    line-height: 28px
+}
+
+.jplist-panel .jplist-group ul li {
+    float: left;
+    margin-right: 15px;
+    overflow: hidden;
+    height: 28px;
+    line-height: 30px
+}
+
+.radio-filters {
+    float: left;
+    margin: 5px 15px 0 0
+}
+
+.radio-filters input {
+    vertical-align: baseline
+}
+
+.radio-filters label {
+    margin-right: 10px
+}
+
+.radio {
+    float: left
+}
+
+[data-control-type="range-filter"] {
+    cursor: pointer
+}
+
+#viewMore{
+  background-color: rgb(244, 147, 2);
+  border: none;
+  color: white;
+  line-height: 60px;
+  padding: 0 30px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 14pt;
+}
+
+/*Personalized tooltip*/
+/*http://www.cssportal.com/css-tooltip-generator/*/
+
+label.tooltips, span.tooltips {
+  position: relative;
+  display: inline;
+}
+label.tooltips span, span.tooltips span  {
+  position: absolute;
+  width:170px;
+  color: white;
+  background: rgb(36, 38, 46);
+  text-align: center;
+  visibility: hidden;
+  border-radius: 6px;
+  font-size: 12pt;
+  padding: 5px;
+}
+label.tooltips span:after, span.tooltips span:after{
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-bottom: 8px solid #24262E;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+label:hover.tooltips span, span:hover.tooltips span {
+  visibility: visible;
+  opacity: 0.8;
+  top: 30px;
+  left: 50%;
+  margin-left: -76px;
+  z-index: 999;
 }
