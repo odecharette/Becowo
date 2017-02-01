@@ -5,7 +5,7 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">X</span>
       </button>
-      {% if 'booking' in app.session.get('previousPage') %}
+      {% if 'bank' in app.session.get('previousPage') %}
       		{{ flash }} / 
       		<a href="{{app.session.get('previousPage')}}">Retourner à ma réservation</a>
       {% else %}

@@ -1551,7 +1551,7 @@ footer{
   border: none;
   margin: 0px;
 }
-#btn_confirm:disabled{
+#btn_confirm:disabled, #payer:disabled{
   opacity: 0.5;
   cursor: not-allowed;
 }
