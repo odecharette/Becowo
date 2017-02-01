@@ -62,8 +62,10 @@
 
 {% if is_mobile() %}
 	{% include 'Workspace/tabs-mobile.html.twig' %}
-{% else %}
-	{% include 'Workspace/tabs.html.twig' %}
+{% elseif ws.category.name == 'Café Wifi' %}
+		{% include 'Workspace/no-tabs.html.twig' %}
+	{% else %}
+		{% include 'Workspace/tabs.html.twig' %}
 {% endif %}	
 
 {############################################# Réseaux #########################################}

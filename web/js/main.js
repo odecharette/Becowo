@@ -72,11 +72,7 @@ $("#comment-form").submit(function (e){
     });
 });
 
-// Smooth scrolling for home button
-$("#goToMap").unbind("click").click(function(e){
-		e.preventDefault();
-		$('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
-});
+
 
 //Navbar Scroll Event
 var navbar = $('.navbar');
@@ -129,6 +125,17 @@ $('.nav-tabs a').on('shown.bs.tab', function(event){
     $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
 });
 
+});
+
+// Smooth scrolling for home button
+$("#goToMap").unbind("click").click(function(e){
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
+});
+
+$("#goToDeclare").unbind("click").click(function(e){
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
 });
 
 $('[id^="goToResa-"]').click(function() {
@@ -211,6 +218,101 @@ $(function(){
 
 });
 /***************** fin rating.js ****************************/
+
+
+/********** Home filter menu ***********/
+// jplist.com
+
+$(document).ready(function(){
+   $('#WsFilters').jplist({       
+      itemsBox: '.list' 
+      ,itemPath: '.list-item' 
+      ,panelPath: '.jplist-panel' 
+      ,noResults: '.jplist-no-results'
+   });
+   
+});
+
+// Plugin FB like 
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8&appId=810073549123890";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+// Home page viewMore button
+$('#viewMore').bind('click', function (e) {
+  var elements = document.getElementsByClassName("list-item");
+console.log($('#viewMore').text());
+
+  if($('#viewMore').text() == 'Voir plus'){
+
+    for(var i=0; i<elements.length; i++) {
+      elements[i].style.display = 'inline-block';
+    }
+    $('#viewMore').text('Voir moins');
+  }else{
+    for(var i=6; i<elements.length; i++) {
+      elements[i].style.display = 'none';
+    }
+    $('#viewMore').text('Voir plus');
+  }
+
+});
+
+// HOme page Map
+$("#modalMap").on('click', function(event){
+   initMap();
+   $("#myModalMap").modal('show');
+});
+
+function initMap() {
+
+  var locations = [
+  ["Mutualab",50.63,3.062],
+  ["La Coroutine",50.629,3.07],
+  ["Co-factory",50.656,3.087],
+  ["1624 Cowork'in Lille",50.641,3.066],
+  ["Wereso Lille",50.635,3.058],
+  ["La maison d'Alfred",50.689,3.176],
+  ["Be Square",50.693,3.17],
+  ["La maison du coworking",50.609,3.167],
+  ["Réactif & Co",50.755,3.131],
+  ["La plaine images",50.7,3.157],
+  ["Noya",50.63862659999999,3.076176499999974]
+];
+
+  var infowindow = new google.maps.InfoWindow(); /* SINGLE */
+  var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: new google.maps.LatLng(50.62924999999999, 3.057256000000052) // Lille
+  });
+  
+  function placeMarker( loc ) {
+    var latLng = new google.maps.LatLng( loc[1], loc[2]);
+    var marker = new google.maps.Marker({
+      position : latLng,
+      map      : map
+    });
+    google.maps.event.addListener(marker, 'click', function(){
+        infowindow.close(); // Close previously opened infowindow
+        infowindow.setContent( "<div id='content'><div id='siteNotice'></div><h2>"+ loc[0] +"</2></div>");
+        infowindow.open(map, marker);
+    });
+  }
+  
+  // ITERATE ALL LOCATIONS
+  // Don't create functions inside for loops
+  // therefore refer to a previously created function
+  // and pass your iterating location as argument value:
+  for(var i=0; i<locations.length; i++) {
+    placeMarker( locations[i] );
+  } 
+  
+}
 
 }
 else

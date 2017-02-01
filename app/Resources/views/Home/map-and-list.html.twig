@@ -60,14 +60,14 @@
 #}
 <div class="bh-sl-container container-fluid">
 	{###################### Barre de recherche #######################}
-	<form id="bh-sl-user-location" method="post" action="#">
-		{# 
-		Pour qu'un filtre fonctionne :
-			1. Le tag parent doit avoir la class "bh-sl-filters-container"
-			2. Le tag enfant doit avoir la class  "bh-sl-filters"
-			3. Le tag enfant doit avoir un id "toto" 
-			4. cet id doit être déclaré dans le taxonomyFilters de $('#bh-sl-map-container').storeLocator
-		#}
+{#	<form id="bh-sl-user-location" method="post" action="#">
+		
+		// Pour qu'un filtre fonctionne :
+		//	1. Le tag parent doit avoir la class "bh-sl-filters-container"
+		//	2. Le tag enfant doit avoir la class  "bh-sl-filters"
+		//	3. Le tag enfant doit avoir un id "toto" 
+		//	4. cet id doit être déclaré dans le taxonomyFilters de $('#bh-sl-map-container').storeLocator
+		
 		<div class="bh-sl-filters-container">
 	        <div class="segmented-control bh-sl-filters" id="region-filters-container">
 			  <input type="radio" name="region" id="choice1" value="" checked>
@@ -81,6 +81,7 @@
 
 	    <button id='findMe' type="button"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></button></input>
 	</form>
+#}
     {############# Map #############}
     <div id="bh-sl-map-container" class="bh-sl-map-container">
 		<div class="row">

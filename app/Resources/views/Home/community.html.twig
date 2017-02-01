@@ -9,17 +9,6 @@
 
 {% block body %}
 
-{# Plugin FB like #}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8&appId=810073549123890";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-{# Fin plugin #}
-
 {# TO DO : delete min-height forcée quand sufisement de profil #}
 <div class="container-fluid" id="community" style="min-height: 600px;">
 	<h1>Rencontrer les autres coworkers de la communauté Becowo</h1>

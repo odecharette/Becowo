@@ -82,6 +82,11 @@ header img{
   margin-right: 0px;
   margin-left: 0px;
 }
+mark{
+color: var(--my-green);
+font-weight: bold;
+background-color: transparent;
+}
 /*  CSS FOR MOBILE ONLY - Mode portrait */
 @media (max-width: 767px){
   body {
@@ -303,11 +308,7 @@ p{
 #comment h3, #commentEspace h3{
   color: var(--my-blue);
 }
-#comment mark, #commentEspace mark{
-  color: var(--my-green);
-  font-weight: bold;
-  background-color: transparent;
-}
+
 #comment p, #commentEspace p{
   font-size: 13pt;
 }
@@ -604,19 +605,53 @@ footer{
 }
 #home-image .phrase{
   position: absolute;
-  top: 40px;
+  top: 20px;
   color: white;
   width: 100%;
   text-align: center;
 }
+#home-image .categories{
+  position: absolute;
+  top: 100px;
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 26pt;
+  font-weight: bold;
+}
 #home-image .homeIcon{
   position: absolute;
-  top: 70%;
+  top: 20%;
   left: calc((100% - 579px)/2);
   outline: 0;
 }
 #home-image .deux{
   margin: 0px 100px 0 100px;
+}
+#home-image .homeButtons{
+  position: absolute;
+  top: 75%;
+  left: calc((100% - 1158px)/2);
+  outline: 0;
+}
+#home-image .homeButtons a{
+  background-color: var(--my-green);
+  color: white;
+  padding: 10px 20px;
+  font-size: 18pt;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
+}
+#home-image .homeButtons a:hover, #home-image .homeButtons a:active{
+  text-decoration: none;
+  background: var(--my-orange);
+}
+#home-image .homeButtons a:focus{
+  text-decoration: none;
+}
+#home-image .homeButtons .deux{
+  margin: 0px 300px 0 300px;
 }
 @media (min-width: 768px)
 {
@@ -778,12 +813,20 @@ footer{
   -webkit-appearance: none; // Enlène l'arrow d'origine 
 }
 */
-
+#vignette{
+  width: 30%;
+  display: inline-block;
+  margin: 20px;
+  vertical-align: top;
+}
 #vignette #address{
   color: var(--my-black);
   font-size: 10pt;
   text-align: center;
-  width: 40%;
+  width: 45%;
+}
+#vignette #address .city{
+  color: var(--my-grey);
 }
 #vignette #bonus{
   color: var(--my-red);
@@ -794,6 +837,7 @@ footer{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 5px;
 }
 
 #vignette #pic{
@@ -817,6 +861,11 @@ footer{
 }
 #vignette #price i{
   color: var(--my-orange);
+}
+#vignette #stars{
+  position: absolute;
+  top: 5%;
+  right: 5px;
 }
 #vignette #btn_decouvrir{
   position: absolute;
@@ -860,8 +909,28 @@ footer{
 #vignette #listeLogo img{
   width: 30px;
   height: 30px;
+  margin: 0 2px;
 }
 
+#vignette .pub{
+  background-color: var(--my-green);
+    color: white;
+    font-size: 20pt;
+    height: 310px;
+    width: 100%;
+    top: 0;
+    vertical-align: bottom;
+    display: inline-block;
+    padding: 29px;
+    text-align: center;
+}
+#vignette .texte{
+  font-size: 16pt;
+}
+/*#listeEspaces li:hover{
+  box-shadow: 0 0 20px var(--my-blue) !important;
+  border: 1px solid var(--my-blue) !important;
+}*/
 
 .bh-sl-loc-list{
   height: 600px !important;
@@ -932,7 +1001,7 @@ footer{
   margin-right: 50px;
 }
 #declare a{
-  background-color: var(--my-blue);
+  background-color: var(--my-orange);
   color: white;
   border: none;
   margin-bottom: 20px;
@@ -2713,4 +2782,238 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-color: var(--my-green);
   border-radius: 0;
   outline: none;
+}
+
+
+#filtersBar{
+  margin: 20px;
+  background-color: var(--my-green);
+  color: white !important;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+}
+
+#filtersBar .titles{
+  font-size: 14pt;
+  margin-bottom: 40px;
+}
+#filtersBar #modalMap{
+  background: white;
+  margin-left: 50%;
+  font-size: 14pt;
+  color: var(--my-black);
+  line-height: 40px;
+  height: 40px;
+  border: none;
+  width: 150px;
+}
+#filtersBar #modalMap i{
+  color: var(--my-green);
+  margin-right: 5px;
+}
+.fb_iframe_widget{
+  margin-left: -200px;
+  width: inherit;
+}
+.fb_iframe_widget span{
+  width: 100% !important;
+}
+.fb-page iframe{
+  /*Pour cacher le nombre de likes et réduire le plugin*/
+  width: 205px !important;
+}
+
+/* jplist.checkbox-dropdown.min.css personalized*/
+
+.jplist-checkbox-dropdown {
+  float: left;
+  height: 40px;
+  width: 300px;
+  margin: 10px 0 0 20px;
+  text-align: left;
+  border-bottom: 3px solid white;
+  background: none;
+  font-size: 16pt;
+  font-weight: 700;
+}
+
+.jplist-checkbox-dropdown .jplist-dd-panel {
+  float: left;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-indent: 10px;
+}
+
+.jplist-panel input[type=checkbox] { display:none !important; } /* to hide the checkbox itself */
+.jplist-panel input[type=checkbox] + label:after {
+  font-family: FontAwesome !important;
+  display: inline-block !important;
+}
+
+.jplist-panel input[type=checkbox] + label:after { content: "\f096" !important; } /* unchecked icon */
+.jplist-panel input[type=checkbox] + label:after {    
+  position: absolute;
+  right: 20px; 
+ }
+
+.jplist-panel input[type=checkbox]:checked + label:after { content: "\f046" !important; } /* checked icon */
+.jplist-panel input[type=checkbox]:checked + label:after { 
+  position: absolute;
+  right: 20px;
+} 
+.jplist-panel label{
+  color: white !important;
+}
+
+.jplist-checkbox-dropdown .jplist-dd-panel:after {
+  content: '\25BC';
+  display: inline-block;
+  margin: 0 10px;
+  position: absolute;
+  right: 0;
+  top: 0
+}
+
+.jplist-checkbox-dropdown ul {
+    border-radius: 3px;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    display: none;
+    overflow: hidden;
+    background: #f4f4f4;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jplist-checkbox-dropdown ul li {
+  width: 100%;
+  float: left;
+  height: 50px;
+  text-indent: 10px;
+  cursor: pointer;
+  border-bottom: 2px solid #eaeaea;
+  padding: 10px;
+}
+
+.jplist-checkbox-dropdown ul li:hover {
+    background-color: var(--my-grey-light);
+}
+
+
+.jplist-checkbox-dropdown label{
+  width: 100% !important;
+  color: var(--my-black) !important;
+}
+
+#filterCity:hover ul {
+    display: block !important;
+}
+
+
+/* JPList Filter toggle button personalized */
+
+.jplist-group label{
+  position: relative;
+}
+.jplist-panel .jplist-group {
+  float: left;
+  margin: 10px 0 0 -40px;
+  padding: 0 0 0 5px;
+  font-size: 14pt;
+  display: inline-flex;
+}
+.jplist-panel .jplist-group input,
+.jplist-panel .jplist-group label {
+    height: 28px;
+    line-height: 30px
+}
+
+.jplist-panel .jplist-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 10px;
+    line-height: 28px
+}
+
+.jplist-panel .jplist-group ul li {
+    float: left;
+    margin-right: 15px;
+    overflow: hidden;
+    height: 28px;
+    line-height: 30px
+}
+
+.radio-filters {
+    float: left;
+    margin: 5px 15px 0 0
+}
+
+.radio-filters input {
+    vertical-align: baseline
+}
+
+.radio-filters label {
+    margin-right: 10px
+}
+
+.radio {
+    float: left
+}
+
+[data-control-type="range-filter"] {
+    cursor: pointer
+}
+
+#viewMore{
+  background-color: var(--my-orange);
+  border: none;
+  color: white;
+  line-height: 60px;
+  padding: 0 30px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 14pt;
+}
+
+/*Personalized tooltip*/
+/*http://www.cssportal.com/css-tooltip-generator/*/
+
+label.tooltips, span.tooltips {
+  position: relative;
+  display: inline;
+}
+label.tooltips span, span.tooltips span  {
+  position: absolute;
+  width:170px;
+  color: white;
+  background: var(--my-black);
+  text-align: center;
+  visibility: hidden;
+  border-radius: 6px;
+  font-size: 12pt;
+  padding: 5px;
+}
+label.tooltips span:after, span.tooltips span:after{
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-bottom: 8px solid #24262E;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+label:hover.tooltips span, span:hover.tooltips span {
+  visibility: visible;
+  opacity: 0.8;
+  top: 30px;
+  left: 50%;
+  margin-left: -76px;
+  z-index: 999;
 }
