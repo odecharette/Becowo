@@ -154,11 +154,6 @@ becowo_core_blog_last_article:
 #     defaults: { _controller: BecowoCoreBundle:Header:declarerEspace }
 #     methods: GET
 
-becowo_core_map:
-    path:     /map
-    defaults: { _controller: BecowoCoreBundle:Map:view }
-    methods: GET|POST
-
 becowo_core_extract:
     path:     /extract
     defaults: { _controller: BecowoCoreBundle:Extract:extract }
