@@ -2771,7 +2771,20 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   font-size: 14pt;
   margin-bottom: 40px;
 }
-
+#filtersBar #modalMap{
+  background: white;
+  margin-left: 50%;
+  font-size: 14pt;
+  color: var(--my-black);
+  line-height: 40px;
+  height: 40px;
+  border: none;
+  width: 150px;
+}
+#filtersBar #modalMap i{
+  color: var(--my-green);
+  margin-right: 5px;
+}
 .fb_iframe_widget{
   margin-left: -200px;
   width: inherit;

@@ -263,6 +263,57 @@ console.log($('#viewMore').text());
 
 });
 
+// HOme page Map
+$("#modalMap").on('click', function(event){
+   initMap();
+   $("#myModalMap").modal('show');
+});
+
+function initMap() {
+
+  var locations = [
+  ["Mutualab",50.63,3.062],
+  ["La Coroutine",50.629,3.07],
+  ["Co-factory",50.656,3.087],
+  ["1624 Cowork'in Lille",50.641,3.066],
+  ["Wereso Lille",50.635,3.058],
+  ["La maison d'Alfred",50.689,3.176],
+  ["Be Square",50.693,3.17],
+  ["La maison du coworking",50.609,3.167],
+  ["Réactif & Co",50.755,3.131],
+  ["La plaine images",50.7,3.157],
+  ["Noya",50.63862659999999,3.076176499999974]
+];
+
+  var infowindow = new google.maps.InfoWindow(); /* SINGLE */
+  var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: new google.maps.LatLng(50.62924999999999, 3.057256000000052) // Lille
+  });
+  
+  function placeMarker( loc ) {
+    var latLng = new google.maps.LatLng( loc[1], loc[2]);
+    var marker = new google.maps.Marker({
+      position : latLng,
+      map      : map
+    });
+    google.maps.event.addListener(marker, 'click', function(){
+        infowindow.close(); // Close previously opened infowindow
+        infowindow.setContent( "<div id='content'><div id='siteNotice'></div><h2>"+ loc[0] +"</2></div>");
+        infowindow.open(map, marker);
+    });
+  }
+  
+  // ITERATE ALL LOCATIONS
+  // Don't create functions inside for loops
+  // therefore refer to a previously created function
+  // and pass your iterating location as argument value:
+  for(var i=0; i<locations.length; i++) {
+    placeMarker( locations[i] );
+  } 
+  
+}
+
 }
 else
 { ///////////////////////////////////////////////////////////////////////////// JS for mobile only

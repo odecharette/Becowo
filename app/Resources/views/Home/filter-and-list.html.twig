@@ -66,6 +66,24 @@
 	        	{# <div class="col-lg-4">
 	        		<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" ><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
 	        	</div> #}
+	        	<div class="col-lg-4">
+	        		<button type="button" id="modalMap"><i class="fa fa-map" aria-hidden="true"></i> Voir la carte</button> <br>
+
+					 {# Modal #}
+					 <div class="modal fade" id="myModalMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+					            </div>
+					            <div class="modal-body" id="modal-body-map">
+					                <div id="map" style="height:500px;"></div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					{# Fin modal #}
+	        	</div>
       		</div>
             </div>	
 
