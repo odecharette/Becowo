@@ -28,6 +28,18 @@ class WorkspaceHasOfficeRepository extends EntityRepository
 
 		return $qb->getQuery()->getSingleResult();
 	}
+
+	public function findQuantityByOfficeType($ws)
+	{
+		$qb = $this->createQueryBuilder('who');
+		$qb->select(['count(who.id) AS quantity', 'o.name', 'who.desk_qty'])
+		   ->Join('who.office', 'o')
+		   ->andWhere('who.workspace = :ws')
+		   ->groupBy('o.name')
+		   ->setParameter('ws', $ws);
+
+		return $qb->getQuery()->getResult();
+	}
 	
 
 }

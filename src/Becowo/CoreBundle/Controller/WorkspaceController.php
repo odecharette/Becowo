@@ -25,6 +25,7 @@ class WorkspaceController extends Controller
     $wsSameNetwork = $WsService->getWsByWsNetwork($ws->getNetwork(), $name);
     $wsSameNetworkWithFavoritePic = array();
     $WsHasAmenities = $WsService->getAmenitiesByWorkspace($ws);
+    $quantityByOfficeType = $WsService->getQuantityByOfficeType($ws);
 
     foreach ($wsSameNetwork as $w) {
       array_push($wsSameNetworkWithFavoritePic, 
@@ -42,7 +43,8 @@ class WorkspaceController extends Controller
         'averageVote' => $averageVote,
         'WsHasTeamMembers' => $WsHasTeamMembers,
         'wsSameNetworkWithFavoritePic' => $wsSameNetworkWithFavoritePic,
-        'WsHasAmenities' => $WsHasAmenities
+        'WsHasAmenities' => $WsHasAmenities,
+        'quantityByOfficeType' => $quantityByOfficeType
         ));
   }
 

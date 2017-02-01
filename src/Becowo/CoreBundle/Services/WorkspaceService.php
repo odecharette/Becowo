@@ -320,4 +320,10 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasAmenities');
         return $repo->findAmenitiesByWorkspace($ws);
     }
+
+    public function getQuantityByOfficeType($ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
+        return $repo->findQuantityByOfficeType($ws);
+    }
 }

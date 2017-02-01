@@ -1220,11 +1220,24 @@ footer{
 .rating{
   display: inline;
 }
+#wsHeader #OfficeQuantity{
+  margin-top: -80px;
+  border: solid 2px var(--my-green);
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+  padding-top: 10px;
+}
+#wsHeader #OfficeQuantity .txt{
+  margin-bottom: 20px;
+}
+#wsHeader #OfficeQuantity .callToActionResa{
+  margin-bottom: -15px;
+}
 #wsHeader #visite360 a{
   display: inline-block;
 }
 #wsHeader #visite360 img{
   border-radius: 10px;
+  margin-top: 5px;
 }
 #wsHeader #visite360 #txt{
   position: absolute;
