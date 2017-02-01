@@ -10,12 +10,8 @@
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js"></script>
 	{# Widget INstagram #}
 	<script type="text/javascript" src="https://snapwidget.com/js/snapwidget.js"></script>
-	{# Pour la Map version StoreLocator #}
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+	{# Pour la Map #}
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&region=FR"></script>
-			{# Utiliser le jquery.storelocator.js local car personnalisé #}
-	<script type="text/javascript" src="{{ asset('js/StoreLocator/jquery.storelocator.js') }}"></script>
-	{#<script type="text/javascript" src="{{ asset('js/StoreLocator/markerclusterer.min.js') }}"></script>#}
     
  	{# booking calendar ==> directement dans booking-form.html.twig #}
 
@@ -25,5 +21,13 @@
     {# network ws slider #}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.js"></script>
     
+    <!-- jPList Core / Home filter menu ==> http://jplist.com/-->
+	<script type="text/javascript" src="{{ asset('js/jplist.core.min.js') }}"></script>
+	{# jPList Checkbox Dropdown Control #}
+	<script type="text/javascript" src="{{ asset('js/jplist.checkbox-dropdown.min.js') }}"></script>
+	{# jPList Filter Toggle Button  #}
+	<script type="text/javascript" src="{{ asset('js/jplist.filter-toggle-bundle.min.js') }}"></script>
+
+	
     <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 
