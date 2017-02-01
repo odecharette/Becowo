@@ -910,8 +910,11 @@ footer{
     top: 0;
     vertical-align: bottom;
     display: inline-block;
-    padding: 30px;
+    padding: 29px;
     text-align: center;
+}
+#vignette .texte{
+  font-size: 16pt;
 }
 /*#listeEspaces li:hover{
   box-shadow: 0 0 20px var(--my-blue) !important;
