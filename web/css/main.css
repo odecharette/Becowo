@@ -642,9 +642,12 @@ footer{
   border-radius: 10px;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
 }
-#home-image .homeButtons a:hover, #home-image .homeButtons a:active, #home-image .homeButtons a:focus{
+#home-image .homeButtons a:hover, #home-image .homeButtons a:active{
   text-decoration: none;
-  background: #eba036;
+  background: var(--my-orange);
+}
+#home-image .homeButtons a:focus{
+  text-decoration: none;
 }
 #home-image .homeButtons .deux{
   margin: 0px 300px 0 300px;
@@ -2927,7 +2930,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 
 #viewMore{
-  background-color: var(--my-blue);
+  background-color: var(--my-orange);
   border: none;
   color: white;
   line-height: 60px;
@@ -2935,4 +2938,42 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-radius: 5px;
   margin-top: 20px;
   font-size: 14pt;
+}
+
+/*Personalized tooltip*/
+/*http://www.cssportal.com/css-tooltip-generator/*/
+
+label.tooltips {
+  position: relative;
+  display: inline;
+}
+label.tooltips span {
+  position: absolute;
+  width:170px;
+  color: white;
+  background: var(--my-black);
+  text-align: center;
+  visibility: hidden;
+  border-radius: 6px;
+  font-size: 12pt;
+  padding: 5px;
+}
+label.tooltips span:after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-bottom: 8px solid #24262E;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+label:hover.tooltips span {
+  visibility: visible;
+  opacity: 0.8;
+  top: 30px;
+  left: 50%;
+  margin-left: -76px;
+  z-index: 999;
 }
