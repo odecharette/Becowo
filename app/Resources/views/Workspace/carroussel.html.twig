@@ -4,9 +4,9 @@
         	{# Vertical navigator #}
             <div id="myCarousel" class="carousel vertical slide pull-left" >
 
-            	{% if pictures|length > 10 %}
+            	{% if pictures|length > 6 %}
 		              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-		              	<i class="fa fa-chevron-up fa-2x" aria-hidden="true"></i>
+		              	<i class="fa fa-chevron-up" aria-hidden="true"></i>
 		              </a>
               	{% else %}
               		<div class="vide"><br><br></div>
@@ -17,7 +17,7 @@
                 <div class="item active">
                   <div class="row-fluid">
                 	{% for picture in pictures %}
-                		{% if loop.index < 10 %}
+                		{% if loop.index < 7 %}
                 			{% if loop.index % 2 != 0 %}<div class="span3">{% endif %}
                         	
                         		{% if loop.last %}
@@ -25,9 +25,10 @@
                         		{% else %}
 	                        		<a href="#x" class="small-thumbnail">
 	                        	{% endif %}
-	                        		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="max-width:100%;max-height: 120px;">
+                            {# {{ loop.index }} #}
+	                        		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="width:100px;height: 70px;">
 	                        	</a>
-                        	{% if loop.index % 2 == 0 or loop.index == 9 or loop.last %}</div>{% endif %}
+                        	{% if loop.index % 2 == 0 or loop.index == 6 or loop.last %}</div>{% endif %}
                   		{% endif %}
                 	{% endfor %}
                   </div><!--/row-fluid-->
@@ -36,26 +37,66 @@
                 <div class="item">
                   <div class="row-fluid">
                 	{% for picture in pictures %}
-                		{% if loop.index >= 10 %}
-                			{% if loop.index % 2 != 0 or loop.index == 10 %}<div class="span3">{% endif %}
+                		{% if loop.index >= 7 and loop.index < 13 %}
+                			{% if loop.index % 2 != 0 or loop.index == 7 %}<div class="span3">{% endif %}
                         	
 	                        	{% if loop.last %}
                         			<a href="#x" class="small-thumbnail" style="width:45%;">
                         		{% else %}
 	                        		<a href="#x" class="small-thumbnail">
 	                        	{% endif %}
-	                        		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="max-width:100%;max-height: 120px;">
+                            {# {{ loop.index }} #}
+	                        		<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="width:100px;height: 70px;">
 	                        	</a>
-                        	{% if loop.index % 2 == 0 or loop.last %}</div>{% endif %}
+                        	{% if loop.index % 2 == 0 or loop.index == 12 or loop.last %}</div>{% endif %}
                   		{% endif %}
                 	{% endfor %}
                   </div><!--/row-fluid-->
                 </div><!--/item-->
 
+                <div class="item">
+                  <div class="row-fluid">
+                  {% for picture in pictures %}
+                    {% if loop.index >= 13  and loop.index < 19 %}
+                      {% if loop.index % 2 != 0 or loop.index == 13 %}<div class="span3">{% endif %}
+                          
+                            {% if loop.last %}
+                              <a href="#x" class="small-thumbnail" style="width:45%;">
+                            {% else %}
+                              <a href="#x" class="small-thumbnail">
+                            {% endif %}
+                            {# {{ loop.index }} #}
+                              <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="width:100px;height: 70px;">
+                            </a>
+                          {% if loop.index % 2 == 0 or loop.index == 18 or loop.last %}</div>{% endif %}
+                      {% endif %}
+                  {% endfor %}
+                  </div><!--/row-fluid-->
+                </div><!--/item-->
 
-              {% if pictures|length > 10 %}
+                <div class="item">
+                  <div class="row-fluid">
+                  {% for picture in pictures %}
+                    {% if loop.index >= 19 %}
+                      {% if loop.index % 2 != 0 or loop.index == 13 %}<div class="span3">{% endif %}
+                          
+                            {% if loop.last %}
+                              <a href="#x" class="small-thumbnail" style="width:45%;">
+                            {% else %}
+                              <a href="#x" class="small-thumbnail">
+                            {% endif %}
+                            {# {{ loop.index }} #}
+                              <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="width:100px;height: 70px;">
+                            </a>
+                          {% if loop.index % 2 == 0 or loop.last %}</div>{% endif %}
+                      {% endif %}
+                  {% endfor %}
+                  </div><!--/row-fluid-->
+                </div><!--/item-->
+
+              {% if pictures|length > 6 %}
                 <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                  <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+                  <i class="fa fa-chevron-down" aria-hidden="true"></i>
                 </a>    
          	    {% endif %}
             </div><!--/myCarousel-->
@@ -65,7 +106,7 @@
       <div class="col-lg-9 col-md-9">
           {# Panel où s'affiche l'image #}
           <div class="pull-left single-container">
-            <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictures[0].url}}" id="DataDisplay" style="max-height: 700px;"/>
+            <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{pictures[0].url}}" id="DataDisplay" style="max-height: 400px;"/>
           </div>
       </div>
   </div>
