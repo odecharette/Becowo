@@ -15,7 +15,6 @@
 {% if is_mobile() %}
 	{{ render(controller('BecowoCoreBundle:Home:mobile')) }}
 {% else %}
-	{# {% include 'Home/map-and-list.html.twig' %}  #}
 	{% include 'Home/filter-and-list.html.twig' %} 
 {% endif %}
 
