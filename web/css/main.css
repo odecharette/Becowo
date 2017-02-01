@@ -2586,15 +2586,15 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   line-height: 50px;
   display: block;
   text-align: center;
-  font-size: 11pt;
+  font-size: 14pt;
 }
 
 #bookingPage button{
-  background-color: var(--my-green);
+  background-color: var(--my-orange);
   color: white;
   width: 100%;
   font-size: 16pt;
-  border-color: var(--my-green);
+  border-color: var(--my-orange);
   border-radius: 0;
   outline: none;
 }
