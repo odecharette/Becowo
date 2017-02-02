@@ -9,6 +9,7 @@
 
 // End Google Analytics 
 
+
 /****************** Page d'un WS, onglet réservation, filtre les bureaux ****************/
 
 $('#filtre-bureaux').on('change', function() { 
