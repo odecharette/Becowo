@@ -266,7 +266,6 @@ console.log($('#viewMore').text());
 // HOme page Map
 $("#modalMap").on('click', function(event){
    initMap();
-   $("#myModalMap").modal('show');
 });
 
 function initMap() {
@@ -287,7 +286,7 @@ function initMap() {
 
   var infowindow = new google.maps.InfoWindow(); /* SINGLE */
   var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+      zoom: 3,
       center: new google.maps.LatLng(50.62924999999999, 3.057256000000052) // Lille
   });
   
@@ -312,6 +311,7 @@ function initMap() {
     placeMarker( locations[i] );
   } 
   
+  $("#myModalMap").modal('show');
 }
 
 }

@@ -1112,6 +1112,7 @@ footer{
 }
 #wsHeader #OfficeQuantity .txt{
   margin-bottom: 20px;
+  width: 99%;
 }
 #wsHeader #OfficeQuantity .callToActionResa{
   margin-bottom: -15px;

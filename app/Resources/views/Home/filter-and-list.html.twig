@@ -23,13 +23,13 @@
 			            data-control-type="checkbox-dropdown" 
 			            data-control-name="category-checkbox-dropdown" 
 			            data-control-action="filter"
-			            data-no-selected-text="Ville"
+			            data-no-selected-text="Ville des Hauts de France"
 			            data-one-item-text="{selected}"
 			            data-many-items-text="{num} villes" 
 			            id="filterCity">
 
 			            <ul>
-			            	{% for city in listCities %}
+			            	{% for city in listCities|sort %}
 			            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
 			               	<li>
 			                  	<input data-path=".{{ville}}" id="{{ville}}" type="checkbox"/>
@@ -73,7 +73,7 @@
 					 <div class="modal fade" id="myModalMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					    <div class="modal-dialog">
 					        <div class="modal-content">
-					            <div class="modal-header">
+					            <div class="modal-header" style="float: right;">
 					                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
 					            </div>
 					            <div class="modal-body" id="modal-body-map">
