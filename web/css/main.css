@@ -90,6 +90,9 @@ background-color: transparent;
 #commentEspace mark{
   color: var(--my-orange);
 }
+#myModalConnect .modal-dialog{
+  width: 30%;
+}
 /*  CSS FOR MOBILE ONLY - Mode portrait */
 @media (max-width: 767px){
   body {

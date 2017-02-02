@@ -116,7 +116,10 @@
 								<li class="dropdown "  id="login">
 			                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
 			                    </li>
-						    
+			                    <li class="dropdown "  id="login">
+			                    	<a data-toggle="modal" href="{{ path('fos_user_security_login') }}" data-target="#myModalConnect">Click ici</a>
+			                    </li>
+
 						{% endif %}
 		                    
 		                </ul>
@@ -125,6 +128,16 @@
         	</div>
         </div>
     </div>
+<!-- Modale -->
+<div class="modal fade" id="myModalConnect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-body">
+                body
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </header>
 

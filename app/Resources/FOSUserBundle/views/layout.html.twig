@@ -1,4 +1,4 @@
-{% extends '::layout.html.twig' %}
+{# {% extends '::layout.html.twig' %} #}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -31,8 +31,7 @@
     {% endfor %}
 {% endif %}
 
-<div>
-        {% block fos_user_content %}
-        {% endblock fos_user_content %}
-</div>
+{% block fos_user_content %}
+{% endblock fos_user_content %}
+
 {% endblock %}
