@@ -68,19 +68,11 @@
 	<hr>
 	<div class="row" style="line-height: 50px;">
 		<div class="col-lg-8" style="padding:0;">Vous n'avez pas de compte ?</div>
-		<div class="col-lg-4" id="lienRegister" style="padding-left: 0;"><a href="{{ path('fos_user_registration_register') }}" id="lienRegisterA">Inscription</a></div>
+		<div class="col-lg-4" id="lienRegister" style="padding-left: 0;">
+			<button type="button" data-toggle="modal" data-target="#myModalRegister" data-dismiss="modal">Inscription</button>
+		</div>
 	</div>
 </div>
-<!-- Modale -->
-<div class="modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-     <div class="modal-dialog"> 
-        <div class="modal-content">
-            <div class="modal-body">
-                Inscription à Becowo
-            </div>
-        </div>
-    </div>
-</div>
+
 
 {% endblock fos_user_content %}
-

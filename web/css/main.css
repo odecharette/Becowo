@@ -45,6 +45,7 @@ body {
   font-size: 12pt;
   margin-top: 69px;
   margin-bottom: 90px;
+  padding-right: 0 !important; /* corrige le decalage à gauche provoqué par les modales de login/register */
 }
 
 a, a:hover, a:active, a:focus, button{
@@ -90,8 +91,12 @@ background-color: transparent;
 #commentEspace mark{
   color: var(--my-orange);
 }
-#myModalLogin .modal-dialog{
+#myModalLogin .modal-dialog, #myModalRegister .modal-dialog{
   width: 30%;
+}
+#myModalRegister {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 /*  CSS FOR MOBILE ONLY - Mode portrait */
 @media (max-width: 767px){

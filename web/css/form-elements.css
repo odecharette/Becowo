@@ -138,17 +138,14 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     border-radius: 6pt;
 }
 
-#lienRegister a{
+#lienRegister button{
     color: var(--my-green);
     border: solid 1px var(--my-green);
-    line-height: 3em;
-    padding: 10px 20px;
+    line-height: 2em;
+    padding: 5px 20px;
     font-size: 14pt;
     border-radius: 5px;
-}
-
-#lienRegister a:hover{
-    text-decoration: none;
+    background-color: transparent;
 }
 
 .separatorH{

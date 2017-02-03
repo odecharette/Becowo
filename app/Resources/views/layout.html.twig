@@ -113,10 +113,8 @@
 						          </ul>
 						        </li>
 							{% else %}
-								<li class="dropdown "  id="login">
-			                        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-			                    </li>
 			                    <li class="dropdown "  id="login">
+			                    	<a data-toggle="modal" href="#myModalLogin">Connexion</a>
 			                    </li>
 
 						{% endif %}
@@ -127,7 +125,8 @@
         	</div>
         </div>
     </div>
-<!-- Modale -->
+{# Les modal doivent se charger en même temps pour pouvoir passer de l'une à l'autre #}
+<!-- Modale Login -->
 <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog"> 
         <div class="modal-content">
@@ -137,7 +136,16 @@
         </div>
     </div>
 </div>
-
+<!-- Modale Register -->
+<div class="modal-open modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog"> 
+        <div class="modal-content">
+            <div class="modal-body">
+                {{ render(url('fos_user_registration_register')) }}
+            </div>
+        </div>
+    </div>
+</div>
 
 </header>
 
