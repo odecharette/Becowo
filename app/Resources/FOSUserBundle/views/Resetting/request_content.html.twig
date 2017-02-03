@@ -13,11 +13,11 @@
             <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request" id="formMDP">
 
             <div class="form-group">
-                {% if invalid_username is defined %}
+                {% if error is defined and error != '' %}
                     <span class="help-block">
                         <ul class="list-unstyled">
                             <li><span class="glyphicon glyphicon-exclamation-sign"></span> 
-                                {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}
+                                {{ error }}
                             </li>
                         </ul>
                     </span>

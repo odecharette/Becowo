@@ -123,13 +123,8 @@ $("#formMDP").submit(function (e){
         data: $form.serialize(),
         type: "POST",
         success: function(data) {
-          if(data.search('help-block') > 0 )
-          {
-            // Recharge la modal pour afficher les erreurs
-            $('#myModalMDPBody').html(data);  
-          }else{
-            window.location.reload();
-          }
+          // Ici dans tous les cas on reload la modal car le controller est surchargé
+          $('#myModalMDPBody').html(data);  
         },
         error: function() {
           $('#myModalMDPBody').html("Une erreur est survenue, veuillez réessayer plus tard");
