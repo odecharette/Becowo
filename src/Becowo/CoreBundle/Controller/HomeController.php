@@ -28,8 +28,6 @@ class HomeController extends Controller
 
     $listCities = array_unique($listCities);
 
-dump($wsFullInfo);
-
     return $this->render('Home/home.html.twig', array('wsFullInfo' => $wsFullInfo, 'listCities' => $listCities));
   }
 

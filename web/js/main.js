@@ -73,7 +73,21 @@ $("#comment-form").submit(function (e){
     });
 });
 
-
+// PopIn login via AJAX
+$("#formLogin").submit(function (e){
+    e.preventDefault();
+    $form = $(e.target);
+    $.ajax($form.attr('action'), {
+        data: $form.serialize(),
+        type: "POST",
+        success: function(data) {
+          $('#myModalLoginBody').html(data);         
+        },
+        error: function() {
+          $('#myModalLoginBody').html("Une erreur est survenue, veuillez réessayer plus tard");
+        }
+    });
+});
 
 //Navbar Scroll Event
 var navbar = $('.navbar');
