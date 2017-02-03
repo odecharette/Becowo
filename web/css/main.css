@@ -90,7 +90,7 @@ background-color: transparent;
 #commentEspace mark{
   color: var(--my-orange);
 }
-#myModalConnect .modal-dialog{
+#myModalLogin .modal-dialog{
   width: 30%;
 }
 /*  CSS FOR MOBILE ONLY - Mode portrait */
