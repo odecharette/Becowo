@@ -15,6 +15,9 @@
 
 </head>
 <body>
+
+{% include "CommonViews/flashMessage.html.twig" %}
+
 	{# Plugin FB #}
 <div id="fb-root"></div>
 
@@ -142,6 +145,16 @@
         <div class="modal-content">
             <div class="modal-body" id="myModalRegisterBody">
                 {{ render(url('fos_user_registration_register')) }}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modale MDP -->
+<div class="modal fade" id="myModalMDP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog"> 
+        <div class="modal-content">
+            <div class="modal-body"  id="myModalMDPBody">
+                {{ render(url('fos_user_resetting_request')) }}
             </div>
         </div>
     </div>

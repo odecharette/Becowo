@@ -91,7 +91,7 @@ background-color: transparent;
 #commentEspace mark{
   color: var(--my-orange);
 }
-#myModalLogin .modal-dialog, #myModalRegister .modal-dialog{
+#myModalLogin .modal-dialog, #myModalRegister .modal-dialog, #myModalMDP .modal-dialog{
   width: 30%;
 }
 #myModalRegister {

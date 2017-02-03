@@ -115,6 +115,27 @@ $("#formRegister").submit(function (e){
         }
     });
 });
+// PopIn MDP via AJAX
+$("#formMDP").submit(function (e){
+    e.preventDefault();
+    $form = $(e.target);
+    $.ajax($form.attr('action'), {
+        data: $form.serialize(),
+        type: "POST",
+        success: function(data) {
+          if(data.search('help-block') > 0 )
+          {
+            // Recharge la modal pour afficher les erreurs
+            $('#myModalMDPBody').html(data);  
+          }else{
+            window.location.reload();
+          }
+        },
+        error: function() {
+          $('#myModalMDPBody').html("Une erreur est survenue, veuillez réessayer plus tard");
+        }
+    });
+});
 
 //Navbar Scroll Event
 var navbar = $('.navbar');
