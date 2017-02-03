@@ -34,7 +34,7 @@
 	</div>
 	<div class="row text-center">
 		<div class="col-lg-12">
-			{{form_start(form, {'method': 'POST', 'action': path("fos_user_registration_register"), 'attr':{'class': 'register'}})}}
+			{{form_start(form, {'method': 'POST', 'action': path("fos_user_registration_register"), 'attr':{'class': 'register', 'id' : 'formRegister'}})}}
 
 			<div class="form-group">
 			  	{{ form_widget(form.username, {'required': false, 'attr': {'placeholder': 'form.username'|trans}}) }}

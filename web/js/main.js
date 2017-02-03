@@ -88,6 +88,21 @@ $("#formLogin").submit(function (e){
         }
     });
 });
+// PopIn inscription via AJAX
+$("#formRegister").submit(function (e){
+    e.preventDefault();
+    $form = $(e.target);
+    $.ajax($form.attr('action'), {
+        data: $form.serialize(),
+        type: "POST",
+        success: function(data) {
+          $('#myModalRegisterBody').html(data);         
+        },
+        error: function() {
+          $('#myModalRegisterBody').html("Une erreur est survenue, veuillez réessayer plus tard");
+        }
+    });
+});
 
 //Navbar Scroll Event
 var navbar = $('.navbar');
