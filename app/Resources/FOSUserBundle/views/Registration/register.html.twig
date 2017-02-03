@@ -40,13 +40,13 @@
 			  	{{ form_widget(form.username, {'required': false, 'attr': {'placeholder': 'form.username'|trans}}) }}
 			    {{ form_errors(form.username) }}
 			
-		    	{{ form_widget(form.email, {'attr': {'placeholder': 'form.email'|trans}}) }}
+		    	{{ form_widget(form.email, {'required': false, 'attr': {'placeholder': 'form.email'|trans}}) }}
 		    	{{ form_errors(form.email) }}
 		    
-		    	{{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'form.password'|trans}}) }}
+		    	{{ form_widget(form.plainPassword.first, {'required': false, 'attr': {'placeholder': 'form.password'|trans}}) }}
 		    	{{ form_errors(form.plainPassword.first) }}
 		    
-		    	{{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'form.password_confirmation'|trans}}) }}
+		    	{{ form_widget(form.plainPassword.second, {'required': false, 'attr': {'placeholder': 'form.password_confirmation'|trans}}) }}
 		    	{{ form_errors(form.plainPassword.second) }}
 		    </div>
 			<button type="submit" class="btn" id="_submit" name="_submit"> {{ 'registration.submit'|trans }}</button>
