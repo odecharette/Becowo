@@ -81,7 +81,13 @@ $("#formLogin").submit(function (e){
         data: $form.serialize(),
         type: "POST",
         success: function(data) {
-          $('#myModalLoginBody').html(data);         
+          if(data.search('help-block') > 0 )
+          {
+            // Recharge la modal pour afficher les erreurs
+            $('#myModalLoginBody').html(data);
+          }else{
+            window.location.reload();
+          }
         },
         error: function() {
           $('#myModalLoginBody').html("Une erreur est survenue, veuillez réessayer plus tard");
