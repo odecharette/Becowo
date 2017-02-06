@@ -1,14 +1,13 @@
 <?php
-// create a new cURL resource
-$ch = curl_init();
 
-// set URL and other appropriate options
-curl_setopt($ch, CURLOPT_URL, "https://demo.becowo.com/email/newusers");
-curl_setopt($ch, CURLOPT_HEADER, 0);
+ob_start();
 
-// grab URL and pass it to the browser
-curl_exec($ch);
+$url = "https://demo.becowo.com/email/newusers";
 
-// close cURL resource, and free up system resources
-curl_close($ch);
+while (ob_get_status())
+{
+	ob_end_clean();
+}
+
+header("Location: $url");
 ?>
