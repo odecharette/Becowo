@@ -88,8 +88,8 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     vertical-align: bottom;
     position: relative;
     top: -2px;
-    height: 1em;
-    width: 1em;
+    height: 1.4em;
+    width: 1.4em;
 }
 #remember{
     margin-top: 15px;
