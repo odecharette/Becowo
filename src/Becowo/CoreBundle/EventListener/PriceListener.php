@@ -20,7 +20,7 @@ class PriceListener
 // Le nom de la methode definit sont moment d'execution
   public function postUpdate(Price $price, LifecycleEventArgs $event) 
   {
- 
+
     $em = $event->getEntityManager();
     $ws = $price->getWorkspaceHasOffice()->getWorkspace();
 

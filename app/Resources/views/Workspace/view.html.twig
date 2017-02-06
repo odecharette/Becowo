@@ -79,7 +79,7 @@
 					<a href="{{ path('becowo_core_workspace', {'name' : w.ws.name}) }}">	
 						<span class="nom">{{ w.ws.name }}</span> <br>
 						<center>
-						<img src="{{ asset('images/Workspaces/') }}{{w.ws.name}}/{{w.pic.url}}" alt="{{w.ws.name}}" width="300px"> <br>
+						<img src="{{ asset('images/Workspaces/') }}{{w.ws.name}}/{{w.ws.favoritePictureUrl}}" alt="{{w.ws.name}}" width="300px"> <br>
 						</center>
 						{% for amenity in w.amenities %}
 							{% if loop.index < 9 %}

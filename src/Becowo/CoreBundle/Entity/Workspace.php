@@ -245,6 +245,15 @@ class Workspace
      */
     private $voteAverage;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="favorite_picture_url", type="string", length=255, nullable=true)
+     *
+     */
+    private $favoritePictureUrl;
+
     /**
      * Constructor
      */
@@ -1009,6 +1018,31 @@ class Workspace
     public function getVoteAverage()
     {
         return $this->voteAverage;
+    }
+
+
+    /**
+     * Set favoritePictureUrl
+     *
+     * @param string $favoritePictureUrl
+     *
+     * @return Workspace
+     */
+    public function setFavoritePictureUrl($favoritePictureUrl)
+    {
+        $this->favoritePictureUrl = $favoritePictureUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get favoritePictureUrl
+     *
+     * @return string
+     */
+    public function getFavoritePictureUrl()
+    {
+        return $this->favoritePictureUrl;
     }
 
     public function __toString()

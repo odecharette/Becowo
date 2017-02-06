@@ -57,3 +57,9 @@ services:
         tags: 
             - { name: doctrine.orm.entity_listener }
 
+    picture.favorite :
+        class:  Becowo\CoreBundle\EventListener\PictureListener
+        arguments: ['@service_container']
+        tags: 
+            - { name: doctrine.orm.entity_listener }    
+

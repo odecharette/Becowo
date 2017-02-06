@@ -115,8 +115,8 @@
 				{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
 				<div id="pic">
 					<div id="favoritePicture">
-						{% if wsInfo.favoritePicture %}
-							<img src="{{ asset('images/Workspaces/')}}{{wsInfo.ws.name}}/{{wsInfo.favoritePicture.url}}" alt="{{wsInfo.ws.name}}">
+						{% if wsInfo.ws.favoritePictureUrl %}
+							<img src="{{ asset('images/Workspaces/')}}{{wsInfo.ws.name}}/{{wsInfo.ws.favoritePictureUrl}}" alt="{{wsInfo.ws.name}}">
 						{% endif %}
 					</div>
 					<div id="price">

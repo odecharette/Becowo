@@ -17,7 +17,6 @@ class HomeController extends Controller
     {
       array_push($wsFullInfo, array('ws' => $ws,
         'amenities' => $WsService->getAmenitiesByWorkspace($ws),
-        'favoritePicture' => $WsService->getFavoritePictureUrlByWorkspace($ws->getName()),
         'WsHasOffers' => $WsService->getOffersByWorkspace($ws)
         ));
 

@@ -36,7 +36,7 @@ class PictureRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
-	public function findByWsFavoriteUrl($wsName)
+	public function findByWsFavoriteUrl($ws)
 	{
 		//retourne l'URL de la picture favorite d'un WS
 
@@ -44,11 +44,11 @@ class PictureRepository extends EntityRepository
 
 		$qb->select('p.url')
 			->leftJoin('p.workspace', 'w')
-			->where('w.name = :name')
+			->where('w = :ws')
 			->andWhere('p.isFavorite = true')
-			->setParameter('name', $wsName);
+			->setParameter('ws', $ws);
 
-		return $qb->getQuery()->getOneOrNullResult();
+		return $qb->getQuery()->getSingleScalarResult();
 	}
 
 	public function findByWsLogo($wsName)
