@@ -292,35 +292,6 @@ class WorkspaceService
         return $repo->findWsHasTeamMemberForEmailBookingByWorkspace($ws);
     }
 
-    public function getLowestPriceByWorkspace($ws)
-    {
-        $repo = $this->em->getRepository('BecowoCoreBundle:Price');
-        $prices = $repo->findPricesByWorkspace($ws);
-        $minPrice = 0;
-        $allWsMinPrices = array();
-        $i = 0;
-
-        foreach ($prices as $price) {
-            if($price->getPriceHour() == null && $price->getPriceHalfDay() == null && $price->getPriceDay() == null && $price->getPriceMonth() == null)
-            {
-                //
-            }else{
-                $a = array('Hour' => $price->getPriceHour(), 
-                            'HalfDay' => $price->getPriceHalfDay(),
-                            'Day' => $price->getPriceDay(),
-                            'Month' => $price->getPriceMonth());
-                $minPrice = min(array_diff(array_map('intval', $a), array(0))); // renvoi le plus petit prix en excluant les valeurs NULL
-            $allWsMinPrices[$i] = $minPrice;
-            $i++;
-            }
-
-        }
-        if(count($allWsMinPrices) > 0)
-            return min($allWsMinPrices);
-        else
-            return 0;
-    }
-
     public function getBookingByMember($user)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Booking');

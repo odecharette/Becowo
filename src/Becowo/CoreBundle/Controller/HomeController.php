@@ -16,7 +16,6 @@ class HomeController extends Controller
     foreach ($workspaces as $ws)
     {
       array_push($wsFullInfo, array('ws' => $ws,
-        'lowestPrice' => $WsService->getLowestPriceByWorkspace($ws),
         'amenities' => $WsService->getAmenitiesByWorkspace($ws),
         'favoritePicture' => $WsService->getFavoritePictureUrlByWorkspace($ws->getName()),
         'averageVote' => round($WsService->getAverageVoteByWorkspace($ws), 0),
