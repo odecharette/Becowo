@@ -228,6 +228,15 @@ class Workspace
      */
     private $arrivalDesc;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lowest_price", type="decimal", precision=6, scale=2, nullable=true)
+     *
+     */
+    private $lowestPrice;
+
     /**
      * Constructor
      */
@@ -238,6 +247,7 @@ class Workspace
         $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->isDeleted = false;
+        $this->lowestPrice = 0;
     }
 
 
@@ -942,6 +952,30 @@ class Workspace
     public function getArrivalDesc()
     {
         return $this->arrivalDesc;
+    }
+
+    /**
+     * Set lowestPrice
+     *
+     * @param decimal $lowestPrice
+     *
+     * @return Workspace
+     */
+    public function setLowestPrice($lowestPrice)
+    {
+        $this->lowestPrice = $lowestPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get lowestPrice
+     *
+     * @return decimal
+     */
+    public function getLowestPrice()
+    {
+        return $this->lowestPrice;
     }
 
     public function __toString()

@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="becowo_price", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_has_office_idx", columns={"workspace_has_office_id"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\PriceRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\EntityListeners({"Becowo\CoreBundle\EventListener\PriceListener"})
  */
 class Price
 {
