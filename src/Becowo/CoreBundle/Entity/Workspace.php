@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Workspace
  *
- * @ORM\Table(name="becowo_workspace", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_category_id_idx", columns={"category_id"})})
+ * @ORM\Table(name="becowo_workspace", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_category_id_idx", columns={"category_id"}), @ORM\Index(name="fk_vote_average", columns={"vote_average"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\WorkspaceRepository")
  */
 class Workspace
