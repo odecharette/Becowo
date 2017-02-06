@@ -18,7 +18,6 @@ class WorkspaceController extends Controller
     $ws = $WsService->getWorkspaceByName($name);
     $pictures = $WsService->getPicturesByWorkspace($name);
     $listEvents = $WsService->getEventsByWorkspace($ws);
-    $averageVote = $WsService->getAverageVoteByWorkspace($ws);
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
     $WsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
     $wsSameNetwork = $WsService->getWsByWsNetwork($ws->getNetwork(), $name);
@@ -36,9 +35,7 @@ class WorkspaceController extends Controller
       array('ws' => $ws, 
         'listEvents' => $listEvents, 
         'pictures' => $pictures, 
-        // 'pictureLogo' => $pictureLogo,
         'pricesAndOffices' => $pricesAndOffices,
-        'averageVote' => $averageVote,
         'WsHasTeamMembers' => $WsHasTeamMembers,
         'wsSameNetworkWithFavoritePic' => $wsSameNetworkWithFavoritePic,
         'WsHasAmenities' => $WsHasAmenities,

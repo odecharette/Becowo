@@ -40,9 +40,9 @@
 		<div class="col-lg-5 col-md-5 col-xs-12 col-lg-offset-1 name">
 			{% if is_mobile() %}
 				<h1>{{ws.name}}</h1>
-				{% if averageVote > 0 %} {{averageVote|rating}} {% endif %} <br>
+				{% if ws.voteAverage > 0 %} {{ws.voteAverage|round|rating}} {% endif %} <br>
 			{% else %}
-				<h1>{{ws.name}} {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}</h1>
+				<h1>{{ws.name}} {% if ws.voteAverage > 0 %} {{ws.voteAverage|round|rating}} {% endif %}</h1>
 			{% endif %}	
 
 			<a href="#Contact" id="goToContact">{{ws.street|capitalize}} {{ws.postCode}} {{ws.city|capitalize}}</a>
