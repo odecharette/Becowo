@@ -9,7 +9,7 @@ class HomeController extends Controller
   public function homeAction()
   {
     $WsService = $this->get('app.workspace');
-    $workspaces = $WsService->getActiveWorkspacesOrderByVoteAvgAndWithoutVote();
+    $workspaces = $WsService->getActiveWorkspacesOrderByVoteAvg();
 
     $wsFullInfo = array();
     $listCities = array();
@@ -18,7 +18,6 @@ class HomeController extends Controller
       array_push($wsFullInfo, array('ws' => $ws,
         'amenities' => $WsService->getAmenitiesByWorkspace($ws),
         'favoritePicture' => $WsService->getFavoritePictureUrlByWorkspace($ws->getName()),
-        'averageVote' => round($WsService->getAverageVoteByWorkspace($ws), 0),
         'WsHasOffers' => $WsService->getOffersByWorkspace($ws)
         ));
 

@@ -22,14 +22,10 @@ class WorkspaceRepository extends EntityRepository
 
 	public function findActiveWorkspacesOrderByVoteAvg()
 	{
-		$qb = $this->createQueryBuilder('w')
-					->select('w')
-					->from('BecowoCoreBundle:Comment', 'c')
-					->leftJoin('c.workspace', 'score')
-					->andWhere('c.workspace = w.id')
-					->groupBy('w.name')
-					->orderBy('c.scoreAvg', 'DESC');
-			$this->whereIsActive($qb);
+		$qb = $this->createQueryBuilder('w');
+
+		$this->whereIsActive($qb);
+		$qb->orderBy('w.voteAverage', 'DESC');
 
 		return $qb->getQuery()->getResult();
 	}

@@ -40,22 +40,22 @@ class WorkspaceService
         
     }
 
-    public function getActiveWorkspacesOrderByVoteAvgAndWithoutVote()
-    {
-        $WswithVote = $this->getActiveWorkspacesOrderByVoteAvg(); 
-        $AllActiveWs = $this->getActiveWorkspaces();
+    // public function getActiveWorkspacesOrderByVoteAvgAndWithoutVote()
+    // {
+    //     $WswithVote = $this->getActiveWorkspacesOrderByVoteAvg(); 
+    //     $AllActiveWs = $this->getActiveWorkspaces();
 
-        // En queryBuilder impossible de faire une requet en Union donc on récup 
-        // 1/ Tous les WS qui ont un vote, trié sur scoreAVg en Desc
-        // 2/ Tous les WS
-        // 3/ On merge les 2 résultats
-        // 4/ On enlève les doublons
-        $workspaces = array_merge($WswithVote, $AllActiveWs);
-        $workspaces = array_unique($workspaces);
+    //     // En queryBuilder impossible de faire une requet en Union donc on récup 
+    //     // 1/ Tous les WS qui ont un vote, trié sur scoreAVg en Desc
+    //     // 2/ Tous les WS
+    //     // 3/ On merge les 2 résultats
+    //     // 4/ On enlève les doublons
+    //     $workspaces = array_merge($WswithVote, $AllActiveWs);
+    //     $workspaces = array_unique($workspaces);
 
-        return $workspaces;
+    //     return $workspaces;
 
-    }
+    // }
 
     public function getPicturesByWorkspaces(array $Workspaces)
     {

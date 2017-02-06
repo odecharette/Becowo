@@ -130,8 +130,8 @@
 						{% endif %}
 					</div>
 					<div id="stars">
-						{% if wsInfo.averageVote != null %}
-							<img src="{{ asset('images/icons/star')}}{{wsInfo.averageVote}}.png" alt="Vote">
+						{% if wsInfo.ws.voteAverage != null %}
+							<img src="{{ asset('images/icons/star')}}{{wsInfo.ws.voteAverage|round}}.png" alt="Vote">
 						{% endif %}
 					</div>
 					<div id="btn_decouvrir">
