@@ -230,12 +230,20 @@ class Workspace
 
 
     /**
-     * @var string
+     * @var decimal
      *
      * @ORM\Column(name="lowest_price", type="decimal", precision=6, scale=2, nullable=true)
      *
      */
     private $lowestPrice;
+
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="vote_average", type="decimal", precision=4, scale=2, nullable=true)
+     *
+     */
+    private $voteAverage;
 
     /**
      * Constructor
@@ -248,6 +256,7 @@ class Workspace
         $this->createdOn = new \DateTime();
         $this->isDeleted = false;
         $this->lowestPrice = 0;
+        $this->voteAverage = 0;
     }
 
 
@@ -976,6 +985,30 @@ class Workspace
     public function getLowestPrice()
     {
         return $this->lowestPrice;
+    }
+
+    /**
+     * Set voteAverage
+     *
+     * @param decimal $voteAverage
+     *
+     * @return Workspace
+     */
+    public function setVoteAverage($voteAverage)
+    {
+        $this->voteAverage = $voteAverage;
+
+        return $this;
+    }
+
+    /**
+     * Get voteAverage
+     *
+     * @return decimal
+     */
+    public function getVoteAverage()
+    {
+        return $this->voteAverage;
     }
 
     public function __toString()

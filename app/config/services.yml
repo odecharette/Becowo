@@ -50,6 +50,10 @@ services:
         arguments: ['@service_container']
         tags: 
             - { name: doctrine.orm.entity_listener }
-            # - { name: doctrine.event_listener, event: lowestPrice }
-            # - { name: kernel.event_listener, event: kernel.response, method: lowestPrice }
+    
+    comment.voteAverage :
+        class:  Becowo\CoreBundle\EventListener\CommentListener
+        arguments: ['@service_container']
+        tags: 
+            - { name: doctrine.orm.entity_listener }
 
