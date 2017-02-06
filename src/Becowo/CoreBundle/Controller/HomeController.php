@@ -20,8 +20,8 @@ class HomeController extends Controller
         'amenities' => $WsService->getAmenitiesByWorkspace($ws),
         'favoritePicture' => $WsService->getFavoritePictureUrlByWorkspace($ws->getName()),
         'averageVote' => round($WsService->getAverageVoteByWorkspace($ws), 0),
-        'WsHasOffers' => $WsService->getOffersByWorkspace($ws),
-        'category' => $ws->getCategory()->getName()));
+        'WsHasOffers' => $WsService->getOffersByWorkspace($ws)
+        ));
 
       array_push($listCities, $ws->getCity());
     }

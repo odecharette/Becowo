@@ -111,7 +111,7 @@
 			{% endif %}
 				{# Filtered class #}
 				<span hidden="true" class="{{wsInfo.ws.city|lower|replace({"'": ""," ":""})}}"></span>
-				<span hidden="true" class="{{wsInfo.category|lower|replace({"'": ""," ":""})}}"></span>
+				<span hidden="true" class="{{wsInfo.ws.category|lower|replace({"'": ""," ":""})}}"></span>
 				{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
 				<div id="pic">
 					<div id="favoritePicture">
@@ -120,7 +120,7 @@
 						{% endif %}
 					</div>
 					<div id="price">
-						{% if wsInfo.category == 'Café Wifi' %}
+						{% if wsInfo.ws.category == 'Café Wifi' %}
 							Gratuit
 						{% else %}
 							A partir de {{wsInfo.lowestPrice}} <sup>€</sup>
@@ -182,7 +182,7 @@
 				</td>
 				</table>
 				<div id="bonus">
-					{% if wsInfo.category == 'Café Wifi' %}
+					{% if wsInfo.ws.category == 'Café Wifi' %}
 						Tous nos cafés wifi sont testés et approuvés ! <br>
 						Internet, prise, confort
 					{% else %}
