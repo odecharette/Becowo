@@ -101,7 +101,7 @@ button.btn:hover, button.btn:active, button.btn:focus, button.btn:active:focus, 
     text-indent: -15px;
 }
 #remember a{
-    /*color: var(--my-blue);*/
+    cursor: pointer;
     text-decoration: underline;
 }
 #remember a:hover{

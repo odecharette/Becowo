@@ -102,13 +102,7 @@ $("#formRegister").submit(function (e){
         data: $form.serialize(),
         type: "POST",
         success: function(data) {
-          if(data.search('help-block') > 0 )
-          {
-            // Recharge la modal pour afficher les erreurs
-            $('#myModalRegisterBody').html(data);  
-          }else{
-            window.location.reload();
-          }
+          $('#myModalRegisterBody').html(data);  
         },
         error: function() {
           $('#myModalRegisterBody').html("Une erreur est survenue, veuillez réessayer plus tard");

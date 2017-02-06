@@ -1,6 +1,6 @@
 <?php
 
-// This controller is an ovveride of FOSUserBundle in vendor
+// This controller is an override of FOSUserBundle in vendor
 // To cancel redirect to stay in pop'in
 
 namespace Becowo\MemberBundle\Controller;
@@ -46,8 +46,6 @@ class ResettingController extends BaseController
         $this->get('fos_user.mailer')->sendResettingEmailMessage($user);
         $user->setPasswordRequestedAt(new \DateTime());
         $this->get('fos_user.user_manager')->updateUser($user);
-
-        dump('ici');
 
         $request->getSession()->getFlashBag()->add('success', 'Un e-mail a été envoyé à ' . $this->getObfuscatedEmail($user) . '. Il contient un lien afin de réinitialiser votre mot de passe.');
 
