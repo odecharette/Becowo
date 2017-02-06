@@ -125,6 +125,22 @@ $("#formMDP").submit(function (e){
         }
     });
 });
+// PopIn change MDP via AJAX
+$("#formChangeMDP").submit(function (e){
+    e.preventDefault();
+    $form = $(e.target);
+    $.ajax($form.attr('action'), {
+        data: $form.serialize(),
+        type: "POST",
+        success: function(data) {
+          // Ici dans tous les cas on reload la modal car le controller est surchargé
+          $('#myModalChangeMDPBody').html(data);  
+        },
+        error: function() {
+          $('#myModalChangeMDPBody').html("Une erreur est survenue, veuillez réessayer plus tard");
+        }
+    });
+});
 
 //Navbar Scroll Event
 var navbar = $('.navbar');

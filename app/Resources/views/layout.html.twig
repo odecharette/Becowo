@@ -95,7 +95,7 @@
 						            	<a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a>
 						            </li>
 								    <li>
-								    	<a href="{{ path('fos_user_change_password') }}"><i class="fa fa-key"></i> Changer mon mot de passe</a>
+								    	<a data-toggle="modal" href="#myModalChangeMDP"><i class="fa fa-key"></i> Changer mon mot de passe</a>
 								    </li>
 								    <li>
 								    	<a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a>
@@ -159,7 +159,16 @@
         </div>
     </div>
 </div>
-
+<!-- Modale change MDP -->
+<div class="modal fade" id="myModalChangeMDP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog"> 
+        <div class="modal-content">
+            <div class="modal-body"  id="myModalChangeMDPBody">
+                {{ render(url('fos_user_change_password')) }}
+            </div>
+        </div>
+    </div>
+</div>
 </header>
 
 
