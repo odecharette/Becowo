@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Session\Session;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 
 class RegistrationController extends BaseController
@@ -60,5 +61,21 @@ class RegistrationController extends BaseController
         }
 
         return $response;
+    }
+
+    /**
+     * Tell the user his account is now confirmed
+     */
+    public function confirmedAction()
+    {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        
+        $session = new Session();
+        $session->getFlashBag()->add('success', 'Félicitations ' . $user->getUsername() . ', votre compte est maintenant activé.');
+
+        return $this->redirectToRoute('becowo_core_homepage');
     }
 }
