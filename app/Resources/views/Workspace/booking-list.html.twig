@@ -10,7 +10,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 				{% for priceandoffice in pricesAndOffices %}
 				<li class="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 		    	<div class="row">
-		    		{% if is_mobile() %}
+		    		{% if is_mobile() and not is_tablet() %}
 		    			{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
 			        		<div id="image" style="background-image: url('{{ asset('images/Workspaces/') }}{{ws.name|url_encode}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}');
 			        		background-size: cover;

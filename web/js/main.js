@@ -9,6 +9,9 @@
 
 // End Google Analytics 
 
+/* Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent */
+    window.cookieconsent_options = {"message":"En poursuivant votre navigation sur ce site, vous acceptez que des cookies soient utilisés.","dismiss":"J'ai compris !","learnMore":"En savoir plus","link":"https://www.microsoft.com/fr-fr/security/resources/cookie-whatis.aspx","theme":"light-floating"};
+
 
 /****************** Page d'un WS, onglet réservation, filtre les bureaux ****************/
 
@@ -20,7 +23,29 @@ $('#filtre-bureaux').on('change', function() {
     }).show();
 });
 
-if(window.innerWidth >= 800)
+// Home page viewMore button
+$('#viewMore').bind('click', function (e) {
+  var elements = document.getElementsByClassName("list-item");
+console.log($('#viewMore').text());
+
+  if($('#viewMore').text() == 'Voir plus'){
+
+    for(var i=0; i<elements.length; i++) {
+      elements[i].style.display = 'inline-block';
+    }
+    $('#viewMore').text('Voir moins');
+  }else{
+    for(var i=6; i<elements.length; i++) {
+      elements[i].style.display = 'none';
+    }
+    $('#viewMore').text('Voir plus');
+  }
+
+});
+
+console.log('width de l\'écran : ' + window.innerWidth);
+
+if(window.innerWidth >= 1100) // PC
 {
 console.log('grand ecran');
 
@@ -163,37 +188,7 @@ $(window).scroll(function(event){
     });
     }
 
-/* Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent */
-    window.cookieconsent_options = {"message":"En poursuivant votre navigation sur ce site, vous acceptez que des cookies soient utilisés.","dismiss":"J'ai compris !","learnMore":"En savoir plus","link":"https://www.microsoft.com/fr-fr/security/resources/cookie-whatis.aspx","theme":"light-floating"};
 
-// Gestion des URL distincts pour chaque onglet dans page d'un WS
-$(function(){
-  
-  var hash = window.location.hash;
-  if(hash != '')
-  {
-  	hash = hash.substring(1, hash.length);
-  	console.log(hash);
-  	var e = document.getElementById(hash);
-  	e.classList.add("active");
-  	e.classList.add("in");
-  }
-  else{
-  	$('.nav-tabs a[href="#Description"]').tab('show')
-  	var e = document.getElementById('Description');
-  	if(e){
-  		e.classList.add("active");
-  		e.classList.add("in");
-  	};
-}
-
-// Qd clic sur un onglet, Change URL et onglet + décale de 33px l'ancre 
-$('.nav-tabs a').on('shown.bs.tab', function(event){                 
-    window.location.hash = $(event.target).text();
-    $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
-});
-
-});
 
 // Smooth scrolling for home button
 $("#goToMap").unbind("click").click(function(e){
@@ -311,25 +306,7 @@ $(document).ready(function(){
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-// Home page viewMore button
-$('#viewMore').bind('click', function (e) {
-  var elements = document.getElementsByClassName("list-item");
-console.log($('#viewMore').text());
 
-  if($('#viewMore').text() == 'Voir plus'){
-
-    for(var i=0; i<elements.length; i++) {
-      elements[i].style.display = 'inline-block';
-    }
-    $('#viewMore').text('Voir moins');
-  }else{
-    for(var i=6; i<elements.length; i++) {
-      elements[i].style.display = 'none';
-    }
-    $('#viewMore').text('Voir plus');
-  }
-
-});
 
 // HOme page Map
 $("#modalMap").on('click', function(event){
@@ -383,23 +360,59 @@ function initMap() {
 }
 
 }
-else
-{ ///////////////////////////////////////////////////////////////////////////// JS for mobile only
-console.log('mobile');
-/***************** filtre sur home page *************************/
-$('#filtre-mobile').on('change', function() { 
-  console.log('OK');
-  var text = document.querySelector('input[name="filtre-mobile"]:checked').value;
-    $('ul.listed-values li').hide();
-    $('ul.listed-values li').filter(function(){
-       return $(this).attr('class').indexOf(text) != -1;
-    }).show();
+else if(window.innerWidth >= 900) // PC & tablette
+{
+
+// Gestion des URL distincts pour chaque onglet dans page d'un WS
+$(function(){
+  
+  var hash = window.location.hash;
+  if(hash != '')
+  {
+    hash = hash.substring(1, hash.length);
+    console.log(hash);
+    var e = document.getElementById(hash);
+    e.classList.add("active");
+    e.classList.add("in");
+  }
+  else{
+    $('.nav-tabs a[href="#Description"]').tab('show')
+    var e = document.getElementById('Description');
+    if(e){
+      e.classList.add("active");
+      e.classList.add("in");
+    };
+}
+
+// Qd clic sur un onglet, Change URL et onglet + décale de 33px l'ancre 
+$('.nav-tabs a').on('shown.bs.tab', function(event){                 
+    window.location.hash = $(event.target).text();
+    $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
 });
 
+});
+
+}else
+{ ///////////////////////////////////////////////////////////////////////////// JS for mobile only
+console.log('mobile');
+// /***************** filtre sur home page *************************/
+// $('#filtre-mobile').on('change', function() { 
+//   console.log('OK');
+//   var text = document.querySelector('input[name="filtre-mobile"]:checked').value;
+//     $('ul.listed-values li').hide();
+//     $('ul.listed-values li').filter(function(){
+//        return $(this).attr('class').indexOf(text) != -1;
+//     }).show();
+// });
+
+}
+
+if(window.innerWidth >= 900 && window.innerWidth < 1200 ) // Tablet et mobile but no PC
 /****************** slider des images d'un WS ****************/
+// http://bxslider.com/
 $(document).ready(function(){
   $('#slider-mobile').bxSlider({
-    slideWidth: 400,
+    slideWidth: window.innerWidth,
     minSlides: 1,
     maxSlides: 1,
     moveSlides: 1,
@@ -407,4 +420,3 @@ $(document).ready(function(){
   });
 });
 
-}

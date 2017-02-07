@@ -1133,8 +1133,12 @@ footer{
 .rating{
   display: inline;
 }
+@media (min-width: 1200px){
+  #wsHeader #OfficeQuantity{
+    margin-top: -80px;
+  }
+}
 #wsHeader #OfficeQuantity{
-  margin-top: -80px;
   border: solid 2px var(--my-green);
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
   padding-top: 10px;
@@ -1731,7 +1735,7 @@ color: var(--my-blue) !important;
   padding: 0 0 5px 0;
   border-top: none;
 }
-#panelEvent .panel-footer .btn{
+#panelEvent .panel-footer .btnFooter{
   background-color: #F1F2F6;
   color: var(--my-black);
   font-size: 11pt;
@@ -1740,7 +1744,7 @@ color: var(--my-blue) !important;
   border-radius: 28px;
   padding: 10px 15px 10px 15px;
 }
-#panelEvent .panel-footer .btn:focus{
+#panelEvent .panel-footer .btnFooter:focus{
   outline: transparent;
 }
 .addthisevent-drop {
@@ -2861,4 +2865,15 @@ label:hover.tooltips span, span:hover.tooltips span {
   left: 50%;
   margin-left: -76px;
   z-index: 999;
+}
+
+/*Mobiel slide show called slider-mobile*/
+.bx-wrapper {
+  height: 50vh; /* vh : 1/100th viewport height */
+  display: block;
+  overflow: hidden;
+  margin: 0 auto 20px !important;
+ }
+.bx-viewport{
+top: -50%;
 }

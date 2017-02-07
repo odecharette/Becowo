@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="row text-center">
-		<div class="col-lg-3">
+		<div class="col-lg-3 col-md-3">
 			<div id="OfficeQuantity">
 				<div class="row txt">
 					<strong>{{ws.name}} vous propose : <br></strong>
@@ -37,7 +37,7 @@
 				{% include 'Workspace/row-resa.html.twig' %} 
 			</div>
 		</div>
-		<div class="col-lg-5 col-md-5 col-xs-12 col-lg-offset-1 name">
+		<div class="col-lg-5 col-md-6 col-xs-12 col-lg-offset-1 name">
 			{% if is_mobile() %}
 				<h1>{{ws.name}}</h1>
 				{% if ws.voteAverage > 0 %} {{ws.voteAverage|round|rating}} {% endif %} <br>
@@ -60,7 +60,7 @@
 		<span id="bonus">{{ws.descriptionBonus}}</span>
 	</div>	
 
-{% if is_mobile() %}
+{% if is_mobile() and not is_tablet() %}
 	{% include 'Workspace/tabs-mobile.html.twig' %}
 {% elseif ws.category.name == 'Café Wifi' %}
 		{% include 'Workspace/no-tabs.html.twig' %}
