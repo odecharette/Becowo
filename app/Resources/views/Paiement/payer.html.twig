@@ -53,7 +53,7 @@
 				Nous vous enverrons une facture par email sous quelques jours.</p>
 				<br><br>
 				<center>
-				{% if is_mobile() %}
+				{% if is_mobile() and not is_tablet() %}
 					<form method="POST" action="{{creditAgricole.PBX_URL_MOBILE}}" id="form-payer">
 				{% else %}
 					<form method="POST" action="{{creditAgricole.PBX_URL}}" id="form-payer">
