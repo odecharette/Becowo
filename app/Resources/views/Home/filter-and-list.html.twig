@@ -16,7 +16,7 @@
             	<div class="col-lg-4"><span>Suivez l'arrivée de nouveaux espaces</span></div>
             </div> #}
             <div class="row">
-            	<div class="col-lg-4">
+            	<div class="col-lg-4 col-md-5">
             		<!-- checkbox dropdown -->
 			        <div 
 			            class="jplist-checkbox-dropdown"
@@ -39,7 +39,7 @@
 			            </ul>
 			        </div>
 			    </div>	
-			    <div class="col-lg-4">
+			    <div class="col-lg-4 col-md-7">
  				<!-- checkbox path filters -->
 	      			<div 
 				        class="jplist-group"
@@ -63,10 +63,7 @@
 			         <label for="centredaffaires" style="width:200px;" class="tooltips"><i class="fa fa-building"></i> Centre d'affaires <span>Envie d'un endroit plus professionnel ? Nos centres d'affaires proposent des prestation de qualité</span></label>
 		        	</div>
 	        	</div>
-	        	{# <div class="col-lg-4">
-	        		<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" ><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
-	        	</div> #}
-	        	<div class="col-lg-4">
+	        	<div class="col-lg-4 hidden-md">
 	        		<button type="button" id="modalMap"><i class="fa fa-map" aria-hidden="true"></i> Voir la carte</button> <br>
 
 					 {# Modal #}
@@ -175,7 +172,7 @@
 				<td id="listeLogo">
 					{% for wha in wsInfo.amenities %}
 						{% if loop.index < 6 %}
-							<span class="tooltips">
+							{% if loop.index == 5 %} <span class="tooltips hidden-md"> {% else %} <span class="tooltips"> {% endif %}
 							<img src="{{ asset('images/icons/amenities/Bleu/')}}{{wha.amenities.urlLogo}}" alt="{{wha.amenities.name}}') }}"> <span>{{wha.amenities.name}}</span></span>
 						{% endif %}
 					{% endfor %}
