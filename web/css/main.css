@@ -148,7 +148,7 @@ background-color: transparent;
     margin: 15px !important;
   }
   footer{
-    height: 320px !important;
+    height: 340px !important;
     padding-left: 0 !important;
   }
   #top-image .tagline{
@@ -418,10 +418,16 @@ footer a:hover, footer a:active, footer a:focus{
 footer li {
   list-style-type: none;
 }
-
-#liensRS{
-  padding-top: 30px;
-  padding-bottom: 5px;
+@media (min-width: 768px){
+  #liensRS{
+    padding-top: 30px;
+    padding-bottom: 5px;
+  }
+}
+@media (max-width: 767px){
+  #liensRS img{
+    margin: 10px 30px;
+  }
 }
 #liensRS img{
   width: 30px;
