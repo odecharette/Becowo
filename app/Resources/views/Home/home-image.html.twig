@@ -4,7 +4,7 @@
 	<div class="phrase">
 		Réservez un espace de travail et intégrez une communauté de coworkers
 	</div> 
-	<div class="categories">
+	<div class="categories hidden-xs">
 		Coworking &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Salle de réunion &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Café-wifi
 	</div>
 	{# <div class="homeIcon">
@@ -12,9 +12,14 @@
 		<img src="{{ asset('images/icons/Home-reunion.png') }}" class="deux">
 		<img src="{{ asset('images/icons/Home-cafe.png') }}">
 	</div> #}
-	<div class="homeButtons">
-		<a href="#liste-espaces" id="goToMap" class="hidden-xs">Réserver un <br> espace de travail</a>
+	<div class="homeButtons hidden-xs">
+		<a href="#liste-espaces" id="goToMap">Réserver un <br> espace de travail</a>
 		<a href="{{ path('becowo_core_community') }}" class="deux">Rencontrer la <br> communauté</a>
 		<a href="#declare" id="goToDeclare">Proposer un <br> espace</a>
+	</div>
+
+	<div class="homeButtons hidden-lg hidden-md">
+		<a href="#liste-espaces" id="goToMap">Réserver un <br> espace de travail</a>
+		<a href="{{ path('becowo_core_community') }}">Rencontrer la <br> communauté</a>
 	</div>
 </div>

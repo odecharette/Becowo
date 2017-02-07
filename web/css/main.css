@@ -634,18 +634,35 @@ footer{
   font-size: 26pt;
   font-weight: bold;
 }
-#home-image .homeIcon{
+/*#home-image .homeIcon{
   position: absolute;
   top: 20%;
   left: calc((100% - 579px)/2);
   outline: 0;
-}
+}*/
 #home-image .deux{
   margin: 0px 100px 0 100px;
 }
+@media (max-width: 767px){
+  #home-image .homeButtons a{
+    width: 46%;
+    padding: 3px;
+  }
+  #home-image .homeButtons{
+    top: 53%;
+  }
+}
+@media (min-width: 768px){
+  #home-image .homeButtons a{
+    width: 17%;
+    padding: 10px 20px;
+  }
+  #home-image .homeButtons{
+    top: 75%;
+  }
+}
 #home-image .homeButtons{
   position: absolute;
-  top: 75%;
   outline: 0;
   width: 100%;
   text-align: center;
@@ -653,11 +670,10 @@ footer{
 #home-image .homeButtons a{
   background-color: var(--my-green);
   color: white;
-  padding: 10px 20px;
+  
   text-align: center;
   border-radius: 10px;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.5);
-  width: 17%;
 }
 #home-image .homeButtons a:hover, #home-image .homeButtons a:active{
   text-decoration: none;
@@ -699,10 +715,17 @@ footer{
   font-size: 16pt;
 }
 }
-
-
+@media (max-width: 767px){
+  #vignette{
+    width: 95%;
+  }
+}
+@media (min-width: 768px){
+  #vignette{
+    width: 29%;
+  }
+}
 #vignette{
-  width: 29%;
   display: inline-block;
   margin: 20px 2%;
   vertical-align: top;
@@ -799,11 +822,19 @@ footer{
   height: 30px;
   margin: 0 2px;
 }
-
+@media (max-width: 767px){
+  #vignette .pub{
+    font-size: 14pt;
+  }
+}
+@media (min-width: 768px){
+  #vignette .pub{
+    font-size: 20pt;
+  }
+}
 #vignette .pub{
   background-color: var(--my-green);
     color: white;
-    font-size: 20pt;
     height: 310px;
     width: 100%;
     top: 0;
