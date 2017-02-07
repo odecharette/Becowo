@@ -1533,7 +1533,7 @@ footer{
 }
 @media (min-width: 992px){
  #calendarContainer .month-wrapper{
-  width: 130% !important;
+  width: 131% !important;
 }
 }
 @media (min-width: 1200px){
@@ -2602,8 +2602,11 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
     width: 180px !important;
   }
 }
-#bookingPage .rating, #paiementPage .rating{
-  margin-left: 20px;
+@media (min-width: 1100px)
+{
+  #bookingPage .rating, #paiementPage .rating{
+    margin-left: 20px;
+  }
 }
 #bookingPage .star-full,#bookingPage .star-empty, #paiementPage .star-full, #paiementPage .star-empty{
   font-size: 16px !important;
@@ -2614,13 +2617,19 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   width: 80%;
 }
 
+@media (min-width: 1100px)
+{
+  #bookingPage #price{
+    font-size: 14pt;
+  }
+}
 #bookingPage #price{
   background-color: var(--my-blue);
   color: white;
   line-height: 50px;
   display: block;
   text-align: center;
-  font-size: 14pt;
+  font-size: 12pt;
 }
 
 #bookingPage button{
