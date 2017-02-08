@@ -254,6 +254,15 @@ class Workspace
      */
     private $favoritePictureUrl;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="horaire_calme", type="string", length=255, nullable=true)
+     *
+     */
+    private $horaireCalme;
+
     /**
      * Constructor
      */
@@ -1043,6 +1052,30 @@ class Workspace
     public function getFavoritePictureUrl()
     {
         return $this->favoritePictureUrl;
+    }
+
+    /**
+     * Set horaireCalme
+     *
+     * @param string $horaireCalme
+     *
+     * @return Workspace
+     */
+    public function setHoraireCalme($horaireCalme)
+    {
+        $this->horaireCalme = $horaireCalme;
+
+        return $this;
+    }
+
+    /**
+     * Get horaireCalme
+     *
+     * @return string
+     */
+    public function getHoraireCalme()
+    {
+        return $this->horaireCalme;
     }
 
     public function __toString()

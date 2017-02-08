@@ -127,7 +127,7 @@
 						{% endif %}
 					</div>
 					<div id="stars">
-						{% if wsInfo.ws.voteAverage != null %}
+						{% if wsInfo.ws.voteAverage > 0 %}
 							<img src="{{ asset('images/icons/star')}}{{wsInfo.ws.voteAverage|round}}.png" alt="Vote">
 						{% endif %}
 					</div>
@@ -179,12 +179,7 @@
 				</td>
 				</table>
 				<div id="bonus">
-					{% if wsInfo.ws.category == 'Café Wifi' %}
-						Tous nos cafés wifi sont testés et approuvés ! <br>
-						Internet, prise, confort
-					{% else %}
-						{{wsInfo.ws.descriptionBonus}}
-					{% endif %}
+					{{wsInfo.ws.descriptionBonus}}
 				</div>
 			 </div> {# end vignette #}
              
