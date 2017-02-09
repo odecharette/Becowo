@@ -1473,11 +1473,16 @@ footer{
   font-weight: bold;
   color: var(--my-red);
 }
+#Réservation .capacity{
+  font-size: 14pt;
+}
 #Réservation #formules{
   padding-left: 0px;
+  font-size: 14pt;
 }
 #Réservation i{
   color: var(--my-blue);
+  font-size: 16pt;
 }
 #Réservation #btnResa{
   color: white;
