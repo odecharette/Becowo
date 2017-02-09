@@ -13,7 +13,9 @@ class PriceRepository extends EntityRepository
 		$qb->select('p, w')
 		   ->Join('p.workspaceHasOffice', 'w')
 		   ->where('w.workspace = :ws')
-		   ->setParameter('ws', $ws);
+		   ->setParameter('ws', $ws)
+		   ->addOrderBy('w.office', 'ASC', '1')
+		   ->addOrderBy('w.desk_qty', 'ASC');
 
 		return $qb->getQuery()->getResult();
 	}
