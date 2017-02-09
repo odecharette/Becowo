@@ -42,12 +42,14 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    		<div class="col-lg-6 col-md-5 col-xs-12">
 		    			<span class="office-name" id="{{priceandoffice.workspaceHasOffice.name}}">{{priceandoffice.workspaceHasOffice.name}}</span> - 
 		    			{% if priceandoffice.WorkspaceHasOffice.office.name == 'Open space'%}
-		    			<span class="capacity">Quantité : {{priceandoffice.workspaceHasOffice.deskQty}} </span>
-		    			<i class="fa fa-briefcase" aria-hidden="true"></i>
+			    			<span class="capacity">Quantité : {{priceandoffice.workspaceHasOffice.deskQty}} </span>
+			    			<i class="fa fa-briefcase" aria-hidden="true"></i>
 		    			{% else %}
-		    			<span class="capacity">Capacité : {{priceandoffice.workspaceHasOffice.deskQty}} </span>
-		    			<i class="fa fa-male" aria-hidden="true"></i>
+			    			<span class="capacity">Capacité : {{priceandoffice.workspaceHasOffice.deskQty}} </span>
+			    			<i class="fa fa-male" aria-hidden="true"></i>
 		    			{% endif %}
+		    			<br>
+		    			{{priceandoffice.WorkspaceHasOffice.office.name}}
 		    			<br><br>
 		    			{% if priceandoffice.priceHour > 0 or priceandoffice.priceHalfDay > 0 or priceandoffice.priceDay > 0 or priceandoffice.priceMonth > 0 %}
 			    			<div class="row">
