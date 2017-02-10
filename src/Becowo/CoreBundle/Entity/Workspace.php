@@ -40,6 +40,14 @@ class Workspace
      */
     private $descriptionBonus;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_like", type="string", length=255, nullable=true)
+     */
+    private $descriptionLike;
+
     /**
      * @var string
      *
@@ -1076,6 +1084,31 @@ class Workspace
     public function getHoraireCalme()
     {
         return $this->horaireCalme;
+    }
+
+
+    /**
+     * Set descriptionLike
+     *
+     * @param string $descriptionLike
+     *
+     * @return Workspace
+     */
+    public function setDescriptionLike($descriptionLike)
+    {
+        $this->descriptionLike = $descriptionLike;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionLike
+     *
+     * @return string
+     */
+    public function getDescriptionLike()
+    {
+        return $this->descriptionLike;
     }
 
     public function __toString()
