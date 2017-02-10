@@ -789,6 +789,9 @@ footer{
   right: 0;
   bottom: -5%;
 }
+#vignette #btn_decouvrir i{
+  margin-right: 10px;
+}
 #vignette .btn_vignette{
   background-color: var(--my-green);
   border : var(--my-green-strong);

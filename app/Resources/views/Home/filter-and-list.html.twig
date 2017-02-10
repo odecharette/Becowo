@@ -133,7 +133,16 @@
 					</div>
 					<div id="btn_decouvrir">
 						{% if offerZen %}
-							<button type="button" class="btn_vignette">Découvrir</button>
+							<button type="button" class="btn_vignette">
+								{% if wsInfo.ws.category == 'Coworking' %}
+									<i class="fa fa-home"></i>
+								{% elseif wsInfo.ws.category == 'Café Wifi' %}
+									<i class="fa fa-coffee"></i>
+								{% elseif wsInfo.ws.category == 'Centre d\'affaires' %}
+									<i class="fa fa-building"></i>
+								{% endif %}
+								Découvrir</button>
+								
 						{% else %}
 							<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>
 							<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
