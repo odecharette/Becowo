@@ -1,23 +1,15 @@
 <div id="liste-espaces"></div>
 
-<div class="container-fluid">
+<div class="container-fluid">	
+	<div id="WsFilters">
 
-		
-		<div id="WsFilters">
-   
-            <!-- Filter panel -->
-            <div class="jplist-panel">	
+        <!-- Filter panel -->
+        <div class="jplist-panel">	
 
-            <div class="row" id="filtersBar">
-            
-           {#  <div class="row text-center titles">
-            	<div class="col-lg-4"><span>Ville des Hauts de France</span></div>
-            	<div class="col-lg-4"><span>Type d'espace de travail</span></div>
-            	<div class="col-lg-4"><span>Suivez l'arrivée de nouveaux espaces</span></div>
-            </div> #}
-            <div class="row">
-            	<div class="col-lg-4 col-md-5">
-            		<!-- checkbox dropdown -->
+        <div class="row" id="filtersBar">
+	        <div class="row">
+	        	<div class="col-lg-4 col-md-5">
+	        		<!-- checkbox dropdown -->
 			        <div 
 			            class="jplist-checkbox-dropdown"
 			            data-control-type="checkbox-dropdown" 
@@ -40,7 +32,7 @@
 			        </div>
 			    </div>	
 			    <div class="col-lg-4 col-md-7">
- 				<!-- checkbox path filters -->
+					<!-- checkbox path filters -->
 	      			<div 
 				        class="jplist-group"
 				        data-control-type="checkbox-group-filter"
@@ -81,144 +73,142 @@
 					</div>
 					{# Fin modal #}
 	        	</div>
-      		</div>
-            </div>	
+	  		</div>
+        </div>	
 
-             
+		</div>
 
-   			</div>
+        <!-- Filtered data -->   
+        <div class="row">
+        <div class="list">
 
-            <!-- Filtered data -->   
-            <div class="row">
-            <div class="list">
+       	{% for wsInfo in wsFullInfo %}
 
-           	{% for wsInfo in wsFullInfo %}
-
-			{% set offerZen = false %}
-			{% for o in wsInfo.WsHasOffers %}
-				{% if o.offer.name == 'Zen' %}
-					{% set offerZen = true %}
-				{% endif %}
-			{% endfor %}
-
-			{% if loop.index > 5 %}
-				<div class="list-item" id="vignette" style="display:none;">
-			{% else %}
-				<div class="list-item" id="vignette">
+		{% set offerZen = false %}
+		{% for o in wsInfo.WsHasOffers %}
+			{% if o.offer.name == 'Zen' %}
+				{% set offerZen = true %}
 			{% endif %}
-				{# Filtered class #}
-				<span hidden="true" class="{{wsInfo.ws.city|lower|replace({"'": ""," ":""})}}"></span>
-				<span hidden="true" class="{{wsInfo.ws.category|lower|replace({"'": ""," ":""})}}"></span>
-				{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
-				<div id="pic">
-					<div id="favoritePicture">
-						{% if wsInfo.ws.favoritePictureUrl %}
-							<img src="{{ asset('images/Workspaces/')}}{{wsInfo.ws.name}}/{{wsInfo.ws.favoritePictureUrl}}" alt="{{wsInfo.ws.name}}">
-						{% endif %}
-					</div>
-					<div id="price">
-						{% if wsInfo.ws.category == 'Café Wifi' %}
-							Gratuit
-						{% else %}
-							A partir de {{wsInfo.ws.lowestPrice}} <sup>€</sup>
-							{% if offerZen %}
-								 <i class="fa fa-bolt" aria-hidden="true"></i>
-							{% endif %}
-						{% endif %}
-					</div>
-					<div id="stars">
-						{% if wsInfo.ws.voteAverage > 0 %}
-							<img src="{{ asset('images/icons/star')}}{{wsInfo.ws.voteAverage|round}}.png" alt="Vote">
-						{% endif %}
-					</div>
-					<div id="btn_decouvrir">
+		{% endfor %}
+
+		{% if loop.index > 5 %}
+			<div class="list-item" id="vignette" style="display:none;">
+		{% else %}
+			<div class="list-item" id="vignette">
+		{% endif %}
+			{# Filtered class #}
+			<span hidden="true" class="{{wsInfo.ws.city|lower|replace({"'": ""," ":""})}}"></span>
+			<span hidden="true" class="{{wsInfo.ws.category|lower|replace({"'": ""," ":""})}}"></span>
+			{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
+			<div id="pic">
+				<div id="favoritePicture">
+					{% if wsInfo.ws.favoritePictureUrl %}
+						<img src="{{ asset('images/Workspaces/')}}{{wsInfo.ws.name}}/{{wsInfo.ws.favoritePictureUrl}}" alt="{{wsInfo.ws.name}}">
+					{% endif %}
+				</div>
+				<div id="price">
+					{% if wsInfo.ws.category == 'Café Wifi' %}
+						Gratuit
+					{% else %}
+						A partir de {{wsInfo.ws.lowestPrice}} <sup>€</sup>
 						{% if offerZen %}
-							<button type="button" class="btn_vignette">
-								{% if wsInfo.ws.category == 'Coworking' %}
-									<i class="fa fa-home"></i>
-								{% elseif wsInfo.ws.category == 'Café Wifi' %}
-									<i class="fa fa-coffee"></i>
-								{% elseif wsInfo.ws.category == 'Centre d\'affaires' %}
-									<i class="fa fa-building"></i>
-								{% endif %}
-								Découvrir</button>
-								
-						{% else %}
-							<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>
-							<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				    			<div class="modal-dialog">
-				        			<div class="modal-content">
-							            <div class="modal-header modal-header-info">
-							                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-							                <h4 class="modal-title">Réclamer cet espace</h4>
-							            </div>
-										<form method="POST" action="{{ path('becowo_core_vote_zen', { 'id' : wsInfo.ws.id }) }}" id="form_voteZen">
-							            <div class="modal-body">
-							                <p>La réservation en ligne n'est malheureusement pas disponible chez {{wsInfo.ws.name}}. <br>
-							                Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à {{wsInfo.ws.name}} car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"
-											</p>
-											Votre email * : <input type="email" name="emailVote" required="true" width="200px">
-											<p>Nous vous préviendrons dès que {{wsInfo.ws.name}} sera disponible sur Becowo.</p>
-											<div id="error-{{wsInfo.ws.id}}"></div>
-							            </div>
-							            <div class="modal-footer">
-											<button type="submit" id="voteZen-{{wsInfo.ws.id}}" class="modal_valid">Je réclame !</button>
-							            </div>
-										</form>	
-				        			</div>
-				    			</div>
-							</div>
+							 <i class="fa fa-bolt" aria-hidden="true"></i>
 						{% endif %}
-					</div>
+					{% endif %}
 				</div>
-				{% if offerZen %}</a>{% endif %}
-
-				<table>
-				<td id="address">
-					<strong id="WSname">{{wsInfo.ws.name}}</strong> <br>
-					<span class="city">{{wsInfo.ws.city|capitalize}}</span>
-				</td>
-				<td id="listeLogo">
-					{% for wha in wsInfo.amenities %}
-						{% if loop.index < 6 %}
-							{% if loop.index == 5 %} <span class="tooltips hidden-md"> {% else %} <span class="tooltips"> {% endif %}
-							<img src="{{ asset('images/icons/amenities/Bleu/')}}{{wha.amenities.urlLogo}}" alt="{{wha.amenities.name}}') }}"> <span>{{wha.amenities.name}}</span></span>
-						{% endif %}
-					{% endfor %}
-				</td>
-				</table>
-				<div id="bonus">
-					{{wsInfo.ws.descriptionBonus}}
+				<div id="stars">
+					{% if wsInfo.ws.voteAverage > 0 %}
+						<img src="{{ asset('images/icons/star')}}{{wsInfo.ws.voteAverage|round}}.png" alt="Vote">
+					{% endif %}
 				</div>
-			 </div> {# end vignette #}
-             
-            {% endfor %}
+				<div id="btn_decouvrir">
+					{% if offerZen %}
+						<button type="button" class="btn_vignette">
+							{% if wsInfo.ws.category == 'Coworking' %}
+								<i class="fa fa-home"></i>
+							{% elseif wsInfo.ws.category == 'Café Wifi' %}
+								<i class="fa fa-coffee"></i>
+							{% elseif wsInfo.ws.category == 'Centre d\'affaires' %}
+								<i class="fa fa-building"></i>
+							{% endif %}
+							Découvrir</button>
+							
+					{% else %}
+						<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>
+						<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    			<div class="modal-dialog">
+			        			<div class="modal-content">
+						            <div class="modal-header modal-header-info">
+						                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+						                <h4 class="modal-title">Réclamer cet espace</h4>
+						            </div>
+									<form method="POST" action="{{ path('becowo_core_vote_zen', { 'id' : wsInfo.ws.id }) }}" id="form_voteZen">
+						            <div class="modal-body">
+						                <p>La réservation en ligne n'est malheureusement pas disponible chez {{wsInfo.ws.name}}. <br>
+						                Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à {{wsInfo.ws.name}} car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"
+										</p>
+										Votre email * : <input type="email" name="emailVote" required="true" width="200px">
+										<p>Nous vous préviendrons dès que {{wsInfo.ws.name}} sera disponible sur Becowo.</p>
+										<div id="error-{{wsInfo.ws.id}}"></div>
+						            </div>
+						            <div class="modal-footer">
+										<button type="submit" id="voteZen-{{wsInfo.ws.id}}" class="modal_valid">Je réclame !</button>
+						            </div>
+									</form>	
+			        			</div>
+			    			</div>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+			{% if offerZen %}</a>{% endif %}
 
-            {# On ajoute un item de pub #}
-            <div class="list-item" id="vignette">
-            	{% for city in listCities %}
-            		<span hidden="true" class="{{city|lower|replace({"'": ""," ":""})}}"></span>
-            	{% endfor %}
-				<span hidden="true" class="coworking"></span>
-				<span hidden="true" class="caféwifi"></span>
-				<span hidden="true" class="centredaffaires"></span>
-            	<div class="pub">
-            		<div class="texte">Vous ne trouvez pas votre bonheur ? <br> <br> Likez la page Facebook pour rester informé de l'arrivée de nouveaux espaces. <br>
-            			<br>
-            		<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" ><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
-            	</div>
-            	</div>
-            </div>
-           	</div>
-           </div>
-   
-           <!-- no results found -->
-           <div class="row">
-           <div class="jplist-no-results">
-              <p>Aucun résultat</p>
-           </div>
-  	 		</div>
-        </div>		
+			<table>
+			<td id="address">
+				<strong id="WSname">{{wsInfo.ws.name}}</strong> <br>
+				<span class="city">{{wsInfo.ws.city|capitalize}}</span>
+			</td>
+			<td id="listeLogo">
+				{% for wha in wsInfo.amenities %}
+					{% if loop.index < 6 %}
+						{% if loop.index == 5 %} <span class="tooltips hidden-md"> {% else %} <span class="tooltips"> {% endif %}
+						<img src="{{ asset('images/icons/amenities/Bleu/')}}{{wha.amenities.urlLogo}}" alt="{{wha.amenities.name}}') }}"> <span>{{wha.amenities.name}}</span></span>
+					{% endif %}
+				{% endfor %}
+			</td>
+			</table>
+			<div id="bonus">
+				{{wsInfo.ws.descriptionBonus}}
+			</div>
+		 </div> {# end vignette #}
+         
+        {% endfor %}
+
+        {# On ajoute un item de pub #}
+        <div class="list-item" id="vignette">
+        	{% for city in listCities %}
+        		<span hidden="true" class="{{city|lower|replace({"'": ""," ":""})}}"></span>
+        	{% endfor %}
+			<span hidden="true" class="coworking"></span>
+			<span hidden="true" class="caféwifi"></span>
+			<span hidden="true" class="centredaffaires"></span>
+        	<div class="pub">
+        		<div class="texte">Vous ne trouvez pas votre bonheur ? <br> <br> Likez la page Facebook pour rester informé de l'arrivée de nouveaux espaces. <br>
+        			<br>
+        		<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" ><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
+        	</div>
+        	</div>
+        </div>
+       	</div>
+       </div>
+
+       <!-- no results found -->
+       <div class="row">
+       <div class="jplist-no-results">
+          <p>Aucun résultat</p>
+       </div>
+	 		</div>
+    </div>		
 </div>
 
 <div class="row text-center">

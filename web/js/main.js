@@ -361,9 +361,9 @@ function initMap() {
 }
 
 }
-else if(window.innerWidth >= 900) // PC & tablette
+if(window.innerWidth >= 900) // PC & tablette
 {
-
+console.log('PC et tablette');
 // Gestion des URL distincts pour chaque onglet dans page d'un WS
 $(function(){
   
