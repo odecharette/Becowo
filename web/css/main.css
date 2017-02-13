@@ -735,6 +735,7 @@ footer{
   display: inline-block;
   margin: 20px 2%;
   vertical-align: top;
+  overflow: hidden;
 }
 #vignette #address{
   color: var(--my-black);
