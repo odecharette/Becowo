@@ -1,0 +1,12 @@
+{# TEST Knp paginator #}
+<div id="paginationList">
+<ul>
+	{% for item in listWS.items %}
+    <li>{{item.name}}</li>
+	{% endfor %}
+</ul>
+Total : {{ listWS.getTotalItemCount }}
+<div class="navigation text-center">
+    {{ knp_pagination_render(listWS) }}
+</div>
+</div>

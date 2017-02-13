@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new blackknight467\StarRatingBundle\StarRatingBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
