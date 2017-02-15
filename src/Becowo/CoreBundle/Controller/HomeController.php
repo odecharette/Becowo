@@ -29,12 +29,18 @@ class HomeController extends Controller
     return $this->render('Home/home.html.twig', array('wsFullInfo' => $wsFullInfo, 'listCities' => $listCities));
   }
 
-  public function paginationListAction(Request $request)
+  public function paginationListAction(Request $request, $limit=5)
   {
     // TEST avec paginator
     $em = $this->getDoctrine()->getManager();
 
-    $queryBuilder = $em->getRepository('BecowoCoreBundle:Workspace')->createQueryBuilder('bp');
+    $queryBuilder = $em->getRepository('BecowoCoreBundle:Workspace')->createQueryBuilder('w');
+
+    if($request->query->get('city') != null)
+    {
+      $queryBuilder->andWhere('w.city = :city')
+                  ->setParameter('city', $request->query->get('city'));
+    }
 
     $query = $queryBuilder->getQuery();
 
@@ -43,7 +49,7 @@ class HomeController extends Controller
     $listWS = $paginator->paginate(
         $query, /* query NOT result */
         $request->query->getInt('page')/*page number*/,
-        $request->query->getInt('limit', 5)/*limit per page*/
+        $limit/*limit per page*/
     );
     $listWS->setUsedRoute('becowo_core_list_workspaces');
 
