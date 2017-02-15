@@ -8,7 +8,6 @@
 
 body {
     margin-top: 100px;
-    background-color: #222;
 }
 
 @media(min-width:768px) {
@@ -122,7 +121,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #222;
+        background-color: #00A19A;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -130,12 +129,16 @@ ul.alert-dropdown {
 
     .side-nav>li>a {
         width: 225px;
+        color: white !important;
+    }
+    .side-nav>.active>a {
+        background-color: #20385e !important;
     }
 
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
-        background-color: #000 !important;
+        background-color: #20385e !important;
     }
 }
 
@@ -154,6 +157,16 @@ ul.alert-dropdown {
     color: #fff;
 }
 
+.navbar-inverse{
+    background-color: #20385e !important;
+    border-color: #20385e !important;
+}
+.navbar-inverse .navbar-brand{
+    color: white !important;
+}
+.navbar-fixed-top{
+    border-width: 0 !important;
+}
 /* Flot Chart Containers */
 
 .flot-chart {

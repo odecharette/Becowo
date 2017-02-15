@@ -54,8 +54,8 @@ class ProfileController extends Controller
   	$formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
   	$formBuilder
         ->add('name',   TextType::class)
-    	  ->add('description',   TextareaType::class)
-        ->add('descriptionBonus',   TextType::class)
+    	  // ->add('description',   TextareaType::class)
+       //  ->add('descriptionBonus',   TextType::class)
         ->add('street',   TextType::class)
         ->add('postCode',   TextType::class)
         ->add('city',   TextType::class)
