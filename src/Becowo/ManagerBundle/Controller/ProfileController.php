@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProfileController extends Controller
@@ -96,10 +97,8 @@ class ProfileController extends Controller
   {
     $WsService = $this->get('app.workspace');
     $pics = $WsService->getPicturesByWorkspace($this->getUser()->getWorkspace()->getName());
-    //$pics = $pics[0];
   
     $form = $this->get('form.factory')->create(PictureType::class, $pics[0]);
-
     
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $pics[0]->upload($this->getUser()->getWorkspace()->getName());
@@ -225,6 +224,25 @@ class ProfileController extends Controller
         ;
       $form = $formBuilder->getForm();
 
+      $WsService = $this->get('app.workspace');
+      $timetable = $WsService->getTimesByWorkspace($workspace);
+      $formBuilderTime = $this->get('form.factory')->createBuilder(FormType::class, $timetable);
+      $formBuilderTime
+        ->add('openHour',   TimeType::class, array(
+            'label' => 'Horaire d\'ouverture',
+            'input'  => 'datetime',
+            'widget' => 'choice',
+        ))
+        ->add('closeHour',   TimeType::class, array(
+            'label' => 'Horaire de fermeture',
+            'input'  => 'datetime',
+            'widget' => 'choice',
+        ))
+        ->add('isOpenSaturday',   CheckboxType::class, array('label' => 'Ouvert le Samedi'))
+        ->add('isOpenSunday',   CheckboxType::class, array('label' => 'Ouvert le Dimanche'))
+        ;
+      $formTime = $formBuilderTime->getForm();
+
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $em = $this->getDoctrine()->getManager();
         $em->persist($workspace);
@@ -235,8 +253,19 @@ class ProfileController extends Controller
         return $this->redirectToRoute('becowo_manager_profile_calendar');
       }
 
+      if ($request->isMethod('POST') && $formTime->handleRequest($request)->isValid()) {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($timetable);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+        return $this->redirectToRoute('becowo_manager_profile_calendar');
+      }
+
       return $this->render('Manager/profile/calendar.html.twig', array(
-        'form' => $form->createView()));
+        'form' => $form->createView(),
+        'formTime' => $formTime->createView()));
 
     }
 

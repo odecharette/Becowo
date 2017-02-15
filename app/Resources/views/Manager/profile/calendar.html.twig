@@ -22,7 +22,7 @@
 		</h4>
 		<br>
 		<div class="well well-sm">
-			{{app.user.workspace.openHoursInfo}} <br>
+			{{app.user.workspace.openHoursInfo|nl2br}} <br>
 		</div>
 		<br>
 		<div class="well well-sm">
@@ -71,6 +71,49 @@
 {{ form_rest(form) }}
 {{ form_end(form) }}
 
+{########################################## Timetable #########################################}
+{{ form_start(formTime, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(formTime) }}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="read-timetable">
+		<h4>Horaires
+			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('timetable')"></button>
+		</h4><div class="well well-sm">
+			Ouverture : {{ formTime.openHour.vars.value.hour }} : {{ formTime.openHour.vars.value.minute }} <br>
+			Fermeture : {{ formTime.closeHour.vars.value.hour }} : {{ formTime.closeHour.vars.value.minute }} <br>
+			Ouvert le Samedi : 
+				{% if formTime.isOpenSaturday.vars.value == true %} 
+					<img src={{ asset('/images/icons/box_checked.gif')}} alt="checked">
+				{% else %}
+					<img src={{ asset('/images/icons/box_unchecked.gif')}} alt="unchecked">
+				{% endif %} <br>
+			Ouvert le Dimanche : 
+				{% if formTime.isOpenSunday.vars.value == true %} 
+					<img src={{ asset('/images/icons/box_checked.gif')}} alt="checked">
+				{% else %}
+					<img src={{ asset('/images/icons/box_unchecked.gif')}} alt="unchecked">
+				{% endif %}
+		</div></div>
+		<div class="write-timetable">
+		<h4>Horaires
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('timetable')"></button>
+		</h4>  
+		    {{ form_errors(formTime.openHour) }}
+		    {{ form_widget(formTime.openHour, {'attr': {'class': 'form-control'}}) }}  
+		    {{ form_errors(formTime.closeHour) }}
+		    {{ form_widget(formTime.closeHour, {'attr': {'class': 'form-control'}}) }} 
+		    {{ form_errors(formTime.isOpenSaturday) }}
+		    {{ form_widget(formTime.isOpenSaturday, {'attr': {'class': 'form-control'}}) }} 
+		    {{ form_errors(formTime.isOpenSunday) }}
+		    {{ form_widget(formTime.isOpenSunday, {'attr': {'class': 'form-control'}}) }} 
+		</div>
+	</div>
+</div>
+{{ form_rest(formTime) }}
+{{ form_end(formTime) }}
+
 {% endblock %}
 
 {% block javascripts %}
@@ -78,5 +121,6 @@
 
 	goRead("horaires");
 	goRead("calendar");
+	goRead("timetable");
 	</script>
 {% endblock %}

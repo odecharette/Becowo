@@ -16,7 +16,7 @@
 		{% for pic in pics %}
 		<div class="show-image">
 			<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{pic.url}}" alt="{{pic.alt}}">
-			<a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id}) }}"><button type="button" class="btn btn-danger">Supprimer</button></a>
+			<a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id}) }}">Supprimer</a>
 			<br>
 		</div>
 		{% endfor %}
@@ -33,8 +33,6 @@
 		{{ form_end(form) }} 
 	</div>
 </div>
-<br>
-
 {#######################################################################################################}
 
 
