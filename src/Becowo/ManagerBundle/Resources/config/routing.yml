@@ -23,8 +23,13 @@ becowo_manager_profile_pictures_delete:
     defaults: { _controller: BecowoManagerBundle:Delete:deletePicture }
     methods: GET|POST
 
+becowo_manager_profile_wha_delete:
+    path:     /profile/wha/delete/{id}
+    defaults: { _controller: BecowoManagerBundle:Delete:deleteWorkspaceHasAmenities }
+    methods: GET|POST
+
 becowo_manager_profile_amenities:
-    path:     /profile/equipements
+    path:     /profile/services
     defaults: { _controller: BecowoManagerBundle:Profile:amenities }
     methods: GET|POST
 
@@ -33,9 +38,18 @@ becowo_manager_profile_offices:
     defaults: { _controller: BecowoManagerBundle:Profile:offices }
     methods: GET|POST
 
+becowo_manager_profile_prices:
+    path:     /profile/prix
+    defaults: { _controller: BecowoManagerBundle:Profile:prices }
+    methods: GET|POST
+
 becowo_manager_profile_offices_delete:
     path:     /profile/bureaux/delete/{id}
     defaults: { _controller: BecowoManagerBundle:Delete:deleteWsHasOffice }
+
+becowo_manager_profile_prices_delete:
+    path:     /profile/prix/delete/{id}
+    defaults: { _controller: BecowoManagerBundle:Delete:deletePrices }
 
 becowo_manager_profile_events:
     path:     /profile/events

@@ -8,11 +8,15 @@ use Becowo\CoreBundle\Entity\Workspace;
 use Becowo\CoreBundle\Entity\WorkspaceHasOffice;
 use Becowo\CoreBundle\Entity\Event;
 use Becowo\CoreBundle\Entity\TeamMember;
+use Becowo\CoreBundle\Entity\WorkspaceHasAmenities;
+use Becowo\CoreBundle\Entity\Price;
 use Becowo\CoreBundle\Form\Type\WorkspaceType;
 use Becowo\CoreBundle\Form\Type\PictureType;
 use Becowo\CoreBundle\Form\Type\WorkspaceHasOfficeType;
 use Becowo\CoreBundle\Form\Type\EventType;
+use Becowo\CoreBundle\Form\Type\WorkspaceHasAmenitiesType;
 use Becowo\CoreBundle\Form\Type\TeamMemberType;
+use Becowo\CoreBundle\Form\Type\PriceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -118,18 +122,16 @@ class ProfileController extends Controller
 
   public function amenitiesAction(Request $request)
   {
-  	$workspace = $this->getUser()->getWorkspace();
-  	$formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
-  	$formBuilder
-        ->add('amenities', EntityType::class, array(
-            'class' => 'BecowoCoreBundle:Amenities',
-            'multiple' => true,
-            'expanded' => true));
-    $form = $formBuilder->getForm();
+  	$WsService = $this->get('app.workspace');
+    $WsHasAmenities = $WsService->getAmenitiesByWorkspace($this->getUser()->getWorkspace());
+
+    $WsHasAmenity = new WorkspaceHasAmenities();
+    $WsHasAmenity->setWorkspace($this->getUser()->getWorkspace());
+    $form = $this->get('form.factory')->create(WorkspaceHasAmenitiesType::class, $WsHasAmenity);
 
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
-      $em->persist($workspace);
+      $em->persist($WsHasAmenity);
       $em->flush();
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
@@ -138,33 +140,58 @@ class ProfileController extends Controller
     }
 
   	return $this->render('Manager/profile/amenities.html.twig', array(
-  		'form' => $form->createView()));
+  		'form' => $form->createView(),
+      'WsHasAmenities' => $WsHasAmenities));
   }
 
-  	public function officesAction(Request $request)
-  	{
-  		$WsService = $this->get('app.workspace');
-  		$offices = $WsService->getOfficesByWorkspace($this->getUser()->getWorkspace());
+	public function officesAction(Request $request)
+	{
+		$WsService = $this->get('app.workspace');
+		$offices = $WsService->getOfficesByWorkspace($this->getUser()->getWorkspace());
 
-  		$office = new WorkspaceHasOffice();
-  		$office->setWorkspace($this->getUser()->getWorkspace());
-  		$form = $this->get('form.factory')->create(WorkspaceHasOfficeType::class, $office);
+		$office = new WorkspaceHasOffice();
+		$office->setWorkspace($this->getUser()->getWorkspace());
+		$form = $this->get('form.factory')->create(WorkspaceHasOfficeType::class, $office);
 
-  		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-	      $em = $this->getDoctrine()->getManager();
-	      $em->persist($office);
-	      $em->flush();
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($office);
+      $em->flush();
 
-	      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-	      return $this->redirectToRoute('becowo_manager_profile_offices');
-	    }
+      return $this->redirectToRoute('becowo_manager_profile_offices');
+    }
 
-  		return $this->render('Manager/profile/offices.html.twig', array(
-  		'form' => $form->createView(),
-  		'offices' => $offices));
+		return $this->render('Manager/profile/offices.html.twig', array(
+		'form' => $form->createView(),
+		'offices' => $offices));
 
-  	}
+	}
+
+  public function pricesAction(Request $request)
+  {
+    $WsService = $this->get('app.workspace');
+    $prices = $WsService->getPricesByWorkspace($this->getUser()->getWorkspace());
+
+    $price = new Price();
+    $form = $this->get('form.factory')->create(PriceType::class, $price, array('idWs' => $this->getUser()->getWorkspace()->getId()));
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($price);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      return $this->redirectToRoute('becowo_manager_profile_prices');
+    }
+
+    return $this->render('Manager/profile/prices.html.twig', array(
+    'form' => $form->createView(),
+    'prices' => $prices));
+
+  }
 
   	public function eventsAction(Request $request)
   	{

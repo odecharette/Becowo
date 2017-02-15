@@ -1,0 +1,65 @@
+{% extends 'manager/manager-layout.html.twig' %}
+
+{% block page %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1>Les prix</h1>
+		<hr>
+		<span style="color:red;">Les prix sont exprimés en € HT</span>
+		<br><br>
+	</div>
+</div>
+
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(form) }}
+
+{####################################################### Bureaux #####################################################}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Bureau</th>
+			<th>Prix à l'heure</th>
+			<th>Prix à la demi journée</th>
+			<th>Prix à la journée</th>
+			<th>Prix au mois</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for price in prices %}
+			<tr>
+			 	<td>{{price.workspaceHasOffice.name}}</td>
+			 	<td>{{price.priceHour}}</td>
+				<td>{{price.priceHalfDay}}</td>
+				<td>{{price.priceDay}}</td>
+				<td>{{price.priceMonth}}</td>
+				<td><a href="{{ path('becowo_manager_profile_prices_delete', { 'id': price.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td> 
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+{#########################################################################################################}
+<div class="row">
+    <div class="col-lg-4">
+    	<div class="read-prices">
+    		<button type="button" class="btn btn-primary" onclick="goWrite('prices')">Ajouter un prix</button>
+    	</div>
+    	<div class="write-prices">
+			{{ form_rest(form) }}
+			{{ form_end(form) }}
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('prices')"></button> 
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+
+	goRead("prices");
+	</script>
+{% endblock %}

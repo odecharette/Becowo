@@ -18,8 +18,8 @@
 	<thead>
 		<tr>
 			<th>Type de bureau</th>
-			<th>Quantité</th>
-			<th>Public ?</th>
+			<th>Nom</th>
+			<th>Capacité</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -27,8 +27,8 @@
 		{% for office in offices %}
 			<tr>
 			 	<td>{{office.office.name}}</td>
+			 	<td>{{office.name}}</td>
 				<td>{{office.deskQty}}</td>
-				<td>{% if office.office.isPublic %}<i class="fa fa-check" aria-hidden="true"></i>{% endif %}</td>
 				<td><a href="{{ path('becowo_manager_profile_offices_delete', { 'id': office.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td> 
 			</tr>
 		{% endfor %}

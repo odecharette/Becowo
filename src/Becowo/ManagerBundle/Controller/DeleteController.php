@@ -36,6 +36,36 @@ class DeleteController extends Controller
     return $this->redirectToRoute('becowo_manager_profile_events');
   }
 
+  public function deletePricesAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $price = $em->getRepository('BecowoCoreBundle:Price')->find($id);
+
+    if (!$price) {
+        throw $this->createNotFoundException('No price found for id '.$id);
+    }
+
+    $em->remove($price);
+    $em->flush();
+
+    return $this->redirectToRoute('becowo_manager_profile_events');
+  }
+
+  public function deleteWorkspaceHasAmenitiesAction($id)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $wha = $em->getRepository('BecowoCoreBundle:WorkspaceHasAmenities')->find($id);
+
+    if (!$wha) {
+        throw $this->createNotFoundException('No wha found for id '.$id);
+    }
+
+    $em->remove($wha);
+    $em->flush();
+
+    return $this->redirectToRoute('becowo_manager_profile_amenities');
+  }
+
   public function deleteTeamAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();

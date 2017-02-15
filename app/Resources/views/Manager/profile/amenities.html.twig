@@ -12,35 +12,42 @@
 {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 {{ form_errors(form) }}
 
-{####################################################### Ammenities #####################################################}
+{####################################################### Amenities #####################################################}
+ <table class="table">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Description</th>
+			<th>Label</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for wha in WsHasAmenities %}
+			<tr>
+			 	<td>{{wha.amenities.name}}</td>
+			 	<td>{{wha.description}}</td>
+				<td>{{wha.label}}</td>
+				<td><a href="{{ path('becowo_manager_profile_wha_delete', { 'id': wha.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td> 
+			</tr>
+		{% endfor %}
+	</tbody>
+</table> 
 
 <div class="row">
-	<div class="col-lg-9">
-		<div class="read-amenities">
-		<h4>Les services
-		<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('amenities')"></button></h4>
-			<ul>
-				{% for amenity in app.user.workspace.amenities %}
-					<li>{{amenity.name}}</li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="write-amenities">
-			<h4>Les services
-		    <button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
-			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('amenities')"></button> </h4>
-		    {{ form_errors(form.amenities) }}
-		    {{ form_widget(form.amenities, {'attr': {'class': 'form-control'}}) }} 
-		    <br><br>
-		    <i>Vous proposez un service qui n'est pas référencé ? Veuillez nous le signaler par email. Merci</i>
+    <div class="col-lg-5">
+    	<div class="read-amenities">
+    		<button type="button" class="btn btn-primary" onclick="goWrite('amenities')">Ajouter un service</button>
+    	</div>
+    	<div class="write-amenities">
+			{{ form_rest(form) }}
+			{{ form_end(form) }}
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('amenities')"></button> 
 		</div>
 	</div>
 </div>
-<br>
 
 {#########################################################################################################}
-{{ form_rest(form) }}
-{{ form_end(form) }}
 
 {% endblock %}
 

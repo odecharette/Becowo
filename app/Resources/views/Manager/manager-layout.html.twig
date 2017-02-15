@@ -81,6 +81,9 @@
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_offices' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_profile_offices') }}"> Les bureaux</a>
                     </li>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_profile_prices' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_profile_prices') }}"> Les prix</a>
+                    </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_events' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_profile_events') }}"> Les évènements</a>
                     </li>

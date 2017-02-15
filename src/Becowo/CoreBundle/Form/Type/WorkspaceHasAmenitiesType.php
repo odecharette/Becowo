@@ -6,8 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class WorkspaceHasOfficeType extends AbstractType
+class WorkspaceHasAmenitiesType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,11 +18,11 @@ class WorkspaceHasOfficeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('office', EntityType::class, array(
-                'class' => 'BecowoCoreBundle:Office',
+            ->add('amenities', EntityType::class, array(
+                'class' => 'BecowoCoreBundle:Amenities',
                 'choice_label' => 'name'))
-            ->add('name')
-            ->add('desk_qty')
+            ->add('description', TextAreaType::class)
+            ->add('label', TextType::class)
         ;
     }
     
@@ -30,7 +32,7 @@ class WorkspaceHasOfficeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Becowo\CoreBundle\Entity\WorkspaceHasOffice'
+            'data_class' => 'Becowo\CoreBundle\Entity\WorkspaceHasAmenities'
         ));
     }
 }
