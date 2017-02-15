@@ -23,29 +23,6 @@ class ProfileController extends Controller
 {
   public function viewAction(Request $request)
   {
-  	//////////// TO DO : DELETE
-  	$workspace = $this->getUser()->getWorkspace();	// current WS of connected manager
-
-  	$WsService = $this->get('app.workspace');
-  	$pictureLogo = $WsService->getLogoByWorkspace($workspace->getName());
-  	$listOffices = $WsService->getOfficesByWorkspace($workspace);
-  	
-  	$form = $this->get('form.factory')->create(WorkspaceType::class, $workspace);
-
-  	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($workspace);
-      $em->flush();
-
-      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
-
-      return $this->redirectToRoute('becowo_manager_profile');
-    }
-
-  	return $this->render('Manager/workspace_profile.html.twig', array(
-  		'form' => $form->createView(),
-  		'pictureLogo' => $pictureLogo,
-  		'listOffices' => $listOffices));
   }
 
   public function identiteAction(Request $request)
@@ -59,8 +36,20 @@ class ProfileController extends Controller
         ->add('street',   TextType::class)
         ->add('postCode',   TextType::class)
         ->add('city',   TextType::class)
+        ->add('region',   EntityType::class, array(
+              'class' => 'BecowoCoreBundle:Region',
+              'choice_label' => 'name',))
+        ->add('country',   EntityType::class, array(
+              'class' => 'BecowoCoreBundle:Country',
+              'choice_label' => 'name',))
         ->add('longitude')
         ->add('latitude')
+        ->add('website',   TextType::class)
+        ->add('facebookLink',   TextType::class)
+        ->add('twitterLink',   TextType::class)
+        ->add('instagramLink',   TextType::class)
+        ->add('amenitiesDesc',   TextareaType::class)
+        ->add('arrivalDesc',   TextareaType::class)
     ;
     $form = $formBuilder->getForm();
 

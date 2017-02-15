@@ -81,7 +81,8 @@
     		<h4>Adresse
     			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('adresse')"></button>
 			</h4><div class="well well-sm">
-			{{app.user.workspace.street}}<br>{{app.user.workspace.postCode}}, {{app.user.workspace.city}}
+			{{app.user.workspace.street}}<br>{{app.user.workspace.postCode}}, {{app.user.workspace.city}} <br>
+			{{app.user.workspace.region}}, {{app.user.workspace.country}}
 			</div></div>
 		<div class="write-adresse">
     		<h4>Adresse
@@ -91,9 +92,78 @@
 		    {{ form_row(form.street) }}
 		    {{ form_row(form.postCode) }}
 		    {{ form_row(form.city) }}
+		    {{ form_row(form.region) }}		    
+		    {{ form_row(form.country) }}
 		    Pour les identifier les coordonnées géographiques, rendez-vous sur <a href="http://www.coordonnees-gps.fr/" target="_blanck">www.coordonnees-gps.fr</a>
 		    {{ form_row(form.longitude) }}
 		    {{ form_row(form.latitude) }}
+		</div>
+	</div>
+</div>
+{####################################################### Les sites #####################################################}
+<br>
+<div class="row">
+	<div class="col-lg-12">
+    	<div class="read-sites">
+    		<h4>Vos sites
+    			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('sites')"></button>
+			</h4><div class="well well-sm">
+			Site : {{app.user.workspace.website}}<br>
+			Facebook : {{app.user.workspace.facebookLink}}<br>
+			Twitter : {{app.user.workspace.twitterLink}}<br>
+			Instagram : {{app.user.workspace.instagramLink}}<br>
+			</div></div>
+		<div class="write-sites">
+    		<h4>Vos sites
+		    	<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+				<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('sites')"></button> 
+			</h4>
+		    {{ form_row(form.website) }}
+		    {{ form_row(form.facebookLink) }}
+		    {{ form_row(form.twitterLink) }}
+		    {{ form_row(form.instagramLink) }}	
+		</div>
+	</div>
+</div>
+{############################################### Description des services #################################################}
+<br>
+<div class="row">
+	<div class="col-lg-12">
+    	<div class="read-amenitiesDesc">
+    		<h4>Description des services
+    			<small>Décrivez ici vos services, (onglet Services de votre page)</small>
+    			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('amenitiesDesc')"></button>
+			</h4><div class="well well-sm">
+			{{app.user.workspace.amenitiesDesc}}<br>
+			</div></div>
+		<div class="write-amenitiesDesc">
+    		<h4>Description des services
+    			<small>Décrivez ici vos services, (onglet Services de votre page)</small>
+		    	<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+				<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('amenitiesDesc')"></button> 
+			</h4>
+		    {{ form_row(form.amenitiesDesc) }}	
+		</div>
+	</div>
+</div>
+{############################################### Description pour l'arrivée #################################################}
+<br>
+<div class="row">
+	<div class="col-lg-12">
+    	<div class="read-arrivalDesc">
+    		<h4>Procédure d'arrivée
+    			<small>Décrivez ici les informations à donner au coworker pour entrer dans les lieux (envoyé dans le mail de confirmation de la réservation) </small>
+    			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('arrivalDesc')"></button>
+			</h4><div class="well well-sm">
+			{{app.user.workspace.arrivalDesc}}<br>
+			</div></div>
+		<div class="write-arrivalDesc">
+    		<h4>Procédure d'arrivée
+    			<small>Décrivez ici les informations à donner au coworker pour entrer dans les lieux (envoyé dans le mail de confirmation de la réservation) </small>
+		    	<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+				<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('arrivalDesc')"></button> 
+			</h4>
+		    {{ form_row(form.arrivalDesc) }}	
 		</div>
 	</div>
 </div>
@@ -110,5 +180,8 @@
 	goRead("description");
 	goRead("descriptionBonus");
 	goRead("adresse");
+	goRead("sites");
+	goRead("amenitiesDesc");
+	goRead("arrivalDesc");
 	</script>
 {% endblock %}
