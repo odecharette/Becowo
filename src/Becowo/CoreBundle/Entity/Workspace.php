@@ -213,10 +213,12 @@ class Workspace
 
 
     /**
-     * @var string
+     * @var \Becowo\CoreBundle\Entity\Region
      *
-     * @ORM\Column(name="region", type="string", length=255, nullable=false)
-     *
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Region")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * })
      */
     private $region;
 
@@ -920,11 +922,11 @@ class Workspace
     /**
      * Set region
      *
-     * @param string $region
+     * @param \Becowo\CoreBundle\Entity\region $region
      *
      * @return Workspace
      */
-    public function setRegion($region)
+    public function setRegion(\Becowo\CoreBundle\Entity\Region $region = null)
     {
         $this->region = $region;
 
@@ -934,7 +936,7 @@ class Workspace
     /**
      * Get region
      *
-     * @return string
+     * @return \Becowo\CoreBundle\Entity\Region
      */
     public function getRegion()
     {
