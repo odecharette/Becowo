@@ -97,6 +97,13 @@
                     {% if app.request.attributes.get('_route') == 'becowo_manager_booking_add' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_booking_add') }}"> Ajouter une réservation</a>
                     </li>
+                <h3><i class="fa fa-comments" aria-hidden="true"></i> Les avis</h3>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_vote' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_vote') }}"> Les votes</a>
+                    </li>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_comment' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_comment') }}"> Les commentaires</a>
+                    </li>
                 <h3><i class="fa fa-fw fa-paperclip"></i> Documents</h3>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_contracts' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_contracts') }}"> Contrats</a>

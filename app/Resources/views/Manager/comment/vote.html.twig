@@ -1,0 +1,106 @@
+{% extends 'manager/manager-layout.html.twig' %}
+
+{% block page %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1>Les votes</h1>
+		<hr>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		Votre moyenne générale est de <img src="{{ asset('images/icons/star')}}{{voteAvg|round()}}.png" alt="{{voteAvg|round()}} / 5" width="150px"> 
+	</div>
+	<br><br>
+</div>
+<div class="row">
+	<div class="col-lg-3">
+		<div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-thumbs-up fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{score1Avg|round(2)}}</div>
+                        <div>Connectivité</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="col-lg-3">
+		<div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-thumbs-up fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{score2Avg|round(2)}}</div>
+                        <div>Services</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="col-lg-3">
+		<div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-thumbs-up fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{score3Avg|round(2)}}</div>
+                        <div>Cosy/Confort</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="col-lg-3">
+		<div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-thumbs-up fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{score4Avg|round(2)}}</div>
+                        <div>Ambiance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Connectivité</th>
+			<th>Services</th>
+			<th>Cosy/Confort</th>
+			<th>Ambiance</th>
+			<th>Note globale</th>
+			<th>Coworker</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for comment in comments %}
+			<tr>
+			 	<td>{{comment.postedOn|date('d/m/Y')}}</td>
+			 	<td>{{comment.score1|round(2)}}</td>
+				<td>{{comment.score2|round(2)}}</td>
+				<td>{{comment.score3|round(2)}}</td>
+				<td>{{comment.score4|round(2)}}</td>
+				<td>{{comment.scoreAvg|round(2)}} / 5</td> 
+				<td><a href="{{ path('becowo_member_public_profile', {id: comment.member.id}) }}" target="_blank">{{comment.member.firstname}} {{comment.member.name}}</a></td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

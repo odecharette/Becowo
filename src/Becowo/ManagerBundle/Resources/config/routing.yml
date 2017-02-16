@@ -94,3 +94,11 @@ becowo_manager_contracts:
 becowo_manager_bills:
     path:     /bills
     defaults: { _controller: BecowoManagerBundle:Bills:view }
+
+becowo_manager_comment:
+    path:     /comment
+    defaults: { _controller: BecowoManagerBundle:Comment:view }
+
+becowo_manager_vote:
+    path:     /vote
+    defaults: { _controller: BecowoManagerBundle:Comment:vote }

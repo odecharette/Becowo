@@ -43,6 +43,46 @@ class CommentRepository extends EntityRepository
 		return $qb->getQuery()->getSingleScalarResult();
 	}
 
+	public function getAverageScore1($ws)
+	{
+		$qb = $this->createQueryBuilder('c');
+		$qb->select('AVG(c.score1) AS Average')
+			->where('c.workspace = :ws')
+			->setParameter('ws', $ws);
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	public function getAverageScore2($ws)
+	{
+		$qb = $this->createQueryBuilder('c');
+		$qb->select('AVG(c.score2) AS Average')
+			->where('c.workspace = :ws')
+			->setParameter('ws', $ws);
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	public function getAverageScore3($ws)
+	{
+		$qb = $this->createQueryBuilder('c');
+		$qb->select('AVG(c.score3) AS Average')
+			->where('c.workspace = :ws')
+			->setParameter('ws', $ws);
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	public function getAverageScore4($ws)
+	{
+		$qb = $this->createQueryBuilder('c');
+		$qb->select('AVG(c.score4) AS Average')
+			->where('c.workspace = :ws')
+			->setParameter('ws', $ws);
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
 	public function getVotesByWorkspace($ws)
 	{
 		$qb = $this->createQueryBuilder('c');

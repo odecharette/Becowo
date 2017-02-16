@@ -1,0 +1,33 @@
+{% extends 'manager/manager-layout.html.twig' %}
+
+{% block page %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1>Les commentaires</h1>
+		<hr>
+	</div>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Coworker</th>
+			<th>Commentaire</th>
+			<th>Note globale</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for comment in comments %}
+			<tr>
+			 	<td>{{comment.postedOn|date('d/m/Y')}}</td>
+			 	<td><a href="{{ path('becowo_member_public_profile', {id: comment.member.id}) }}" target="_blank">{{comment.member.firstname}} {{comment.member.name}}</a></td>
+				<td>{{comment.post}}</td>
+				<td>{{comment.scoreAvg}} / 5</td> 
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

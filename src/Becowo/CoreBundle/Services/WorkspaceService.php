@@ -197,6 +197,34 @@ class WorkspaceService
         return $repo->getAverage($ws);
     }
 
+
+    public function getAverageScore1ByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
+        return $repo->getAverageScore1($ws);
+    }
+
+
+    public function getAverageScore2ByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
+        return $repo->getAverageScore2($ws);
+    }
+
+
+    public function getAverageScore3ByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
+        return $repo->getAverageScore3($ws);
+    }
+
+
+    public function getAverageScore4ByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
+        return $repo->getAverageScore4($ws);
+    }
+
     public function getVotesByWorkspace(Workspace $ws)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Comment');
