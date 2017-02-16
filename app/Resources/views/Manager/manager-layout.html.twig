@@ -94,6 +94,9 @@
                     {% if app.request.attributes.get('_route') == 'becowo_manager_booking' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_booking') }}"> Les réservations</a>
                     </li>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_booking_add' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_booking_add') }}"> Ajouter une réservation</a>
+                    </li>
                 <h3><i class="fa fa-fw fa-paperclip"></i> Documents</h3>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_contracts' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_contracts') }}"> Contrats</a>

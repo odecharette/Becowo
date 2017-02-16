@@ -82,6 +82,11 @@ becowo_manager_booking:
     path:     /booking
     defaults: { _controller: BecowoManagerBundle:Booking:view }
 
+becowo_manager_booking_add:
+    path:     /booking/add
+    defaults: { _controller: BecowoManagerBundle:Booking:add }
+    methods: GET|POST
+
 becowo_manager_contracts:
     path:     /contracts
     defaults: { _controller: BecowoManagerBundle:Contracts:view }

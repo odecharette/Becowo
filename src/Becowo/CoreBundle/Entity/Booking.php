@@ -74,7 +74,7 @@ class Booking
     /**
      * @var string
      *
-     * @ORM\Column(name="duration_day", type="string", length=20, nullable=false)
+     * @ORM\Column(name="duration_day", type="string", length=20, nullable=true)
      */
     private $durationDay;
 
@@ -118,7 +118,7 @@ class Booking
      *
      * @ORM\ManyToOne(targetEntity="Becowo\MemberBundle\Entity\Member")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="member_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="member_id", referencedColumnName="id", nullable=true)
      * })
      */
     private $member;

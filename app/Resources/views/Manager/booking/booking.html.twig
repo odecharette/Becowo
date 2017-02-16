@@ -29,7 +29,12 @@
             <td>{{booking.startDate|date("d/m/Y")}}</td>
             <td>{{booking.endDate|date("d/m/Y")}}</td>
             <td>{{booking.workspaceHasOffice.name}}</td>
-            <td><a href="{{ path('becowo_member_public_profile', {id: booking.member.id}) }}" target="_blank">{{booking.member.firstname}} {{booking.member.name}}</a></td>
+            <td>
+                {% if booking.member != null %}
+                    <a href="{{ path('becowo_member_public_profile', {id: booking.member.id}) }}" target="_blank">{{booking.member.firstname}} {{booking.member.name}}</a></td>
+                {% else %}
+                    Réservation interne
+                {% endif %}
             {% if booking.status.name == 'Réservation validée' %}
                 <td class="StatusGreen">{{booking.status.name}}</td>
             {% elseif booking.status.name == 'Paiement validé' %}

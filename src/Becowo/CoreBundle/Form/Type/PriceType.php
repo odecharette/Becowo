@@ -31,9 +31,12 @@ class PriceType extends AbstractType
                 'choice_label' => 'name'))
             ->add('priceHour', NumberType::class, array(
                 'scale' => 2))
-            ->add('priceHalfDay')
-            ->add('priceDay')
-            ->add('priceMonth')
+            ->add('priceHalfDay', NumberType::class, array(
+                'scale' => 2))
+            ->add('priceDay', NumberType::class, array(
+                'scale' => 2))
+            ->add('priceMonth', NumberType::class, array(
+                'scale' => 2))
         ;
     }
     
