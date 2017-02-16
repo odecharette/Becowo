@@ -4,6 +4,7 @@ namespace Becowo\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * TeamMember
@@ -40,6 +41,7 @@ class TeamMember
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @Assert\Email()
      */
     private $email;
 
@@ -68,6 +70,8 @@ class TeamMember
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=10, nullable=true)
+     * @Assert\Length(min = 10, max = 10)
+     * @Assert\Regex(pattern="/\A0\d{9}/", message="Le N° doit commencer par zéro et ne contenir que des chiffres")
      */
     private $phone;
 

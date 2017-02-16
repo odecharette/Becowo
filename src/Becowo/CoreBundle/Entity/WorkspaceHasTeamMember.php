@@ -27,7 +27,7 @@ class WorkspaceHasTeamMember
   private $workspace;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\TeamMember", fetch="EAGER")
+   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\TeamMember", cascade={"persist"}, fetch="EAGER")
    * @ORM\JoinColumn(nullable=false)
    */
   private $teamMember;

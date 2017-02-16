@@ -9,12 +9,14 @@ use Becowo\CoreBundle\Entity\WorkspaceHasOffice;
 use Becowo\CoreBundle\Entity\Event;
 use Becowo\CoreBundle\Entity\TeamMember;
 use Becowo\CoreBundle\Entity\WorkspaceHasAmenities;
+use Becowo\CoreBundle\Entity\WorkspaceHasTeamMember;
 use Becowo\CoreBundle\Entity\Price;
 use Becowo\CoreBundle\Form\Type\WorkspaceType;
 use Becowo\CoreBundle\Form\Type\PictureType;
 use Becowo\CoreBundle\Form\Type\WorkspaceHasOfficeType;
 use Becowo\CoreBundle\Form\Type\EventType;
 use Becowo\CoreBundle\Form\Type\WorkspaceHasAmenitiesType;
+use Becowo\CoreBundle\Form\Type\WorkspaceHasTeamMemberType;
 use Becowo\CoreBundle\Form\Type\TeamMemberType;
 use Becowo\CoreBundle\Form\Type\PriceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -219,17 +221,22 @@ class ProfileController extends Controller
 
   	public function teamAction(Request $request)
   	{
+      $WsService = $this->get('app.workspace');
+      $WsHasMembers = $WsService->getWsHasTeamMemberByWorkspace($this->getUser()->getWorkspace());
+
+
   		$teamMember = new TeamMember();
-  		$teamMember->addWorkspace($this->getUser()->getWorkspace());
-  		$form = $this->get('form.factory')->create(TeamMemberType::class, $teamMember);
+      $WhTm = new WorkspaceHasTeamMember();
+      $WhTm->setWorkspace($this->getUser()->getWorkspace());
+      $WhTm->setTeamMember($teamMember);
+
+  		$form = $this->get('form.factory')->create(WorkspaceHasTeamMemberType::class, $WhTm);
 
   		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-        $teamMember->upload($this->getUser()->getWorkspace()->getName());
-
 	      $em = $this->getDoctrine()->getManager();
 	      $em->persist($teamMember);
-	      $this->getUser()->getWorkspace()->addTeamMember($teamMember);	// pour la relation Many-to-many
+        $em->persist($WhTm);
 	      $em->flush();
 
 	      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
@@ -238,7 +245,8 @@ class ProfileController extends Controller
 	    }
 
 	    return $this->render('Manager/profile/team.html.twig', array(
-  		'form' => $form->createView()));
+  		'form' => $form->createView(),
+      'WsHasMembers' => $WsHasMembers));
   	}
 
     public function calendarAction(Request $request)

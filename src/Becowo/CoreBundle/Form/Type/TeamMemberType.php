@@ -6,6 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class TeamMemberType extends AbstractType
 {
@@ -16,11 +21,11 @@ class TeamMemberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname')
-            ->add('name')
-            ->add('email')
-            ->add('job')
-            ->add('description')
+            ->add('firstname', TextType::class)
+            ->add('name', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('job', TextType::class)
+            ->add('description', TextareaType::class)
             ->add('phone')
             ->add('file', FileType::class, array('multiple' => false, 'label' => 'Photo de profil'))
         ;

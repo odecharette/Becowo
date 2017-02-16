@@ -24,23 +24,27 @@
 			<th>Photo</th>
 			<th>Description</th>
 			<th>Téléphone</th>
+			<th>Email réservation</th>
+			<th>Email contact</th>
 		</tr>
 	</thead>
 	<tbody>
-		{% for teamMember in app.user.workspace.teamMember %}
+		{% for whm in WsHasMembers %}
 			<tr>
-				<td>{{teamMember.firstname}}</td>
-				<td>{{teamMember.name}}</td>
-				<td>{{teamMember.email}}</td>
-				<td>{{teamMember.job}}</td>
-				{% if teamMember.urlProfilePicture != '' %}
-					<td><img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{teamMember.urlProfilePicture}}" alt="{{teamMember.urlProfilePicture}}" width="50px" height="50px"></td>
+				<td>{{whm.teamMember.firstname}}</td>
+				<td>{{whm.teamMember.name}}</td>
+				<td>{{whm.teamMember.email}}</td>
+				<td>{{whm.teamMember.job}}</td>
+				{% if whm.teamMember.urlProfilePicture != '' %}
+					<td><img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{whm.teamMember.urlProfilePicture}}" alt="{{whm.teamMember.urlProfilePicture}}" width="50px" height="50px"></td>
 				{% else %}
 					<td></td>
 				{% endif %}
-				<td>{{teamMember.description}}</td>
-				<td>{{teamMember.phone}}</td>
-				<td><a href="{{ path('becowo_manager_profile_team_delete', { 'id': teamMember.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td>
+				<td>{{whm.teamMember.description}}</td>
+				<td>{{whm.teamMember.phone}}</td>
+				<td>{% if whm.receiveEmailBooking == true %}Oui{% else %}Non{% endif %}</td>
+				<td>{% if whm.receiveEmailContact == true %}Oui{% else %}Non{% endif %}</td>
+				<td><a href="{{ path('becowo_manager_profile_team_delete', { 'id': whm.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td>
 			</tr>
 		{% endfor %}
 	</tbody>
@@ -50,14 +54,14 @@
 {#########################################################################################################}
 <div class="row">
     <div class="col-lg-5">
-    	<div class="read-events">
-    		<button type="button" class="btn btn-primary" onclick="goWrite('events')">Ajouter un membre à l'équipe</button>
+    	<div class="read-member">
+    		<button type="button" class="btn btn-primary" onclick="goWrite('member')">Ajouter un membre à l'équipe</button>
     	</div>
-    	<div class="write-events">
+    	<div class="write-member">
 			{{ form_rest(form) }}
 			{{ form_end(form) }}
 			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
-			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('events')"></button> 
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('member')"></button> 
 		</div>
 	</div>
 </div>
@@ -66,6 +70,6 @@
 {% block javascripts %}
 	<script>
 
-	goRead("events");
+	goRead("member");
 	</script>
 {% endblock %}

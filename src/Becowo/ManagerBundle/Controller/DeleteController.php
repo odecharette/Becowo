@@ -69,13 +69,19 @@ class DeleteController extends Controller
   public function deleteTeamAction($id)
   {
     $em = $this->getDoctrine()->getEntityManager();
-    $team = $em->getRepository('BecowoCoreBundle:TeamMember')->find($id);
+    $wht = $em->getRepository('BecowoCoreBundle:WorkspaceHasTeamMember')->find($id);
+    $member = $wht->getTeamMember();
 
-    if (!$team) {
-        throw $this->createNotFoundException('No team member found for id '.$id);
+    if (!$wht) {
+        throw $this->createNotFoundException('No ws has team member found for id '.$id);
     }
 
-    $em->remove($team);
+    if (!$member) {
+        throw $this->createNotFoundException('No member found for ws has team member id '.$id);
+    }
+
+    $em->remove($member);
+    $em->remove($wht);
     $em->flush();
 
     return $this->redirectToRoute('becowo_manager_profile_team');
