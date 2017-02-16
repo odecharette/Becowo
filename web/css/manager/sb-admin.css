@@ -238,3 +238,16 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+#workspace_has_team_member_teamMember{
+    margin-left: 15px;
+}
+.StatusGreen{
+    background-color: #00A19A;
+}
+.StatusGreenTxt{
+    color: #00A19A;
+}
+.StatusRed{
+    color: red ;
+}

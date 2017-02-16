@@ -19,7 +19,7 @@ class WorkspaceHasTeamMemberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('teamMember', TeamMemberType::class)
+            ->add('teamMember', TeamMemberType::class, array('label' => false))
             ->add('receiveEmailBooking')
             ->add('receiveEmailContact')
         ;

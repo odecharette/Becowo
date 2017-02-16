@@ -195,114 +195,114 @@ class ProfileController extends Controller
 
   }
 
-  	public function eventsAction(Request $request)
-  	{
-  		$WsService = $this->get('app.workspace');
-  		$events = $WsService->getEventsByWorkspace($this->getUser()->getWorkspace());
+	public function eventsAction(Request $request)
+	{
+		$WsService = $this->get('app.workspace');
+		$events = $WsService->getEventsByWorkspace($this->getUser()->getWorkspace());
 
-  		$event = new Event();
-  		$event->setWorkspace($this->getUser()->getWorkspace());
-  		$form = $this->get('form.factory')->create(EventType::class, $event);
+		$event = new Event();
+		$event->setWorkspace($this->getUser()->getWorkspace());
+		$form = $this->get('form.factory')->create(EventType::class, $event);
 
-  		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-	      $em = $this->getDoctrine()->getManager();
-	      $em->persist($event);
-	      $em->flush();
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($event);
+      $em->flush();
 
-	      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-	      return $this->redirectToRoute('becowo_manager_profile_events');
-	    }
-
-	    return $this->render('Manager/profile/events.html.twig', array(
-  		'form' => $form->createView(),
-  		'events' => $events));
-  	}
-
-  	public function teamAction(Request $request)
-  	{
-      $WsService = $this->get('app.workspace');
-      $WsHasMembers = $WsService->getWsHasTeamMemberByWorkspace($this->getUser()->getWorkspace());
-
-
-  		$teamMember = new TeamMember();
-      $WhTm = new WorkspaceHasTeamMember();
-      $WhTm->setWorkspace($this->getUser()->getWorkspace());
-      $WhTm->setTeamMember($teamMember);
-
-  		$form = $this->get('form.factory')->create(WorkspaceHasTeamMemberType::class, $WhTm);
-
-  		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-
-	      $em = $this->getDoctrine()->getManager();
-	      $em->persist($teamMember);
-        $em->persist($WhTm);
-	      $em->flush();
-
-	      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
-
-	      return $this->redirectToRoute('becowo_manager_profile_team');
-	    }
-
-	    return $this->render('Manager/profile/team.html.twig', array(
-  		'form' => $form->createView(),
-      'WsHasMembers' => $WsHasMembers));
-  	}
-
-    public function calendarAction(Request $request)
-    {
-      $workspace = $this->getUser()->getWorkspace();
-      $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
-      $formBuilder
-        ->add('openHoursInfo',   TextareaType::class)
-        ->add('isAlwaysOpen',   CheckboxType::class, array('label' => 'Ouvert 24/7'))
-        ;
-      $form = $formBuilder->getForm();
-
-      $WsService = $this->get('app.workspace');
-      $timetable = $WsService->getTimesByWorkspace($workspace);
-      $formBuilderTime = $this->get('form.factory')->createBuilder(FormType::class, $timetable);
-      $formBuilderTime
-        ->add('openHour',   TimeType::class, array(
-            'label' => 'Horaire d\'ouverture',
-            'input'  => 'datetime',
-            'widget' => 'choice',
-        ))
-        ->add('closeHour',   TimeType::class, array(
-            'label' => 'Horaire de fermeture',
-            'input'  => 'datetime',
-            'widget' => 'choice',
-        ))
-        ->add('isOpenSaturday',   CheckboxType::class, array('label' => 'Ouvert le Samedi'))
-        ->add('isOpenSunday',   CheckboxType::class, array('label' => 'Ouvert le Dimanche'))
-        ;
-      $formTime = $formBuilderTime->getForm();
-
-      if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($workspace);
-        $em->flush();
-
-        $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
-
-        return $this->redirectToRoute('becowo_manager_profile_calendar');
-      }
-
-      if ($request->isMethod('POST') && $formTime->handleRequest($request)->isValid()) {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($timetable);
-        $em->flush();
-
-        $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
-
-        return $this->redirectToRoute('becowo_manager_profile_calendar');
-      }
-
-      return $this->render('Manager/profile/calendar.html.twig', array(
-        'form' => $form->createView(),
-        'formTime' => $formTime->createView()));
-
+      return $this->redirectToRoute('becowo_manager_profile_events');
     }
+
+    return $this->render('Manager/profile/events.html.twig', array(
+		'form' => $form->createView(),
+		'events' => $events));
+	}
+
+	public function teamAction(Request $request)
+	{
+    $WsService = $this->get('app.workspace');
+    $WsHasMembers = $WsService->getWsHasTeamMemberByWorkspace($this->getUser()->getWorkspace());
+
+
+		$teamMember = new TeamMember();
+    $WhTm = new WorkspaceHasTeamMember();
+    $WhTm->setWorkspace($this->getUser()->getWorkspace());
+    $WhTm->setTeamMember($teamMember);
+
+		$form = $this->get('form.factory')->create(WorkspaceHasTeamMemberType::class, $WhTm);
+
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($teamMember);
+      $em->persist($WhTm);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      return $this->redirectToRoute('becowo_manager_profile_team');
+    }
+
+    return $this->render('Manager/profile/team.html.twig', array(
+		'form' => $form->createView(),
+    'WsHasMembers' => $WsHasMembers));
+	}
+
+  public function calendarAction(Request $request)
+  {
+    $workspace = $this->getUser()->getWorkspace();
+    $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
+    $formBuilder
+      ->add('openHoursInfo',   TextareaType::class)
+      ->add('isAlwaysOpen',   CheckboxType::class, array('label' => 'Ouvert 24/7'))
+      ;
+    $form = $formBuilder->getForm();
+
+    $WsService = $this->get('app.workspace');
+    $timetable = $WsService->getTimesByWorkspace($workspace);
+    $formBuilderTime = $this->get('form.factory')->createBuilder(FormType::class, $timetable);
+    $formBuilderTime
+      ->add('openHour',   TimeType::class, array(
+          'label' => 'Horaire d\'ouverture',
+          'input'  => 'datetime',
+          'widget' => 'choice',
+      ))
+      ->add('closeHour',   TimeType::class, array(
+          'label' => 'Horaire de fermeture',
+          'input'  => 'datetime',
+          'widget' => 'choice',
+      ))
+      ->add('isOpenSaturday',   CheckboxType::class, array('label' => 'Ouvert le Samedi'))
+      ->add('isOpenSunday',   CheckboxType::class, array('label' => 'Ouvert le Dimanche'))
+      ;
+    $formTime = $formBuilderTime->getForm();
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($workspace);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      return $this->redirectToRoute('becowo_manager_profile_calendar');
+    }
+
+    if ($request->isMethod('POST') && $formTime->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($timetable);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      return $this->redirectToRoute('becowo_manager_profile_calendar');
+    }
+
+    return $this->render('Manager/profile/calendar.html.twig', array(
+      'form' => $form->createView(),
+      'formTime' => $formTime->createView()));
+
+  }
 
 
 }

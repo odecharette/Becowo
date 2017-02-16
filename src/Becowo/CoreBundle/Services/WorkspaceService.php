@@ -164,7 +164,7 @@ class WorkspaceService
     public function getReservationsByWorkspace(Workspace $ws)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
-        return $repo->findBy(array('workspace' => $ws));
+        return $repo->findBookingByWs($ws);
     }
 
     public function getBookingByRef($ref)
