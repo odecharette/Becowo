@@ -40,7 +40,8 @@
         "hwi/oauth-bundle": "0.5.x-dev",
         "suncat/mobile-detect-bundle": "1.0.*",
         "cspoo/swiftmailer-mailgun-bundle": "^0.3.1",
-        "php-http/guzzle5-adapter": "^1.0"
+        "php-http/guzzle5-adapter": "^1.0",
+        "symfony/finder": "^3.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
