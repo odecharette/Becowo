@@ -44,8 +44,28 @@
 				<td>{{whm.teamMember.phone}}</td>
 				<td>{% if whm.receiveEmailBooking == true %}Oui{% else %}Non{% endif %}</td>
 				<td>{% if whm.receiveEmailContact == true %}Oui{% else %}Non{% endif %}</td>
-				<td><a href="{{ path('becowo_manager_profile_team_delete', { 'id': whm.id }) }}"><button type="button" class="btn btn-danger fa fa-trash-o"></button></a></td>
+				<td><a data-toggle="modal" href="#myModal-{{whm.id}}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 			</tr>
+			
+			{# Modale #}
+			<div class="modal fade" id="myModal-{{whm.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog" style="width: 30%;">
+			        <div class="modal-content">
+			            <div class="modal-header btn-danger">
+			                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+			                <h4 class="modal-title">Supprimer</h4>
+			            </div>
+			            <div class="modal-body">
+			                <p>Etes vous sûr de vouloir supprimer ? </p>
+			            </div>
+			            <div class="modal-footer">
+			                <a href="{{ path('becowo_manager_profile_team_delete', { 'id': whm.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
+			                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Annuler</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
 		{% endfor %}
 	</tbody>
 </table> 
