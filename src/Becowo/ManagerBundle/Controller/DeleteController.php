@@ -3,6 +3,7 @@
 namespace Becowo\ManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DeleteController extends Controller
 {
@@ -51,7 +52,7 @@ class DeleteController extends Controller
     return $this->redirectToRoute('becowo_manager_profile_events');
   }
 
-  public function deleteWorkspaceHasAmenitiesAction($id)
+  public function deleteWorkspaceHasAmenitiesAction(Request $request, $id)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $wha = $em->getRepository('BecowoCoreBundle:WorkspaceHasAmenities')->find($id);
@@ -62,6 +63,8 @@ class DeleteController extends Controller
 
     $em->remove($wha);
     $em->flush();
+
+    $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
 
     return $this->redirectToRoute('becowo_manager_profile_amenities');
   }
