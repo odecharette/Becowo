@@ -6,6 +6,7 @@
 namespace Becowo\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Table(name="becowo_workspace_has_office", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
@@ -57,6 +58,18 @@ class WorkspaceHasOffice
    * @ORM\JoinColumn(nullable=false)
    */
   private $office;
+  
+  private $file;
+  
+  public function getFile()
+  {
+    return $this->file;
+  }
+
+  public function setFile(UploadedFile $file = null)
+  {
+    $this->file = $file;
+  }
 
     /**
      * Gets the value of id.

@@ -157,6 +157,13 @@ class ProfileController extends Controller
 		$form = $this->get('form.factory')->create(WorkspaceHasOfficeType::class, $office);
 
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+      $file = $office->getFile();
+      $filename =  $file->getClientOriginalName();
+      $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/Workspaces/' . $this->getUser()->getWorkspace()->getName() . '/';
+      $file->move($dir, $filename);
+      $office->setUrlProfilePicture($filename);
+
       $em = $this->getDoctrine()->getManager();
       $em->persist($office);
       $em->flush();
