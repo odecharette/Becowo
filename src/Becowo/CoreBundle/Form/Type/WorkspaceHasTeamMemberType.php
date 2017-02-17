@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class WorkspaceHasTeamMemberType extends AbstractType
 {
@@ -20,8 +21,8 @@ class WorkspaceHasTeamMemberType extends AbstractType
     {
         $builder
             ->add('teamMember', TeamMemberType::class, array('label' => false))
-            ->add('receiveEmailBooking')
-            ->add('receiveEmailContact')
+            ->add('receiveEmailBooking',CheckboxType::class, array('required' => false, 'label' => 'Reçoit les emails pour valider les réservations'))
+            ->add('receiveEmailContact',CheckboxType::class, array('required' => false, 'label' => 'Reçoit les emails de contact'))
         ;
     }
     

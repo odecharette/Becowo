@@ -22,6 +22,7 @@ class PriceType extends AbstractType
         $builder
             ->add('workspaceHasOffice', EntityType::class, array(
                 'class' => 'BecowoCoreBundle:workspaceHasOffice',
+                'label' => 'Bureau',
                 'query_builder' => function (WorkspaceHasOfficeRepository $er) use($id) {
                 return $er->createQueryBuilder('who')
                     ->andWhere('who.workspace = :id')
@@ -30,13 +31,17 @@ class PriceType extends AbstractType
                 },
                 'choice_label' => 'name'))
             ->add('priceHour', NumberType::class, array(
-                'scale' => 2))
+                'scale' => 2,
+                'label' => 'Prix à l\'heure (€ HT)'))
             ->add('priceHalfDay', NumberType::class, array(
-                'scale' => 2))
+                'scale' => 2,
+                'label' => 'Prix à la demi-journée (€ HT)'))
             ->add('priceDay', NumberType::class, array(
-                'scale' => 2))
+                'scale' => 2,
+                'label' => 'Prix à la journée (€ HT)'))
             ->add('priceMonth', NumberType::class, array(
-                'scale' => 2))
+                'scale' => 2,
+                'label' => 'Prix au mois (€ HT)'))
         ;
     }
     

@@ -25,6 +25,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ProfileController extends Controller
 {
@@ -233,6 +234,12 @@ class ProfileController extends Controller
 		$form = $this->get('form.factory')->create(WorkspaceHasTeamMemberType::class, $WhTm);
 
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+      $file = $teamMember->getFile();
+      $filename =  $file->getClientOriginalName();
+      $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/Workspaces/' . $this->getUser()->getWorkspace()->getName() . '/';
+      $file->move($dir, $filename);
+      $teamMember->setUrlProfilePicture($filename);
 
       $em = $this->getDoctrine()->getManager();
       $em->persist($teamMember);

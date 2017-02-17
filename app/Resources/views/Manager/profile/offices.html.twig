@@ -19,6 +19,7 @@
 		<tr>
 			<th>Type de bureau</th>
 			<th>Nom</th>
+			<th>Photo</th>
 			<th>Capacité</th>
 			<th>Actions</th>
 		</tr>
@@ -28,6 +29,11 @@
 			<tr>
 			 	<td>{{office.office.name}}</td>
 			 	<td>{{office.name}}</td>
+			 	{% if office.urlProfilePicture != '' %}
+					<td><img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{office.urlProfilePicture}}" alt="{{office.office.name}}" width="80px" height="50px"></td>
+				{% else %}
+					<td></td>
+				{% endif %}
 				<td>{{office.deskQty}}</td>
 				<td><a data-toggle="modal" href="#myModal-{{office.id}}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td> 
 			</tr>

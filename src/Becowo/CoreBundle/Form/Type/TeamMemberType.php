@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class TeamMemberType extends AbstractType
 {
@@ -22,11 +23,11 @@ class TeamMemberType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class)
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, array('required' => false))
             ->add('email', EmailType::class)
             ->add('job', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('phone')
+            ->add('description', TextareaType::class, array('required' => false))
+            ->add('phone', NumberType::class, array('required' => false))
             ->add('file', FileType::class, array('multiple' => false, 'label' => 'Photo de profil'))
         ;
     }

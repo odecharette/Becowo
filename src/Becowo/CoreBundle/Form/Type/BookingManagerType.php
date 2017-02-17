@@ -25,7 +25,7 @@ class BookingManagerType extends AbstractType
 
         $builder
             ->add('workspaceHasOffice', EntityType::class, array(
-                'class' => 'BecowoCoreBundle:workspaceHasOffice',
+                'class' => 'BecowoCoreBundle:WorkspaceHasOffice',
                 'query_builder' => function (WorkspaceHasOfficeRepository $er) use($id) {
                 return $er->createQueryBuilder('who')
                     ->andWhere('who.workspace = :id')

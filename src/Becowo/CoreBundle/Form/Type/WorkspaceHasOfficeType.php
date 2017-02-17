@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class WorkspaceHasOfficeType extends AbstractType
 {
@@ -18,9 +21,11 @@ class WorkspaceHasOfficeType extends AbstractType
         $builder
             ->add('office', EntityType::class, array(
                 'class' => 'BecowoCoreBundle:Office',
-                'choice_label' => 'name'))
-            ->add('name')
-            ->add('desk_qty')
+                'choice_label' => 'name',
+                'label' => 'Bureau'))
+            ->add('name', TextType::class)
+            ->add('file', FileType::class, array('multiple' => false, 'label' => 'Photo du bureau'))
+            ->add('desk_qty', NumberType::class, array('label' => 'Capacité', 'scale' => 0))
         ;
     }
     
