@@ -21,113 +21,39 @@
 	{# Plugin FB #}
 <div id="fb-root"></div>
 
-<header class="header">
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-        	{# For mobile only #}
-        	<div class="navbar-header">
-        		<div class="row visible-xs-block">
-        			<div class="col-xs-10">
-		        		<a title="Accueil" href="{{ path('becowo_core_homepage') }}">
-		                    <img src="{{ asset('images/icons/Logo_becowo_tagline.png') }}" alt="Becowo">
-		                </a>
-        			</div>
-        			<div class="col-xs-2">
-			        	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				            <span class="sr-only">Toggle navigation</span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-			            </button>
-        			</div>
-        		</div>
-        	</div>
-
-        	<div class="row">
-        		<div class="col-lg-4 col-md-4 hidden-xs">
-	                <a title="Accueil" class="navbar-brand" href="{{ path('becowo_core_homepage') }}">
-	                    <img src="{{ asset('images/icons/Logo_becowo_tagline.png') }}" alt="Becowo">
-	                </a>
-        		</div>
-        		<div class="col-lg-8">
-		            <div id="navbar" class="collapse navbar-collapse navbar-responsive-collapse">
-		                <ul class="nav navbar-nav navbar-right">
-
-		                    <li class="dropdown ">
-		                        <a title="Accueil" href="{{ path('becowo_core_homepage') }}">
-		                            Accueil
-		                        </a>
-		                    </li>
-		                    <li class="dropdown ">
-		                        <a title="La communauté" href="{{ path('becowo_core_community') }}">
-		                            La communauté
-		                        </a>
-		                    </li>
-		                    <li class="dropdown noActive sousMenu">
-		                    	<a href="" class="dropdown-toggle normal-menu" data-toggle="dropdown">
-						          	Comment ça marche ? <i class="fa fa-caret-down" aria-hidden="true"></i>
-						          </a>
-		                    	<ul class="dropdown-menu dropdown-menu-default normal-ul">
-		                    	    <li>
-				                        <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">
-				                            Pour les coworkers
-				                        </a>
-		                    	    </li>
-		                    	    <li>
-				                        <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_espaces') }}">
-				                            Pour les espaces
-				                        </a>
-		                    	    </li>
-		                    	    <li>
-				                        <a title="Proposer un espace" href="#declare" id="goToDeclare">
-				                            Proposer un espace
-				                        </a>
-		                    	    </li>
-		                    	</ul>
-		                    </li>
-		                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}		
-								<li class="dropdown ">
-						          <a href="" class="dropdown-toggle login-menu" data-toggle="dropdown">
-						          	Bonjour {{ app.user.firstname }} <i class="fa fa-caret-down" aria-hidden="true"></i>
-						          </a>
-						          <ul class="dropdown-menu dropdown-menu-default">
-						            <li>
-						            	<a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a>
-						            </li>
-								    <li>
-								    	<a data-toggle="modal" href="#myModalChangeMDP"><i class="fa fa-key"></i> Changer mon mot de passe</a>
-								    </li>
-								    <li>
-								    	<a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a>
-								    </li>
-								    {% if is_granted('ROLE_MANAGER') %}
-										<li>
-											<a href="{{ path('becowo_manager_profile_identite') }}" target="_blank"><i class="fa fa-wrench"></i> Espace Manager</a>
-										</li>
-									{% endif %}
-									{% if is_granted('ROLE_ADMIN') %}
-										<li>
-											<a href="{{ path('easyadmin') }}" target="_blank"><i class="fa fa-lock"></i> Espace Admin</a>
-										</li>
-									{% endif %}
-								    <li>
-								    	<a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a>
-								    </li>
-						          </ul>
-						        </li>
-							{% else %}
-			                    <li class="dropdown "  id="login">
-			                    	<a data-toggle="modal" href="#myModalLogin">Connexion</a>
-			                    </li>
-
-						{% endif %}
-		                    
-		                </ul>
-		            </div><!-- /navbar-collapse -->
-        		</div>
-        	</div>
+<header>
+	<div class="row text-center">
+		<div class="col-lg-1">
+			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
+		        <img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo">
+		    </a>
+		</div>
+		<div class="col-lg-4 identity">
+			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
+        	<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="tagline">Enfin une bonne raison d'aller au travail !</a>
         </div>
-    </div>
+        <div class="col-lg-7 menu">
+		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <i class="fa fa-circle" aria-hidden="true"></i>
+			<a title="La communauté" href="{{ path('becowo_core_community') }}">communauté </a>	<i class="fa fa-circle" aria-hidden="true"></i>
+			<div class="btn-group">
+				<a href="" data-toggle="dropdown">Comment ça marche ? </a> 
+				<ul role="menu" class="dropdown-menu dropdown-menu-default">
+			        <li>
+			            <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">Pour les coworkers</a>
+				    </li>
+				    <li>
+			            <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_espaces') }}">Pour les espaces</a>
+				    </li>
+				    <li class="divider"></li>
+				    <li>
+			            <a title="Proposer un espace" href="#declare" id="goToDeclare">Proposer un espace</a>
+				    </li>
+			    </ul>
+			</div>
+			<a data-toggle="modal" href="#myModalLogin" class="log">Connexion</a>       
+		</div>      
+	</div>
+
 {# Les modal doivent se charger en même temps pour pouvoir passer de l'une à l'autre #}
 <!-- Modale Login -->
 <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -217,12 +143,14 @@
 			<strong>LES VILLES (Hauts de France et Wallonie)</strong>
 			<br><br>
 			<ul>
-			    {% for city in listCities|sort %}
-            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
                	<li>
-               		<a href="">{{city|capitalize}}</a>                  	
+               		<a href="">LILLE</a>   
+               		<a href="">RONCQ</a>  
+               		<a href="">ROUBAIX</a>  
+               		<a href="">TOURCOING</a>  
+               		<a href="">TOURNAI</a>  
+               		<a href="">VILLENEUVE D'ASCQ</a>                 	
                	</li>
-               {% endfor %}
 			</ul>
 		</div>
 		</div>
