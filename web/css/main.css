@@ -79,6 +79,15 @@ header .navbar-default{
 header img{
   width: 100%;
 }
+
+header #liensRS img{
+  border-radius: 20%;
+  margin-left: 20px;
+}
+header #liensRS{
+  padding-top: 15px;
+  text-align: center;
+}
 .row{
   margin-right: 0px;
   margin-left: 0px;
@@ -648,6 +657,18 @@ footer{
   left: calc((100% - 579px)/2);
   outline: 0;
 }*/
+#home-image .homeRS{
+  position: absolute;
+  top: 25%;
+  background-color: var(--my-black);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+#home-image .homeRS img{
+  width: 40px;
+  border-radius: 20%;
+  margin: 10px 10px 10px 15px;
+}   
 #home-image .deux{
   margin: 0px 100px 0 100px;
 }
