@@ -187,29 +187,43 @@
 	<footer class="navbar">
 		<div class="container-fluid">
 		<div class="row">
-		<div id="footer_menu" class="col-lg-3 col-md-3 col-xs-12">
+		<div id="footer_menu" class="col-lg-4 col-md-4 col-xs-12">
+			<br>
+			<strong>A PROPOS DE BECOWO</strong>
+			<br><br>
 			<ul>
-			    <li><a href="{{ path('becowo_core_contact') }}">Contactez-nous</a></li>
 			    <li><a href="{{ path('becowo_core_quisommesnous') }}">Qui sommes nous ?</a></li>
+			    <li><a href="{{ path('becowo_core_contact') }}">Contactez-nous</a></li>
 			    <li><a href="{{ path('becowo_core_faq') }}">FAQ</a></li>
-			</ul>
-		</div>
-		<div id="footer_menu" class="col-lg-3 col-md-3 col-xs-12">
-			<ul>
-			    <li><a href="{{ path('becowo_core_cgu') }}">CGU</a> <a href="{{ path('becowo_core_mentions') }}">Mentions légales</a></li>
+			    <li><a href="{{ path('becowo_core_cgu') }}">CGU</a></li>
+				<li><a href="{{ path('becowo_core_mentions') }}">Mentions légales</a></li>
 			    <li><a href="{{ path('becowo_core_cookies') }}">Gestion des cookies</a></li>
-			    <li><a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a></li>
 			</ul>
 		</div>
-		<div id="footer_menu" class="col-lg-3 col-md-3 col-xs-12">
-			<ul>
-			    <li><a href="http://www.blog.becowo.com/" target="_blank">Blog</a></li>
-			    <li><a href="{{ path('becowo_core_paiement') }}">Paiement en ligne by <img src="{{ asset('images/icons/creditAgricole/ca.png') }}" alt="Crédit Agricole"></a></li>
-			    <li><a href="http://m.me/becowo" target="_blank">Tchater via messenger</a></li>
-			</ul>
-		</div>
-		<div id="footer_menu" class="col-lg-3 col-md-3 col-xs-12">
+		<div id="footer_menu" class="col-lg-4 col-md-4 col-xs-12">
+			<br>
+			<strong>BECOWO ET VOUS</strong>
+			<br>
 			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
+			<ul> 
+			    <li><a href="http://www.blog.becowo.com/" target="_blank">Le blog</a></li>
+			    <li><a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a></li>
+			    <li><a href="http://m.me/becowo" target="_blank">Tchater via messenger</a></li>
+			    <li><a href="{{ path('becowo_core_paiement') }}">Paiement en ligne by <img src="{{ asset('images/icons/creditAgricole/ca.png') }}" alt="Crédit Agricole"></a></li>
+			</ul>
+		</div>
+		<div id="footer_menu" class="col-lg-4 col-md-4 col-xs-12">
+			<br>
+			<strong>LES VILLES (Hauts de France et Wallonie)</strong>
+			<br><br>
+			<ul>
+			    {% for city in listCities|sort %}
+            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
+               	<li>
+               		<a href="">{{city|capitalize}}</a>                  	
+               	</li>
+               {% endfor %}
+			</ul>
 		</div>
 		</div>
 	</div>
