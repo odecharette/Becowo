@@ -507,7 +507,9 @@ footer{
   text-align: justify !important;
   color: var(--my-grey);
 }
-
+#page-simple li{
+  color: var(--my-grey);
+}
 .navbar{
   margin-bottom: 0;
   border-radius: 0;
