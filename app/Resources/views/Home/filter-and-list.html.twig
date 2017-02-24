@@ -99,7 +99,7 @@
 			{# Filtered class #}
 			<span hidden="true" class="{{wsInfo.ws.city|lower|replace({"'": ""," ":""})}}"></span>
 			<span hidden="true" class="{{wsInfo.ws.category|lower|replace({"'": ""," ":""})}}"></span>
-			{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'name': wsInfo.ws.name }) }}">{% endif %}
+			{% if offerZen %}<a href="{{ path('becowo_core_workspace', { 'region':wsInfo.ws.region.name, 'ville' : wsInfo.ws.city, 'name': wsInfo.ws.name }) }}">{% endif %}
 			<div id="pic">
 				<div id="favoritePicture">
 					{% if wsInfo.ws.favoritePictureUrl %}

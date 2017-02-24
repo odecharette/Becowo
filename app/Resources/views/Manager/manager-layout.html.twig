@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('becowo_core_workspace', {name: app.user.workspace}) }}" target="_blank">Voir ma page {{app.user.workspace}} sur Becowo</a>
+                <a class="navbar-brand" href="{{ path('becowo_core_workspace', {'region': app.user.workspace.region.name, 'ville' : app.user.workspace.city, 'name': app.user.workspace}) }}" target="_blank">Voir ma page {{app.user.workspace}} sur Becowo</a>
             </div>
             <!-- Top Menu Items
             <ul class="nav navbar-right top-nav">

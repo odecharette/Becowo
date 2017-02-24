@@ -83,7 +83,7 @@
 			<div id="sliderNetwork">
 			{% for w in wsSameNetworkWithFavoritePic %}
 				<div class="slide">
-					<a href="{{ path('becowo_core_workspace', {'name' : w.ws.name}) }}">	
+					<a href="{{ path('becowo_core_workspace', {'region':w.ws.region.name, 'ville' : w.ws.city, 'name' : w.ws.name}) }}">	
 						<span class="nom">{{ w.ws.name }}</span> <br>
 						<center>
 						<img src="{{ asset('images/Workspaces/') }}{{w.ws.name}}/{{w.ws.favoritePictureUrl}}" alt="{{w.ws.name}}" width="300px"> <br>

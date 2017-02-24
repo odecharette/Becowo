@@ -4,7 +4,7 @@ becowo_core_homepage:
     methods: GET
 
 becowo_core_workspace:
-    path:     /ws/{name}
+    path:     /espace-de-coworking/{region}/{ville}/{name}
     defaults: { _controller: BecowoCoreBundle:Workspace:view }
     methods: GET|POST
     options:
