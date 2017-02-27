@@ -190,37 +190,29 @@ e.preventDefault();
 
 /////////// Home Filter bar
 
-$('#filterCity').on('click', "input" , function(e){
-  var listSelected = "";
+$('#filterCity, #filterCategory').on('click', "input" , function(e){
+  var listCitySelected = "";
   $('#filterCity input[type=checkbox]').each(function () {
       var sThisVal = (this.checked ? $(this).val() + "," : "");
-      listSelected += (listSelected=="" ? sThisVal : sThisVal);
+      listCitySelected += (listCitySelected=="" ? sThisVal : sThisVal);
   });
-  console.log (listSelected);
+  console.log (listCitySelected);
 
-   $.ajax({
-    type: "GET",
-    url: Routing.generate('becowo_core_list_workspaces', { city: listSelected }), })
-    .done(function( msg ) {
-        $('#paginationList').html(msg);
-    });
-});
-
-$('#filterCategory').on('click', "input" , function(e){
-  var listSelected = "";
+  var listCategorySelected = "";
   $('#filterCategory input[type=checkbox]').each(function () {
       var sThisVal = (this.checked ? $(this).val() + "," : "");
-      listSelected += (listSelected=="" ? sThisVal : sThisVal);
+      listCategorySelected += (listCategorySelected=="" ? sThisVal : sThisVal);
   });
-  console.log (listSelected);
+  console.log (listCategorySelected);
 
    $.ajax({
     type: "GET",
-    url: Routing.generate('becowo_core_list_workspaces', { category: listSelected }), })
+    url: Routing.generate('becowo_core_list_workspaces', { city: listCitySelected, category: listCategorySelected }), })
     .done(function( msg ) {
         $('#paginationList').html(msg);
     });
 });
+
 
 
 //Navbar Scroll Event
