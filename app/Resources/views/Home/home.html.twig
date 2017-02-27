@@ -16,7 +16,6 @@
 	{{ render(controller('BecowoCoreBundle:Home:mobile')) }}
 {% else %} #}
 	
-	{# {% include 'Home/filter-and-list.html.twig' %}  #}
 <div class="row" id="filtersBar">
     <div class="row">
     	<div class="col-lg-4 col-md-5">
@@ -26,9 +25,8 @@
   				<button class="dropbtn">Ville des Hauts de France</button>
 	            <div class="dropdown-content">
 	            	{% for city in listCities|sort %}
-	            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
-	                  	<input id="{{ville}}" type="checkbox" value="{{ville}}" />
-	                  	<label for="{{ville}}">{{city|capitalize}}</label>
+	                  	<input id="{{city.cities}}" type="checkbox" value="{{city.cities}}" />
+	                  	<label for="{{city.cities}}">{{city.cities|capitalize}}</label>
 	                  	<br>
 	               {% endfor %}
 	            </div>
@@ -70,7 +68,6 @@
 
 {{ render(controller('BecowoCoreBundle:Home:paginationList', {limit: 5})) }}
 
-{# {% endif %} #}
 
 <div class="container-fluid">
 

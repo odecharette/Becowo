@@ -10,23 +10,9 @@ class HomeController extends Controller
   public function homeAction(Request $request)
   {
     $WsService = $this->get('app.workspace');
-    $workspaces = $WsService->getActiveWorkspacesOrderByVoteAvg();
+    $listCities = $WsService->getListOfActiveCities();
 
-    $wsFullInfo = array();
-    $listCities = array();
-    foreach ($workspaces as $ws)
-    {
-      array_push($wsFullInfo, array('ws' => $ws,
-        'amenities' => $WsService->getAmenitiesByWorkspace($ws),
-        'WsHasOffers' => $WsService->getOffersByWorkspace($ws)
-        ));
-
-      array_push($listCities, $ws->getCity());
-    }
-
-    $listCities = array_unique($listCities);
-
-    return $this->render('Home/home.html.twig', array('wsFullInfo' => $wsFullInfo, 'listCities' => $listCities));
+    return $this->render('Home/home.html.twig', array('listCities' => $listCities));
   }
 
   public function paginationListAction(Request $request, $limit=5)
@@ -52,8 +38,6 @@ class HomeController extends Controller
                 ->leftJoin('BecowoCoreBundle:Offer', 'o', 'WITH', 'o = who.offer')
                 ->leftJoin('BecowoCoreBundle:Region', 'r', 'WITH', 'r = w.region')
                 ->leftJoin('BecowoCoreBundle:WorkspaceCategory', 'c', 'WITH', 'w.category = c')
-                // ->leftJoin('BecowoCoreBundle:WorkspaceHasAmenities', 'wha', 'WITH', 'wha.workspace = w')
-                // ->leftJoin('BecowoCoreBundle:Amenities', 'a', 'WITH', 'wha.amenities = a')
                 ;
 
     if($request->query->get('city') != null)

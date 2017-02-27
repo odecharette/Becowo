@@ -49,4 +49,13 @@ class WorkspaceRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findListOfActiveCities()
+	{
+		$qb = $this->createQueryBuilder('w')
+			->select('DISTINCT w.city as cities');
+		$this->whereIsActive($qb);
+
+		return $qb->getQuery()->getResult();
+	}
+
 }

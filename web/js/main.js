@@ -331,23 +331,6 @@ $(function(){
 /***************** fin rating.js ****************************/
 
 
-/********** Home filter menu ***********/
-// jplist.com
-
-$(document).ready(function(){
-   $('#WsFilters').jplist({       
-      itemsBox: '.list' 
-      ,itemPath: '.list-item' 
-      ,panelPath: '.jplist-panel' 
-      ,noResults: '.jplist-no-results'
-   });
-   
-});
-
-
-
-
-
 // HOme page Map
 $("#modalMap").on('click', function(event){
    initMap();

@@ -350,4 +350,10 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
         return $repo->findQuantityByOfficeType($ws);
     }
+
+    public function getListOfActiveCities()
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Workspace');
+        return $repo->findListOfActiveCities();
+    }
 }
