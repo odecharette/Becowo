@@ -31,10 +31,30 @@ class HomeController extends Controller
 
   public function paginationListAction(Request $request, $limit=5)
   {
-    // TEST avec paginator
+    $WsService = $this->get('app.workspace');
     $em = $this->getDoctrine()->getManager();
 
     $queryBuilder = $em->getRepository('BecowoCoreBundle:Workspace')->createQueryBuilder('w');
+
+    $queryBuilder->select(
+      'w.id AS id', 
+      'w.name AS name', 
+      'w.city AS city',
+      'w.favoritePictureUrl AS favoritePictureUrl',
+      'w.lowestPrice AS lowestPrice',
+      'w.voteAverage AS voteAverage',
+      'w.descriptionBonus AS descriptionBonus',
+      'r.name AS region',
+      'c.name AS category',
+      'o.name AS offer');
+
+    $queryBuilder->leftJoin('BecowoCoreBundle:WorkspaceHasOffer', 'who', 'WITH', 'who.workspace = w')
+                ->leftJoin('BecowoCoreBundle:Offer', 'o', 'WITH', 'o = who.offer')
+                ->leftJoin('BecowoCoreBundle:Region', 'r', 'WITH', 'r = w.region')
+                ->leftJoin('BecowoCoreBundle:WorkspaceCategory', 'c', 'WITH', 'w.category = c')
+                // ->leftJoin('BecowoCoreBundle:WorkspaceHasAmenities', 'wha', 'WITH', 'wha.workspace = w')
+                // ->leftJoin('BecowoCoreBundle:Amenities', 'a', 'WITH', 'wha.amenities = a')
+                ;
 
     if($request->query->get('city') != null)
     {
@@ -46,10 +66,13 @@ class HomeController extends Controller
     if($request->query->get('category') != null)
     {
       $values = explode(',',$request->query->get('category'));
-      $queryBuilder->join('w.category', 'c')
-                  ->andWhere('c.name IN (:category)')
+      $queryBuilder->andWhere('c.name IN (:category)')
                   ->setParameter('category', $values);
     }
+
+    $queryBuilder->andWhere('w.isDeleted = false')
+                ->andWhere('w.isVisible = true')
+                ->orderBy('w.voteAverage', 'DESC');
 
     $query = $queryBuilder->getQuery();
 
@@ -62,7 +85,15 @@ class HomeController extends Controller
     );
     $listWS->setUsedRoute('becowo_core_list_workspaces');
 
-    return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS));
+    $wsFullInfo = array();
+    foreach ($listWS->getItems() as $ws)
+    {
+      array_push($wsFullInfo, array('ws' => $ws['id'],
+        'amenities' => $WsService->getAmenitiesByWorkspaceId($ws['id']),
+        ));
+    }
+
+    return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS, 'wsFullInfo' => $wsFullInfo));
   }
 
   public function mobileAction()

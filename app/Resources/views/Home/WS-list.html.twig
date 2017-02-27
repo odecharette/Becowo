@@ -2,12 +2,13 @@
 
 	
 <div id="paginationList">
-	{# {{dump(listWS)}} #}
-	<ul>
+	{{dump(listWS)}}
+	{{dump(wsFullInfo)}}
+	{# <ul>
 		{% for item in listWS.items %}
 	    <li>{{item.name}}</li>
 		{% endfor %}
-	</ul>
+	</ul> #}
 	Total : {{ listWS.getTotalItemCount }}
 	<div class="navigation text-center">
 	    {{ knp_pagination_render(listWS) }}

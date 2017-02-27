@@ -339,6 +339,12 @@ class WorkspaceService
         return $repo->findAmenitiesByWorkspace($ws);
     }
 
+    public function getAmenitiesByWorkspaceId($id)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasAmenities');
+        return $repo->findAmenitiesByWorkspaceId($id);
+    }
+
     public function getQuantityByOfficeType($ws)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');
