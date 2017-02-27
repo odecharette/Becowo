@@ -2839,6 +2839,9 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   color: var(--my-green);
   margin-right: 5px;
 }
+#filterCategory label{
+  padding-right: 40px;
+}
 .fb_iframe_widget{
   margin-left: -200px;
   width: inherit;
