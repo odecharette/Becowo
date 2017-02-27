@@ -18,6 +18,7 @@ class HomeController extends Controller
   public function paginationListAction(Request $request, $limit=5)
   {
     $WsService = $this->get('app.workspace');
+    $listCities = $WsService->getListOfActiveCities();
     $em = $this->getDoctrine()->getManager();
 
     $queryBuilder = $em->getRepository('BecowoCoreBundle:Workspace')->createQueryBuilder('w');
@@ -77,7 +78,7 @@ class HomeController extends Controller
         ));
     }
 
-    return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS, 'wsAmenities' => $wsAmenities));
+    return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS, 'wsAmenities' => $wsAmenities, 'listCities' => $listCities));
   }
 
   public function mobileAction()

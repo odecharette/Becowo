@@ -15,56 +15,9 @@
 {# {% if is_mobile() %}
 	{{ render(controller('BecowoCoreBundle:Home:mobile')) }}
 {% else %} #}
-	
-<div class="row" id="filtersBar">
-    <div class="row">
-    	<div class="col-lg-4 col-md-5">
-    		<!-- checkbox dropdown -->
 
-	        <div id="filterCity" class="dropdown">
-  				<button class="dropbtn">Ville des Hauts de France</button>
-	            <div class="dropdown-content">
-	            	{% for city in listCities|sort %}
-	                  	<input id="{{city.cities}}" type="checkbox" value="{{city.cities}}" />
-	                  	<label for="{{city.cities}}">{{city.cities|capitalize}}</label>
-	                  	<br>
-	               {% endfor %}
-	            </div>
-	        </div>
-	    </div>	
-	    <div class="col-lg-5 col-md-7">
-  			<div id="filterCategory">
-     
-	        <input id="coworking" type="checkbox" value="Coworking"/> 
-	        <label for="coworking" style="width:160px;" class="tooltips"><i class="fa fa-home"></i> Coworking <span>Un open space, un bureau privé ou une salle de réunion ? Tous ont une offre variée et de qualité.</span></label>
-	         
-	        <input id="cafewifi" type="checkbox" value="Café Wifi"/> 
-	        <label for="cafewifi" style="width:160px;" class="tooltips"><i class="fa fa-coffee"></i> Café wifi <span>Tous nos cafés sont testés et approuvés. Wifi, prise et confort.</span></label>
-	         
-	        <input id="centredaffaires" type="checkbox" value="Centre d'affaires"/> 
-	        <label for="centredaffaires" style="width:200px;" class="tooltips"><i class="fa fa-building"></i> Centre d'affaires <span>Envie d'un endroit plus professionnel ? Nos centres d'affaires proposent des prestation de qualité</span></label>
-        	</div>
-    	</div>
-    	<div class="col-lg-3 hidden-md">
-    		<button type="button" id="modalMap"><i class="fa fa-map" aria-hidden="true"></i> Voir la carte</button> <br>
 
-			 {# Modal #}
-			 <div class="modal fade" id="myModalMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			    <div class="modal-dialog">
-			        <div class="modal-content">
-			            <div class="modal-header" style="float: right;">
-			                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-			            </div>
-			            <div class="modal-body" id="modal-body-map">
-			                <div id="map" style="height:500px;"></div>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-			{# Fin modal #}
-    	</div>
-		</div>
-</div>
+{% include 'Home/filtersBar.html.twig' %} 
 
 {{ render(controller('BecowoCoreBundle:Home:paginationList', {limit: 5})) }}
 

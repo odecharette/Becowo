@@ -176,7 +176,7 @@ $("#formChangeMDP").submit(function (e){
     });
 });
 
-//Pagination called in AJAX
+// KnpPaginator pagination called in AJAX
 $('#paginationList').on('click', "ul.pagination a" , function(e){
 $.ajax({
     type: "GET",
@@ -188,7 +188,7 @@ $.ajax({
 e.preventDefault();
 });
 
-/////////// Home Filter bar
+// KnpPaginator Home Filter bar
 
 $('#filterCity, #filterCategory').on('click', "input" , function(e){
   var listCitySelected = "";
@@ -196,6 +196,10 @@ $('#filterCity, #filterCategory').on('click', "input" , function(e){
       var sThisVal = (this.checked ? $(this).val() + "," : "");
       listCitySelected += (listCitySelected=="" ? sThisVal : sThisVal);
   });
+  if(listCitySelected != '')
+    $("#filterCityBtn").html(listCitySelected);
+  else
+    $("#filterCityBtn").html('Ville des Hauts de France');
   console.log (listCitySelected);
 
   var listCategorySelected = "";
@@ -213,6 +217,17 @@ $('#filterCity, #filterCategory').on('click', "input" , function(e){
     });
 });
 
+$('[id^=footerFilter]').on('click' , function(e){
+
+  var ville = e.target.text;
+  $("#filterCityBtn").html(capitalizeFirstLetter(ville));
+  $.ajax({
+  type: "GET",
+  url: Routing.generate('becowo_core_list_workspaces', { city: ville }), })
+  .done(function( msg ) {
+      $('#paginationList').html(msg);
+  });
+});
 
 
 //Navbar Scroll Event
@@ -443,3 +458,6 @@ $(document).ready(function(){
   });
 });
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
