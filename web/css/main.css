@@ -899,14 +899,14 @@ footer{
 }
 .vignette .pub{
   background-color: var(--my-green);
-    color: white;
-    height: 310px;
-    width: 100%;
-    top: 0;
-    vertical-align: bottom;
-    display: inline-block;
-    padding: 29px;
-    text-align: center;
+  color: white;
+  height: 310px;
+  width: 100%;
+  top: 0;
+  vertical-align: bottom;
+  display: inline-block;
+  padding: 29px;
+  text-align: center;
 }
 
 
@@ -2842,14 +2842,14 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #filterCategory label{
   padding-right: 40px;
 }
-.fb_iframe_widget{
-  margin-left: -200px;
+.vignette .fb_iframe_widget{
   width: inherit;
+  margin-left: -200px;
 }
 .fb_iframe_widget span{
   width: 100% !important;
 }
-.fb-page iframe{
+.vignette .fb-page iframe{
   /*Pour cacher le nombre de likes et réduire le plugin*/
   width: 205px !important;
 }
