@@ -38,8 +38,9 @@ class HomeController extends Controller
 
     if($request->query->get('city') != null)
     {
-      $queryBuilder->andWhere('w.city = :city')
-                  ->setParameter('city', $request->query->get('city'));
+      $values = explode(',',$request->query->get('city'));
+      $queryBuilder->andWhere('w.city IN (:city)')
+                  ->setParameter('city', $values);
     }
 
     $query = $queryBuilder->getQuery();

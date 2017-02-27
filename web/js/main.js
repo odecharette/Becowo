@@ -188,16 +188,25 @@ $.ajax({
 e.preventDefault();
 });
 
-$('#city').change(function(e){
-  $.ajax({
+/////////// Home Filter bar
+
+$('#filterCity').on('click', "input" , function(e){
+  var listSelected = "";
+  $('#filterCity input[type=checkbox]').each(function () {
+      var sThisVal = (this.checked ? $(this).val() + "," : "");
+      listSelected += (listSelected=="" ? sThisVal : sThisVal);
+  });
+  console.log (listSelected);
+
+   $.ajax({
     type: "GET",
-    url: Routing.generate('becowo_core_list_workspaces', { city: $( "#city option:selected" ).text() }),
-    })
+    url: Routing.generate('becowo_core_list_workspaces', { city: listSelected }), })
     .done(function( msg ) {
         $('#paginationList').html(msg);
     });
-e.preventDefault();
 });
+
+
 
 //Navbar Scroll Event
 var navbar = $('.navbar');
