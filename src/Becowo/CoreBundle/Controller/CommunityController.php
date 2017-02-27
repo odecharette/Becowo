@@ -33,12 +33,21 @@ class CommunityController extends Controller
       'w.name as WsName',
       'w.street as WsStreet',
       'w.postCode as WsPostCode',
-      'w.city as WsCity'
+      'w.city as WsCity',
+      'r.name as WsRegion'
       );
 
     $queryBuilder->leftJoin('BecowoCoreBundle:Workspace', 'w', 'WITH', 'e.workspace = w')
                  ->leftJoin('BecowoCoreBundle:EventCategory', 'c', 'WITH', 'e.category = c')
+                 ->leftJoin('BecowoCoreBundle:Region', 'r', 'WITH', 'w.region = r')
                 ;
+
+    $WsName = $request->query->get('WsName');
+    if($WsName != null)
+    {
+      $queryBuilder->andWhere('w.name = :WsName')
+                  ->setParameter('WsName', $WsName);
+    }
 
     $query = $queryBuilder->getQuery();
 

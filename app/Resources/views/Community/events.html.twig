@@ -12,6 +12,29 @@
 Total : {{ listEvents.getTotalItemCount }} <br>
 
 <div class="container-fluid">
+
+	<div class="row" id="filtersBar">
+
+        <div id="filterWs" class="dropdown">
+				<button class="dropbtn" id="filterCityBtn">Choisir un espace de coworking</button>
+            <div class="dropdown-content">
+            	{% set newArray = [] %}
+            	{% for event in listEvents %}
+            		{% if event.WsName not in newArray %}
+                  		<label><a href="{{ path('becowo_core_community_events', { 'WsName':event.WsName}) }}"> {{event.WsName|capitalize}} </a></label>
+                  		<br>
+                  		{% set newArray = newArray|merge([event.WsName]) %}
+                  	{% endif %}
+               {% endfor %}
+            </div>
+        </div>
+		Filtrer par : 
+		<span {% if listEvents.isSorted('e.title') %} class="sorted"{% else %} class="unsorted"{% endif %}>
+			{{ knp_pagination_sortable(listEvents, 'Titre', 'e.title') }}
+		</span>	
+	</div>
+
+
   <div class="row text-center">
     {% for event in listEvents %}    
     <div class="panel panel-default" id="panelEvent">
@@ -22,7 +45,10 @@ Total : {{ listEvents.getTotalItemCount }} <br>
       </div>
       <div class="panel-body">
         <div class="row text-center title">
-          {{event.title}}
+          {{event.title}} <br> 
+          <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
+          	{{event.WsName}}
+          </a>
         </div>
         <div class="row">
           <center>
@@ -74,7 +100,9 @@ Total : {{ listEvents.getTotalItemCount }} <br>
 	            <div class="modal-body" style="overflow-y: scroll;">
 	                <center><img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 80%;"></center>
 	                <br>
-	                <span class="title"> {{event.title}}</span> 
+	                <span class="title"> {{event.title}} <br>
+	                <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">{{event.WsName}}
+			          </a></span> 
 	                <center>
 	                  {{ event.startDate|localizeddate('full', 'none')|title }} <br>
 	                  {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}

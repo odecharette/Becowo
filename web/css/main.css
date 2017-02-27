@@ -2842,6 +2842,25 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #filterCategory label{
   padding-right: 40px;
 }
+#filtersBar a{
+  color: white !important;
+}
+#filtersBar a:hover, #filtersBar a:focus{
+  text-decoration: none;
+}
+#filtersBar a.asc::after{
+  content: "\f106";
+  font-family: FontAwesome;
+  color: white ;
+  margin-left: 10px;
+}
+#filtersBar a.desc::after{
+  content: "\f107";
+  font-family: FontAwesome;
+  color: white;
+  margin-left: 10px;
+}
+
 .vignette .fb_iframe_widget{
   width: inherit;
   margin-left: -200px;
@@ -2946,3 +2965,4 @@ top: -50%;
   border-color: var(--my-green) !important;
   color: white !important;
 }
+
