@@ -43,6 +43,14 @@ class HomeController extends Controller
                   ->setParameter('city', $values);
     }
 
+    if($request->query->get('category') != null)
+    {
+      $values = explode(',',$request->query->get('category'));
+      $queryBuilder->join('w.category', 'c')
+                  ->andWhere('c.name IN (:category)')
+                  ->setParameter('category', $values);
+    }
+
     $query = $queryBuilder->getQuery();
 
     $paginator  = $this->get('knp_paginator');

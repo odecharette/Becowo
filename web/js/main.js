@@ -206,6 +206,21 @@ $('#filterCity').on('click', "input" , function(e){
     });
 });
 
+$('#filterCategory').on('click', "input" , function(e){
+  var listSelected = "";
+  $('#filterCategory input[type=checkbox]').each(function () {
+      var sThisVal = (this.checked ? $(this).val() + "," : "");
+      listSelected += (listSelected=="" ? sThisVal : sThisVal);
+  });
+  console.log (listSelected);
+
+   $.ajax({
+    type: "GET",
+    url: Routing.generate('becowo_core_list_workspaces', { category: listSelected }), })
+    .done(function( msg ) {
+        $('#paginationList').html(msg);
+    });
+});
 
 
 //Navbar Scroll Event

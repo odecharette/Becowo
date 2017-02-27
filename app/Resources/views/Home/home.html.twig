@@ -27,7 +27,7 @@
 	            <div class="dropdown-content">
 	            	{% for city in listCities|sort %}
 	            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
-	                  	<input data-path=".{{ville}}" id="{{ville}}" type="checkbox" value="{{ville}}" />
+	                  	<input id="{{ville}}" type="checkbox" value="{{ville}}" />
 	                  	<label for="{{ville}}">{{city|capitalize}}</label>
 	                  	<br>
 	               {% endfor %}
@@ -35,20 +35,16 @@
 	        </div>
 	    </div>	
 	    <div class="col-lg-4 col-md-7">
-			<!-- checkbox path filters -->
-  			<div >
+  			<div id="filterCategory">
      
-	         <input id="coworking" 
-	           type="checkbox"/> 
-	         <label for="coworking" style="width:160px;" class="tooltips"><i class="fa fa-home"></i> Coworking <span>Un open space, un bureau privé ou une salle de réunion ? Tous ont une offre variée et de qualité.</span></label>
+	        <input id="coworking" type="checkbox" value="Coworking"/> 
+	        <label for="coworking" style="width:160px;" class="tooltips"><i class="fa fa-home"></i> Coworking <span>Un open space, un bureau privé ou une salle de réunion ? Tous ont une offre variée et de qualité.</span></label>
 	         
-	         <input id="caféwifi" 
-	           type="checkbox"/> 
-	         <label for="caféwifi" style="width:160px;" class="tooltips"><i class="fa fa-coffee"></i> Café wifi <span>Tous nos cafés sont testés et approuvés. Wifi, prise et confort.</span></label>
+	        <input id="cafewifi" type="checkbox" value="Café Wifi"/> 
+	        <label for="cafewifi" style="width:160px;" class="tooltips"><i class="fa fa-coffee"></i> Café wifi <span>Tous nos cafés sont testés et approuvés. Wifi, prise et confort.</span></label>
 	         
-	         <input id="centredaffaires" 
-	           type="checkbox"/> 
-	         <label for="centredaffaires" style="width:200px;" class="tooltips"><i class="fa fa-building"></i> Centre d'affaires <span>Envie d'un endroit plus professionnel ? Nos centres d'affaires proposent des prestation de qualité</span></label>
+	        <input id="centredaffaires" type="checkbox" value="Centre d'affaires"/> 
+	        <label for="centredaffaires" style="width:200px;" class="tooltips"><i class="fa fa-building"></i> Centre d'affaires <span>Envie d'un endroit plus professionnel ? Nos centres d'affaires proposent des prestation de qualité</span></label>
         	</div>
     	</div>
     	<div class="col-lg-4 hidden-md">
