@@ -80,20 +80,20 @@ class HomeController extends Controller
 
     $listWS = $paginator->paginate(
         $query, /* query NOT result */
-        $request->query->getInt('page')/*page number*/,
+        $request->query->getInt('page', 1)/*page number*/,
         $limit/*limit per page*/
     );
     $listWS->setUsedRoute('becowo_core_list_workspaces');
 
-    $wsFullInfo = array();
+    $wsAmenities = array();
     foreach ($listWS->getItems() as $ws)
     {
-      array_push($wsFullInfo, array('ws' => $ws['id'],
+      array_push($wsAmenities, array('ws' => $ws['id'],
         'amenities' => $WsService->getAmenitiesByWorkspaceId($ws['id']),
         ));
     }
 
-    return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS, 'wsFullInfo' => $wsFullInfo));
+    return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS, 'wsAmenities' => $wsAmenities));
   }
 
   public function mobileAction()

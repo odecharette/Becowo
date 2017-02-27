@@ -2,15 +2,102 @@
 
 	
 <div id="paginationList">
-	{{dump(listWS)}}
-	{{dump(wsFullInfo)}}
-	{# <ul>
-		{% for item in listWS.items %}
-	    <li>{{item.name}}</li>
-		{% endfor %}
-	</ul> #}
-	Total : {{ listWS.getTotalItemCount }}
+	
+	Total : {{ listWS.getTotalItemCount }} <br>
+	{% for ws in listWS %}
+		<div class="vignette">
+			{% if ws.offer == 'Zen' %}
+				<a href="{{ path('becowo_core_workspace', { 'region':ws.region, 'ville' : ws.city, 'name': ws.name }) }}">
+			{% endif %}
+			<div id="pic">
+				<div id="favoritePicture">
+					{% if ws.favoritePictureUrl %}
+						<img src="{{ asset('images/Workspaces/')}}{{ws.name}}/{{ws.favoritePictureUrl}}" alt="{{ws.name}}">
+					{% endif %}
+				</div>
+				<div id="price">
+					{% if ws.category == 'Café Wifi' %}
+						Gratuit
+					{% else %}
+						A partir de {{ws.lowestPrice}} <sup>€</sup>
+						{% if ws.offer == 'Zen' %}
+							 <i class="fa fa-bolt" aria-hidden="true"></i>
+						{% endif %}
+					{% endif %}
+				</div>
+				<div id="stars">
+					{% if ws.voteAverage > 0 %}
+						<img src="{{ asset('images/icons/star')}}{{ws.voteAverage|round}}.png" alt="Vote">
+					{% endif %}
+				</div>
+				<div id="btn_decouvrir">
+					{% if ws.offer == 'Zen' %}
+						<button type="button" class="btn_vignette">
+							{% if ws.category == 'Coworking' %}
+								<i class="fa fa-home"></i>
+							{% elseif ws.category == 'Café Wifi' %}
+								<i class="fa fa-coffee"></i>
+							{% elseif ws.category == 'Centre d\'affaires' %}
+								<i class="fa fa-building"></i>
+							{% endif %}
+							Découvrir</button>
+							
+					{% else %}
+						<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>
+						<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    			<div class="modal-dialog">
+			        			<div class="modal-content">
+						            <div class="modal-header modal-header-info">
+						                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+						                <h4 class="modal-title">Réclamer cet espace</h4>
+						            </div>
+									<form method="POST" action="{{ path('becowo_core_vote_zen', { 'id' : ws.id }) }}" id="form_voteZen">
+						            <div class="modal-body">
+						                <p>La réservation en ligne n'est malheureusement pas disponible chez {{ws.name}}. <br>
+						                Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à {{ws.name}} car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"
+										</p>
+										Votre email * : <input type="email" name="emailVote" required="true" width="200px">
+										<p>Nous vous préviendrons dès que {{ws.name}} sera disponible sur Becowo.</p>
+										<div id="error-{{ws.id}}"></div>
+						            </div>
+						            <div class="modal-footer">
+										<button type="submit" id="voteZen-{{ws.id}}" class="modal_valid">Je réclame !</button>
+						            </div>
+									</form>	
+			        			</div>
+			    			</div>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+			{% if ws.offer == 'Zen' %}</a>{% endif %}
+			<table>
+			<td id="address">
+				<strong id="WSname">{{ws.name}}</strong> <br>
+				<span class="city">{{ws.city|capitalize}}</span>
+			</td>
+			<td id="listeLogo">
+				{% for WsAmenity in wsAmenities %}
+					{% if WsAmenity.ws == ws.id %}
+						{% for amenity in WsAmenity.amenities %}
+							{% if loop.index < 6 %}
+								{% if loop.index == 5 %} <span class="tooltips hidden-md"> {% else %} <span class="tooltips"> {% endif %}
+								<img src="{{ asset('images/icons/amenities/Bleu/')}}{{amenity.urlLogo}}" alt="{{amenity.name}}') }}"> <span>{{amenity.name}}</span></span>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
+			</td>
+			</table>
+			<div id="bonus">
+				{{ws.descriptionBonus}}
+			</div>
+		</div>
+	{% endfor %}
 	<div class="navigation text-center">
 	    {{ knp_pagination_render(listWS) }}
 	</div>
+
+{{dump(listWS)}}
+
 </div>

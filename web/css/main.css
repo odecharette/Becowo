@@ -754,10 +754,10 @@ footer{
   #home-image .homeButtons a{
     font-size: 14pt;
   }
-  #vignette #bonus{
+  .vignette #bonus{
     font-size: 10pt;
   }
-  #vignette .texte{
+  .vignette .texte{
   font-size: 14pt;
 }
 }
@@ -769,39 +769,39 @@ footer{
   #home-image .homeButtons a{
     font-size: 18pt;
   }
-  #vignette #bonus{
+  .vignette #bonus{
     font-size: 12pt;
   }
-  #vignette .texte{
+  .vignette .texte{
   font-size: 15pt;
 }
 }
 @media (max-width: 767px){
-  #vignette{
+  .vignette{
     width: 95%;
   }
 }
 @media (min-width: 768px){
-  #vignette{
+  .vignette{
     width: 29%;
   }
 }
-#vignette{
+.vignette{
   display: inline-block;
   margin: 20px 2%;
   vertical-align: top;
   overflow: hidden;
 }
-#vignette #address{
+.vignette #address{
   color: var(--my-black);
   font-size: 10pt;
   text-align: center;
   width: 45%;
 }
-#vignette #address .city{
+.vignette #address .city{
   color: var(--my-grey);
 }
-#vignette #bonus{
+.vignette #bonus{
   color: var(--my-red);
   height: 45px;
   font-weight: bold;
@@ -813,15 +813,15 @@ footer{
   margin-top: 5px;
 }
 
-#vignette #pic{
+.vignette #pic{
   position: relative;
   width: 100%;
 }
-#vignette #favoritePicture img{
+.vignette #favoritePicture img{
   width: 100%;
   height: 220px;
 }
-#vignette #price{
+.vignette #price{
   background-color: rgba(45,45,45,0.9);
   color: white;
   position: absolute;
@@ -832,23 +832,23 @@ footer{
   font-weight: bold;
   line-height: 40px;
 }
-#vignette #price i{
+.vignette #price i{
   color: var(--my-orange);
 }
-#vignette #stars{
+.vignette #stars{
   position: absolute;
   top: 5%;
   right: 5px;
 }
-#vignette #btn_decouvrir{
+.vignette #btn_decouvrir{
   position: absolute;
   right: 0;
   bottom: -5%;
 }
-#vignette #btn_decouvrir i{
+.vignette #btn_decouvrir i{
   margin-right: 10px;
 }
-#vignette .btn_vignette{
+.vignette .btn_vignette{
   background-color: var(--my-green);
   border : var(--my-green-strong);
   color: white ;
@@ -856,11 +856,11 @@ footer{
   line-height: 2em;
   width: 200px;
 }
-#vignette .modal-body{
+.vignette .modal-body{
   color: var(--my-grey);
   font-size: 12pt;
 }
-#vignette .modal_valid{
+.vignette .modal_valid{
   background-color: var(--my-blue);
   color: white;
   border: none;
@@ -868,36 +868,36 @@ footer{
   padding: 5px 5px 5px 5px;
   margin: 10px 10px 10px 10px;
 }
-#vignette table{
+.vignette table{
   width: 100%;
   margin-top: 5px;
   margin-left: 5px;
 }
-#vignette #stars img{
+.vignette #stars img{
   width: 90px;
   height: 20px;
 }
-#vignette #listeLogo{
+.vignette #listeLogo{
   margin-bottom: 5px;
   text-align: center;
   padding-top: 10px;
 }
-#vignette #listeLogo img{
+.vignette #listeLogo img{
   width: 30px;
   height: 30px;
   margin: 0 2px;
 }
 @media (max-width: 767px){
-  #vignette .pub{
+  .vignette .pub{
     font-size: 14pt;
   }
 }
 @media (min-width: 768px){
-  #vignette .pub{
+  .vignette .pub{
     font-size: 20pt;
   }
 }
-#vignette .pub{
+.vignette .pub{
   background-color: var(--my-green);
     color: white;
     height: 310px;
