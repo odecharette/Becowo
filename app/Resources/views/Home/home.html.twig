@@ -15,7 +15,68 @@
 {# {% if is_mobile() %}
 	{{ render(controller('BecowoCoreBundle:Home:mobile')) }}
 {% else %} #}
-	{% include 'Home/filter-and-list.html.twig' %} 
+	
+	{# {% include 'Home/filter-and-list.html.twig' %}  #}
+<select id="city">
+		<option value="tourcoing">Tourcoing</option>
+		<option value="roubaix">Roubaix</option>
+	</select>
+<div class="row" id="filtersBar">
+	        <div class="row">
+	        	<div class="col-lg-4 col-md-5">
+	        		<!-- checkbox dropdown -->
+			        <div id="filterCity">
+			            <ul>
+			            	{% for city in listCities|sort %}
+			            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
+			               	<li>
+			                  	<input data-path=".{{ville}}" id="{{ville}}" type="checkbox"/>
+			                  	<label for="{{ville}}">{{city|capitalize}}</label>
+			               	</li>
+			               {% endfor %}
+			            </ul>
+			        </div>
+			    </div>	
+			    <div class="col-lg-4 col-md-7">
+					<!-- checkbox path filters -->
+	      			<div >
+	         
+			         <input id="coworking" 
+			           type="checkbox"/> 
+			         <label for="coworking" style="width:160px;" class="tooltips"><i class="fa fa-home"></i> Coworking <span>Un open space, un bureau privé ou une salle de réunion ? Tous ont une offre variée et de qualité.</span></label>
+			         
+			         <input id="caféwifi" 
+			           type="checkbox"/> 
+			         <label for="caféwifi" style="width:160px;" class="tooltips"><i class="fa fa-coffee"></i> Café wifi <span>Tous nos cafés sont testés et approuvés. Wifi, prise et confort.</span></label>
+			         
+			         <input id="centredaffaires" 
+			           type="checkbox"/> 
+			         <label for="centredaffaires" style="width:200px;" class="tooltips"><i class="fa fa-building"></i> Centre d'affaires <span>Envie d'un endroit plus professionnel ? Nos centres d'affaires proposent des prestation de qualité</span></label>
+		        	</div>
+	        	</div>
+	        	<div class="col-lg-4 hidden-md">
+	        		<button type="button" id="modalMap"><i class="fa fa-map" aria-hidden="true"></i> Voir la carte</button> <br>
+
+					 {# Modal #}
+					 <div class="modal fade" id="myModalMap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header" style="float: right;">
+					                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+					            </div>
+					            <div class="modal-body" id="modal-body-map">
+					                <div id="map" style="height:500px;"></div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					{# Fin modal #}
+	        	</div>
+	  		</div>
+        </div>
+
+{{ render(controller('BecowoCoreBundle:Home:paginationList', {limit: 5})) }}
+
 {# {% endif %} #}
 
 <div class="container-fluid">

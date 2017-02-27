@@ -176,6 +176,29 @@ $("#formChangeMDP").submit(function (e){
     });
 });
 
+//Pagination called in AJAX
+$('#paginationList').on('click', "ul.pagination a" , function(e){
+$.ajax({
+    type: "GET",
+    url: $(this).attr('href'),
+    })
+    .done(function( msg ) {
+        $('#paginationList').html(msg);
+    });
+e.preventDefault();
+});
+
+$('#city').change(function(e){
+  $.ajax({
+    type: "GET",
+    url: Routing.generate('becowo_core_list_workspaces', { city: $( "#city option:selected" ).text() }),
+    })
+    .done(function( msg ) {
+        $('#paginationList').html(msg);
+    });
+e.preventDefault();
+});
+
 //Navbar Scroll Event
 var navbar = $('.navbar');
 $(window).scroll(function(event){

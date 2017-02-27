@@ -3,10 +3,11 @@
 namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
-  public function homeAction()
+  public function homeAction(Request $request)
   {
     $WsService = $this->get('app.workspace');
     $workspaces = $WsService->getActiveWorkspacesOrderByVoteAvg();
@@ -26,6 +27,33 @@ class HomeController extends Controller
     $listCities = array_unique($listCities);
 
     return $this->render('Home/home.html.twig', array('wsFullInfo' => $wsFullInfo, 'listCities' => $listCities));
+  }
+
+  public function paginationListAction(Request $request, $limit=5)
+  {
+    // TEST avec paginator
+    $em = $this->getDoctrine()->getManager();
+
+    $queryBuilder = $em->getRepository('BecowoCoreBundle:Workspace')->createQueryBuilder('w');
+
+    if($request->query->get('city') != null)
+    {
+      $queryBuilder->andWhere('w.city = :city')
+                  ->setParameter('city', $request->query->get('city'));
+    }
+
+    $query = $queryBuilder->getQuery();
+
+    $paginator  = $this->get('knp_paginator');
+
+    $listWS = $paginator->paginate(
+        $query, /* query NOT result */
+        $request->query->getInt('page')/*page number*/,
+        $limit/*limit per page*/
+    );
+    $listWS->setUsedRoute('becowo_core_list_workspaces');
+
+    return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS));
   }
 
   public function mobileAction()
