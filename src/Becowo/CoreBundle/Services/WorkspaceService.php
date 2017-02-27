@@ -145,6 +145,12 @@ class WorkspaceService
         return $repo->findBy(array('workspace' => $ws));
     }
 
+    public function getAllEvents()
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Event');
+        return $repo->findAll();
+    }
+
     public function getOfficesByWorkspace(Workspace $ws)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasOffice');

@@ -102,12 +102,5 @@ class HomeController extends Controller
     return $this->render('Home/ws-list-mobile.html.twig', array('wsFullInfo' => $wsFullInfo));
   }
 
-  public function communityAction()
-  {
-    $MemberService = $this->get('app.member');
-    $members = $MemberService->getActiveMembersByFillRate(50);
-    
-    return $this->render('Home/community.html.twig', array('members' => $members));
-  }
 
 }

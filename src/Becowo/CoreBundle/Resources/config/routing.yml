@@ -26,7 +26,12 @@ becowo_core_workspace_contact:
 
 becowo_core_community:
     path:     /communaute
-    defaults: { _controller: BecowoCoreBundle:Home:community }
+    defaults: { _controller: BecowoCoreBundle:Community:community }
+    methods: GET
+
+becowo_core_community_events:
+    path:     /communaute/events
+    defaults: { _controller: BecowoCoreBundle:Community:events }
     methods: GET
 
 becowo_core_booking_myreservations:

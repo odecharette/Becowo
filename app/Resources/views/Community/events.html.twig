@@ -1,0 +1,100 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Les évènements
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block body %}
+
+Total : {{ listEvents.getTotalItemCount }} <br>
+
+<div class="container-fluid">
+  <div class="row text-center">
+    {% for event in listEvents %}    
+    <div class="panel panel-default" id="panelEvent">
+      <div class="panel-heading">
+        <div class="row text-center">
+          <img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 100%;">
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row text-center title">
+          {{event.title}}
+        </div>
+        <div class="row">
+          <center>
+            {{ event.startDate|localizeddate('full', 'none')|title }} <br>
+            {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}
+          </center>
+          {% if event.description|length > 200 %}
+            <p>{{event.description|slice(0,200)}}...</p>
+          {% else %}
+            <p>{{event.description}}</p>
+          {% endif %}
+        </div>
+      </div>
+       <div class="panel-footer">
+        <div class="row text-center">
+          <div class="col-lg-5 col-lg-offset-0 col-md-8 col-md-offset-2" style="padding: 0;">
+            <button type="button" data-toggle="modal" class="btnFooter btn-lg" data-target="#myModalEvent-{{event.id}}">En savoir plus</button>
+          </div>
+          <div class="col-lg-7 col-lg-offset-0 col-md-10 col-md-offset-1" style="padding: 0;">
+            <button type="button" class="btnFooter btn-lg">
+            <div title="Add to Calendar" class="addthisevent">
+              Ajouter à mon calendrier
+              <span class="start">{{event.startDate|date("d/m/Y H:i:s")}}</span>
+              <span class="end">{{event.endDate|date("d/m/Y H:i:s")}}</span>
+              <span class="timezone">Europe/Paris</span>
+              <span class="title">{{event.title}}</span>
+              <span class="description">{{event.description}}</span>
+              <span class="location">{{event.WsName}} {{event.WsStreet}} {{event.WsPostCode}} {{event.WsCity}}</span>
+              <span class="organizer">Organizer</span>
+              <span class="organizer_email">Organizer e-mail</span>
+              <span class="all_day_event">false</span>
+              <span class="date_format">DD/MM/YYYY</span>
+            </div>
+            </button>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+
+	<!-- Modale -->
+	<div class="modal fade modalEvent" id="myModalEvent-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title">{{event.title}}</h4>
+	            </div>
+	            <div class="modal-body" style="overflow-y: scroll;">
+	                <center><img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 80%;"></center>
+	                <br>
+	                <span class="title"> {{event.title}}</span> 
+	                <center>
+	                  {{ event.startDate|localizeddate('full', 'none')|title }} <br>
+	                  {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}
+	                </center>
+	                <br>
+	                  <p>{{event.description|nl2br}}</p>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	{% endfor %}
+	</div>
+	<div class="navigation text-center">
+	    {{ knp_pagination_render(listEvents) }}
+	</div>
+</div>
+
+
+
+
+
+{% endblock body %}
