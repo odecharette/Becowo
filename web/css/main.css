@@ -3058,3 +3058,15 @@ label:hover.tooltips span, span:hover.tooltips span {
 .bx-viewport{
 top: -50%;
 }
+
+.pagination>li>a, .pagination>li>span { 
+  border-radius: 50% !important;
+  margin: 0 5px;
+  padding: 7px 14px;
+  color: var(--my-green) !important;
+}
+.pagination>.active>span{
+  background-color: var(--my-green) !important;
+  border-color: var(--my-green) !important;
+  color: white !important;
+}
