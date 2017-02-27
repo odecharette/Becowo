@@ -21,16 +21,17 @@
     <div class="row">
     	<div class="col-lg-4 col-md-5">
     		<!-- checkbox dropdown -->
-	        <div id="filterCity">
-	            <ul>
+
+	        <div id="filterCity" class="dropdown">
+  				<button class="dropbtn">Ville des Hauts de France</button>
+	            <div class="dropdown-content">
 	            	{% for city in listCities|sort %}
 	            	{% set ville = city|lower|replace({"'": ""," ":""}) %}
-	               	<li>
 	                  	<input data-path=".{{ville}}" id="{{ville}}" type="checkbox" value="{{ville}}" />
 	                  	<label for="{{ville}}">{{city|capitalize}}</label>
-	               	</li>
+	                  	<br>
 	               {% endfor %}
-	            </ul>
+	            </div>
 	        </div>
 	    </div>	
 	    <div class="col-lg-4 col-md-7">

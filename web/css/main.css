@@ -2753,6 +2753,74 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
 
+#filtersBar .dropbtn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16pt;
+  font-weight: 700;
+  border-bottom: solid 3px white;
+  width: 300px;
+  text-align: left;
+  text-indent: 10px;
+}
+#filtersBar .dropdown {
+    position: relative;
+    display: inline-block;
+}
+#filtersBar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f4f4f4;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    min-width: 300px;
+    padding: 5px;
+}
+#filtersBar .dropdown-content label {
+  color: var(--my-black);
+  display: inline-block;
+  border-bottom: 2px solid #eaeaea;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 5px;
+  margin-bottom: 5px;
+  font-weight: 700;
+  text-indent: 10px;
+  font-size: 16pt;
+  width: 100%;
+}
+#filtersBar .dropdown-content label:hover {
+  background-color: var(--my-grey-light);
+}
+#filtersBar .dropdown-content input {
+    float: right;
+    margin-right: 10px;
+}
+#filtersBar .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#filtersBar input[type=checkbox] { display:none !important; } /* to hide the checkbox itself */
+#filtersBar input[type=checkbox] + label:after {
+  font-family: FontAwesome !important;
+  display: inline-block !important;
+}
+
+#filtersBar input[type=checkbox] + label:after { content: "\f096" !important; } /* unchecked icon */
+#filtersBar input[type=checkbox] + label:after {    
+  position: absolute;
+  right: 20px; 
+ }
+
+#filtersBar input[type=checkbox]:checked + label:after { content: "\f046" !important; } /* checked icon */
+#filtersBar input[type=checkbox]:checked + label:after { 
+  position: absolute;
+  right: 20px;
+} 
+
 #filtersBar .titles{
   font-size: 14pt;
   margin-bottom: 40px;
@@ -2784,7 +2852,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 }
 
 /* jplist.checkbox-dropdown.min.css personalized*/
-
+/*
 .jplist-checkbox-dropdown {
   float: left;
   height: 40px;
@@ -2805,19 +2873,19 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   text-indent: 10px;
 }
 
-.jplist-panel input[type=checkbox] { display:none !important; } /* to hide the checkbox itself */
+.jplist-panel input[type=checkbox] { display:none !important; } // to hide the checkbox itself 
 .jplist-panel input[type=checkbox] + label:after {
   font-family: FontAwesome !important;
   display: inline-block !important;
 }
 
-.jplist-panel input[type=checkbox] + label:after { content: "\f096" !important; } /* unchecked icon */
+.jplist-panel input[type=checkbox] + label:after { content: "\f096" !important; } // unchecked icon 
 .jplist-panel input[type=checkbox] + label:after {    
   position: absolute;
   right: 20px; 
  }
 
-.jplist-panel input[type=checkbox]:checked + label:after { content: "\f046" !important; } /* checked icon */
+.jplist-panel input[type=checkbox]:checked + label:after { content: "\f046" !important; } // checked icon 
 .jplist-panel input[type=checkbox]:checked + label:after { 
   position: absolute;
   right: 20px;
@@ -2873,7 +2941,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
     display: block !important;
 }
 
-
+*/
 /* JPList Filter toggle button personalized */
 
 .jplist-group label{
