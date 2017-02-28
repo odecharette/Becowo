@@ -803,7 +803,7 @@ footer{
 }
 .vignette #bonus{
   color: var(--my-red);
-  height: 45px;
+  height: 60px;
   font-weight: bold;
   text-align: center;
   letter-spacing: 0.1em;

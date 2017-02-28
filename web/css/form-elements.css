@@ -157,3 +157,7 @@
     margin: -18px auto 10px;
     width: 100%;
 }
+
+#fos_user_registration_form_plainPassword_second{
+    margin-bottom: 15px;
+}
