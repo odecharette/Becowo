@@ -975,22 +975,13 @@ footer{
     margin-right: 30px;
   }
 }
-#community p{ 
-  color: white;
-  font-size: 13pt;
-  padding: 15px;
-}
-@media (min-width: 992px){
-  #community p{
-    font-size: 12pt;
-    text-align: center;
-  }
-}
+
 #community .texte1{
   background-color: var(--my-green);
 }
 #community .nav{
-  margin-bottom: 10px !important;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
 }
 #community .nav-item{
   border-bottom: solid 2px var(--my-green);
@@ -1005,7 +996,7 @@ footer{
 #community .nav-item.active a{
   color: white;
 }
-#community .row{
+#community .member .row{
   margin-top: 30px;
 }
 #community .member{
@@ -1018,12 +1009,12 @@ footer{
 #community .member a:hover{
   color: transparent;
 }
-#community img{
+#community .member img{
   width: 100%;
-    margin-bottom: 20px;
-    margin-top: 30px;
+  margin-bottom: 20px;
+  margin-top: 30px;
 }
-#community span{
+#community .member span{
   position: absolute;
   top: 10%;
   left: 70%;
@@ -1035,6 +1026,11 @@ footer{
   font-size: 12pt;
   color: var(--my-blue);
   text-align: center;
+}
+
+#community #panelEvent .title{
+  text-align: center;
+  font-size: 14pt;
 }
 
 

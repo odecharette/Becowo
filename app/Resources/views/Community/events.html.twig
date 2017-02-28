@@ -24,9 +24,7 @@ Total : {{ listEvents.getTotalItemCount }} <br>
             </div>
         </div>
 		Filtrer par : 
-		<span {% if listEvents.isSorted('e.title') %} class="sorted"{% else %} class="unsorted"{% endif %}>
-			{{ knp_pagination_sortable(listEvents, 'Titre', 'e.title') }}
-		</span>	
+		{{ knp_pagination_sortable(listEvents, 'Titre', 'e.title') }}
 	</div>
 
 
@@ -34,15 +32,13 @@ Total : {{ listEvents.getTotalItemCount }} <br>
     {% for event in listEvents %}    
     <div class="panel panel-default" id="panelEvent">
       <div class="panel-heading">
-        <div class="row text-center">
-          <img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 100%;">
-        </div>
+        <img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 100%;">
       </div>
       <div class="panel-body">
-        <div class="row text-center title">
+        <div class="title">
           {{event.title}} <br> 
           <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
-          	{{event.WsName}}
+          	<i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}}
           </a>
         </div>
         <div class="row">
@@ -50,19 +46,17 @@ Total : {{ listEvents.getTotalItemCount }} <br>
             {{ event.startDate|localizeddate('full', 'none')|title }} <br>
             {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}
           </center>
+          <p>
           {% if event.description|length > 200 %}
-            <p>{{event.description|slice(0,200)}}...</p>
+            {{event.description|slice(0,200)}}...
           {% else %}
-            <p>{{event.description}}</p>
+            {{event.description}}
           {% endif %}
+          <a href="#" data-toggle="modal" data-target="#myModalEvent-{{event.id}}">[voir plus]</a> </p>
         </div>
       </div>
        <div class="panel-footer">
-        <div class="row text-center">
-          <div class="col-lg-5 col-lg-offset-0 col-md-8 col-md-offset-2" style="padding: 0;">
-            <button type="button" data-toggle="modal" class="btnFooter btn-lg" data-target="#myModalEvent-{{event.id}}">En savoir plus</button>
-          </div>
-          <div class="col-lg-7 col-lg-offset-0 col-md-10 col-md-offset-1" style="padding: 0;">
+            
             <button type="button" class="btnFooter btn-lg">
             <div title="Add to Calendar" class="addthisevent">
               Ajouter à mon calendrier
@@ -78,41 +72,41 @@ Total : {{ listEvents.getTotalItemCount }} <br>
               <span class="date_format">DD/MM/YYYY</span>
             </div>
             </button>
-          </div>
-        </div>
       </div> 
     </div>
 
 
-	<!-- Modale -->
-	<div class="modal fade modalEvent" id="myModalEvent-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">{{event.title}}</h4>
-	            </div>
-	            <div class="modal-body" style="overflow-y: scroll;">
-	                <center><img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 80%;"></center>
-	                <br>
-	                <span class="title"> {{event.title}} <br>
-	                <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">{{event.WsName}}
-			          </a></span> 
-	                <center>
-	                  {{ event.startDate|localizeddate('full', 'none')|title }} <br>
-	                  {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}
-	                </center>
-	                <br>
-	                  <p>{{event.description|nl2br}}</p>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+  	<!-- Modale -->
+  	<div class="modal fade modalEvent" id="myModalEvent-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	    <div class="modal-dialog">
+  	        <div class="modal-content">
+  	            <div class="modal-header">
+  	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  	                <h4 class="modal-title">{{event.title}}</h4>
+  	            </div>
+  	            <div class="modal-body" style="overflow-y: scroll;">
+  	                <center><img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 80%;"></center>
+  	                <br>
+  	                <span class="title"> {{event.title}} <br>
+  	                <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
+                      <i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}}
+  			          </a></span> 
+  	                <center>
+  	                  {{ event.startDate|localizeddate('full', 'none')|title }} <br>
+  	                  {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}
+  	                </center>
+  	                <br>
+  	                  <p>{{event.description|nl2br}}</p>
+  	            </div>
+  	        </div>
+  	    </div>
+  	</div>
 
-	{% endfor %}
-	</div>
-	<div class="navigation text-center">
-	    {{ knp_pagination_render(listEvents) }}
+  	{% endfor %}
+    <br>
+  <div class="navigation text-center">
+      {{ knp_pagination_render(listEvents) }}
+  </div>
 	</div>
 
 {% endblock content %}
