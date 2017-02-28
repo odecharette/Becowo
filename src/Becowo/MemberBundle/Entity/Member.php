@@ -5,11 +5,12 @@ namespace Becowo\MemberBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Member
  *
- * @ORM\Table(name="becowo_member", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"}), @ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_origin_id_idx", columns={"origin_id"}), @ORM\Index(name="fk_member_profile_picture1_idx", columns={"profile_picture_id"})})
+ * @ORM\Table(name="becowo_member", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"}), @ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"})}, indexes={@ORM\Index(name="fk_country_id_idx", columns={"country_id"}), @ORM\Index(name="fk_origin_id_idx", columns={"origin_id"})})
  * @ORM\AttributeOverrides({
  *              @ORM\AttributeOverride(name="email", column=@ORM\Column(nullable=true)),
  *              @ORM\AttributeOverride(name="emailCanonical", column=@ORM\Column(nullable=true))})
@@ -210,14 +211,11 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     private $linkedinLink;
 
     /**
-     * @var \Becowo\CoreBundle\Entity\ProfilePicture
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\ProfilePicture", cascade={"persist"})
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="profile_picture_id", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="url_profile_picture", type="string", length=255, nullable=true)
      */
-    private $profilePicture;
+    private $urlProfilePicture;
 
     /**
      * @var \Becowo\CoreBundle\Entity\Origin
@@ -299,6 +297,19 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @ORM\Column(name="has_received_email_new_user", type="boolean", nullable=false)
      */
     private $hasReceivedEmailNewUser = '0';
+
+     private $file;
+  
+  public function getFile()
+  {
+    return $this->file;
+  }
+
+  public function setFile(UploadedFile $file = null)
+  {
+    $this->file = $file;
+  }
+
 
     /**
      * Constructor
@@ -877,27 +888,27 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     }
 
     /**
-     * Set profilePicture
+     * Set urlProfilePicture
      *
-     * @param \Becowo\CoreBundle\Entity\ProfilePicture $profilePicture
+     * @param string $urlProfilePicture
      *
      * @return Member
      */
-    public function setProfilePicture(\Becowo\CoreBundle\Entity\ProfilePicture $profilePicture = null)
+    public function setUrlProfilePicture($urlProfilePicture)
     {
-        $this->profilePicture = $profilePicture;
+        $this->urlProfilePicture = $urlProfilePicture;
 
         return $this;
     }
 
     /**
-     * Get profilePicture
+     * Get urlProfilePicture
      *
-     * @return \Becowo\CoreBundle\Entity\ProfilePicture
+     * @return string
      */
-    public function getProfilePicture()
+    public function getUrlProfilePicture()
     {
-        return $this->profilePicture;
+        return $this->urlProfilePicture;
     }
 
     /**
@@ -1175,7 +1186,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         $this->getTwitterLink() != '' ? $totalFilled++ : '';
         $this->getInstagramLink() != '' ? $totalFilled++ : '';
         $this->getLinkedinLink() != '' ? $totalFilled++ : '';
-        $this->getProfilePicture() != '' ? $totalFilled++ : '';
+        $this->getUrlProfilePicture() != '' ? $totalFilled++ : '';
         $this->getCountry() != '' ? $totalFilled++ : '';
         $this->getPersonnalTweet() != '' ? $totalFilled++ : '';
         $this->getSkills() != '' ? $totalFilled++ : '';

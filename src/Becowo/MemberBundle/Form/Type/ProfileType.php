@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Becowo\CoreBundle\Form\Type\ProfilePictureType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProfileType extends AbstractType
 {
@@ -69,7 +70,7 @@ class ProfileType extends AbstractType
                 'placeholder' => 'Ma page ou profil LinkedIn'),
                 'required' => false, 
                 'label' => false))
-    	    ->add('profilePicture', ProfilePictureType::class, array('label' => false,'required' => false))
+    	    ->add('file', FileType::class, array('multiple' => false, 'label' => false))
             ->add('skills', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ->add('hobbies', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ->add('wishes', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))

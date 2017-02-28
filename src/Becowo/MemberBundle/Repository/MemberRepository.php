@@ -23,9 +23,7 @@ class MemberRepository extends EntityRepository
 	public function findAllActiveMembers()
 	{
 		$qb = $this->createQueryBuilder('m');
-		$qb->select('p, m')
-		   ->leftJoin('m.profilePicture', 'p')
-			->where('m.enabled = true')
+		$qb->where('m.enabled = true')
 			->andWhere('m.isDeleted = false')
 			->orderBy('m.fillRate', 'desc');
 
@@ -35,9 +33,7 @@ class MemberRepository extends EntityRepository
 	public function findActiveMembersByFillRate($rate)
 	{
 		$qb = $this->createQueryBuilder('m');
-		$qb->select('p, m')
-		   ->leftJoin('m.profilePicture', 'p')
-			->where('m.enabled = true')
+		$qb->where('m.enabled = true')
 			->andWhere('m.isDeleted = false')
 			->andWhere('m.fillRate >= :rate')
 			->setParameter('rate', $rate)

@@ -25,15 +25,15 @@
 					<div class="col-lg-4 col-md-4 col-xs-12">
 						<div class="member">
 							<a href="{{ path('becowo_member_public_profile', {'id' : member.id}) }}">
-								{% if member.profilePicture.url is defined %}
+								{% if member.urlProfilePicture is defined %}
 									{% if member.signedUpWith == null %}
-									<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.profilePicture.url}}'); 
+									<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.urlProfilePicture}}'); 
 									    width:200px; 
 									    height:200px; 
 									    background-position:center;
 									    background-size: cover;">&nbsp;</div>
 									{% else %}
-									<div style="background-image:url('{{member.profilePicture.url}}'); 
+									<div style="background-image:url('{{member.urlProfilePicture}}'); 
 									    width:200px; 
 									    height:200px; 
 									    background-position:center;

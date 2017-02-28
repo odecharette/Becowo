@@ -46,16 +46,16 @@
     {{ form_errors(form) }}
     <div class="col-lg-3 col-md-3">
       <div class="picture">
-          {% if form.children.profilePicture.children.url.vars.value != '' %}
+          {% if app.user.urlProfilePicture != null %}
             {% if form.vars.data.signedUpWith == null %}
-                <div style="background-image:url('{{asset('images/ProfilePictures/')}}{{ form.vars.value.profilePicture.url }}'); 
+                <div style="background-image:url('{{asset('images/ProfilePictures/')}}{{ app.user.urlProfilePicture }}'); 
                 width:200px; 
                 height:200px; 
                 background-position:center;
                 background-size: cover;
                 margin: 0 auto;">&nbsp;</div>
             {% else %}
-                <div style="background-image:url('{{ form.vars.value.profilePicture.url }}'); 
+                <div style="background-image:url('{{ app.user.urlProfilePicture }}'); 
                   width:200px; 
                   height:200px; 
                   background-position:center;
@@ -70,7 +70,7 @@
                 background-size: cover;
                 margin: 0 auto;">&nbsp;</div>  
           {% endif %}
-          {{ form_row(form.profilePicture) }} <br>
+          {{ form_row(form.file) }} <br>
           {# {{ form.vars.value.profilePicture.url }} #}
       </div>
       <div class="tweet">

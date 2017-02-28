@@ -37,13 +37,13 @@ fos_js_routing:
 
 fos_user_profile_show:
     path: /profile/edit
-    defaults: { _controller: FOSUserBundle:Profile:edit }
+    defaults: { _controller: BecowoMemberBundle:Profile:edit }
     requirements:
         _method: GET|POST
 
 fos_user_profile_edit:
     path: /profile/edit
-    defaults: { _controller: FOSUserBundle:Profile:edit }
+    defaults: { _controller: BecowoMemberBundle:Profile:edit }
     requirements:
         _method: GET|POST
 
