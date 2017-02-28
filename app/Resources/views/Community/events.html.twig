@@ -13,14 +13,10 @@ Total : {{ listEvents.getTotalItemCount }} <br>
         <div id="filterWs" class="dropdown">
 				<button class="dropbtn" id="filterCityBtn">Choisir un espace de coworking</button>
             <div class="dropdown-content">
-            	{% set newArray = [] %}
-            	{% for event in listEvents %}
-            		{% if event.WsName not in newArray %}
-                  		<label><a href="{{ path('becowo_core_community_events', { 'WsName':event.WsName}) }}"> {{event.WsName|capitalize}} </a></label>
-                  		<br>
-                  		{% set newArray = newArray|merge([event.WsName]) %}
-                  	{% endif %}
-               {% endfor %}
+            	{% for ws in WSList %}
+            		<label><a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"> {{ws.name|capitalize}} </a></label>
+            		<br>
+              {% endfor %}
             </div>
         </div>
 		Filtrer par : 

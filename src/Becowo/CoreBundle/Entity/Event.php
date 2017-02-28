@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Event
  *
  * @ORM\Table(name="becowo_event", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"})}, indexes={@ORM\Index(name="fk_category_id_idx", columns={"category_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\EventRepository")
  */
 class Event
 {

@@ -362,4 +362,10 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Workspace');
         return $repo->findListOfActiveCities();
     }
+
+    public function getListOfWsWithEvents()
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Event');
+        return $repo->findListOfWsWithEvents();
+    }
 }

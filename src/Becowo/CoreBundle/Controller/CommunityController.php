@@ -19,6 +19,9 @@ class CommunityController extends Controller
 
   public function eventsAction(Request $request, $limit=6)
   {
+    $wsService = $this->get('app.workspace');
+    $WSList = $wsService->getListOfWsWithEvents();
+
     $em = $this->getDoctrine()->getManager();
 
     $queryBuilder = $em->getRepository('BecowoCoreBundle:Event')->createQueryBuilder('e');
@@ -42,6 +45,9 @@ class CommunityController extends Controller
                  ->leftJoin('BecowoCoreBundle:Region', 'r', 'WITH', 'w.region = r')
                 ;
 
+    $queryBuilder->andWhere('w.isDeleted = false')
+                 ->andWhere('w.isVisible = true');
+
     $WsName = $request->query->get('WsName');
     if($WsName != null)
     {
@@ -60,7 +66,7 @@ class CommunityController extends Controller
     );
     // $listWS->setUsedRoute('becowo_core_list_workspaces');
     
-    return $this->render('Community/events.html.twig', array("listEvents" => $listEvents));
+    return $this->render('Community/events.html.twig', array("listEvents" => $listEvents, 'WSList' => $WSList));
   }
 
 }
