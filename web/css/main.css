@@ -989,8 +989,21 @@ footer{
 #community .texte1{
   background-color: var(--my-green);
 }
-#community .texte2{
-  background-color: var(--my-pink);
+#community .nav{
+  margin-bottom: 10px !important;
+}
+#community .nav-item{
+  border-bottom: solid 2px var(--my-green);
+  font-size: 16pt;
+}
+#community .nav-item a{
+  color: var(--my-green);
+}
+#community .nav-item.active{
+  background-color: var(--my-green);
+}
+#community .nav-item.active a{
+  color: white;
 }
 #community .row{
   margin-top: 30px;
