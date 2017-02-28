@@ -183,7 +183,7 @@ easy_admin:
         Member:
             class: Becowo\MemberBundle\Entity\Member
             list:
-                fields: ['id', 'username', 'firstName', 'name', { property: 'email', type: 'email' }, 'roles', 'profilePicture', 'lastLogin', 'enabled', 'locked']
+                fields: ['id', 'username', 'firstName', 'name', 'urlProfilePicture', { property: 'email', type: 'email' }, 'roles', 'lastLogin', 'enabled', 'locked']
             form:
                 fields: 
                     - { property: 'username', type: 'text' }
@@ -195,8 +195,6 @@ easy_admin:
                     - { property: 'locked', type: 'checkbox' }
                     - { property: 'workspace' }
                     - { property: 'roles' }
-        ProfilePicture:
-            class: Becowo\CoreBundle\Entity\ProfilePicture
         Poi:
             class: Becowo\CoreBundle\Entity\Poi
         Poi_Category:
@@ -235,7 +233,7 @@ easy_admin:
             - label: 'Booking'
               children: ['Booking', 'Booking_Status']
             - label: 'Members'
-              children: ['Member', 'ProfilePicture', 'Prospect']
+              children: ['Member', 'Prospect']
             - label: 'POI'
               children: ['Poi', 'Poi_Category']
             - label: 'Members input'
