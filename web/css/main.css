@@ -151,17 +151,27 @@ header .menu a{
 header .menu a:focus, header .menu a:hover{
   color: var(--my-blue);
 }
-header .log{
+header .log, header .log-menu{
   background-color: var(--my-blue);
   color: white !important;
   padding: 15px;
-  margin: 0 0 0 20px;
   border-radius: 10px;
-  text-transform: capitalize;
+  text-transform: capitalize !important;
   font-weight: 600;
   letter-spacing: 1px;
 }
-header .menu i{
+header .log{
+  margin: 0 0 0 20px;
+}
+header .log-menu i{
+  font-size: 15pt !important;
+  margin: 0;
+}
+header .log-menu-content i{
+  font-size: 10pt !important;
+  margin: 0;
+}
+header i{
   font-size: 6pt !important;
   margin: 0 10px;
   vertical-align: middle;
@@ -169,6 +179,10 @@ header .menu i{
 header .dropdown-menu{
   top: 70% !important;
   left: -10px !important;
+}
+header .log-menu-content{
+  left: -100px !important;
+  right: 0 !important;
 }
 header .dropdown-menu a{
   text-transform: none;
