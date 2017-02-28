@@ -1,62 +1,44 @@
-{% extends "layout.html.twig" %}
+{% extends "Community/layout.html.twig" %}
 
 {% block title %}
-  Communauté
+  Communauté - coworkers
 {% endblock %}
 
-{% block stylesheets %}
-{% endblock stylesheets %}
+{% block content %}
+<h1>Les coworkers</h1>
+	{% for member in members %}
+		{% if loop.index % 4 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
+			<div class="col-lg-4 col-md-4 col-xs-12">
+				<div class="member">
+					<a href="{{ path('becowo_member_public_profile', {'id' : member.id}) }}">
+						{% if member.urlProfilePicture is defined %}
+							{% if member.signedUpWith == null %}
+							<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.urlProfilePicture}}'); 
+							    width:200px; 
+							    height:200px; 
+							    background-position:center;
+							    background-size: cover;">&nbsp;</div>
+							{% else %}
+							<div style="background-image:url('{{member.urlProfilePicture}}'); 
+							    width:200px; 
+							    height:200px; 
+							    background-position:center;
+							    background-size: cover;">&nbsp;</div>
+							{% endif %}
+						{% else %}
+							<div style="background-image:url('{{ asset('images/ProfilePictures/avatar.png')}}'); 
+							    width:200px; 
+							    height:200px; 
+							    background-position:center;
+							    background-size: cover;">&nbsp;</div>
+						{% endif %}
+						<span class="label label-info hidden-xs">{{member.job}}</span>
+						<div class="name hidden-xs">{{member.firstname}} {{member.name}}</div>
+						<div class="name visible-xs">{{member.firstname}} {{member.name}} - {{member.job}}</div>
+					</a>
+				</div>
+			</div>
+		{% if loop.index % 3 == 0 or loop.last %} </div> {% endif %}
+	{% endfor %}
+{% endblock content %}
 
-{% block body %}
-
-{# TO DO : delete min-height forcée quand sufisement de profil #}
-<div class="container-fluid" id="community" style="min-height: 600px;">
-	<h1>Rencontrer les autres coworkers de la communauté Becowo</h1>
-	<div class="row">
-		<div class="col-lg-3 col-xs-12">
-			<img src="{{ asset('images/icons/community.png')}}" alt="community">
-			<p class="texte1">Vous trouverez ici les membres de la communauté Becowo, n'hésitez pas à aller jeter un œil à leur profil en cliquant sur leur photo</p>
-			{# <p class="texte2">Découvrez nos profils de freelances, entrepreneurs, indépendants, journalistes etc</p> #}
-			<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-height="150" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
-		</div>
-		<div class="col-lg-9 col-xs-12">
-			{% for member in members %}
-				{% if loop.index % 4 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
-					<div class="col-lg-4 col-md-4 col-xs-12">
-						<div class="member">
-							<a href="{{ path('becowo_member_public_profile', {'id' : member.id}) }}">
-								{% if member.urlProfilePicture is defined %}
-									{% if member.signedUpWith == null %}
-									<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.urlProfilePicture}}'); 
-									    width:200px; 
-									    height:200px; 
-									    background-position:center;
-									    background-size: cover;">&nbsp;</div>
-									{% else %}
-									<div style="background-image:url('{{member.urlProfilePicture}}'); 
-									    width:200px; 
-									    height:200px; 
-									    background-position:center;
-									    background-size: cover;">&nbsp;</div>
-									{% endif %}
-								{% else %}
-									<div style="background-image:url('{{ asset('images/ProfilePictures/avatar.png')}}'); 
-									    width:200px; 
-									    height:200px; 
-									    background-position:center;
-									    background-size: cover;">&nbsp;</div>
-								{% endif %}
-								<span class="label label-info hidden-xs">{{member.job}}</span>
-								<div class="name hidden-xs">{{member.firstname}} {{member.name}}</div>
-								<div class="name visible-xs">{{member.firstname}} {{member.name}} - {{member.job}}</div>
-							</a>
-						</div>
-					</div>
-				{% if loop.index % 3 == 0 or loop.last %} </div> {% endif %}
-			{% endfor %}
-		</div>
-	</div>
-</div>
-
-
-{% endblock body %}
