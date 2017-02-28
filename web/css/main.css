@@ -1031,8 +1031,14 @@ footer{
 #community #panelEvent .title{
   text-align: center;
   font-size: 14pt;
+  height: 80px;
 }
-
+#community #panelEvent a{
+  color: var(--my-green);
+}
+#community #panelEvent .panel-body{
+  height: 355px;
+}
 
 /********************************** Public profile *************************************/
 
@@ -1819,7 +1825,6 @@ color: var(--my-blue) !important;
   margin-top: -2px;
   color: var(--my-grey);
   font-size: 12pt;
-  text-align: justify;
   border: solid 1px var(--my-green);
   overflow: hidden;
   padding-bottom: 10px;

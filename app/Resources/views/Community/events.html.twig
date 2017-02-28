@@ -36,11 +36,11 @@ Total : {{ listEvents.getTotalItemCount }} <br>
       </div>
       <div class="panel-body">
         <div class="title">
-          {{event.title}} <br> 
-          <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
-          	<i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}}
-          </a>
+          {{event.title|capitalize}} 
         </div>
+          <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
+            <i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}}
+          </a>
         <div class="row">
           <center>
             {{ event.startDate|localizeddate('full', 'none')|title }} <br>
@@ -82,12 +82,12 @@ Total : {{ listEvents.getTotalItemCount }} <br>
   	        <div class="modal-content">
   	            <div class="modal-header">
   	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  	                <h4 class="modal-title">{{event.title}}</h4>
+  	                <h4 class="modal-title">{{event.title|capitalize}}</h4>
   	            </div>
   	            <div class="modal-body" style="overflow-y: scroll;">
   	                <center><img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 80%;"></center>
   	                <br>
-  	                <span class="title"> {{event.title}} <br>
+  	                <span class="title"> {{event.title|capitalize}} <br>
   	                <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
                       <i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}}
   			          </a></span> 
