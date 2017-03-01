@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Becowo\ApiBundle\BecowoApiBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -277,8 +277,8 @@ hwi_oauth:
     resource_owners:
         facebook:
             type:                facebook
-            client_id:           810073549123890
-            client_secret:       3ff160395ef3c562838c64187684ecf3
+            client_id:           "%facebook_client_id%"
+            client_secret:       "%facebook_client_secret%"
             infos_url:     "https://graph.facebook.com/me?fields=id,middle_name,first_name,last_name,name,email,picture.type(square)"
             scope:  email
             paths:
