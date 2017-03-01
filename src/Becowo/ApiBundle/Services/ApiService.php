@@ -27,7 +27,7 @@ class ApiService
         return $repo->findApiEventsParam();
     }
 
-    public function getFacebookPageEvents($FB_PAGE_ID, $sinceDate)
+    public function getFacebookPageEvents($FB_PAGE_ID)
     {
         $FB_API_GRAPH_URL = 'https://graph.facebook.com';
 
@@ -47,8 +47,8 @@ class ApiService
             $access_token =$response->body;
             
             if (!empty($access_token)) {
-                // Construction de l'URL à appeler pour récupérer les évènements de la page
-                $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json&since='.$sinceDate;
+                // Construction de l'URL à appeler pour récupérer les évènements de la page depuis le 01/01/2017
+                $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json&since=2017-01-01';
                 // Appel à l'API
                 $response = \Httpful\Request::get($url)->send();
                 // si data existe, c'est un array() qui contient tous les évènements relatifs à cette page
@@ -78,19 +78,26 @@ class ApiService
 
         foreach($events as $e)
         {
-            $event = New Event();
-            $event->setTitle($e->name);
-            $event->setDescription($e->description);
-            $event->setStartDate(new \DateTime($e->start_time));
-            $event->setEndDate(new \DateTime($e->end_time));
+            $existingEvent = $this->WsService->getEventByFacebookId($e->id);
 
-            // On vérifie que l'event a bien lieu dans le ws correspondant
-            if($e->place->id == $facebookPageId) 
+            // On créer l'event en BDD que s'il n'existe pas déjà
+            if($existingEvent == null)
             {
-                $event->setWorkspace($ws);
-            }
+                $event = New Event();
+                $event->setTitle($e->name);
+                $event->setDescription($e->description);
+                $event->setStartDate(new \DateTime($e->start_time));
+                $event->setEndDate(new \DateTime($e->end_time));
+                $event->setFacebookId($e->id);
 
-            $this->em->persist($event);
+                // On vérifie que l'event a bien lieu dans le ws correspondant
+                if($e->place->id == $facebookPageId) 
+                {
+                    $event->setWorkspace($ws);
+                }
+
+                $this->em->persist($event);
+            }
         }
 
         $this->em->flush();

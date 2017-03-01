@@ -17,7 +17,7 @@ class EventsController extends Controller
     // On va chercher les FB events de tous les WS renseignés dans la table ApiEvents, depuis la dernière update date
     foreach ($eventsParam as $param) {
         
-        $events = $ApiService->getFacebookPageEvents($param->getFacebookPageId(), $param->getFacebookLastUpdate()->format('Y-m-d'));
+        $events = $ApiService->getFacebookPageEvents($param->getFacebookPageId());
         
         if(is_array($events))
         {

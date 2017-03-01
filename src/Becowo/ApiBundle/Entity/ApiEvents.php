@@ -3,6 +3,7 @@
 namespace Becowo\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \DateTime;
 
 /**
  * APiEvents
@@ -39,13 +40,6 @@ class ApiEvents
      * @ORM\Column(name="facebook_page_id", type="string")
      */
     private $facebookPageId;
-
-    /**
-     * @var datetime
-     *
-     * @ORM\Column(name="facebook_last_update", type="datetime", nullable=true)
-     */
-    private $facebookLastUpdate;
 
     /**
      * Constructor
@@ -97,7 +91,7 @@ class ApiEvents
      *
      * @return self
      */
-    private function setWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace)
+    public function setWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace)
     {
         $this->workspace = $workspace;
 
@@ -121,7 +115,7 @@ class ApiEvents
      *
      * @return self
      */
-    private function setFacebookPageId($facebookPageId)
+    public function setFacebookPageId($facebookPageId)
     {
         $this->facebookPageId = $facebookPageId;
 
@@ -129,27 +123,4 @@ class ApiEvents
     }
 
 
-    /**
-     * Gets the value of facebookLastUpdate.
-     *
-     * @return datetime
-     */
-    public function getFacebookLastUpdate()
-    {
-        return $this->facebookLastUpdate;
-    }
-
-    /**
-     * Sets the value of facebookLastUpdate.
-     *
-     * @param datetime $facebookLastUpdate the facebook last update
-     *
-     * @return self
-     */
-    private function setFacebookLastUpdate(datetime $facebookLastUpdate)
-    {
-        $this->facebookLastUpdate = $facebookLastUpdate;
-
-        return $this;
-    }
 }

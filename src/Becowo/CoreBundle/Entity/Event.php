@@ -72,6 +72,14 @@ class Event
      */
     private $category;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_id", type="string", nullable=true)
+     */
+    private $facebookId;
+
     /**
      * Set title
      *
@@ -226,5 +234,29 @@ class Event
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param string
+     *
+     * @return Event
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
     }
 }
