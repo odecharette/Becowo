@@ -4,7 +4,11 @@
     <div class="panel panel-default" id="panelEvent">
       <div class="panel-heading">
         <div class="row text-center">
-          <img src="{{ asset('images/icons/events/')}}{{event.category.name}}.png" alt="{{event.category.name}}" style="width: 100%;">
+          {% if event.category != null %}
+            <img src="{{ asset('images/icons/events/')}}{{event.category.name}}.png" alt="{{event.category.name}}" style="width: 100%;">
+          {% else %}
+            <img src="{{event.picture}}" alt="{{event.title}}" style="width: 100%;">
+          {% endif %}
         </div>
       </div>
       <div class="panel-body">
@@ -59,7 +63,13 @@
                 <h4 class="modal-title">{{event.title}}</h4>
             </div>
             <div class="modal-body" style="overflow-y: scroll;">
-                <center><img src="{{ asset('images/icons/events/')}}{{event.category.name}}.png" alt="{{event.category.name}}" style="width: 80%;"></center>
+                <center>
+                  {% if event.category != null %}
+                    <img src="{{ asset('images/icons/events/')}}{{event.category.name}}.png" alt="{{event.category.name}}" style="width: 100%;">
+                  {% else %}
+                    <img src="{{event.picture}}" alt="{{event.title}}" style="width: 100%;">
+                  {% endif %}
+                </center>
                 <br>
                 <span class="title"> {{event.title}}</span> 
                 <center>

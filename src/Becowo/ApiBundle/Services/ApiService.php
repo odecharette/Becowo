@@ -89,7 +89,7 @@ class ApiService
                 $event->setStartDate(new \DateTime($e->start_time));
                 $event->setEndDate(new \DateTime($e->end_time));
                 $event->setFacebookId($e->id);
-                $event->setPicture($this->getFacebookEventPicture($e->id)->url);
+                $event->setPicture($this->getFacebookEventPicture($e->id)->source);
 
                 // On vérifie que l'event a bien lieu dans le ws correspondant
                 if($e->place->id == $facebookPageId) 
@@ -121,11 +121,11 @@ class ApiService
             $access_token =$response->body;
             
             if (!empty($access_token)) {
-                $url = $FB_API_GRAPH_URL.'/'.$eventId.'/picture?access_token='.$access_token.'&format=json&redirect=0';
+                $url = $FB_API_GRAPH_URL.'/'.$eventId.'?access_token='.$access_token.'&format=json&fields=cover';
                 $response = \Httpful\Request::get($url)->send();
 
-                if (isset($response->body->data)) {
-                    $picture = $response->body->data;
+                if (isset($response->body->cover)) {
+                    $picture = $response->body->cover;
                 }
             }
             else {
