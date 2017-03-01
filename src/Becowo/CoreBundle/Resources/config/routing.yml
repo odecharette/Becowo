@@ -187,9 +187,6 @@ becowo_email_new_users:
     path:    /email/newusers
     defaults: { _controller: BecowoMemberBundle:Member:sendEmailToNewUsers }
 
-becowo_api_events:
-    path:    /api/events
-    defaults: { _controller: BecowoApiBundle:Events:getFacebookPageEvents }
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -63,3 +63,7 @@ services:
         tags: 
             - { name: doctrine.orm.entity_listener }    
 
+    app.api :
+        class: Becowo\ApiBundle\Services\ApiService
+        arguments: ['@doctrine.orm.entity_manager', %facebook_client_id%, %facebook_client_secret%] 
+

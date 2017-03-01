@@ -1,6 +1,6 @@
 becowo_api:
     resource: "@BecowoApiBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /api/
 
 # For HWIOAuthBundle
 hwi_oauth_redirect:
