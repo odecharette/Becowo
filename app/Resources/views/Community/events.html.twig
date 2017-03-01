@@ -14,13 +14,15 @@ Total : {{ listEvents.getTotalItemCount }} <br>
 				<button class="dropbtn" id="filterCityBtn">Choisir un espace de coworking</button>
             <div class="dropdown-content">
             	{% for ws in WSList %}
-            		<label><a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"> {{ws.name|capitalize}} </a></label>
+            		<a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"><label> {{ws.name|capitalize}}</label> </a>
             		<br>
               {% endfor %}
             </div>
         </div>
-		Filtrer par : 
-		{{ knp_pagination_sortable(listEvents, 'Titre', 'e.title') }}
+        <span id="sort">
+          Trier par : 
+          {{ knp_pagination_sortable(listEvents, 'Titre', 'e.title') }}
+        </span>
 	</div>
 
 
@@ -31,7 +33,7 @@ Total : {{ listEvents.getTotalItemCount }} <br>
         {% if event.CategoryName != null %}
           <img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 100%;">
         {% else %}
-          <img src="{{event.picture}}" alt="{{event.title}}" style="width: 100%;">
+          <img src="{{event.picture}}" alt="{{event.title}}" style="height: 106px;">
         {% endif %}
       </div>
       <div class="panel-body">
@@ -89,7 +91,7 @@ Total : {{ listEvents.getTotalItemCount }} <br>
                       {% if event.CategoryName != null %}
                         <img src="{{ asset('images/icons/events/')}}{{event.CategoryName}}.png" alt="{{event.CategoryName}}" style="width: 100%;">
                       {% else %}
-                        <img src="{{event.picture}}" alt="{{event.title}}" style="width: 100%;">
+                        <img src="{{event.picture}}" alt="{{event.title}}" style="height: 106px;">
                       {% endif %}
                     </center>
   	                <br>

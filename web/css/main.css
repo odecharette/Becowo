@@ -969,12 +969,6 @@ footer{
   text-decoration: none;
 }
 /********************************** Page Community *************************************/
-@media (min-width: 768px){
-  #community{
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-}
 
 #community .texte1{
   background-color: var(--my-green);
@@ -2808,7 +2802,6 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
     padding: 5px;
 }
 #filtersBar .dropdown-content label {
-  color: var(--my-black);
   display: inline-block;
   border-bottom: 2px solid #eaeaea;
   height: 50px;
@@ -2819,6 +2812,12 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   text-indent: 10px;
   font-size: 16pt;
   width: 100%;
+}
+#filtersBar .dropdown-content a label{
+  color: var(--my-black);
+}
+#filtersBar .dropdown-content a:hover{
+  text-decoration: none;
 }
 #filtersBar .dropdown-content label:hover {
   background-color: var(--my-grey-light);
@@ -2870,19 +2869,19 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #filterCategory label{
   padding-right: 40px;
 }
-#filtersBar a{
+#filtersBar #sort a{
   color: white !important;
 }
-#filtersBar a:hover, #filtersBar a:focus{
+#filtersBar #sort a:hover, #filtersBar #sort a:focus{
   text-decoration: none;
 }
-#filtersBar a.asc::after{
+#filtersBar #sort a.asc::after{
   content: "\f106";
   font-family: FontAwesome;
   color: white ;
   margin-left: 10px;
 }
-#filtersBar a.desc::after{
+#filtersBar #sort a.desc::after{
   content: "\f107";
   font-family: FontAwesome;
   color: white;
