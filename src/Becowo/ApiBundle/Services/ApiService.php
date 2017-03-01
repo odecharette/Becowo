@@ -12,13 +12,15 @@ class ApiService
     private $FB_API_ID = null;
     private $FB_API_SECRET = null;
     private $WsService = null;
+    private $logger = null;
 
-    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService)
+    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService, $logger)
     {
         $this->em = $em;
         $this->FB_API_ID = $FB_API_ID;
         $this->FB_API_SECRET = $FB_API_SECRET;
         $this->WsService = $WsService;
+        $this->logger = $logger;
     }
 
     public function getApiEventsParam()
@@ -29,6 +31,7 @@ class ApiService
 
     public function getFacebookPageEvents($FB_PAGE_ID)
     {
+
         $FB_API_GRAPH_URL = 'https://graph.facebook.com';
 
         // Construction de l'URL à appeler pour récupérer une APP access_token
@@ -47,6 +50,8 @@ class ApiService
             $access_token =$response->body;
             
             if (!empty($access_token)) {
+                $this->logger->info('getFacebookPageEvents -Token OK');
+
                 // Construction de l'URL à appeler pour récupérer les évènements de la page depuis le 01/01/2017
                 $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json&since=2017-01-01';
                 // Appel à l'API
@@ -55,18 +60,21 @@ class ApiService
                 if (isset($response->body->data)) {
                     // affichage des données récupérées
                     $events = $response->body->data;
-                    // Traitement des données
-                    foreach($response->body->data as $event) {
-                        // traitement et affichage des données
-                    }
+                    $this->logger->info('getFacebookPageEvents - ' . count($events) . ' events found');
+                    
                 }
             }
             else {
-                $events = "No token";
+                $this->logger->critical('getFacebookPageEvents - No token');
+
+                $events = null;
             }
         }
         else {
-            $events = "Bad access token";
+
+            $this->logger->critical('getFacebookPageEvents - Bad access token');
+
+            $events = null;
         }
         return $events;
             
@@ -74,7 +82,6 @@ class ApiService
 
     public function saveFacebookPageEvents($events, $facebookPageId, $ws)
     {
-
 
         foreach($events as $e)
         {
@@ -97,6 +104,8 @@ class ApiService
                     $event->setWorkspace($ws);
                 }
 
+                $this->logger->info('saveFacebookPageEvents - Event ID ' . $e->id . ' created');
+
                 $this->em->persist($event);
             }
         }
@@ -118,6 +127,8 @@ class ApiService
         $picture = null;
         if (isset($response->body) && !empty($response->body)) {
             
+            $this->logger->info('getFacebookEventPicture -Token OK');
+
             $access_token =$response->body;
             
             if (!empty($access_token)) {
@@ -126,14 +137,18 @@ class ApiService
 
                 if (isset($response->body->cover)) {
                     $picture = $response->body->cover;
+                    $this->logger->info('getFacebookEventPicture - picture found for eventId ' . $eventId);
                 }
             }
             else {
-                $picture = "No token";
+                $this->logger->critical('getFacebookEventPicture - No token');
+                $picture = null;
+
             }
         }
         else {
-            $picture = "Bad access token";
+            $this->logger->critical('getFacebookEventPicture - Bad access token');
+            $picture = null;
         }
         return $picture;
     }

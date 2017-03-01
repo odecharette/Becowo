@@ -19,13 +19,9 @@ class EventsController extends Controller
         
         $events = $ApiService->getFacebookPageEvents($param->getFacebookPageId());
         
-        if(is_array($events))
+        if($events != null)
         {
-            // TO DO : log number events created
             $ApiService->saveFacebookPageEvents($events, $param->getFacebookPageId(), $param->getWorkspace());
-
-        }else{
-            // TO DO : log error
         }
     }
 
