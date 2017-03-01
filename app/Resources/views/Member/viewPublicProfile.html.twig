@@ -108,7 +108,7 @@
 				{% if wsBooked|length > 0 %}
 				<h2>Mes coworking</h2>
 					{% for ws in wsBooked %}
-						<a href="{{ path('becowo_core_workspace', { 'region':ws.region.name, 'ville' : ws.city, 'name': ws.name }) }}">{{ws.name}}</a> <br>
+						<a href="{{ path('becowo_core_workspace', { 'region':ws.region, 'ville' : ws.city, 'name': ws.name }) }}">{{ws.name}}</a> <br>
 					{% endfor %}
 				{% endif %}
 			</div>
