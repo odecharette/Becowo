@@ -89,6 +89,7 @@ class ApiService
                 $event->setStartDate(new \DateTime($e->start_time));
                 $event->setEndDate(new \DateTime($e->end_time));
                 $event->setFacebookId($e->id);
+                $event->setPicture($this->getFacebookEventPicture($e->id)->url);
 
                 // On vérifie que l'event a bien lieu dans le ws correspondant
                 if($e->place->id == $facebookPageId) 
@@ -102,6 +103,39 @@ class ApiService
 
         $this->em->flush();
         
+    }
+
+    public function getFacebookEventPicture($eventId)
+    {
+        $FB_API_GRAPH_URL = 'https://graph.facebook.com';
+
+        $url = $FB_API_GRAPH_URL.'/oauth/access_token?client_id='.$this->FB_API_ID.'&client_secret='.$this->FB_API_SECRET.'&grant_type=client_credentials';
+        $response = \Httpful\Request::get($url)->parseWith(function($body) {
+            $access_token = str_replace("access_token=", "", $body); 
+            return $access_token;
+        })->send();
+
+        $picture = null;
+        if (isset($response->body) && !empty($response->body)) {
+            
+            $access_token =$response->body;
+            
+            if (!empty($access_token)) {
+                $url = $FB_API_GRAPH_URL.'/'.$eventId.'/picture?access_token='.$access_token.'&format=json&redirect=0';
+                $response = \Httpful\Request::get($url)->send();
+
+                if (isset($response->body->data)) {
+                    $picture = $response->body->data;
+                }
+            }
+            else {
+                $picture = "No token";
+            }
+        }
+        else {
+            $picture = "Bad access token";
+        }
+        return $picture;
     }
 
 }

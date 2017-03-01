@@ -80,6 +80,14 @@ class Event
      */
     private $facebookId;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", nullable=true)
+     */
+    private $picture;
+
     /**
      * Set title
      *
@@ -258,5 +266,30 @@ class Event
     public function getFacebookId()
     {
         return $this->facebookId;
+    }
+
+
+    /**
+     * Set picture
+     *
+     * @param string
+     *
+     * @return Event
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }
