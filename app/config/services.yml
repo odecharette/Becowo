@@ -65,5 +65,5 @@ services:
 
     app.api :
         class: Becowo\ApiBundle\Services\ApiService
-        arguments: ['@doctrine.orm.entity_manager', %facebook_client_id%, %facebook_client_secret%] 
+        arguments: ['@doctrine.orm.entity_manager', %facebook_client_id%, %facebook_client_secret%, '@app.workspace'] 
 

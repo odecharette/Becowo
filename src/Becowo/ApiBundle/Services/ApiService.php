@@ -4,21 +4,24 @@ namespace Becowo\ApiBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
+use Becowo\CoreBundle\Entity\Event;
 
 class ApiService
 {
     private $em = null;
     private $FB_API_ID = null;
     private $FB_API_SECRET = null;
+    private $WsService = null;
 
-    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET)
+    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService)
     {
         $this->em = $em;
         $this->FB_API_ID = $FB_API_ID;
         $this->FB_API_SECRET = $FB_API_SECRET;
+        $this->WsService = $WsService;
     }
 
-    public function getFacebookPageEventsAction($FB_PAGE_ID)
+    public function getFacebookPageEvents($FB_PAGE_ID)
     {
         $FB_API_GRAPH_URL = 'https://graph.facebook.com';
 
@@ -61,6 +64,31 @@ class ApiService
         }
         return $events;
             
+    }
+
+    public function saveFacebookPageEvents($events)
+    {
+
+
+        foreach($events as $e)
+        {
+            $event = New Event();
+            $event->setTitle($e->name);
+            $event->setDescription($e->description);
+            $event->setStartDate(new \DateTime($e->start_time));
+            $event->setEndDate(new \DateTime($e->end_time));
+
+            if($e->place->id == '221146468037685')
+            {
+                $ws = $this->WsService->getWorkspaceByName('Wereso Lille');
+                $event->setWorkspace($ws);
+            }
+
+            $this->em->persist($event);
+        }
+
+        $this->em->flush();
+        
     }
 
 }
