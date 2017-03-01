@@ -12,15 +12,21 @@ class EventsController extends Controller
   {
     $ApiService = $this->get('app.api');
 
-    $events = $ApiService->getFacebookPageEvents('221146468037685'); // ID de la page Facebook wereso lille
+    $eventsParam = $ApiService->getApiEventsParam();
 
-    if(is_array($events))
-    {
-        // TO DO : log number events created
-        $ApiService->saveFacebookPageEvents($events);
+    // On va chercher les FB events de tous les WS renseignés dans la table ApiEvents, depuis la dernière update date
+    foreach ($eventsParam as $param) {
+        
+        $events = $ApiService->getFacebookPageEvents($param->getFacebookPageId(), $param->getFacebookLastUpdate()->format('Y-m-d'));
+        
+        if(is_array($events))
+        {
+            // TO DO : log number events created
+            $ApiService->saveFacebookPageEvents($events, $param->getFacebookPageId(), $param->getWorkspace());
 
-    }else{
-        // TO DO : log error
+        }else{
+            // TO DO : log error
+        }
     }
 
 	return $this->render('Api/events.html.twig',array('events' => $events));

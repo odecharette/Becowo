@@ -21,7 +21,13 @@ class ApiService
         $this->WsService = $WsService;
     }
 
-    public function getFacebookPageEvents($FB_PAGE_ID)
+    public function getApiEventsParam()
+    {
+        $repo = $this->em->getRepository('BecowoApiBundle:ApiEvents');
+        return $repo->findApiEventsParam();
+    }
+
+    public function getFacebookPageEvents($FB_PAGE_ID, $sinceDate)
     {
         $FB_API_GRAPH_URL = 'https://graph.facebook.com';
 
@@ -42,7 +48,7 @@ class ApiService
             
             if (!empty($access_token)) {
                 // Construction de l'URL à appeler pour récupérer les évènements de la page
-                $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json';
+                $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json&since='.$sinceDate;
                 // Appel à l'API
                 $response = \Httpful\Request::get($url)->send();
                 // si data existe, c'est un array() qui contient tous les évènements relatifs à cette page
@@ -66,7 +72,7 @@ class ApiService
             
     }
 
-    public function saveFacebookPageEvents($events)
+    public function saveFacebookPageEvents($events, $facebookPageId, $ws)
     {
 
 
@@ -78,9 +84,9 @@ class ApiService
             $event->setStartDate(new \DateTime($e->start_time));
             $event->setEndDate(new \DateTime($e->end_time));
 
-            if($e->place->id == '221146468037685')
+            // On vérifie que l'event a bien lieu dans le ws correspondant
+            if($e->place->id == $facebookPageId) 
             {
-                $ws = $this->WsService->getWorkspaceByName('Wereso Lille');
                 $event->setWorkspace($ws);
             }
 
