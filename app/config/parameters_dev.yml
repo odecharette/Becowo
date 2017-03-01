@@ -14,3 +14,8 @@ parameters:
     mailer_encryption : tls
     secret: ThisIsTheSecretForBecowoAnnapurna
     site_url: http://localhost/Becowo/web/app_dev.php
+
+    #Facebook Ids
+    facebook_client_id:           810073549123890
+    facebook_client_secret:       3ff160395ef3c562838c64187684ecf3
+    

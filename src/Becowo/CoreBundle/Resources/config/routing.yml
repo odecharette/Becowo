@@ -187,6 +187,7 @@ becowo_email_new_users:
     path:    /email/newusers
     defaults: { _controller: BecowoMemberBundle:Member:sendEmailToNewUsers }
 
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

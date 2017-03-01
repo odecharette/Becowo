@@ -1,0 +1,4 @@
+becowo_api_events:
+    path:    /events
+    defaults: { _controller: BecowoApiBundle:Events:createFacebookPageEvents }
+

@@ -277,8 +277,8 @@ hwi_oauth:
     resource_owners:
         facebook:
             type:                facebook
-            client_id:           810073549123890
-            client_secret:       3ff160395ef3c562838c64187684ecf3
+            client_id:           "%facebook_client_id%"
+            client_secret:       "%facebook_client_secret%"
             infos_url:     "https://graph.facebook.com/me?fields=id,middle_name,first_name,last_name,name,email,picture.type(square)"
             scope:  email
             paths:
@@ -312,3 +312,15 @@ knp_paginator:
     template:
         pagination: pagination.html.twig                          # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig                         # sort link template      
+
+# Personal logs
+monolog:
+    handlers:
+        file_log:
+            # 1 file per day; keep 10 last day files
+            type:  rotating_file
+            max_files: 10
+            # log to var/logs/(environment).log
+            path: "%kernel.logs_dir%/Api/%kernel.environment%.log"
+            # log *all* messages (debug is lowest level)
+            level: info

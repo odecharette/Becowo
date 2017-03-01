@@ -145,6 +145,12 @@ class WorkspaceService
         return $repo->findBy(array('workspace' => $ws));
     }
 
+    public function getEventByFacebookId($facebook_id)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Event');
+        return $repo->findBy(array('facebookId' => $facebook_id));
+    }
+
     public function getAllEvents()
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Event');
