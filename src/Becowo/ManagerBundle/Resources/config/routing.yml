@@ -104,5 +104,6 @@ becowo_manager_vote:
     defaults: { _controller: BecowoManagerBundle:Comment:vote }
 
 becowo_manager_community:
-    path:     /community
+    path:     /community/{networkId}
     defaults: { _controller: BecowoManagerBundle:Community:network }
+

@@ -8,10 +8,10 @@ namespace Becowo\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="becowo_member_has_community_network", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\MemberHasCommunityNetworkRepository")
+ * @ORM\Table(name="becowo_community_network_has_member", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\CommunityNetworkHasMemberRepository")
  */
-class MemberHasCommunityNetwork
+class CommunityNetworkHasMember
 {
   /**
    * @ORM\Column(name="id", type="integer")

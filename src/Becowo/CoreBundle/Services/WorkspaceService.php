@@ -374,4 +374,17 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Event');
         return $repo->findListOfWsWithEvents();
     }
+
+    public function getAllCommunityNetwork()
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:CommunityNetwork');
+        return $repo->findAll();
+    }
+
+    public function getMembersByNetworkId($idCommunity)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:CommunityNetworkHasMember');
+        return $repo->findMembersByNetworkId($idCommunity);
+    }
+
 }

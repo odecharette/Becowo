@@ -7,11 +7,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CommunityController extends Controller
 {
-  public function networkAction(Request $request)
+  public function networkAction(Request $request, $networkId)
   {
+    $WsService = $this->get('app.workspace');
 
-    return $this->render('Manager/community/network.html.twig');
+    $network = $WsService->getAllCommunityNetwork();
+
+    $members = $WsService->getMembersByNetworkId($networkId);
+
+    return $this->render('Manager/community/network.html.twig', array('network' => $network, 'members' => $members));
   }
-
   
 }

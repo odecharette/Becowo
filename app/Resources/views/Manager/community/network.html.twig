@@ -9,4 +9,58 @@
 	</div>
 </div>
 
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nom du réseau</th>
+			<th>Admin</th>
+			<th>Coworkers</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for n in network %}
+			<tr>
+			 	<td>{{n.name}}</td>
+			 	<td><a href="{{ path('becowo_member_public_profile', {id: n.adminMember.id}) }}" target="_blank">{{n.adminMember.firstname}} {{n.adminMember.name}}</a></td>
+				<td><a href="{{ path('becowo_manager_community', {networkId: n.id}) }}">Liste des coworkers</a></td>
+
+			</tr>
+
+		{% endfor %}
+	</tbody>
+</table> 
+
+{% if members|length > 0 %}
+<br>
+<h2>Les membres de la communauté ({{members|length}})</h2>
+	<table class="table">
+	<thead>
+		<tr>
+			<th>Photo</th>
+			<th>Prénom</th>
+			<th>Nom</th>
+			<th>Date d'inscription</th>
+			<th>Voir son profil</th>
+		</tr>
+	</thead>
+	<tbody>
+
+	{% for member in members %}
+		<tr>
+			{% if member.urlProfilePicture != '' %}
+				<td><img src="{{ asset('images/ProfilePictures/') }}{{member.urlProfilePicture}}" alt="{{member.name}}" width="50px" height="50px"></td>
+				{% else %}
+					<td></td>
+				{% endif %}
+			<td>{{member.firstname}}</td>
+		 	<td>{{member.name}}</td>
+		 	<td>{{member.createdAt|date('d/m/Y')}}</td>
+		 	<td><a href="{{ path('becowo_member_public_profile', {id: member.id}) }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+		</tr>
+
+	{% endfor %}
+	</tbody>
+	</table> 
+{% endif %}
 {% endblock %}
