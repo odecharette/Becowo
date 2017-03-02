@@ -97,6 +97,10 @@
                     {% if app.request.attributes.get('_route') == 'becowo_manager_booking_add' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_booking_add') }}"> Ajouter une réservation</a>
                     </li>
+                <h3><i class="fa fa-users" aria-hidden="true"></i> Communauté</h3>
+                    {% if app.request.attributes.get('_route') == 'becowo_manager_community' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_manager_community') }}"> Les réseaux</a>
+                    </li>
                 <h3><i class="fa fa-comments" aria-hidden="true"></i> Les avis</h3>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_vote' %}<li class="active">{% else %}<li>{% endif %}
                         <a href="{{ path('becowo_manager_vote') }}"> Les votes</a>
