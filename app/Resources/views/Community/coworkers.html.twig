@@ -6,7 +6,20 @@
 
 {% block content %}
 <h1>Les coworkers</h1>
-	{% for member in members %}
+Total : {{ listCoworkers.getTotalItemCount }} <br>
+
+	<div class="row" id="filtersBar">
+
+        <div id="filterCoworkers" class="dropdown">
+			
+        </div>
+        <span id="sort">
+          Trier par : 
+          {# {{ knp_pagination_sortable(listCoworkers, 'Titre', 'e.title') }} #}
+        </span>
+	</div>
+
+	{% for member in listCoworkers %}
 		{% if loop.index % 4 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
 			<div class="col-lg-4 col-md-4 col-xs-12">
 				<div class="member">
@@ -40,5 +53,9 @@
 			</div>
 		{% if loop.index % 3 == 0 or loop.last %} </div> {% endif %}
 	{% endfor %}
+
+	<div class="navigation text-center">
+      {{ knp_pagination_render(listCoworkers) }}
+  </div>
 {% endblock content %}
 

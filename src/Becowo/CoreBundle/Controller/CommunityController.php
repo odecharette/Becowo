@@ -8,12 +8,42 @@ use Symfony\Component\HttpFoundation\Request;
 class CommunityController extends Controller
 {
   
-  public function communityAction()
+  public function communityAction(Request $request, $limit=9)
   {
     $MemberService = $this->get('app.member');
-    $members = $MemberService->getActiveMembersByFillRate(50);
+    // $members = $MemberService->getActiveMembersByFillRate(50);
+
+    $em = $this->getDoctrine()->getManager();
+    $queryBuilder = $em->getRepository('BecowoMemberBundle:Member')->createQueryBuilder('m');
+
+    $queryBuilder->select(
+      'm.id AS id',
+      'm.urlProfilePicture AS urlProfilePicture',
+      'm.signedUpWith AS signedUpWith',
+      'm.job AS job',
+      'm.firstname AS firstname',
+      'm.name AS name'
+      );
+
+    // $queryBuilder->leftJoin('BecowoCoreBundle:Workspace', 'w', 'WITH', 'e.workspace = w')
+    //             ;
+
+    $queryBuilder->andWhere('m.isDeleted = false')
+                ->andWhere('m.fillRate >= 50')
+                ->orderBy('m.fillRate', 'desc');
+
+    $query = $queryBuilder->getQuery();
+
+    $paginator  = $this->get('knp_paginator');
+
+    $listCoworkers = $paginator->paginate(
+        $query, /* query NOT result */
+        $request->query->getInt('page', 1)/*page number*/,
+        $limit/*limit per page*/
+    );
     
-    return $this->render('Community/community.html.twig', array('members' => $members));
+    
+    return $this->render('Community/coworkers.html.twig', array('listCoworkers' => $listCoworkers));
   }
 
 
@@ -65,7 +95,6 @@ class CommunityController extends Controller
         $request->query->getInt('page', 1)/*page number*/,
         $limit/*limit per page*/
     );
-    // $listWS->setUsedRoute('becowo_core_list_workspaces');
     
     return $this->render('Community/events.html.twig', array("listEvents" => $listEvents, 'WSList' => $WSList));
   }
