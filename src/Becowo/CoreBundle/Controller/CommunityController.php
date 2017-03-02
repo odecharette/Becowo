@@ -11,6 +11,7 @@ class CommunityController extends Controller
   public function communityAction(Request $request, $limit=9)
   {
     $MemberService = $this->get('app.member');
+    $fillRateMinimum = 50;
     // $members = $MemberService->getActiveMembersByFillRate(50);
 
     $em = $this->getDoctrine()->getManager();
@@ -25,11 +26,9 @@ class CommunityController extends Controller
       'm.name AS name'
       );
 
-    // $queryBuilder->leftJoin('BecowoCoreBundle:Workspace', 'w', 'WITH', 'e.workspace = w')
-    //             ;
-
     $queryBuilder->andWhere('m.isDeleted = false')
-                ->andWhere('m.fillRate >= 50')
+                ->andWhere('m.fillRate >= :fillRateMinimum')
+                ->setParameter('fillRateMinimum', $fillRateMinimum)
                 ->orderBy('m.fillRate', 'desc');
 
     $query = $queryBuilder->getQuery();
