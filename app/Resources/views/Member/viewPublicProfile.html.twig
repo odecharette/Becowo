@@ -22,8 +22,8 @@
 	<div class="row">
 		<div class="col-lg-3 col-md-3">
 			<div class="picture">
-				{% if member.profilePicture.url is defined %}
-					<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.profilePicture.url}}'); 
+				{% if member.urlProfilePicture is defined %}
+					<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.urlProfilePicture}}'); 
 				    width:200px; 
 				    height:200px; 
 				    background-position:center;
