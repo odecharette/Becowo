@@ -11,7 +11,8 @@ Total : {{ listEvents.getTotalItemCount }} <br>
 	<div class="row" id="filtersBar">
 
         <div id="filterWs" class="dropdown">
-				<button class="dropbtn" id="filterCityBtn">Choisir un espace de coworking</button>
+          Filtrer par : 
+				<button class="dropbtn" id="filterWsBtn">Coworking</button>
             <div class="dropdown-content">
             	{% for ws in WSList %}
             		<a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"><label> {{ws.name|capitalize}}</label> </a>

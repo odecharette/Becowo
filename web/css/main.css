@@ -2813,9 +2813,17 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   font-size: 16pt;
   font-weight: 700;
   border-bottom: solid 3px white;
-  width: 300px;
   text-align: left;
   text-indent: 10px;
+}
+#filtersBar #filterCityBtn{
+  width: 300px;
+}
+#filtersBar #filterNetworkBtn{
+  width: 100px;
+}
+#filtersBar #filterWsBtn{
+  width: 150px;
 }
 #filtersBar .dropdown {
     position: relative;
@@ -2844,7 +2852,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   font-size: 16pt;
   width: 100%;
 }
-#filtersBar .dropdown-content a label{
+#filtersBar .dropdown-content a label, #filtersBar .dropdown-content label{
   color: var(--my-black);
 }
 #filtersBar .dropdown-content a:hover{
@@ -2900,6 +2908,10 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #filterCategory label{
   padding-right: 40px;
 }
+#filtersBar #sort{
+  float: right;
+  padding-right: 20px;
+}
 #filtersBar #sort a{
   color: white !important;
 }
@@ -2912,7 +2924,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   color: white ;
   margin-left: 10px;
 }
-#filtersBar #sort a.desc::after{
+#filtersBar #sort a.desc::after, #filtersBar #sort a::after{
   content: "\f107";
   font-family: FontAwesome;
   color: white;

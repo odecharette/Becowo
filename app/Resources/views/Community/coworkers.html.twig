@@ -11,7 +11,8 @@ Total : {{ listCoworkers.getTotalItemCount }} <br>
 	<div class="row" id="filtersBar">
 
         <div id="filterCoworkers" class="dropdown">
-			<button class="dropbtn" id="filterCityBtn">Choisir un réseau</button>
+        	Filtrer par : 
+			<button class="dropbtn" id="filterNetworkBtn">Réseau</button>
             <div class="dropdown-content">
             	{% for network in listCommunityNetwork %}
             		<a href="{{ path('becowo_core_community', { 'communityNetwork':network.name}) }}"><label> {{network.name|capitalize}}</label> </a>
@@ -21,7 +22,8 @@ Total : {{ listCoworkers.getTotalItemCount }} <br>
     	</div>
         <span id="sort">
           Trier par : 
-          {# {{ knp_pagination_sortable(listCoworkers, 'Titre', 'e.title') }} #}
+          {{ knp_pagination_sortable(listCoworkers, 'Prénom', 'm.firstname') }} | 
+          {{ knp_pagination_sortable(listCoworkers, 'Taux de remplissage', 'm.fillRate') }}
         </span>
 	</div>
 
