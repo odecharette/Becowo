@@ -3023,4 +3023,7 @@ top: -50%;
   border-color: var(--my-green) !important;
   color: white !important;
 }
+.pagination>.disabled{
+    display: none;
+}
 
