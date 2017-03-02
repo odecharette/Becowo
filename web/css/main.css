@@ -1165,7 +1165,7 @@ footer{
 #PublicProfile .skills h2{
   padding-top: 0px;
 }
-#PublicProfile .coworking a, #PublicProfile .coworking a:hover{
+#PublicProfile .coworking a, #PublicProfile .coworking a:hover, #PublicProfile .network a, #PublicProfile .network a:hover{
   color: var(--my-pink);
 }
 #PublicProfile .progress-bar{
