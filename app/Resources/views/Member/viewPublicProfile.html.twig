@@ -47,7 +47,39 @@
 				<i class="fa fa-building-o" aria-hidden="true"></i> {{member.society}} <br>
 				<i class="fa fa-briefcase" aria-hidden="true"></i> {{member.job}} <br>
 				<i class="fa fa-home" aria-hidden="true"></i> {{member.city}} <br>
-				<i class="fa fa-external-link" aria-hidden="true"></i> <a href="{{member.website}}" target="_blank">{{member.website}}</a>	
+				<i class="fa fa-external-link" aria-hidden="true"></i> <a href="{{member.website}}" target="_blank">{{member.website}}</a>	<br>
+				{% if member.emailIsPublic %}
+					<i class="fa fa-envelope" aria-hidden="true"></i> {{member.email}}
+				{% else %}
+					<br> <span class="noEmail"> {{member.firstname}} ne souhaite pas publier son email. Vous pouvez cependant lui laisser un message que nous lui transmettrons.</span>
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+						<a data-toggle="modal" href="#myModalContactMember" class="log">Contacter {{member.firstname}}</a>
+					{% else %}
+						<a data-toggle="modal" href="#myModalLogin" data-dismiss="modal">Pour contacter {{member.firstname}}, vous devez être connecté</a>
+					{% endif %}
+					<!-- Modale -->
+					<div class="modal fade" id="myModalContactMember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					     <div class="modal-dialog"> 
+					        <div class="modal-content">
+					        	<div class="modal-header">
+					                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+					                <h4 class="modal-title">Contacter {{member.firstname}}</h4>
+					            </div>
+					            <div class="modal-body">
+					                {{ form_start(form) }}
+					                Votre nom : {{ form_row(form.name) }} <br>
+					                Votre email : {{ form_row(form.email) }} <br>
+					                Objet : <br> {{ form_row(form.subject) }} <br>
+					                Message : {{ form_row(form.message) }} <br>
+					                {{ form_rest(form) }}
+					                <div class="row text-center"><button type="submit"> Envoyer</button></div>
+					                
+          							{{ form_end(form) }}
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				{% endif %}
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 middle" >

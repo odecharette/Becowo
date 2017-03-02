@@ -174,7 +174,7 @@ becowo_core_extract:
 becowo_member_public_profile:
     path:     /communaute/{id}
     defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
-    methods: GET
+    methods: GET|POST
 
 becowo_comment:
     path:    /comment/{name}

@@ -527,6 +527,7 @@ footer{
 #contact-form #logo{
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 80px;
 }
 #contact-form #vr{
   height: 230px;
@@ -1127,7 +1128,9 @@ footer{
   font-size: 14px;
   line-height: 50px;
 }
-
+#PublicProfile .noEmail{
+  line-height: 20px !important;
+}
 @media (min-width: 992px){
   #PublicProfile .identity i{
     margin-right: 5px;
