@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Becowo\CoreBundle\Form\Type\ProfilePictureType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ProfileType extends AbstractType
 {
@@ -37,6 +38,7 @@ class ProfileType extends AbstractType
                 'label' => false))
     	    ->add('birthDate', BirthdayType::class, array('widget' => 'choice','required' => false, 'label' => false))
             ->add('email', EmailType::class, array('attr' => array('placeholder' => 'Email'),'required' => false, 'label' => false))
+            ->add('emailIsPublic', CheckboxType::class,  array('required' => false, 'label' => false))
     	    ->add('phone', TextType::class, array('attr' => array('placeholder' => 'Téléphone'),'required' => false, 'label' => false))
     	    ->add('street', TextType::class, array('attr' => array('placeholder' => 'Adresse'),'required' => false, 'label' => false))
     	    ->add('postcode', TextType::class, array('attr' => array('placeholder' => 'Code Postal'),'required' => false, 'label' => false))
@@ -70,7 +72,7 @@ class ProfileType extends AbstractType
                 'placeholder' => 'Ma page ou profil LinkedIn'),
                 'required' => false, 
                 'label' => false))
-    	    ->add('file', FileType::class, array('multiple' => false, 'label' => false))
+    	    ->add('file', FileType::class, array('multiple' => false,'required' => false, 'label' => false))
             ->add('skills', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ->add('hobbies', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ->add('wishes', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))

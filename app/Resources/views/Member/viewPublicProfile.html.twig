@@ -15,6 +15,9 @@
 		{% else %}
 			<a href="{{ path('becowo_core_community') }}">La communauté</a> / {{member.firstname}} {{member.name}}
 		{% endif %}
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.id == member.id %}
+			<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i> <a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></span>
+		{% endif %}
 	</div>
 	<div class="row">
 		<div class="col-lg-3 col-md-3">

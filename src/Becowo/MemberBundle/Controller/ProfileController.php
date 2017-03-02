@@ -67,10 +67,13 @@ class ProfileController extends Controller
 
             // add olivia pour photo de profil
             $file = $user->getFile();
-            $filename =  $user->getId() . '-' . $user->getFirstname() . '.' . $file->guessExtension();
-            $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/ProfilePictures/';
-            $file->move($dir, $filename);
-            $user->setUrlProfilePicture($filename);
+            if($file != null)
+            {
+                $filename =  $user->getId() . '-' . $user->getFirstname() . '.' . $file->guessExtension();
+                $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/ProfilePictures/';
+                $file->move($dir, $filename);
+                $user->setUrlProfilePicture($filename);
+            }
 
             $userManager->updateUser($user);
 

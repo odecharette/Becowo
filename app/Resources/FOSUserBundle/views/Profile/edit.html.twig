@@ -6,7 +6,6 @@
 
 {% block body %}
 
-{% include "CommonViews/flashMessage.html.twig" %}
 
 {% if form.vars.data.firstName == null or form.vars.data.name == null or form.vars.data.email == null or form.vars.data.street == null or form.vars.data.postCode == null or form.vars.data.city == null %}
   <div class="alert alert-danger alert-dismissible" role="alert">
@@ -21,6 +20,8 @@
 {{ app.session.set('previousPage', app.request.headers.get('referer')) }}
 
 <div class="container-fluid" id="PublicProfile">  
+
+{% include "CommonViews/flashMessage.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -86,6 +87,8 @@
           <i class="fa fa-smile-o" aria-hidden="true"></i>{{ form_row(form.name) }}
           <i class="fa fa-building-o" aria-hidden="true"></i>{{ form_row(form.society) }} <br>
           <i class="fa fa-briefcase" aria-hidden="true"></i>{{ form_row(form.job) }} <br>
+          <i class="fa fa-at" aria-hidden="true"></i>{{ form_row(form.email) }} <br>
+          <div class="emailPublic">{{ form_row(form.emailIsPublic) }} <span>Rendre votre email public</span></div> <br>
           <i class="fa fa-external-link" aria-hidden="true"></i>{{ form_row(form.website) }}   <br>
         </div>
     </div>
@@ -133,7 +136,6 @@
           <i class="fa fa-home" aria-hidden="true"></i>{{ form_row(form.city) }} <br>
           <i class="fa fa-venus-mars" aria-hidden="true"></i>{{ form_row(form.sex) }} <br>
           <i class="fa fa-birthday-cake" aria-hidden="true"></i>{{ form_row(form.birthDate) }} <br>
-          <i class="fa fa-at" aria-hidden="true"></i>{{ form_row(form.email) }} <br>
           <i class="fa fa-phone" aria-hidden="true"></i>{{ form_row(form.phone) }} <br>
           {# {{ form_row(form.country) }}  <br>#}
           {# {{ form_row(form.username) }}  <br>#}

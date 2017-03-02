@@ -179,7 +179,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="facebook_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|(www|facebook)\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
      */
     private $facebookLink;
 
@@ -297,6 +297,14 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @ORM\Column(name="has_received_email_new_user", type="boolean", nullable=false)
      */
     private $hasReceivedEmailNewUser = '0';
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="email_is_public", type="boolean", nullable=false)
+     */
+    private $emailIsPublic = '0';
 
      private $file;
   
@@ -1217,6 +1225,31 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     public function setHasReceivedEmailNewUser($hasReceivedEmailNewUser)
     {
         $this->hasReceivedEmailNewUser = $hasReceivedEmailNewUser;
+
+        return $this;
+    }
+
+
+    /**
+     * Gets the value of emailIsPublic.
+     *
+     * @return boolean
+     */
+    public function getEmailIsPublic()
+    {
+        return $this->emailIsPublic;
+    }
+
+    /**
+     * Sets the value of emailIsPublic.
+     *
+     * @param boolean $emailIsPublic the has received email new user
+     *
+     * @return self
+     */
+    public function setEmailIsPublic($emailIsPublic)
+    {
+        $this->emailIsPublic = $emailIsPublic;
 
         return $this;
     }

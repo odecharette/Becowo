@@ -1043,6 +1043,10 @@ footer{
   text-transform: capitalize;
   line-height: 50px;
   padding-left: 10px;
+  padding-right: 30px;
+}
+#PublicProfile .edit{
+  float: right;
 }
 #PublicProfile .name a{
   color: white ;
@@ -1100,6 +1104,30 @@ footer{
 #PublicProfile .identity i{
   color: var(--my-pink);
 }
+#PublicProfile .emailPublic{
+  display: inline-flex;
+    width: 100%;
+}
+#PublicProfile .emailPublic .form-group{
+  width: 30px;
+}
+#PublicProfile .identity input[type=checkbox]{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+#PublicProfile .identity .checkbox{
+    margin: 10px 0;
+  width: 30px;
+  padding: 0;
+}
+#PublicProfile .identity span{
+  color: #555;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 50px;
+}
+
 @media (min-width: 992px){
   #PublicProfile .identity i{
     margin-right: 5px;
