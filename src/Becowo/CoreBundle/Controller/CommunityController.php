@@ -12,7 +12,9 @@ class CommunityController extends Controller
   {
     $MemberService = $this->get('app.member');
     $fillRateMinimum = 50;
-    // $members = $MemberService->getActiveMembersByFillRate(50);
+
+    $WsService = $this->get('app.workspace');
+    $listCommunityNetwork = $WsService->getAllCommunityNetwork();
 
     $em = $this->getDoctrine()->getManager();
     $queryBuilder = $em->getRepository('BecowoMemberBundle:Member')->createQueryBuilder('m');
@@ -31,6 +33,15 @@ class CommunityController extends Controller
                 ->setParameter('fillRateMinimum', $fillRateMinimum)
                 ->orderBy('m.fillRate', 'desc');
 
+    $communityNetwork = $request->query->get('communityNetwork');
+    if($communityNetwork != null)
+    {
+      $memberOfNetwork = $WsService->getMembersByNetworkName($communityNetwork);
+
+      $queryBuilder->andWhere('m IN (:members)')
+                   ->setParameter('members', $memberOfNetwork);
+    }
+
     $query = $queryBuilder->getQuery();
 
     $paginator  = $this->get('knp_paginator');
@@ -42,7 +53,7 @@ class CommunityController extends Controller
     );
     
     
-    return $this->render('Community/coworkers.html.twig', array('listCoworkers' => $listCoworkers));
+    return $this->render('Community/coworkers.html.twig', array('listCoworkers' => $listCoworkers, 'listCommunityNetwork' => $listCommunityNetwork));
   }
 
 

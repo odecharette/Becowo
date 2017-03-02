@@ -399,4 +399,9 @@ class WorkspaceService
         return $repo->findMembersByNetworkId($idCommunity);
     }
 
+    public function getMembersByNetworkName($network)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:CommunityNetworkHasMember');
+        return $repo->findMembersByNetworkName($network);
+    }
 }
