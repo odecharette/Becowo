@@ -24,7 +24,7 @@ parameters:
         PBX_RETOUR: Montant:M;Ref:R;call_number:T;authorization_number:A;erreur:E;sign:K    #Le param K doit tjs être en dernier
         PBX_HASH: SHA512
         PBX_HMAC: 4aa0576c7c116b6dfd889063e973205cf378b22aff0f710d55d3e56238a4c00aa38e70f22989ce08d4140daa86bb7cff92a3ea71629f761ed3858e14a0103d87
-       
+    
 framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
@@ -63,6 +63,10 @@ twig:
         kernelRootDir: '%kernel.root_dir%'
         site_url: '%site_url%'
         blogRSS: '%blogRSS%'
+        algolia:
+            application_id: '%algolia.application_id%'
+            api_key: '%algolia.api_key%'
+            index_name: '%algolia.index_name%'
 
 services:
     twig.extension.intl:
@@ -324,3 +328,9 @@ monolog:
             path: "%kernel.logs_dir%/Api/%kernel.environment%.log"
             # log *all* messages (debug is lowest level)
             level: info
+
+#Algolia
+algolia:
+    application_id: '%algolia.application_id%'
+    api_key: '%algolia.api_key%'
+    catch_log_exceptions: true

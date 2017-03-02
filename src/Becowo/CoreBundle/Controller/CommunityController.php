@@ -52,6 +52,18 @@ class CommunityController extends Controller
         $limit/*limit per page*/
     );
     
+    //Algolia search form
+    $queryString = $request->query->get('search');
+    if($queryString != null)
+    {
+      $result = $this->get('algolia.indexer')->search(
+        $em,
+        'BecowoMemberBundle:Member',
+        $queryString
+        );
+
+      dump($result);
+    }
     
     return $this->render('Community/coworkers.html.twig', array('listCoworkers' => $listCoworkers, 'listCommunityNetwork' => $listCommunityNetwork));
   }

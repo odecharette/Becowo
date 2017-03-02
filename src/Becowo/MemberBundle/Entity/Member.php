@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 
 /**
  * Member
@@ -47,6 +48,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="firstname", type="string", length=50, nullable=true)
      * @Assert\Length(min = 3, max = 25)
+     * @Algolia\Attribute
      *
      */
     private $firstname;
@@ -287,6 +289,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="fill_rate", type="decimal", precision=3, scale=0, nullable=true)
+     * @Algolia\Attribute
      */
     private $fillRate;
 
@@ -1257,5 +1260,13 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     public function getFullName()
     {
         return $this->firstname . ' ' . $this->name;
+    }
+
+    /**
+     * @Algolia\IndexIf
+     */
+    public function isVisible()
+    {
+        return !$this->isDeleted && $this->enabled;
     }
 }

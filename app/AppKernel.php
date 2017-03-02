@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Becowo\ApiBundle\BecowoApiBundle(),
+            new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

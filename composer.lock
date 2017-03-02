@@ -4,9 +4,109 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "96797976ada50e8eb9faf0ca2685e821",
-    "content-hash": "b685e98839eaec649715a2f61eca7469",
+    "hash": "8d3d873ebd0ac57e57ac1d982ff9bde8",
+    "content-hash": "dacbeb6587d9a5e6def498d305e636b2",
     "packages": [
+        {
+            "name": "algolia/algolia-search-bundle",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/AlgoliaSearchBundle.git",
+                "reference": "13557c38967689e2d5446ed43e925c2c6f890e83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/AlgoliaSearchBundle/zipball/13557c38967689e2d5446ed43e925c2c6f890e83",
+                "reference": "13557c38967689e2d5446ed43e925c2c6f890e83",
+                "shasum": ""
+            },
+            "require": {
+                "algolia/algoliasearch-client-php": "~1.6",
+                "doctrine/doctrine-bundle": "~1.2",
+                "doctrine/orm": "~2.2,>=2.2.3",
+                "php": "^5.6 || ^7.0",
+                "symfony/finder": "~2.5|~3.0",
+                "symfony/framework-bundle": "~2.5|~3.0",
+                "symfony/property-access": "~2.5|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Algolia\\AlgoliaSearchBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François-Marie de Jouvencel",
+                    "email": "fm.de.jouvencel@gmail.com"
+                },
+                {
+                    "name": "Algolia Team",
+                    "email": "support@algolia.com"
+                }
+            ],
+            "description": "Seamless integration of Algolia Search into your Symfony project.",
+            "time": "2017-01-04 14:30:38"
+        },
+        {
+            "name": "algolia/algoliasearch-client-php",
+            "version": "1.10.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/algoliasearch-client-php.git",
+                "reference": "66c15d546bf0cbf86b192704f161da17c93d3b15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/66c15d546bf0cbf86b192704f161da17c93d3b15",
+                "reference": "66c15d546bf0cbf86b192704f161da17c93d3b15",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.0",
+                "satooshi/php-coveralls": "0.6.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "AlgoliaSearch": "src/",
+                    "AlgoliaSearch\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                },
+                {
+                    "name": "Ryan T. Catlin",
+                    "email": "ryan.catlin@gmail.com"
+                },
+                {
+                    "name": "Jonathan H. Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Algolia Search API Client for PHP",
+            "homepage": "https://github.com/algolia/algoliasearch-client-php",
+            "time": "2016-08-05 13:06:14"
+        },
         {
             "name": "blackknight467/star-rating-bundle",
             "version": "v2.0.1",
@@ -4287,105 +4387,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "algolia/algolia-search-bundle",
-            "version": "1.0.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/algolia/AlgoliaSearchBundle.git",
-                "reference": "8a9e140fcffbf381e6a439859e34bd5126eeda88"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/algolia/AlgoliaSearchBundle/zipball/8a9e140fcffbf381e6a439859e34bd5126eeda88",
-                "reference": "8a9e140fcffbf381e6a439859e34bd5126eeda88",
-                "shasum": ""
-            },
-            "require": {
-                "algolia/algoliasearch-client-php": "~1.6",
-                "doctrine/doctrine-bundle": "~1.2",
-                "doctrine/orm": "~2.2,>=2.2.3",
-                "symfony/finder": "~2.5|~3.0",
-                "symfony/framework-bundle": "~2.5|~3.0",
-                "symfony/property-access": "~2.5|~3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.3"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Algolia\\AlgoliaSearchBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François-Marie de Jouvencel",
-                    "email": "fm.de.jouvencel@gmail.com"
-                },
-                {
-                    "name": "Algolia Team",
-                    "email": "support@algolia.com"
-                }
-            ],
-            "description": "Seamless integration of Algolia Search into your Symfony project.",
-            "time": "2016-02-08 10:03:23"
-        },
-        {
-            "name": "algolia/algoliasearch-client-php",
-            "version": "1.10.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/algolia/algoliasearch-client-php.git",
-                "reference": "66c15d546bf0cbf86b192704f161da17c93d3b15"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/66c15d546bf0cbf86b192704f161da17c93d3b15",
-                "reference": "66c15d546bf0cbf86b192704f161da17c93d3b15",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8 || ^5.0",
-                "satooshi/php-coveralls": "0.6.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "AlgoliaSearch": "src/",
-                    "AlgoliaSearch\\Tests": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Algolia Team",
-                    "email": "contact@algolia.com"
-                },
-                {
-                    "name": "Ryan T. Catlin",
-                    "email": "ryan.catlin@gmail.com"
-                },
-                {
-                    "name": "Jonathan H. Wage",
-                    "email": "jonwage@gmail.com"
-                }
-            ],
-            "description": "Algolia Search API Client for PHP",
-            "homepage": "https://github.com/algolia/algoliasearch-client-php",
-            "time": "2016-08-05 13:06:14"
-        },
         {
             "name": "myclabs/deep-copy",
             "version": "1.5.1",

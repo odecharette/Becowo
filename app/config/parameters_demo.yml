@@ -28,3 +28,8 @@ parameters:
     #Facebook Ids
     facebook_client_id:           810073549123890
     facebook_client_secret:       3ff160395ef3c562838c64187684ecf3
+
+    #Algolia
+    algolia.application_id: WQNLUSRDYI
+    algolia.api_key: 3594cd0ca9567452d05b5025dbfc4d0e
+    algolia.index_name: Member_demo
