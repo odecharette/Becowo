@@ -31,9 +31,50 @@
 	</tbody>
 </table> 
 
-{% if members|length > 0 %}
+{#########################################################################################################}
+<div class="row">
+    <div class="col-lg-4">
+    	<div class="read-network">
+    		<button type="button" class="btn btn-primary" onclick="goWrite('network')">Créer un réseau</button>
+    	</div>
+    	<div class="write-network">		
+			{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+			{{ form_errors(form) }}
+			{{ form_rest(form) }}
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			{{ form_end(form) }}
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('network')"></button> 
+		</div>
+	</div>
+</div>
+
+{#########################################################################################################}
+
+{% if app.request.get('networkId') > 0 %}
+	<br>
+	<h2>Les membres de la communauté {{currentNetwork.name}} ({{members|length}})</h2>
 <br>
-<h2>Les membres de la communauté ({{members|length}})</h2>
+{#########################################################################################################}
+<div class="row">
+    <div class="col-lg-4">
+    	<div class="read-member">
+    		<button type="button" class="btn btn-primary" onclick="goWrite('member')"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un membre</button>
+    	</div>
+    	<div class="write-member">
+			{{ form_start(formMember, {'attr': {'class': 'form-horizontal'}}) }}
+			{{ form_errors(formMember) }}
+			{{ form_rest(formMember) }}
+			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+			{{ form_end(formMember) }}
+			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('member')"></button> 
+		</div>
+	</div>
+</div>
+{#########################################################################################################}
+<br>
+	{% if members|length == 0 %}
+		<p>Aucun membre n'appartient à cette communauté pour le moment</p>
+	{% else %}
 	<table class="table">
 	<thead>
 		<tr>
@@ -62,5 +103,14 @@
 	{% endfor %}
 	</tbody>
 	</table> 
+	{% endif %}
 {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+
+	goRead("network");
+	goRead("member");
+	</script>
 {% endblock %}

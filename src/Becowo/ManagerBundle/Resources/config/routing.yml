@@ -106,4 +106,4 @@ becowo_manager_vote:
 becowo_manager_community:
     path:     /community/{networkId}
     defaults: { _controller: BecowoManagerBundle:Community:network }
-
+    methods: GET|POST

@@ -1253,4 +1253,9 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
 
         return $this;
     }
+
+    public function getFullName()
+    {
+        return $this->firstname . ' ' . $this->name;
+    }
 }
