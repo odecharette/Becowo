@@ -147,6 +147,14 @@
 					{% endfor %}
 				{% endif %}
 			</div>
+			<div class="network">
+				{% if listCommunityNetwork|length > 0 %}
+				<h2>Mes Réseaux</h2>
+					{% for network in listCommunityNetwork %}
+						{{network.communityNetwork.name}} <br>
+					{% endfor %}
+				{% endif %}
+			</div>
 			<div class="taux">
 				<h2>Taux de remplissage</h2>
 				<div class="progress">

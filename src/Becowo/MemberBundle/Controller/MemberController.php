@@ -17,6 +17,8 @@ class MemberController extends Controller
   	$WsService = $this->get('app.workspace');
   	$wsBooked = $WsService->getWsBookedByMemberId($id);
 
+    $listCommunityNetwork = $WsService->getCommunityNetworkByMember($member);
+
     $contact = new Contact();
     $contact->setName($member->getFirstname() . ' ' . $member->getName());
     $contact->setEmail($member->getEMail());
@@ -48,7 +50,8 @@ class MemberController extends Controller
         return $this->redirectToRoute('becowo_member_public_profile', array('id' => $id));
       }
 
-  	return $this->render('Member/viewPublicProfile.html.twig', array('member' => $member, 'wsBooked' =>$wsBooked, 'form' => $form->createView()));
+  	return $this->render('Member/viewPublicProfile.html.twig', 
+      array('member' => $member, 'wsBooked' =>$wsBooked, 'listCommunityNetwork' => $listCommunityNetwork, 'form' => $form->createView()));
   }
 
   public function sendEmailToNewUsersAction()
