@@ -7,6 +7,8 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
+use Doctrine\Common\Collections\ArrayCollection;
+use Becowo\CoreBundle\Entity\Skill;
 
 /**
  * Member
@@ -38,6 +40,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
        * @ORM\Column(name="id", type="integer")
        * @ORM\Id
        * @ORM\GeneratedValue(strategy="AUTO")
+       * @Algolia\Attribute
        */
       protected $id;
 
@@ -238,7 +241,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      * })
-     * @Algolia\Attribute
      */
     private $country;
 
@@ -271,7 +273,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="skills", type="string", nullable=true)
-     * @Algolia\Attribute
      */
     private $skills;
 
@@ -315,7 +316,13 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      */
     private $emailIsPublic = '0';
 
-     private $file;
+    private $file;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Skill", cascade={"persist"})
+    * @Algolia\Attribute
+    */
+    private $listSkills;
   
   public function getFile()
   {
@@ -336,6 +343,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         parent::__construct();
         $this->createdAt = new \DateTime();
         $this->roles = ['ROLE_USER'];
+        $this->listSkills = new ArrayCollection();
     }
 
 
@@ -1268,6 +1276,21 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this->firstname . ' ' . $this->name;
     }
 
+    public function addSkill(Skill $skill)
+    {
+        $this->listSkills[] = $skill;
+    }
+
+    public function removeSkill(Skill $skill)
+    {
+        $this->listSkills->removeElement($skill);
+    }
+
+    public function getlistSkills()
+    {
+        return $this->listSkills;
+    }
+
     /**
      * @Algolia\IndexIf
      */
@@ -1275,4 +1298,5 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     {
         return !$this->isDeleted && $this->enabled;
     }
+
 }
