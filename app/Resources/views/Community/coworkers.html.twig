@@ -31,7 +31,7 @@
 
 	var search = instantsearch({
 	  appId: "{{ algolia.application_id }}",
-	  apiKey: "{{ algolia.api_key }}", // search only API key, no ADMIN key
+	  apiKey: "{{ algolia.search_api_key }}", // search only API key, no ADMIN key
 	  indexName: "{{ algolia.index_name }}",
 	  urlSync: true
 	});
@@ -50,7 +50,7 @@
 	    templates: {
 	      item: function(data) {
 	      	console.log(data);
-	        return '<div>Hit content :  ' + data.firstname + ' ' + data.name + '</div>'
+	        return '<div>Hit content :  ' + data._highlightResult.firstname.value + ' ' + data.name + '</div>'
 	      },
 	      empty: function(data) {
 	      	console.log(data);

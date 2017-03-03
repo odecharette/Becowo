@@ -21,5 +21,6 @@ parameters:
 
     #Algolia
     algolia.application_id: WQNLUSRDYI
-    algolia.api_key: 746828da92ebe6ff2fa72a244245f0e4
-    algolia.index_name: Member_prod
+    algolia.search_api_key: 746828da92ebe6ff2fa72a244245f0e4
+    algolia.admin_api_key: 3594cd0ca9567452d05b5025dbfc4d0e
+    algolia.index_name: Member_dev

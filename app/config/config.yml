@@ -65,7 +65,8 @@ twig:
         blogRSS: '%blogRSS%'
         algolia:
             application_id: '%algolia.application_id%'
-            api_key: '%algolia.api_key%'
+            search_api_key: '%algolia.search_api_key%'
+            admin_api_key: '%algolia.admin_api_key%'
             index_name: '%algolia.index_name%'
 
 services:
@@ -332,5 +333,5 @@ monolog:
 #Algolia
 algolia:
     application_id: '%algolia.application_id%'
-    api_key: '%algolia.api_key%'
+    api_key: '%algolia.admin_api_key%'
     catch_log_exceptions: true

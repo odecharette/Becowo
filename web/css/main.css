@@ -1034,7 +1034,12 @@ footer{
 #community #panelEvent .panel-body{
   height: 355px;
 }
-
+#community .coworkers{
+  margin-top: 40px;
+}
+#community .highlight{
+  background-color: yellow;
+}
 /********************************** Public profile *************************************/
 
 #PublicProfile .name{
@@ -3038,9 +3043,7 @@ top: -50%;
 .pagination>.disabled{
     display: none;
 }
-.coworkers{
-  margin-top: 40px;
-}
+
 /* Algolia textare autocomplete search field */
 #autocomplete-text{
     font-size: 28px;

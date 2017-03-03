@@ -238,6 +238,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      * })
+     * @Algolia\Attribute
      */
     private $country;
 
