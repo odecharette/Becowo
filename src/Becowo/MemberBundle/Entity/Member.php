@@ -282,7 +282,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="hobbies", type="string", nullable=true)
-     * @Algolia\Attribute
      */
     private $hobbies;
 
@@ -290,7 +289,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="wishes", type="string", nullable=true)
-     * @Algolia\Attribute
      */
     private $wishes;
 
@@ -1317,7 +1315,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         $this->listHobbies->removeElement($hobbie);
     }
 
-    public function getlistHobies()
+    public function getlistHobbies()
     {
         return $this->listHobbies;
     }

@@ -13,6 +13,8 @@
 	<main>
 	  <div id="left-column">
 	    <div id="skills" class="facet"></div>
+	    <div id="hobbies" class="facet"></div>
+	    <div id="wishes" class="facet"></div>
 	    <div id="job" class="facet"></div>
 	  </div>
 	  <div id="right-column">
@@ -50,7 +52,19 @@
 	    templates: {
 	      item: function(data) {
 	      	console.log(data);
-	        return '<div>Hit content :  ' + data._highlightResult.firstname.value + ' ' + data.name + '</div>'
+	      	
+	      	var skills = getTab('listSkills', data);
+	      	var hobbies = getTab('listHobbies', data);
+	      	var wishes = getTab('listWishes', data);
+	        return '<div>' + 
+	        	(typeof data._highlightResult.firstname !== 'undefined' ? data._highlightResult.firstname.value : data.firstname.value)
+	        	+ ' ' + 
+        		(typeof data._highlightResult.name  !== 'undefined' ? data._highlightResult.name.value : data.name.value)
+	        	+ ' ' +
+	        	'Compétences : ' + skills +
+	        	'Centre d\'intérêts : ' + hobbies +
+	        	'Souhaits avec Becowo : ' + wishes +
+        		'</div>'
 	      },
 	      empty: function(data) {
 	      	console.log(data);
@@ -100,7 +114,31 @@
 	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
 	    operator: 'or',
 	    templates: {
-	      header: '<h5>Compétences</h5>'
+	      header: '<h5>Compétence</h5>'
+	    }
+	  })
+	);
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#hobbies',
+	    attributeName: 'listHobbies.name',
+	    limit: 10,
+	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
+	    operator: 'or',
+	    templates: {
+	      header: '<h5>Centre d\'intérêt</h5>'
+	    }
+	  })
+	);
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#wishes',
+	    attributeName: 'listWishes.name',
+	    limit: 10,
+	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
+	    operator: 'or',
+	    templates: {
+	      header: '<h5>Souhaite avec Becowo</h5>'
 	    }
 	  })
 	);
@@ -119,8 +157,27 @@
 
 	search.start();
 
-	function getTemplate(templateName) {
-	  return document.getElementById(templateName + '-template').innerHTML;
+	function getTab(element, data)
+	{
+		if(typeof data._highlightResult[element]  !== 'undefined')
+		{
+			return getList(data._highlightResult[element]);
+		}else if(typeof data[element]  !== 'undefined')
+		{
+			return getList(data[element]);
+		}else{
+			return '';
+		}
+	}
+
+	function getList(tab) 
+	{
+		var list = '';
+		for ( var i = 0, length = tab.length; i < length; i++ )
+	        {
+	        	list = list + tab[i].name.value + ', '
+	        }
+	  	return list;
 	}
 </script>
 {% endblock javascripts %}
