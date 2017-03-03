@@ -1037,6 +1037,32 @@ footer{
 #community .coworkers{
   margin-top: 40px;
 }
+#community #search-input{
+  position: absolute;
+  width: 100%;
+}
+#community .searchBox input{
+  line-height: 40px;
+  padding-left: 43px;
+  padding-right: 43px;
+  border-radius: 23px;
+  width: 80%;
+  outline: none;
+  color: var(--my-grey);
+}
+#community .searchBox i{
+  position: relative;
+  color: var(--my-grey);
+  margin-left: 15px;
+  line-height: 45px;
+}
+#community .searchBox span{
+  float: right;
+  line-height: 40px;
+}
+#community .searchBox #stats{
+  margin-top: 10px;
+}
 #community .highlight{
   background-color: yellow;
 }
@@ -3044,7 +3070,7 @@ top: -50%;
     display: none;
 }
 
-/* Algolia textare autocomplete search field */
+/* Algolia textare autocomplete search field 
 #autocomplete-text{
     font-size: 28px;
     font-weight: 100;
@@ -3085,8 +3111,7 @@ top: -50%;
 .dropdown-menu .textcomplete-item.active a {
   background: #F0F0F0;
 }
-/* Highlighting of the matching part 
-   of each search result */
+
 .dropdown-menu .textcomplete-item a em {
   font-style: normal;
   font-weight: bold;
@@ -3095,4 +3120,4 @@ top: -50%;
   border-top: solid 1px #F0F0F0;
   margin-top: 3px;
 }
-/* Fin Algolia textare autocomplete search field */
+ Fin Algolia textare autocomplete search field */

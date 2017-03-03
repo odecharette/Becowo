@@ -6,24 +6,38 @@
 
 {% block content %}
 <h1>Les coworkers</h1>
-	<header>
-	    <div id="search-input"></div>
-	    <div id="search-input-icon"></div>
-	</header>
-	<main>
-	  <div id="left-column">
-	    <div id="skills" class="facet"></div>
-	    <div id="hobbies" class="facet"></div>
-	    <div id="wishes" class="facet"></div>
-	    <div id="job" class="facet"></div>
-	  </div>
-	  <div id="right-column">
-	    <div id="sort-by-wrapper"><span id="sort-by"></span></div>
-	    <div id="stats"></div>
+
+	<div class="row" id="filtersBar">
+        <div class="col-lg-9 searchBox">
+	    	<div id="search-input"></div>
+	    	<i class="fa fa-search" aria-hidden="true"></i>
+	    	<span>By <img src="{{ asset('images/icons/')}}algolia.png" alt="Algolia"></span>
+	    	<div id="stats"></div>
+        </div>
+        <div class="col-lg-3">
+	    	<div id="sort-by-wrapper"><span id="sort-by"></span></div>
+	    	<button><i class="fa fa-filter" aria-hidden="true"></i></button>
+        </div>
+	</div>
+	<div class="row" id="filtersBarExpanded">
+		<div class="col-lg-3">
+	    	<div id="job" class="facet"></div>
+		</div>	
+		<div class="col-lg-3">
+	    	<div id="skills" class="facet"></div>
+    	</div>
+		<div class="col-lg-3">
+	    	<div id="hobbies" class="facet"></div>
+    	</div>
+		<div class="col-lg-3">
+	    	<div id="wishes" class="facet"></div>
+    	</div>
+	</div>
+
+	<div class="row">
 	    <div id="hits"></div>
 	    <div id="pagination"></div>
-	  </div>
-	</main>
+	</div>
 
 {% endblock content %}
 
@@ -56,11 +70,23 @@
 	      	var skills = getTab('listSkills', data);
 	      	var hobbies = getTab('listHobbies', data);
 	      	var wishes = getTab('listWishes', data);
+	      	var firstname = '';
+	      	if(typeof data._highlightResult.firstname !== 'undefined'){
+	        		firstname = data._highlightResult.firstname.value
+	        	}else if(typeof data.firstname !== 'undefined'){
+	        		firstname = data.firstname.value
+	        	}else{
+	        		firstname = ''};
+	      	var name = '';
+	      	if(typeof data._highlightResult.name !== 'undefined'){
+	        		name = data._highlightResult.name.value
+	        	}else if(typeof data.name !== 'undefined'){
+	        		name = data.name.value
+	        	}else{
+	        		name = ''};
 	        return '<div>' + 
-	        	(typeof data._highlightResult.firstname !== 'undefined' ? data._highlightResult.firstname.value : data.firstname.value)
-	        	+ ' ' + 
-        		(typeof data._highlightResult.name  !== 'undefined' ? data._highlightResult.name.value : data.name.value)
-	        	+ ' ' +
+	        	firstname + ' ' + 
+        		name + ' ' +
 	        	'Compétences : ' + skills +
 	        	'Centre d\'intérêts : ' + hobbies +
 	        	'Souhaits avec Becowo : ' + wishes +

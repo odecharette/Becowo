@@ -10,62 +10,62 @@ class CommunityController extends Controller
   
   public function communityAction(Request $request, $limit=9)
   {
-    $MemberService = $this->get('app.member');
-    $fillRateMinimum = 50;
+    // $MemberService = $this->get('app.member');
+    // $fillRateMinimum = 50;
 
-    $WsService = $this->get('app.workspace');
-    $listCommunityNetwork = $WsService->getAllCommunityNetwork();
+    // $WsService = $this->get('app.workspace');
+    // $listCommunityNetwork = $WsService->getAllCommunityNetwork();
 
-    $em = $this->getDoctrine()->getManager();
-    $queryBuilder = $em->getRepository('BecowoMemberBundle:Member')->createQueryBuilder('m');
+    // $em = $this->getDoctrine()->getManager();
+    // $queryBuilder = $em->getRepository('BecowoMemberBundle:Member')->createQueryBuilder('m');
 
-    $queryBuilder->select(
-      'm.id AS id',
-      'm.urlProfilePicture AS urlProfilePicture',
-      'm.signedUpWith AS signedUpWith',
-      'm.job AS job',
-      'm.firstname AS firstname',
-      'm.name AS name'
-      );
+    // $queryBuilder->select(
+    //   'm.id AS id',
+    //   'm.urlProfilePicture AS urlProfilePicture',
+    //   'm.signedUpWith AS signedUpWith',
+    //   'm.job AS job',
+    //   'm.firstname AS firstname',
+    //   'm.name AS name'
+    //   );
 
-    $queryBuilder->andWhere('m.isDeleted = false')
-                ->andWhere('m.fillRate >= :fillRateMinimum')
-                ->setParameter('fillRateMinimum', $fillRateMinimum)
-                ->orderBy('m.fillRate', 'desc');
+    // $queryBuilder->andWhere('m.isDeleted = false')
+    //             ->andWhere('m.fillRate >= :fillRateMinimum')
+    //             ->setParameter('fillRateMinimum', $fillRateMinimum)
+    //             ->orderBy('m.fillRate', 'desc');
 
-    $communityNetwork = $request->query->get('communityNetwork');
-    if($communityNetwork != null)
-    {
-      $memberOfNetwork = $WsService->getMembersByNetworkName($communityNetwork);
+    // $communityNetwork = $request->query->get('communityNetwork');
+    // if($communityNetwork != null)
+    // {
+    //   $memberOfNetwork = $WsService->getMembersByNetworkName($communityNetwork);
 
-      $queryBuilder->andWhere('m IN (:members)')
-                   ->setParameter('members', $memberOfNetwork);
-    }
+    //   $queryBuilder->andWhere('m IN (:members)')
+    //                ->setParameter('members', $memberOfNetwork);
+    // }
 
-    $query = $queryBuilder->getQuery();
+    // $query = $queryBuilder->getQuery();
 
-    $paginator  = $this->get('knp_paginator');
+    // $paginator  = $this->get('knp_paginator');
 
-    $listCoworkers = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1)/*page number*/,
-        $limit/*limit per page*/
-    );
+    // $listCoworkers = $paginator->paginate(
+    //     $query, /* query NOT result */
+    //     $request->query->getInt('page', 1)/*page number*/,
+    //     $limit/*limit per page*/
+    // );
     
-    //Algolia search form
-    $queryString = $request->query->get('search');
-    if($queryString != null)
-    {
-      $result = $this->get('algolia.indexer')->search(
-        $em,
-        'BecowoMemberBundle:Member',
-        $queryString
-        );
+    // //Algolia search form
+    // $queryString = $request->query->get('search');
+    // if($queryString != null)
+    // {
+    //   $result = $this->get('algolia.indexer')->search(
+    //     $em,
+    //     'BecowoMemberBundle:Member',
+    //     $queryString
+    //     );
 
-      dump($result);
-    }
+    //   dump($result);
+    // }
     
-    return $this->render('Community/coworkers.html.twig', array('listCoworkers' => $listCoworkers, 'listCommunityNetwork' => $listCommunityNetwork));
+    return $this->render('Community/coworkers.html.twig');
   }
 
 
