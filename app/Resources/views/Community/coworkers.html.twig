@@ -6,121 +6,121 @@
 
 {% block content %}
 <h1>Les coworkers</h1>
-Total : {{ listCoworkers.getTotalItemCount }} <br>
+	<header>
+	    <div id="search-input"></div>
+	    <div id="search-input-icon"></div>
+	</header>
+	<main>
+	  <div id="left-column">
+	    <div id="skills" class="facet"></div>
+	    <div id="job" class="facet"></div>
+	  </div>
+	  <div id="right-column">
+	    <div id="sort-by-wrapper"><span id="sort-by"></span></div>
+	    <div id="stats"></div>
+	    <div id="hits"></div>
+	    <div id="pagination"></div>
+	  </div>
+	</main>
 
-	<div class="row" id="filtersBar">
-
-        <div id="filterCoworkers" class="col-lg-6 dropdown">
-        	Filtrer par : 
-			<button class="dropbtn" id="filterNetworkBtn">Réseau</button>
-            <div class="dropdown-content">
-            	{% for network in listCommunityNetwork %}
-            		<a href="{{ path('becowo_core_community', { 'communityNetwork':network.name}) }}"><label> {{network.name|capitalize}}</label> </a>
-            		<br>
-              {% endfor %}
-            </div>
-    	</div>
-        <div class="col-lg-6" id="sort">
-          Trier par : 
-          {{ knp_pagination_sortable(listCoworkers, 'Prénom', 'm.firstname') }} | 
-          {{ knp_pagination_sortable(listCoworkers, 'Taux de remplissage', 'm.fillRate') }}
-        </div>
-	</div>
-	<div class="row">
-    	<div class="col-lg-12">
-    		<form id="AlgoliaSearch" autocomplete="off">
-    			<input type="text" class="form-control" id="autocomplete-text" name="search" placeholder="Chercher un coworker">
-    			<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-    			</input>
-    		</form>
-    	</div>
-	</div>
-	<div class="row coworkers">
-	{% for member in listCoworkers %}
-		{% if loop.index % 4 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
-			<div class="col-lg-4 col-md-4 col-xs-12">
-				<div class="member">
-					<a href="{{ path('becowo_member_public_profile', {'id' : member.id}) }}">
-						{% if member.urlProfilePicture is defined %}
-							{% if member.signedUpWith == null %}
-							<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.urlProfilePicture}}'); 
-							    width:200px; 
-							    height:200px; 
-							    background-position:center;
-							    background-size: cover;">&nbsp;</div>
-							{% else %}
-							<div style="background-image:url('{{member.urlProfilePicture}}'); 
-							    width:200px; 
-							    height:200px; 
-							    background-position:center;
-							    background-size: cover;">&nbsp;</div>
-							{% endif %}
-						{% else %}
-							<div style="background-image:url('{{ asset('images/ProfilePictures/avatar.png')}}'); 
-							    width:200px; 
-							    height:200px; 
-							    background-position:center;
-							    background-size: cover;">&nbsp;</div>
-						{% endif %}
-						<span class="label label-info hidden-xs">{{member.job}}</span>
-						<div class="name hidden-xs">{{member.firstname}} {{member.name}}</div>
-						<div class="name visible-xs">{{member.firstname}} {{member.name}} - {{member.job}}</div>
-					</a>
-				</div>
-			</div>
-		{% if loop.index % 3 == 0 or loop.last %} </div> {% endif %}
-	{% endfor %}
-	</div>
-	<div class="navigation text-center">
-      {{ knp_pagination_render(listCoworkers) }}
-  </div>
 {% endblock content %}
 
 {% block javascripts %}
 <script>
-	///////// For autocomplete field text (used with algolia )
-	// #1 - Search configuration - To replace with your own
+	// Documentation : https://www.algolia.com/doc/guides/search/instant-search/
 
-	var ALGOLIA_APPID = "{{ algolia.application_id }}";
-	var ALGOLIA_SEARCH_APIKEY = "{{ algolia.api_key }}";
-	var ALGOLIA_INDEX_NAME = "{{ algolia.index_name }}";
-	var NB_RESULTS_DISPLAYED = 5;
+	var search = instantsearch({
+	  appId: "{{ algolia.application_id }}",
+	  apiKey: "{{ algolia.api_key }}", // search only API key, no ADMIN key
+	  indexName: "{{ algolia.index_name }}",
+	  urlSync: true
+	});
 
-	// #2- Algolia API Client Initialization
-	var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY); 
-	var index = algoliaClient.initIndex(ALGOLIA_INDEX_NAME);
-	var lastQuery = '';
-	$('#autocomplete-text').textcomplete([
-	  {
-	    // #3 - Regular expression used to trigger the autocomplete dropdown
-	    // match: /(^|\s)@(\w*(?:\s*\w*))$/, // use this to start autocomplete on '@' like facebook
-	    match: /(^|\s)(\w*(?:\s*\w*))$/,
-	    // #4 - Function called at every new keystroke
-	    search: function(query, callback) {
-	      lastQuery = query;
-	      index.search(lastQuery, { hitsPerPage: NB_RESULTS_DISPLAYED })
-	        .then(function searchSuccess(content) {
-	          if (content.query === lastQuery) {
-	            callback(content.hits);
-	          }
-	        })
-	        .catch(function searchFailure(err) {
-	          console.error(err);
-	        });
-	    },
-	    // #5 - Template used to display each result obtained by the Algolia API
-	    template: function (hit) {
-	      // Returns the highlighted version of the name attribute
-	      console.log('!!!ici');
-	      console.log(hit);
-	      return hit._highlightResult.firstname.value;
-	    },
-	    // #6 - Template used to display the selected result in the textarea
-	    replace: function (hit) {
-	      // return ' @' + hit.firstname.trim() + ' ';
-	      return hit.firstname;
+	search.addWidget(
+	  instantsearch.widgets.searchBox({
+	    container: '#search-input',
+	    placeholder: 'Chercher un coworker'
+	  })
+	);
+	
+	search.addWidget(
+	  instantsearch.widgets.hits({
+	    container: '#hits',
+	    hitsPerPage: 10,
+	    templates: {
+	      item: function(data) {
+	      	console.log(data);
+	        return '<div>Hit content :  ' + data.firstname + ' ' + data.name + '</div>'
+	      },
+	      empty: function(data) {
+	      	console.log(data);
+	        return '<p>We didn\'t find any results for the search <em>' + data.query + '</em>.</p>'
+	      }
 	    }
-	  }
-	]);
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.stats({
+	    container: '#stats',
+	    templates: {
+	      body: function(data) {
+	        return '<div>You have ' + data.nbHits + ' results, fetched in ' +
+	          data.processingTimeMS +'ms.</div>'
+	      }
+	    }
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.sortBySelector({
+	    container: '#sort-by',
+	    autoHideContainer: true, //automatically hide the widget when there are no results to display
+	    indices: [{
+	      name: search.indexName, label: 'Most relevant'
+	    }, {
+	      name: search.indexName + '_price_asc', label: 'Lowest price'
+	    }, {
+	      name: search.indexName + '_price_desc', label: 'Highest price'
+	    }]
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.pagination({
+	    container: '#pagination'
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#skills',
+	    attributeName: 'skills',
+	    limit: 10,
+	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
+	    operator: 'or',
+	    templates: {
+	      header: '<h5>Compétences</h5>'
+	    }
+	  })
+	);
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#job',
+	    attributeName: 'job',
+	    limit: 10,
+	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
+	    operator: 'or',
+	    templates: {
+	      header: '<h5>Job</h5>'
+	    }
+	  })
+	);
+
+	search.start();
+
+	function getTemplate(templateName) {
+	  return document.getElementById(templateName + '-template').innerHTML;
+	}
 </script>
 {% endblock javascripts %}

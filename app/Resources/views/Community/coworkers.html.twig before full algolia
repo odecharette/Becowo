@@ -1,0 +1,126 @@
+{% extends "Community/layout.html.twig" %}
+
+{% block title %}
+  Communauté - coworkers
+{% endblock %}
+
+{% block content %}
+<h1>Les coworkers</h1>
+Total : {{ listCoworkers.getTotalItemCount }} <br>
+
+	<div class="row" id="filtersBar">
+
+        <div id="filterCoworkers" class="col-lg-6 dropdown">
+        	Filtrer par : 
+			<button class="dropbtn" id="filterNetworkBtn">Réseau</button>
+            <div class="dropdown-content">
+            	{% for network in listCommunityNetwork %}
+            		<a href="{{ path('becowo_core_community', { 'communityNetwork':network.name}) }}"><label> {{network.name|capitalize}}</label> </a>
+            		<br>
+              {% endfor %}
+            </div>
+    	</div>
+        <div class="col-lg-6" id="sort">
+          Trier par : 
+          {{ knp_pagination_sortable(listCoworkers, 'Prénom', 'm.firstname') }} | 
+          {{ knp_pagination_sortable(listCoworkers, 'Taux de remplissage', 'm.fillRate') }}
+        </div>
+	</div>
+	<div class="row">
+    	<div class="col-lg-12">
+    		<form id="AlgoliaSearch" autocomplete="off">
+    			<input type="text" class="form-control" id="autocomplete-text" name="search" placeholder="Chercher un coworker">
+    			<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+    			</input>
+    		</form>
+    	</div>
+	</div>
+	<div class="row coworkers">
+	{% for member in listCoworkers %}
+		{% if loop.index % 4 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
+			<div class="col-lg-4 col-md-4 col-xs-12">
+				<div class="member">
+					<a href="{{ path('becowo_member_public_profile', {'id' : member.id}) }}">
+						{% if member.urlProfilePicture is defined %}
+							{% if member.signedUpWith == null %}
+							<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.urlProfilePicture}}'); 
+							    width:200px; 
+							    height:200px; 
+							    background-position:center;
+							    background-size: cover;">&nbsp;</div>
+							{% else %}
+							<div style="background-image:url('{{member.urlProfilePicture}}'); 
+							    width:200px; 
+							    height:200px; 
+							    background-position:center;
+							    background-size: cover;">&nbsp;</div>
+							{% endif %}
+						{% else %}
+							<div style="background-image:url('{{ asset('images/ProfilePictures/avatar.png')}}'); 
+							    width:200px; 
+							    height:200px; 
+							    background-position:center;
+							    background-size: cover;">&nbsp;</div>
+						{% endif %}
+						<span class="label label-info hidden-xs">{{member.job}}</span>
+						<div class="name hidden-xs">{{member.firstname}} {{member.name}}</div>
+						<div class="name visible-xs">{{member.firstname}} {{member.name}} - {{member.job}}</div>
+					</a>
+				</div>
+			</div>
+		{% if loop.index % 3 == 0 or loop.last %} </div> {% endif %}
+	{% endfor %}
+	</div>
+	<div class="navigation text-center">
+      {{ knp_pagination_render(listCoworkers) }}
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+	///////// For autocomplete field text (used with algolia )
+	// #1 - Search configuration - To replace with your own
+
+	var ALGOLIA_APPID = "{{ algolia.application_id }}";
+	var ALGOLIA_SEARCH_APIKEY = "{{ algolia.api_key }}";
+	var ALGOLIA_INDEX_NAME = "{{ algolia.index_name }}";
+	var NB_RESULTS_DISPLAYED = 5;
+
+	// #2- Algolia API Client Initialization
+	var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY); 
+	var index = algoliaClient.initIndex(ALGOLIA_INDEX_NAME);
+	var lastQuery = '';
+	$('#autocomplete-text').textcomplete([
+	  {
+	    // #3 - Regular expression used to trigger the autocomplete dropdown
+	    // match: /(^|\s)@(\w*(?:\s*\w*))$/, // use this to start autocomplete on '@' like facebook
+	    match: /(^|\s)(\w*(?:\s*\w*))$/,
+	    // #4 - Function called at every new keystroke
+	    search: function(query, callback) {
+	      lastQuery = query;
+	      index.search(lastQuery, { hitsPerPage: NB_RESULTS_DISPLAYED })
+	        .then(function searchSuccess(content) {
+	          if (content.query === lastQuery) {
+	            callback(content.hits);
+	          }
+	        })
+	        .catch(function searchFailure(err) {
+	          console.error(err);
+	        });
+	    },
+	    // #5 - Template used to display each result obtained by the Algolia API
+	    template: function (hit) {
+	      // Returns the highlighted version of the name attribute
+	      console.log('!!!ici');
+	      console.log(hit);
+	      return hit._highlightResult.firstname.value;
+	    },
+	    // #6 - Template used to display the selected result in the textarea
+	    replace: function (hit) {
+	      // return ' @' + hit.firstname.trim() + ' ';
+	      return hit.firstname;
+	    }
+	  }
+	]);
+</script>
+{% endblock javascripts %}
