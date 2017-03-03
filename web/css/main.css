@@ -1063,6 +1063,20 @@ footer{
 #community .searchBox #stats{
   margin-top: 10px;
 }
+#community .sortBox{
+  position: absolute;
+  right: 0;
+  font-size: 14pt;
+}
+#community #sort-by{
+  color: var(--my-grey);
+}
+#community .sortBox button{
+  background-color: transparent;
+  border: none; 
+  margin-top: 30px;
+}
+
 #community .highlight{
   background-color: yellow;
 }

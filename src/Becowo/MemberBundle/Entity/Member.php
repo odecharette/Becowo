@@ -332,7 +332,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
 
     /**
     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Wish", cascade={"persist"})
-    * @Algolia\Attribute
     */
     private $listWishes;
   

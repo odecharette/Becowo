@@ -8,32 +8,40 @@
 <h1>Les coworkers</h1>
 
 	<div class="row" id="filtersBar">
-        <div class="col-lg-9 searchBox">
-	    	<div id="search-input"></div>
-	    	<i class="fa fa-search" aria-hidden="true"></i>
-	    	<span>By <img src="{{ asset('images/icons/')}}algolia.png" alt="Algolia"></span>
-	    	<div id="stats"></div>
-        </div>
-        <div class="col-lg-3">
-	    	<div id="sort-by-wrapper"><span id="sort-by"></span></div>
-	    	<button><i class="fa fa-filter" aria-hidden="true"></i></button>
-        </div>
-	</div>
-	<div class="row" id="filtersBarExpanded">
-		<div class="col-lg-3">
-	    	<div id="job" class="facet"></div>
-		</div>	
-		<div class="col-lg-3">
-	    	<div id="skills" class="facet"></div>
-    	</div>
-		<div class="col-lg-3">
-	    	<div id="hobbies" class="facet"></div>
-    	</div>
-		<div class="col-lg-3">
-	    	<div id="wishes" class="facet"></div>
-    	</div>
-	</div>
+		<div class="row">
+	        <div class="col-lg-9 searchBox">
+		    	<div id="search-input"></div>
+		    	<i class="fa fa-search" aria-hidden="true"></i>
+		    	<span>By <img src="{{ asset('images/icons/')}}algolia.png" alt="Algolia"></span>
+		    	<div id="stats"></div>
+	        </div>
+	        <div class="col-lg-3 sortBox">
+		    	<div id="sort-by-wrapper">
+		    		<i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+		    		<span id="sort-by"></span>
+		    	</div>
+		    	<button id="expandFilterBar"><i class="fa fa-filter" aria-hidden="true"></i> Plus de filtres</button>
+	        </div>
+	    </div>
+		<div class="row" id="filtersBarExpanded" style="display:none;">
+			<div class="col-lg-3">
+				<h3>Job</h3>
+		    	<div id="job" class="facet"></div>
+			</div>	
+			<div class="col-lg-3">
+				<h3>Compétence</h3>
+		    	<div id="skills" class="facet"></div>
+	    	</div>
+			<div class="col-lg-3">
+				<h3>Centre d'intérêt</h3>
+		    	<div id="hobbies" class="facet"></div>
+	    	</div>
+			<div class="col-lg-3">
+		    	<h3>Réseau</h3>
+	    	</div>
+		</div>
 
+	</div>
 	<div class="row">
 	    <div id="hits"></div>
 	    <div id="pagination"></div>
@@ -117,11 +125,9 @@
 	    container: '#sort-by',
 	    autoHideContainer: true, //automatically hide the widget when there are no results to display
 	    indices: [{
-	      name: search.indexName, label: 'Most relevant'
+	      name: search.indexName, label: 'Fill rate'
 	    }, {
-	      name: search.indexName + '_price_asc', label: 'Lowest price'
-	    }, {
-	      name: search.indexName + '_price_desc', label: 'Highest price'
+	      name: search.indexName + '_sort_firstname_asc', label: 'Prénom Asc'
 	    }]
 	  })
 	);
@@ -138,10 +144,7 @@
 	    attributeName: 'listSkills.name',
 	    limit: 10,
 	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or',
-	    templates: {
-	      header: '<h5>Compétence</h5>'
-	    }
+	    operator: 'or'
 	  })
 	);
 	search.addWidget(
@@ -150,22 +153,10 @@
 	    attributeName: 'listHobbies.name',
 	    limit: 10,
 	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or',
-	    templates: {
-	      header: '<h5>Centre d\'intérêt</h5>'
-	    }
-	  })
-	);
-	search.addWidget(
-	  instantsearch.widgets.refinementList({
-	    container: '#wishes',
-	    attributeName: 'listWishes.name',
-	    limit: 10,
-	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or',
-	    templates: {
-	      header: '<h5>Souhaite avec Becowo</h5>'
-	    }
+	    operator: 'or'
+	    // templates: {
+	    //   header: '<h5>Centre d\'intérêt</h5>'
+	    // }
 	  })
 	);
 	search.addWidget(
@@ -174,10 +165,7 @@
 	    attributeName: 'job',
 	    limit: 10,
 	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or',
-	    templates: {
-	      header: '<h5>Job</h5>'
-	    }
+	    operator: 'or'
 	  })
 	);
 
@@ -205,5 +193,13 @@
 	        }
 	  	return list;
 	}
+
+	$('#expandFilterBar').on('click', function(){
+		if($('#filtersBarExpanded').css('display') == 'none')
+			$('#filtersBarExpanded').show();
+		else
+			$('#filtersBarExpanded').hide();
+	});
+
 </script>
 {% endblock javascripts %}
