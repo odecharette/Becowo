@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 use Doctrine\Common\Collections\ArrayCollection;
 use Becowo\CoreBundle\Entity\Skill;
+use Becowo\CoreBundle\Entity\Hobbie;
+use Becowo\CoreBundle\Entity\Wish;
 
 /**
  * Member
@@ -323,6 +325,18 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     * @Algolia\Attribute
     */
     private $listSkills;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Hobbie", cascade={"persist"})
+    * @Algolia\Attribute
+    */
+    private $listHobbies;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Wish", cascade={"persist"})
+    * @Algolia\Attribute
+    */
+    private $listWishes;
   
   public function getFile()
   {
@@ -344,6 +358,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         $this->createdAt = new \DateTime();
         $this->roles = ['ROLE_USER'];
         $this->listSkills = new ArrayCollection();
+        $this->listHobbies = new ArrayCollection();
+        $this->listWishes = new ArrayCollection();
     }
 
 
@@ -1289,6 +1305,36 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     public function getlistSkills()
     {
         return $this->listSkills;
+    }
+
+    public function addHobbie(Hobbie $hobbie)
+    {
+        $this->listHobbies[] = $hobbie;
+    }
+
+    public function removeHobbie(Hobbie $hobbie)
+    {
+        $this->listHobbies->removeElement($hobbie);
+    }
+
+    public function getlistHobies()
+    {
+        return $this->listHobbies;
+    }
+
+    public function addWish(Wish $wish)
+    {
+        $this->listWishes[] = $wish;
+    }
+
+    public function removeWish(Wish $wish)
+    {
+        $this->listWishes->removeElement($wish);
+    }
+
+    public function getlistWishes()
+    {
+        return $this->listWishes;
     }
 
     /**
