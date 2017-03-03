@@ -10,7 +10,7 @@ Total : {{ listCoworkers.getTotalItemCount }} <br>
 
 	<div class="row" id="filtersBar">
 
-        <div id="filterCoworkers" class="dropdown">
+        <div id="filterCoworkers" class="col-lg-6 dropdown">
         	Filtrer par : 
 			<button class="dropbtn" id="filterNetworkBtn">Réseau</button>
             <div class="dropdown-content">
@@ -20,20 +20,22 @@ Total : {{ listCoworkers.getTotalItemCount }} <br>
               {% endfor %}
             </div>
     	</div>
-    	<div>
-    		<form id="AlgoliaSearch">
-    			<input type="text" name="search">
-    			<button type="submit">Search</button>
-    		<textarea class="form-control" rows="1" id="autocomplete-textarea"></textarea>
-    		</form>
-    	</div>
-        <span id="sort">
+        <div class="col-lg-6" id="sort">
           Trier par : 
           {{ knp_pagination_sortable(listCoworkers, 'Prénom', 'm.firstname') }} | 
           {{ knp_pagination_sortable(listCoworkers, 'Taux de remplissage', 'm.fillRate') }}
-        </span>
+        </div>
 	</div>
-
+	<div class="row">
+    	<div class="col-lg-12">
+    		<form id="AlgoliaSearch" autocomplete="off">
+    			<input type="text" class="form-control" id="autocomplete-text" name="search" placeholder="Chercher un coworker">
+    			<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+    			</input>
+    		</form>
+    	</div>
+	</div>
+	<div class="row coworkers">
 	{% for member in listCoworkers %}
 		{% if loop.index % 4 == 0 or loop.index == 1 %} <div class="row"> {% endif %}
 			<div class="col-lg-4 col-md-4 col-xs-12">
@@ -68,7 +70,7 @@ Total : {{ listCoworkers.getTotalItemCount }} <br>
 			</div>
 		{% if loop.index % 3 == 0 or loop.last %} </div> {% endif %}
 	{% endfor %}
-
+	</div>
 	<div class="navigation text-center">
       {{ knp_pagination_render(listCoworkers) }}
   </div>
@@ -88,10 +90,11 @@ Total : {{ listCoworkers.getTotalItemCount }} <br>
 	var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY); 
 	var index = algoliaClient.initIndex(ALGOLIA_INDEX_NAME);
 	var lastQuery = '';
-	$('#autocomplete-textarea').textcomplete([
+	$('#autocomplete-text').textcomplete([
 	  {
 	    // #3 - Regular expression used to trigger the autocomplete dropdown
-	    match: /(^|\s)@(\w*(?:\s*\w*))$/,
+	    // match: /(^|\s)@(\w*(?:\s*\w*))$/, // use this to start autocomplete on '@' like facebook
+	    match: /(^|\s)(\w*(?:\s*\w*))$/,
 	    // #4 - Function called at every new keystroke
 	    search: function(query, callback) {
 	      lastQuery = query;
@@ -114,7 +117,8 @@ Total : {{ listCoworkers.getTotalItemCount }} <br>
 	    },
 	    // #6 - Template used to display the selected result in the textarea
 	    replace: function (hit) {
-	      return ' @' + hit.firstname.trim() + ' ';
+	      // return ' @' + hit.firstname.trim() + ' ';
+	      return hit.firstname;
 	    }
 	  }
 	]);

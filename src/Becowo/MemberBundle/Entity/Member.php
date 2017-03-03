@@ -58,6 +58,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      * @Assert\Length(min = 3, max = 30)
+     * @Algolia\Attribute
      *
      */
     private $name;
@@ -113,6 +114,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="job", type="string", length=255, nullable=true)
      * @Assert\Length(min = 3, max = 30)
+     * @Algolia\Attribute
      */
     private $job;
 
@@ -268,6 +270,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="skills", type="string", nullable=true)
+     * @Algolia\Attribute
      */
     private $skills;
 
@@ -275,6 +278,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="hobbies", type="string", nullable=true)
+     * @Algolia\Attribute
      */
     private $hobbies;
 
@@ -282,6 +286,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="wishes", type="string", nullable=true)
+     * @Algolia\Attribute
      */
     private $wishes;
 

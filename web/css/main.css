@@ -3038,13 +3038,35 @@ top: -50%;
 .pagination>.disabled{
     display: none;
 }
-
-/* Algolia textare autocomplete search field */
-#autocomplete-textarea {
-  min-height: 80px;
-  color: #000;
+.coworkers{
+  margin-top: 40px;
 }
-#autocomplete-textarea a {
+/* Algolia textare autocomplete search field */
+#autocomplete-text{
+    font-size: 28px;
+    font-weight: 100;
+    margin-left: 10px;
+    padding: 10px 0 6px;
+    border: none;
+    border-bottom: 5px solid #eee;
+    transition: border-color .3s ease-in;
+    outline: 0;
+    position: absolute;
+    width: 95%;
+    text-indent: 10px;
+}
+#AlgoliaSearch i{
+  color: var(--my-green);
+}
+#AlgoliaSearch button{
+  background-color: transparent;
+  border: none;
+  float: right;
+  position: relative;
+  margin-right: 20px;
+}
+
+#autocomplete-text a {
   text-decoration: none;
   font-weight: normal;
   color: #181818;
