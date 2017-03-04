@@ -44,6 +44,8 @@
 	</div>
 	<div class="row">
 	    <div id="hits" class="coworkers"></div>
+	</div>
+	<div class="row text-center">
 	    <div id="pagination"></div>
 	</div>
 
@@ -175,7 +177,12 @@
 
 	search.addWidget(
 	  instantsearch.widgets.pagination({
-	    container: '#pagination'
+	    container: '#pagination',
+	    showFirstLast: false,
+	    cssClasses: {
+	    	root: 'pagination',
+	    	active: 'active'
+	    }
 	  })
 	);
 

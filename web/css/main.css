@@ -3128,7 +3128,7 @@ top: -50%;
   padding: 7px 14px;
   color: var(--my-green) !important;
 }
-.pagination>.active>span{
+.pagination>.active>span, .pagination>li.active>a{
   background-color: var(--my-green) !important;
   border-color: var(--my-green) !important;
   color: white !important;
