@@ -110,6 +110,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=50, nullable=true)
+     * @Algolia\Attribute
      *
      */
     private $city;
@@ -297,7 +298,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @var string
      *
-     * @ORM\Column(name="fill_rate", type="decimal", precision=3, scale=0, nullable=true)
+     * @ORM\Column(name="fill_rate", type="float", precision=3, scale=0, nullable=true)
      * @Algolia\Attribute
      */
     private $fillRate;
