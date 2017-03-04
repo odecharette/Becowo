@@ -1104,6 +1104,10 @@ footer{
   position: relative;
   margin-bottom: 50px;
 }
+#community .coworker a{
+  display: block;
+  color: transparent;
+}
 #community .coworker span{
   position: absolute;
   left: 10px;
@@ -2079,7 +2083,9 @@ color: var(--my-blue) !important;
   padding-top: 20px;
   margin-top: 20px;
 }
-
+#listComments a{
+  color: transparent;
+}
 #listComments h4{
   text-align: left;
 }

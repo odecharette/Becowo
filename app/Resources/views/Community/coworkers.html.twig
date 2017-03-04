@@ -116,8 +116,14 @@
 	        		city = data.city
 	        	}else{
 	        		city = ''};
+	        var id = data.id;
+	        var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
+			url = url.replace("paramCity", city.replace('-', ' '));
+			url = url.replace("paramJob", job.replace('-', ' '));
+			url = url.replace("paramId", id);
 
 	        return '<div class="coworker">' + 
+	        			'<a href="' + url + '">' +
 						'<div class="photo" style="background-image:url(\'{{ asset("images/ProfilePictures/")}}' + picture + '\');' +
 						    'width:150px; ' +
 						    'height:150px; ' +
@@ -132,6 +138,7 @@
 							'<i class="fa fa-home" aria-hidden="true"></i> ' + city + '<br>' +
 							'<p class="bio">' + TextAbstract(bio, 220) + '</p>' +
 						'</div>' +
+						'</a>' +
 					'</div>' +
 					'<hr>'
 	      },
