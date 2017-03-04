@@ -81,26 +81,33 @@
 	      	var hobbies = getTab('listHobbies', data);
 	      	var wishes = getTab('listWishes', data);
 	      	var firstname = '';
-	      	if(typeof data._highlightResult.firstname !== 'undefined'){
+	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.firstname !== 'undefined'){
 	        		firstname = data._highlightResult.firstname.value
 	        	}else if(data.firstname !== null){
 	        		firstname = data.firstname
 	        	}else{
 	        		firstname = ''};
 	      	var name = '';
-	      	if(typeof data._highlightResult.name !== 'undefined'){
+	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.name !== 'undefined'){
 	        		name = data._highlightResult.name.value
 	        	}else if(data.name !== null){
 	        		name = data.name
 	        	}else{
 	        		name = ''};
 	      	var job = '';
-	      	if(typeof data._highlightResult.job !== 'undefined'){
+	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.job !== 'undefined'){
 	        		job = data._highlightResult.job.value
 	        	}else if(data.job !== null){
 	        		job = data.job
 	        	}else{
 	        		job = ''};
+	        var city = '';
+	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.city !== 'undefined'){
+	        		city = data._highlightResult.city.value
+	        	}else if(data.city !== null){
+	        		city = data.city
+	        	}else{
+	        		city = ''};
 	        var picture = '';
 	        if(data.urlProfilePicture !== null){
 	        		picture = data.urlProfilePicture
@@ -111,13 +118,6 @@
 	        		bio = data.description
 	        	}else{
 	        		bio = ''};
-	        var city = '';
-	      	if(typeof data._highlightResult.city !== 'undefined'){
-	        		city = data._highlightResult.city.value
-	        	}else if(data.city !== null){
-	        		city = data.city
-	        	}else{
-	        		city = ''};
 	        var id = data.id;
 	        var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
 			url = url.replace("paramCity", city.replace('-', ' '));
@@ -229,7 +229,7 @@
 
 	function getTab(element, data)
 	{
-		if(typeof data._highlightResult[element]  !== 'undefined')
+		if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult[element]  !== 'undefined')
 		{
 			return getList(data._highlightResult[element]);
 		}else if(typeof data[element]  !== 'undefined')
