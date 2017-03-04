@@ -1089,8 +1089,10 @@ footer{
   border: none; 
   margin-top: 30px;
 }
-
-#community .highlight{
+#community em{
+  font-style: normal;
+}
+#community em.highlight{
   background-color: yellow;
 }
 
@@ -1100,10 +1102,7 @@ footer{
 }
 #community .coworker{
   position: relative;
-  margin-bottom: 20px;
-}
-#community .coworker img{
-  width: 200px;
+  margin-bottom: 40px;
 }
 #community .coworker span{
   position: absolute;
@@ -1112,7 +1111,7 @@ footer{
   width: 200px;
   text-align: center;
 }
-#community .coworker div{
+#community .coworker .info{
   position: absolute;
   top: 0;
   left: 210px;

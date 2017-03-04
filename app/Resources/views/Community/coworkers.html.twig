@@ -109,16 +109,28 @@
 	        		bio = data.description
 	        	}else{
 	        		bio = ''};
+	        var city = '';
+	      	if(typeof data._highlightResult.city !== 'undefined'){
+	        		city = data._highlightResult.city.value
+	        	}else if(data.city !== null){
+	        		city = data.city
+	        	}else{
+	        		city = ''};
 
 	        return '<div class="coworker">' + 
-						'<img src="{{ asset("images/ProfilePictures/")}}' + picture + '" alt="' + firstname + ' ' + name + '">' +
+						'<div class="photo" style="background-image:url(\'{{ asset("images/ProfilePictures/")}}' + picture + '\');' +
+						    'width:200px; ' +
+						    'height:200px; ' +
+						    'background-position:center;' +
+						    'background-size: cover;' +
+						    'margin: 0;">&nbsp;</div>' +
 						'<span>' + firstname + ' ' + name + '</span>' +
-						'<div>' +
-							'Job : ' + job + '<br>' +
-							'Compétences : ' + skills + '<br>' + 
-							'Intéractions : ' + wishes + '<br>' +
+						'<div class="info">' +
+							'<i class="fa fa-briefcase" aria-hidden="true"></i> ' + job + '<br>' +
+							'<i class="fa fa-thumb-tack" aria-hidden="true"></i> ' + skills + '<br>' + 
+							'<i class="fa fa-users" aria-hidden="true"></i> ' + wishes + '<br>' +
+							'<i class="fa fa-home" aria-hidden="true"></i> ' + city + '<br>' +
 							'<br>' +
-							'Bio : ' + '<br>' +
 							'<p class="bio">' + TextAbstract(bio, 200) + '</p>' +
 						'</div>' +
 					'</div>'
