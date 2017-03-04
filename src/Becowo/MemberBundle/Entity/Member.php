@@ -145,6 +145,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
+     * @Algolia\Attribute
      */
     private $description;
 
@@ -223,6 +224,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      * @var string
      *
      * @ORM\Column(name="url_profile_picture", type="string", length=255, nullable=true)
+     * @Algolia\Attribute
      */
     private $urlProfilePicture;
 

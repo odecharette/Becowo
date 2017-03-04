@@ -1050,9 +1050,6 @@ footer{
 #community #panelEvent .panel-body{
   height: 355px;
 }
-#community .coworkers{
-  margin-top: 40px;
-}
 #community #search-input{
   position: absolute;
   width: 100%;
@@ -1095,6 +1092,30 @@ footer{
 
 #community .highlight{
   background-color: yellow;
+}
+
+/* Community coworkers pane ********************/
+#community .coworkers{
+  margin-top: 40px;
+}
+#community .coworker{
+  position: relative;
+  margin-bottom: 20px;
+}
+#community .coworker img{
+  width: 200px;
+}
+#community .coworker span{
+  position: absolute;
+  left: 10px;
+  bottom: -20px;
+  width: 200px;
+  text-align: center;
+}
+#community .coworker div{
+  position: absolute;
+  top: 0;
+  left: 210px;
 }
 /********************************** Public profile *************************************/
 

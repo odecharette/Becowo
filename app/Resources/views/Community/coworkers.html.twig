@@ -43,7 +43,7 @@
 
 	</div>
 	<div class="row">
-	    <div id="hits"></div>
+	    <div id="hits" class="coworkers"></div>
 	    <div id="pagination"></div>
 	</div>
 
@@ -81,24 +81,47 @@
 	      	var firstname = '';
 	      	if(typeof data._highlightResult.firstname !== 'undefined'){
 	        		firstname = data._highlightResult.firstname.value
-	        	}else if(typeof data.firstname !== 'undefined'){
-	        		firstname = data.firstname.value
+	        	}else if(data.firstname !== null){
+	        		firstname = data.firstname
 	        	}else{
 	        		firstname = ''};
 	      	var name = '';
 	      	if(typeof data._highlightResult.name !== 'undefined'){
 	        		name = data._highlightResult.name.value
-	        	}else if(typeof data.name !== 'undefined'){
-	        		name = data.name.value
+	        	}else if(data.name !== null){
+	        		name = data.name
 	        	}else{
 	        		name = ''};
-	        return '<div>' + 
-	        	firstname + ' ' + 
-        		name + ' ' +
-	        	'Compétences : ' + skills +
-	        	'Centre d\'intérêts : ' + hobbies +
-	        	'Souhaits avec Becowo : ' + wishes +
-        		'</div>'
+	      	var job = '';
+	      	if(typeof data._highlightResult.job !== 'undefined'){
+	        		job = data._highlightResult.job.value
+	        	}else if(data.job !== null){
+	        		job = data.job
+	        	}else{
+	        		job = ''};
+	        var picture = '';
+	        if(data.urlProfilePicture !== null){
+	        		picture = data.urlProfilePicture
+	        	}else{
+	        		picture = 'avatar.png'};
+	        var bio = '';
+	        if(data.description !== null){
+	        		bio = data.description
+	        	}else{
+	        		bio = ''};
+
+	        return '<div class="coworker">' + 
+						'<img src="{{ asset("images/ProfilePictures/")}}' + picture + '" alt="' + firstname + ' ' + name + '">' +
+						'<span>' + firstname + ' ' + name + '</span>' +
+						'<div>' +
+							'Job : ' + job + '<br>' +
+							'Compétences : ' + skills + '<br>' + 
+							'Intéractions : ' + wishes + '<br>' +
+							'<br>' +
+							'Bio : ' + '<br>' +
+							'<p class="bio">' + TextAbstract(bio, 200) + '</p>' +
+						'</div>' +
+					'</div>'
 	      },
 	      empty: function(data) {
 	      	console.log(data);
@@ -170,6 +193,14 @@
 
 	search.start();
 
+	$('#expandFilterBar').on('click', function(){
+		if($('#filtersBarExpanded').css('display') == 'none')
+			$('#filtersBarExpanded').show();
+		else
+			$('#filtersBarExpanded').hide();
+	});
+
+
 	function getTab(element, data)
 	{
 		if(typeof data._highlightResult[element]  !== 'undefined')
@@ -193,12 +224,18 @@
 	  	return list;
 	}
 
-	$('#expandFilterBar').on('click', function(){
-		if($('#filtersBarExpanded').css('display') == 'none')
-			$('#filtersBarExpanded').show();
-		else
-			$('#filtersBarExpanded').hide();
-	});
+	function TextAbstract(text, length) {
+    if (text == null) {
+        return "";
+    }
+    if (text.length <= length) {
+        return text;
+    }
+	    text = text.substring(0, length);
+	    last = text.lastIndexOf(" ");
+	    text = text.substring(0, last);
+	    return text + "...";
+	}
 
 </script>
 {% endblock javascripts %}
