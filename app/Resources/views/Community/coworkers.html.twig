@@ -101,6 +101,7 @@
 	        		job = data.job
 	        	}else{
 	        		job = ''};
+	        var jobUrl = ''; if(data.job !== null){jobUrl = data.job} else {jobUrl=''};
 	        var city = '';
 	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.city !== 'undefined'){
 	        		city = data._highlightResult.city.value
@@ -108,6 +109,7 @@
 	        		city = data.city
 	        	}else{
 	        		city = ''};
+	        var cityUrl = ''; if(data.city !== null){cityUrl = data.city} else {cityUrl=''};
 	        var picture = '';
 	        if(data.urlProfilePicture !== null){
 	        		picture = data.urlProfilePicture
@@ -120,8 +122,8 @@
 	        		bio = ''};
 	        var id = data.id;
 	        var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
-			url = url.replace("paramCity", city.replace('-', ' '));
-			url = url.replace("paramJob", job.replace('-', ' '));
+			url = url.replace("paramCity", cityUrl.replace('-', ' '));
+			url = url.replace("paramJob", jobUrl.replace('-', ' '));
 			url = url.replace("paramId", id);
 
 	        return '<div class="coworker">' + 
