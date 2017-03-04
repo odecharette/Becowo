@@ -63,7 +63,7 @@
 	search.addWidget(
 	  instantsearch.widgets.searchBox({
 	    container: '#search-input',
-	    placeholder: 'Chercher un coworker'
+	    placeholder: 'Chercher un coworker (exemple : freelance PHP Lille)'
 	  })
 	);
 	
@@ -102,7 +102,7 @@
 	      },
 	      empty: function(data) {
 	      	console.log(data);
-	        return '<p>We didn\'t find any results for the search <em>' + data.query + '</em>.</p>'
+	        return '<p>Désolé ! Aucun coworker trouvé pour la recherche <em>' + data.query + '</em>.</p>'
 	      }
 	    }
 	  })
@@ -113,8 +113,7 @@
 	    container: '#stats',
 	    templates: {
 	      body: function(data) {
-	        return '<div>You have ' + data.nbHits + ' results, fetched in ' +
-	          data.processingTimeMS +'ms.</div>'
+	        return '<div>' + data.nbHits + ' coworkers trouvés.</div>'
 	      }
 	    }
 	  })

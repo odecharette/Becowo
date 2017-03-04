@@ -970,6 +970,22 @@ footer{
   text-decoration: none;
 }
 /********************************** Page Community *************************************/
+#community #filtersBarExpanded span{
+  color: var(--my-black);
+}
+#community #filtersBarExpanded span:before {
+  font-family: FontAwesome !important;
+  display: inline-block !important;
+  position: absolute;
+  left: 0px;
+  color: white;
+}
+#community #filtersBarExpanded input[type=checkbox] + span:before { content: "\f096" !important; } /* unchecked icon */
+#community #filtersBarExpanded input[type=checkbox]:checked + span:before { content: "\f046" !important; } /* checked icon */
+
+#community #filtersBar{
+  margin: 0;
+}
 
 #community .texte1{
   background-color: var(--my-green);
