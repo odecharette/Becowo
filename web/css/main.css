@@ -1102,19 +1102,30 @@ footer{
 }
 #community .coworker{
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 #community .coworker span{
   position: absolute;
   left: 10px;
-  bottom: -20px;
-  width: 200px;
+  bottom: -30px;
+  width: 150px;
   text-align: center;
+  color: var(--my-green);
+  font-size: 14pt;
 }
 #community .coworker .info{
   position: absolute;
   top: 0;
-  left: 210px;
+  left: 170px;
+  color: var(--my-grey);
+}
+#community .coworker p{
+  width: 400px;
+}
+#community .coworker i{
+  width: 18px;
+  color: var(--my-pink);
+  text-align: center;
 }
 /********************************** Public profile *************************************/
 

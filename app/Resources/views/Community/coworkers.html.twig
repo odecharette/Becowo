@@ -119,21 +119,21 @@
 
 	        return '<div class="coworker">' + 
 						'<div class="photo" style="background-image:url(\'{{ asset("images/ProfilePictures/")}}' + picture + '\');' +
-						    'width:200px; ' +
-						    'height:200px; ' +
+						    'width:150px; ' +
+						    'height:150px; ' +
 						    'background-position:center;' +
 						    'background-size: cover;' +
 						    'margin: 0;">&nbsp;</div>' +
 						'<span>' + firstname + ' ' + name + '</span>' +
 						'<div class="info">' +
 							'<i class="fa fa-briefcase" aria-hidden="true"></i> ' + job + '<br>' +
-							'<i class="fa fa-thumb-tack" aria-hidden="true"></i> ' + skills + '<br>' + 
-							'<i class="fa fa-users" aria-hidden="true"></i> ' + wishes + '<br>' +
+							'<i class="fa fa-thumb-tack" aria-hidden="true"></i> ' + TextAbstract(skills, 57) + '<br>' + 
+							'<i class="fa fa-users" aria-hidden="true"></i> ' + TextAbstract(wishes, 57) + '<br>' +
 							'<i class="fa fa-home" aria-hidden="true"></i> ' + city + '<br>' +
-							'<br>' +
-							'<p class="bio">' + TextAbstract(bio, 200) + '</p>' +
+							'<p class="bio">' + TextAbstract(bio, 220) + '</p>' +
 						'</div>' +
-					'</div>'
+					'</div>' +
+					'<hr>'
 	      },
 	      empty: function(data) {
 	      	console.log(data);

@@ -74,9 +74,9 @@
 		{% for comment in listComments %}
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-xs-4">
-					{% if comment.member.profilePicture.url is defined %}
-						<a href="{{ path('becowo_member_public_profile', {'id' : comment.member.id}) }}" class="memberPic">
-							<div style="background-image:url('{{ asset('images/ProfilePictures/') }}{{comment.member.profilePicture.url}}'); 
+					{% if comment.member.UrlProfilePicture is defined %}
+						<a href="{{ path('becowo_member_community_coworker', {'city': comment.member.city|replace({'-':' '}), 'job':comment.member.job|replace({'-':' '}), 'id' : comment.member.id}) }}" class="memberPic">
+							<div style="background-image:url('{{ asset('images/ProfilePictures/') }}{{comment.member.UrlProfilePicture}}'); 
 						    width:70px; 
 						    height:70px; 
 						    background-position:center;

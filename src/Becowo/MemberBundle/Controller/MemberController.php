@@ -47,7 +47,7 @@ class MemberController extends Controller
 
         $request->getSession()->getFlashBag()->add('success', 'Votre message a bien été envoyé');
 
-        return $this->redirectToRoute('becowo_member_public_profile', array('id' => $id));
+        return $this->redirectToRoute('becowo_member_community_coworker', array('city' => str_replace('-',' ',$member->getCity()), 'job' => str_replace('-',' ',$member->getJob()), 'id' => $id));
       }
 
   	return $this->render('Member/viewPublicProfile.html.twig', 

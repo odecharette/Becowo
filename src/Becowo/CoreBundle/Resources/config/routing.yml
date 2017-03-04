@@ -29,6 +29,11 @@ becowo_core_community:
     defaults: { _controller: BecowoCoreBundle:Community:community }
     methods: GET
 
+becowo_member_community_coworker:
+    path:     /communaute/coworkers/{city}-{job}-{id}
+    defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
+    methods: GET|POST
+
 becowo_core_community_events:
     path:     /communaute/events
     defaults: { _controller: BecowoCoreBundle:Community:events }
@@ -170,11 +175,6 @@ becowo_core_extract:
     path:     /extract
     defaults: { _controller: BecowoCoreBundle:Extract:extract }
     methods: GET
-
-becowo_member_public_profile:
-    path:     /communaute/{id}
-    defaults: { _controller: BecowoMemberBundle:Member:viewPublicProfile }
-    methods: GET|POST
 
 becowo_comment:
     path:    /comment/{name}
