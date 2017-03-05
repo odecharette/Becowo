@@ -1136,6 +1136,51 @@ footer{
   color: var(--my-pink);
   text-align: center;
 }
+
+/********************************** Community Events *************************************/
+
+#community .event{
+  position: relative;
+  padding: 10px 20px 20px 10px;
+  background-color: #F5F5F5;
+  height: 200px;
+  width: 90%;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.1);
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+#community .event .title{
+  text-align: center;
+  color: var(--my-green);
+  font-size: 14pt;
+}
+#community .event .info{
+  position: absolute;
+  top: 10px;
+  left: 250px;
+  color: var(--my-grey);
+}
+#community .event i{    
+  width: 18px;
+  color: var(--my-pink);
+  text-align: center;
+}
+#community .event .info p{
+  padding-right: 20px;
+}
+#community .event button{
+  position: absolute;
+  right: 20px;
+}
+#community .event a{
+  color: var(--my-blue);
+}
+#community .event .participate{
+  position: absolute;
+  right: 30px;
+  font-size: 16pt;
+  bottom: 10px;
+}
 /********************************** Public profile *************************************/
 
 #PublicProfile .name{

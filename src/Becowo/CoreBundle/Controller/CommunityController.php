@@ -85,6 +85,7 @@ class CommunityController extends Controller
       'e.endDate AS endDate', 
       'e.description AS description',
       'e.picture AS picture',
+      'e.facebookId AS facebookId',
       'c.name as CategoryName',
       'w.name as WsName',
       'w.street as WsStreet',
