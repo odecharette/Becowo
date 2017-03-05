@@ -69,7 +69,7 @@ class CommunityController extends Controller
   }
 
 
-  public function eventsAction(Request $request, $limit=6)
+  public function eventsAction(Request $request, $limit=5)
   {
     $wsService = $this->get('app.workspace');
     $WSList = $wsService->getListOfWsWithEvents();
