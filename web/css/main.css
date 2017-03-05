@@ -1102,7 +1102,13 @@ footer{
 }
 #community .coworker{
   position: relative;
-  margin-bottom: 50px;
+  padding: 10px 20px 20px 10px;
+  background-color: #F5F5F5;
+  height: 200px;
+  width: 80%;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.1);
+  margin-left: 20px;
+  margin-bottom: 30px;
 }
 #community .coworker a{
   display: block;
@@ -1110,21 +1116,20 @@ footer{
 }
 #community .coworker span{
   position: absolute;
-  left: 10px;
-  bottom: -30px;
-  width: 150px;
+  bottom: 5px;
+  width: 180px;
   text-align: center;
   color: var(--my-green);
   font-size: 14pt;
 }
 #community .coworker .info{
   position: absolute;
-  top: 0;
-  left: 170px;
+  top: 10px;
+  left: 200px;
   color: var(--my-grey);
 }
 #community .coworker p{
-  width: 400px;
+  width: 450px;
 }
 #community .coworker i{
   width: 18px;
