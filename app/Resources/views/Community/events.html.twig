@@ -12,13 +12,20 @@ Total : {{ listEvents.getTotalItemCount }} <br>
 
       <div id="filterWs" class="dropdown">
         Filtrer par : 
-			<button class="dropbtn" id="filterWsBtn">Coworking</button>
+      <button class="dropbtn">Ville
           <div class="dropdown-content">
-          	{% for ws in WSList %}
+            {% for ws in WSList|sort %}
+                  <a href="{{ path('becowo_core_community_events', { 'WsCity':ws.city}) }}"><label> {{ws.city|capitalize}}</label> </a>
+                  <br>
+             {% endfor %}
+          </div></button>
+			<button class="dropbtn">Coworking
+          <div class="dropdown-content">
+          	{% for ws in WSList|sort %}
           		<a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"><label> {{ws.name|capitalize}}</label> </a>
           		<br>
             {% endfor %}
-          </div>
+          </div></button>
       </div>
       <span id="sort">
         Trier par : 

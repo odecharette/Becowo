@@ -2972,9 +2972,6 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #filtersBar #filterNetworkBtn{
   width: 100px;
 }
-#filtersBar #filterWsBtn{
-  width: 150px;
-}
 #filtersBar .dropdown {
     position: relative;
     display: inline-block;

@@ -100,7 +100,16 @@ class CommunityController extends Controller
                 ;
 
     $queryBuilder->andWhere('w.isDeleted = false')
-                 ->andWhere('w.isVisible = true');
+                 ->andWhere('w.isVisible = true')
+                 ->andWhere('e.startDate >= :today')
+                 ->setParameter('today', date("Y-m-d"));
+
+    $WsCity = $request->query->get('WsCity');
+    if($WsCity != null)
+    {
+      $queryBuilder->andWhere('w.city = :WsCity')
+                  ->setParameter('WsCity', $WsCity);
+    }
 
     $WsName = $request->query->get('WsName');
     if($WsName != null)
@@ -108,6 +117,8 @@ class CommunityController extends Controller
       $queryBuilder->andWhere('w.name = :WsName')
                   ->setParameter('WsName', $WsName);
     }
+
+    $queryBuilder->orderBy('e.startDate','ASC');
 
     $query = $queryBuilder->getQuery();
 
