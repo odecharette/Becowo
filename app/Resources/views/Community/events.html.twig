@@ -8,35 +8,38 @@
 <h1>Les Evènements</h1>
 <div class="row" id="filtersBar">
 
-      <div id="filterWs" class="dropdown">
+      <div id="filterWs">
         Filtrer par : 
-      <button class="dropbtn">Ville
-        <div class="dropdown-content">
-          {% set cities = [] %}
-          {% for ws in WSList|sort %}
-             {% if ws.city not in cities %}
-               <a href="{{ path('becowo_core_community_events', { 'WsCity':ws.city}) }}"><label> {{ws.city|capitalize}}</label> </a>
-              <br>
-             {% set cities = cities|merge([ws.city]) %}
-             {% endif %}
-          {% endfor %}
+        <div class="dropdown">
+          <button class="dropbtn">Ville</button>
+          <div class="dropdown-content">
+            {% set cities = [] %}
+            {% for ws in WSList|sort %}
+               {% if ws.city not in cities %}
+                 <a href="{{ path('becowo_core_community_events', { 'WsCity':ws.city}) }}"><label> {{ws.city|capitalize}}</label> </a>
+                <br>
+               {% set cities = cities|merge([ws.city]) %}
+               {% endif %}
+            {% endfor %}
+          </div>
         </div>
-      </button>
-			<button class="dropbtn">Coworking
-        <div class="dropdown-content">
-        	{% for ws in WSList|sort %}
-        		<a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"><label> {{ws.name|capitalize}}</label> </a>
-        		<br>
-          {% endfor %}
+        <div class="dropdown">
+    			<button class="dropbtn">Coworking </button>
+          <div class="dropdown-content">
+          	{% for ws in WSList|sort %}
+          		<a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"><label> {{ws.name|capitalize}}</label> </a>
+          		<br>
+            {% endfor %}
+          </div>
         </div>
-      </button>
-      <button class="dropbtn">Date
-        <div class="dropdown-content">
-          <a href="{{ path('becowo_core_community_events', { 'EventDate':'semaine'}) }}"><label>Cette semaine</label> </a><br>
-          <a href="{{ path('becowo_core_community_events', { 'EventDate':'mois'}) }}"><label>Ce mois ci</label> </a><br>
-          <a href="{{ path('becowo_core_community_events', { 'EventDate':'moisProchain'}) }}"><label>Le mois prochain</label> </a>
+        <div class="dropdown">
+          <button class="dropbtn">Date </button>
+          <div class="dropdown-content">
+            <a href="{{ path('becowo_core_community_events', { 'EventDate':'semaine'}) }}"><label>Cette semaine</label> </a><br>
+            <a href="{{ path('becowo_core_community_events', { 'EventDate':'mois'}) }}"><label>Ce mois ci</label> </a><br>
+            <a href="{{ path('becowo_core_community_events', { 'EventDate':'moisProchain'}) }}"><label>Le mois prochain</label> </a>
+          </div>
         </div>
-      </button>
       </div>
       <span id="sort">
         Trier par : 
