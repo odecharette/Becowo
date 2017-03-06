@@ -1141,6 +1141,41 @@ footer{
 #community .events{
   margin-top: 40px;
 }
+#community #filterEvents .dropdown-content label, #community #filterEvents .dropbtn{
+  text-indent: 0;
+}
+#community #filterEvents .dropdown-content{
+  min-width: 200px;
+}
+#community #filterEvents .dropdown{
+  margin-right: 20px;
+}
+#community #filterEvents{
+  font-size: 16pt;
+}
+#community #filterEvents #sort{
+  float: right;
+  padding-right: 20px;  
+  font-size: 14pt;
+}
+#community #filterEvents #sort a, #community .counter a{
+  color: white !important;
+}
+#community #filterEvents #sort a:hover, #filtersBar #sort a:focus{
+  text-decoration: none;
+}
+#community #filterEvents #sort a.asc::after, #filtersBar #sort a::after{
+  content: "\f106";
+  font-family: FontAwesome;
+  color: white ;
+  margin-left: 10px;
+}
+#community #filterEvents #sort a.desc::after{
+  content: "\f107";
+  font-family: FontAwesome;
+  color: white;
+  margin-left: 10px;
+}
 #community .event{
   position: relative;
   padding: 10px 20px 20px 10px;
@@ -3055,31 +3090,7 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #filterCategory label{
   padding-right: 40px;
 }
-#filtersBar #sort{
-  float: right;
-  padding-right: 20px;
-}
-#filtersBar #sort a{
-  color: white !important;
-}
-#filtersBar #sort a:hover, #filtersBar #sort a:focus{
-  text-decoration: none;
-}
-#filtersBar #sort a.asc::after, #filtersBar #sort a::after{
-  content: "\f106";
-  font-family: FontAwesome;
-  color: white ;
-  margin-left: 10px;
-}
-#filtersBar #sort a.desc::after{
-  content: "\f107";
-  font-family: FontAwesome;
-  color: white;
-  margin-left: 10px;
-}
-#filtersBar .counter a{
-  color: white;
-}
+
 .vignette .fb_iframe_widget{
   width: inherit;
   margin-left: -200px;

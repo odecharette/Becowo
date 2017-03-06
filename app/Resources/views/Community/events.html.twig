@@ -8,7 +8,7 @@
 <h1>Les Evènements</h1>
 <div class="row" id="filtersBar">
 
-      <div id="filterWs">
+      <div id="filterEvents">
         Filtrer par : 
         <div class="dropdown">
           <button class="dropbtn">Ville</button>
@@ -40,12 +40,12 @@
             <a href="{{ path('becowo_core_community_events', { 'EventDate':'moisProchain'}) }}"><label>Le mois prochain</label> </a>
           </div>
         </div>
+        <span id="sort">
+          Trier par : 
+          {{ knp_pagination_sortable(listEvents, 'Date', 'e.startDate') }}
+        </span>
       </div>
-      <span id="sort">
-        Trier par : 
-        {{ knp_pagination_sortable(listEvents, 'Date', 'e.startDate') }}
-      </span>
-      <br><br>
+      <br>
       <span class="counter">
         {{ listEvents.getTotalItemCount }} évènements trouvés - <a href="{{ path('becowo_core_community_events') }}">Effacer les filtres</a>
       </span>
