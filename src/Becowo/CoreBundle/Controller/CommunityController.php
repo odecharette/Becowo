@@ -4,6 +4,7 @@ namespace Becowo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use DoctrineExtensions\Query\Mysql\Week;
 
 class CommunityController extends Controller
 {
@@ -104,18 +105,25 @@ class CommunityController extends Controller
                  ->andWhere('e.startDate >= :today')
                  ->setParameter('today', date("Y-m-d"));
 
+    // Appliquer les filtres de recherche
     $WsCity = $request->query->get('WsCity');
+    $WsName = $request->query->get('WsName');
+    $WsDate = $request->query->get('WsDate');
     if($WsCity != null)
     {
       $queryBuilder->andWhere('w.city = :WsCity')
                   ->setParameter('WsCity', $WsCity);
-    }
-
-    $WsName = $request->query->get('WsName');
-    if($WsName != null)
+    }else if($WsName != null)
     {
       $queryBuilder->andWhere('w.name = :WsName')
                   ->setParameter('WsName', $WsName);
+    }else if($WsDate != null)
+    {
+      if($WsDate == 'semaine')
+      {
+        $queryBuilder->andWhere('week(e.startDate) = week(:d)')
+                    ->setParameter('d',  date("Y-m-d"));
+      }
     }
 
     $queryBuilder->orderBy('e.startDate','ASC');
