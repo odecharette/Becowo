@@ -144,7 +144,7 @@
   </div>
   <div class="row text-center">
       <input type="submit" class="btnMAJ" value="Mettre à jour mon profil">
-      <a href="{{ path('becowo_member_community_coworker', {'city':form.vars.value.city|replace({'-':' '}), 'job':form.vars.value.job|replace({'-':' '}), 'id' : form.vars.value.id}) }}" class="btnView">Voir mon profil public</a>
+      <a href="{{ path('becowo_member_community_coworker', {'city':form.vars.value.city|replace({'-':' '})|default('ville'), 'job':form.vars.value.job|replace({'-':' '})|default('job'), 'id' : form.vars.value.id}) }}" class="btnView">Voir mon profil public</a>
   </div>
   {{ form_rest(form) }}
   {{ form_end(form) }}

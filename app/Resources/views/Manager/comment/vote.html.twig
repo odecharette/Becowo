@@ -97,7 +97,7 @@
 				<td>{{comment.score3|round(2)}}</td>
 				<td>{{comment.score4|round(2)}}</td>
 				<td>{{comment.scoreAvg|round(2)}} / 5</td> 
-				<td><a href="{{ path('becowo_member_community_coworker', {city:comment.member.city|replace({'-':' '}) , job: comment.member.job|replace({'-':' '}),id: comment.member.id}) }}" target="_blank">{{comment.member.firstname}} {{comment.member.name}}</a></td>
+				<td><a href="{{ path('becowo_member_community_coworker', {city:comment.member.city|replace({'-':' '})|default('ville') , job: comment.member.job|replace({'-':' '})|default('job'), id: comment.member.id}) }}" target="_blank">{{comment.member.firstname}} {{comment.member.name}}</a></td>
 			</tr>
 		{% endfor %}
 	</tbody>

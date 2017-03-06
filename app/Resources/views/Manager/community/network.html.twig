@@ -22,7 +22,7 @@
 		{% for n in network %}
 			<tr>
 			 	<td>{{n.name}}</td>
-			 	<td><a href="{{ path('becowo_member_community_coworker', {city:n.adminMember.city|replace({'-':' '}) , job:n.adminMember.job|replace({'-':' '}) ,id: n.adminMember.id}) }}" target="_blank">{{n.adminMember.firstname}} {{n.adminMember.name}}</a></td>
+			 	<td><a href="{{ path('becowo_member_community_coworker', {city:n.adminMember.city|replace({'-':' '})|default('ville') , job:n.adminMember.job|replace({'-':' '})|default('job') ,id: n.adminMember.id}) }}" target="_blank">{{n.adminMember.firstname}} {{n.adminMember.name}}</a></td>
 				<td><a href="{{ path('becowo_manager_community', {networkId: n.id}) }}">Liste des coworkers</a></td>
 
 			</tr>
@@ -97,7 +97,7 @@
 			<td>{{member.firstname}}</td>
 		 	<td>{{member.name}}</td>
 		 	<td>{{member.createdAt|date('d/m/Y')}}</td>
-		 	<td><a href="{{ path('becowo_member_community_coworker', {city:member.city|replace({'-':' '}) , job:member.job|replace({'-':' '}) ,id: member.id}) }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+		 	<td><a href="{{ path('becowo_member_community_coworker', {city:member.city|replace({'-':' '})|default('ville') , job:member.job|replace({'-':' '})|default('job') ,id: member.id}) }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
 		</tr>
 
 	{% endfor %}

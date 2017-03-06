@@ -31,7 +31,7 @@
             <td>{{booking.workspaceHasOffice.name}}</td>
             <td>
                 {% if booking.member != null %}
-                    <a href="{{ path('becowo_member_community_coworker', {city: booking.member.city|replace({'-':' '}) , job: booking.member.job|replace({'-':' '}) ,id: booking.member.id}) }}" target="_blank">{{booking.member.firstname}} {{booking.member.name}}</a></td>
+                    <a href="{{ path('becowo_member_community_coworker', {city: booking.member.city|replace({'-':' '})|default('ville') , job: booking.member.job|replace({'-':' '})|default('job') ,id: booking.member.id}) }}" target="_blank">{{booking.member.firstname}} {{booking.member.name}}</a></td>
                 {% else %}
                     Réservation interne
                 {% endif %}
