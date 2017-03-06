@@ -12,10 +12,14 @@
         Filtrer par : 
       <button class="dropbtn">Ville
         <div class="dropdown-content">
+          {% set cities = [] %}
           {% for ws in WSList|sort %}
-                <a href="{{ path('becowo_core_community_events', { 'WsCity':ws.city}) }}"><label> {{ws.city|capitalize}}</label> </a>
-                <br>
-           {% endfor %}
+             {% if ws.city not in cities %}
+               <a href="{{ path('becowo_core_community_events', { 'WsCity':ws.city}) }}"><label> {{ws.city|capitalize}}</label> </a>
+              <br>
+             {% set cities = cities|merge([ws.city]) %}
+             {% endif %}
+          {% endfor %}
         </div>
       </button>
 			<button class="dropbtn">Coworking
