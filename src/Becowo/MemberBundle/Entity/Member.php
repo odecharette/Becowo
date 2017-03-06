@@ -116,10 +116,12 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     private $city;
 
     /**
-     * @var string
+     * @var \Becowo\CoreBundle\Entity\Job
      *
-     * @ORM\Column(name="job", type="string", length=255, nullable=true)
-     * @Assert\Length(min = 3, max = 30)
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Job")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="job_id", referencedColumnName="id")
+     * })
      * @Algolia\Attribute
      */
     private $job;
@@ -611,7 +613,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @return Member
      */
-    public function setJob($job)
+    public function setJob(\Becowo\CoreBundle\Entity\Job $job = null)
     {
         $this->job = $job;
 
