@@ -3065,13 +3065,13 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
 #filtersBar #sort a:hover, #filtersBar #sort a:focus{
   text-decoration: none;
 }
-#filtersBar #sort a.asc::after{
+#filtersBar #sort a.asc::after, #filtersBar #sort a::after{
   content: "\f106";
   font-family: FontAwesome;
   color: white ;
   margin-left: 10px;
 }
-#filtersBar #sort a.desc::after, #filtersBar #sort a::after{
+#filtersBar #sort a.desc::after{
   content: "\f107";
   font-family: FontAwesome;
   color: white;
