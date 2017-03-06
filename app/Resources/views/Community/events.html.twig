@@ -30,9 +30,9 @@ Total : {{ listEvents.getTotalItemCount }} <br>
       </button>
       <button class="dropbtn">Date
         <div class="dropdown-content">
-          <a href="{{ path('becowo_core_community_events', { 'WsDate':'semaine'}) }}"><label>Cette semaine</label> </a><br>
-          <a href="{{ path('becowo_core_community_events', { 'WsDate':'mois'}) }}"><label>Ce mois ci</label> </a><br>
-          <a href="{{ path('becowo_core_community_events', { 'WsDate':'moisProchain'}) }}"><label>Le mois prochain</label> </a>
+          <a href="{{ path('becowo_core_community_events', { 'EventDate':'semaine'}) }}"><label>Cette semaine</label> </a><br>
+          <a href="{{ path('becowo_core_community_events', { 'EventDate':'mois'}) }}"><label>Ce mois ci</label> </a><br>
+          <a href="{{ path('becowo_core_community_events', { 'EventDate':'moisProchain'}) }}"><label>Le mois prochain</label> </a>
         </div>
       </button>
       </div>

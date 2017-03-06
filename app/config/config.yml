@@ -101,7 +101,10 @@ doctrine:
         auto_mapping: true
         dql:
           datetime_functions: 
+            now: DoctrineExtensions\Query\Mysql\Now
             week: DoctrineExtensions\Query\Mysql\Week
+            month: DoctrineExtensions\Query\Mysql\Month
+            dateadd: DoctrineExtensions\Query\Mysql\DateAdd
 
 # Bundle pour Mailgun
 # https://mailgun.com/app/domains/mailgun.becowo.com
