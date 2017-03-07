@@ -52,13 +52,11 @@ class StringToJobTransformer implements DataTransformerInterface
         ;
 
         if (null === $job) {
-            // causes a validation error
-            // this message is not shown to the user
-            // see the invalid_message option
-            throw new TransformationFailedException(sprintf(
-                'An job with the name "%s" does not exist!',
-                $jobName
-            ));
+            // Si le job n'existe pas on le crée
+            $newJob = new Job();
+            $newJob->setName($jobName);
+            $this->manager->persist($newJob);
+            $job = $newJob;
         }
 
         return $job;
