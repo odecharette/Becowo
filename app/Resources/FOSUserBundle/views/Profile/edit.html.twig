@@ -162,7 +162,7 @@ document.getElementById("fos_user_profile_form_personnalTweet").maxLength = "140
 // #1 - Search configuration - To replace with your own
 var ALGOLIA_APPID = '{{ algolia.application_id }}';
 var ALGOLIA_SEARCH_APIKEY = '{{ algolia.search_api_key }}';
-var ALGOLIA_INDEX_NAME = '{{ algolia.index_name }}_sort_job_asc';
+var ALGOLIA_INDEX_NAME = '{{ algolia.index_job }}';
 var NB_RESULTS_DISPLAYED = 5;
 // #2- Algolia API Client Initialization
 var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY); 
@@ -188,11 +188,11 @@ $('#fos_user_profile_form_job').textcomplete([
     // #5 - Template used to display each result obtained by the Algolia API
     template: function (hit) {
       // Returns the highlighted version of the name attribute
-      return hit._highlightResult.job.name.value;
+      return hit._highlightResult.name.value;
     },
     // #6 - Template used to display the selected result in the textarea
     replace: function (hit) {
-      return hit.job.name.trim();
+      return hit.name.trim();
     }
   }
 ]);
