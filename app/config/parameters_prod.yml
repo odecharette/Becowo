@@ -25,3 +25,4 @@ parameters:
     algolia.admin_api_key: 3594cd0ca9567452d05b5025dbfc4d0e
     algolia.index_name: Member_dev
     algolia.index_job: Job_dev
+    algolia.index_skill: Skill_dev

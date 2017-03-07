@@ -9,12 +9,14 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Becowo\CoreBundle\Form\Type\ProfilePictureType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Becowo\CoreBundle\Form\DataTransformer\StringToJobTransformer;
+use Becowo\CoreBundle\Form\DataTransformer\CollectionToSkillTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class ProfileType extends AbstractType
@@ -52,16 +54,7 @@ class ProfileType extends AbstractType
     	    ->add('street', TextType::class, array('attr' => array('placeholder' => 'Adresse'),'required' => false, 'label' => false))
     	    ->add('postcode', TextType::class, array('attr' => array('placeholder' => 'Code Postal'),'required' => false, 'label' => false))
     	    ->add('city', TextType::class, array('attr' => array('placeholder' => 'Ville'),'required' => false, 'label' => false))
-    	  //   ->add('job', EntityType::class, array(
-			    // 'class'        => 'BecowoCoreBundle:Job',
-			    // 'choice_label' => 'name',
-			    // 'multiple'     => false,
-			    // 'expanded'	   => false, 
-       //          'label' => false))
-            ->add('job', TextType::class, array('attr' => array('placeholder' => 'Job', 'autocomplete' => 'off', 'invalid_message' => 'That is not a valid job name'),'required' => false, 'label' => false))
-
-
-
+            ->add('job', TextType::class, array('attr' => array('placeholder' => 'Job', 'autocomplete' => 'off'),'required' => false, 'label' => false))
     	    ->add('society', TextType::class, array('attr' => array('placeholder' => 'Société'), 'label' => false, 'required' => false))
     	    ->add('website', TextType::class, array('attr' => array(
                 'placeholder' => 'URL de mon site'),
@@ -88,12 +81,18 @@ class ProfileType extends AbstractType
             ->add('skills', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ->add('hobbies', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             ->add('wishes', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
+
+            ->add('listSkills', TextType::class, array('attr' => array('placeholder' => 'Compétence', 'autocomplete' => 'off'),'required' => false, 'label' => false))
             ;
 
     	$builder->remove('current_password');
 
         $builder->get('job')
             ->addModelTransformer(new StringToJobTransformer($this->manager));
+
+        $builder->get('listSkills')
+            ->addModelTransformer(new CollectionToSkillTransformer($this->manager));
+
     }
 
     public function getParent()

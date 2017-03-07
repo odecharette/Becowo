@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Becowo\CoreBundle\Entity\Skill;
 use Becowo\CoreBundle\Entity\Hobbie;
 use Becowo\CoreBundle\Entity\Wish;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * Member
@@ -1206,40 +1207,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this;
     }
 
-    /**
-     * @ORM\PreUpdate
-     */
-    public function updateFillRate()
-    {
-        $totalInfo = 22;
-        $totalFilled = 0;
-
-        $this->getFirstname() != '' ? $totalFilled++ : '';
-        $this->getName() != '' ? $totalFilled++ : '';
-        $this->getSex() != '' ? $totalFilled++ : '';
-        $this->getBirthDate() != '' ? $totalFilled++ : '';
-        $this->getPhone() != '' ? $totalFilled++ : '';
-        $this->getStreet() != '' ? $totalFilled++ : '';
-        $this->getPostCode() != '' ? $totalFilled++ : '';
-        $this->getCity() != '' ? $totalFilled++ : '';
-        $this->getJob() != '' ? $totalFilled++ : '';
-        $this->getSociety() != '' ? $totalFilled++ : '';
-        $this->getWebsite() != '' ? $totalFilled++ : '';
-        $this->getDescription() != '' ? $totalFilled++ : '';
-        $this->getFacebookLink() != '' ? $totalFilled++ : '';
-        $this->getTwitterLink() != '' ? $totalFilled++ : '';
-        $this->getInstagramLink() != '' ? $totalFilled++ : '';
-        $this->getLinkedinLink() != '' ? $totalFilled++ : '';
-        $this->getUrlProfilePicture() != '' ? $totalFilled++ : '';
-        $this->getCountry() != '' ? $totalFilled++ : '';
-        $this->getPersonnalTweet() != '' ? $totalFilled++ : '';
-        $this->getSkills() != '' ? $totalFilled++ : '';
-        $this->getHobbies() != '' ? $totalFilled++ : '';
-        $this->getWishes() != '' ? $totalFilled++ : '';
-
-
-        $this->setFillRate(round($totalFilled / $totalInfo * 100, 0));
-    }
 
     /**
      * Gets the value of hasReceivedEmailNewUser.
@@ -1295,17 +1262,40 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this->firstname . ' ' . $this->name;
     }
 
-    public function addSkill(Skill $skill)
+    
+    // Cette méthode est utilisée quand le CollectionToSkillTransformer renvoi une ArrayCollection de skills
+    public function setListSkills(ArrayCollection $collectionSkills)
     {
+        //Si la skill n'est pas déjà liée au member, on l'ajoute
+        foreach($collectionSkills as $s)
+        {
+            if(! $this->getListSkills()->contains($s)){
+                $this->addListSkill($s);
+            }
+        }
+
+        // Si une skill n'est plus mentionnée, on la supprime
+        foreach($this->getListSkills() as $ss)
+        {
+            if(! $collectionSkills->contains($ss)){
+                $this->removeListSkills($ss);
+            }
+        }
+
+    }
+
+    public function addListSkill(Skill $skill)
+    {
+        
         $this->listSkills[] = $skill;
     }
 
-    public function removeSkill(Skill $skill)
+    public function removeListSkills(Skill $skill)
     {
         $this->listSkills->removeElement($skill);
     }
 
-    public function getlistSkills()
+    public function getListSkills()
     {
         return $this->listSkills;
     }
@@ -1348,4 +1338,39 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return !$this->isDeleted && $this->enabled && $this->city != '' && $this->job != '';
     }
 
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateFillRate()
+    {
+        $totalInfo = 22;
+        $totalFilled = 0;
+
+        $this->getFirstname() != '' ? $totalFilled++ : '';
+        $this->getName() != '' ? $totalFilled++ : '';
+        $this->getSex() != '' ? $totalFilled++ : '';
+        $this->getBirthDate() != '' ? $totalFilled++ : '';
+        $this->getPhone() != '' ? $totalFilled++ : '';
+        $this->getStreet() != '' ? $totalFilled++ : '';
+        $this->getPostCode() != '' ? $totalFilled++ : '';
+        $this->getCity() != '' ? $totalFilled++ : '';
+        $this->getJob() != '' ? $totalFilled++ : '';
+        $this->getSociety() != '' ? $totalFilled++ : '';
+        $this->getWebsite() != '' ? $totalFilled++ : '';
+        $this->getDescription() != '' ? $totalFilled++ : '';
+        $this->getFacebookLink() != '' ? $totalFilled++ : '';
+        $this->getTwitterLink() != '' ? $totalFilled++ : '';
+        $this->getInstagramLink() != '' ? $totalFilled++ : '';
+        $this->getLinkedinLink() != '' ? $totalFilled++ : '';
+        $this->getUrlProfilePicture() != '' ? $totalFilled++ : '';
+        $this->getCountry() != '' ? $totalFilled++ : '';
+        $this->getPersonnalTweet() != '' ? $totalFilled++ : '';
+        $this->getSkills() != '' ? $totalFilled++ : '';
+        $this->getHobbies() != '' ? $totalFilled++ : '';
+        $this->getWishes() != '' ? $totalFilled++ : '';
+
+
+        $this->setFillRate(round($totalFilled / $totalInfo * 100, 0));
+    }
 }

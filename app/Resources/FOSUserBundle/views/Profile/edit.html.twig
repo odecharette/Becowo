@@ -162,11 +162,13 @@ document.getElementById("fos_user_profile_form_personnalTweet").maxLength = "140
 // #1 - Search configuration - To replace with your own
 var ALGOLIA_APPID = '{{ algolia.application_id }}';
 var ALGOLIA_SEARCH_APIKEY = '{{ algolia.search_api_key }}';
-var ALGOLIA_INDEX_NAME = '{{ algolia.index_job }}';
+var ALGOLIA_INDEX_JOB = '{{ algolia.index_job }}';
+var ALGOLIA_INDEX_SKILL = '{{ algolia.index_skill }}';
 var NB_RESULTS_DISPLAYED = 5;
 // #2- Algolia API Client Initialization
 var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY); 
-var index = algoliaClient.initIndex(ALGOLIA_INDEX_NAME);
+var index = algoliaClient.initIndex(ALGOLIA_INDEX_JOB);
+var indexSkill = algoliaClient.initIndex(ALGOLIA_INDEX_SKILL);
 var lastQuery = '';
 $('#fos_user_profile_form_job').textcomplete([
   {
@@ -193,6 +195,35 @@ $('#fos_user_profile_form_job').textcomplete([
     // #6 - Template used to display the selected result in the textarea
     replace: function (hit) {
       return hit.name.trim();
+    }
+  }
+]);
+
+$('#fos_user_profile_form_listSkills').textcomplete([
+  {
+    // #3 - Regular expression used to trigger the autocomplete dropdown
+    match: /(^|\s)(\w*(?:\s*\w*))$/,
+    // #4 - Function called at every new keystroke
+    search: function(query, callback) {
+      lastQuery = query;
+      indexSkill.search(lastQuery, { hitsPerPage: NB_RESULTS_DISPLAYED })
+        .then(function searchSuccess(content) {
+          if (content.query === lastQuery) {
+            callback(content.hits);
+          }
+        })
+        .catch(function searchFailure(err) {
+          console.error(err);
+        });
+    },
+    // #5 - Template used to display each result obtained by the Algolia API
+    template: function (hit) {
+      // Returns the highlighted version of the name attribute
+      return hit._highlightResult.name.value;
+    },
+    // #6 - Template used to display the selected result in the textarea
+    replace: function (hit) {
+      return ' ' + hit.name.trim() + ', ';
     }
   }
 ]);
