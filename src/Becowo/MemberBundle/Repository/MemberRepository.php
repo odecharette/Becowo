@@ -100,4 +100,5 @@ class MemberRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
 }

@@ -140,6 +140,12 @@
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     {# Pour gérer affichage des form en lecture/edition #}
     <script src="{{ asset('js/manager/readWrite.js') }}"></script>
+    {# Autocomplete search field used with Algolia #}
+    <script type="text/javascript" src="{{ asset('js/jquery.textcomplete.min.js') }}"></script>
+    <!-- Algolia Search API Client - latest version -->
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    {# Algolia JS for full search control widgets : https://www.algolia.com/doc/guides/search/instant-search/ #}
+    <script src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
 
     {% block javascripts %}
     {% endblock %}
