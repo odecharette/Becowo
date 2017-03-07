@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Becowo\CoreBundle\Form\DataTransformer\StringToJobTransformer;
 use Becowo\CoreBundle\Form\DataTransformer\CollectionToSkillTransformer;
 use Becowo\CoreBundle\Form\DataTransformer\CollectionToHobbieTransformer;
+use Becowo\CoreBundle\Form\DataTransformer\CollectionToWishTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class ProfileType extends AbstractType
@@ -81,10 +82,11 @@ class ProfileType extends AbstractType
     	    ->add('file', FileType::class, array('multiple' => false,'required' => false, 'label' => false))
             // ->add('skills', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
             // ->add('hobbies', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
-            ->add('wishes', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
+            // ->add('wishes', TextType::class, array('attr' => array('data-role' => 'tagsinput'),'required' => false, 'label' => false))
 
             ->add('listSkills', TextType::class, array('attr' => array('data-role' => 'tagsinput', 'placeholder' => 'Saisir une compétence et appuyer sur Enter', 'autocomplete' => 'off'),'required' => false, 'label' => false))
             ->add('listHobbies', TextType::class, array('attr' => array('data-role' => 'tagsinput', 'placeholder' => 'Saisir un centre d\'intérêt et appuyer sur Enter', 'autocomplete' => 'off'),'required' => false, 'label' => false))
+            ->add('listWishes', TextType::class, array('attr' => array('data-role' => 'tagsinput', 'placeholder' => 'Saisir un souhait et appuyer sur Enter', 'autocomplete' => 'off'),'required' => false, 'label' => false))
             ;
 
     	$builder->remove('current_password');
@@ -97,6 +99,9 @@ class ProfileType extends AbstractType
 
         $builder->get('listHobbies')
             ->addModelTransformer(new CollectionToHobbieTransformer($this->manager));
+
+        $builder->get('listWishes')
+            ->addModelTransformer(new CollectionToWishTransformer($this->manager));
 
     }
 

@@ -1349,6 +1349,26 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this->listWishes;
     }
 
+    // Cette méthode est utilisée quand le CollectionToSkillTransformer renvoi une ArrayCollection de Wishes
+    public function setListWishes(ArrayCollection $collectionWishes)
+    {
+        //Si la hobbie n'est pas déjà liée au member, on l'ajoute
+        foreach($collectionWishes as $s)
+        {
+            if(! $this->getlistWishes()->contains($s)){
+                $this->addWish($s);
+            }
+        }
+
+        // Si un hobbie n'est plus mentionnée, on le supprime
+        foreach($this->getlistWishes() as $ss)
+        {
+            if(! $collectionWishes->contains($ss)){
+                $this->removeWish($ss);
+            }
+        }
+    }
+
     /**
      * @Algolia\IndexIf
      */

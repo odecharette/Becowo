@@ -112,7 +112,9 @@
       </div>
       <div class="wishes">
         <h2>Avec Becowo j'aimerais : </h2>
-          {{ form_row(form.wishes) }}
+          <div id="inputWishes">
+            {{ form_row(form.listWishes) }}
+          </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-3">
@@ -171,6 +173,7 @@ var algoliaClient = new algoliasearch('{{ algolia.application_id }}', '{{ algoli
 var index = algoliaClient.initIndex('{{ algolia.index_job }}');
 var indexSkill = algoliaClient.initIndex('{{ algolia.index_skill }}');
 var indexHobbie = algoliaClient.initIndex('{{ algolia.index_hobbie }}');
+var indexWish = algoliaClient.initIndex('{{ algolia.index_wish }}');
 var lastQuery = '';
 
 $( document ).ready(function() {
@@ -264,6 +267,35 @@ $('#inputHobbies .form-group .bootstrap-tagsinput input').textcomplete([
   }
 ]);
 
+$('#inputWishes .form-group .bootstrap-tagsinput input').textcomplete([
+  {
+    // #3 - Regular expression used to trigger the autocomplete dropdown
+    match: /(^|\s)(\w*(?:\s*\w*))$/,
+    // #4 - Function called at every new keystroke
+    search: function(query, callback) {
+      lastQuery = query;
+      indexWish.search(lastQuery, { hitsPerPage: NB_RESULTS_DISPLAYED })
+        .then(function searchSuccess(content) {
+          if (content.query === lastQuery) {
+            callback(content.hits);
+          }
+        })
+        .catch(function searchFailure(err) {
+          console.error(err);
+        });
+    },
+    // #5 - Template used to display each result obtained by the Algolia API
+    template: function (hit) {
+      // Returns the highlighted version of the name attribute
+      return hit._highlightResult.name.value;
+    },
+    // #6 - Template used to display the selected result in the textarea
+    replace: function (hit) {
+      return hit.name.trim() + ',';
+    }
+
+  }
+]);
 
 });
 </script>
