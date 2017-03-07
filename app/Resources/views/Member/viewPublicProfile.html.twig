@@ -89,23 +89,20 @@
 			</div>
 			<div class="skills">
 				<h2>Compétences</h2>
-				{% set skills = member.skills|split(',')%}
-				{% for skill in skills %}
-				    <span class="label skill">{{skill}}</span>
+				{% for skill in member.listSkills %}
+				    <span class="label skill">{{skill.name}}</span>
 				{% endfor %}
 			</div>
 			<div>
 				<h2>Centres d'intérêts</h2>
-				{% set hobbies = member.hobbies|split(',') %}
-				{% for hobbie in hobbies %}
-				    <span class="label hobbie">{{hobbie}}</span>
+				{% for hobbie in member.listHobbies %}
+				    <span class="label hobbie">{{hobbie.name}}</span>
 				{% endfor %}
 			</div>
 			<div>
 				<h2>Avec Becowo j'aimerais : </h2>
-				{% set wishes = member.wishes|split(',') %}
-				{% for wishe in wishes %}
-				    <span class="label wishe">{{wishe}}</span>
+				{% for wishe in member.listWishes %}
+				    <span class="label wishe">{{wishe.name}}</span>
 				{% endfor %}
 			</div>
 		</div>

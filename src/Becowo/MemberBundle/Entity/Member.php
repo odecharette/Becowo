@@ -280,27 +280,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @var string
      *
-     * @ORM\Column(name="skills", type="string", nullable=true)
-     */
-    private $skills;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="hobbies", type="string", nullable=true)
-     */
-    private $hobbies;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="wishes", type="string", nullable=true)
-     */
-    private $wishes;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="fill_rate", type="float", precision=3, scale=0, nullable=true)
      * @Algolia\Attribute
      */
@@ -325,19 +304,19 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     private $file;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Skill", cascade={"persist"})
+    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Skill", cascade={"persist"}, fetch="EAGER")
     * @Algolia\Attribute
     */
     private $listSkills;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Hobbie", cascade={"persist"})
+    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Hobbie", cascade={"persist"}, fetch="EAGER")
     * @Algolia\Attribute
     */
     private $listHobbies;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Wish", cascade={"persist"})
+    * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Wish", cascade={"persist"}, fetch="EAGER")
     * @Algolia\Attribute
     */
     private $listWishes;
@@ -1112,78 +1091,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     }
 
     /**
-     * Gets the value of skills.
-     *
-     * @return string
-     */
-    public function getSkills()
-    {
-        return $this->skills;
-    }
-
-    /**
-     * Sets the value of skills.
-     *
-     * @param string $skills the skills
-     *
-     * @return self
-     */
-    public function setSkills($skills)
-    {
-        $this->skills = $skills;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of hobbies.
-     *
-     * @return string
-     */
-    public function getHobbies()
-    {
-        return $this->hobbies;
-    }
-
-    /**
-     * Sets the value of hobbies.
-     *
-     * @param string $hobbies the hobbies
-     *
-     * @return self
-     */
-    public function setHobbies($hobbies)
-    {
-        $this->hobbies = $hobbies;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of wishes.
-     *
-     * @return string
-     */
-    public function getWishes()
-    {
-        return $this->wishes;
-    }
-
-    /**
-     * Sets the value of wishes.
-     *
-     * @param string $wishes the wishes
-     *
-     * @return self
-     */
-    public function setWishes($wishes)
-    {
-        $this->wishes = $wishes;
-
-        return $this;
-    }
-
-    /**
      * Gets the value of fillRate.
      *
      * @return string
@@ -1405,9 +1312,9 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         $this->getUrlProfilePicture() != '' ? $totalFilled++ : '';
         $this->getCountry() != '' ? $totalFilled++ : '';
         $this->getPersonnalTweet() != '' ? $totalFilled++ : '';
-        $this->getSkills() != '' ? $totalFilled++ : '';
-        $this->getHobbies() != '' ? $totalFilled++ : '';
-        $this->getWishes() != '' ? $totalFilled++ : '';
+        $this->getListSkills() != '' ? $totalFilled++ : '';
+        $this->getlistHobbies() != '' ? $totalFilled++ : '';
+        $this->getlistWishes() != '' ? $totalFilled++ : '';
 
 
         $this->setFillRate(round($totalFilled / $totalInfo * 100, 0));
