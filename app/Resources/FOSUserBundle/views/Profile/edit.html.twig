@@ -100,7 +100,9 @@
       </div>
       <div class="skills">
         <h2>Compétences</h2>
-          {{ form_row(form.skills) }}
+          <div id="inputSkills">
+            {{ form_row(form.listSkills) }}
+          </div>
       </div>
       <div class="hobbies">
         <h2>Centres d'intérêts</h2>
@@ -146,6 +148,7 @@
       <input type="submit" class="btnMAJ" value="Mettre à jour mon profil">
       <a href="{{ path('becowo_member_community_coworker', {'city':form.vars.value.city|replace({'-':' '})|default('ville'), 'job':form.vars.value.job|replace({'-':' '})|default('job'), 'id' : form.vars.value.id}) }}" class="btnView">Voir mon profil public</a>
   </div>
+
   {{ form_rest(form) }}
   {{ form_end(form) }}
 
@@ -170,6 +173,9 @@ var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY);
 var index = algoliaClient.initIndex(ALGOLIA_INDEX_JOB);
 var indexSkill = algoliaClient.initIndex(ALGOLIA_INDEX_SKILL);
 var lastQuery = '';
+
+$( document ).ready(function() {
+
 $('#fos_user_profile_form_job').textcomplete([
   {
     // #3 - Regular expression used to trigger the autocomplete dropdown
@@ -199,7 +205,7 @@ $('#fos_user_profile_form_job').textcomplete([
   }
 ]);
 
-$('#fos_user_profile_form_listSkills').textcomplete([
+$('#inputSkills .form-group .bootstrap-tagsinput input').textcomplete([
   {
     // #3 - Regular expression used to trigger the autocomplete dropdown
     match: /(^|\s)(\w*(?:\s*\w*))$/,
@@ -225,8 +231,11 @@ $('#fos_user_profile_form_listSkills').textcomplete([
     replace: function (hit) {
       return ' ' + hit.name.trim() + ', ';
     }
+
   }
 ]);
+
+});
 </script>
 {% endblock %}
 

@@ -51,8 +51,7 @@ class CollectionToSkillTransformer implements DataTransformerInterface
              return new ArrayCollection();
         }
 
-dump($listSkillName);
-        $listSkillName = explode(', ', substr($listSkillName, 0, -1));
+        $listSkillName = explode(', ', $listSkillName);
         $tabSkills = new ArrayCollection();
 
         foreach($listSkillName as $skillName)
@@ -72,8 +71,6 @@ dump($listSkillName);
 
             $tabSkills->add($skill);
         }
-dump($tabSkills);
-        // return new PersistentCollection($this->manager, Skill::class, new ArrayCollection($tabSkills));
         return $tabSkills;
     }
 }
