@@ -14,9 +14,18 @@ use Becowo\CoreBundle\Form\Type\ProfilePictureType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Becowo\CoreBundle\Form\DataTransformer\StringToJobTransformer;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class ProfileType extends AbstractType
 {
+    private $manager;
+
+    public function __construct(ObjectManager $manager)
+    {
+        $this->manager = $manager;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 // ici on desactive les required pour le mettre au format annotation dans l'entité member
@@ -43,13 +52,16 @@ class ProfileType extends AbstractType
     	    ->add('street', TextType::class, array('attr' => array('placeholder' => 'Adresse'),'required' => false, 'label' => false))
     	    ->add('postcode', TextType::class, array('attr' => array('placeholder' => 'Code Postal'),'required' => false, 'label' => false))
     	    ->add('city', TextType::class, array('attr' => array('placeholder' => 'Ville'),'required' => false, 'label' => false))
-    	  //   ->add('country', EntityType::class, array(
-			    // 'class'        => 'BecowoCoreBundle:Country',
+    	  //   ->add('job', EntityType::class, array(
+			    // 'class'        => 'BecowoCoreBundle:Job',
 			    // 'choice_label' => 'name',
 			    // 'multiple'     => false,
 			    // 'expanded'	   => false, 
        //          'label' => false))
-            ->add('job', TextType::class, array('attr' => array('placeholder' => 'Job'),'required' => false, 'label' => false))
+            ->add('job', TextType::class, array('attr' => array('placeholder' => 'Job', 'autocomplete' => 'off', 'invalid_message' => 'That is not a valid job name'),'required' => false, 'label' => false))
+
+
+
     	    ->add('society', TextType::class, array('attr' => array('placeholder' => 'Société'), 'label' => false, 'required' => false))
     	    ->add('website', TextType::class, array('attr' => array(
                 'placeholder' => 'URL de mon site'),
@@ -79,6 +91,9 @@ class ProfileType extends AbstractType
             ;
 
     	$builder->remove('current_password');
+
+        $builder->get('job')
+            ->addModelTransformer(new StringToJobTransformer($this->manager));
     }
 
     public function getParent()

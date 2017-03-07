@@ -6,6 +6,7 @@ parameters:
 services:
     app.form.registration:
         class: Becowo\MemberBundle\Form\Type\ProfileType
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: app_user_profile }
 

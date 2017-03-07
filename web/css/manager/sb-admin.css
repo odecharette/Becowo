@@ -251,3 +251,6 @@ ul.alert-dropdown {
 .StatusRed{
     color: red ;
 }
+.write-member .form-group{
+    width: 400px;
+}
