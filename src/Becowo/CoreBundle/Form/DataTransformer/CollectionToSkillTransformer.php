@@ -51,11 +51,12 @@ class CollectionToSkillTransformer implements DataTransformerInterface
              return new ArrayCollection();
         }
 
-        $listSkillName = explode(', ', $listSkillName);
+        $listSkillName = explode(',', $listSkillName);
         $tabSkills = new ArrayCollection();
 
         foreach($listSkillName as $skillName)
         {
+            $skillName = trim(str_replace(',', '', $skillName));
             $skill = $this->manager
                         ->getRepository('BecowoCoreBundle:Skill')
                         ->findOneBy(array('name' => $skillName))

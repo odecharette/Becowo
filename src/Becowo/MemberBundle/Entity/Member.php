@@ -1281,7 +1281,6 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
                 $this->removeListSkills($ss);
             }
         }
-
     }
 
     public function addListSkill(Skill $skill)
@@ -1313,6 +1312,26 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     public function getlistHobbies()
     {
         return $this->listHobbies;
+    }
+
+    // Cette méthode est utilisée quand le CollectionToSkillTransformer renvoi une ArrayCollection de Hobbies
+    public function setListHobbies(ArrayCollection $collectionHobbies)
+    {
+        //Si la hobbie n'est pas déjà liée au member, on l'ajoute
+        foreach($collectionHobbies as $s)
+        {
+            if(! $this->getlistHobbies()->contains($s)){
+                $this->addHobbie($s);
+            }
+        }
+
+        // Si un hobbie n'est plus mentionnée, on le supprime
+        foreach($this->getlistHobbies() as $ss)
+        {
+            if(! $collectionHobbies->contains($ss)){
+                $this->removeHobbie($ss);
+            }
+        }
     }
 
     public function addWish(Wish $wish)

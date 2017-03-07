@@ -70,6 +70,7 @@ twig:
             index_name: '%algolia.index_name%'
             index_job: '%algolia.index_job%'
             index_skill: '%algolia.index_skill%'
+            index_hobbie: '%algolia.index_hobbie%'
 
 services:
     twig.extension.intl:

@@ -1354,6 +1354,9 @@ footer{
 #PublicProfile .progress-bar{
   background-color: var(--my-pink);
 }
+#PublicProfile .bootstrap-tagsinput input{
+  width: 320px !important;
+}
 @media (min-width: 992px){
   #fos_user_profile_form_birthDate select
   {
