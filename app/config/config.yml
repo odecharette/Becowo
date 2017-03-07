@@ -68,6 +68,7 @@ twig:
             search_api_key: '%algolia.search_api_key%'
             admin_api_key: '%algolia.admin_api_key%'
             index_name: '%algolia.index_name%'
+            index_job: '%algolia.index_job%'
 
 services:
     twig.extension.intl:
