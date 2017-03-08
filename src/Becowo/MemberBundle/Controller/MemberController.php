@@ -6,9 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Form\Type\ContactType;
 use Becowo\CoreBundle\Entity\Contact;
+use Doctrine\ORM\EntityManager;
 
 class MemberController extends Controller
 {
+  private $em = null;
+
+  public function __construct(EntityManager $em)
+  {
+      $this->em = $em;
+  }
+
   public function viewPublicProfileAction(Request $request, $id)
   {
   	$MemberService = $this->get('app.member');
@@ -54,15 +62,16 @@ class MemberController extends Controller
       array('member' => $member, 'wsBooked' =>$wsBooked, 'listCommunityNetwork' => $listCommunityNetwork, 'form' => $form->createView()));
   }
 
-  public function sendEmailToNewUsersAction()
+  public function sendEmailToNewUsersAction($container)
   {
-    
-  	$MemberService = $this->get('app.member');
+    // To call this method, use the command declared in Becowo\CronBundle\Command\EmailNewUserCommand 
+    // php bin/console app:send-email-new-users
+
+  	$MemberService = $container->get('app.member');
   	$members = $MemberService->getMembersHasNotReceivedMailNewUser();
   	$nbMembers = 0;
   	$nbEmails = 0;
   	$listEmails = "";
-    $em = $this->getDoctrine()->getManager();
     
   	foreach ($members as $member) {
   		$nbMembers++;
@@ -74,26 +83,27 @@ class MemberController extends Controller
 	        ->setTo($member->getEmail())
           ->setContentType("text/html")
 	        ->setBody(
-	            $this->renderView(
+	            $this->render(
 	                'CommonViews/Mail/NewMember.html.twig',
 	                array('member' => $member)
-	            ));
+	            ))
+          ;
 
-	      	$this->get('mailer')->send($message);
+	      	$container->get('mailer')->send($message);
 	      	$nbEmails++;
 	      	$listEmails = $listEmails . "<br>" . $member->getEmail() ;
 
 	      	$member->setHasReceivedEmailNewUser(true);
 	      	
-	  		$em->persist($member);
+	  		$this->em->persist($member);
   		}
   	}
-      $em->flush();
+      $this->em->flush();
 
-  	$result = "Nombre de nouveaux membres : " . $nbMembers . "<br> Nombre d'emails envoyés : " . $nbEmails . "<br> Liste des emails : " . $listEmails ;
+  	$result = " Nombre de nouveaux membres : " . $nbMembers . "\n Nombre d'emails envoyes : " . $nbEmails . "\n Liste des emails : " . $listEmails ;
     
 
-  	return $this->render('CommonViews/Mail/NewMemberResult.html.twig', array('result' => $result));
+  	return $result;
   }
 
 }

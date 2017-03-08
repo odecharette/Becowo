@@ -1,0 +1,25 @@
+/****************************************************/
+	Envoyer les emails aux nouveaux membres de Becowo :
+/****************************************************/
+
+php bin/console app:send-email-new-users
+
+/****************************************************/
+		Ajouter un espace de coworking
+/****************************************************/
+
+- Créer ligne ds table workspace (pas d'accent dans street)
+- Créer dossier dans image/WS et charger les images
+	===> EN jpg et compressé via Caesium si besoin
+- Référencer chaque image dans table pictures + logo + isfavorite
+=====> bien mettre 0 qd ni logo ni favorite
+- créer les amenities
+- créer les salles 
+- créer les prix
+- remplir table timetable
+- choisir une offer
+- saisir facebook page id dans table api_events
+(ouvrir page FB, voir source, chercher page_id)
+- vider cache du navigateur
+
+lier price à ws has office

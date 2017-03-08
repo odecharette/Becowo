@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Becowo\ApiBundle\BecowoApiBundle(),
             new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
+            new Becowo\CronBundle\BecowoCronBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

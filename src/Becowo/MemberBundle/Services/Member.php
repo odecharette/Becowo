@@ -53,4 +53,5 @@ class Member
         $repo = $this->em->getRepository('BecowoMemberBundle:Member');
         return $repo->findActiveMembersByFillRate($rate);
     }
+
 }

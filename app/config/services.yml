@@ -68,3 +68,6 @@ services:
         class: Becowo\ApiBundle\Services\ApiService
         arguments: ['@doctrine.orm.entity_manager', %facebook_client_id%, %facebook_client_secret%, '@app.workspace', '@logger'] 
 
+    app.member.sendEmailNewUsers :
+        class: Becowo\MemberBundle\Controller\MemberController
+        arguments: ['@doctrine.orm.entity_manager'] 
