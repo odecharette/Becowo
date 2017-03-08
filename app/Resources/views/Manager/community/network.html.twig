@@ -146,7 +146,7 @@ $('#community_network_has_member_member').textcomplete([
     },
     // #6 - Template used to display the selected result in the textarea
     replace: function (hit) {
-      return hit.firstname.trim() + ' ' + hit.name.trim() + ', ' + hit.city.trim() + ' (' + hit.id + ')';
+      return hit.firstname.trim() + ',' + hit.name.trim() + ',' + hit.city.trim();
     }
   }
 ]);

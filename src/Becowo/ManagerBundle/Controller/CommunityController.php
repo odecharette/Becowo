@@ -41,16 +41,6 @@ class CommunityController extends Controller
 
     if ($request->isMethod('POST') && $formMember->handleRequest($request)->isValid()) {
       
-      // On récupère la saisie renvoyée par l'index (prénom nom, ville)
-      $data = $formMember->getData();
-      $saisie = $data->getMember();
-      $id = substr(substr($saisie, strpos($saisie, '(')+1),0,-1);
-      // On chercher le member lié à ces paramètres
-      $MemberService = $this->get('app.member');
-      $memberSaisie = $MemberService->getMemberById($id);
-      //On raccroche le membre à l'objet
-      $newCommunityMember->setMember($memberSaisie);
-
       $em = $this->getDoctrine()->getManager();
       $em->persist($newCommunityMember);
       $em->flush();

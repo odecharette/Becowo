@@ -10,29 +10,25 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
+use Becowo\CoreBundle\Form\DataTransformer\StringToMemberTransformer;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class CommunityNetworkHasMemberType extends AbstractType
 {
+    private $manager;
+
+    public function __construct(ObjectManager $manager)
+    {
+        $this->manager = $manager;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('member', TextareaType::class, array(
-            'label' => 'Rechercher un coworker par <Prénom> <Nom>, <ville>',
-            'attr' => array('rows' => '1')
-            ));
-                // ->add('member', EntityType::class, array(
-                // 'class' => 'BecowoMemberBundle:Member',
-                // 'query_builder' => function (EntityRepository $er) {
-                //     return $er->createQueryBuilder('m')
-                //         ->where('m.enabled = true')
-                //         ->andWhere('m.isDeleted = false')
-                //         ->andWhere('m.firstname IS NOT NULL')
-                //         ->andWhere('m.name IS NOT NULL')
-                //         ->orderBy('m.firstname', 'ASC');
-                // },
-                // 'choice_label' => 'fullName',
-                // 'label' => 'Choisir un coworker',
-                // 'expanded' => false,
-                // 'multiple' => false));
+        $builder->add('member', TextType::class, array('attr' => array('autocomplete' => 'off'),'required' => false, 'label' => 'Rechercher un coworker par <Prénom> <Nom>, <ville>'));
+
+
+        $builder->get('member')
+            ->addModelTransformer(new StringToMemberTransformer($this->manager));
     }
     /**
      * @param OptionsResolver $resolver

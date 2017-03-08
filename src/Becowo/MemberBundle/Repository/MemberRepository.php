@@ -101,4 +101,18 @@ class MemberRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findMemberByFirstnameNameCity($firstname, $name, $city)
+	{
+		$qb = $this->createQueryBuilder('m');
+		$qb->select('m')
+			->where('m.firstname = :firstname')
+			->andWhere('m.name = :name')
+			->andWhere('m.city = :city')
+			->setParameter('firstname', $firstname)
+			->setParameter('name', $name)
+			->setParameter('city', $city)
+			;
+
+		return $qb->getQuery()->getOneOrNullResult();
+	}
 }

@@ -10,6 +10,12 @@ services:
         tags:
             - { name: form.type, alias: app_user_profile }
 
+    app.form.type.CommunityNetworkHasMemberType:
+        class: Becowo\CoreBundle\Form\Type\CommunityNetworkHasMemberType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+
     # app.search:
     #     class: Becowo\CoreBundle\Services\SearchEngine
     #     arguments:    ['@fos_elastica.finder.becowo.workspace']
