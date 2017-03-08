@@ -1039,17 +1039,6 @@ footer{
   text-align: center;
 }
 
-#community #panelEvent .title{
-  text-align: center;
-  font-size: 14pt;
-  height: 80px;
-}
-#community #panelEvent a{
-  color: var(--my-green);
-}
-#community #panelEvent .panel-body{
-  height: 355px;
-}
 #community #search-input{
   position: absolute;
   width: 100%;
@@ -2016,82 +2005,6 @@ font-family: FontAwesome;
 color: var(--my-blue) !important;
 }*/
 
-@media (min-width: 768px){
-  #panelEvent {
-    width: 30%; 
-  }
-}
-@media (max-width: 768px){
-  #panelEvent {
-    width: 100%; 
-  }
-}
-#panelEvent {
-  display: inline-block;  
-  border: none;
-  overflow: hidden;
-  margin-right: 15px;
-  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
-  vertical-align: top;
-}
-#panelEvent .panel-heading{
-  padding: 0 0 1px 0; 
-}
-#panelEvent .panel-body{
-  margin-top: -2px;
-  color: var(--my-grey);
-  font-size: 12pt;
-  border: solid 1px var(--my-green);
-  overflow: hidden;
-  padding-bottom: 10px;
-  background-color: white;
-  border-bottom: none;
-}
-#panelEvent .panel-body center, .modalEvent center{
-    font-weight: bold;
-    font-size: 15px;
-    color: var(--my-blue);
-    margin: 10px 0 5px 0;
-}
-#panelEvent .panel-body .title, .modalEvent .title{
-    font-weight: bold;
-    color: var(--my-blue);
-}
-@media (min-width: 992px){
-  #panelEvent .panel-body{
-      font-size: 11pt;
-  }
-  #panelEvent .panel-body .title, .modalEvent .title{
-      font-size: 14pt;
-  }
-}
-@media (min-width: 1200px){
-  #panelEvent .panel-body{
-      font-size: 12pt;
-  }
-  #panelEvent .panel-body .title, .modalEvent .title{
-      font-size: 16pt;
-  }
- 
-}
-#panelEvent .panel-footer{
-  background-color: white;
-  border : solid 1px var(--my-green);
-  padding: 0 0 5px 0;
-  border-top: none;
-}
-#panelEvent .panel-footer .btnFooter{
-  background-color: #F1F2F6;
-  color: var(--my-black);
-  font-size: 11pt;
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  padding: 10px 15px 10px 15px;
-}
-#panelEvent .panel-footer .btnFooter:focus{
-  outline: transparent;
-}
 
 #sliderNetwork a,#sliderNetwork a:hover,#sliderNetwork a:active,#sliderNetwork a:focus{
   text-decoration: none;
