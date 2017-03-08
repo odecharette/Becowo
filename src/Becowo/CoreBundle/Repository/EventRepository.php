@@ -22,4 +22,18 @@ class EventRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findFuturEventsByWorkspaceOrderByDate($ws)
+	{
+		$qb = $this->createQueryBuilder('e');
+		$qb->select('e')
+			->leftJoin('BecowoCoreBundle:Workspace', 'w', 'WITH', 'w = e.workspace')
+			->andWhere('w = :ws')
+            ->andWhere('e.startDate >= :today')
+			->orderBy('e.startDate', 'ASC')
+			->setParameter('ws', $ws)
+            ->setParameter('today', date("Y-m-d"));
+
+		return $qb->getQuery()->getResult();
+	}
+
 }

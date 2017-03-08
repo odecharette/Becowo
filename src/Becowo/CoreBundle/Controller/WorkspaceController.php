@@ -17,7 +17,7 @@ class WorkspaceController extends Controller
 
     $ws = $WsService->getWorkspaceByName($name);
     $pictures = $WsService->getPicturesByWorkspace($name);
-    $listEvents = $WsService->getEventsByWorkspace($ws);
+    $listEvents = $WsService->getFuturEventsByWorkspaceOrderByDate($ws);
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
     $WsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
     $wsSameNetwork = $WsService->getWsByWsNetwork($ws->getNetwork(), $name);
