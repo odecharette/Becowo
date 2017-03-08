@@ -23,3 +23,12 @@ php bin/console app:send-email-new-users
 - vider cache du navigateur
 
 lier price à ws has office
+
+/****************************************************/
+		Algolia
+/****************************************************/
+
+Forcer l'indexation en cmd :
+
+php bin/console algolia:reindex BecowoMemberBundle:Member
+
