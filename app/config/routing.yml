@@ -59,3 +59,8 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
+
+# Bundle to execute command in the explorer
+coresphere_console:
+    resource: .
+    type: extra

@@ -46,7 +46,8 @@
         "nategood/httpful": "^0.2.20",
         "monolog/monolog": "^1.22",
         "algolia/algolia-search-bundle": "^2.1",
-        "beberlei/DoctrineExtensions": "^1.0"
+        "beberlei/DoctrineExtensions": "^1.0",
+        "coresphere/console-bundle": "^0.5.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

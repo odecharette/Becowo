@@ -32,3 +32,13 @@ Forcer l'indexation en cmd :
 
 php bin/console algolia:reindex BecowoMemberBundle:Member
 
+/****************************************************/
+		Exec cmd depuis navitateur
+/****************************************************/
+
+Depuis la toolbar / bouton console
+ou
+adresse du site /_console
+
+Puis executer une cmd sans 'php bin/console'
+Ex : algolia:reindex BecowoMemberBundle:Member

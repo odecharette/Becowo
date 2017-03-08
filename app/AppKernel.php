@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Becowo\ApiBundle\BecowoApiBundle(),
             new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
             new Becowo\CronBundle\BecowoCronBundle(),
+            new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
