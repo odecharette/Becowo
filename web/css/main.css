@@ -2092,26 +2092,6 @@ color: var(--my-blue) !important;
 #panelEvent .panel-footer .btnFooter:focus{
   outline: transparent;
 }
-.addthisevent-drop {
-  font-family: inherit !important;
-  background-color: inherit !important;
-  border: none !important;
-  opacity: 1 !important;
-  padding: 0 !important;
-  color: inherit !important;
-  font-size: inherit !important;
-  z-index: 0 !important;
-}
-.addthisevent-drop:hover {
-  border: none !important;
-  color: inherit !important;
-}
-.addthisevent_icon{
-  display: none !important;
-}
-#atedrop1-drop{
-  top: -190px !important;
-}
 
 #sliderNetwork a,#sliderNetwork a:hover,#sliderNetwork a:active,#sliderNetwork a:focus{
   text-decoration: none;
