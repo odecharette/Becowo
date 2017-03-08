@@ -23,8 +23,8 @@ parameters:
     algolia.application_id: WQNLUSRDYI
     algolia.search_api_key: 746828da92ebe6ff2fa72a244245f0e4
     algolia.admin_api_key: 3594cd0ca9567452d05b5025dbfc4d0e
-    algolia.index_name: Member_dev
-    algolia.index_job: Job_dev
-    algolia.index_skill: Skill_dev
-    algolia.index_hobbie: Hobbie_dev
-    algolia.index_wish: Wish_dev
+    algolia.index_name: Member_prod
+    algolia.index_job: Job_prod
+    algolia.index_skill: Skill_prod
+    algolia.index_hobbie: Hobbie_prod
+    algolia.index_wish: Wish_prod
