@@ -65,3 +65,10 @@ Ex : algolia:reindex BecowoMemberBundle:Member
 Si demo.becowo.com renvoi une erreur 500 :
 tester demo.becowo.com/app_dev.php ou demo.becowo.com/app_demo.php pour voir les erreurs
 Si msg d'erreur lié à un bundle, relancer la copie du dossier vendor sur le serveur + vider cache
+
+/****************************************************/
+		Cron JOb
+/****************************************************/
+
+A chaque fois qu'on renvoi le fichier .sh sur le serveur, il faut vérifier les droits d'execution (704)
+

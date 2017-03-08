@@ -73,7 +73,7 @@
         margin-top: 10px;">&nbsp;</div>
     {% endif %}
     <div class="info">
-      <span class="title">{{event.title|capitalize}}</span>
+      <span class="title">{{event.title}}</span>
       <br>
       <span class="place">
         <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
@@ -107,7 +107,7 @@
 	        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                <h4 class="modal-title">{{event.title|capitalize}}</h4>
+                <h4 class="modal-title">{{event.title}}</h4>
             </div>
             <div class="modal-body" style="overflow-y: scroll;">
               {% if event.CategoryName != null %}

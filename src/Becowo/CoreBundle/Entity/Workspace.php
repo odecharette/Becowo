@@ -215,7 +215,7 @@ class Workspace
     /**
      * @var \Becowo\CoreBundle\Entity\Region
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Region")
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Region", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      * })

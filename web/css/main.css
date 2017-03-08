@@ -1176,7 +1176,12 @@ footer{
   color: white;
   margin-left: 10px;
 }
-#community .event{
+/********************************** Events (community & workspace/tab events) *************************************/
+#Evènements{
+  width: 90%;
+  margin-left: 10%;
+}
+.event{
   position: relative;
   padding: 10px 20px 20px 10px;
   background-color: #F5F5F5;
@@ -1186,33 +1191,33 @@ footer{
   margin-left: 20px;
   margin-bottom: 30px;
 }
-#community .event .title{
+.event .title{
   text-align: center;
   color: var(--my-green);
   font-size: 14pt;
 }
-#community .event .info{
+.event .info{
   position: absolute;
   top: 10px;
   left: 250px;
   color: var(--my-grey);
 }
-#community .event i{    
+.event i{    
   width: 18px;
   color: var(--my-pink);
   text-align: center;
 }
-#community .event .info p{
+.event .info p{
   padding-right: 20px;
 }
-#community .event button{
+.event button{
   position: absolute;
   right: 20px;
 }
-#community .event a{
+.event a{
   color: var(--my-blue);
 }
-#community .event .participate{
+.event .participate{
   position: absolute;
   right: 30px;
   font-size: 16pt;

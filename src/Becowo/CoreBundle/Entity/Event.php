@@ -65,7 +65,7 @@ class Event
     /**
      * @var \Becowo\CoreBundle\Entity\EventCategory
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\EventCategory")
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\EventCategory", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
