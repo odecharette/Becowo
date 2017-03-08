@@ -97,7 +97,7 @@ class MemberController extends Controller
 
 	      	$this->mailer->send($message);
 	      	$nbEmails++;
-	      	$listEmails = $listEmails . "<br>" . $member->getEmail() ;
+	      	$listEmails = $listEmails . "\n" . $member->getEmail() ;
 
 	      	$member->setHasReceivedEmailNewUser(true);
 	      	
