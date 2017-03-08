@@ -1312,10 +1312,9 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         $this->getUrlProfilePicture() != '' ? $totalFilled++ : '';
         $this->getCountry() != '' ? $totalFilled++ : '';
         $this->getPersonnalTweet() != '' ? $totalFilled++ : '';
-        $this->getListSkills() != '' ? $totalFilled++ : '';
-        $this->getlistHobbies() != '' ? $totalFilled++ : '';
-        $this->getlistWishes() != '' ? $totalFilled++ : '';
-
+        $this->getListSkills()->count() > 0 ? $totalFilled++ : '';
+        $this->getlistHobbies()->count() > 0 ? $totalFilled++ : '';
+        $this->getlistWishes()->count() > 0 ? $totalFilled++ : '';
 
         $this->setFillRate(round($totalFilled / $totalInfo * 100, 0));
     }
