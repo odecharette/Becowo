@@ -28,9 +28,24 @@ lier price à ws has office
 		Algolia
 /****************************************************/
 
-Forcer l'indexation en cmd :
+Forcer l'indexation 
+
+1/ en ligne de cmd :
 
 php bin/console algolia:reindex BecowoMemberBundle:Member
+
+2/ faire un flush sur l'entité à indexer
+
+3/ forcer ponctuellemement, mettre dans HomeController :
+
+// temporaire pour forcer l'indexation ds Algolia
+    $s = $this->get('app.member');
+    $members = $s->getAllActiveMembers();
+    $em = $this->getDoctrine()->getManager();
+    foreach($members as $m){
+      $this->get('algolia.indexer')->getManualIndexer($em)->index($m);
+    }
+// fin temporaire
 
 /****************************************************/
 		Exec cmd depuis navitateur
@@ -42,3 +57,11 @@ adresse du site /_console
 
 Puis executer une cmd sans 'php bin/console'
 Ex : algolia:reindex BecowoMemberBundle:Member
+
+/****************************************************/
+		Erreur 500
+/****************************************************/
+
+Si demo.becowo.com renvoi une erreur 500 :
+tester demo.becowo.com/app_dev.php ou demo.becowo.com/app_demo.php pour voir les erreurs
+Si msg d'erreur lié à un bundle, relancer la copie du dossier vendor sur le serveur + vider cache

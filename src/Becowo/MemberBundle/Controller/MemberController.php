@@ -7,14 +7,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Form\Type\ContactType;
 use Becowo\CoreBundle\Entity\Contact;
 use Doctrine\ORM\EntityManager;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 class MemberController extends Controller
 {
   private $em = null;
+  private $mailer = null;
+  private $templating = null;
+  private $appMember = null;
 
-  public function __construct(EntityManager $em)
+  public function __construct(EntityManager $em, $mailer, EngineInterface $templating, $appMember)
   {
       $this->em = $em;
+      $this->mailer = $mailer;
+      $this->templating = $templating;
+      $this->appMember = $appMember;
   }
 
   public function viewPublicProfileAction(Request $request, $id)
@@ -62,13 +69,12 @@ class MemberController extends Controller
       array('member' => $member, 'wsBooked' =>$wsBooked, 'listCommunityNetwork' => $listCommunityNetwork, 'form' => $form->createView()));
   }
 
-  public function sendEmailToNewUsersAction($container)
+  public function sendEmailToNewUsersAction()
   {
     // To call this method, use the command declared in Becowo\CronBundle\Command\EmailNewUserCommand 
     // php bin/console app:send-email-new-users
 
-  	$MemberService = $container->get('app.member');
-  	$members = $MemberService->getMembersHasNotReceivedMailNewUser();
+  	$members = $this->appMember->getMembersHasNotReceivedMailNewUser();
   	$nbMembers = 0;
   	$nbEmails = 0;
   	$listEmails = "";
@@ -83,13 +89,13 @@ class MemberController extends Controller
 	        ->setTo($member->getEmail())
           ->setContentType("text/html")
 	        ->setBody(
-	            $this->render(
+	            $this->templating->render(
 	                'CommonViews/Mail/NewMember.html.twig',
 	                array('member' => $member)
 	            ))
           ;
 
-	      	$container->get('mailer')->send($message);
+	      	$this->mailer->send($message);
 	      	$nbEmails++;
 	      	$listEmails = $listEmails . "<br>" . $member->getEmail() ;
 

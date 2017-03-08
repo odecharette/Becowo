@@ -70,4 +70,4 @@ services:
 
     app.member.sendEmailNewUsers :
         class: Becowo\MemberBundle\Controller\MemberController
-        arguments: ['@doctrine.orm.entity_manager'] 
+        arguments: ['@doctrine.orm.entity_manager', '@mailer', '@templating', '@app.member'] 

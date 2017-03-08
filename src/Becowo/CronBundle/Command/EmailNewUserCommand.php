@@ -25,7 +25,7 @@ class EmailNewUserCommand extends ContainerAwareCommand
 
      	// access the container using getContainer()
         $memberService = $this->getContainer()->get('app.member.sendEmailNewUsers');
-        $results = $memberService->sendEmailToNewUsersAction($this->getContainer());
+        $results = $memberService->sendEmailToNewUsersAction();
 
         $output->writeln($results);
     }
