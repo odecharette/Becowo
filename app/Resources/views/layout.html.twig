@@ -30,7 +30,7 @@
 		</div>
 		<div class="col-lg-4 identity">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
-        	<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="tagline">Enfin une bonne raison d'aller au travail !</a>
+			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
         </div>
         <div class="col-lg-7 menu">
 		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <i class="fa fa-circle" aria-hidden="true"></i>
@@ -51,7 +51,7 @@
 			    </ul>
 			</div>
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}	
-				<div class="btn-group">
+				<div class="btn-group loginMenu">
 		          <a href="" data-toggle="dropdown" class="log-menu">
 		          	Bonjour {{ app.user.firstname }} <i class="fa fa-caret-down" aria-hidden="true"></i>
 		          </a>
