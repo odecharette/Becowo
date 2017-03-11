@@ -205,6 +205,12 @@ easy_admin:
                     - { property: 'firstName', type: 'text' }
                     - { property: 'name', type: 'text' }
                     - { property: 'email', type: 'email' }
+                    - { property: 'job'}
+                    - { property: 'society'}
+                    - { property: 'description'}
+                    - { property: 'listSkills'}
+                    - { property: 'listHobbies'}
+                    - { property: 'listWishes'}
                     - { property: 'plainPassword', type: 'password', label: 'Password' }
                     - { property: 'enabled', type: 'checkbox' }
                     - { property: 'locked', type: 'checkbox' }

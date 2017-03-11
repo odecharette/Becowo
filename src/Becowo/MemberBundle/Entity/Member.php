@@ -130,8 +130,8 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     /**
      * @var string
      *
-     * @ORM\Column(name="society", type="string", length=45, nullable=true)
-     * @Assert\Length(min = 3, max = 30)
+     * @ORM\Column(name="society", type="string", length=100, nullable=true)
+     * @Assert\Length(min = 3, max = 100)
      *
      */
     private $society;

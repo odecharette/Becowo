@@ -16,7 +16,7 @@ class MemberController extends Controller
   private $templating = null;
   private $appMember = null;
 
-  public function __construct(EntityManager $em, $mailer, EngineInterface $templating, $appMember)
+  public function __construct(EntityManager $em=null, $mailer=null, EngineInterface $templating=null, $appMember=null)
   {
       $this->em = $em;
       $this->mailer = $mailer;
