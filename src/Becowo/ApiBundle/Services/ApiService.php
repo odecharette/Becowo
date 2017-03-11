@@ -43,14 +43,14 @@ class ApiService
             return $access_token;
         })->send();
 
-
+        $events = null;
         // Si on récupère quelque chose
         if (isset($response->body) && !empty($response->body)) {
             
             $access_token =$response->body;
             
             if (!empty($access_token)) {
-                $this->logger->info('getFacebookPageEvents -Token OK');
+                $this->logger->info('getFacebookPageEvents -Token OK for FB_ID : ' . $FB_PAGE_ID);
 
                 // Construction de l'URL à appeler pour récupérer les évènements de la page depuis le 01/01/2017
                 $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json&since=2017-01-01';
@@ -60,19 +60,20 @@ class ApiService
                 if (isset($response->body->data)) {
                     // affichage des données récupérées
                     $events = $response->body->data;
-                    $this->logger->info('getFacebookPageEvents - ' . count($events) . ' events found');
-                    
+                    $this->logger->info('getFacebookPageEvents - ' . count($events) . ' events found for FB_ID : ' . $FB_PAGE_ID);                  
+                }else if(isset($response->body->error)){
+                    $this->logger->critical('getFacebookPageEvents - issue with FB_ID : ' . $FB_PAGE_ID . ' : ' . $response->body->error->message);
                 }
             }
             else {
-                $this->logger->critical('getFacebookPageEvents - No token');
+                $this->logger->critical('getFacebookPageEvents - No token for FB_ID : ' . $FB_PAGE_ID);
 
                 $events = null;
             }
         }
         else {
 
-            $this->logger->critical('getFacebookPageEvents - Bad access token');
+            $this->logger->critical('getFacebookPageEvents - Bad access token for FB_ID : ' . $FB_PAGE_ID);
 
             $events = null;
         }
@@ -99,9 +100,18 @@ class ApiService
                 $event->setPicture($this->getFacebookEventPicture($e->id)->source);
 
                 // On vérifie que l'event a bien lieu dans le ws correspondant
-                if($e->place->id == $facebookPageId) 
+                if(isset($e->place->id))
+                {   
+                    if($e->place->id == $facebookPageId) 
+                    {
+                        $event->setWorkspace($ws);
+                    }
+                }else if(isset($e->place->name))
                 {
-                    $event->setWorkspace($ws);
+                    if(strpos($e->place->name, $ws->getName()) >= 0)
+                    {
+                        $event->setWorkspace($ws);
+                    }
                 }
 
                 $this->logger->info('saveFacebookPageEvents - Event ID ' . $e->id . ' created');
