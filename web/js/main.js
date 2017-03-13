@@ -58,17 +58,6 @@ if(window.innerWidth >= 1100) // PC
 {
 console.log('grand ecran');
 
-// Gestion de la class active sur la navbar
-$(document).ready(function () {
-    var url = window.location;
-    // Will only work if string in href matches with location
-    $('ul.nav a[href="' + url + '"]').parent().addClass('active');
-
-    // Will also work for relative and absolute hrefs
-    $('ul.nav a').filter(function () {
-        return this.href == url;
-    }).parent().addClass('active').parent().parent().addClass('active');
-});
 
 // Charge la mini carte google dans la page d'un WS, selon son adresse dynamique
 var q=encodeURIComponent($('#address_ws').text());
@@ -176,80 +165,14 @@ $("#formChangeMDP").submit(function (e){
     });
 });
 
-// KnpPaginator pagination called in AJAX
-// $('#paginationList').on('click', "ul.pagination a" , function(e){
-// $.ajax({
-//     type: "GET",
-//     url: $(this).attr('href'),
-//     })
-//     .done(function( msg ) {
-//         $('#paginationList').html(msg);
-//     });
-// e.preventDefault();
-// });
-
-// KnpPaginator Home Filter bar
-
-// $('#filterCity, #filterCategory').on('click', "input" , function(e){
-//   var listCitySelected = "";
-//   $('#filterCity input[type=checkbox]').each(function () {
-//       var sThisVal = (this.checked ? $(this).val() + "," : "");
-//       listCitySelected += (listCitySelected=="" ? sThisVal : sThisVal);
-//   });
-//   if(listCitySelected != '')
-//     $("#filterCityBtn").html(listCitySelected);
-//   else
-//     $("#filterCityBtn").html('Ville des Hauts de France');
-//   console.log (listCitySelected);
-
-//   var listCategorySelected = "";
-//   $('#filterCategory input[type=checkbox]').each(function () {
-//       var sThisVal = (this.checked ? $(this).val() + "," : "");
-//       listCategorySelected += (listCategorySelected=="" ? sThisVal : sThisVal);
-//   });
-//   console.log (listCategorySelected);
-
-//    $.ajax({
-//     type: "GET",
-//     url: Routing.generate('becowo_core_list_workspaces', { city: listCitySelected, category: listCategorySelected }), })
-//     .done(function( msg ) {
-//         $('#paginationList').html(msg);
-//     });
-// });
-
-// $('[id^=footerFilter]').on('click' , function(e){
-
-//   var ville = e.target.text;
-//   $("#filterCityBtn").html(capitalizeFirstLetter(ville));
-//   $.ajax({
-//   type: "GET",
-//   url: Routing.generate('becowo_core_list_workspaces', { city: ville }), })
-//   .done(function( msg ) {
-//       $('#paginationList').html(msg);
-//   });
-// });
-
-
-//Navbar Scroll Event
-var navbar = $('.navbar');
-$(window).scroll(function(event){
-   var st = $(this).scrollTop();
-   if (st > 70){
-       navbar.addClass('navbar-scroll-custom');
-   } 
-   if(st < 150) {
-      navbar.removeClass('navbar-scroll-custom');
-   }
-});
-
 /* Bouton Back to top */
 
-    if ( ($(window).height() + 100) < $(document).height() ) {
-    $('#top-link-block').removeClass('hidden').affix({
-        // how far to scroll down before link "slides" into view
-        offset: {top:100}
-    });
-    }
+if ( ($(window).height() + 100) < $(document).height() ) {
+$('#top-link-block').removeClass('hidden').affix({
+    // how far to scroll down before link "slides" into view
+    offset: {top:100}
+});
+}
 
 
 
@@ -345,57 +268,6 @@ $(function(){
 });
 /***************** fin rating.js ****************************/
 
-
-// HOme page Map
-$("#modalMap").on('click', function(event){
-   initMap();
-});
-
-function initMap() {
-
-  var locations = [
-  ["Mutualab",50.63,3.062],
-  ["La Coroutine",50.629,3.07],
-  ["Co-factory",50.656,3.087],
-  ["1624 Cowork'in Lille",50.641,3.066],
-  ["Wereso Lille",50.635,3.058],
-  ["La maison d'Alfred",50.689,3.176],
-  ["Be Square",50.693,3.17],
-  ["La maison du coworking",50.609,3.167],
-  ["Réactif & Co",50.755,3.131],
-  ["La plaine images",50.7,3.157],
-  ["Noya",50.63862659999999,3.076176499999974]
-];
-
-  var infowindow = new google.maps.InfoWindow(); /* SINGLE */
-  var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 3,
-      center: new google.maps.LatLng(50.62924999999999, 3.057256000000052) // Lille
-  });
-  
-  function placeMarker( loc ) {
-    var latLng = new google.maps.LatLng( loc[1], loc[2]);
-    var marker = new google.maps.Marker({
-      position : latLng,
-      map      : map
-    });
-    google.maps.event.addListener(marker, 'click', function(){
-        infowindow.close(); // Close previously opened infowindow
-        infowindow.setContent( "<div id='content'><div id='siteNotice'></div><h2>"+ loc[0] +"</2></div>");
-        infowindow.open(map, marker);
-    });
-  }
-  
-  // ITERATE ALL LOCATIONS
-  // Don't create functions inside for loops
-  // therefore refer to a previously created function
-  // and pass your iterating location as argument value:
-  for(var i=0; i<locations.length; i++) {
-    placeMarker( locations[i] );
-  } 
-  
-  $("#myModalMap").modal('show');
-}
 
 }
 if(window.innerWidth >= 900) // PC & tablette
