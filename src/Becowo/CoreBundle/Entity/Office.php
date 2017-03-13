@@ -44,6 +44,14 @@ class Office
      */
     private $description;
 
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace", mappedBy="filterOffices")
+     */
+    private $workspace;
+
     /**
      * Constructor
      */
