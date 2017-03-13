@@ -3020,9 +3020,9 @@ label:hover.tooltips span, span:hover.tooltips span {
   z-index: 999;
 }
 
-/*Mobiel slide show called slider-mobile*/
+/*Mobile slide show called slider-mobile*/
 .bx-wrapper {
-  height: 50vh; /* vh : 1/100th viewport height */
+  /*height: 50vh;  vh : 1/100th viewport height */
   display: block;
   overflow: hidden;
   margin: 0 auto 20px !important;
