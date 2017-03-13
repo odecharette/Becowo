@@ -21,7 +21,7 @@
 
 {{ render(controller('BecowoCoreBundle:Home:paginationList', {limit: 5})) }} #}
 
-<div class="row" id="filtersBarWs">
+<div class="row" id="filtersBar">
 	<div class="row">
 		<div class="col-lg-3">
 			<h3>Ville</h3>
@@ -34,7 +34,7 @@
 	</div>
 </div>
 <div class="row">
-    <div id="hits" class="workspaces"></div>
+    <div id="hits"></div>
 </div>
 
 <div class="row text-center">
@@ -97,7 +97,7 @@
 	        		name = ''};
 	      	
 
-	        return '<div class="workspaces">' + 
+	        return '<div class="vignette">' + 
 	        		name +
 					'</div>' 
 	      },

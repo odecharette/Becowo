@@ -17,68 +17,68 @@ class HomeController extends Controller
 
   public function paginationListAction(Request $request, $limit=5)
   {
-    $WsService = $this->get('app.workspace');
-    $listCities = $WsService->getListOfActiveCities();
-    $em = $this->getDoctrine()->getManager();
+    // $WsService = $this->get('app.workspace');
+    // $listCities = $WsService->getListOfActiveCities();
+    // $em = $this->getDoctrine()->getManager();
 
-    $queryBuilder = $em->getRepository('BecowoCoreBundle:Workspace')->createQueryBuilder('w');
+    // $queryBuilder = $em->getRepository('BecowoCoreBundle:Workspace')->createQueryBuilder('w');
 
-    $queryBuilder->select(
-      'w.id AS id', 
-      'w.name AS name', 
-      'w.city AS city',
-      'w.favoritePictureUrl AS favoritePictureUrl',
-      'w.lowestPrice AS lowestPrice',
-      'w.voteAverage AS voteAverage',
-      'w.descriptionBonus AS descriptionBonus',
-      'r.name AS region',
-      'c.name AS category',
-      'o.name AS offer');
+    // $queryBuilder->select(
+    //   'w.id AS id', 
+    //   'w.name AS name', 
+    //   'w.city AS city',
+    //   'w.favoritePictureUrl AS favoritePictureUrl',
+    //   'w.lowestPrice AS lowestPrice',
+    //   'w.voteAverage AS voteAverage',
+    //   'w.descriptionBonus AS descriptionBonus',
+    //   'r.name AS region',
+    //   'c.name AS category',
+    //   'o.name AS offer');
 
-    $queryBuilder->leftJoin('BecowoCoreBundle:WorkspaceHasOffer', 'who', 'WITH', 'who.workspace = w')
-                ->leftJoin('BecowoCoreBundle:Offer', 'o', 'WITH', 'o = who.offer')
-                ->leftJoin('BecowoCoreBundle:Region', 'r', 'WITH', 'r = w.region')
-                ->leftJoin('BecowoCoreBundle:WorkspaceCategory', 'c', 'WITH', 'w.category = c')
-                ;
+    // $queryBuilder->leftJoin('BecowoCoreBundle:WorkspaceHasOffer', 'who', 'WITH', 'who.workspace = w')
+    //             ->leftJoin('BecowoCoreBundle:Offer', 'o', 'WITH', 'o = who.offer')
+    //             ->leftJoin('BecowoCoreBundle:Region', 'r', 'WITH', 'r = w.region')
+    //             ->leftJoin('BecowoCoreBundle:WorkspaceCategory', 'c', 'WITH', 'w.category = c')
+    //             ;
 
-    if($request->query->get('city') != null)
-    {
-      $values = explode(',',$request->query->get('city'));
-      $queryBuilder->andWhere('w.city IN (:city)')
-                  ->setParameter('city', $values);
-    }
+    // if($request->query->get('city') != null)
+    // {
+    //   $values = explode(',',$request->query->get('city'));
+    //   $queryBuilder->andWhere('w.city IN (:city)')
+    //               ->setParameter('city', $values);
+    // }
 
-    if($request->query->get('category') != null)
-    {
-      $values = explode(',',$request->query->get('category'));
-      $queryBuilder->andWhere('c.name IN (:category)')
-                  ->setParameter('category', $values);
-    }
+    // if($request->query->get('category') != null)
+    // {
+    //   $values = explode(',',$request->query->get('category'));
+    //   $queryBuilder->andWhere('c.name IN (:category)')
+    //               ->setParameter('category', $values);
+    // }
 
-    $queryBuilder->andWhere('w.isDeleted = false')
-                ->andWhere('w.isVisible = true')
-                ->orderBy('w.voteAverage', 'DESC');
+    // $queryBuilder->andWhere('w.isDeleted = false')
+    //             ->andWhere('w.isVisible = true')
+    //             ->orderBy('w.voteAverage', 'DESC');
 
-    $query = $queryBuilder->getQuery();
+    // $query = $queryBuilder->getQuery();
 
-    $paginator  = $this->get('knp_paginator');
+    // $paginator  = $this->get('knp_paginator');
 
-    $listWS = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1)/*page number*/,
-        $limit/*limit per page*/
-    );
-    $listWS->setUsedRoute('becowo_core_list_workspaces');
+    // $listWS = $paginator->paginate(
+    //     $query, /* query NOT result */
+    //     $request->query->getInt('page', 1)/*page number*/,
+    //     $limit/*limit per page*/
+    // );
+    // $listWS->setUsedRoute('becowo_core_list_workspaces');
 
-    $wsAmenities = array();
-    foreach ($listWS->getItems() as $ws)
-    {
-      array_push($wsAmenities, array('ws' => $ws['id'],
-        'amenities' => $WsService->getAmenitiesByWorkspaceId($ws['id']),
-        ));
-    }
+    // $wsAmenities = array();
+    // foreach ($listWS->getItems() as $ws)
+    // {
+    //   array_push($wsAmenities, array('ws' => $ws['id'],
+    //     'amenities' => $WsService->getAmenitiesByWorkspaceId($ws['id']),
+    //     ));
+    // }
 
-    return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS, 'wsAmenities' => $wsAmenities, 'listCities' => $listCities));
+    // return $this->render('Home/WS-list.html.twig',array('listWS' => $listWS, 'wsAmenities' => $wsAmenities, 'listCities' => $listCities));
   }
 
   public function mobileAction()

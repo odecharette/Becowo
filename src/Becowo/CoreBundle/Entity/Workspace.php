@@ -193,6 +193,17 @@ class Workspace
     private $category;
 
     /**
+     * @var \Becowo\CoreBundle\Entity\Offer
+     *
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Offer", fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
+     * })
+     * @Algolia\Attribute
+     */
+    private $offer;
+
+    /**
      * @var \Becowo\CoreBundle\Entity\Country
      *
      * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Country")
@@ -834,6 +845,30 @@ class Workspace
     public function getCategory()
     {
         return $this->category;
+    }
+
+      /**
+     * Set offer
+     *
+     * @param \Becowo\CoreBundle\Entity\Offer $offer
+     *
+     * @return Workspace
+     */
+    public function setOffer(\Becowo\CoreBundle\Entity\Offer $offer = null)
+    {
+        $this->offer = $offer;
+
+        return $this;
+    }
+
+    /**
+     * Get offer
+     *
+     * @return \Becowo\CoreBundle\Entity\Offer
+     */
+    public function getOffer()
+    {
+        return $this->offer;
     }
 
     /**

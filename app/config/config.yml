@@ -161,8 +161,6 @@ easy_admin:
                 fields: ['id', 'name', 'description', 'descriptionBonus', { property: 'website', type: 'url' }, 'isVisible', 'isDeleted']
         Workspace_has_office:
             class: Becowo\CoreBundle\Entity\WorkspaceHasOffice
-        Workspace_has_offer:
-            class: Becowo\CoreBundle\Entity\WorkspaceHasOffer
         Workspace_has_amenities:
             class: Becowo\CoreBundle\Entity\WorkspaceHasAmenities
         Workspace_has_team_member:
@@ -251,7 +249,7 @@ easy_admin:
     design:
         menu:
             - label: 'Workspaces'
-              children: ['Workspace', 'Workspace_has_office', 'Workspace_Category', 'Workspace_Favorite', 'Workspace_has_offer', 'Workspace_has_amenities', 'Workspace_has_team_member', 'Picture', 'TeamMember', 'Price', 'Timetable', 'Event']
+              children: ['Workspace', 'Workspace_has_office', 'Workspace_Category', 'Workspace_Favorite', 'Workspace_has_amenities', 'Workspace_has_team_member', 'Picture', 'TeamMember', 'Price', 'Timetable', 'Event']
             - label: 'Booking'
               children: ['Booking', 'Booking_Status']
             - label: 'Members'

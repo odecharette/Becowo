@@ -308,12 +308,6 @@ class WorkspaceService
         return $repo->findBookingByWsHasOfficeId($id);
     }
 
-    public function getOffersByWorkspace($ws)
-    {
-        $repo = $this->em->getRepository('BecowoCoreBundle:WorkspaceHasOffer');
-        return $repo->findOffersByWorkspace($ws);
-    }
-
     public function getWsBookedByMemberId($id)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
