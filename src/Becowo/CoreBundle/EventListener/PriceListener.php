@@ -36,22 +36,24 @@ class PriceListener
         {
             //
         }else{
-            $a = array('Hour' => $p->getPriceHour(), 
-                        'HalfDay' => $p->getPriceHalfDay(),
-                        'Day' => $p->getPriceDay(),
-                        'Month' => $p->getPriceMonth());
-            $minPrice = min(array_diff(array_map('intval', $a), array(0))); // renvoi le plus petit prix en excluant les valeurs NULL
-        $allWsMinPrices[$i] = $minPrice;
-        $i++;
+            $a = array('heure' => $p->getPriceHour(), 
+                        '1/2 journée' => $p->getPriceHalfDay(),
+                        'jour' => $p->getPriceDay(),
+                        'mois' => $p->getPriceMonth());
+           
+            // renvoi le plus petit prix en excluant les valeurs NULL tout en gardant le nom de la Key
+            $minPriceLabel = array_search(min(array_diff(array_map('intval', $a), array(0))), $a);
+            $minPrice = min(array_diff(array_map('intval', $a), array(0)));
+ 
+        $allWsMinPrices[$minPriceLabel] = $minPrice;
         }
 
     }
-
     if(count($allWsMinPrices) > 0)
-      $lowestPrice = min($allWsMinPrices);
+      $lowestPrice = round(min($allWsMinPrices)) . '<sup>€</sup> / ' . array_search(min($allWsMinPrices), $allWsMinPrices);
     else
       $lowestPrice = 0;
-    
+
     $ws->setLowestPrice($lowestPrice);
 
     $em->persist($ws);

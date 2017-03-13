@@ -277,7 +277,7 @@ class Workspace
     /**
      * @var decimal
      *
-     * @ORM\Column(name="lowest_price", type="decimal", precision=6, scale=2, nullable=true)
+     * @ORM\Column(name="lowest_price", type="string", nullable=true)
      * @Algolia\Attribute
      *
      */
