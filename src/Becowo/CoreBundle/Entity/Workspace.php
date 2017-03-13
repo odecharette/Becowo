@@ -3,6 +3,7 @@
 namespace Becowo\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 
 /**
  * Workspace
@@ -16,6 +17,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @Algolia\Attribute
      */
     private $name;
 
@@ -30,6 +32,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="network", type="string", length=255, nullable=true)
+     * @Algolia\Attribute
      */
     private $network;
 
@@ -94,6 +97,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=50, nullable=true)
+     * @Algolia\Attribute
      */
     private $city;
 
@@ -183,6 +187,7 @@ class Workspace
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
+     * @Algolia\Attribute
      */
     private $category;
 
@@ -219,6 +224,7 @@ class Workspace
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      * })
+     * @Algolia\Attribute
      */
     private $region;
 
@@ -251,6 +257,7 @@ class Workspace
      * @var decimal
      *
      * @ORM\Column(name="vote_average", type="decimal", precision=4, scale=2, nullable=true)
+     * @Algolia\Attribute
      *
      */
     private $voteAverage;
@@ -1116,5 +1123,14 @@ class Workspace
     public function __toString()
     {
         return $this->name;
+    }
+
+
+    /**
+     * @Algolia\IndexIf
+     */
+    public function isVisible()
+    {
+        return !$this->isDeleted && $this->isVisible;
     }
 }

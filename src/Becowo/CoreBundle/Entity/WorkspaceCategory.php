@@ -3,6 +3,7 @@
 namespace Becowo\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 
 /**
  * WorkspaceCategory
@@ -25,6 +26,7 @@ class WorkspaceCategory
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     * @Algolia\Attribute
      */
     private $name;
 
