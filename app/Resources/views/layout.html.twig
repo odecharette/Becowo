@@ -172,16 +172,14 @@
 		</div>
 		<div id="footer_menu" class="col-lg-4 col-md-4 col-xs-12">
 			<br>
-			<strong>LES VILLES (Hauts de France et Wallonie)</strong>
+			<strong>LES VILLES</strong>
 			<br><br>
 			<ul>
                	<li>
-               		<a href="#filtersBar" id="footerFilter-lille">LILLE</a> <br>
-               		<a href="#filtersBar" id="footerFilter-roncq">RONCQ</a>   <br>
-               		<a href="#filtersBar" id="footerFilter-roubaix">ROUBAIX</a>   <br>
-               		<a href="#filtersBar" id="footerFilter-tourcoing">TOURCOING</a>   <br>
-               		<a href="#filtersBar" id="footerFilter-tournai">TOURNAI</a>   <br>
-               		<a href="#filtersBar" id="footerFilter-villeneuve">VILLENEUVE D'ASCQ</a>                 	
+               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lille&is_v=1#filtersBar">LILLE</a> <br>
+               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Roubaix&is_v=1#filtersBar">ROUBAIX</a> <br>
+               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Paris&is_v=1#filtersBar">PARIS</a> <br>
+               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lyon&is_v=1#filtersBar">LYON</a> <br>               	
                	</li>
 			</ul>
 		</div>
