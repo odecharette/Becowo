@@ -40,6 +40,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="description_bonus", type="string", length=255, nullable=true)
+     * @Algolia\Attribute
      */
     private $descriptionBonus;
 
@@ -249,6 +250,7 @@ class Workspace
      * @var decimal
      *
      * @ORM\Column(name="lowest_price", type="decimal", precision=6, scale=2, nullable=true)
+     * @Algolia\Attribute
      *
      */
     private $lowestPrice;
@@ -267,6 +269,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="favorite_picture_url", type="string", length=255, nullable=true)
+     * @Algolia\Attribute
      *
      */
     private $favoritePictureUrl;
@@ -287,7 +290,7 @@ class Workspace
     {
         $this->poi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->teamMember = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
+        // $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->isDeleted = false;
         $this->lowestPrice = 0;

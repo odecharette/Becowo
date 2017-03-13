@@ -17,9 +17,30 @@
 {% else %} #}
 
 
-{% include 'Home/filtersBar.html.twig' %} 
+{# {% include 'Home/filtersBar.html.twig' %} 
 
-{{ render(controller('BecowoCoreBundle:Home:paginationList', {limit: 5})) }}
+{{ render(controller('BecowoCoreBundle:Home:paginationList', {limit: 5})) }} #}
+
+<div class="row" id="filtersBarWs">
+	<div class="row">
+		<div class="col-lg-3">
+			<h3>Ville</h3>
+	    	<div id="cities" class="facet"></div>
+		</div>	
+		<div class="col-lg-3">
+			<h3>Catégorie</h3>
+	    	<div id="category" class="facet"></div>
+    	</div>
+	</div>
+</div>
+<div class="row">
+    <div id="hits" class="workspaces"></div>
+</div>
+
+<div class="row text-center">
+    <div id="pagination"></div>
+</div>
+
 
 
 <div class="container-fluid">
@@ -47,4 +68,85 @@
 
 
 {% endblock body %}
+
+{% block javascripts %}
+<script>
+	// Documentation : https://www.algolia.com/doc/guides/search/instant-search/
+
+	var search = instantsearch({
+	  appId: "{{ algolia.application_id }}",
+	  apiKey: "{{ algolia.search_api_key }}", // search only API key, no ADMIN key
+	  indexName: "{{ algolia.index_workspace }}",
+	  urlSync: true
+	});
+	
+	search.addWidget(
+	  instantsearch.widgets.hits({
+	    container: '#hits',
+	    hitsPerPage: 10,
+	    templates: {
+	      item: function(data) {
+	      	console.log(data);
+	      	
+	      	var name = '';
+	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.name !== 'undefined'){
+	        		name = data._highlightResult.name.value
+	        	}else if(data.name !== null){
+	        		name = data.name
+	        	}else{
+	        		name = ''};
+	      	
+
+	        return '<div class="workspaces">' + 
+	        		name +
+					'</div>' 
+	      },
+	      empty: function(data) {
+	        return '<p>Désolé ! Aucun espace de travail trouvé pour la recherche <em>' + data.query + '</em>.</p>'
+	      }
+	    }
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.pagination({
+	    container: '#pagination',
+	    showFirstLast: false,
+	    cssClasses: {
+	    	root: 'pagination',
+	    	active: 'active'
+	    }
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#cities',
+	    attributeName: 'city',
+	    limit: 10,
+	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
+	    operator: 'or'
+	  })
+	);
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#category',
+	    attributeName: 'category.name',
+	    limit: 10,
+	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
+	    operator: 'or'
+	    // templates: {
+	    //   header: '<h5>Centre d\'intérêt</h5>'
+	    // }
+	  })
+	);
+	
+
+	search.start();
+
+
+
+</script>
+{% endblock javascripts %}
+
 

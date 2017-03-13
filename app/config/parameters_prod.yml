@@ -28,3 +28,4 @@ parameters:
     algolia.index_skill: Skill_prod
     algolia.index_hobbie: Hobbie_prod
     algolia.index_wish: Wish_prod
+    algolia.index_workspace: Workspace_prod

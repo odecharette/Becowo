@@ -38,3 +38,4 @@ parameters:
     algolia.index_skill: Skill_demo
     algolia.index_hobbie: Hobbie_demo
     algolia.index_wish: Wish_demo
+    algolia.index_workspace: Workspace_demo
