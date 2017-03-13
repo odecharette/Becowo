@@ -177,57 +177,57 @@ $("#formChangeMDP").submit(function (e){
 });
 
 // KnpPaginator pagination called in AJAX
-$('#paginationList').on('click', "ul.pagination a" , function(e){
-$.ajax({
-    type: "GET",
-    url: $(this).attr('href'),
-    })
-    .done(function( msg ) {
-        $('#paginationList').html(msg);
-    });
-e.preventDefault();
-});
+// $('#paginationList').on('click', "ul.pagination a" , function(e){
+// $.ajax({
+//     type: "GET",
+//     url: $(this).attr('href'),
+//     })
+//     .done(function( msg ) {
+//         $('#paginationList').html(msg);
+//     });
+// e.preventDefault();
+// });
 
 // KnpPaginator Home Filter bar
 
-$('#filterCity, #filterCategory').on('click', "input" , function(e){
-  var listCitySelected = "";
-  $('#filterCity input[type=checkbox]').each(function () {
-      var sThisVal = (this.checked ? $(this).val() + "," : "");
-      listCitySelected += (listCitySelected=="" ? sThisVal : sThisVal);
-  });
-  if(listCitySelected != '')
-    $("#filterCityBtn").html(listCitySelected);
-  else
-    $("#filterCityBtn").html('Ville des Hauts de France');
-  console.log (listCitySelected);
+// $('#filterCity, #filterCategory').on('click', "input" , function(e){
+//   var listCitySelected = "";
+//   $('#filterCity input[type=checkbox]').each(function () {
+//       var sThisVal = (this.checked ? $(this).val() + "," : "");
+//       listCitySelected += (listCitySelected=="" ? sThisVal : sThisVal);
+//   });
+//   if(listCitySelected != '')
+//     $("#filterCityBtn").html(listCitySelected);
+//   else
+//     $("#filterCityBtn").html('Ville des Hauts de France');
+//   console.log (listCitySelected);
 
-  var listCategorySelected = "";
-  $('#filterCategory input[type=checkbox]').each(function () {
-      var sThisVal = (this.checked ? $(this).val() + "," : "");
-      listCategorySelected += (listCategorySelected=="" ? sThisVal : sThisVal);
-  });
-  console.log (listCategorySelected);
+//   var listCategorySelected = "";
+//   $('#filterCategory input[type=checkbox]').each(function () {
+//       var sThisVal = (this.checked ? $(this).val() + "," : "");
+//       listCategorySelected += (listCategorySelected=="" ? sThisVal : sThisVal);
+//   });
+//   console.log (listCategorySelected);
 
-   $.ajax({
-    type: "GET",
-    url: Routing.generate('becowo_core_list_workspaces', { city: listCitySelected, category: listCategorySelected }), })
-    .done(function( msg ) {
-        $('#paginationList').html(msg);
-    });
-});
+//    $.ajax({
+//     type: "GET",
+//     url: Routing.generate('becowo_core_list_workspaces', { city: listCitySelected, category: listCategorySelected }), })
+//     .done(function( msg ) {
+//         $('#paginationList').html(msg);
+//     });
+// });
 
-$('[id^=footerFilter]').on('click' , function(e){
+// $('[id^=footerFilter]').on('click' , function(e){
 
-  var ville = e.target.text;
-  $("#filterCityBtn").html(capitalizeFirstLetter(ville));
-  $.ajax({
-  type: "GET",
-  url: Routing.generate('becowo_core_list_workspaces', { city: ville }), })
-  .done(function( msg ) {
-      $('#paginationList').html(msg);
-  });
-});
+//   var ville = e.target.text;
+//   $("#filterCityBtn").html(capitalizeFirstLetter(ville));
+//   $.ajax({
+//   type: "GET",
+//   url: Routing.generate('becowo_core_list_workspaces', { city: ville }), })
+//   .done(function( msg ) {
+//       $('#paginationList').html(msg);
+//   });
+// });
 
 
 //Navbar Scroll Event

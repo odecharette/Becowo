@@ -230,6 +230,23 @@ class Workspace
 
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Office", inversedBy="workspace")
+     * @ORM\JoinTable(name="becowo_workspace_filter_offices",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="office_id", referencedColumnName="id")
+     *   }
+     * )
+     * @Algolia\Attribute
+     */
+    private $filterOffices;
+
+
+    /**
      * @var \Becowo\CoreBundle\Entity\Region
      *
      * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Region", fetch="EAGER")
@@ -300,6 +317,7 @@ class Workspace
     public function __construct()
     {
         $this->poi = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->filterOffices = new \Doctrine\Common\Collections\ArrayCollection();
         $this->teamMember = new \Doctrine\Common\Collections\ArrayCollection();
         // $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
@@ -927,6 +945,40 @@ class Workspace
     public function getPoi()
     {
         return $this->poi;
+    }
+
+    /**
+     * Add filterOffices
+     *
+     * @param \Becowo\CoreBundle\Entity\Office $office
+     *
+     * @return Workspace
+     */
+    public function addFilterOffices(\Becowo\CoreBundle\Entity\Office $office)
+    {
+        $this->filterOffices[] = $office;
+
+        return $this;
+    }
+
+    /**
+     * Remove filterOffices
+     *
+     * @param \Becowo\CoreBundle\Entity\Office $office
+     */
+    public function removeFilterOffices(\Becowo\CoreBundle\Entity\Office $office)
+    {
+        $this->filterOffices->removeElement($office);
+    }
+
+    /**
+     * Get filterOffices
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFilterOffices()
+    {
+        return $this->filterOffices;
     }
 
     /**

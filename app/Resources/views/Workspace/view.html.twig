@@ -31,7 +31,7 @@
 					{% else %}
 						<strong>{{ws.name}} vous propose : <br></strong>
 						{% for q in quantityByOfficeType %}
-							{% if q.name == 'Open space' %}
+							{% if q.name == 'Espace partagé' %}
 								{{q.name}} : {{q.desk_qty}} places <br>
 							{% else %}
 								{{q.name}} : {{q.quantity}} <br>

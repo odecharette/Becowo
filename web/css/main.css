@@ -848,28 +848,6 @@ footer{
   height: 30px;
   margin: 0 2px;
 }
-@media (max-width: 767px){
-  .vignette .pub{
-    font-size: 14pt;
-  }
-}
-@media (min-width: 768px){
-  .vignette .pub{
-    font-size: 20pt;
-  }
-}
-.vignette .pub{
-  background-color: var(--my-green);
-  color: white;
-  height: 310px;
-  width: 100%;
-  top: 0;
-  vertical-align: bottom;
-  display: inline-block;
-  padding: 29px;
-  text-align: center;
-}
-
 
 
 #btn_comment{
@@ -2898,22 +2876,26 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
     display: block;
 }
 
+#filtersBar h3{
+  margin: 0 0 5px -20px;
+}
+
 #filtersBar input[type=checkbox] { display:none !important; } /* to hide the checkbox itself */
-#filtersBar input[type=checkbox] + label:after {
+#filtersBar input[type=checkbox] + span:after {
   font-family: FontAwesome !important;
   display: inline-block !important;
 }
 
-#filtersBar input[type=checkbox] + label:after { content: "\f096" !important; } /* unchecked icon */
-#filtersBar input[type=checkbox] + label:after {    
+#filtersBar input[type=checkbox] + span:after { content: "\f096" !important; } /* unchecked icon */
+#filtersBar input[type=checkbox] + span:after {    
   position: absolute;
-  right: 20px; 
+  left: -5px; 
  }
 
-#filtersBar input[type=checkbox]:checked + label:after { content: "\f046" !important; } /* checked icon */
-#filtersBar input[type=checkbox]:checked + label:after { 
+#filtersBar .ais-refinement-list--item__active input[type=checkbox] + span:after { content: "\f046" !important; } /* checked icon */
+#filtersBar .ais-refinement-list--item__active input[type=checkbox] + span:after { 
   position: absolute;
-  right: 20px;
+  left: -5px; 
 } 
 
 #filtersBar .titles{
@@ -2938,17 +2920,11 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   padding-right: 40px;
 }
 
-.vignette .fb_iframe_widget{
-  width: inherit;
-  margin-left: -200px;
-}
+
 .fb_iframe_widget span{
   width: 100% !important;
 }
-.vignette .fb-page iframe{
-  /*Pour cacher le nombre de likes et réduire le plugin*/
-  width: 205px !important;
-}
+
 
 .radio-filters {
     float: left;

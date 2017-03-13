@@ -22,16 +22,21 @@
 {{ render(controller('BecowoCoreBundle:Home:paginationList', {limit: 5})) }} #}
 
 <div class="row" id="filtersBar">
-	<div class="row">
-		<div class="col-lg-3">
-			<h3>Ville</h3>
-	    	<div id="cities" class="facet"></div>
-		</div>	
-		<div class="col-lg-3">
-			<h3>Catégorie</h3>
-	    	<div id="category" class="facet"></div>
-    	</div>
-	</div>
+	<div class="col-lg-3 col-lg-offset-1">
+		<h3>Région</h3>
+        <div id="regions" class="facet"></div>
+    </div>
+    <div class="col-lg-2">
+   		<h3>Ville</h3>
+    	<div id="cities" class="facet"></div>
+    </div>
+    <div class="col-lg-2">
+    	<h3>Bureau</h3>
+        <div id="filterOffices"></div>
+	</div>	
+	{# <div class="col-lg-2">
+		<div id="clear-all"></div>
+	</div> #}
 </div>
 <div class="row">
     <div id="hits"></div>
@@ -65,7 +70,29 @@
 
 </div>
 
-
+{# <div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <div class="modal-header modal-header-info">
+                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Réclamer cet espace</h4>
+            </div>
+			<form method="POST" action="{{ path('becowo_core_vote_zen', { 'id' : ws.id }) }}" id="form_voteZen">
+            <div class="modal-body">
+                <p>La réservation en ligne n'est malheureusement pas disponible chez {{ws.name}}. <br>
+                Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à {{ws.name}} car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"
+				</p>
+				Votre email * : <input type="email" name="emailVote" required="true" width="200px">
+				<p>Nous vous préviendrons dès que {{ws.name}} sera disponible sur Becowo.</p>
+				<div id="error-{{ws.id}}"></div>
+            </div>
+            <div class="modal-footer">
+				<button type="submit" id="voteZen-{{ws.id}}" class="modal_valid">Je réclame !</button>
+            </div>
+			</form>	
+		</div>
+	</div>
+</div> #}
 
 {% endblock body %}
 
@@ -79,27 +106,135 @@
 	  indexName: "{{ algolia.index_workspace }}",
 	  urlSync: true
 	});
-	
+
 	search.addWidget(
 	  instantsearch.widgets.hits({
 	    container: '#hits',
-	    hitsPerPage: 10,
+	    hitsPerPage: 6,
+	    cssClasses: {
+	    	item: 'vignette'
+	    },
 	    templates: {
 	      item: function(data) {
 	      	console.log(data);
 	      	
 	      	var name = '';
-	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.name !== 'undefined'){
-	        		name = data._highlightResult.name.value
-	        	}else if(data.name !== null){
-	        		name = data.name
-	        	}else{
-	        		name = ''};
+	      	if(data.name !== null){
+        		name = data.name
+        	}else{
+        		name = ''};
+	        var favoritePictureUrl = '';
+	      	if(data.favoritePictureUrl !== null){
+        		favoritePictureUrl = '<img src="{{ asset("images/Workspaces/")}}' + name + '/' + data.favoritePictureUrl + '" alt=' + name + '>';
+        	}else{
+        		favoritePictureUrl = ''};
 	      	
+	        var category = '';
+	      	if(data.category !== null){
+        		category = data.category.name;
+        	}else{
+        		category = ''};
 
-	        return '<div class="vignette">' + 
-	        		name +
-					'</div>' 
+	        var lowestPrice = '';
+	      	if(data.lowestPrice !== null){
+        		lowestPrice = Math.round(data.lowestPrice);
+        	}else{
+        		lowestPrice = ''};
+
+	        var voteAverage = '';
+	      	if(data.voteAverage !== null){
+        		voteAverage = Math.round(data.voteAverage);
+        	}else{
+        		voteAverage = ''};
+
+	        var region = '';
+	      	if(data.region !== null){
+        		region = data.region.name;
+        	}else{
+        		region = ''};
+
+	        var city = '';
+	      	if(data.city !== null){
+        		city = data.city;
+        	}else{
+        		city = ''};
+
+	        var offer = '';
+	      	if(data.offer !== null){
+        		offer = data.offer.name;
+        	}else{
+        		offer = ''};
+
+	        var descriptionBonus = '';
+	      	if(data.descriptionBonus !== null){
+        		descriptionBonus = data.descriptionBonus;
+        	}else{
+        		descriptionBonus = ''};
+
+	        var link = '';
+	        if(data.offer.name == 'Zen')
+	        { 
+	        	link = '<a href="{{ path("becowo_core_workspace", { 'region': 'paramRegion', 'ville' : 'paramCity', 'name': 'paramName' }) }}">';
+	        	link = link.replace("paramRegion", region);
+	        	link = link.replace("paramCity", city);
+	        	link = link.replace("paramName", name);
+	        }else{
+	        	link='';
+	        }
+
+	        var vignette = '<div>' + 
+			        		link + 
+			        		'<div id="pic">' + 
+								'<div id="favoritePicture">' +
+									favoritePictureUrl + 
+								'</div>' +
+								'<div id="price">';
+								if(category == 'Café Wifi')
+								{
+									vignette = vignette + 'Gratuit';
+								}else{
+									vignette = vignette + 'A partir de ' + lowestPrice + '<sup>€</sup>';
+									if(offer == 'Zen')
+									{
+										vignette = vignette + ' <i class="fa fa-bolt" aria-hidden="true"></i>';
+									}
+								}
+							vignette = vignette + 
+							'</div>' +
+							'<div id="stars">';
+								if(voteAverage > 0)
+								{
+									vignette = vignette + 
+									'<img src="{{ asset("images/icons/star")}}' + voteAverage + '.png" alt="Vote">';
+								}
+							vignette = vignette + 
+							'</div>' +
+							'<div id="btn_decouvrir">';
+								if(offer == 'Zen')
+								{
+									vignette = vignette + '<button type="button" class="btn_vignette">Découvrir</button>';
+								}else{
+									vignette = vignette + '<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>';
+								}
+							vignette = vignette + 
+							'</div>' +
+							'</div>';
+							if(offer == 'Zen')
+							{
+								vignette = vignette + '</a>';
+							}
+							vignette = vignette + 
+							'<table>' +
+								'<td id="address">' +
+									'<strong id="WSname">' + name + '</strong> <br>' +
+									'<span class="city">' + city + '</span>' +
+								'</td>' +
+							'</table>' +
+							'<div id="bonus">' +
+								descriptionBonus + 
+							'</div>';
+
+			return vignette;
 	      },
 	      empty: function(data) {
 	        return '<p>Désolé ! Aucun espace de travail trouvé pour la recherche <em>' + data.query + '</em>.</p>'
@@ -122,26 +257,91 @@
 
 	search.addWidget(
 	  instantsearch.widgets.refinementList({
-	    container: '#cities',
-	    attributeName: 'city',
-	    limit: 10,
-	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or'
+	    container: '#regions',
+	    attributeName: 'region.name',
+	    limit: 3,
+	    sortBy: ['count:desc'],
+	    operator: 'or',
+	    autoHideContainer: false,
+	    showMore: {
+	    	limit : 10,
+	    	templates: {
+	    		active: 'Voir moins',
+	    		inactive: 'Voir plus'
+	    	}
+	    },
+	    templates: {
+	    	item: function(data) {
+	    		return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+	    		'<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+	    		'<span></span>' +
+              	'</label>'
+	    	}
+	    }
 	  })
 	);
+
 	search.addWidget(
 	  instantsearch.widgets.refinementList({
-	    container: '#category',
-	    attributeName: 'category.name',
-	    limit: 10,
-	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or'
-	    // templates: {
-	    //   header: '<h5>Centre d\'intérêt</h5>'
-	    // }
+	    container: '#cities',
+	    attributeName: 'city',
+	    limit: 3,
+	    sortBy: ['count:desc'],
+	    operator: 'or',
+	    autoHideContainer: false,
+	    showMore: {
+	    	limit : 10,
+	    	templates: {
+	    		active: 'Voir moins',
+	    		inactive: 'Voir plus'
+	    	}
+	    },
+	    templates: {
+	    	item: function(data) {
+	    		return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+	    		'<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+	    		'<span></span>' +
+              	'</label>'
+	    	}
+	    }
 	  })
 	);
 	
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#filterOffices',
+	    attributeName: 'filterOffices.name',
+	    limit: 3,
+	    sortBy: ['count:desc'],
+	    operator: 'or',
+	    autoHideContainer: false,
+	    showMore: {
+	    	limit : 10,
+	    	templates: {
+	    		active: '<Voir moins',
+	    		inactive: 'Voir plus'
+	    	}
+	    },
+	    templates: {
+	    	item: function(data) {
+	    		return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+	    		'<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+	    		'<span></span>' +
+              	'</label>'
+	    	}
+	    }
+	  })
+	);
+	
+	// search.addWidget(
+ //  	instantsearch.widgets.clearAll({
+ //    container: '#clear-all',
+ //    templates: {
+ //      link: 'Effacer les filtres'
+ //    },
+	//     autoHideContainer: false
+	//   })
+	// );
 
 	search.start();
 

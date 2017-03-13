@@ -3,12 +3,12 @@ becowo_core_homepage:
     defaults: { _controller: BecowoCoreBundle:Home:home }
     methods: GET
 
-becowo_core_list_workspaces:
-    path:     /list
-    defaults: { _controller: BecowoCoreBundle:Home:paginationList }
-    methods: GET
-    options:
-        expose: true
+# becowo_core_list_workspaces:
+#     path:     /list
+#     defaults: { _controller: BecowoCoreBundle:Home:paginationList }
+#     methods: GET
+#     options:
+#         expose: true
 
 becowo_core_workspace:
     path:     /espace-de-coworking/{region}/{ville}/{name}

@@ -41,7 +41,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    		{% endif %}
 		    		<div class="col-lg-6 col-md-5 col-xs-12">
 		    			<span class="office-name" id="{{priceandoffice.workspaceHasOffice.name}}">{{priceandoffice.workspaceHasOffice.name}}</span> - 
-		    			{% if priceandoffice.WorkspaceHasOffice.office.name == 'Open space'%}
+		    			{% if priceandoffice.WorkspaceHasOffice.office.id == 1 %}
 			    			<span class="capacity">Quantité : {{priceandoffice.workspaceHasOffice.deskQty}} </span>
 			    			<i class="fa fa-briefcase" aria-hidden="true"></i>
 		    			{% else %}
