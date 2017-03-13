@@ -20,6 +20,7 @@ use Becowo\CoreBundle\Form\DataTransformer\CollectionToSkillTransformer;
 use Becowo\CoreBundle\Form\DataTransformer\CollectionToHobbieTransformer;
 use Becowo\CoreBundle\Form\DataTransformer\CollectionToWishTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityRepository;
 
 class ProfileType extends AbstractType
 {
@@ -56,6 +57,14 @@ class ProfileType extends AbstractType
     	    ->add('street', TextType::class, array('attr' => array('placeholder' => 'Adresse'),'required' => false, 'label' => false))
     	    ->add('postcode', TextType::class, array('attr' => array('placeholder' => 'Code Postal'),'required' => false, 'label' => false))
     	    ->add('city', TextType::class, array('attr' => array('placeholder' => 'Ville'),'required' => false, 'label' => false))
+            ->add('country', EntityType::class, array(
+                'class' => 'BecowoCoreBundle:Country',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                },
+                'choice_label' => 'name',
+                'label' => false))
             ->add('job', TextType::class, array('attr' => array('placeholder' => 'Job', 'autocomplete' => 'off'),'required' => false, 'label' => false))
     	    ->add('society', TextType::class, array('attr' => array('placeholder' => 'Société'), 'label' => false, 'required' => false))
     	    ->add('website', TextType::class, array('attr' => array(

@@ -120,6 +120,12 @@
 	        		bio = data.description
 	        	}else{
 	        		bio = ''};
+
+	        var society = '';
+	        if(data.society !== null){
+	        		society = ' chez ' + data.society
+	        	}else{
+	        		society = ''};
 	        var id = data.id;
 	        var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
 			url = url.replace("paramCity", cityUrl.replace('-', ' '));
@@ -136,7 +142,7 @@
 						    'margin-left: 15px;">&nbsp;</div>' +
 						'<span>' + firstname + ' ' + name + '</span>' +
 						'<div class="info">' +
-							'<i class="fa fa-briefcase" aria-hidden="true"></i> ' + job + '<br>' +
+							'<i class="fa fa-briefcase" aria-hidden="true"></i> ' + job + society + '<br>' +
 							'<i class="fa fa-thumb-tack" aria-hidden="true"></i> ' + TextAbstract(skills, 57) + '<br>' + 
 							'<i class="fa fa-users" aria-hidden="true"></i> ' + TextAbstract(wishes, 57) + '<br>' +
 							'<i class="fa fa-home" aria-hidden="true"></i> ' + city + '<br>' +

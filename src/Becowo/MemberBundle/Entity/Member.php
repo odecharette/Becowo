@@ -132,6 +132,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      *
      * @ORM\Column(name="society", type="string", length=100, nullable=true)
      * @Assert\Length(min = 3, max = 100)
+     * @Algolia\Attribute
      *
      */
     private $society;
