@@ -177,7 +177,7 @@ $('#top-link-block').removeClass('hidden').affix({
 
 
 // Smooth scrolling for home button
-$("#goToMap").unbind("click").click(function(e){
+$("#goToFilters").unbind("click").click(function(e){
     e.preventDefault();
     $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
 });
