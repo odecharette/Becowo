@@ -34,7 +34,7 @@ security:
               use_referer : true
               success_handler: authentication_handler 
             remember_me:
-              secret:     %secret% # %secret% est un paramètre de parameter
+              secret:     '%secret%' # %secret% est un paramètre de parameter
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
