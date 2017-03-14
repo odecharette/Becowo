@@ -77,11 +77,12 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setFacebookLink("https://www.facebook.com/".$rsId);
                     $user->setFirstName($response->getFirstName());
                     $user->setName($response->getRealName());
-                    
-                    $profile_picture = new ProfilePicture();
-                    $profile_picture->setUrl($response->getProfilePicture());
-                    $profile_picture->setAlt($response->getFirstName());
-                    $user->setProfilePicture($profile_picture);
+                    $user->setUrlProfilePicture($response->getProfilePicture());
+
+                    // $profile_picture = new ProfilePicture();
+                    // $profile_picture->setUrl($response->getProfilePicture());
+                    // $profile_picture->setAlt($response->getFirstName());
+                    // $user->setProfilePicture($profile_picture);
                     break;
                 case 'linkedin':
                     $user->setEmail($email);
@@ -91,20 +92,22 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setFirstName($infos['firstName']);
                     $user->setName($infos['lastName']);
                     $user->setSociety($infos['positions']['values'][0]['company']['name']);
+                    $user->setUrlProfilePicture($infos['pictureUrl']);
 
-                    $profile_picture = new ProfilePicture();
-                    $profile_picture->setUrl($infos['pictureUrl']);
-                    $profile_picture->setAlt($infos['firstName']);
-                    $user->setProfilePicture($profile_picture);
+                    // $profile_picture = new ProfilePicture();
+                    // $profile_picture->setUrl($infos['pictureUrl']);
+                    // $profile_picture->setAlt($infos['firstName']);
+                    // $user->setProfilePicture($profile_picture);
                     break;
                 case 'twitter':
                     $user->setTwitterLink('https://twitter.com/'.$infos['screen_name']);
                     $user->setName($infos['name']);
+                    $user->setUrlProfilePicture($infos['profile_image_url_https']);
 
-                    $profile_picture = new ProfilePicture();
-                    $profile_picture->setUrl($infos['profile_image_url_https']);
-                    $profile_picture->setAlt($infos['name']);
-                    $user->setProfilePicture($profile_picture);
+                    // $profile_picture = new ProfilePicture();
+                    // $profile_picture->setUrl($infos['profile_image_url_https']);
+                    // $profile_picture->setAlt($infos['name']);
+                    // $user->setProfilePicture($profile_picture);
                     break;
             }
 
