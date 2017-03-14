@@ -44,7 +44,7 @@
     </div>
     
     {% if event.facebookId != null %}
-      <a href="http://facebook.com/{{event.facebookId}}" target="_blank" class="participate"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a> 
+      <a href="http://facebook.com/{{event.facebookId}}" class="participate" onclick="return trackOutboundLink('http://facebook.com/{{event.facebookId}}', 'participate event {{event.workspace.name}}', true);" target="_blank"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a> 
     {% endif %}
           
  

@@ -9,6 +9,22 @@
 
 // End Google Analytics 
 
+/**
+* Fonction de suivi des clics sur des liens sortants dans Analytics
+* Cette fonction utilise une chaîne d'URL valide comme argument et se sert de cette chaîne d'URL
+* comme libellé d'événement. Configurer la méthode de transport sur 'beacon' permet d'envoyer le clic
+* au moyen de 'navigator.sendBeacon' dans les navigateurs compatibles.
+*/
+var trackOutboundLink = function(url, name, new_window) {
+   ga('send', 'event', 'outbound', 'clic', name, {'hitCallback':
+    function () {
+      if (!new_window) {
+        document.location = url;
+      }
+    }
+  });
+}
+
 /* Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent */
     window.cookieconsent_options = {"message":"En poursuivant votre navigation sur ce site, vous acceptez que des cookies soient utilisés.","dismiss":"J'ai compris !","learnMore":"En savoir plus","link":"https://www.microsoft.com/fr-fr/security/resources/cookie-whatis.aspx","theme":"light-floating"};
 
