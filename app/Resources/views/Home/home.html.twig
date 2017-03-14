@@ -25,9 +25,9 @@
     	<h3>Bureau</h3>
         <div id="filterOffices"></div>
 	</div>	
-	{# <div class="col-lg-2">
-		<div id="clear-all"></div>
-	</div> #}
+	{#<div class="col-lg-2">
+		 <div id="clear-all"></div> 
+	</div>#}
 </div>
 <div class="row">
     <div id="hits"></div>
@@ -172,6 +172,19 @@
 	        }else{
 	        	link='';
 	        }
+	        var filterOffices = '';
+			if(data.filterOffices !== null){
+				tab = data.filterOffices;
+				tab.forEach(function(e) {
+					filterOffices = filterOffices + 
+									'<span class="tooltips">' +
+										'<img src="{{ asset("images/icons/offices/")}}' + e.name + '.png" alt="' + e.name + '">' +
+										'<span>' + e.name + '</span>' +
+									'</span>';
+				});
+			}else{
+				filterOffices = ''};
+			
 
 	        var vignette = '<div>' + 
 			        		link + 
@@ -219,6 +232,9 @@
 								'<td id="address">' +
 									'<strong id="WSname">' + name + '</strong> <br>' +
 									'<span class="city">' + city + '</span>' +
+								'</td>' +
+								'<td id="listeLogo">' +
+									filterOffices +
 								'</td>' +
 							'</table>' +
 							'<div id="bonus">' +

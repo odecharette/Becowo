@@ -751,6 +751,8 @@ footer{
   display: inline-block;
   margin: 20px 2%;
   vertical-align: top;
+}
+#hits{
   overflow: hidden;
 }
 .vignette #address{
@@ -844,8 +846,8 @@ footer{
   padding-top: 10px;
 }
 .vignette #listeLogo img{
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin: 0 2px;
 }
 
