@@ -63,7 +63,10 @@ class ProfileType extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.name', 'ASC');
                 },
+                'placeholder' => 'Choisir un pays',
+                'empty_data'  => null,
                 'choice_label' => 'name',
+                'required' => false,
                 'label' => false))
             ->add('job', TextType::class, array('attr' => array('placeholder' => 'Job', 'autocomplete' => 'off'),'required' => false, 'label' => false))
     	    ->add('society', TextType::class, array('attr' => array('placeholder' => 'Société'), 'label' => false, 'required' => false))
