@@ -913,6 +913,9 @@ footer{
 
 #community .texte1{
   background-color: var(--my-green);
+  color: white;
+  text-align: justify;
+  padding: 10px;
 }
 #community .nav{
   margin-top: 15px !important;
