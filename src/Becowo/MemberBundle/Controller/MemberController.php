@@ -45,6 +45,7 @@ class MemberController extends Controller
             ->setSubject('Becowo - Nouveau message pour un coworker')
             ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
             ->setTo('contact@becowo.com')
+            ->setBcc('webmaster@becowo.com')
             ->setContentType("text/html")
             ->setBody(
                 $this->renderView(
@@ -87,6 +88,7 @@ class MemberController extends Controller
 	        ->setSubject("Becowo - Intégrez notre communauté")
 	        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
 	        ->setTo($member->getEmail())
+          ->setBcc('webmaster@becowo.com')
           ->setContentType("text/html")
 	        ->setBody(
 	            $this->templating->render(

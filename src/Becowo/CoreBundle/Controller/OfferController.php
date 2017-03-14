@@ -20,6 +20,7 @@ class OfferController extends Controller
                 ->setSubject('[Becowo] - Nouveaux contact d\'un espace de coworking')
                 ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
                 ->setTo('contact@becowo.com')
+                ->setBcc('webmaster@becowo.com')
                 ->setContentType("text/html")
                 ->setBody(
                     $this->renderView(

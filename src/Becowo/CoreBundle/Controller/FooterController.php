@@ -22,6 +22,7 @@ class FooterController extends Controller
                 ->setSubject('Becowo - Nouveau message')
                 ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
                 ->setTo('contact@becowo.com')
+                ->setBcc('webmaster@becowo.com')
                 ->setContentType("text/html")
                 ->setBody(
                     $this->renderView(

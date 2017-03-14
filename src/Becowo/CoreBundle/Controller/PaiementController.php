@@ -214,6 +214,7 @@ class PaiementController extends Controller
         ->setSubject("Becowo - Nouvelle demande de réservation - " . $booking_ref)
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($emailManager) 
+        ->setBcc('webmaster@becowo.com')
         ->setContentType("text/html")
         ->setBody(
             $this->renderView(
@@ -229,6 +230,7 @@ class PaiementController extends Controller
         ->setSubject("Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref)
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($booking->getMember()->getEmail())
+        ->setBcc('webmaster@becowo.com')
         ->setContentType("text/html")
         ->setBody(
             $this->renderView(
@@ -251,6 +253,7 @@ class PaiementController extends Controller
         ->setSubject("Becowo - Transaction refusée " . $booking_ref)
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo('contact@becowo.com') 
+        ->setBcc('webmaster@becowo.com')
         ->setContentType("text/html")
         ->setBody('Transaction refusée pour le booking N° : ' . $booking_ref);
 

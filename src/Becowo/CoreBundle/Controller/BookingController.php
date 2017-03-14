@@ -129,6 +129,7 @@ class BookingController extends Controller
           ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
           ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
           ->setTo($booking->getMember()->getEmail())
+          ->setBcc('webmaster@becowo.com')
           ->setContentType("text/html")
           ->setBody(
               $this->renderView(
@@ -168,6 +169,7 @@ class BookingController extends Controller
         ->setSubject("Becowo - Réservation N°" . $bookRef . " refusée")
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($booking->getMember()->getEmail())
+        ->setBcc('webmaster@becowo.com')
         ->setContentType("text/html")
         ->setBody(
             $this->renderView(
