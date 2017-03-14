@@ -1211,29 +1211,30 @@ footer{
 #PublicProfile .identity i{
   color: var(--my-pink);
 }
-#PublicProfile .emailPublic{
+#PublicProfile .emailPublic, #PublicProfile .sendNewsletter{
   display: inline-flex;
     width: 100%;
 }
-#PublicProfile .emailPublic .form-group{
+#PublicProfile .emailPublic .form-group, #PublicProfile .sendNewsletter .form-group{
   width: 30px;
 }
-#PublicProfile .identity input[type=checkbox]{
+#PublicProfile .identity input[type=checkbox], #PublicProfile .newsletter input[type=checkbox]{
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
 #PublicProfile .identity .checkbox{
-    margin: 10px 0;
+  margin: 10px 0;
   width: 30px;
   padding: 0;
 }
-#PublicProfile .identity span{
+#PublicProfile .identity span, #PublicProfile .newsletter span{
   color: #555;
   font-weight: bold;
   font-size: 14px;
   line-height: 50px;
 }
+
 #PublicProfile .noEmail{
   line-height: 20px !important;
 }

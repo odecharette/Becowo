@@ -114,4 +114,26 @@ class MemberController extends Controller
   	return $result;
   }
 
+  public function unsubscribeNewsletterAction($memberID)
+  {
+    $MemberService = $this->get('app.member');
+    $member = $MemberService->getMemberById($memberID);
+
+    $em = $this->getDoctrine()->getManager();
+
+    if($member !== null)
+    {
+      $member->setSendNewsletter(false);
+      $em->persist($member);
+      $em->flush();
+
+      $result = 'Vous avez bien été désinscrit de la Newsletter de Becowo';
+    }else{
+      $result = 'Aucun coworker pour l\'ID : ' . $memberID;
+    }
+
+    return $this->render('Member/unsubscribeNewsletter.html.twig', array('result' => $result));
+
+  }
+
 }

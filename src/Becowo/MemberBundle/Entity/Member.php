@@ -302,6 +302,13 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      */
     private $emailIsPublic = '0';
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="send_newsletter", type="boolean", nullable=false)
+     */
+    private $sendNewsletter = '0';
+
     private $file;
 
     /**
@@ -1161,6 +1168,30 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     public function setEmailIsPublic($emailIsPublic)
     {
         $this->emailIsPublic = $emailIsPublic;
+
+        return $this;
+    }
+
+ /**
+     * Gets the value of sendNewsletter.
+     *
+     * @return boolean
+     */
+    public function getSendNewsletter()
+    {
+        return $this->sendNewsletter;
+    }
+
+    /**
+     * Sets the value of sendNewsletter.
+     *
+     * @param boolean $sendNewsletter
+     *
+     * @return self
+     */
+    public function setSendNewsletter($sendNewsletter)
+    {
+        $this->sendNewsletter = $sendNewsletter;
 
         return $this;
     }

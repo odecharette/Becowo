@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class RegistrationController extends BaseController
 {
@@ -40,12 +41,17 @@ class RegistrationController extends BaseController
 
         $form = $formFactory->createForm();
         $form->setData($user);
+        
+        // Modif olivia to add sendNewsletter field
+        $user->setSendNewsletter(true);
+        $form->add('sendNewsletter', CheckboxType::class,  array('required' => false, 'label' => 'Recevoir la newsletter'));
 
         $form->handleRequest($request);
 
 		$response = $this->render('FOSUserBundle:Registration:register.html.twig', array('form' => $form->createView()));
         
         if ($form->isValid()) {
+
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 

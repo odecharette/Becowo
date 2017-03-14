@@ -37,6 +37,10 @@ becowo_core:
     resource: "@BecowoCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
+becowo_member:
+    resource: "@BecowoMemberBundle/Resources/config/routing.yml"
+    prefix:   /member/
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 

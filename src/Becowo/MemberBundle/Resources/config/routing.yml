@@ -1,0 +1,5 @@
+becowo_member_unsubscribeNewsletter:
+    path:     /newsletter/unsubscribe/{memberID}
+    defaults: { _controller: BecowoMemberBundle:Member:unsubscribeNewsletter }
+    methods: GET
+
