@@ -77,3 +77,7 @@ services:
     app.member.sendEmailNewUsers :
         class: Becowo\MemberBundle\Controller\MemberController
         arguments: ['@doctrine.orm.entity_manager', '@mailer', '@templating', '@app.member'] 
+
+    app.events.getFacebookEvents :
+        class: Becowo\ApiBundle\Controller\EventsController
+        arguments: ['@doctrine.orm.entity_manager', '@app.api'] 

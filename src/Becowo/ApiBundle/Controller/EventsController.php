@@ -4,28 +4,35 @@ namespace Becowo\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManager;
 
 class EventsController extends Controller
 {
+  private $em = null;
+  private $appApi = null;
 
-  public function createFacebookPageEventsAction(Request $request)
+  public function __construct(EntityManager $em=null, $appApi=null)
   {
-    $ApiService = $this->get('app.api');
+      $this->em = $em;
+      $this->appApi = $appApi;
+  }
 
-    $eventsParam = $ApiService->getApiEventsParam();
+  public function createFacebookPageEventsAction()
+  {
+    $eventsParam = $this->appApi->getApiEventsParam();
 
     // On va chercher les FB events de tous les WS renseignés dans la table ApiEvents, depuis la dernière update date
     foreach ($eventsParam as $param) {
         
-        $events = $ApiService->getFacebookPageEvents($param->getFacebookPageId());
+        $events = $this->appApi->getFacebookPageEvents($param->getFacebookPageId());
         
         if($events != null)
         {
-            $ApiService->saveFacebookPageEvents($events, $param->getFacebookPageId(), $param->getWorkspace());
+            $this->appApi->saveFacebookPageEvents($events, $param->getFacebookPageId(), $param->getWorkspace());
         }
     }
 
-	return $this->render('Api/events.html.twig',array('events' => $events));
+	return 'Done : please read log in var/log/api';
   }
 
 
