@@ -144,7 +144,7 @@ header .log-menu-content i{
 header .loginMenu{
   width: 170px;
 }
-header i{
+header .menu i{
   font-size: 6pt !important;
   margin: 0 10px;
   vertical-align: middle;
