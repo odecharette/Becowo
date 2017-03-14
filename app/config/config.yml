@@ -315,6 +315,7 @@ hwi_oauth:
             client_secret:  Q3q0A7pbEPQxHzgk
             infos_url:      "https://api.linkedin.com/v1/people/~:(id,formatted-name,first-name,last-name,location,positions,headline,email-address,public-profile-url,picture-url)?format=json"
             scope:          "r_basicprofile,r_emailaddress"
+            csrf:           true
         twitter:
             type:                twitter
             client_id:           Dh1p53EN2cVjULRJuVGeRr8Bq
