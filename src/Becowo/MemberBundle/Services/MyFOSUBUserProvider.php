@@ -80,10 +80,6 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setName($response->getRealName());
                     $user->setUrlProfilePicture($response->getProfilePicture());
 
-                    // $profile_picture = new ProfilePicture();
-                    // $profile_picture->setUrl($response->getProfilePicture());
-                    // $profile_picture->setAlt($response->getFirstName());
-                    // $user->setProfilePicture($profile_picture);
                     break;
                 case 'linkedin':
                     $user->setEmail($email);
@@ -112,20 +108,12 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setDescription($infos['positions']['values'][0]['summary']);
                     $user->setUrlProfilePicture($infos['pictureUrl']);
 
-                    // $profile_picture = new ProfilePicture();
-                    // $profile_picture->setUrl($infos['pictureUrl']);
-                    // $profile_picture->setAlt($infos['firstName']);
-                    // $user->setProfilePicture($profile_picture);
                     break;
                 case 'twitter':
                     $user->setTwitterLink('https://twitter.com/'.$infos['screen_name']);
                     $user->setName($infos['name']);
                     $user->setUrlProfilePicture($infos['profile_image_url_https']);
 
-                    // $profile_picture = new ProfilePicture();
-                    // $profile_picture->setUrl($infos['profile_image_url_https']);
-                    // $profile_picture->setAlt($infos['name']);
-                    // $user->setProfilePicture($profile_picture);
                     break;
             }
 
