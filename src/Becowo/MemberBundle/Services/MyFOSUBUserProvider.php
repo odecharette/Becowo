@@ -90,14 +90,14 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setLinkedinLink($infos['publicProfileUrl']);
 
                     $repo = $this->properties['em']->getRepository('BecowoCoreBundle:Job');
-                    $existingJob = $repo->findOneBy(array('name' => $infos['headline']));
+                    $existingJob = $repo->findOneBy(array('name' => $infos['positions']['values'][0]['title']));
 
                     if($existingJob !== null)
                     {
                         $user->setJob($existingJob);
                     }else{
                         $job = new Job();
-                        $job->setName($infos['headline']);
+                        $job->setName($infos['positions']['values'][0]['title']);
                         $user->setJob($job);
                         $this->properties['em']->persist($job);
                     }
@@ -107,6 +107,7 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setFirstName($infos['firstName']);
                     $user->setName($infos['lastName']);
                     $user->setSociety($infos['positions']['values'][0]['company']['name']);
+                    $user->setDescription($infos['positions']['values'][0]['summary']);
                     $user->setUrlProfilePicture($infos['pictureUrl']);
 
                     // $profile_picture = new ProfilePicture();
