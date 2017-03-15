@@ -47,6 +47,13 @@
   {{ form_end(managerContactForm) }}
 
 {% endif %}
-{% include "CommonViews/flashMessage.html.twig" %}
+{# Ici on empeche de fermer le falshmessage sinon après la pop'in se rouvre vide #}
+{% for label, flashes in app.session.flashbag.all %}
+  {% for flash in flashes %}
+      <div class="alert alert-{{label}} alert-dismissible" role="alert">
+          {{ flash }}
+      </div>
+  {% endfor %}
+{% endfor %}
 </div>
                       
