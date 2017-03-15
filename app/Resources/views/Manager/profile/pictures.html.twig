@@ -15,8 +15,8 @@
 	<div class="col-lg-12">
 		{% for pic in pics %}
 		<div class="show-image">
-			<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{pic.url}}" alt="{{pic.alt}}">
-			<a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id}) }}">Supprimer</a>
+			<img src="{{ asset('images/Workspaces/') }}{{workspace.name}}/{{pic.url}}" alt="{{pic.alt}}">
+			<a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id, wsId: workspace.id}) }}">Supprimer</a>
 			<br>
 		</div>
 		{% endfor %}

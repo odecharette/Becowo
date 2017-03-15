@@ -144,7 +144,7 @@ class WorkspaceService
     public function getEventsByWorkspace(Workspace $ws)
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:Event');
-        return $repo->findBy(array('workspace' => $ws));
+        return $repo->findBy(array('workspace' => $ws), array('startDate' => 'DESC'));
     }
 
     public function getFuturEventsByWorkspaceOrderByDate(Workspace $ws)

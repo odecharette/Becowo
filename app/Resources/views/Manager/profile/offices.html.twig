@@ -30,7 +30,7 @@
 			 	<td>{{office.office.name}}</td>
 			 	<td>{{office.name}}</td>
 			 	{% if office.urlProfilePicture != '' %}
-					<td><img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{office.urlProfilePicture}}" alt="{{office.office.name}}" width="80px" height="50px"></td>
+					<td><img src="{{ asset('images/Workspaces/') }}{{workspace.name}}/{{office.urlProfilePicture}}" alt="{{office.office.name}}" width="80px" height="50px"></td>
 				{% else %}
 					<td></td>
 				{% endif %}
@@ -50,7 +50,7 @@
 			                <p>Etes vous sûr de vouloir supprimer ? </p>
 			            </div>
 			            <div class="modal-footer">
-			                <a href="{{ path('becowo_manager_profile_offices_delete', { 'id': office.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
+			                <a href="{{ path('becowo_manager_profile_offices_delete', { 'id': office.id, 'wsId': workspace.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
 			                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Annuler</button>
 			            </div>
 			        </div>

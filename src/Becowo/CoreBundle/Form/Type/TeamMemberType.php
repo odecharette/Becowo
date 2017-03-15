@@ -25,7 +25,7 @@ class TeamMemberType extends AbstractType
             ->add('firstname', TextType::class)
             ->add('name', TextType::class, array('required' => false))
             ->add('email', EmailType::class)
-            ->add('job', TextType::class)
+            ->add('job', TextType::class, array('required' => false))
             ->add('description', TextareaType::class, array('required' => false))
             ->add('phone', NumberType::class, array('required' => false))
             ->add('file', FileType::class, array('multiple' => false, 'label' => 'Photo de profil'))

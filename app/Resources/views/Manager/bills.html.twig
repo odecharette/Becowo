@@ -10,7 +10,7 @@
 </div>
 
 {% for file in finder %}
-	<i class="fa fa-file-pdf-o" aria-hidden="true" style="color:red;"></i> <a href="{{ asset('documents/bills/') }}{{app.user.workspace.name}}/{{file.filename}}">{{file.filename}}</a> <br>
+	<i class="fa fa-file-pdf-o" aria-hidden="true" style="color:red;"></i> <a href="{{ asset('documents/bills/') }}{{workspace.name}}/{{file.filename}}">{{file.filename}}</a> <br>
 {% endfor %}
 
 {% endblock page%}

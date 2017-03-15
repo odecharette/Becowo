@@ -7,25 +7,27 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CommentController extends Controller
 {
-  public function viewAction()
+  public function viewAction($id)
   {
   	$WsService = $this->get('app.workspace');
+    $workspace = $WsService->getWorkspaceById($id);
 
-  	$comments = $WsService->getVotesByWorkspace($this->getUser()->getWorkspace());
+  	$comments = $WsService->getVotesByWorkspace($workspace);
 
-  	return $this->render('Manager/comment/comment.html.twig', array('comments' => $comments));
+  	return $this->render('Manager/comment/comment.html.twig', array('comments' => $comments, 'workspace' => $workspace));
   }
 
-  public function voteAction()
+  public function voteAction($id)
   {
     $WsService = $this->get('app.workspace');
+    $workspace = $WsService->getWorkspaceById($id);
 
-    $comments = $WsService->getVotesByWorkspace($this->getUser()->getWorkspace());
-    $voteAvg = $WsService->getAverageVoteByWorkspace($this->getUser()->getWorkspace());
-    $score1Avg = $WsService->getAverageScore1ByWorkspace($this->getUser()->getWorkspace());
-    $score2Avg = $WsService->getAverageScore2ByWorkspace($this->getUser()->getWorkspace());
-    $score3Avg = $WsService->getAverageScore3ByWorkspace($this->getUser()->getWorkspace());
-    $score4Avg = $WsService->getAverageScore4ByWorkspace($this->getUser()->getWorkspace());
+    $comments = $WsService->getVotesByWorkspace($workspace);
+    $voteAvg = $WsService->getAverageVoteByWorkspace($workspace);
+    $score1Avg = $WsService->getAverageScore1ByWorkspace($workspace);
+    $score2Avg = $WsService->getAverageScore2ByWorkspace($workspace);
+    $score3Avg = $WsService->getAverageScore3ByWorkspace($workspace);
+    $score4Avg = $WsService->getAverageScore4ByWorkspace($workspace);
 
     return $this->render('Manager/comment/vote.html.twig', array(
       'comments' => $comments,
@@ -33,7 +35,8 @@ class CommentController extends Controller
       'score1Avg' => $score1Avg,
       'score2Avg' => $score2Avg,
       'score3Avg' => $score3Avg,
-      'score4Avg' => $score4Avg,));
+      'score4Avg' => $score4Avg,
+      'workspace' => $workspace));
   }
 
 }

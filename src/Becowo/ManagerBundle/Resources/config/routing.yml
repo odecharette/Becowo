@@ -4,106 +4,106 @@
 #     methods: GET|POST
 
 becowo_manager_profile_identite:
-    path:     /profile/identite
+    path:     /profile/{id}/identite
     defaults: { _controller: BecowoManagerBundle:Profile:identite }
     methods: GET|POST
 
 becowo_manager_profile_logo:
-    path:     /profile/logo
+    path:     /profile/{id}/logo
     defaults: { _controller: BecowoManagerBundle:Profile:logo }
     methods: GET|POST
 
 becowo_manager_profile_pictures:
-    path:     /profile/pictures
+    path:     /profile/{id}/pictures
     defaults: { _controller: BecowoManagerBundle:Profile:pictures }
     methods: GET|POST
 
 becowo_manager_profile_pictures_delete:
-    path:     /profile/pictures/delete/{id}
+    path:     /profile/{wsId}/pictures/delete/{id}
     defaults: { _controller: BecowoManagerBundle:Delete:deletePicture }
     methods: GET|POST
 
 becowo_manager_profile_wha_delete:
-    path:     /profile/wha/delete/{id}
+    path:     /profile/{wsId}/wha/delete/{id}
     defaults: { _controller: BecowoManagerBundle:Delete:deleteWorkspaceHasAmenities }
     methods: GET|POST
 
 becowo_manager_profile_amenities:
-    path:     /profile/services
+    path:     /profile/{id}/services
     defaults: { _controller: BecowoManagerBundle:Profile:amenities }
     methods: GET|POST
 
 becowo_manager_profile_offices:
-    path:     /profile/bureaux
+    path:     /profile/{id}/bureaux
     defaults: { _controller: BecowoManagerBundle:Profile:offices }
     methods: GET|POST
 
 becowo_manager_profile_prices:
-    path:     /profile/prix
+    path:     /profile/{id}/prix
     defaults: { _controller: BecowoManagerBundle:Profile:prices }
     methods: GET|POST
 
 becowo_manager_profile_offices_delete:
-    path:     /profile/bureaux/delete/{id}
+    path:     /profile/{wsId}/bureaux/delete/{id}
     defaults: { _controller: BecowoManagerBundle:Delete:deleteWsHasOffice }
 
 becowo_manager_profile_prices_delete:
-    path:     /profile/prix/delete/{id}
+    path:     /profile/{wsId}/prix/delete/{id}
     defaults: { _controller: BecowoManagerBundle:Delete:deletePrices }
 
 becowo_manager_profile_events:
-    path:     /profile/events
+    path:     /profile/{id}/events
     defaults: { _controller: BecowoManagerBundle:Profile:events }
     methods: GET|POST
 
 becowo_manager_profile_events_delete:
-    path:     /profile/events/delete/{id}
+    path:     /profile/{wsId}/events/delete/{id}
     defaults: { _controller: BecowoManagerBundle:Delete:deleteEvent }
 
 becowo_manager_profile_team:
-    path:     /profile/team
+    path:     /profile/{id}/team
     defaults: { _controller: BecowoManagerBundle:Profile:team }
     methods: GET|POST
 
 becowo_manager_profile_team_delete:
-    path:     /profile/team/delete/{id}
+    path:     /profile/{wsId}/team/delete/{id}
     defaults: { _controller: BecowoManagerBundle:Delete:deleteTeam }
 
 becowo_manager_profile_calendar:
-    path:     /profile/calendar
+    path:     /profile/{id}/calendar
     defaults: { _controller: BecowoManagerBundle:Profile:calendar }
     methods: GET|POST
     
 becowo_manager_dashboard:
-    path:     /dashboard
+    path:     /{id}/dashboard
     defaults: { _controller: BecowoManagerBundle:Dashboard:view }
 
 becowo_manager_booking:
-    path:     /booking
+    path:     /{id}/booking
     defaults: { _controller: BecowoManagerBundle:Booking:view }
 
 becowo_manager_booking_add:
-    path:     /booking/add
+    path:     /{id}/booking/add
     defaults: { _controller: BecowoManagerBundle:Booking:add }
     methods: GET|POST
 
 becowo_manager_contracts:
-    path:     /contracts
+    path:     /{id}/contracts
     defaults: { _controller: BecowoManagerBundle:Contracts:view }
 
 becowo_manager_bills:
-    path:     /bills
+    path:     /{id}/bills
     defaults: { _controller: BecowoManagerBundle:Bills:view }
 
 becowo_manager_comment:
-    path:     /comment
+    path:     /{id}/comment
     defaults: { _controller: BecowoManagerBundle:Comment:view }
 
 becowo_manager_vote:
-    path:     /vote
+    path:     /{id}/vote
     defaults: { _controller: BecowoManagerBundle:Comment:vote }
 
 becowo_manager_community:
-    path:     /community/{networkId}
+    path:     /{id}/community/{networkId}
     defaults: { _controller: BecowoManagerBundle:Community:network }
     methods: GET|POST

@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Profil de {{app.user.workspace.name}}
+            Profil de {{workspace.name}}
         </h1>
     </div>
 </div><!-- /.row -->
@@ -23,7 +23,7 @@
 {####################################################### Header & Logo #####################################################}
 <div class="row text-center">
 	<div class="col-lg-3">
-		<img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
+		<img src="{{ asset('images/Workspaces/') }}{{workspace.name}}/{{pictureLogo[0].url}}" alt="{{pictureLogo[0].alt}}">
 	</div>
 	<div class="col-lg-6">
 		<div class="read-name">

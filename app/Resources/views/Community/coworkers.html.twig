@@ -129,7 +129,7 @@
 	        var id = data.id;
 	        var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
 			url = url.replace("paramCity", cityUrl.replace('-', ' '));
-			url = url.replace("paramJob", jobUrl.replace('-', ' '));
+			url = url.replace("paramJob", jobUrl.replace('-', ' ').replace('/', ' '));
 			url = url.replace("paramId", id);
 
 	        return '<div class="coworker">' + 

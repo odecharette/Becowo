@@ -9,20 +9,24 @@ use Becowo\CoreBundle\Form\Type\BookingManagerType;
 
 class BookingController extends Controller
 {
-  public function viewAction()
+  public function viewAction($id)
   {
   	$WsService = $this->get('app.workspace');
+    $workspace = $WsService->getWorkspaceById($id);
 
-  	$bookings = $WsService->getReservationsByWorkspace($this->getUser()->getWorkspace());
+  	$bookings = $WsService->getReservationsByWorkspace($workspace);
 
-  	return $this->render('Manager/booking/booking.html.twig', array('bookings' => $bookings));
+  	return $this->render('Manager/booking/booking.html.twig', array('bookings' => $bookings, 'workspace' => $workspace));
   }
 
-  public function addAction(Request $request)
+  public function addAction(Request $request, $id)
   {
+    $WsService = $this->get('app.workspace');
+    $workspace = $WsService->getWorkspaceById($id);
+
   	$booking = new Booking();
   	$booking->setMember(null); // booking interne, pas de member
-  	$form = $this->get('form.factory')->create(BookingManagerType::class, $booking, array('idWs' => $this->getUser()->getWorkspace()->getId()));
+  	$form = $this->get('form.factory')->create(BookingManagerType::class, $booking, array('idWs' => $id));
 
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
@@ -31,10 +35,10 @@ class BookingController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_booking_add');
+      return $this->redirectToRoute('becowo_manager_booking_add', array('id' => $id));
     }
 
-  	return $this->render('Manager/booking/addBooking.html.twig', array('form' => $form->createView()));
+  	return $this->render('Manager/booking/addBooking.html.twig', array('form' => $form->createView(), 'workspace' => $workspace));
   }
 
 

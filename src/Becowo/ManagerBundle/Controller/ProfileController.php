@@ -33,9 +33,10 @@ class ProfileController extends Controller
   {
   }
 
-  public function identiteAction(Request $request)
+  public function identiteAction(Request $request, $id)
   {
-  	$workspace = $this->getUser()->getWorkspace();
+    $WsService = $this->get('app.workspace');
+    $workspace = $WsService->getWorkspaceById($id);
   	$formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
   	$formBuilder
         ->add('name',   TextType::class)
@@ -49,15 +50,17 @@ class ProfileController extends Controller
               'choice_label' => 'name',))
         ->add('country',   EntityType::class, array(
               'class' => 'BecowoCoreBundle:Country',
+              'placeholder' => 'Choisir un pays',
+              'empty_data'  => null,
               'choice_label' => 'name',))
         ->add('longitude')
         ->add('latitude')
-        ->add('website',   TextType::class)
-        ->add('facebookLink',   TextType::class)
-        ->add('twitterLink',   TextType::class)
-        ->add('instagramLink',   TextType::class)
-        ->add('amenitiesDesc',   TextareaType::class)
-        ->add('arrivalDesc',   TextareaType::class)
+        ->add('website',   TextType::class, array('required' => false))
+        ->add('facebookLink',   TextType::class, array('required' => false))
+        ->add('twitterLink',   TextType::class, array('required' => false))
+        ->add('instagramLink',   TextType::class, array('required' => false))
+        ->add('amenitiesDesc',   TextareaType::class, array('required' => false))
+        ->add('arrivalDesc',   TextareaType::class, array('required' => false))
     ;
     $form = $formBuilder->getForm();
 
@@ -68,24 +71,25 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_identite');
+      return $this->redirectToRoute('becowo_manager_profile_identite', array('id' => $id));
     }
 
   	return $this->render('Manager/profile/identite.html.twig', array(
-  		'form' => $form->createView()));
+  		'form' => $form->createView(), 'workspace' => $workspace));
   }
 
-  public function logoAction(Request $request)
+  public function logoAction(Request $request, $id)
   {
   	$WsService = $this->get('app.workspace');
-  	$logo = $WsService->getLogoByWorkspace($this->getUser()->getWorkspace()->getName());
+    $workspace = $WsService->getWorkspaceById($id);
+  	$logo = $WsService->getLogoByWorkspace($workspace->getName());
     $logo = $logo[0];
   
   	$form = $this->get('form.factory')->create(PictureType::class, $logo);
 
     
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $logo->upload($this->getUser()->getWorkspace()->getName());
+      $logo->upload($workspace->getName());
 
       $em = $this->getDoctrine()->getManager();
       $em->persist($logo);
@@ -93,22 +97,24 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_logo');
+      return $this->redirectToRoute('becowo_manager_profile_logo', array('id' => $id));
     }
   	return $this->render('Manager/profile/logo.html.twig', array(
   		'form' => $form->createView(),
-  		'logo' => $logo));
+  		'logo' => $logo, 
+      'workspace' => $workspace));
   }
 
-  public function picturesAction(Request $request)
+  public function picturesAction(Request $request, $id)
   {
     $WsService = $this->get('app.workspace');
-    $pics = $WsService->getPicturesByWorkspace($this->getUser()->getWorkspace()->getName());
+    $workspace = $WsService->getWorkspaceById($id);
+    $pics = $WsService->getPicturesByWorkspace($workspace->getName());
   
     $form = $this->get('form.factory')->create(PictureType::class, $pics[0]);
     
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $pics[0]->upload($this->getUser()->getWorkspace()->getName());
+      $pics[0]->upload($workspace->getName());
 
       $em = $this->getDoctrine()->getManager();
       $em->persist($pics[0]);
@@ -116,20 +122,22 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_pictures');
+      return $this->redirectToRoute('becowo_manager_profile_pictures', array('id' => $id));
     }
     return $this->render('Manager/profile/pictures.html.twig', array(
       'form' => $form->createView(),
-      'pics' => $pics));
+      'pics' => $pics, 
+      'workspace' => $workspace));
   }
 
-  public function amenitiesAction(Request $request)
+  public function amenitiesAction(Request $request, $id)
   {
   	$WsService = $this->get('app.workspace');
-    $WsHasAmenities = $WsService->getAmenitiesByWorkspace($this->getUser()->getWorkspace());
+    $workspace = $WsService->getWorkspaceById($id);
+    $WsHasAmenities = $WsService->getAmenitiesByWorkspace($workspace);
 
     $WsHasAmenity = new WorkspaceHasAmenities();
-    $WsHasAmenity->setWorkspace($this->getUser()->getWorkspace());
+    $WsHasAmenity->setWorkspace($workspace);
     $form = $this->get('form.factory')->create(WorkspaceHasAmenitiesType::class, $WsHasAmenity);
 
   	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
@@ -139,28 +147,30 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_amenities');
+      return $this->redirectToRoute('becowo_manager_profile_amenities', array('id' => $id));
     }
 
   	return $this->render('Manager/profile/amenities.html.twig', array(
   		'form' => $form->createView(),
-      'WsHasAmenities' => $WsHasAmenities));
+      'WsHasAmenities' => $WsHasAmenities, 
+      'workspace' => $workspace));
   }
 
-	public function officesAction(Request $request)
+	public function officesAction(Request $request, $id)
 	{
 		$WsService = $this->get('app.workspace');
-		$offices = $WsService->getOfficesByWorkspace($this->getUser()->getWorkspace());
+    $workspace = $WsService->getWorkspaceById($id);
+		$offices = $WsService->getOfficesByWorkspace($workspace);
 
 		$office = new WorkspaceHasOffice();
-		$office->setWorkspace($this->getUser()->getWorkspace());
+		$office->setWorkspace($workspace);
 		$form = $this->get('form.factory')->create(WorkspaceHasOfficeType::class, $office);
 
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
       $file = $office->getFile();
       $filename =  $file->getClientOriginalName();
-      $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/Workspaces/' . $this->getUser()->getWorkspace()->getName() . '/';
+      $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/Workspaces/' .$workspace->getName() . '/';
       $file->move($dir, $filename);
       $office->setUrlProfilePicture($filename);
 
@@ -170,22 +180,24 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_offices');
+      return $this->redirectToRoute('becowo_manager_profile_offices', array('id' => $id));
     }
 
 		return $this->render('Manager/profile/offices.html.twig', array(
 		'form' => $form->createView(),
-		'offices' => $offices));
+		'offices' => $offices, 
+    'workspace' => $workspace));
 
 	}
 
-  public function pricesAction(Request $request)
+  public function pricesAction(Request $request, $id)
   {
     $WsService = $this->get('app.workspace');
-    $prices = $WsService->getPricesByWorkspace($this->getUser()->getWorkspace());
+    $workspace = $WsService->getWorkspaceById($id);
+    $prices = $WsService->getPricesByWorkspace($workspace);
 
     $price = new Price();
-    $form = $this->get('form.factory')->create(PriceType::class, $price, array('idWs' => $this->getUser()->getWorkspace()->getId()));
+    $form = $this->get('form.factory')->create(PriceType::class, $price, array('idWs' => $workspace->getId()));
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
@@ -194,22 +206,24 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_prices');
+      return $this->redirectToRoute('becowo_manager_profile_prices', array('id' => $id));
     }
 
     return $this->render('Manager/profile/prices.html.twig', array(
     'form' => $form->createView(),
-    'prices' => $prices));
+    'prices' => $prices, 
+    'workspace' => $workspace));
 
   }
 
-	public function eventsAction(Request $request)
+	public function eventsAction(Request $request, $id)
 	{
 		$WsService = $this->get('app.workspace');
-		$events = $WsService->getEventsByWorkspace($this->getUser()->getWorkspace());
+    $workspace = $WsService->getWorkspaceById($id);
+		$events = $WsService->getEventsByWorkspace($workspace);
 
 		$event = new Event();
-		$event->setWorkspace($this->getUser()->getWorkspace());
+		$event->setWorkspace($workspace);
 		$form = $this->get('form.factory')->create(EventType::class, $event);
 
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
@@ -219,23 +233,25 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_events');
+      return $this->redirectToRoute('becowo_manager_profile_events', array('id' => $id));
     }
 
     return $this->render('Manager/profile/events.html.twig', array(
 		'form' => $form->createView(),
-		'events' => $events));
+		'events' => $events, 
+    'workspace' => $workspace));
 	}
 
-	public function teamAction(Request $request)
+	public function teamAction(Request $request, $id)
 	{
     $WsService = $this->get('app.workspace');
-    $WsHasMembers = $WsService->getWsHasTeamMemberByWorkspace($this->getUser()->getWorkspace());
+    $workspace = $WsService->getWorkspaceById($id);
+    $WsHasMembers = $WsService->getWsHasTeamMemberByWorkspace($workspace);
 
 
 		$teamMember = new TeamMember();
     $WhTm = new WorkspaceHasTeamMember();
-    $WhTm->setWorkspace($this->getUser()->getWorkspace());
+    $WhTm->setWorkspace($workspace);
     $WhTm->setTeamMember($teamMember);
 
 		$form = $this->get('form.factory')->create(WorkspaceHasTeamMemberType::class, $WhTm);
@@ -244,7 +260,7 @@ class ProfileController extends Controller
 
       $file = $teamMember->getFile();
       $filename =  $file->getClientOriginalName();
-      $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/Workspaces/' . $this->getUser()->getWorkspace()->getName() . '/';
+      $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/Workspaces/' . $workspace->getName() . '/';
       $file->move($dir, $filename);
       $teamMember->setUrlProfilePicture($filename);
 
@@ -255,17 +271,19 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_team');
+      return $this->redirectToRoute('becowo_manager_profile_team', array('id' => $id));
     }
 
     return $this->render('Manager/profile/team.html.twig', array(
 		'form' => $form->createView(),
-    'WsHasMembers' => $WsHasMembers));
+    'WsHasMembers' => $WsHasMembers, 
+    'workspace' => $workspace));
 	}
 
-  public function calendarAction(Request $request)
+  public function calendarAction(Request $request, $id)
   {
-    $workspace = $this->getUser()->getWorkspace();
+    $WsService = $this->get('app.workspace');
+    $workspace = $WsService->getWorkspaceById($id);
     $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
     $formBuilder
       ->add('openHoursInfo',   TextareaType::class)
@@ -299,7 +317,7 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_calendar');
+      return $this->redirectToRoute('becowo_manager_profile_calendar', array('id' => $id));
     }
 
     if ($request->isMethod('POST') && $formTime->handleRequest($request)->isValid()) {
@@ -309,12 +327,13 @@ class ProfileController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
 
-      return $this->redirectToRoute('becowo_manager_profile_calendar');
+      return $this->redirectToRoute('becowo_manager_profile_calendar', array('id' => $id));
     }
 
     return $this->render('Manager/profile/calendar.html.twig', array(
       'form' => $form->createView(),
-      'formTime' => $formTime->createView()));
+      'formTime' => $formTime->createView(), 
+      'workspace' => $workspace));
 
   }
 

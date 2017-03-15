@@ -48,7 +48,7 @@
 			                <p>Etes vous sûr de vouloir supprimer ? </p>
 			            </div>
 			            <div class="modal-footer">
-			                <a href="{{ path('becowo_manager_profile_events_delete', { 'id': event.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
+			                <a href="{{ path('becowo_manager_profile_events_delete', { 'id': event.id, 'wsId': workspace.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
 			                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Annuler</button>
 			            </div>
 			        </div>

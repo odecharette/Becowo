@@ -47,9 +47,9 @@ class StringToMemberTransformer implements DataTransformerInterface
 
         $inputs = explode(',',$memberName);
 
-        $firstname = $inputs[0];
-        $name = $inputs[1];
-        $city = $inputs[2];
+        $inputs[0] == '' ? $firstname = null : $firstname = $inputs[0];
+        $inputs[1] == '' ? $name = null : $name = $inputs[1];
+        $inputs[2] == '' ? $city = null : $city = $inputs[2];
 
         $member = $this->manager
             ->getRepository('BecowoMemberBundle:Member')

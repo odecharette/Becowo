@@ -254,14 +254,10 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
     private $country;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace", cascade={"persist"}, fetch="EAGER")
      */
-    private $workspace;
+    private $workspaces;
 
     /**
      * @ORM\Column(name="rs_id", type="string", length=255, nullable=true)
@@ -348,6 +344,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         parent::__construct();
         $this->createdAt = new \DateTime();
         $this->roles = ['ROLE_USER'];
+        $this->workspaces = new ArrayCollection();
         $this->listSkills = new ArrayCollection();
         $this->listHobbies = new ArrayCollection();
         $this->listWishes = new ArrayCollection();
@@ -991,34 +988,25 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this->country;
     }
 
-
-    /**
-     * Get workspace
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWorkspace()
+    public function addWorkspace(Workspace $workspace)
     {
-        return $this->workspace;
+        
+        $this->workspaces[] = $workspace;
     }
 
-    /**
-     * Set workspace
-     *
-     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
-     *
-     * @return Member
-     */
-    public function setWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace = null)
+    public function removeWorkspaces(Workspace $workspace)
     {
-        $this->workspace = $workspace;
+        $this->workspaces->removeElement($workspace);
+    }
 
-        return $this;
+    public function getWorkspaces()
+    {
+        return $this->workspaces;
     }
 
     public function eraseCredentials()
-  {
-  }
+    {
+    }
 
     /**
      * Set PlainPassword

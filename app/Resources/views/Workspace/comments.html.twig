@@ -75,7 +75,7 @@
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-xs-4">
 					{% if comment.member.UrlProfilePicture is defined %}
-						<a href="{{ path('becowo_member_community_coworker', {'city': comment.member.city|replace({'-':' '})|default('ville'), 'job':comment.member.job|replace({'-':' '})|default('job'), 'id' : comment.member.id}) }}" class="memberPic">
+						<a href="{{ path('becowo_member_community_coworker', {'city': comment.member.city|replace({'-':' '})|default('ville'), 'job':comment.member.job|replace({'-':' ', '/':' '})|default('job'), 'id' : comment.member.id}) }}" class="memberPic">
 							<div style="background-image:url('{{ asset('images/ProfilePictures/') }}{{comment.member.UrlProfilePicture}}'); 
 						    width:70px; 
 						    height:70px; 

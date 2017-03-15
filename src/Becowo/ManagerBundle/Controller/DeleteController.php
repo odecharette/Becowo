@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DeleteController extends Controller
 {
-  public function deleteWsHasOfficeAction(Request $request, $id)
+  public function deleteWsHasOfficeAction(Request $request, $id, $wsId)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $office = $em->getRepository('BecowoCoreBundle:WorkspaceHasOffice')->find($id);
@@ -21,10 +21,10 @@ class DeleteController extends Controller
 
     $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
 
-    return $this->redirectToRoute('becowo_manager_profile_offices');
+    return $this->redirectToRoute('becowo_manager_profile_offices', array('id' => $wsId));
   }
 
-  public function deleteEventAction(Request $request, $id)
+  public function deleteEventAction(Request $request, $id, $wsId)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $event = $em->getRepository('BecowoCoreBundle:Event')->find($id);
@@ -39,10 +39,10 @@ class DeleteController extends Controller
     $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
     
 
-    return $this->redirectToRoute('becowo_manager_profile_events');
+    return $this->redirectToRoute('becowo_manager_profile_events', array('id' => $wsId));
   }
 
-  public function deletePricesAction(Request $request, $id)
+  public function deletePricesAction(Request $request, $id, $wsId)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $price = $em->getRepository('BecowoCoreBundle:Price')->find($id);
@@ -57,10 +57,10 @@ class DeleteController extends Controller
     $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
     
 
-    return $this->redirectToRoute('becowo_manager_profile_events');
+    return $this->redirectToRoute('becowo_manager_profile_events', array('id' => $wsId));
   }
 
-  public function deleteWorkspaceHasAmenitiesAction(Request $request, $id)
+  public function deleteWorkspaceHasAmenitiesAction(Request $request, $id, $wsId)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $wha = $em->getRepository('BecowoCoreBundle:WorkspaceHasAmenities')->find($id);
@@ -74,10 +74,10 @@ class DeleteController extends Controller
 
     $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
 
-    return $this->redirectToRoute('becowo_manager_profile_amenities');
+    return $this->redirectToRoute('becowo_manager_profile_amenities', array('id' => $wsId));
   }
 
-  public function deleteTeamAction(Request $request, $id)
+  public function deleteTeamAction(Request $request, $id, $wsId)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $wht = $em->getRepository('BecowoCoreBundle:WorkspaceHasTeamMember')->find($id);
@@ -98,10 +98,10 @@ class DeleteController extends Controller
     $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
     
 
-    return $this->redirectToRoute('becowo_manager_profile_team');
+    return $this->redirectToRoute('becowo_manager_profile_team', array('id' => $wsId));
   }
 
-  public function deletePictureAction(Request $request, $id)
+  public function deletePictureAction(Request $request, $id, $wsId)
   {
     $em = $this->getDoctrine()->getEntityManager();
     $pic = $em->getRepository('BecowoCoreBundle:Picture')->find($id);
@@ -116,7 +116,7 @@ class DeleteController extends Controller
 
     $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
     
-    return $this->redirectToRoute('becowo_manager_profile_pictures');
+    return $this->redirectToRoute('becowo_manager_profile_pictures', array('id' => $wsId));
     
   }
 

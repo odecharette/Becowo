@@ -32,16 +32,20 @@ class PriceType extends AbstractType
                 'choice_label' => 'name'))
             ->add('priceHour', NumberType::class, array(
                 'scale' => 2,
-                'label' => 'Prix à l\'heure (€ HT)'))
+                'label' => 'Prix à l\'heure (€ HT)',
+                'required' => false))
             ->add('priceHalfDay', NumberType::class, array(
                 'scale' => 2,
-                'label' => 'Prix à la demi-journée (€ HT)'))
+                'label' => 'Prix à la demi-journée (€ HT)',
+                'required' => false))
             ->add('priceDay', NumberType::class, array(
                 'scale' => 2,
-                'label' => 'Prix à la journée (€ HT)'))
+                'label' => 'Prix à la journée (€ HT)',
+                'required' => false))
             ->add('priceMonth', NumberType::class, array(
                 'scale' => 2,
-                'label' => 'Prix au mois (€ HT)'))
+                'label' => 'Prix au mois (€ HT)',
+                'required' => false))
         ;
     }
     

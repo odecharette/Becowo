@@ -36,7 +36,7 @@
 				<td>{{whm.teamMember.email}}</td>
 				<td>{{whm.teamMember.job}}</td>
 				{% if whm.teamMember.urlProfilePicture != '' %}
-					<td><img src="{{ asset('images/Workspaces/') }}{{app.user.workspace.name}}/{{whm.teamMember.urlProfilePicture}}" alt="{{whm.teamMember.urlProfilePicture}}" width="50px" height="50px"></td>
+					<td><img src="{{ asset('images/Workspaces/') }}{{workspace.name}}/{{whm.teamMember.urlProfilePicture}}" alt="{{whm.teamMember.urlProfilePicture}}" width="50px" height="50px"></td>
 				{% else %}
 					<td></td>
 				{% endif %}
@@ -59,7 +59,7 @@
 			                <p>Etes vous sûr de vouloir supprimer ? </p>
 			            </div>
 			            <div class="modal-footer">
-			                <a href="{{ path('becowo_manager_profile_team_delete', { 'id': whm.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
+			                <a href="{{ path('becowo_manager_profile_team_delete', { 'id': whm.id, wsId: workspace.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
 			                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Annuler</button>
 			            </div>
 			        </div>

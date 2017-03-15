@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<h1>{{app.user.workspace}}</h1>
+		<h1>{{workspace.name}}</h1>
 		<hr>
 	</div>
 </div>
@@ -19,7 +19,7 @@
 		<h4>Nom de l'espace
 			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('name')"></button>
 		</h4><div class="well well-sm">
-			{{app.user.workspace.name}}
+			{{workspace.name}}
 		</div></div>
 		<div class="write-name">
 		<h4>Nom de l'espace
@@ -31,48 +31,7 @@
 		</div>
 	</div>
 </div>
-{#<br>
-###################################################### Descriptions ####################################################
-<div class="row">
-    <div class="col-lg-12">
-    	<div class="read-description">
-    	<h4>Description
-    		<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('description')"></button>
-		</h4><div class="well well-sm">
-    		{{app.user.workspace.description}} 		
-    	</div></div>
-    	<div class="write-description">
-    	<h4>Description
-		    <button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
-			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('description')"></button> 
-		</h4>
-		    {{ form_errors(form.description) }}
-		    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}  
-		</div>
-	</div>
-</div>#}
-{####################################################### Bonus ####################################################
-<br>
-<div class="row">
-	<div class="col-lg-12">
-    	<div class="read-descriptionBonus">
-		<h4>Description Bonus
-			<small>Mettez en avant un aspect atypique de votre espace </small>
-			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('descriptionBonus')"></button>
-		</h4><div class="well well-sm">
-    		{{app.user.workspace.descriptionBonus}}
-    		</div>
-    	</div>
-    	<div class="write-descriptionBonus">
-    	<h4>Description Bonus
-		    <button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
-			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('descriptionBonus')"></button>  
-		</h4>
-		    {{ form_errors(form.descriptionBonus) }}
-		    {{ form_widget(form.descriptionBonus, {'attr': {'class': 'form-control'}}) }}
-		</div>
-	</div>
-</div>#}
+
 {####################################################### Adresse #####################################################}
 <br>
 <div class="row">
@@ -81,8 +40,8 @@
     		<h4>Adresse
     			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('adresse')"></button>
 			</h4><div class="well well-sm">
-			{{app.user.workspace.street}}<br>{{app.user.workspace.postCode}}, {{app.user.workspace.city}} <br>
-			{{app.user.workspace.region}}, {{app.user.workspace.country}}
+			{{workspace.street}}<br>{{workspace.postCode}}, {{workspace.city}} <br>
+			{{workspace.region.name}}, {{workspace.country.name}}
 			</div></div>
 		<div class="write-adresse">
     		<h4>Adresse
@@ -108,10 +67,10 @@
     		<h4>Vos sites
     			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('sites')"></button>
 			</h4><div class="well well-sm">
-			Site : {{app.user.workspace.website}}<br>
-			Facebook : {{app.user.workspace.facebookLink}}<br>
-			Twitter : {{app.user.workspace.twitterLink}}<br>
-			Instagram : {{app.user.workspace.instagramLink}}<br>
+			Site : {{workspace.website}}<br>
+			Facebook : {{workspace.facebookLink}}<br>
+			Twitter : {{workspace.twitterLink}}<br>
+			Instagram : {{workspace.instagramLink}}<br>
 			</div></div>
 		<div class="write-sites">
     		<h4>Vos sites
@@ -134,7 +93,7 @@
     			<small>Décrivez ici vos services, (onglet Services de votre page)</small>
     			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('amenitiesDesc')"></button>
 			</h4><div class="well well-sm">
-			{{app.user.workspace.amenitiesDesc}}<br>
+			{{workspace.amenitiesDesc}}<br>
 			</div></div>
 		<div class="write-amenitiesDesc">
     		<h4>Description des services
@@ -155,7 +114,7 @@
     			<small>Décrivez ici les informations à donner au coworker pour entrer dans les lieux (envoyé dans le mail de confirmation de la réservation) </small>
     			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('arrivalDesc')"></button>
 			</h4><div class="well well-sm">
-			{{app.user.workspace.arrivalDesc}}<br>
+			{{workspace.arrivalDesc}}<br>
 			</div></div>
 		<div class="write-arrivalDesc">
     		<h4>Procédure d'arrivée

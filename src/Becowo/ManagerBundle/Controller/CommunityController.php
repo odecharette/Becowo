@@ -11,9 +11,10 @@ use Becowo\CoreBundle\Form\Type\CommunityNetworkHasMemberType;
 
 class CommunityController extends Controller
 {
-  public function networkAction(Request $request, $networkId)
+  public function networkAction(Request $request, $networkId, $id)
   {
     $WsService = $this->get('app.workspace');
+    $workspace = $WsService->getWorkspaceById($id);
 
     $network = $WsService->getAllCommunityNetwork();
 
@@ -36,7 +37,7 @@ class CommunityController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Le réseau a bien été crée');
 
-      return $this->redirectToRoute('becowo_manager_community', array('networkId' => $newNetwork->getId()));
+      return $this->redirectToRoute('becowo_manager_community', array('networkId' => $newNetwork->getId(), 'id' => $id));
     }
 
     if ($request->isMethod('POST') && $formMember->handleRequest($request)->isValid()) {
@@ -47,10 +48,10 @@ class CommunityController extends Controller
 
       $request->getSession()->getFlashBag()->add('success', 'Le coworker a bien été ajouté au réseau');
 
-      return $this->redirectToRoute('becowo_manager_community', array('networkId' => $newCommunityMember->getCommunityNetwork()->getId()));
+      return $this->redirectToRoute('becowo_manager_community', array('networkId' => $newCommunityMember->getCommunityNetwork()->getId(), 'id' => $id));
     }
 
-    return $this->render('Manager/community/network.html.twig', array('network' => $network, 'currentNetwork' => $currentNetwork, 'members' => $members, 'form' => $form->createView(), 'formMember' => $formMember->createView()));
+    return $this->render('Manager/community/network.html.twig', array('network' => $network, 'currentNetwork' => $currentNetwork, 'members' => $members, 'form' => $form->createView(), 'formMember' => $formMember->createView(), 'workspace' => $workspace));
   }
   
 }

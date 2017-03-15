@@ -45,75 +45,72 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('becowo_core_workspace', {'region': app.user.workspace.region.name, 'ville' : app.user.workspace.city, 'name': app.user.workspace}) }}" target="_blank">Voir ma page {{app.user.workspace}} sur Becowo</a>
+                
+                <a class="navbar-brand" href="{{ path('becowo_core_workspace', {'region': workspace.region.name, 'ville' : workspace.city, 'name': workspace.name}) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Voir ma page {{workspace.name}} sur Becowo</a>
             </div>
-            <!-- Top Menu Items
+            {# Top Menu Items #}
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.user.username }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choisir un espace <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Mon Profil</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Me déconnecter</a>
-                        </li>
+                        {% for ws in app.user.workspaces %}
+                            <li><a href="{{ path('becowo_manager_profile_identite', {id: ws.id}) }}">{{ws.name}}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
-            </ul> -->
+            </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                 <h3><i class="fa fa-user" aria-hidden="true"></i> Profile</h3>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_identite' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_profile_identite') }}"> Identite</a>
+                        <a href="{{ path('becowo_manager_profile_identite', {id: workspace.id}) }}"> Identite</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_pictures' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_profile_pictures') }}"> Les photos</a>
+                        <a href="{{ path('becowo_manager_profile_pictures', {id: workspace.id}) }}"> Les photos</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_calendar' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_profile_calendar') }}"> Le calendrier</a>
+                        <a href="{{ path('becowo_manager_profile_calendar', {id: workspace.id}) }}"> Le calendrier</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_amenities' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_profile_amenities') }}"> Les services</a>
+                        <a href="{{ path('becowo_manager_profile_amenities', {id: workspace.id}) }}"> Les services</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_offices' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_profile_offices') }}"> Les bureaux</a>
+                        <a href="{{ path('becowo_manager_profile_offices', {id: workspace.id}) }}"> Les bureaux</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_prices' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_profile_prices') }}"> Les prix</a>
+                        <a href="{{ path('becowo_manager_profile_prices', {id: workspace.id}) }}"> Les prix</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_events' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_profile_events') }}"> Les évènements</a>
+                        <a href="{{ path('becowo_manager_profile_events', {id: workspace.id}) }}"> Les évènements</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_profile_team' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_profile_team') }}"> L'équipe</a>
+                        <a href="{{ path('becowo_manager_profile_team', {id: workspace.id}) }}"> L'équipe</a>
                     </li>
                 <h3><i class="fa fa-fw fa-calendar"></i> Réservations</h3>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_booking' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_booking') }}"> Les réservations</a>
+                        <a href="{{ path('becowo_manager_booking', {id: workspace.id}) }}"> Les réservations</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_booking_add' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_booking_add') }}"> Ajouter une réservation</a>
+                        <a href="{{ path('becowo_manager_booking_add', {id: workspace.id}) }}"> Ajouter une réservation</a>
                     </li>
                 <h3><i class="fa fa-users" aria-hidden="true"></i> Communauté</h3>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_community' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_community', {'networkId': 1}) }}"> Les réseaux</a>
+                        <a href="{{ path('becowo_manager_community', {networkId: 1, id: workspace.id}) }}"> Les réseaux</a>
                     </li>
                 <h3><i class="fa fa-comments" aria-hidden="true"></i> Les avis</h3>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_vote' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_vote') }}"> Les votes</a>
+                        <a href="{{ path('becowo_manager_vote', {id: workspace.id}) }}"> Les votes</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_comment' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_comment') }}"> Les commentaires</a>
+                        <a href="{{ path('becowo_manager_comment', {id: workspace.id}) }}"> Les commentaires</a>
                     </li>
                 <h3><i class="fa fa-fw fa-paperclip"></i> Documents</h3>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_contracts' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_contracts') }}"> Contrats</a>
+                        <a href="{{ path('becowo_manager_contracts', {id: workspace.id}) }}"> Contrats</a>
                     </li>
                     {% if app.request.attributes.get('_route') == 'becowo_manager_bills' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_manager_bills') }}"> Factures</a>
+                        <a href="{{ path('becowo_manager_bills', {id: workspace.id}) }}"> Factures</a>
                     </li>
                 </ul>
             </div>

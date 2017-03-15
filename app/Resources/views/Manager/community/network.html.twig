@@ -22,8 +22,8 @@
 		{% for n in network %}
 			<tr>
 			 	<td>{{n.name}}</td>
-			 	<td><a href="{{ path('becowo_member_community_coworker', {city:n.adminMember.city|replace({'-':' '})|default('ville') , job:n.adminMember.job|replace({'-':' '})|default('job') ,id: n.adminMember.id}) }}" target="_blank">{{n.adminMember.firstname}} {{n.adminMember.name}}</a></td>
-				<td><a href="{{ path('becowo_manager_community', {networkId: n.id}) }}">Liste des coworkers</a></td>
+			 	<td><a href="{{ path('becowo_member_community_coworker', {city:n.adminMember.city|replace({'-':' '})|default('ville') , job:n.adminMember.job|replace({'-':' ', '/':' '})|default('job') ,id: n.adminMember.id}) }}" target="_blank">{{n.adminMember.firstname}} {{n.adminMember.name}}</a></td>
+				<td><a href="{{ path('becowo_manager_community', {networkId: n.id, id: workspace.id}) }}">Liste des coworkers</a></td>
 
 			</tr>
 
@@ -97,7 +97,7 @@
 			<td>{{member.firstname}}</td>
 		 	<td>{{member.name}}</td>
 		 	<td>{{member.createdAt|date('d/m/Y')}}</td>
-		 	<td><a href="{{ path('becowo_member_community_coworker', {city:member.city|replace({'-':' '})|default('ville') , job:member.job|replace({'-':' '})|default('job') ,id: member.id}) }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+		 	<td><a href="{{ path('becowo_member_community_coworker', {city:member.city|replace({'-':' '})|default('ville') , job:member.job|replace({'-':' ', '/':' '})|default('job') ,id: member.id}) }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
 		</tr>
 
 	{% endfor %}
@@ -141,12 +141,28 @@ $('#community_network_has_member_member').textcomplete([
     },
     // #5 - Template used to display each result obtained by the Algolia API
     template: function (hit) {
+    	if(typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.firstname !== 'undefined'){
+    		firstname = hit._highlightResult.firstname.value
+    	}else{
+    		firstname = ''};
+    	if(typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.name !== 'undefined'){
+    		name = hit._highlightResult.name.value
+    	}else{
+    		name = ''};
+    	if(typeof hit._highlightResult !== 'undefined' && typeof hit._highlightResult.city !== 'undefined'){
+    		city = hit._highlightResult.city.value
+    	}else{
+    		city = ''};
       // Returns the highlighted version of the name attribute
-      return hit._highlightResult.firstname.value + ' ' + hit._highlightResult.name.value + ', ' + hit._highlightResult.city.value;
+      return firstname + ' ' + name + ', ' + city;
     },
     // #6 - Template used to display the selected result in the textarea
     replace: function (hit) {
-      return hit.firstname.trim() + ',' + hit.name.trim() + ',' + hit.city.trim();
+    	if(hit.firstname != null){firstname = hit.firstname.trim();}
+    	if(hit.name != null){name = hit.name.trim();}
+    	if(hit.city != null){city = hit.city.trim();}
+
+      return firstname + ',' + name + ',' + city;
     }
   }
 ]);

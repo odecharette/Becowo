@@ -70,7 +70,7 @@
 				    </li>
 				    {% if is_granted('ROLE_MANAGER') %}
 						<li>
-							<a href="{{ path('becowo_manager_profile_identite') }}" target="_blank"><i class="fa fa-wrench"></i> Espace Manager</a>
+							<a href="{{ path('becowo_manager_profile_identite', {id: app.user.workspaces[0].id}) }}" target="_blank"><i class="fa fa-wrench"></i> Espace Manager</a>
 						</li>
 					{% endif %}
 					{% if is_granted('ROLE_ADMIN') %}
