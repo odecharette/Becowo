@@ -93,7 +93,7 @@ class ApiService
             {
                 $event = New Event();
                 $event->setTitle($e->name);
-                $event->setDescription(preg_replace('/[^A-Za-z0-9]/', ' ', $e->description));
+                $event->setDescription(preg_replace('/[^\p{L}0-9\-]/u', ' ', $e->description));
                 $event->setStartDate(new \DateTime($e->start_time));
                 $event->setEndDate(new \DateTime($e->end_time));
                 $event->setFacebookId($e->id);
