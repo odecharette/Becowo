@@ -90,14 +90,16 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setLinkedinLink($infos['publicProfileUrl']);
 
                     $repo = $this->properties['em']->getRepository('BecowoCoreBundle:Job');
-                    $existingJob = $repo->findOneBy(array('name' => $infos['positions']['values'][0]['title']));
+                    $linkedinJob = $infos['positions']['values'][0]['title'];
+                    if($linkedinJob == ''){$linkedinJob = $infos['headline'];};
+                    $existingJob = $repo->findOneBy(array('name' => $linkedinJob));
 
                     if($existingJob !== null)
                     {
                         $user->setJob($existingJob);
                     }else{
                         $job = new Job();
-                        $job->setName($infos['positions']['values'][0]['title']);
+                        $job->setName($linkedinJob);
                         $user->setJob($job);
                         $this->properties['em']->persist($job);
                     }
