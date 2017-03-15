@@ -6,6 +6,8 @@ use Doctrine\ORM\EntityManager;
 use Becowo\CoreBundle\Entity\Workspace;
 use Becowo\CoreBundle\Entity\Office;
 use Doctrine\ORM\NoResultException;
+use \DateTime;
+use \DateInterval;
 
 class WorkspaceService
 {
@@ -403,5 +405,93 @@ class WorkspaceService
     {
         $repo = $this->em->getRepository('BecowoCoreBundle:CommunityNetworkHasMember');
         return $repo->findMembersByNetworkName($network);
+    }
+
+    public function getNextOpenDateByWorkspace($ws)
+    {
+        
+        $weekend = $this->getTimesByWorkspace($ws);
+        $closed_dates = $this->getClosedDatesByWorkspace($ws);
+
+        // on commence par tester si aujourd'hui est ouvré
+        $resultat = $this->getNextDateOpen(new DateTime(date('d-m-Y')), $weekend, $closed_dates);
+
+        //Pour simuler qu'on est le samedi 11 mars
+        // $resultat = $this->getNextDateOpen(new DateTime(date('11-03-2017')), $weekend, $closed_dates);
+
+        return $resultat;
+    }
+
+    public function getNextDateOpen(DateTime $date, $weekend, $closed_dates)
+    {
+        $weekDay = $date->format("w"); // 0 being sunday, and 6 being saturday
+        $result = true;
+        $finalDate = $date;
+
+        switch ($weekDay) {
+            case 6:
+                // Saturday
+                if($weekend[0]->getIsOpenSaturday())
+                {
+                    // dump('ouvert samedi test si samedi est in closed date');
+                    foreach($closed_dates as $d)
+                    {
+                        if($d->getClosedDate() == $date)
+                            $result = false;
+                    }
+                    if($result){
+                        // dump('DONE samedi est ni WE fermé ni closed date');
+                        $finalDate = $date;
+                    }else{
+                        // dump('date est fermée, test jour suivant');
+                        $this->getNextDateOpen($date->add(new DateInterval('P1D')), $weekend, $closed_dates);
+                    }
+                }else{
+                    // dump('fermé samedi, test jour suivant');
+                    $this->getNextDateOpen($date->add(new DateInterval('P1D')), $weekend, $closed_dates);
+                }
+
+                break;
+            case 0:
+                // Sunday
+                if($weekend[0]->getIsOpenSunday())
+                {
+                    // dump('ouvert dimanche test si dimanche est in closed date');
+                    foreach($closed_dates as $d)
+                    {
+                        if($d->getClosedDate() == $date)
+                            $result = false;
+                    }
+                    if($result){
+                        // dump('DONE dimanche est ni WE fermé ni closed date');
+                        $finalDate = $date;
+                    }else{
+                        // dump('date est fermée, test jour suivant');
+                        $this->getNextDateOpen($date->add(new DateInterval('P1D')), $weekend, $closed_dates);
+                    }
+                }else{
+                    // dump('fermé dimanche, test jour suivant');
+                    $this->getNextDateOpen($date->add(new DateInterval('P1D')), $weekend, $closed_dates);
+                }
+                break;
+
+            default:
+                # Monday to friday
+                // dump('test si jour est in closed date');
+                foreach($closed_dates as $d)
+                {
+                    if($d->getClosedDate() == $date)
+                        $result = false;
+                }
+                if($result){
+                    // dump('DONE jour pas ds closed date');
+                    $finalDate = $date;
+                }else{
+                    // dump('date est fermée, test jour suivant');
+                    $this->getNextDateOpen($date->add(new DateInterval('P1D')), $weekend, $closed_dates);
+                }
+                break;
+        }
+        return $finalDate;
     }
 }

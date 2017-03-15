@@ -35,15 +35,6 @@ class BookingController extends Controller
     $WsService = $this->get('app.workspace');
     $session = $request->getSession();
 
-    if($session->get('booking') !== null)
-    {
-      // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
-      $booking = $WsService->getBookingByRef($session->get('booking')->getBookingRef());
-    }else{
-      $booking = new Booking();
-    }
-    $bookingForm = $this->createForm(BookingType::class, $booking);
- 
     $WsHasOffice = $WsService->getWsHasOfficeById($id);
     $ws = $WsHasOffice->getWorkspace(); 
     $prices = $WsService->getPricesByWsHasOfficeId($id);
@@ -51,6 +42,18 @@ class BookingController extends Controller
     $closedDates = $WsService->getClosedDatesByWorkspace($ws);
     $pictures = $WsService->getPicturesByWorkspace($ws->getName());
     $averageVote = $WsService->getAverageVoteByWorkspace($ws);
+
+    if($session->get('booking') !== null)
+    {
+      // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
+      $booking = $WsService->getBookingByRef($session->get('booking')->getBookingRef());
+    }else{
+      $booking = new Booking();
+      // Par défaut le booking est crée sur la prochaine date ouvert (selon samedi, dimanche, closeddates)
+      $booking->setStartDate($WsService->getNextOpenDateByWorkspace($ws));
+    }
+    $bookingForm = $this->createForm(BookingType::class, $booking);
+ 
 
     if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
     {

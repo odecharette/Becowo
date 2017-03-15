@@ -15,4 +15,5 @@ class TimetableRepository extends EntityRepository
 
 		return $qb->getQuery()->getResult();
 	}
+
 }
