@@ -298,8 +298,10 @@ $(function(){
     hash = hash.substring(1, hash.length);
     console.log(hash);
     var e = document.getElementById(hash);
-    e.classList.add("active");
-    e.classList.add("in");
+    if(e){
+      e.classList.add("active");
+      e.classList.add("in");
+    };
   }
   else{
     $('.nav-tabs a[href="#Description"]').tab('show')
