@@ -14,6 +14,16 @@ use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 class Workspace
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Algolia\Attribute
+     */
+    private $id;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
@@ -172,14 +182,6 @@ class Workspace
      */
     private $isVisible;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \Becowo\CoreBundle\Entity\WorkspaceCategory

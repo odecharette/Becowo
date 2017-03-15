@@ -156,6 +156,12 @@
         	}else{
         		offer = ''};
 
+	        var id = '';
+	      	if(data.id !== null){
+        		id = data.id;
+        	}else{
+        		id = ''};
+
 	        var descriptionBonus = '';
 	      	if(data.descriptionBonus !== null){
         		descriptionBonus = data.descriptionBonus;
@@ -241,7 +247,33 @@
 								descriptionBonus + 
 							'</div>';
 
-			return vignette;
+			var modal = 
+				'<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' + 
+					'<div class="modal-dialog">' +
+						'<div class="modal-content">' +
+				            '<div class="modal-header modal-header-info">' +
+				                '<button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>' +
+				                '<h4 class="modal-title">Réclamer cet espace</h4>' +
+				            '</div>' +
+						'<form method="POST" action="{{ path("becowo_core_vote_zen", { 'id' : 'varID'}) }}" id="form_voteZen">' +
+			            '<div class="modal-body">' +
+			                '<p>La réservation en ligne n\'est malheureusement pas disponible chez ' + name + '. <br>' +
+			                'Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à ' + name + ' car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"' +
+							'</p>' +
+							'Votre email * : <input type="email" name="emailVote" required="true" width="200px">' +
+							'<p>Nous vous préviendrons dès que ' + name + ' sera disponible sur Becowo.</p>' +
+							'<div id="error-varID"></div>' +
+			            '</div>' +
+			            '<div class="modal-footer">' +
+							'<button type="submit" id="voteZen-varID" class="modal_valid">Je réclame !</button>' +
+			            '</div>' +
+						'</form>' +
+					'</div>' +
+				'</div>' +
+			'</div>';
+			modal = modal.replace(/varID/g, id);
+
+			return vignette + ' ' + modal;
 	      },
 	      empty: function(data) {
 	        return '<p>Désolé ! Aucun espace de travail trouvé pour la recherche <em>' + data.query + '</em>.</p>'

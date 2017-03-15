@@ -16,8 +16,9 @@ class VoteController extends Controller
     if ($request->isMethod('POST'))
     {
       $WsService = $this->get('app.workspace');
+      dump($request->get('id'));
       $ws = $WsService->getWorkspaceById($request->get('id'));
-
+      dump($ws);
       $vote = new Vote();
       $vote->setWorkspace($ws);
       $vote->setMember($this->getUser());
