@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new \JMS\SerializerBundle\JMSSerializerBundle(),
-            new \FOS\ElasticaBundle\FOSElasticaBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Becowo\ManagerBundle\BecowoManagerBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
