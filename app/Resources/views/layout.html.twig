@@ -59,9 +59,11 @@
 		            <li>
 		            	<a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a>
 		            </li>
+		            {% if app.user.signedUpWith == null %}
 				    <li>
 				    	<a data-toggle="modal" href="#myModalChangeMDP"><i class="fa fa-key"></i> Changer mon mot de passe</a>
 				    </li>
+					{% endif %}
 				    <li>
 				    	<a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a>
 				    </li>
