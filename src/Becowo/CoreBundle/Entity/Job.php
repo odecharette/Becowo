@@ -9,7 +9,7 @@ use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
  * Job
  *
  * @ORM\Table(name="becowo_job", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\JobRepository")
  */
 class Job
 {

@@ -50,7 +50,7 @@ services:
 
     app.HWIOAuth.user_provider:
         class:        Becowo\MemberBundle\Services\MyFOSUBUserProvider
-        arguments: ['@fos_user.user_manager', { facebook: facebook_id }]
+        arguments: ['@fos_user.user_manager', { facebook: facebook_id, em: '@doctrine.orm.entity_manager' }]
 
     price.lowestPrice :
         class:  Becowo\CoreBundle\EventListener\PriceListener

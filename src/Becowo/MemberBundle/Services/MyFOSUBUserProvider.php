@@ -6,6 +6,7 @@ use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseFOSUBProvider;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Becowo\CoreBundle\Entity\ProfilePicture;
+use Becowo\CoreBundle\Entity\Job;
 
 class MyFOSUBUserProvider extends BaseFOSUBProvider
 {
@@ -87,7 +88,21 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                 case 'linkedin':
                     $user->setEmail($email);
                     $user->setLinkedinLink($infos['publicProfileUrl']);
-                    $user->setJob($infos['headline']);
+
+                    $repo = $this->properties['em']->getRepository('BecowoCoreBundle:Job');
+                    $existingJob = $repo->findOneBy(array('name' => $infos['headline']));
+
+                    if($existingJob !== null)
+                    {
+                        $user->setJob($existingJob);
+                    }else{
+                        $job = new Job();
+                        $job->setName($infos['headline']);
+                        $user->setJob($job);
+                        $this->properties['em']->persist($job);
+                    }
+
+                    
                     $user->setCity($infos['location']['name']);
                     $user->setFirstName($infos['firstName']);
                     $user->setName($infos['lastName']);
