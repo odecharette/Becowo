@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * @ORM\Table(name="becowo_workspace_has_office", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\WorkspaceHasOfficeRepository")
+ * @ORM\EntityListeners({"Becowo\CoreBundle\EventListener\WorkspaceHasOfficeListener"})
  */
 class WorkspaceHasOffice
 {
