@@ -10,6 +10,7 @@ use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
  *
  * @ORM\Table(name="becowo_event", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_workspace_id_idx", columns={"workspace_id"})}, indexes={@ORM\Index(name="fk_category_id_idx", columns={"category_id"})})
  * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\EventRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Event
 {
@@ -373,4 +374,16 @@ class Event
     {
         return $this->startDate >= new \DateTime();
     }
+
+    /** 
+     * Set timeStamp 
+     * 
+     * @ORM\PrePersist 
+     */  
+    public function setTimeStamps()  
+    {  
+        $this->startDateTimeStamp = strtotime($this->startDate->format('Y-m-d H:i:s'));
+        $this->endDateTimeStamp = strtotime($this->endDate->format('Y-m-d H:i:s'));
+    }  
+
 }
