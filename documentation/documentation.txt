@@ -1,8 +1,9 @@
 /****************************************************/
-	Envoyer les emails aux nouveaux membres de Becowo :
+	Les commandes persos Becowo :
 /****************************************************/
 
-php bin/console app:send-email-new-users
+Envoyer un email aux nouveaux membre de la communauté : app:send-email-new-users
+Récupérer les events des pages FB listés dans la table api_events : app:get-facebook-events
 
 /****************************************************/
 		Ajouter un espace de coworking
@@ -72,3 +73,9 @@ Si msg d'erreur lié à un bundle, relancer la copie du dossier vendor sur le se
 
 A chaque fois qu'on renvoi le fichier .sh sur le serveur, il faut vérifier les droits d'execution (704)
 
+/****************************************************/
+		Ordre d'affichage des WS par Algolia
+/****************************************************/
+
+Selon la priorité définie dans l'offre (becowo_offer.priority) - ASC
+Puis selon le voteAverage - DESC
