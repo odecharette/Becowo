@@ -2828,7 +2828,15 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   border-radius: 10px;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
 }
-
+#filtersBar #stats, #filtersBar #clear-all{
+  display: inline-block;
+}
+#filtersBar #clear-all{
+  margin-left: 10px;
+}
+#filtersBar #clear-all a{
+  color: white;
+}
 #filtersBar .dropbtn {
   background-color: transparent;
   color: white;

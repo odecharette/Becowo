@@ -21,7 +21,7 @@
       <div id="workspaceName" class="facet"></div>
     </div>
     <div class="col-lg-3">
-      <h3>Date</h3>
+      <h3 style="margin-left:0;">Date</h3>
         <div id="eventDate"></div>
     </div>  
   </div>
@@ -282,10 +282,10 @@
     attributeName: 'startDateTimeStamp',
     autoHideContainer: false,
     options: [
-      {name: 'Tous'},
-      {start: thisMorning, end: endOfWeek, name: 'Cette semaine'},
-      {start: Date.now() / 1000, end: endOfMonth, name: 'Ce mois ci'}, // bug si on remet thisMorning
-      {start: beginOfNextMonth, name: 'Le mois prochain'}
+      {name: ' Tous'},
+      {start: thisMorning, end: endOfWeek, name: ' Cette semaine'},
+      {start: Date.now() / 1000, end: endOfMonth, name: ' Ce mois ci'}, // bug si on remet thisMorning
+      {start: beginOfNextMonth, name: ' Le mois prochain'}
     ]
   })
 );
