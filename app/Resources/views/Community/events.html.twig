@@ -33,9 +33,7 @@
 <div class="row">
     <div id="hits" class="events"></div>
 </div>
-<div class="row text-center">
-    <div id="pagination"></div>
-</div>
+{# Ici on ne pagine pas sinon le filtre par date bug quand on est dans les pages > 1 #}
 
 {% endblock content %}
 
@@ -53,7 +51,7 @@
   search.addWidget(
     instantsearch.widgets.hits({
       container: '#hits',
-      hitsPerPage: 5,
+      hitsPerPage: 50,
       templates: {
         item: function(data) {
           console.log(data);
@@ -205,17 +203,6 @@
   // );
 
   search.addWidget(
-    instantsearch.widgets.pagination({
-      container: '#pagination',
-      showFirstLast: false,
-      cssClasses: {
-        root: 'pagination',
-        active: 'active'
-      }
-    })
-  );
-
-  search.addWidget(
     instantsearch.widgets.refinementList({
       container: '#workspaceRegion',
       attributeName: 'workspace.region.name',
@@ -275,9 +262,14 @@
   var curr = new Date; 
   // First day is the day of the month - the day of the week (+1 to start week on monday)
   var first = curr.getDate() - curr.getDay() + 1; 
-  var lastdayOfWeek = new Date(curr.setDate(first + 6));
+  var lastdayOfWeek = new Date(new Date(Date.now()).setDate(first + 6));
   var lastDayOfMonth = new Date(curr.getFullYear(), curr.getMonth()+1, 0); // jour 0 renvoi le dernier jour du mois précédent
-  var nextMonth = new Date(curr.getYear(), curr.getMonth()+1, 1);
+  
+  if (curr.getMonth() == 11) {
+    var nextMonth = new Date(curr.getFullYear() + 1, 0, 1);
+  } else {
+    var nextMonth = new Date(curr.getFullYear(), curr.getMonth() + 1, 1);
+  }
 
   var thisMorning = Math.round(new Date(Date.now()).setHours(1) / 1000);
   var endOfWeek = Math.round(new Date(lastdayOfWeek).getTime() / 1000);
