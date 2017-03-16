@@ -38,6 +38,14 @@ class Offer
     /**
      * @var integer
      *
+     * @ORM\Column(name="priority_index", type="integer", nullable=true)
+     * @Algolia\Attribute
+     */
+    private $priorityIndex;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -137,7 +145,31 @@ class Offer
     }
 
  
+    /**
+     * Gets the value of priorityIndex.
+     *
+     * @return integer
+     */
+    public function getPriorityIndex()
+    {
+        return $this->priorityIndex;
+    }
 
+    /**
+     * Sets the value of priorityIndex.
+     *
+     * @param integer $priorityIndex the priority index
+     *
+     * @return self
+     */
+    public function setPriorityIndex($priorityIndex)
+    {
+        $this->priorityIndex = $priorityIndex;
+
+        return $this;
+    }
+
+    
     public function __toString()
     {
         return $this->name;

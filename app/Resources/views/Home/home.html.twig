@@ -146,7 +146,7 @@
         		descriptionBonus = ''};
 
 	        var link = '';
-	        if(data.offer.name == 'Zen')
+	        if(data.offer.name != 'Link')
 	        { 
 	        	link = '<a href="{{ path("becowo_core_workspace", { 'region': 'paramRegion', 'ville' : 'paramCity', 'name': 'paramName' }) }}">';
 	        	link = link.replace("paramRegion", region);
@@ -197,16 +197,16 @@
 							vignette = vignette + 
 							'</div>' +
 							'<div id="btn_decouvrir">';
-								if(offer == 'Zen')
+								if(offer == 'Link')
 								{
-									vignette = vignette + '<button type="button" class="btn_vignette">Découvrir</button>';
-								}else{
 									vignette = vignette + '<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>';
+								}else{
+									vignette = vignette + '<button type="button" class="btn_vignette">Découvrir</button>';
 								}
 							vignette = vignette + 
 							'</div>' +
 							'</div>';
-							if(offer == 'Zen')
+							if(offer != 'Link')
 							{
 								vignette = vignette + '</a>';
 							}
