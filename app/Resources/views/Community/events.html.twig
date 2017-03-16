@@ -6,8 +6,13 @@
 
 {% block content %}
 <h1>Les Evènements</h1>
-<div class="row" id="filtersBar">
-    <div class="col-lg-3 col-lg-offset-1">
+<div id="filtersBar">
+  <div class="row">
+    <div class="col-lg-3">
+        <h3>Région</h3>
+        <div id="workspaceRegion" class="facet"></div>
+    </div>
+    <div class="col-lg-3">
         <h3>Ville</h3>
         <div id="workspaceCity" class="facet"></div>
     </div>
@@ -17,11 +22,12 @@
     </div>
     <div class="col-lg-3">
       <h3>Date</h3>
-        {# <div id="filterOffices"></div> #}
+        <div id="eventDate"></div>
     </div>  
-    <div class="col-lg-3">
-      <div id="stats"></div> <div id="clear-all"></div> 
-    </div>
+  </div>
+  <div class="row">
+    <span id="stats"></span> <span id="clear-all"></span> 
+  </div>
 </div>
 
 <div class="row">
@@ -106,29 +112,29 @@
           var url = '<a href="{{ path("becowo_core_workspace", { 'region':'paramRegion', 'ville' : 'paramCity', 'name': 'paramName' }) }}">';
           url = url.replace("paramRegion", region.replace('-', ' '));
           url = url.replace("paramCity", city.replace('-', ' '));
-          url = url.replace("paramName", name);
+          url = url.replace("paramName", wsName);
 
           vignette = vignette + 
             '<div class="info">' +
               '<span class="title">' + title + '</span><br>' +
                 '<span class="place">' +
                   url +
-                  '<i class="fa fa-home" aria-hidden="true"></i>' + name + ' à ' + city +
+                  '<i class="fa fa-home" aria-hidden="true"></i>' + wsName + ' à ' + city +
                   '</a>' +
                 '</span><br>' +
                 '<span class="time">' +
                   '<i class="fa fa-calendar-check-o" aria-hidden="true"></i>' +
-                  startDate + ' - ' + endDate +  
+                  afficheDate(startDate, endDate) +
                 '</span><br><br>' +
                 '<p>' + 
-                  TextAbstract(description, 200) +
+                  TextAbstract(nl2br(description), 200) +
                   '<a href="#" data-toggle="modal" data-target="#myModalEvent-' + id + '">[voir plus]</a>' + 
                 '</p>' +
             '</div>';
 
             linkFB = '';
             if(facebookId != ''){
-              linkFB = '<a href="http://facebook.com/' + facebookId + '" class="participate" onclick="return trackOutboundLink("http://facebook.com/' + facebookId + '", "participate community event ' + workspaceName + '", true);" target="_blank"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a>'; 
+              linkFB = '<a href="http://facebook.com/' + facebookId + '" class="participate" onclick="return trackOutboundLink("http://facebook.com/' + facebookId + '", "participate community event ' + wsName + '", true);" target="_blank"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a>'; 
             }
 
             vignette = vignette + linkFB;
@@ -146,16 +152,16 @@
                       '<span class="title">' + title + '</span><br>' +
                       '<span class="place">' +
                         url +
-                        '<i class="fa fa-home" aria-hidden="true"></i>' + name + ' à ' + city +
+                        '<i class="fa fa-home" aria-hidden="true"></i>' + wsName + ' à ' + city +
                         '</a>' +
                       '</span><br>' +
                       '<span class="time">' +
                         '<i class="fa fa-calendar-check-o" aria-hidden="true"></i>' +
-                        startDate + ' - ' + endDate +
+                        afficheDate(startDate, endDate) +
                       '</span><br><br>' +
                     '</div>' +
                     '<br><br>' +
-                      '<p>' + description + '</p>' +
+                      '<p>' + nl2br(description) + '</p>' +
                   '</div>' +
                   '<div class="modal-footer">' +
                     '<center>' +
@@ -211,11 +217,38 @@
 
   search.addWidget(
     instantsearch.widgets.refinementList({
+      container: '#workspaceRegion',
+      attributeName: 'workspace.region.name',
+      limit: 10,
+      sortBy: ['count:desc', 'name:asc'],
+      operator: 'or',
+      autoHideContainer: false,
+      templates: {
+        item: function(data) {
+          return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+          '<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+          '<span></span>' +
+                '</label>'
+        }
+      }
+    })
+  );
+  search.addWidget(
+    instantsearch.widgets.refinementList({
       container: '#workspaceName',
       attributeName: 'workspace.name',
       limit: 10,
       sortBy: ['count:desc', 'name:asc'],
-      operator: 'or'
+      operator: 'or',
+      autoHideContainer: false,
+      templates: {
+        item: function(data) {
+          return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+          '<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+          '<span></span>' +
+                '</label>'
+        }
+      }
     })
   );
   search.addWidget(
@@ -224,18 +257,46 @@
       attributeName: 'workspace.city',
       limit: 10,
       sortBy: ['count:desc', 'name:asc'],
-      operator: 'or'
+      operator: 'or',
+      autoHideContainer: false,
+      templates: {
+        item: function(data) {
+          return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+          '<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+          '<span></span>' +
+                '</label>'
+        }
+      }
     })
   );
-  // search.addWidget(
-  //   instantsearch.widgets.refinementList({
-  //     container: '#job',
-  //     attributeName: 'job.name',
-  //     limit: 10,
-  //     sortBy: ['isRefined', 'count:desc', 'name:asc'],
-  //     operator: 'or'
-  //   })
-  // );
+
+  // get current date ---- run test on https://www.epochconverter.com/
+  // Time are finally used in Epoch timestamp
+  var curr = new Date; 
+  // First day is the day of the month - the day of the week (+1 to start week on monday)
+  var first = curr.getDate() - curr.getDay() + 1; 
+  var lastdayOfWeek = new Date(curr.setDate(first + 6));
+  var lastDayOfMonth = new Date(curr.getFullYear(), curr.getMonth()+1, 0); // jour 0 renvoi le dernier jour du mois précédent
+  var nextMonth = new Date(curr.getYear(), curr.getMonth()+1, 1);
+
+  var thisMorning = Math.round(new Date(Date.now()).setHours(1) / 1000);
+  var endOfWeek = Math.round(new Date(lastdayOfWeek).getTime() / 1000);
+  var endOfMonth = Math.round(new Date(lastDayOfMonth).getTime() / 1000);
+  var beginOfNextMonth = Math.round(new Date(nextMonth).getTime() / 1000);
+
+  search.addWidget(
+  instantsearch.widgets.numericRefinementList({
+    container: '#eventDate',
+    attributeName: 'startDateTimeStamp',
+    autoHideContainer: false,
+    options: [
+      {name: 'Tous'},
+      {start: thisMorning, end: endOfWeek, name: 'Cette semaine'},
+      {start: Date.now() / 1000, end: endOfMonth, name: 'Ce mois ci'}, // bug si on remet thisMorning
+      {start: beginOfNextMonth, name: 'Le mois prochain'}
+    ]
+  })
+);
 
   search.addWidget(
     instantsearch.widgets.clearAll({
@@ -261,6 +322,30 @@
       last = text.lastIndexOf(" ");
       text = text.substring(0, last);
       return text + "...";
+  }
+
+  function afficheDate(debut, fin)
+  {
+    if(getDate(debut) == getDate(fin))
+      return ' Le ' + getDate(debut) + ' de ' + getHeure(debut) + ' à ' + getHeure(fin);
+    else
+      return ' Du ' + getDate(debut) + ' à ' + getHeure(debut) + ' au ' + getDate(fin) + ' à ' + getHeure(fin);
+  }
+
+  function getDate(chaine){
+    var d = chaine.split(' ');
+    var datecoupe = d[0].split('-');
+    return datecoupe[2] + '/' + datecoupe[1] + '/' + datecoupe[0];
+  }
+
+  function getHeure(chaine){
+    var d = chaine.split(' ');
+    var datecoupe = d[1].split(':');
+    return datecoupe[0] + 'h' + datecoupe[1];
+  }
+
+  function nl2br (chaine) {
+    return (chaine + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br>' + '$2');
   }
 
 </script>

@@ -1141,6 +1141,13 @@ footer{
   font-size: 16pt;
   bottom: 10px;
 }
+.event .modal .participate{
+  position: relative;
+  bottom: 0;
+}
+.event .modal-footer{
+  line-height: 50px;
+}
 /********************************** Public profile *************************************/
 
 #PublicProfile .name{

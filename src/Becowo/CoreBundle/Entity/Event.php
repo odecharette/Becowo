@@ -60,6 +60,13 @@ class Event
      */
     private $startDate;
 
+    /**
+     * @var \integer
+     *
+     * @ORM\Column(name="start_date_timestamp", type="integer", nullable=true)
+     * @Algolia\Attribute
+     */
+    private $startDateTimeStamp;
 
     /**
      * @var \DateTime
@@ -68,6 +75,14 @@ class Event
      * @Algolia\Attribute
      */
     private $endDate;
+
+    /**
+     * @var \integer
+     *
+     * @ORM\Column(name="end_date_timestamp", type="integer", nullable=true)
+     * @Algolia\Attribute
+     */
+    private $endDateTimeStamp;
 
     /**
      * @var \Becowo\CoreBundle\Entity\EventCategory
@@ -301,6 +316,54 @@ class Event
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * Gets the value of startDateTimeStamp.
+     *
+     * @return \integer
+     */
+    public function getStartDateTimeStamp()
+    {
+        return $this->startDateTimeStamp;
+    }
+
+    /**
+     * Sets the value of startDateTimeStamp.
+     *
+     * @param \integer $startDateTimeStamp the start date time stamp
+     *
+     * @return self
+     */
+    public function setStartDateTimeStamp(\integer $startDateTimeStamp)
+    {
+        $this->startDateTimeStamp = $startDateTimeStamp;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of endDateTimeStamp.
+     *
+     * @return \integer
+     */
+    public function getEndDateTimeStamp()
+    {
+        return $this->endDateTimeStamp;
+    }
+
+    /**
+     * Sets the value of endDateTimeStamp.
+     *
+     * @param \integer $endDateTimeStamp the end date time stamp
+     *
+     * @return self
+     */
+    public function setEndDateTimeStamp(\integer $endDateTimeStamp)
+    {
+        $this->endDateTimeStamp = $endDateTimeStamp;
+
+        return $this;
     }
 
     /**
