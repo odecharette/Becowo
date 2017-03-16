@@ -43,3 +43,8 @@ div.show-image a {
 h3{
     color: white   ;
 }
+
+#form_closedDate{
+    border: none;
+    box-shadow: none;
+}

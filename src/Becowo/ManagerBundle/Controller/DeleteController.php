@@ -120,4 +120,22 @@ class DeleteController extends Controller
     
   }
 
+  public function deleteCalendarAction(Request $request, $id, $wsId)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $d = $em->getRepository('BecowoCoreBundle:WorkspaceIsClosed')->find($id);
+
+    if (!$d) {
+        throw $this->createNotFoundException('No date found for id '.$id);
+    }
+
+    $em->remove($d);
+    $em->flush();
+
+    $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
+    
+    return $this->redirectToRoute('becowo_manager_profile_calendar', array('id' => $wsId));
+    
+  }
+
 }

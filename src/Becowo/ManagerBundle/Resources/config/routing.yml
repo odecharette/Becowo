@@ -73,6 +73,11 @@ becowo_manager_profile_calendar:
     path:     /profile/{id}/calendar
     defaults: { _controller: BecowoManagerBundle:Profile:calendar }
     methods: GET|POST
+
+becowo_manager_profile_calendar_delete:
+    path:     /profile/{wsId}/calendar/delete/{id}
+    defaults: { _controller: BecowoManagerBundle:Delete:deleteCalendar }
+
     
 becowo_manager_dashboard:
     path:     /{id}/dashboard

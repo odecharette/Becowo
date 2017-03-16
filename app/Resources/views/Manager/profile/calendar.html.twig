@@ -9,10 +9,10 @@
 	</div>
 </div>
 
-{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-{{ form_errors(form) }}
 
 {####################################################### Horaires #####################################################}
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(form) }}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="read-horaires">
@@ -47,29 +47,56 @@
 	</div>
 </div>
 <br>
+{{ form_rest(form) }}
+{{ form_end(form) }}
 {####################################################### Calendrier #####################################################}
+{{ form_start(formCalendar, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(formCalendar) }}
 <div class="row">
 	<div class="col-lg-12">
+		<h4>Calendrier
+			<small>Listez les dates de fermeture de votre espace</small>
+		</h4>
+		<div class="well well-sm">
+			{% for d in closedDates %}
+				{{d.closedDate|date('d/m/Y')}} 
+				<a data-toggle="modal" href="#myModal-{{d.id}}" class="btn btn-xs btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				{# Modale #}
+				<div class="modal fade" id="myModal-{{d.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalDelete" aria-hidden="true">
+				    <div class="modal-dialog" style="width: 30%;">
+				        <div class="modal-content">
+				            <div class="modal-header btn-danger">
+				                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+				                <h4 class="modal-title">Supprimer</h4>
+				            </div>
+				            <div class="modal-body">
+				                <p>Etes vous sûr de vouloir supprimer ? </p>
+				            </div>
+				            <div class="modal-footer">
+				                <a href="{{ path('becowo_manager_profile_calendar_delete', { 'id': d.id, wsId: workspace.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
+				                <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Annuler</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+
+				<br>
+			{% endfor %}
+		</div>
 		<div class="read-calendar">
-		<h4>Calendrier
-			<small>Indiquez une fermeture exceptionnelle ou une indisponibilité</small>
-			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('calendar')"></button>
-		</h4><div class="well well-sm">
-			{# {{workspace.name}} #}
-		</div></div>
+			<button type="button" class="btn btn-primary" onclick="goWrite('calendar')">Ajouter une date</button>
+		</div>
 		<div class="write-calendar">
-		<h4>Calendrier
+		    {{ form_errors(formCalendar.closedDate) }}
+		    {{ form_widget(formCalendar.closedDate, {'attr': {'class': 'form-control'}}) }}  
 			<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
 			<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('calendar')"></button>
-		</h4>  
-		    {# {{ form_errors(form.name) }} #}
-		    {# {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}   #}
 		</div>
 	</div>
 </div>
 <br>
-{{ form_rest(form) }}
-{{ form_end(form) }}
+{{ form_rest(formCalendar) }}
+{{ form_end(formCalendar) }}
 
 {########################################## Timetable #########################################}
 {{ form_start(formTime, {'attr': {'class': 'form-horizontal'}}) }}

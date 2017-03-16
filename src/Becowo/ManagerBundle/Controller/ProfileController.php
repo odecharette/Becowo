@@ -11,6 +11,7 @@ use Becowo\CoreBundle\Entity\TeamMember;
 use Becowo\CoreBundle\Entity\WorkspaceHasAmenities;
 use Becowo\CoreBundle\Entity\WorkspaceHasTeamMember;
 use Becowo\CoreBundle\Entity\Price;
+use Becowo\CoreBundle\Entity\WorkspaceIsClosed;
 use Becowo\CoreBundle\Form\Type\WorkspaceType;
 use Becowo\CoreBundle\Form\Type\PictureType;
 use Becowo\CoreBundle\Form\Type\WorkspaceHasOfficeType;
@@ -24,6 +25,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -284,33 +286,49 @@ class ProfileController extends Controller
   {
     $WsService = $this->get('app.workspace');
     $workspace = $WsService->getWorkspaceById($id);
-    $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $workspace);
+
+    ////// Horaire
+    $formBuilder = $this->get('form.factory')->createNamedBuilder('formHours', FormType::class, $workspace);
     $formBuilder
-      ->add('openHoursInfo',   TextareaType::class)
-      ->add('isAlwaysOpen',   CheckboxType::class, array('label' => 'Ouvert 24/7'))
+      ->add('openHoursInfo',   TextareaType::class, array('required' => false))
+      ->add('isAlwaysOpen',   CheckboxType::class, array('label' => 'Ouvert 24/7', 'required' => false))
       ;
     $form = $formBuilder->getForm();
 
-    $WsService = $this->get('app.workspace');
+    ///// Calendrier
+    $closedDates = $WsService->getClosedDatesByWorkspace($workspace);
+
+    $newClosedDate = new WorkspaceIsClosed();
+    $newClosedDate->setWorkspace($workspace);
+    $formBuilderCalendar = $this->get('form.factory')->createNamedBuilder('formCalendar', FormType::class, $newClosedDate);
+    $formBuilderCalendar
+      ->add('closedDate', DateType::class, array(
+        'widget' => 'choice',
+        'years' => range(date('Y'), date('Y')+4)));
+    $formCalendar = $formBuilderCalendar->getForm();
+
+
+
+    ///// Timetable
+
     $timetable = $WsService->getTimesByWorkspace($workspace);
     
-    $formBuilderTime = $this->get('form.factory')->createBuilder(FormType::class, $timetable[0]);
+    $formBuilderTime = $this->get('form.factory')->createNamedBuilder('formTimetable', FormType::class, $timetable[0]);
     $formBuilderTime
       ->add('openHour',   TimeType::class, array(
           'label' => 'Horaire d\'ouverture',
           'input'  => 'datetime',
-          'widget' => 'choice',
-      ))
+          'widget' => 'choice'))
       ->add('closeHour',   TimeType::class, array(
           'label' => 'Horaire de fermeture',
           'input'  => 'datetime',
-          'widget' => 'choice',
-      ))
-      ->add('isOpenSaturday',   CheckboxType::class, array('label' => 'Ouvert le Samedi'))
-      ->add('isOpenSunday',   CheckboxType::class, array('label' => 'Ouvert le Dimanche'))
+          'widget' => 'choice'))
+      ->add('isOpenSaturday',   CheckboxType::class, array('label' => 'Ouvert le Samedi', 'required' => false))
+      ->add('isOpenSunday',   CheckboxType::class, array('label' => 'Ouvert le Dimanche','required' => false))
       ;
     $formTime = $formBuilderTime->getForm();
 
+    //Horaire
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
       $em->persist($workspace);
@@ -321,6 +339,18 @@ class ProfileController extends Controller
       return $this->redirectToRoute('becowo_manager_profile_calendar', array('id' => $id));
     }
 
+    //Calendar
+    if ($request->isMethod('POST') && $formCalendar->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($newClosedDate);
+      $em->flush();
+
+      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
+
+      return $this->redirectToRoute('becowo_manager_profile_calendar', array('id' => $id));
+    }
+
+    // Timetable
     if ($request->isMethod('POST') && $formTime->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
       $em->persist($timetable[0]);
@@ -335,7 +365,9 @@ class ProfileController extends Controller
       'form' => $form->createView(),
       'formTime' => $formTime->createView(), 
       'workspace' => $workspace,
-      'timetable' => $timetable[0]));
+      'timetable' => $timetable[0],
+      'closedDates' => $closedDates,
+      'formCalendar' => $formCalendar->createView()));
 
   }
 
