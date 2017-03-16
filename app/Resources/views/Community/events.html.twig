@@ -7,161 +7,262 @@
 {% block content %}
 <h1>Les Evènements</h1>
 <div class="row" id="filtersBar">
-
-      <div id="filterEvents">
-        Filtrer par : 
-        <div class="dropdown">
-          <button class="dropbtn">Ville</button>
-          <div class="dropdown-content">
-            {% set cities = [] %}
-            {% for ws in WSList|sort %}
-               {% if ws.city not in cities %}
-                 <a href="{{ path('becowo_core_community_events', { 'WsCity':ws.city}) }}"><label> {{ws.city|capitalize}}</label> </a>
-                <br>
-               {% set cities = cities|merge([ws.city]) %}
-               {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-        <div class="dropdown">
-    			<button class="dropbtn">Coworking </button>
-          <div class="dropdown-content">
-          	{% for ws in WSList|sort %}
-          		<a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"><label> {{ws.name|capitalize}}</label> </a>
-          		<br>
-            {% endfor %}
-          </div>
-        </div>
-        <div class="dropdown">
-          <button class="dropbtn">Date </button>
-          <div class="dropdown-content">
-            <a href="{{ path('becowo_core_community_events', { 'EventDate':'semaine'}) }}"><label>Cette semaine</label> </a><br>
-            <a href="{{ path('becowo_core_community_events', { 'EventDate':'mois'}) }}"><label>Ce mois ci</label> </a><br>
-            <a href="{{ path('becowo_core_community_events', { 'EventDate':'moisProchain'}) }}"><label>Le mois prochain</label> </a>
-          </div>
-        </div>
-        <span id="sort">
-          Trier par : 
-          {{ knp_pagination_sortable(listEvents, 'Date', 'e.startDate') }}
-        </span>
-      </div>
-      <br>
-      <span class="counter">
-        {{ listEvents.getTotalItemCount }} évènements trouvés - <a href="{{ path('becowo_core_community_events') }}">Effacer les filtres</a>
-      </span>
-</div>
-
-<div class="row events">
-{% for event in listEvents %}   
-
-  <div class="row event">
-    {% if event.CategoryName != null %}
-      <div class="photo" style="background-image:url('{{ asset('images/icons/events/')}}{{event.CategoryName}}.png');
-        width:200px;
-        height:150px;
-        background-position:center;
-        background-size: cover;
-        margin-left: 15px;
-        margin-top: 10px;">&nbsp;</div>
-    {% else %}
-      <div class="photo" style="background-image:url('{{event.picture}}');
-        width:200px;
-        height:150px;
-        background-position:center;
-        background-size: cover;
-        margin-left: 15px;
-        margin-top: 10px;">&nbsp;</div>
-    {% endif %}
-    <div class="info">
-      <span class="title">{{event.title}}</span>
-      <br>
-      <span class="place">
-        <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
-          <i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}} à {{event.WsCity}}
-        </a>
-      </span>
-      <br>
-      <span class="time">
-        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-        {{ event.startDate|localizeddate('full', 'none')|title }} {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}   
-      </span>
-      <br><br>
-      <p>
-        {% if event.description|length > 200 %}
-          {{event.description|slice(0,200)}}...
-        {% else %}
-          {{event.description}}
-        {% endif %}
-        <a href="#" data-toggle="modal" data-target="#myModalEvent-{{event.id}}">[voir plus]</a> 
-      </p>
+    <div class="col-lg-3 col-lg-offset-1">
+        <h3>Ville</h3>
+        <div id="workspaceCity" class="facet"></div>
     </div>
-    
-    {% if event.facebookId != null %}
-      <a href="http://facebook.com/{{event.facebookId}}" class="participate" onclick="return trackOutboundLink('http://facebook.com/{{event.facebookId}}', 'participate community event {{event.WsName}}', true);" target="_blank"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a> 
-    {% endif %}
-          
- 
-  	<!-- Modale -->
-  	<div class="modal fade modalEvent" id="myModalEvent-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  	    <div class="modal-dialog">
-	        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                <h4 class="modal-title">{{event.title}}</h4>
-            </div>
-            <div class="modal-body" style="overflow-y: scroll;">
-              {% if event.CategoryName != null %}
-                <div class="photo" style="background-image:url('{{ asset('images/icons/events/')}}{{event.CategoryName}}.png');
-                  width:200px;
-                  height:150px;
-                  background-position:center;
-                  background-size: cover;
-                  margin-left: 15px;
-                  margin-top: 10px;">&nbsp;</div>
-              {% else %}
-                <div class="photo" style="background-image:url('{{event.picture}}');
-                  width:200px;
-                  height:150px;
-                  background-position:center;
-                  background-size: cover;
-                  margin-left: 15px;
-                  margin-top: 10px;">&nbsp;</div>
-              {% endif %}
-              <div class="info">
-                <br>
-                <span class="title">{{event.title|capitalize}}</span>
-                <br>
-                <span class="place">
-                  <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
-                    <i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}} à {{event.WsCity}}
-                  </a>
-                </span>
-                <br>
-                <span class="time">
-                  <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                  {{ event.startDate|localizeddate('full', 'none')|title }} {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}   
-                </span>
-                <br><br>
-              </div>
-              <br><br>
-                <p>{{event.description|nl2br}}</p>
-            </div>
-            <div class="modal-footer">
-              <center>
-                {% if event.facebookId != null %}
-                  <a href="http://facebook.com/{{event.facebookId}}" target="_blank" style="font-size:16pt;"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a> 
-                {% endif %}
-              </center>
-            </div>
-	        </div>
-  	    </div>
-  	</div>
-
-  </div>
-{% endfor %}
+    <div class="col-lg-3">
+      <h3>Coworking</h3>
+      <div id="workspaceName" class="facet"></div>
+    </div>
+    <div class="col-lg-3">
+      <h3>Date</h3>
+        {# <div id="filterOffices"></div> #}
+    </div>  
+    <div class="col-lg-3">
+      <div id="stats"></div> <div id="clear-all"></div> 
+    </div>
 </div>
-  <div class="navigation text-center">
-      {{ knp_pagination_render(listEvents) }}
-  </div>
+
+<div class="row">
+    <div id="hits" class="events"></div>
+</div>
+<div class="row text-center">
+    <div id="pagination"></div>
+</div>
 
 {% endblock content %}
+
+{% block javascripts %}
+<script>
+  // Documentation : https://www.algolia.com/doc/guides/search/instant-search/
+
+  var search = instantsearch({
+    appId: "{{ algolia.application_id }}",
+    apiKey: "{{ algolia.search_api_key }}", // search only API key, no ADMIN key
+    indexName: "{{ algolia.index_event }}",
+    urlSync: true
+  });
+  
+  search.addWidget(
+    instantsearch.widgets.hits({
+      container: '#hits',
+      hitsPerPage: 5,
+      templates: {
+        item: function(data) {
+          console.log(data);
+          
+          var id = '';
+          if(data.id !== null){ id = data.id }else{ id = ''};
+
+          var wsName = '';
+          if(data.workspace !== null){ wsName = data.workspace.name }else{ wsName = ''};
+
+          var startDate = '';
+          if(data.startDate !== null){ startDate = data.startDate.date }else{ startDate = ''};
+
+          var endDate = '';
+          if(data.endDate !== null){ endDate = data.endDate.date }else{ endDate = ''};
+
+          var city = '';
+          if(data.workspace !== null){ city = data.workspace.city }else{ city = ''};
+
+          var region = '';
+          if(data.workspace !== null){ region = data.workspace.region.name }else{ region = ''};
+
+          var title = '';
+          if(data.title !== null){ title = data.title }else{ title = ''};
+
+          var description = '';
+          if(data.description !== null){ description = data.description }else{ description = ''};
+
+          var category = '';
+          if(data.category !== null){ category = data.category.name }else{ category = ''};
+
+          var facebookId = '';
+          if(data.facebookId !== null){ facebookId = data.facebookId }else{ facebookId = ''};
+
+          var picture = '';
+          if(data.picture !== null){ picture = data.picture }else{ picture = ''};
+
+          var vignette = '<div class="event">';
+
+          if(category != '')
+          {
+            divPhoto = '<div class="photo" style="background-image:url(\'{{ asset("images/icons/events/")}}' + category + '.png);';
+          }else{
+            divPhoto = '<div class="photo" style="background-image:url(' + picture + ');';
+          }
+          divPhoto = divPhoto + 
+              'width:200px;' +
+              'height:150px;' +
+              'background-position:center;' +
+              'background-size: cover;' +
+              'margin-left: 15px;' +
+              'margin-top: 10px;">&nbsp;</div>';
+
+          vignette = vignette + divPhoto;
+
+          var url = '<a href="{{ path("becowo_core_workspace", { 'region':'paramRegion', 'ville' : 'paramCity', 'name': 'paramName' }) }}">';
+          url = url.replace("paramRegion", region.replace('-', ' '));
+          url = url.replace("paramCity", city.replace('-', ' '));
+          url = url.replace("paramName", name);
+
+          vignette = vignette + 
+            '<div class="info">' +
+              '<span class="title">' + title + '</span><br>' +
+                '<span class="place">' +
+                  url +
+                  '<i class="fa fa-home" aria-hidden="true"></i>' + name + ' à ' + city +
+                  '</a>' +
+                '</span><br>' +
+                '<span class="time">' +
+                  '<i class="fa fa-calendar-check-o" aria-hidden="true"></i>' +
+                  startDate + ' - ' + endDate +  
+                '</span><br><br>' +
+                '<p>' + 
+                  TextAbstract(description, 200) +
+                  '<a href="#" data-toggle="modal" data-target="#myModalEvent-' + id + '">[voir plus]</a>' + 
+                '</p>' +
+            '</div>';
+
+            linkFB = '';
+            if(facebookId != ''){
+              linkFB = '<a href="http://facebook.com/' + facebookId + '" class="participate" onclick="return trackOutboundLink("http://facebook.com/' + facebookId + '", "participate community event ' + workspaceName + '", true);" target="_blank"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a>'; 
+            }
+
+            vignette = vignette + linkFB;
+            
+            var modal = '<div class="modal fade modalEvent" id="myModalEvent-' + id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+              '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                  '<div class="modal-header">' +
+                      '<button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>' +
+                      '<h4 class="modal-title">' + title + '</h4>' +
+                  '</div>' +
+                  '<div class="modal-body" style="overflow-y: scroll;">' +
+                    divPhoto +
+                    '<div class="info"><br>' +
+                      '<span class="title">' + title + '</span><br>' +
+                      '<span class="place">' +
+                        url +
+                        '<i class="fa fa-home" aria-hidden="true"></i>' + name + ' à ' + city +
+                        '</a>' +
+                      '</span><br>' +
+                      '<span class="time">' +
+                        '<i class="fa fa-calendar-check-o" aria-hidden="true"></i>' +
+                        startDate + ' - ' + endDate +
+                      '</span><br><br>' +
+                    '</div>' +
+                    '<br><br>' +
+                      '<p>' + description + '</p>' +
+                  '</div>' +
+                  '<div class="modal-footer">' +
+                    '<center>' +
+                      linkFB +
+                    '</center>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+          '</div>';
+
+          return vignette + ' ' + modal;
+        },
+        empty: function(data) {
+          return '<p>Désolé ! Aucun évènement trouvé pour la recherche <em>' + data.query + '</em>.</p>'
+        }
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.stats({
+      container: '#stats',
+      templates: {
+        body: function(data) {
+          return '<div>' + data.nbHits + ' évènements trouvés.</div>'
+        }
+      }
+    })
+  );
+
+  // search.addWidget(
+  //   instantsearch.widgets.sortBySelector({
+  //     container: '#sort-by',
+  //     autoHideContainer: true, //automatically hide the widget when there are no results to display
+  //     indices: [{
+  //       name: search.indexName, label: 'Fill rate'
+  //     }, {
+  //       name: search.indexName + '_sort_firstname_asc', label: 'Prénom Asc'
+  //     }]
+  //   })
+  // );
+
+  search.addWidget(
+    instantsearch.widgets.pagination({
+      container: '#pagination',
+      showFirstLast: false,
+      cssClasses: {
+        root: 'pagination',
+        active: 'active'
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#workspaceName',
+      attributeName: 'workspace.name',
+      limit: 10,
+      sortBy: ['count:desc', 'name:asc'],
+      operator: 'or'
+    })
+  );
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#workspaceCity',
+      attributeName: 'workspace.city',
+      limit: 10,
+      sortBy: ['count:desc', 'name:asc'],
+      operator: 'or'
+    })
+  );
+  // search.addWidget(
+  //   instantsearch.widgets.refinementList({
+  //     container: '#job',
+  //     attributeName: 'job.name',
+  //     limit: 10,
+  //     sortBy: ['isRefined', 'count:desc', 'name:asc'],
+  //     operator: 'or'
+  //   })
+  // );
+
+  search.addWidget(
+    instantsearch.widgets.clearAll({
+    container: '#clear-all',
+    templates: {
+      link: 'Effacer les filtres'
+    },
+      autoHideContainer: false
+    })
+  );
+
+  search.start();
+
+
+  function TextAbstract(text, length) {
+    if (text == null) {
+        return "";
+    }
+    if (text.length <= length) {
+        return text;
+    }
+      text = text.substring(0, length);
+      last = text.lastIndexOf(" ");
+      text = text.substring(0, last);
+      return text + "...";
+  }
+
+</script>
+{% endblock javascripts %}
+

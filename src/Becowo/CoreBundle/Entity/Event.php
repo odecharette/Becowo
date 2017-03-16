@@ -20,6 +20,7 @@ class Event
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Algolia\Attribute
      */
     private $id;
 

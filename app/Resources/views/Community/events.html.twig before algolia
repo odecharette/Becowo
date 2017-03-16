@@ -1,0 +1,167 @@
+{% extends "Community/layout.html.twig" %}
+
+{% block title %}
+  Les évènements
+{% endblock %}
+
+{% block content %}
+<h1>Les Evènements</h1>
+<div class="row" id="filtersBar">
+
+      <div id="filterEvents">
+        Filtrer par : 
+        <div class="dropdown">
+          <button class="dropbtn">Ville</button>
+          <div class="dropdown-content">
+            {% set cities = [] %}
+            {% for ws in WSList|sort %}
+               {% if ws.city not in cities %}
+                 <a href="{{ path('becowo_core_community_events', { 'WsCity':ws.city}) }}"><label> {{ws.city|capitalize}}</label> </a>
+                <br>
+               {% set cities = cities|merge([ws.city]) %}
+               {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="dropdown">
+    			<button class="dropbtn">Coworking </button>
+          <div class="dropdown-content">
+          	{% for ws in WSList|sort %}
+          		<a href="{{ path('becowo_core_community_events', { 'WsName':ws.name}) }}"><label> {{ws.name|capitalize}}</label> </a>
+          		<br>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Date </button>
+          <div class="dropdown-content">
+            <a href="{{ path('becowo_core_community_events', { 'EventDate':'semaine'}) }}"><label>Cette semaine</label> </a><br>
+            <a href="{{ path('becowo_core_community_events', { 'EventDate':'mois'}) }}"><label>Ce mois ci</label> </a><br>
+            <a href="{{ path('becowo_core_community_events', { 'EventDate':'moisProchain'}) }}"><label>Le mois prochain</label> </a>
+          </div>
+        </div>
+        <span id="sort">
+          Trier par : 
+          {{ knp_pagination_sortable(listEvents, 'Date', 'e.startDate') }}
+        </span>
+      </div>
+      <br>
+      <span class="counter">
+        {{ listEvents.getTotalItemCount }} évènements trouvés - <a href="{{ path('becowo_core_community_events') }}">Effacer les filtres</a>
+      </span>
+</div>
+
+<div class="row events">
+{% for event in listEvents %}   
+
+  <div class="row event">
+    {% if event.CategoryName != null %}
+      <div class="photo" style="background-image:url('{{ asset('images/icons/events/')}}{{event.CategoryName}}.png');
+        width:200px;
+        height:150px;
+        background-position:center;
+        background-size: cover;
+        margin-left: 15px;
+        margin-top: 10px;">&nbsp;</div>
+    {% else %}
+      <div class="photo" style="background-image:url('{{event.picture}}');
+        width:200px;
+        height:150px;
+        background-position:center;
+        background-size: cover;
+        margin-left: 15px;
+        margin-top: 10px;">&nbsp;</div>
+    {% endif %}
+    <div class="info">
+      <span class="title">{{event.title}}</span>
+      <br>
+      <span class="place">
+        <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
+          <i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}} à {{event.WsCity}}
+        </a>
+      </span>
+      <br>
+      <span class="time">
+        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+        {{ event.startDate|localizeddate('full', 'none')|title }} {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}   
+      </span>
+      <br><br>
+      <p>
+        {% if event.description|length > 200 %}
+          {{event.description|slice(0,200)}}...
+        {% else %}
+          {{event.description}}
+        {% endif %}
+        <a href="#" data-toggle="modal" data-target="#myModalEvent-{{event.id}}">[voir plus]</a> 
+      </p>
+    </div>
+    
+    {% if event.facebookId != null %}
+      <a href="http://facebook.com/{{event.facebookId}}" class="participate" onclick="return trackOutboundLink('http://facebook.com/{{event.facebookId}}', 'participate community event {{event.WsName}}', true);" target="_blank"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a> 
+    {% endif %}
+          
+ 
+  	<!-- Modale -->
+  	<div class="modal fade modalEvent" id="myModalEvent-{{event.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	    <div class="modal-dialog">
+	        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">{{event.title}}</h4>
+            </div>
+            <div class="modal-body" style="overflow-y: scroll;">
+              {% if event.CategoryName != null %}
+                <div class="photo" style="background-image:url('{{ asset('images/icons/events/')}}{{event.CategoryName}}.png');
+                  width:200px;
+                  height:150px;
+                  background-position:center;
+                  background-size: cover;
+                  margin-left: 15px;
+                  margin-top: 10px;">&nbsp;</div>
+              {% else %}
+                <div class="photo" style="background-image:url('{{event.picture}}');
+                  width:200px;
+                  height:150px;
+                  background-position:center;
+                  background-size: cover;
+                  margin-left: 15px;
+                  margin-top: 10px;">&nbsp;</div>
+              {% endif %}
+              <div class="info">
+                <br>
+                <span class="title">{{event.title|capitalize}}</span>
+                <br>
+                <span class="place">
+                  <a href="{{ path('becowo_core_workspace', { 'region':event.WsRegion, 'ville' : event.WsCity, 'name': event.WsName }) }}">
+                    <i class="fa fa-home" aria-hidden="true"></i> {{event.WsName}} à {{event.WsCity}}
+                  </a>
+                </span>
+                <br>
+                <span class="time">
+                  <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                  {{ event.startDate|localizeddate('full', 'none')|title }} {{event.startDate|date("H:i")}} - {{event.endDate|date("H:i")}}   
+                </span>
+                <br><br>
+              </div>
+              <br><br>
+                <p>{{event.description|nl2br}}</p>
+            </div>
+            <div class="modal-footer">
+              <center>
+                {% if event.facebookId != null %}
+                  <a href="http://facebook.com/{{event.facebookId}}" target="_blank" style="font-size:16pt;"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a> 
+                {% endif %}
+              </center>
+            </div>
+	        </div>
+  	    </div>
+  	</div>
+
+  </div>
+{% endfor %}
+</div>
+  <div class="navigation text-center">
+      {{ knp_pagination_render(listEvents) }}
+  </div>
+
+{% endblock content %}
