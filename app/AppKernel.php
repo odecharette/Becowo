@@ -26,7 +26,6 @@ class AppKernel extends Kernel
             new blackknight467\StarRatingBundle\StarRatingBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Becowo\ApiBundle\BecowoApiBundle(),
             new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
             new Becowo\CronBundle\BecowoCronBundle(),
