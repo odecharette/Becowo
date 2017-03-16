@@ -97,7 +97,7 @@
 	        		job = data.job.name
 	        	}else{
 	        		job = ''};
-	        var jobUrl = ''; if(data.job.name !== null){jobUrl = data.job.name} else {jobUrl=''};
+	        var jobUrl = ''; if(data.job.name !== null){jobUrl = data.job.name} else {jobUrl='job'};
 	        var city = '';
 	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.city !== 'undefined'){
 	        		city = data._highlightResult.city.value
@@ -105,7 +105,7 @@
 	        		city = data.city
 	        	}else{
 	        		city = ''};
-	        var cityUrl = ''; if(data.city !== null){cityUrl = data.city} else {cityUrl=''};
+	        var cityUrl = ''; if(data.city !== null){cityUrl = data.city} else {cityUrl='ville'};
 	        var picture = '';
 	        if(data.urlProfilePicture !== null){
 	        		picture = data.urlProfilePicture
