@@ -80,16 +80,16 @@
 		<h4>Horaires
 			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('timetable')"></button>
 		</h4><div class="well well-sm">
-			Ouverture : {{ formTime.openHour.vars.value.hour }} : {{ formTime.openHour.vars.value.minute }} <br>
-			Fermeture : {{ formTime.closeHour.vars.value.hour }} : {{ formTime.closeHour.vars.value.minute }} <br>
+			Ouverture : {{ timetable.openHour|date("H:i") }}  <br>
+			Fermeture : {{ timetable.closeHour|date("H:i") }} <br>
 			Ouvert le Samedi : 
-				{% if formTime.isOpenSaturday.vars.value == true %} 
+				{% if timetable.isOpenSaturday %} 
 					<img src={{ asset('/images/icons/box_checked.gif')}} alt="checked">
 				{% else %}
 					<img src={{ asset('/images/icons/box_unchecked.gif')}} alt="unchecked">
 				{% endif %} <br>
 			Ouvert le Dimanche : 
-				{% if formTime.isOpenSunday.vars.value == true %} 
+				{% if timetable.isOpenSunday %} 
 					<img src={{ asset('/images/icons/box_checked.gif')}} alt="checked">
 				{% else %}
 					<img src={{ asset('/images/icons/box_unchecked.gif')}} alt="unchecked">

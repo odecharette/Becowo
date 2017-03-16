@@ -293,7 +293,8 @@ class ProfileController extends Controller
 
     $WsService = $this->get('app.workspace');
     $timetable = $WsService->getTimesByWorkspace($workspace);
-    $formBuilderTime = $this->get('form.factory')->createBuilder(FormType::class, $timetable);
+    
+    $formBuilderTime = $this->get('form.factory')->createBuilder(FormType::class, $timetable[0]);
     $formBuilderTime
       ->add('openHour',   TimeType::class, array(
           'label' => 'Horaire d\'ouverture',
@@ -322,7 +323,7 @@ class ProfileController extends Controller
 
     if ($request->isMethod('POST') && $formTime->handleRequest($request)->isValid()) {
       $em = $this->getDoctrine()->getManager();
-      $em->persist($timetable);
+      $em->persist($timetable[0]);
       $em->flush();
 
       $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
@@ -333,7 +334,8 @@ class ProfileController extends Controller
     return $this->render('Manager/profile/calendar.html.twig', array(
       'form' => $form->createView(),
       'formTime' => $formTime->createView(), 
-      'workspace' => $workspace));
+      'workspace' => $workspace,
+      'timetable' => $timetable[0]));
 
   }
 
