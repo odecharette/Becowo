@@ -37,7 +37,7 @@
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
 			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
         </div>
-        <div class="col-lg-7 menu">
+        <div class="col-lg-5 menu">
 		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <i class="fa fa-circle" aria-hidden="true"></i>
 			<a title="La communauté" href="{{ path('becowo_core_community') }}">communauté </a>	<i class="fa fa-circle" aria-hidden="true"></i>
 			<div class="btn-group">
@@ -55,6 +55,8 @@
 				    </li>
 			    </ul>
 			</div>
+		</div>    
+		<div class="col-lg-2 connectMenu">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}	
 				<div class="btn-group loginMenu">
 		          <a href="" data-toggle="dropdown" class="log-menu">
@@ -90,7 +92,7 @@
 	        {% else %}
 				<a data-toggle="modal" href="#myModalLogin" class="log">Connexion</a> 
 			{% endif %}      
-		</div>      
+		</div>  
 	</div>
 
 {# Les modal doivent se charger en même temps pour pouvoir passer de l'une à l'autre #}

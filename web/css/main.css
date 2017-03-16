@@ -106,8 +106,10 @@ header .title{
   font-family: 'Vollkorn-BoldItalic';
   font-size: 30pt;
 }
-header .menu{
+header .menu, header .connectMenu{
   line-height: 90px;
+}
+header .menu{
   text-align: right;
 }
 header .menu a{
