@@ -100,19 +100,22 @@ class ApiService
                 $event->setPicture($this->getFacebookEventPicture($e->id)->source);
 
                 // On vérifie que l'event a bien lieu dans le ws correspondant
-                if(isset($e->place->id))
-                {   
-                    if($e->place->id == $facebookPageId) 
-                    {
-                        $event->setWorkspace($ws);
-                    }
-                }else if(isset($e->place->name))
-                {
-                    if(strpos($e->place->name, $ws->getName()) >= 0)
-                    {
-                        $event->setWorkspace($ws);
-                    }
-                }
+                // if(isset($e->place->id))
+                // {   
+                //     if($e->place->id == $facebookPageId) 
+                //     {
+                //         $event->setWorkspace($ws);
+                //     }
+                // }else if(isset($e->place->name))
+                // {
+                //     if(strpos($e->place->name, $ws->getName()) >= 0)
+                //     {
+                //         $event->setWorkspace($ws);
+                //     }
+                // }
+                //////// Ne marche pas tjs car certaines page FB sont mal configurées (ex wereso paris)
+                // du coup on part du principe que l'event est tjs organisé dans l'espace qui le diffuse...
+                $event->setWorkspace($ws);
 
                 $this->logger->info('saveFacebookPageEvents - Event ID ' . $e->id . ' created');
 
