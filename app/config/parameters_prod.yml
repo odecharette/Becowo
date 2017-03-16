@@ -29,6 +29,7 @@ parameters:
     algolia.index_hobbie: Hobbie_prod
     algolia.index_wish: Wish_prod
     algolia.index_workspace: Workspace_prod
+    algolia.index_event: Event_prod
 
     # Google Analytics ID
     google_analytics_ID: UA-77791149-3

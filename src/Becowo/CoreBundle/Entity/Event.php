@@ -3,6 +3,7 @@
 namespace Becowo\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 
 /**
  * Event
@@ -30,6 +31,7 @@ class Event
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
      * })
+     * @Algolia\Attribute
      */
     private $workspace;
     
@@ -37,6 +39,7 @@ class Event
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     * @Algolia\Attribute
      */
     private $title;
 
@@ -44,6 +47,7 @@ class Event
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
+     * @Algolia\Attribute
      */
     private $description;
 
@@ -51,6 +55,7 @@ class Event
      * @var \DateTime
      *
      * @ORM\Column(name="start_date", type="datetime", nullable=true)
+     * @Algolia\Attribute
      */
     private $startDate;
 
@@ -59,6 +64,7 @@ class Event
      * @var \DateTime
      *
      * @ORM\Column(name="end_date", type="datetime", nullable=true)
+     * @Algolia\Attribute
      */
     private $endDate;
 
@@ -69,6 +75,7 @@ class Event
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
+     * @Algolia\Attribute
      */
     private $category;
 
@@ -77,6 +84,7 @@ class Event
      * @var string
      *
      * @ORM\Column(name="facebook_id", type="string", nullable=true)
+     * @Algolia\Attribute
      */
     private $facebookId;
 
@@ -85,6 +93,7 @@ class Event
      * @var string
      *
      * @ORM\Column(name="picture", type="string", nullable=true)
+     * @Algolia\Attribute
      */
     private $picture;
 
@@ -291,5 +300,13 @@ class Event
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * @Algolia\IndexIf
+     */
+    public function isFuture()
+    {
+        return $this->startDate >= new \DateTime();
     }
 }

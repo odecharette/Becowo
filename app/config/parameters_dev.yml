@@ -29,6 +29,7 @@ parameters:
     algolia.index_hobbie: Hobbie_dev
     algolia.index_wish: Wish_dev
     algolia.index_workspace: Workspace_dev
+    algolia.index_event: Event_dev
 
     # Google Analytics ID
     google_analytics_ID: no_user

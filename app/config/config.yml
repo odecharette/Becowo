@@ -75,6 +75,7 @@ twig:
             index_hobbie: '%algolia.index_hobbie%'
             index_wish: '%algolia.index_wish%'
             index_workspace: '%algolia.index_workspace%'
+            index_event: '%algolia.index_event%'
 
 services:
     twig.extension.intl:
