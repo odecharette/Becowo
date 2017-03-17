@@ -1,0 +1,50 @@
+#workspace_amenities, .form-control{
+	/* corrige l'affichage des checkbox Amenities*/
+	height: 100%;
+}
+
+#chart_age #chart_sex{
+	height: 300px;
+	width: 500px;
+}
+
+div.show-image {
+    position: relative;
+    float:left;
+    margin:5px;
+}
+div.show-image img{
+    width: 300px;
+    height: 200px;
+}
+div.show-image:hover img{
+    opacity:0.5;
+}
+div.show-image:hover a {
+    display: block;
+}
+div.show-image a {
+    position:absolute;
+    display:none;
+    top:40%;
+    left:40%;
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-decoration: none;
+}
+
+h3{
+    color: white   ;
+}
+
+#form_closedDate{
+    border: none;
+    box-shadow: none;
+}
