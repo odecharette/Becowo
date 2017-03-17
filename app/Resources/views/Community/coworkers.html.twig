@@ -108,7 +108,10 @@
 	        var cityUrl = ''; if(data.city !== null){cityUrl = data.city} else {cityUrl='ville'};
 	        var picture = '';
 	        if(data.urlProfilePicture !== null){
+	        	if(data.urlProfilePicture.indexOf('http') != -1)
 	        		picture = data.urlProfilePicture
+	        	else
+	        		picture = '{{ asset("images/ProfilePictures/")}}' + data.urlProfilePicture
 	        	}else{
 	        		picture = 'avatar.png'};
 	        var bio = '';
@@ -130,7 +133,7 @@
 
 	        return '<div class="coworker">' + 
 	        			'<a href="' + url + '">' +
-						'<div class="photo" style="background-image:url(\'{{ asset("images/ProfilePictures/")}}' + picture + '\');' +
+						'<div class="photo" style="background-image:url(\'' + picture + '\');' +
 						    'width:150px; ' +
 						    'height:150px; ' +
 						    'background-position:center;' +
