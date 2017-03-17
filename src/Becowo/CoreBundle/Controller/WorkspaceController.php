@@ -109,17 +109,17 @@ class WorkspaceController extends Controller
         'ws' =>$ws));
   }
 
-   public function voteAndCommentAction($name, Request $request)
+   public function voteAndCommentAction($id, Request $request)
   {
     $WsService = $this->get('app.workspace');
-    $ws = $WsService->getWorkspaceByName($request->get('name'));
+    $ws = $WsService->getWorkspaceById($id);
     $listComments = $WsService->getCommentsByWorkspace($ws);
     $voteAlreadyDone = $WsService->memberAlreadyVoteAndCommentForWorkspace($ws, $this->getUser());
 
     // Création du formulaire de commentaires
     $comment = new Comment($ws, $this->getUser());
     $formComment = $this->get('form.factory')->createNamedBuilder('comment-form', CommentType::class, $comment)
-      ->setAction($this->generateUrl('becowo_comment', array('name' => $name)))
+      ->setAction($this->generateUrl('becowo_comment', array('id' => $id)))
       ->setMethod('POST')
       ->getForm();
 
@@ -132,7 +132,7 @@ class WorkspaceController extends Controller
 
       $this->addFlash('success', 'Merci ! Commentaire et vote bien enregistrés.');
 
-      return $this->redirectToRoute('becowo_comment', array('name' => $request->get('name')));
+      return $this->redirectToRoute('becowo_comment', array('id' => $id));
     }
 
     return $this->render('Workspace/comments.html.twig', array('formComment' => $formComment->createView(), 'listComments' => $listComments, 'ws' =>$ws, 'voteAlreadyDone' => $voteAlreadyDone));

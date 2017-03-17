@@ -177,7 +177,7 @@ becowo_core_extract:
     methods: GET
 
 becowo_comment:
-    path:    /comment/{name}
+    path:    /comment/{id}
     defaults: { _controller: BecowoCoreBundle:Workspace:voteAndComment }
     methods: GET|POST
     options:

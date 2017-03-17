@@ -988,13 +988,13 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this->country;
     }
 
-    public function addWorkspace(Workspace $workspace)
+    public function addWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace)
     {
         
         $this->workspaces[] = $workspace;
     }
 
-    public function removeWorkspaces(Workspace $workspace)
+    public function removeWorkspaces(\Becowo\CoreBundle\Entity\Workspace $workspace)
     {
         $this->workspaces->removeElement($workspace);
     }
@@ -1210,13 +1210,13 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         }
     }
 
-    public function addListSkill(Skill $skill)
+    public function addListSkill(\Becowo\CoreBundle\Entity\Skill $skill)
     {
         
         $this->listSkills[] = $skill;
     }
 
-    public function removeListSkills(Skill $skill)
+    public function removeListSkills(\Becowo\CoreBundle\Entity\Skill $skill)
     {
         $this->listSkills->removeElement($skill);
     }
@@ -1226,12 +1226,12 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
         return $this->listSkills;
     }
 
-    public function addHobbie(Hobbie $hobbie)
+    public function addHobbie(\Becowo\CoreBundle\Entity\Hobbie $hobbie)
     {
         $this->listHobbies[] = $hobbie;
     }
 
-    public function removeHobbie(Hobbie $hobbie)
+    public function removeHobbie(\Becowo\CoreBundle\Entity\Hobbie $hobbie)
     {
         $this->listHobbies->removeElement($hobbie);
     }
