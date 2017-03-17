@@ -1,4 +1,4 @@
-{% extends 'manager/manager-layout.html.twig' %}
+{% extends 'Manager/manager-layout.html.twig' %}
 
 {% block page %}
 	home page
