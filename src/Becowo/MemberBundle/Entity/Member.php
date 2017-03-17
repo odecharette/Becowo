@@ -1301,7 +1301,7 @@ expired : si vous voulez que les comptes expirent au-delà d'une certaine durée
      */
     public function isVisible()
     {
-        return !$this->isDeleted && $this->enabled && $this->job != '';
+        return !$this->isDeleted && $this->enabled;
     }
 
 
