@@ -11,7 +11,7 @@ parameters:
     database_port: null
     database_name: coworkinwqbec0w0
     database_user: coworkinwqbec0w0
-    database_password: Annapurna85
+    database_password: Annapurna17
 
     # Email via OVH
     mailer_transport: smtp
