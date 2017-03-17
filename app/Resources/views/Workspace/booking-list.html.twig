@@ -55,10 +55,10 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 			    			<div class="row">
 			    				<div class="col-lg-6 col-md-8 col-xs-12" id="formules">
 				    					<strong><i class="fa fa-money" aria-hidden="true"></i> Nos formules : </strong><br>
-						    			{% if priceandoffice.priceHour > 0 %} {{priceandoffice.priceHour}} € HT / heure<br> {% endif %}
-					    				{% if priceandoffice.priceHalfDay > 0 %} {{priceandoffice.priceHalfDay}} € HT / demi journée<br> {% endif %}
-				    					{% if priceandoffice.priceDay > 0 %} {{priceandoffice.priceDay}} € HT / jour<br> {% endif %}
-										{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth}} € HT / mois<br> {% endif %}
+						    			{% if priceandoffice.priceHour > 0 %} {{priceandoffice.priceHour|round(2)}} € HT / heure<br> {% endif %}
+					    				{% if priceandoffice.priceHalfDay > 0 %} {{priceandoffice.priceHalfDay|round(2)}} € HT / demi journée<br> {% endif %}
+				    					{% if priceandoffice.priceDay > 0 %} {{priceandoffice.priceDay|round(2)}} € HT / jour<br> {% endif %}
+										{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth|round(2)}} € HT / mois<br> {% endif %}
 			    				</div>
 			    				<div class="col-lg-6 col-md-4 col-xs-12">
 		    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
