@@ -1528,9 +1528,6 @@ footer{
     display: inline-block;
   }
 }
-#Services ul{
-  overflow:hidden;
-}
 #Services li{
   width:33%; /* to have 3 columns */
   line-height:4em;
