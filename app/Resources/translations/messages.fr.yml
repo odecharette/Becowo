@@ -22,3 +22,9 @@ Instagram link: 'Mon profil Instagram'
 Linkedin link: 'Mon profil LinkedIn'
 Profile picture: 'Photo de profil'
 File: 'Fichier'
+Recevoir la newsletter: 'Recevoir la newsletter'
+form:
+  current_password: 'Mot de passe actuel'
+  new_password: 'Nouveau mot de passe'
+  new_password_confirmation: Confirmer nouveau mot de passe
+  
