@@ -79,3 +79,9 @@ A chaque fois qu'on renvoi le fichier .sh sur le serveur, il faut vérifier les 
 
 Selon la priorité définie dans l'offre (becowo_offer.priority) - ASC
 Puis selon le voteAverage - DESC
+
+/****************************************************/
+		Newsletter
+/****************************************************/
+
+Lien de désabonnement : member/newsletter/unsubscribe/{memberID}

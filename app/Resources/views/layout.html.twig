@@ -28,16 +28,16 @@
 
 <header>
 	<div class="row text-center">
-		<div class="col-lg-1">
+		<div class="col-lg-1 col-md-1 col-xs-12">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
 		        <img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo">
 		    </a>
 		</div>
-		<div class="col-lg-4 identity">
+		<div class="col-lg-4 col-md-3 col-xs-12 identity">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
 			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
         </div>
-        <div class="col-lg-5 menu">
+        <div class="col-lg-5 col-md-6 col-xs-12 menu">
 		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <i class="fa fa-circle" aria-hidden="true"></i>
 			<a title="La communauté" href="{{ path('becowo_core_community') }}">communauté </a>	<i class="fa fa-circle" aria-hidden="true"></i>
 			<div class="btn-group">
@@ -56,7 +56,7 @@
 			    </ul>
 			</div>
 		</div>    
-		<div class="col-lg-2 connectMenu">
+		<div class="col-lg-2 col-md-2 col-xs-12 connectMenu">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}	
 				<div class="btn-group loginMenu">
 		          <a href="" data-toggle="dropdown" class="log-menu">
