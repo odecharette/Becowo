@@ -85,3 +85,15 @@ Puis selon le voteAverage - DESC
 /****************************************************/
 
 Lien de désabonnement : member/newsletter/unsubscribe/{memberID}
+
+
+/****************************************************/
+		FOS User bundle
+/****************************************************/
+
+Pendant un temps j'ai fait une modif dans le fichier vendor Propal/User.php
+
+-use FOS\UserBundle\Propel\om\BaseUser;
++use FOS\UserBundle\Model\User as BaseUser;
+
+depuis le composer update du 18/03/17 le dossier Propal n'existe plus
