@@ -335,7 +335,7 @@ monolog:
             # log to var/logs/(environment).log
             path: "%kernel.logs_dir%/Api/%kernel.environment%.log"
             # log *all* messages (debug is lowest level)
-            level: info
+            level: notice
         mailer_loger:
             type: rotating_file
             max_files: 10

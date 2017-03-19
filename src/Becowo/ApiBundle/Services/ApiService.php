@@ -50,7 +50,7 @@ class ApiService
             $access_token =$response->body;
             
             if (!empty($access_token)) {
-                $this->logger->info('getFacebookPageEvents -Token OK for FB_ID : ' . $FB_PAGE_ID);
+                $this->logger->notice('getFacebookPageEvents -Token OK for FB_ID : ' . $FB_PAGE_ID);
 
                 // Construction de l'URL à appeler pour récupérer les évènements de la page depuis le 01/01/2017
                 $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json&since=2017-01-01';
@@ -60,7 +60,7 @@ class ApiService
                 if (isset($response->body->data)) {
                     // affichage des données récupérées
                     $events = $response->body->data;
-                    $this->logger->info('getFacebookPageEvents - ' . count($events) . ' events found for FB_ID : ' . $FB_PAGE_ID);                  
+                    $this->logger->notice('getFacebookPageEvents - ' . count($events) . ' events found for FB_ID : ' . $FB_PAGE_ID);                  
                 }else if(isset($response->body->error)){
                     $this->logger->critical('getFacebookPageEvents - issue with FB_ID : ' . $FB_PAGE_ID . ' : ' . $response->body->error->message);
                 }
@@ -117,7 +117,7 @@ class ApiService
                 // du coup on part du principe que l'event est tjs organisé dans l'espace qui le diffuse...
                 $event->setWorkspace($ws);
 
-                $this->logger->info('saveFacebookPageEvents - Event ID ' . $e->id . ' created');
+                $this->logger->notice('saveFacebookPageEvents - Event ID ' . $e->id . ' created');
 
                 $this->em->persist($event);
             }
@@ -140,7 +140,7 @@ class ApiService
         $picture = null;
         if (isset($response->body) && !empty($response->body)) {
             
-            $this->logger->info('getFacebookEventPicture -Token OK');
+            $this->logger->notice('getFacebookEventPicture -Token OK');
 
             $access_token =$response->body;
             
@@ -150,7 +150,7 @@ class ApiService
 
                 if (isset($response->body->cover)) {
                     $picture = $response->body->cover;
-                    $this->logger->info('getFacebookEventPicture - picture found for eventId ' . $eventId);
+                    $this->logger->notice('getFacebookEventPicture - picture found for eventId ' . $eventId);
                 }
             }
             else {
