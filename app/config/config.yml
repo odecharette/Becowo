@@ -336,6 +336,12 @@ monolog:
             path: "%kernel.logs_dir%/Api/%kernel.environment%.log"
             # log *all* messages (debug is lowest level)
             level: info
+        mailer_loger:
+            type: rotating_file
+            max_files: 10
+            path: "%kernel.logs_dir%/Emails/%kernel.environment%.log"
+            level: debug
+            channels: [mailer_logger]
 
 #Algolia
 algolia:

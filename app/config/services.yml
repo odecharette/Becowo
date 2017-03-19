@@ -87,3 +87,10 @@ services:
     app.events.getFacebookEvents :
         class: Becowo\ApiBundle\Controller\EventsController
         arguments: ['@doctrine.orm.entity_manager', '@app.api'] 
+
+    app.mailer.logger :
+        class:  Becowo\CoreBundle\Services\MailerLoggerService
+        arguments: ["@logger"]
+        tags:
+          - { name: monolog.logger, channel: mailer_logger }
+          - { name: "swiftmailer.default.plugin" }
