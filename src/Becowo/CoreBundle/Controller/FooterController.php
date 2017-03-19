@@ -18,23 +18,24 @@ class FooterController extends Controller
 
     
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+            $converter = $this->get('css_to_inline_email_converter');
+            $converter->setCSS('css/emails.css');
+            $converter->setHTMLByView('CommonViews/Mail/Footer-contact.html.twig',
+                        array(
+                          'name' => $form->get('name')->getData(),
+                          'email' => $form->get('email')->getData(),
+                          'subject' => $form->get('subject')->getData(),
+                          'message' => $form->get('message')->getData()
+                        ));
+
             $message = \Swift_Message::newInstance()
                 ->setSubject('Becowo - Nouveau message')
                 ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
                 ->setTo('contact@becowo.com')
                 ->setBcc('webmaster@becowo.com')
                 ->setContentType("text/html")
-                ->setBody(
-                    $this->renderView(
-                        'CommonViews/Mail/Footer-contact.html.twig',
-                        array(
-                            'name' => $form->get('name')->getData(),
-                            'email' => $form->get('email')->getData(),
-                            'subject' => $form->get('subject')->getData(),
-                            'message' => $form->get('message')->getData()
-                        )
-                    )
-                );
+                ->setBody($converter->generateStyledHTML());
 
             $this->get('mailer')->send($message);
 

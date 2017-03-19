@@ -45,7 +45,8 @@
         "monolog/monolog": "^1.22",
         "algolia/algolia-search-bundle": "^2.1",
         "beberlei/DoctrineExtensions": "^1.0",
-        "coresphere/console-bundle": "^0.5.0"
+        "coresphere/console-bundle": "^0.5.0",
+        "robertotru/to-inline-style-email-bundle": "^1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

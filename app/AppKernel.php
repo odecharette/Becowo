@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Algolia\AlgoliaSearchBundle\AlgoliaAlgoliaSearchBundle(),
             new Becowo\CronBundle\BecowoCronBundle(),
             new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
+            new RobertoTru\ToInlineStyleEmailBundle\RobertoTruToInlineStyleEmailBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'demo'], true)) {
