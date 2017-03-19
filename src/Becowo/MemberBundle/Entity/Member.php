@@ -32,8 +32,6 @@ email : l'adresse e-mail ;
 enabled : true ou false suivant que l'inscription de l'utilisateur a été validée ou non (dans le cas d'une confirmation par e-mail par exemple) ;
 password : le mot de passe de l'utilisateur ;
 lastLogin : la date de la dernière connexion ;
-locked : si vous voulez désactiver des comptes ;
-expired : si vous voulez que les comptes expirent au-delà d'une certaine durée.
 + roles
 + salt
 
