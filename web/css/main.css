@@ -460,7 +460,7 @@ footer li {
     margin: 10px 30px;
   }
 }
-footer #liensRS img{
+footer #liensRS img, #contact-form #liensRS img{
   width: 30px;
   height: 30px;
 }
