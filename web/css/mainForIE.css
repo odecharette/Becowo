@@ -144,7 +144,7 @@ header .log-menu-content i{
   margin: 0;
 }
 header .loginMenu{
-  width: 170px;
+  width: 140px;
 }
 header .menu i{
   font-size: 6pt !important;
@@ -460,7 +460,7 @@ footer li {
     margin: 10px 30px;
   }
 }
-footer #liensRS img{
+footer #liensRS img, #contact-form #liensRS img{
   width: 30px;
   height: 30px;
 }
@@ -1527,9 +1527,6 @@ footer{
   #Description a:nth-child(5){
     display: inline-block;
   }
-}
-#Services ul{
-  overflow:hidden;
 }
 #Services li{
   width:33%; /* to have 3 columns */
