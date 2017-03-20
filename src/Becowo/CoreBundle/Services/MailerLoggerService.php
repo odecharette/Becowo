@@ -30,7 +30,7 @@ class MailerLoggerService implements Swift_Events_SendListener
             $this->logger->debug('sendPerformed Bcc : ' . key($evt->getMessage()->getBcc()));
         if($evt->getFailedRecipients() != null)
             $this->logger->debug('sendPerformed FailedRecipients : ' . key($evt->getFailedRecipients()));
-
+        
         switch ($evt->getResult()) {
             case 1:
                 $this->logger->debug('sendPerformed Result : RESULT_PENDING');
@@ -46,6 +46,7 @@ class MailerLoggerService implements Swift_Events_SendListener
                 break;
             case 4096:
                 $this->logger->debug('sendPerformed Result : RESULT_FAILED');
+                $this->logger->debug(dump($evt));
                 break;
             default:
                 $this->logger->debug('sendPerformed Result : ' . $evt->getResult());

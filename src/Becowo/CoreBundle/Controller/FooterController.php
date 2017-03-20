@@ -16,11 +16,11 @@ class FooterController extends Controller
 
     $form = $this->createForm(ContactType::class, $contact);
 
-    
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
             $converter = $this->get('css_to_inline_email_converter');
-            $converter->setCSS('css/emails.css');
+            $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+            
             $converter->setHTMLByView('CommonViews/Mail/Footer-contact.html.twig',
                         array(
                           'name' => $form->get('name')->getData(),
@@ -37,7 +37,11 @@ class FooterController extends Controller
                 ->setContentType("text/html")
                 ->setBody($converter->generateStyledHTML());
 
-            $this->get('mailer')->send($message);
+            try{
+              $this->get('mailer')->send($message);
+            }catch(Exception $e){
+              echo "error sending email : ",  $e->getMessage(), "\n";
+            }
 
             $request->getSession()->getFlashBag()->add('success', 'Votre message a bien été envoyé');
 
