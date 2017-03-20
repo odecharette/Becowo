@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends 'CommonViews/Mail/layout-email.html.twig' %}
+
+{% block emailTitle %}
+	Becowo - Un nouvel espace vient de souscrire en ligne
+{% endblock emailTitle %}
+
+{% block emailContent %}
 
 Bonjour,  <br>
 <br>
@@ -19,6 +20,6 @@ Email : {{ email }} <br>
 Téléphone : {{ phone }} <br>
 Nombre de bureaux : {{ nbDesk }} <br>
 Commentaires : {{ comments }} <br>
-</body>
-</html>
+
+{% endblock emailContent %}
 

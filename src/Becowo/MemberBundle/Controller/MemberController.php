@@ -15,13 +15,15 @@ class MemberController extends Controller
   private $mailer = null;
   private $templating = null;
   private $appMember = null;
+  private $converter = null;
 
-  public function __construct(EntityManager $em=null, $mailer=null, EngineInterface $templating=null, $appMember=null)
+  public function __construct(EntityManager $em=null, $mailer=null, EngineInterface $templating=null, $appMember=null, $converter=null)
   {
       $this->em = $em;
       $this->mailer = $mailer;
       $this->templating = $templating;
       $this->appMember = $appMember;
+      $this->converter = $converter;
   }
 
   public function viewPublicProfileAction(Request $request, $id)
@@ -84,20 +86,25 @@ class MemberController extends Controller
   		$nbMembers++;
   		if($member->getEmail() !== null)
   		{
+        $this->converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+            
+        $this->converter->setHTMLByView('CommonViews/Mail/NewMember.html.twig',
+                    array('member' => $member));
+
   			$message = \Swift_Message::newInstance()
 	        ->setSubject("Becowo - Intégrez notre communauté")
 	        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
 	        ->setTo($member->getEmail())
           ->setBcc('webmaster@becowo.com')
           ->setContentType("text/html")
-	        ->setBody(
-	            $this->templating->render(
-	                'CommonViews/Mail/NewMember.html.twig',
-	                array('member' => $member)
-	            ))
-          ;
+	        ->setBody($converter->generateStyledHTML());
 
-	      	$this->mailer->send($message);
+          try{
+            $this->get('mailer')->send($message);
+          }catch(Exception $e){
+            echo "error sending email : ",  $e->getMessage(), "\n";
+          }
+            
 	      	$nbEmails++;
 	      	$listEmails = $listEmails . "\n" . $member->getEmail() ;
 

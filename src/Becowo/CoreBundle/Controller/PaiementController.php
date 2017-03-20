@@ -210,35 +210,47 @@ class PaiementController extends Controller
       $em->persist($booking);
 
       //Puis on envoi un mail au manager pour valider la résa
+      $converter = $this->get('css_to_inline_email_converter');
+      $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+      
+      $converter->setHTMLByView('CommonViews/Mail/New-dme-resa.html.twig',
+                  array('user' => $booking->getMember()->getFirstname() . ' ' . $booking->getMember()->getName(),
+                    'booking' => $booking
+                  ));
       $message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Nouvelle demande de réservation - " . $booking_ref)
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($emailManager) 
         ->setBcc('webmaster@becowo.com')
         ->setContentType("text/html")
-        ->setBody(
-            $this->renderView(
-                'CommonViews/Mail/New-dme-resa.html.twig',
-                array('user' => $booking->getMember()->getFirstname() . ' ' . $booking->getMember()->getName(),
-                    'booking' => $booking)
-            ));
+        ->setBody($converter->generateStyledHTML());
 
-      $this->get('mailer')->send($message);
+      try{
+        $this->get('mailer')->send($message);
+      }catch(Exception $e){
+        echo "error sending email : ",  $e->getMessage(), "\n";
+      }
 
       //Puis on envoi un mail au coworker pour l'informer que le paiement est valide
+      // $converter = $this->get('css_to_inline_email_converter');
+      $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+      
+      $converter->setHTMLByView('CommonViews/Mail/Coworker-ResaPayee.html.twig',
+                  array('booking' => $booking));
+            
       $message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref)
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($booking->getMember()->getEmail())
         ->setBcc('webmaster@becowo.com')
         ->setContentType("text/html")
-        ->setBody(
-            $this->renderView(
-                'CommonViews/Mail/Coworker-ResaPayee.html.twig',
-                array('booking' => $booking)
-            ));
+        ->setBody($converter->generateStyledHTML());
 
-      $this->get('mailer')->send($message);
+      try{
+        $this->get('mailer')->send($message);
+      }catch(Exception $e){
+        echo "error sending email : ",  $e->getMessage(), "\n";
+      }
     }
     else
     {

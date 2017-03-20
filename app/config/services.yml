@@ -82,7 +82,7 @@ services:
 
     app.member.sendEmailNewUsers :
         class: Becowo\MemberBundle\Controller\MemberController
-        arguments: ['@doctrine.orm.entity_manager', '@mailer', '@templating', '@app.member'] 
+        arguments: ['@doctrine.orm.entity_manager', '@mailer', '@templating', '@app.member', '@css_to_inline_email_converter'] 
 
     app.events.getFacebookEvents :
         class: Becowo\ApiBundle\Controller\EventsController

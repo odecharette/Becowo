@@ -78,27 +78,32 @@ class WorkspaceController extends Controller
     
       // On vérifie que c'est bien le form de contact manager qui est envoyé
     if ($request->isMethod('POST') && $managerContactForm->handleRequest($request)->isValid() && $request->request->has('manager-contact-form')) {
+
+      $converter = $this->get('css_to_inline_email_converter');
+      $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+      
+      $converter->setHTMLByView('CommonViews/Mail/Manager-contact.html.twig',
+                  array(
+                      'name' => $managerContactForm->get('name')->getData(),
+                      'email' => $managerContactForm->get('email')->getData(),
+                      'subject' => $managerContactForm->get('subject')->getData(),
+                      'message' => $managerContactForm->get('message')->getData(),
+                      'wsName' => $ws->getName()));
+
       $message = \Swift_Message::newInstance()
           ->setSubject('Becowo - Nouveau message d\'un coworker')
           ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
           ->setTo('contact@becowo.com') 
           ->setBcc('webmaster@becowo.com')
           ->setContentType("text/html")
-          ->setBody(
-              $this->renderView(
-                  'CommonViews/Mail/Manager-contact.html.twig',
-                  array(
-                      'name' => $managerContactForm->get('name')->getData(),
-                      'email' => $managerContactForm->get('email')->getData(),
-                      'subject' => $managerContactForm->get('subject')->getData(),
-                      'message' => $managerContactForm->get('message')->getData(),
-                      'wsName' => $ws->getName()
-                  )
-              )
-          );
+          ->setBody($converter->generateStyledHTML());
 
-      $this->get('mailer')->send($message);
-
+        try{
+          $this->get('mailer')->send($message);
+        }catch(Exception $e){
+          echo "error sending email : ",  $e->getMessage(), "\n";
+        }
+        
       $this->addFlash('success', 'Merci ! Email bien envoyé.');
 
       return $this->redirectToRoute('becowo_core_workspace_contact', array('name' => $name));

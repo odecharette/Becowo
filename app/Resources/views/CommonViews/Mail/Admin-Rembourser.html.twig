@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-<p>Bonjour <br>
+{% extends 'CommonViews/Mail/layout-email.html.twig' %}
+
+{% block emailTitle %}
+	Becowo - Remboursement
+{% endblock emailTitle %}
+
+{% block emailContent %}
+Bonjour <br>
 <br>
 La réservation N° {{booking.bookingRef}} a été refusée par {{booking.workspacehasoffice.workspace.name}} <br>
 <br>
@@ -21,7 +22,7 @@ Prix de la réservation : {{booking.priceInclTax}} € TTC <br>
 <br>
 Identité du coworker : <br>
 ID : {{booking.member.id}}
-</p>
+<br>
 <br>
 Puis envoyer un mail au coworker pour le prévenir que le remboursement est effectué <br>
 <br>
@@ -34,7 +35,6 @@ Vous venez donc d'être crédité de  {{booking.priceInclTax}} € TTC. <br>
 <br>
 Merci de votre compréhension et à très bientôt. <br>
 La BecoTeam
-</body>
-</html>
+{% endblock emailContent %}
 
 

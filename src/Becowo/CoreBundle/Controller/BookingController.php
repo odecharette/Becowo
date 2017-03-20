@@ -128,19 +128,25 @@ class BookingController extends Controller
   		  $em->flush();
 
   		  //On envoi un mail au coworker pour l'informer que la résa est confirmée
-        	$message = \Swift_Message::newInstance()
-          ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
-          ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-          ->setTo($booking->getMember()->getEmail())
-          ->setBcc('webmaster@becowo.com')
-          ->setContentType("text/html")
-          ->setBody(
-              $this->renderView(
-                  'CommonViews/Mail/Coworker-ResaValidee.html.twig',
-                  array('booking' => $booking)
-              ));
+        $converter = $this->get('css_to_inline_email_converter');
+        $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+        
+        $converter->setHTMLByView('CommonViews/Mail/Coworker-ResaValidee.html.twig',
+                    array('booking' => $booking));
 
-        	$this->get('mailer')->send($message);
+      	$message = \Swift_Message::newInstance()
+        ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
+        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
+        ->setTo($booking->getMember()->getEmail())
+        ->setBcc('webmaster@becowo.com')
+        ->setContentType("text/html")
+        ->setBody($converter->generateStyledHTML());
+
+        try{
+          $this->get('mailer')->send($message);
+        }catch(Exception $e){
+          echo "error sending email : ",  $e->getMessage(), "\n";
+        }
 
         $msg = "Réservation validée, merci !";
       }
@@ -168,33 +174,44 @@ class BookingController extends Controller
 		    $em->flush();
 
 		    //On envoi un mail au coworker pour l'informer que la résa est refusée
+        $converter = $this->get('css_to_inline_email_converter');
+        $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+        
+        $converter->setHTMLByView('CommonViews/Mail/Coworker-ResaRefusee.html.twig',
+                    array('booking' => $booking));
+
       	$message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Réservation N°" . $bookRef . " refusée")
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo($booking->getMember()->getEmail())
         ->setBcc('webmaster@becowo.com')
         ->setContentType("text/html")
-        ->setBody(
-            $this->renderView(
-                'CommonViews/Mail/Coworker-ResaRefusee.html.twig',
-                array('booking' => $booking)
-            ));
+        ->setBody($converter->generateStyledHTML());
 
-      	$this->get('mailer')->send($message);
+        try{
+          $this->get('mailer')->send($message);
+        }catch(Exception $e){
+          echo "error sending email : ",  $e->getMessage(), "\n";
+        }
 
       	//Puis on envoi un mail à l'admin de Becowo pour procéder au remboursement
+        $converter = $this->get('css_to_inline_email_converter');
+        $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+        $converter->setHTMLByView('CommonViews/Mail/Admin-Rembourser.html.twig',
+                    array('booking' => $booking));
+
       	$message = \Swift_Message::newInstance()
         ->setSubject("Becowo - Rembourser réservation N°" . $bookRef)
         ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
         ->setTo('webmaster@becowo.com')
         ->setContentType("text/html")
-        ->setBody(
-            $this->renderView(
-                'CommonViews/Mail/Admin-Rembourser.html.twig',
-                array('booking' => $booking)
-            ));
+        ->setBody($converter->generateStyledHTML());
 
-      	$this->get('mailer')->send($message);
+      	try{
+          $this->get('mailer')->send($message);
+        }catch(Exception $e){
+          echo "error sending email : ",  $e->getMessage(), "\n";
+        }
 
         $msg = "Réservation refusée, merci.";
       }
