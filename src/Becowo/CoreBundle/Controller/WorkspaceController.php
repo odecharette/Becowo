@@ -21,15 +21,8 @@ class WorkspaceController extends Controller
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
     $WsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
     $wsSameNetwork = $WsService->getWsByWsNetwork($ws->getNetwork(), $name);
-    $wsSameNetworkWithFavoritePic = array();
     $WsHasAmenities = $WsService->getAmenitiesByWorkspace($ws);
     $quantityByOfficeType = $WsService->getQuantityByOfficeType($ws);
-
-    foreach ($wsSameNetwork as $w) {
-      array_push($wsSameNetworkWithFavoritePic, 
-        array('ws' => $w, 
-              'amenities' => $WsService->getAmenitiesByWorkspace($w)));
-    }
 
   	return $this->render('Workspace/view.html.twig', 
       array('ws' => $ws, 
@@ -37,7 +30,7 @@ class WorkspaceController extends Controller
         'pictures' => $pictures, 
         'pricesAndOffices' => $pricesAndOffices,
         'WsHasTeamMembers' => $WsHasTeamMembers,
-        'wsSameNetworkWithFavoritePic' => $wsSameNetworkWithFavoritePic,
+        'wsSameNetwork' => $wsSameNetwork,
         'WsHasAmenities' => $WsHasAmenities,
         'quantityByOfficeType' => $quantityByOfficeType
         ));

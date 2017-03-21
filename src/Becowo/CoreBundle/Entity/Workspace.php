@@ -234,7 +234,7 @@ class Workspace
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Office", inversedBy="workspace")
+     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Office", inversedBy="workspace", fetch="EAGER")
      * @ORM\JoinTable(name="becowo_workspace_filter_offices",
      *   joinColumns={
      *     @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
