@@ -20,20 +20,18 @@
 	        </div>
 	    </div>
 		<div class="row" id="filtersBarExpanded" style="display:none;">
-			<div class="col-lg-3">
+			<br>
+			<div class="col-lg-4">
 				<h3>Job</h3>
 		    	<div id="job" class="facet"></div>
 			</div>	
-			<div class="col-lg-3">
+			<div class="col-lg-4">
 				<h3>Compétence</h3>
 		    	<div id="skills" class="facet"></div>
 	    	</div>
-			<div class="col-lg-3">
+			<div class="col-lg-4">
 				<h3>Centre d'intérêt</h3>
 		    	<div id="hobbies" class="facet"></div>
-	    	</div>
-			<div class="col-lg-3">
-		    	<h3>Réseau</h3>
 	    	</div>
 		</div>
 
@@ -142,10 +140,10 @@
 						'<span>' + firstname + ' ' + name + '</span>' +
 						'<div class="info">' +
 							'<i class="fa fa-briefcase" aria-hidden="true"></i> ' + job + society + '<br>' +
-							'<i class="fa fa-thumb-tack" aria-hidden="true"></i> ' + TextAbstract(skills, 57) + '<br>' + 
-							'<i class="fa fa-users" aria-hidden="true"></i> ' + TextAbstract(wishes, 57) + '<br>' +
+							'<i class="fa fa-thumb-tack" aria-hidden="true"></i> ' + TextAbstract(skills, 57, false) + '<br>' + 
+							'<i class="fa fa-users" aria-hidden="true"></i> ' + TextAbstract(wishes, 57, false) + '<br>' +
 							'<i class="fa fa-home" aria-hidden="true"></i> ' + city + '<br>' +
-							'<p class="bio">' + TextAbstract(bio, 220) + '</p>' +
+							'<p class="bio">' + TextAbstract(bio, 220, false) + '</p>' +
 						'</div>' +
 						'</a>' +
 					'</div>' 
@@ -197,8 +195,17 @@
 	    container: '#skills',
 	    attributeName: 'listSkills.name',
 	    limit: 10,
-	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or'
+	    sortBy: ['count:desc', 'name:asc'],
+	    operator: 'or',
+      	autoHideContainer: false,
+      	templates: {
+        item: function(data) {
+          return '<label for="' + data.name + '" class="ais-refinement-list--label">' + TextAbstract(data.name, 28, true) + ' (' + data.count + ')' +
+          '<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+          '<span></span>' +
+                '</label>'
+        }
+      }
 	  })
 	);
 	search.addWidget(
@@ -206,11 +213,17 @@
 	    container: '#hobbies',
 	    attributeName: 'listHobbies.name',
 	    limit: 10,
-	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or'
-	    // templates: {
-	    //   header: '<h5>Centre d\'intérêt</h5>'
-	    // }
+	    sortBy: ['count:desc', 'name:asc'],
+	    operator: 'or',
+      	autoHideContainer: false,
+      	templates: {
+        item: function(data) {
+          return '<label for="' + data.name + '" class="ais-refinement-list--label">' + TextAbstract(data.name, 28, true) + ' (' + data.count + ')' +
+          '<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+          '<span></span>' +
+                '</label>'
+        }
+      }
 	  })
 	);
 	search.addWidget(
@@ -218,8 +231,17 @@
 	    container: '#job',
 	    attributeName: 'job.name',
 	    limit: 10,
-	    sortBy: ['isRefined', 'count:desc', 'name:asc'],
-	    operator: 'or'
+	    sortBy: ['count:desc', 'name:asc'],
+	    operator: 'or',
+      	autoHideContainer: false,
+      	templates: {
+        item: function(data) {
+          return '<label for="' + data.name + '" class="ais-refinement-list--label">' + TextAbstract(data.name, 28, true) + ' (' + data.count + ')' +
+          '<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+          '<span></span>' +
+                '</label>'
+        }
+      }
 	  })
 	);
 
@@ -270,18 +292,24 @@
 	  	return list;
 	}
 
-	function TextAbstract(text, length) {
+	function TextAbstract(text, length, cutWord) {
     if (text == null) {
         return "";
     }
     if (text.length <= length) {
         return text;
     }
+    if(!cutWord){
 	    text = text.substring(0, length);
 	    last = text.lastIndexOf(" ");
 	    text = text.substring(0, last);
 	    return text + "...";
+	}else{
+		text = text.substring(0, length);
+	    return text + "...";
 	}
+	}
+
 
 </script>
 {% endblock javascripts %}

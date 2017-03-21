@@ -901,15 +901,15 @@ footer{
 #community #filtersBarExpanded span{
   color: var(--my-black);
 }
-#community #filtersBarExpanded span:before {
+#community #filtersBarExpanded span:after {
   font-family: FontAwesome !important;
   display: inline-block !important;
   position: absolute;
   left: 0px;
   color: white;
 }
-#community #filtersBarExpanded input[type=checkbox] + span:before { content: "\f096" !important; } /* unchecked icon */
-#community #filtersBarExpanded input[type=checkbox]:checked + span:before { content: "\f046" !important; } /* checked icon */
+#community #filtersBarExpanded input[type=checkbox] + span:after { content: "\f096" !important; } /* unchecked icon */
+#community #filtersBarExpanded .ais-refinement-list--item__active input[type=checkbox] + span:after { content: "\f046" !important; } /* checked icon */
 
 #community #filtersBar{
   margin: 0;
