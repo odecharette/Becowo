@@ -15,15 +15,15 @@ parameters:
     # TO DO URL de prod : https://tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi
     # TO DO URL mobile : https://tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi
     creditAgricole:
-        PBX_URL: https://preprod-tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi
-        PBX_URL_MOBILE: https://preprod-tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi
-        PBX_SITE: 1612671
-        PBX_RANG: '01'
-        PBX_IDENTIFIANT: 677217297
-        PBX_DEVISE: 978
-        PBX_RETOUR: Montant:M;Ref:R;call_number:T;authorization_number:A;erreur:E;sign:K    #Le param K doit tjs être en dernier
-        PBX_HASH: SHA512
-        PBX_HMAC: 4aa0576c7c116b6dfd889063e973205cf378b22aff0f710d55d3e56238a4c00aa38e70f22989ce08d4140daa86bb7cff92a3ea71629f761ed3858e14a0103d87
+        PBX_URL: '%creditAgricole.PBX_URL%'
+        PBX_URL_MOBILE: '%creditAgricole.PBX_URL_MOBILE%'
+        PBX_SITE: '%creditAgricole.PBX_SITE%'
+        PBX_RANG: '%creditAgricole.PBX_RANG%'
+        PBX_IDENTIFIANT: '%creditAgricole.PBX_IDENTIFIANT%'
+        PBX_DEVISE: '%creditAgricole.PBX_DEVISE%'
+        PBX_RETOUR: '%creditAgricole.PBX_RETOUR%'
+        PBX_HASH: '%creditAgricole.PBX_HASH%'
+        PBX_HMAC: '%creditAgricole.PBX_HMAC%'
     
 framework:
     #esi:             ~
