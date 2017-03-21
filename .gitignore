@@ -54,3 +54,6 @@ Temporary Items
 Becowo/app/config/parameters_demo.yml
 Becowo/app/config/parameters_dev.yml
 Becowo/app/config/parameters_prod.yml
+app/config/parameters_demo.yml
+app/config/parameters_dev.yml
+app/config/parameters_prod.yml
