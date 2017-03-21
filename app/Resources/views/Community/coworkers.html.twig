@@ -91,13 +91,13 @@
 	        	}else{
 	        		name = ''};
 	      	var job = '';
-	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.job.name !== 'undefined'){
+	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.job !== 'undefined'){
 	        		job = data._highlightResult.job.name.value
-	        	}else if(data.job.name !== null){
+	        	}else if(data.job !== null){
 	        		job = data.job.name
 	        	}else{
 	        		job = ''};
-	        var jobUrl = ''; if(data.job.name !== null){jobUrl = data.job.name} else {jobUrl='job'};
+	        var jobUrl = ''; if(data.job !== null){jobUrl = data.job.name} else {jobUrl='job'};
 	        var city = '';
 	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.city !== 'undefined'){
 	        		city = data._highlightResult.city.value
