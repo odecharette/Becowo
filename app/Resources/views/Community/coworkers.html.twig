@@ -75,34 +75,14 @@
 	      	var hobbies = getTab('listHobbies', data);
 	      	var wishes = getTab('listWishes', data);
 	      	var firstname = '';
-	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.firstname !== 'undefined'){
-	        		firstname = data._highlightResult.firstname.value
-	        	}else if(data.firstname !== null){
-	        		firstname = data.firstname
-	        	}else{
-	        		firstname = ''};
+	      	if(data.firstname !== null){firstname = data.firstname}else{firstname = ''};
 	      	var name = '';
-	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.name !== 'undefined'){
-	        		name = data._highlightResult.name.value
-	        	}else if(data.name !== null){
-	        		name = data.name
-	        	}else{
-	        		name = ''};
+	      	if(data.name !== null){name = data.name}else{name = ''};
 	      	var job = '';
-	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.job !== 'undefined'){
-	        		job = data._highlightResult.job.name.value
-	        	}else if(data.job !== null){
-	        		job = data.job.name
-	        	}else{
-	        		job = ''};
+	      	if(data.job !== null){job = data.job.name}else{job = ''};
 	        var jobUrl = ''; if(data.job !== null){jobUrl = data.job.name} else {jobUrl='job'};
 	        var city = '';
-	      	if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult.city !== 'undefined'){
-	        		city = data._highlightResult.city.value
-	        	}else if(data.city !== null){
-	        		city = data.city
-	        	}else{
-	        		city = ''};
+	      	if(data.city !== null){city = data.city}else{city = ''};
 	        var cityUrl = ''; if(data.city !== null){cityUrl = data.city} else {cityUrl='ville'};
 	        var picture = '';
 	        if(data.urlProfilePicture !== null){
@@ -113,16 +93,9 @@
 	        	}else{
 	        		picture = 'avatar.png'};
 	        var bio = '';
-	        if(data.description !== null){
-	        		bio = data.description
-	        	}else{
-	        		bio = ''};
-
+	        if(data.description !== null){bio = data.description}else{bio = ''};
 	        var society = '';
-	        if(data.society !== null){
-	        		society = ' chez ' + data.society
-	        	}else{
-	        		society = ''};
+	        if(data.society !== null){society = ' chez ' + data.society}else{society = ''};
 	        var id = data.id;
 	        var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
 			url = url.replace("paramCity", cityUrl.replace('-', ' '));
@@ -167,18 +140,6 @@
 	  })
 	);
 
-	// search.addWidget(
-	//   instantsearch.widgets.sortBySelector({
-	//     container: '#sort-by',
-	//     autoHideContainer: true, //automatically hide the widget when there are no results to display
-	//     indices: [{
-	//       name: search.indexName, label: 'Fill rate'
-	//     }, {
-	//       name: search.indexName + '_sort_firstname_asc', label: 'Prénom Asc'
-	//     }]
-	//   })
-	// );
-
 	search.addWidget(
 	  instantsearch.widgets.pagination({
 	    container: '#pagination',
@@ -194,7 +155,7 @@
 	  instantsearch.widgets.refinementList({
 	    container: '#skills',
 	    attributeName: 'listSkills.name',
-	    limit: 10,
+	    limit: 8,
 	    sortBy: ['count:desc', 'name:asc'],
 	    operator: 'or',
       	autoHideContainer: false,
@@ -212,7 +173,7 @@
 	  instantsearch.widgets.refinementList({
 	    container: '#hobbies',
 	    attributeName: 'listHobbies.name',
-	    limit: 10,
+	    limit: 8,
 	    sortBy: ['count:desc', 'name:asc'],
 	    operator: 'or',
       	autoHideContainer: false,
@@ -230,7 +191,7 @@
 	  instantsearch.widgets.refinementList({
 	    container: '#job',
 	    attributeName: 'job.name',
-	    limit: 10,
+	    limit: 8,
 	    sortBy: ['count:desc', 'name:asc'],
 	    operator: 'or',
       	autoHideContainer: false,
@@ -271,10 +232,7 @@
 
 	function getTab(element, data)
 	{
-		if(typeof data._highlightResult !== 'undefined' && typeof data._highlightResult[element]  !== 'undefined')
-		{
-			return getList(data._highlightResult[element]);
-		}else if(typeof data[element]  !== 'undefined')
+		if(typeof data[element]  !== 'undefined')
 		{
 			return getList(data[element]);
 		}else{
@@ -287,7 +245,7 @@
 		var list = '';
 		for ( var i = 0, length = tab.length; i < length; i++ )
 	        {
-	        	list = list + tab[i].name.value + ', '
+	        	list = list + tab[i].name + ', '
 	        }
 	  	return list;
 	}
