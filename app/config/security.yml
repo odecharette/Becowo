@@ -55,6 +55,8 @@ security:
   access_control:
     - { path: ^/manager, roles: ROLE_MANAGER }
     - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/booking, roles: ROLE_USER }
+    - { path: ^/bank, roles: ROLE_USER }
     # - { path: ^/login, roles: ROLE_ADMIN }
     # - { path: ^/register, roles: ROLE_ADMIN}
     #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

@@ -19,6 +19,9 @@ class PaiementController extends Controller
 
     $session = $request->getSession();
     $booking = $session->get('booking');
+
+    if($booking != null)
+    {
     $WsService = $this->get('app.workspace');
     $WsHasOffice = $WsService->getWsHasOfficeById($booking->getWorkspaceHasOffice());
     $ws = $WsHasOffice->getWorkspace();
@@ -55,6 +58,11 @@ class PaiementController extends Controller
     // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
 
     return $this->render('Paiement/payer.html.twig', array('creditAgricole' =>$paiementInfos, 'booking' => $booking, 'userEmail' => $userEmail, 'dateISO' => $dateISO, 'hmacCalculated' => $hmacCalculated, 'ws' => $ws, 'averageVote' => $averageVote));
+    }else{
+
+      $request->getSession()->getFlashBag()->add('danger', 'Une erreur est survenue, merci de recommencer.');
+      return $this->redirectToRoute('becowo_core_homepage');
+    }
   }
 
   public function effectueAction(Request $request)
