@@ -316,14 +316,14 @@ hwi_oauth:
                 # csrf: true
         linkedin:
             type:           linkedin
-            client_id:      779agcgijedscy
-            client_secret:  Q3q0A7pbEPQxHzgk
+            client_id:      "%linkedin_client_id%"
+            client_secret:  "%linkedin_client_secret%"
             infos_url:      "https://api.linkedin.com/v1/people/~:(id,formatted-name,first-name,last-name,location,positions,headline,email-address,public-profile-url,picture-url)?format=json"
             scope:          r_emailaddress r_basicprofile
         twitter:
             type:                twitter
-            client_id:           Dh1p53EN2cVjULRJuVGeRr8Bq
-            client_secret:       JmBhMZlaFDri3em02uhJ9f2CTkunY7QQXFCRd22SSWmHRKeerN
+            client_id:           "%twitter_client_id%"
+            client_secret:       "%twitter_client_secret%"
             options:
                 include_email: true   
 
