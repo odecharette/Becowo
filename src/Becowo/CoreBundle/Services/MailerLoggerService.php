@@ -29,7 +29,11 @@ class MailerLoggerService implements Swift_Events_SendListener
         if($evt->getMessage()->getBcc() != null)
             $this->logger->debug('sendPerformed Bcc : ' . key($evt->getMessage()->getBcc()));
         if($evt->getFailedRecipients() != null)
-            $this->logger->debug('sendPerformed FailedRecipients : ' . key($evt->getFailedRecipients()));
+        {
+            foreach ($evt->getFailedRecipients() as $failed) {
+                $this->logger->debug('sendPerformed FailedRecipients : ' . $failed);
+            }
+        }
         
         switch ($evt->getResult()) {
             case 1:
