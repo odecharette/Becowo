@@ -236,10 +236,14 @@
 	search.start();
 
 	$('#expandFilterBar').on('click', function(){
-		if($('#filtersBarExpanded').css('display') == 'none')
+		if($('#filtersBarExpanded').css('display') == 'none'){
 			$('#filtersBarExpanded').show();
-		else
+			$('#expandFilterBar').html("<i class='fa fa-filter' aria-hidden='true'></i> Moins de filtres");
+		}
+		else{
 			$('#filtersBarExpanded').hide();
+			$('#expandFilterBar').html("<i class='fa fa-filter' aria-hidden='true'></i> Plus de filtres");
+		}
 	});
 
 
