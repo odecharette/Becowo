@@ -1,5 +1,5 @@
 # This file is auto-generated during the composer install
-#test
+#test apres delete
 parameters:
     # BDD OVH offre Perso
     # database_host: coworkinwqadmin.mysql.db
