@@ -146,6 +146,7 @@ fos_user:
         confirmation:
             enabled:    true
 
+
 # EasyAdmin bundle
 easy_admin:
     site_name: 'Becowo - Admin'
