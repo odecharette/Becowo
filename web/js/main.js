@@ -198,10 +198,6 @@ $("#goToFilters").unbind("click").click(function(e){
     $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
 });
 
-$("#goToDeclare").unbind("click").click(function(e){
-    e.preventDefault();
-    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 1000, 'linear');
-});
 
 $('[id^="goToResa-"]').click(function() {
   $('#myTab a[href="#Réservation"]').tab('show');
