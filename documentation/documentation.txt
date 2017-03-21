@@ -97,3 +97,11 @@ Pendant un temps j'ai fait une modif dans le fichier vendor Propal/User.php
 +use FOS\UserBundle\Model\User as BaseUser;
 
 depuis le composer update du 18/03/17 le dossier Propal n'existe plus
+
+
+/****************************************************/
+		Infrastructure
+/****************************************************/
+
+Pour voir ou est le php.ini : ds la toolbar, sur la version à droite, view php info
+local : C:\wamp64\bin\apache\apache2.4.17\bin\php.ini

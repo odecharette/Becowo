@@ -336,7 +336,7 @@ class Event
      *
      * @return self
      */
-    public function setStartDateTimeStamp(\integer $startDateTimeStamp)
+    public function setStartDateTimeStamp($startDateTimeStamp)
     {
         $this->startDateTimeStamp = $startDateTimeStamp;
 
@@ -360,7 +360,7 @@ class Event
      *
      * @return self
      */
-    public function setEndDateTimeStamp(\integer $endDateTimeStamp)
+    public function setEndDateTimeStamp($endDateTimeStamp)
     {
         $this->endDateTimeStamp = $endDateTimeStamp;
 

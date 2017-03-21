@@ -46,7 +46,6 @@ class MailerLoggerService implements Swift_Events_SendListener
                 break;
             case 4096:
                 $this->logger->debug('sendPerformed Result : RESULT_FAILED');
-                $this->logger->debug(dump($evt));
                 break;
             default:
                 $this->logger->debug('sendPerformed Result : ' . $evt->getResult());
