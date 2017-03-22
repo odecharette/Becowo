@@ -80,6 +80,12 @@ services:
         class: Becowo\ApiBundle\Services\ApiService
         arguments: ['@doctrine.orm.entity_manager', '%facebook_client_id%', '%facebook_client_secret%', '@app.workspace', '@logger'] 
 
+    app.email :
+        class: Becowo\ApiBundle\Services\EmailService
+        arguments: ['@css_to_inline_email_converter', '@service_container', '@logger']
+        tags:
+          - { name: monolog.logger, channel: mailer_logger }
+
     app.member.sendEmailNewUsers :
         class: Becowo\MemberBundle\Controller\MemberController
         arguments: ['@doctrine.orm.entity_manager', '@mailer', '@templating', '@app.member', '@css_to_inline_email_converter'] 

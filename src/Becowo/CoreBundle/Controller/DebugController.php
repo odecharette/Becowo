@@ -14,50 +14,63 @@ class DebugController extends Controller
     $contentToDump = "";
     $content = "";
 
-    // DOC API : https://documentation.mailgun.com/api-sending.html#sending
-    // Pour générer le code cUrl, je testé l'API dans Postman, clique sur bouton 'code' + choix PHP cURL
-
-    $converter = $this->get('css_to_inline_email_converter');
-    $converter->setCSS('');
-    $converter->setHTMLByView('CommonViews/Mail/Footer-contact.html.twig',
-                array(
-                  'name' => 'prenom',
-                  'email' => 'prenom@test.com',
-                  'subject' => 'test debug',
-                  'message' => 'message'
-                ));
-    $body = $converter->generateStyledHTML();
+ //    $converter = $this->get('css_to_inline_email_converter');
+ //    $converter->setCSS('');
+ //    $converter->setHTMLByView('CommonViews/Mail/Footer-contact.html.twig',
+ //                array(
+ //                  'name' => 'prenom',
+ //                  'email' => 'prenom@test.com',
+ //                  'subject' => 'test debug',
+ //                  'message' => 'message'
+ //                ));
+ //    $body = $converter->generateStyledHTML();
 
                              
-	$curl = curl_init();
+	// $curl = curl_init();
 
-	$url = "https://api.mailgun.net/v3/mailgun.becowo.com/messages?";
-	$params = "from=Contact%20Becowo<contact%40becowo.com>&to=odecharette%40gmail.com&subject=Test%20curl3";
-	$postfields = array(
-	    'html' => $body,
-	    'o:tag' => $this->get('kernel')->getEnvironment(),
-	    'o:tag' => 'Footer contact'
-	);
-	//A single message may be marked with up to 3 tags.
+	// $url = $this->container->getParameter('mailgun.urlApiSendMessage');
+	// $from = urlencode($this->container->getParameter('mailgun.from'));
+	// $to = urlencode("odecharette@gmail.com"); //You can use commas to separate multiple recipients.
+	// $bcc = urlencode($this->container->getParameter('mailgun.bcc'));
+	// $subject = urlencode("test mailgun");
+	// $params = "from=" . $from . "&to=" . $to . "&subject=" . $subject . "&bcc=" . $bcc;
+	// $postfields = array(
+	//     'html' => $body,
+	//     'o:tag' => $this->get('kernel')->getEnvironment(),
+	//     'o:tag' => 'Footer contact'
+	// );
 
-	curl_setopt($curl,CURLOPT_URL,$url . $params); 
-	curl_setopt($curl,CURLOPT_USERPWD,"api:key-47a9d9c74b4b7603b9c13e27f3dda892");
-	curl_setopt($curl,CURLOPT_HTTPAUTH,CURLAUTH_BASIC);
-	curl_setopt($curl,CURLOPT_CUSTOMREQUEST,"POST");
-	curl_setopt($curl,CURLOPT_POSTFIELDS,$postfields);
-	curl_setopt($curl,CURLOPT_URL,$url . $params);
+	// curl_setopt($curl,CURLOPT_URL,$url . $params); 
+	// curl_setopt($curl,CURLOPT_USERPWD,
+	// 	$this->container->getParameter('mailgun.username') . ":" . $this->container->getParameter('mailgun.password'));
+	// curl_setopt($curl,CURLOPT_HTTPAUTH,CURLAUTH_BASIC);
+	// curl_setopt($curl,CURLOPT_CUSTOMREQUEST,"POST");
+	// curl_setopt($curl,CURLOPT_POSTFIELDS,$postfields);
+	// curl_setopt($curl,CURLOPT_URL,$url . $params);
+
+	// $response = curl_exec($curl);
+	// $err = curl_error($curl);
+
+	// curl_close($curl);
+
+	// if ($err) {
+	//   echo "cURL Error #:" . $err;
+	// } else {
+	//   echo $response;
+	// }
 
 
-	$response = curl_exec($curl);
-	$err = curl_error($curl);
+  	$emailService = $this->get('app.email');
+  	$emailTemplate = "Footer-contact";
+  	$emailParams = array('name' => 'prenom',
+                  'email' => 'prenom@test.com',
+                  'subject' => 'test debug',
+                  'message' => 'message');
+  	$emailTag = "Footer contact";
+  	$to = "odecharette@gmail.com";
+  	$subject = "test app.email";
 
-	curl_close($curl);
-
-	if ($err) {
-	  echo "cURL Error #:" . $err;
-	} else {
-	  echo $response;
-	}
+  	$content = $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
     return $this->render('Debug/view.html.twig', array('content' => $content, 'contentToDump' => $contentToDump));
 

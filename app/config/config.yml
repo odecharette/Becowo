@@ -76,6 +76,13 @@ twig:
             index_wish: '%algolia.index_wish%'
             index_workspace: '%algolia.index_workspace%'
             index_event: '%algolia.index_event%'
+        mailgun: # Email via mailgun : https://mailgun.com/app/dashboard
+            domain: '%mailgun.domain%'
+            urlApiSendMessage: '%mailgun.urlApiSendMessage%'
+            from: '%mailgun.from%'
+            bcc: '%mailgun.bcc%'
+            username: '%mailgun.username%'
+            password: '%mailgun.password%'
 
 services:
     twig.extension.intl:
@@ -117,6 +124,7 @@ doctrine:
 # Bundle pour Mailgun
 # https://mailgun.com/app/domains/mailgun.becowo.com
 cspoo_swiftmailer_mailgun:
+    key: "key-xxx"
     domain: "mailgun.becowo.com"
 
 # Swiftmailer Configuration
@@ -130,13 +138,6 @@ swiftmailer:
     # encryption: "%mailer_encryption%"
     spool:     { type: memory }
 
-# Email via mailgun : https://mailgun.com/app/dashboard
-mailgun:
-    domain: "%mailgun.domain%"
-    apiSendMessage: "%mailgun.apiSendMessage%"
-    from: "%mailgun.from%"
-    username: "%mailgun.username%"
-    password: "%mailgun.password%"
 
 # FOSUser configuration
 fos_user:
