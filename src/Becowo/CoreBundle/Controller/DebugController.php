@@ -13,7 +13,7 @@ class DebugController extends Controller
     $contentToDump = "";
     $content = "";
 
-    $contentToDump = $this->get('mailer')->getTransport()->getSpool();
+    $contentToDump = $this->get('mailer')->getTransport();
 
     return $this->render('Debug/view.html.twig', array('content' => $content, 'contentToDump' => $contentToDump));
 
