@@ -1,37 +1,35 @@
 $(document).ready(function () {
 
 // CONSTRUCTION CALENDAR
-var duree = document.querySelector('input[name="booking-duration"]:checked').value;
-loadCalendar(duree);
+loadCalendar(getDuree());
 
 // CONSTRUCTION HORAIRE
 // http://seiyria.com/bootstrap-slider/
-loadTime(duree);
+loadTime(getDuree());
 
 // CONSTRUCTION PEOPLE
 var mySliderPeople = $("#booking-people").slider({});
 
 mySliderPeople.on('change', function(ev){	
     document.getElementById('nbPeople').innerHTML = mySliderPeople.data('slider').getValue();
-    loadPrice(duree);
+    loadPrice(getDuree());
 });
 
 // Prix par défaut
-loadPrice(duree);
+loadPrice(getDuree());
 
-	// On reload des éléments à chaque fois que la duration change :
-	$('#booking-duration').on('change', function() { 
-	    var duree = document.querySelector('input[name="booking-duration"]:checked').value;
-	    // reset calendar
-		$('#booking-calendar').data('dateRangePicker').destroy();
-	    loadCalendar(duree);
-	    loadTime(duree);
-	    loadPrice(duree);
-	});
+// On reload des éléments à chaque fois que la duration change :
+$('#booking-duration').on('change', function() { 
+    // reset calendar
+	$('#booking-calendar').data('dateRangePicker').destroy();
+    loadCalendar(getDuree());
+    loadTime(getDuree());
+    loadPrice(getDuree());
+});
 
 if(document.querySelector('input[id="booking-calendar"]').value != ''){
 	// Cas où on revient sur la page
-	document.getElementById('recapDate').innerHTML = loadRecapDate(duree,document.querySelector('input[id="booking-calendar"]').value);
+	document.getElementById('recapDate').innerHTML = loadRecapDate(getDuree(),document.querySelector('input[id="booking-calendar"]').value);
 	document.getElementById('booking_confirmer').disabled = false;
 }else{
 	document.getElementById('booking_confirmer').disabled = true;
@@ -86,8 +84,8 @@ function loadCalendar(duree)
 		}
 	}).bind('datepicker-change',function(event,obj){
 		/* This event will be triggered when second date is selected */
-		loadPrice(duree);
-		document.getElementById('recapDate').innerHTML = loadRecapDate(duree, obj.value);
+		loadPrice(getDuree());
+		document.getElementById('recapDate').innerHTML = loadRecapDate(getDuree(), obj.value);
 		document.getElementById('booking_confirmer').disabled = false;
 	});
 
@@ -95,8 +93,9 @@ function loadCalendar(duree)
 
 function loadTime(duree){
 
-    // on doit reset le slider à chaque fois sinon ca bug
-    // $("#booking-time-slider").slider().data('slider').destroy();
+    // on doit reset le slider à chaque fois sinon ca bug et donc réinitialiser le nbHeures
+    $("#booking-time-slider").slider().data('slider').destroy();
+	document.getElementById('nbHeures').innerHTML = 1;
 
 	if(duree == 'Heure'){ 
 		document.getElementById('calendar-halftime').style.display = 'none';
@@ -131,7 +130,7 @@ function loadTime(duree){
             valeursTransformed = transformSliderValuesIntoHourMinute(valeursMinutes);
             remplirMinMaxTimeSlider(valeursTransformed);
 
-    		loadPrice(duree);
+    		loadPrice(getDuree());
 		});
 
 
@@ -152,24 +151,31 @@ function loadTime(duree){
 }
 
 function loadPrice(duree){
-
+// console.info('*** loadPrice');
 	var prix = document.getElementById('price' + duree).innerHTML;
 
 	var total = prix;
 	var officeType = document.getElementById('officeType').innerHTML;
 	var nbHeures = document.getElementById('nbHeures').innerHTML;
 	var nbPeople = document.getElementById('booking-people').value;
+// console.info('prix : ' + prix);
+// console.info('duree : ' + duree);
+// console.info('officeType : ' + officeType);
+// console.info('nb Heures : ' + nbHeures);
+// console.info('nbPeople : ' + nbPeople);
 
 	if(duree == 'Heure'){
 		total = prix * nbHeures;
+		// console.info('duree heure donc total : ' + total);
 	}else{
 		total = prix;
+		// console.info('duree NOT heure donc total : ' + total);
 	}
 
-	if(officeType == 'Open space'){
+	if(officeType == 'Espace partagé'){
 		total = total * nbPeople;
+		// console.info('officeType espace partagé donc total : ' + total);
 	}
-
 	var tva = document.getElementById('tva').innerHTML;
 	var tot = precise_round(total, 2);
 	var totTTC = precise_round(tot * (1 + tva/100), 2);
@@ -254,5 +260,8 @@ function loadRecapDate(duree, value)
 	}
 }
 
-
+function getDuree()
+{
+	return document.querySelector('input[name="booking-duration"]:checked').value;
+}
 
