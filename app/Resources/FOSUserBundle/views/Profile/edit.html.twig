@@ -21,7 +21,6 @@
 
 <div class="container-fluid" id="PublicProfile">  
 
-{% include "CommonViews/flashMessage.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
@@ -43,8 +42,10 @@
     </div>
 
   </div>
+{% include "CommonViews/flashMessage.html.twig" %}
   <div class="row">
-    {{ form_errors(form) }}
+    {{ form_errors(form) }} {#Affiche les erreur dans un flash msg #}
+
     <div class="col-lg-3 col-md-3">
       <div class="picture">
           {% if app.user.urlProfilePicture != null %}
@@ -144,8 +145,6 @@
           <i class="fa fa-venus-mars" aria-hidden="true"></i>{{ form_row(form.sex) }} <br>
           <i class="fa fa-birthday-cake" aria-hidden="true"></i>{{ form_row(form.birthDate) }} <br>
           <i class="fa fa-phone" aria-hidden="true"></i>{{ form_row(form.phone) }} <br>
-          {# {{ form_row(form.country) }}  <br>#}
-          {# {{ form_row(form.username) }}  <br>#}
       </div>
       <div class="newsletter">
         <h2>Newsletter Becowo</h2>

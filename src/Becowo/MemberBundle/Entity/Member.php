@@ -51,7 +51,7 @@ lastLogin : la date de la dernière connexion ;
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=50, nullable=true)
-     * @Assert\Length(min = 3, max = 25)
+     * @Assert\Length(min = 3, max = 25, minMessage="Le prénom doit contenir entre 3 et 25 caractères", maxMessage="Le prénom doit contenir entre 3 et 25 caractères")
      * @Algolia\Attribute
      *
      */
@@ -61,7 +61,7 @@ lastLogin : la date de la dernière connexion ;
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
-     * @Assert\Length(min = 3, max = 30)
+     * @Assert\Length(min = 3, max = 30, minMessage="Le nom doit contenir entre 3 et 30 caractères", maxMessage="Le nom doit contenir entre 3 et 30 caractères")
      * @Algolia\Attribute
      *
      */
@@ -85,8 +85,7 @@ lastLogin : la date de la dernière connexion ;
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=10, nullable=true)
-     * @Assert\Length(min = 10, max = 10)
-     * @Assert\Regex(pattern="/\A0\d{9}/", message="Le N° doit commencer par zéro et ne contenir que des chiffres")
+     * @Assert\Regex(pattern="/\A0\d{9}/", message="Le N° de téléphone doit commencer par zéro et contenir 10 chiffres")
      */
     private $phone;
 
@@ -129,7 +128,7 @@ lastLogin : la date de la dernière connexion ;
      * @var string
      *
      * @ORM\Column(name="society", type="string", length=100, nullable=true)
-     * @Assert\Length(min = 3, max = 100)
+     * @Assert\Length(min = 3, max = 100, minMessage="La société doit contenir entre 3 et 100 caractères", maxMessage="La société doit contenir entre 3 et 100 caractères")
      * @Algolia\Attribute
      *
      */
@@ -140,7 +139,7 @@ lastLogin : la date de la dernière connexion ;
      *
      * @ORM\Column(name="website", type="string", length=255, nullable=true)
      *
-     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", message="L'URL de votre site n'est pas valide")
      */
     private $website;
 
@@ -192,7 +191,7 @@ lastLogin : la date de la dernière connexion ;
      *
      * @ORM\Column(name="facebook_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|(www|facebook)\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|(www|facebook)\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", message="L'URL de votre lien Facebook n'est pas valide")
      */
     private $facebookLink;
 
@@ -201,7 +200,7 @@ lastLogin : la date de la dernière connexion ;
      *
      * @ORM\Column(name="twitter_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|(www|twitter)\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|(www|twitter)\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", message="L'URL de votre lien Twitter n'est pas valide")
      */
     private $twitterLink;
 
@@ -210,7 +209,7 @@ lastLogin : la date de la dernière connexion ;
      *
      * @ORM\Column(name="instagram_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", message="L'URL de votre lien Instagram n'est pas valide")
      */
     private $instagramLink;
 
@@ -219,7 +218,7 @@ lastLogin : la date de la dernière connexion ;
      *
      * @ORM\Column(name="linkedin_link", type="string", length=255, nullable=true)
      *
-     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i")
+     * @Assert\Regex("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", message="L'URL de votre lien Linkedin n'est pas valide")
      */
     private $linkedinLink;
 
@@ -268,7 +267,7 @@ lastLogin : la date de la dernière connexion ;
      * @var string
      *
      * @ORM\Column(name="personnal_tweet", type="string", length=140, nullable=true)
-     * @Assert\Length(max = 140)
+     * @Assert\Length(max = 140, maxMessage="Votre humeur doit s'exprimer en 140 caractères !")
      */
     private $personnalTweet;
 
