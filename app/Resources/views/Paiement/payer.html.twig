@@ -69,7 +69,7 @@
 					<input type="hidden" name="PBX_HASH" value="{{creditAgricole.PBX_HASH}}"> 
 					<input type="hidden" name="PBX_TIME" value="{{dateISO}}">
 					<input type="hidden" name="PBX_HMAC" value="{{hmacCalculated}}">
-					<a href="{{app.request.headers.get('referer')}}" id="cancel"> Modifier</a>
+					<a href="{{ path('becowo_core_booking', {id: app.session.get('booking').workspacehasoffice.id}) }}" id="cancel"> Modifier</a>
 					<input type="submit" value="Procéder au paiement" id="payer"> 
 				</form> 
 				</center>

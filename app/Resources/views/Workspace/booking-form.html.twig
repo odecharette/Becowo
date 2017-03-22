@@ -28,7 +28,7 @@
 				<div class="segmented-control" style="color: #20385e;border: none;" id="booking-duration">
 					{% if prices.priceHour != null %}
 						{% set nbDuration = nbDuration + 1 %}
-							{% if nbDuration == 1 %}
+							{% if nbDuration == 1 or booking.duration == 'Heure' %}
 								<input type="radio" name="booking-duration" id="booking-duration-Heure" value="Heure" checked="true">
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-Heure" value="Heure">
@@ -39,7 +39,7 @@
 
 					{% if prices.priceHalfDay != null %}
 						{% set nbDuration = nbDuration + 1 %}
-							{% if nbDuration == 1 %}
+							{% if nbDuration == 1 or booking.duration == 'Demi journée' %}
 								<input type="radio" name="booking-duration" id="booking-duration-HalfDay" value="Demi journée" checked="true">
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-HalfDay" value="Demi journée">
@@ -50,7 +50,7 @@
 
 					{% if prices.priceDay != null %}
 						{% set nbDuration = nbDuration + 1 %}
-							{% if nbDuration == 1 %}
+							{% if nbDuration == 1  or booking.duration == 'Journée'%}
 								<input type="radio" name="booking-duration" id="booking-duration-Day" value="Journée" checked="true">
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-Day" value="Journée">
@@ -60,7 +60,7 @@
 					{% endif %}
 
 					{% if prices.priceMonth != null %}
-						{% set nbDuration = nbDuration + 1 %}
+						{% set nbDuration = nbDuration + 1  or booking.duration == 'Mois' %}
 							{% if nbDuration == 1 %}
 								<input type="radio" name="booking-duration" id="booking-duration-Month" value="Mois" checked="true">
 							{% else %}
@@ -95,7 +95,23 @@
 				<strong class="hidden-xs">Horaire : </strong>
 				    <strong><span id="time-min"></span></strong>
 				    <span class="slideTime">
-				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" />
+				    	{# le slider prend en value des minutes uniquement (d'où le calcul des heures * 60)
+				    	Si pas de booking en session :
+				    		Debut = startDate(initié ds le controller avec la prochaine date d'ouverture)
+				    		Fin = OpenHour + 1 heure (+60min)
+				    	Si un booking est en session
+				    		Debut = idem
+				    		Fin : heure (dateFin) convertit en minutes
+				    	data-slider-min = l'heure d'ouverture converti en minutes
+				    	data-slider-max = l'heure de fermeture converti en minutes
+				    	data-slider-step = 1 heure converti en minutes #}
+				    	<input id="booking-time-slider" type="text" data-slider-handle="custom" name="booking-time-slider" 
+				    	value="" 
+				    	range="true"
+				    	data-slider-value="[{{booking.startDate|date('H')*60+booking.startDate|date('i')}},{% if booking.endDate != null %}{{booking.endDate|date('H')*60+booking.endDate|date('i')}}]{% else %} {{times.openHour|date('H')*60+times.openHour|date('i')+60}}]{% endif %}"
+				    	data-slider-min="{{times.openHour|date('H')*60+times.openHour|date('i')}}" 
+				    	data-slider-max="{{times.closeHour|date('H')*60+times.closeHour|date('i')}}"
+				    	data-slider-step="60"/>
 				    </span>
 				    <strong><span id="time-max"></span></strong>
 				    <span id="nbHeures" hidden="true">1</span>
@@ -104,8 +120,14 @@
 				{# 1/2 JOURNEE #}
 				<span id="calendar-halftime" style="display:none">	 {# caché par défaut, affiché en JS si besoin #}
 				    <div class="segmented-control" style="width: 300px; color: #20385e" id="booking-duration-day">
-					  <input type="radio" name="booking-duration-day" id="booking-duration-day-1" checked value="Matin">
-					  <input type="radio" name="booking-duration-day" id="booking-duration-day-2" value="Après-midi">
+				    	{# si un booking est récupéré de la session, on init le slider avec les valeurs du booking #}
+				    	{% if booking.duration == 'Demi journée' and booking.durationDay == 'Après-midi' %}
+				    		<input type="radio" name="booking-duration-day" id="booking-duration-day-1" value="Matin">
+					  		<input type="radio" name="booking-duration-day" id="booking-duration-day-2" checked value="Après-midi">
+					  	{% else %}
+				    		<input type="radio" name="booking-duration-day" id="booking-duration-day-1" checked value="Matin">
+					  		<input type="radio" name="booking-duration-day" id="booking-duration-day-2" value="Après-midi">
+				    	{% endif %}
 					  <label for="booking-duration-day-1" data-value="Matin">Matin</label>
 					  <label for="booking-duration-day-2" data-value="Après-midi">Après-midi</label>
 					</div>
@@ -128,6 +150,7 @@
 					<span class="slidePeople hidden">
 				{% endif %}
 				<b> 1 </b>
+					{# si un booking est récupéré de la session, on init le slider avec les valeurs du booking #}
 					<input id="booking-people" type="text" data-slider-handle="custom" data-slider-min="1" data-slider-max="{{WsHasOffice.deskQty}}" name="booking-people" data-slider-value="{% if booking.nbPeople != null %}{{booking.nbPeople}}{% else %} 1 {% endif %}"/>
 				<b> {{WsHasOffice.deskQty}} </b>
 				</span>

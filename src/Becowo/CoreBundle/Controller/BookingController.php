@@ -42,11 +42,13 @@ class BookingController extends Controller
     $closedDates = $WsService->getClosedDatesByWorkspace($ws);
     $pictures = $WsService->getPicturesByWorkspace($ws->getName());
     $averageVote = $WsService->getAverageVoteByWorkspace($ws);
+    $em = $this->getDoctrine()->getManager();
 
     if($session->get('booking') !== null)
     {
       // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
       $booking = $WsService->getBookingByRef($session->get('booking')->getBookingRef());
+
     }else{
       $booking = new Booking();
       // Par défaut le booking est crée sur la prochaine date ouvert (selon samedi, dimanche, closeddates)
@@ -54,7 +56,6 @@ class BookingController extends Controller
     }
     $bookingForm = $this->createForm(BookingType::class, $booking);
  
-
     if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
     {
 
@@ -97,7 +98,7 @@ class BookingController extends Controller
       $booking->setMessage($bookingForm->get('message')->getData());
     	// TO DO : déterminer si isFirstBook
 
-    	$em = $this->getDoctrine()->getManager();
+    	
     	$em->persist($booking);
   	  $em->flush();
 
@@ -106,6 +107,7 @@ class BookingController extends Controller
 
       return $this->redirectToRoute('becowo_core_paiement_call_bank');
     }
+
 
     return $this->render('Workspace/booking-form.html.twig', 
       array('booking' => $booking, 'bookingForm' => $bookingForm->createView(),'id' =>$id, 'WsHasOffice' => $WsHasOffice, 'ws' => $ws, 'prices' => $prices[0], 'times' => $times[0], 'closedDates' => $closedDates, 'pictures' => $pictures, 'averageVote' => $averageVote));

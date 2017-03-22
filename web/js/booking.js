@@ -106,14 +106,7 @@ function loadTime(duree){
 		var fermeture = document.getElementById('closeHour').innerHTML.split(':');
 		var fermetureMinutes = Number(fermeture[0]) * 60 + Number(fermeture[1]);
 
-		var mySliderTime = $("#booking-time-slider").slider({
-		range: true,
-    	min: ouvertureMinutes,	// every values are in minutes
-    	max: fermetureMinutes,
-    	step: 60,
-    	value: [ouvertureMinutes, ouvertureMinutes+60]
-
-		});
+		var mySliderTime = $("#booking-time-slider").slider({});
 
         //Initi selected heures
         var valeursMinutes = mySliderTime.data('slider').getValue();
