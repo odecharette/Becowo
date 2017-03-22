@@ -116,9 +116,8 @@ doctrine:
 
 # Bundle pour Mailgun
 # https://mailgun.com/app/domains/mailgun.becowo.com
-# cspoo_swiftmailer_mailgun:
-#     key: "key-47a9d9c74b4b7603b9c13e27f3dda892"
-#     domain: "mailgun.becowo.com"
+cspoo_swiftmailer_mailgun:
+    domain: "mailgun.becowo.com"
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -128,8 +127,16 @@ swiftmailer:
     port:      "%mailer_port%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    encryption: "%mailer_encryption%"
+    # encryption: "%mailer_encryption%"
     spool:     { type: memory }
+
+# Email via mailgun : https://mailgun.com/app/dashboard
+mailgun:
+    domain: "%mailgun.domain%"
+    apiSendMessage: "%mailgun.apiSendMessage%"
+    from: "%mailgun.from%"
+    username: "%mailgun.username%"
+    password: "%mailgun.password%"
 
 # FOSUser configuration
 fos_user:
