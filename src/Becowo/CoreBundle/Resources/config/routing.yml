@@ -183,6 +183,11 @@ becowo_comment:
     options:
         expose: true
 
+becowo_core_debug:
+    path:     /debug
+    defaults: { _controller: BecowoCoreBundle:Debug:view }
+    methods: GET
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
