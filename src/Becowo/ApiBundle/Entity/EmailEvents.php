@@ -26,6 +26,13 @@ class EmailEvents
     /**
      * @var string
      *
+     * @ORM\Column(name="event_id", type="string")
+     */
+    private $eventId;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email_id", type="string")
      */
     private $emailId;
@@ -92,6 +99,30 @@ class EmailEvents
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of eventId.
+     *
+     * @return string
+     */
+    public function getEventId()
+    {
+        return $this->eventId;
+    }
+
+    /**
+     * Sets the value of eventId.
+     *
+     * @param string $eventId
+     *
+     * @return self
+     */
+    public function setEventId($eventId)
+    {
+        $this->eventId = $eventId;
 
         return $this;
     }

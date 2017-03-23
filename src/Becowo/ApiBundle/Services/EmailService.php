@@ -111,7 +111,7 @@ class EmailService
 		$response = curl_exec($curl);
 
 		if($response){
-			$this->logger->notice('getEmailEvents : Response OK : ' . $response);
+			$this->logger->notice('getEmailEvents : Response OK : ');
 		}else{
 			$this->logger->error('getEmailEvents : Response failed : ' . $response);
 		}
@@ -152,33 +152,43 @@ class EmailService
     {
     	// $data est le JSON renvoyé par getEmailEvents() via l'API de mailgun
 
+    	$this->logger->notice('saveEmailEventsInDb - Start');
+
 		$json_data = json_decode($data);
 		$items = $json_data->items;
 		foreach ($items as $item) {
 
-			$tags = "";
-			foreach ($item->tags as $tag) {
-				$tags = $tags . $tag . ",";
+			$repo = $this->em->getRepository('BecowoApiBundle:EmailEvents');
+   			$existingID = $repo->findBy(array('eventId' => $item->id));
+
+			if(!$existingID)
+			{
+				$tags = "";
+				foreach ($item->tags as $tag) {
+					$tags = $tags . $tag . ",";
+				}
+
+				$subject = "";
+				if(isset($item->message->headers->subject))
+					$subject = $item->message->headers->subject;
+
+				$d = new \DateTime();
+				$d->setTimestamp($item->timestamp);
+
+				$event = new EmailEvents();
+				$event->setEventId($item->id);
+				$event->setEmailId(explode('@', get_object_vars($item->message->headers)['message-id'])[0]);
+				$event->setTags($tags);
+				$event->setDateSent($d);
+				$event->setRecipient($item->recipient);
+				$event->setSubject($subject);
+				$event->setEvent($item->event);
+				$this->em->persist($event);
 			}
-
-			$subject = "";
-			if(isset($item->message->headers->subject))
-				$subject = $item->message->headers->subject;
-
-			$d = new \DateTime();
-			$d->setTimestamp($item->timestamp);
-
-			$event = new EmailEvents();
-			$event->setEMailID(explode('@', get_object_vars($item->message->headers)['message-id'])[0]);
-			$event->setTags($tags);
-			$event->setDateSent($d);
-			$event->setRecipient($item->recipient);
-			$event->setSubject($subject);
-			$event->setEvent($item->event);
-			$this->em->persist($event);
 		}
 
 		$this->em->flush();
+		$this->logger->notice('saveEmailEventsInDb - ' . count($items) . " items found \n");
 		echo "************ " . count($items) . " items found \n";
 
     	return "";
