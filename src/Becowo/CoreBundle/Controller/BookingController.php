@@ -130,25 +130,15 @@ class BookingController extends Controller
   		  $em->flush();
 
   		  //On envoi un mail au coworker pour l'informer que la résa est confirmée
-        $converter = $this->get('css_to_inline_email_converter');
-        $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
-        
-        $converter->setHTMLByView('CommonViews/Mail/Coworker-ResaValidee.html.twig',
-                    array('booking' => $booking));
 
-      	$message = \Swift_Message::newInstance()
-        ->setSubject("Becowo - Réservation N°" . $bookRef . " validée")
-        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-        ->setTo($booking->getMember()->getEmail())
-        ->setBcc('webmaster@becowo.com')
-        ->setContentType("text/html")
-        ->setBody($converter->generateStyledHTML());
+        $emailService = $this->get('app.email');
+        $emailTemplate = "Coworker-ResaValidee";
+        $emailParams = array('booking' => $booking);
+        $emailTag = "Coworker - Réservation validée";
+        $to = $booking->getMember()->getEmail();
+        $subject = "Becowo - Réservation N°" . $bookRef . " validée";
 
-        try{
-          $this->get('mailer')->send($message);
-        }catch(Exception $e){
-          echo "error sending email : ",  $e->getMessage(), "\n";
-        }
+        $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
         $msg = "Réservation validée, merci !";
       }
@@ -176,44 +166,24 @@ class BookingController extends Controller
 		    $em->flush();
 
 		    //On envoi un mail au coworker pour l'informer que la résa est refusée
-        $converter = $this->get('css_to_inline_email_converter');
-        $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
-        
-        $converter->setHTMLByView('CommonViews/Mail/Coworker-ResaRefusee.html.twig',
-                    array('booking' => $booking));
+        $emailService = $this->get('app.email');
+        $emailTemplate = "Coworker-ResaRefusee";
+        $emailParams = array('booking' => $booking);
+        $emailTag = "Coworker - Réservation refusée";
+        $to = $booking->getMember()->getEmail();
+        $subject = "Becowo - Réservation N°" . $bookRef . " refusée";
 
-      	$message = \Swift_Message::newInstance()
-        ->setSubject("Becowo - Réservation N°" . $bookRef . " refusée")
-        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-        ->setTo($booking->getMember()->getEmail())
-        ->setBcc('webmaster@becowo.com')
-        ->setContentType("text/html")
-        ->setBody($converter->generateStyledHTML());
-
-        try{
-          $this->get('mailer')->send($message);
-        }catch(Exception $e){
-          echo "error sending email : ",  $e->getMessage(), "\n";
-        }
+        $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
       	//Puis on envoi un mail à l'admin de Becowo pour procéder au remboursement
-        $converter = $this->get('css_to_inline_email_converter');
-        $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
-        $converter->setHTMLByView('CommonViews/Mail/Admin-Rembourser.html.twig',
-                    array('booking' => $booking));
+        $emailService = $this->get('app.email');
+        $emailTemplate = "Admin-Rembourser";
+        $emailParams = array('booking' => $booking);
+        $emailTag = "Admin - Rembourser réservation";
+        $to = "contact@becowo.com";
+        $subject = "Becowo - Rembourser réservation N°" . $bookRef;
 
-      	$message = \Swift_Message::newInstance()
-        ->setSubject("Becowo - Rembourser réservation N°" . $bookRef)
-        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-        ->setTo('webmaster@becowo.com')
-        ->setContentType("text/html")
-        ->setBody($converter->generateStyledHTML());
-
-      	try{
-          $this->get('mailer')->send($message);
-        }catch(Exception $e){
-          echo "error sending email : ",  $e->getMessage(), "\n";
-        }
+        $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
         $msg = "Réservation refusée, merci.";
       }

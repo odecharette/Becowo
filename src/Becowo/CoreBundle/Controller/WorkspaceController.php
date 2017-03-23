@@ -57,46 +57,32 @@ class WorkspaceController extends Controller
     // Pour le moment, on recoit les emails puis FW aux manager, afin de contrôler le flux
     // $wsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
 
-    // $emailManager = [];
-    // $i = 0;
+    // $emailManager = "";
     // if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
     // {
-    //   $emailManager[0] = 'olivia.decharette@becowo.com';
+    //   $emailManager = 'olivia.decharette@becowo.com';
     // }else{
     //   foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
-    //     $emailManager[$i] = $wsHasTeamMember->getTeamMember()->getEmail();
-    //     $i ++;
+    //     $emailManager = $emailManager . "," . $wsHasTeamMember->getTeamMember()->getEmail();
     //   }
     // }
     
       // On vérifie que c'est bien le form de contact manager qui est envoyé
     if ($request->isMethod('POST') && $managerContactForm->handleRequest($request)->isValid() && $request->request->has('manager-contact-form')) {
 
-      $converter = $this->get('css_to_inline_email_converter');
-      $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
-      
-      $converter->setHTMLByView('CommonViews/Mail/Manager-contact.html.twig',
-                  array(
-                      'name' => $managerContactForm->get('name')->getData(),
-                      'email' => $managerContactForm->get('email')->getData(),
-                      'subject' => $managerContactForm->get('subject')->getData(),
-                      'message' => $managerContactForm->get('message')->getData(),
-                      'wsName' => $ws->getName()));
+      $emailService = $this->get('app.email');
+      $emailTemplate = "Manager-contact";
+      $emailParams = array('name' => $managerContactForm->get('name')->getData(),
+                    'email' => $managerContactForm->get('email')->getData(),
+                    'subject' => $managerContactForm->get('subject')->getData(),
+                    'message' => $managerContactForm->get('message')->getData(),
+                    'wsName' => $ws->getName()));
+      $emailTag = "Coworker contact manager";
+      $to = "contact@becowo.com";
+      $subject = 'Becowo - Nouveau message d\'un coworker';
 
-      $message = \Swift_Message::newInstance()
-          ->setSubject('Becowo - Nouveau message d\'un coworker')
-          ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-          ->setTo('contact@becowo.com') 
-          ->setBcc('webmaster@becowo.com')
-          ->setContentType("text/html")
-          ->setBody($converter->generateStyledHTML());
+      $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
-        try{
-          $this->get('mailer')->send($message);
-        }catch(Exception $e){
-          echo "error sending email : ",  $e->getMessage(), "\n";
-        }
-        
       $this->addFlash('success', 'Merci ! Email bien envoyé.');
 
       return $this->redirectToRoute('becowo_core_workspace_contact', array('name' => $name));

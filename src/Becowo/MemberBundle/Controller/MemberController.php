@@ -43,27 +43,23 @@ class MemberController extends Controller
     $form = $this->createForm(ContactType::class, $contact);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Becowo - Nouveau message pour un coworker')
-            ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-            ->setTo('contact@becowo.com')
-            ->setBcc('webmaster@becowo.com')
-            ->setContentType("text/html")
-            ->setBody(
-                $this->renderView(
-                    'CommonViews/Mail/Footer-contact.html.twig',
-                    array(
-                        'name' => $form->get('name')->getData(),
+        $emailService = $this->get('app.email');
+        $emailTemplate = "Coworker-contact";
+        $emailParams = array('name' => $form->get('name')->getData(),
                         'email' => $form->get('email')->getData(),
                         'subject' => $form->get('subject')->getData(),
-                        'message' => $this->getUser()->getFirstname() . ' ' . $this->getUser()->getName() . ' (' . $this->getUser()->getId() . ') souhaite contacter le coworker : ' . $member->getFirstname() . ' ' . $member->getName() . ' (' . $member->getId() . ') avec le message suivant : <br>' . $form->get('message')->getData()
-                    )
-                )
-            );
+                        'destinataire' => $member->getFirstname() . ' ' . $member->getName() . ' (' . $member->getId() . ')',
+                        'message' => $form->get('message')->getData());
+        $emailTag = "Coworker contact";
+        $to = "contact@becowo.com";
+        $subject = "Becowo - Nouveau message pour un coworker";
 
-        $this->get('mailer')->send($message);
+        $result = $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
-        $request->getSession()->getFlashBag()->add('success', 'Votre message a bien été envoyé');
+        if($result)
+          $request->getSession()->getFlashBag()->add('success', 'Votre message a bien été envoyé');
+        else
+          $request->getSession()->getFlashBag()->add('danger', 'Une erreur est survenue, veuillez réessayer plus tard');
 
         return $this->redirectToRoute('becowo_member_community_coworker', array('city' => str_replace('-',' ',$member->getCity()), 'job' => str_replace('/', ' ',str_replace('-',' ',$member->getJob())), 'id' => $id));
       }
@@ -86,29 +82,21 @@ class MemberController extends Controller
   		$nbMembers++;
   		if($member->getEmail() !== null)
   		{
-        $this->converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
+        $emailService = $this->get('app.email');
+        $emailTemplate = "NewMember";
+        $emailParams = array('member' => $member);
+        $emailTag = "Mail de bienvenue";
+        $to = $member->getEmail();
+        $subject = "Becowo - Intégrez notre communauté";
+
+        $resultEmail = $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
             
-        $this->converter->setHTMLByView('CommonViews/Mail/NewMember.html.twig',
-                    array('member' => $member));
-
-  			$message = \Swift_Message::newInstance()
-	        ->setSubject("Becowo - Intégrez notre communauté")
-	        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-	        ->setTo($member->getEmail())
-          ->setBcc('webmaster@becowo.com')
-          ->setContentType("text/html")
-	        ->setBody($converter->generateStyledHTML());
-
-          try{
-            $this->get('mailer')->send($message);
-          }catch(Exception $e){
-            echo "error sending email : ",  $e->getMessage(), "\n";
-          }
-            
-	      	$nbEmails++;
-	      	$listEmails = $listEmails . "\n" . $member->getEmail() ;
-
-	      	$member->setHasReceivedEmailNewUser(true);
+        if($resultEmail)
+        {
+          $nbEmails++;
+          $listEmails = $listEmails . "\n" . $member->getEmail() ;
+          $member->setHasReceivedEmailNewUser(true);
+        }
 	      	
 	  		$this->em->persist($member);
   		}

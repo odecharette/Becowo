@@ -1,0 +1,29 @@
+{% extends 'CommonViews/Mail/layout-email.html.twig' %}
+
+{% block emailTitle %}
+	Becowo - Transaction refusée !
+{% endblock emailTitle %}
+
+{% block emailContent %}
+Bonjour <br>
+<br>
+La transaction de la réservation N° {{booking.bookingRef}} a été refusée par la banque <br>
+<br>
+La réservation est donc passée en statut "Paiement refusé" <br>
+<br><br>
+Rappel de la réservation : <br>
+Réservation N° {{booking.bookingRef}} <br>
+Salle : {{booking.workspacehasoffice.name}} - {{booking.workspacehasoffice.office.name}} <br>
+Date de début : {{booking.startDate|date('d/m/Y h:i')}} <br>
+Date de fin : {{booking.endDate|date('d/m/Y h:i')}} <br>
+Durée : {{booking.duration}} {{booking.durationDay}} <br>
+Nombre de coworkers : {{booking.nbPeople}} <br>
+Prix de la réservation : {{booking.priceInclTax}} € TTC <br>
+<br>
+Identité du coworker : <br>
+ID : {{booking.member.id}}
+<br>
+
+{% endblock emailContent %}
+
+

@@ -34,14 +34,7 @@ class MyFOSUserSendEmailService implements MailerInterface
         $to = $user->getEmail();
         $subject = "[Becowo] Bienvenue " . $user->getUsername() . " !";
 
-        $result = $this->emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
-
-        // if($result)
-        //     $request->getSession()->getFlashBag()->add('success', 'Votre message a bien été envoyé');
-        // else
-        //     $request->getSession()->getFlashBag()->add('danger', 'Une erreur est survenue, veuillez réessayer plus tard');
-
-    	
+        $result = $this->emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);    	
     }
 
     /**
@@ -51,6 +44,7 @@ class MyFOSUserSendEmailService implements MailerInterface
      */
     function sendResettingEmailMessage(UserInterface $user)
     {
-    	$url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
+    	// Not used 
+    	// $url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
     }
 }

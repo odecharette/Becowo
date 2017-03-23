@@ -138,21 +138,19 @@ class PaiementController extends Controller
 
     //Récupération de l'email du manager de l'espace réservé
     // Multi email accepté si plusieurs teamMembers
-    // Si aucun teammeber => envoi email à olivia.decharette@becowo.com
+    // Si aucun teamMember => envoi email à olivia.decharette@becowo.com
     // Si env != Prod => envoi email à olivia.decharette@becowo.com
     $objectBookingComplet = $WsService->getWsByBooking($booking);
     $ws = $objectBookingComplet->getWorkspaceHasOffice()->getWorkspace();
     $wsHasTeamMembers = $WsService->getWsHasTeamMemberForEmailBookingByWorkspace($ws);
 
-    $emailManager = [];
-    $i = 0;
+    $emailManager = "";
     if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
     {
-      $emailManager[0] = 'olivia.decharette@becowo.com';
+      $emailManager = 'olivia.decharette@becowo.com';
     }else{
       foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
-        $emailManager[$i] = $wsHasTeamMember->getTeamMember()->getEmail();
-        $i ++;
+        $emailManager = $emailManager . "," . $wsHasTeamMember->getTeamMember()->getEmail();
       }
     }
    
@@ -218,47 +216,23 @@ class PaiementController extends Controller
       $em->persist($booking);
 
       //Puis on envoi un mail au manager pour valider la résa
-      $converter = $this->get('css_to_inline_email_converter');
-      $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
-      
-      $converter->setHTMLByView('CommonViews/Mail/New-dme-resa.html.twig',
-                  array('user' => $booking->getMember()->getFirstname() . ' ' . $booking->getMember()->getName(),
-                    'booking' => $booking
-                  ));
-      $message = \Swift_Message::newInstance()
-        ->setSubject("Becowo - Nouvelle demande de réservation - " . $booking_ref)
-        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-        ->setTo($emailManager) 
-        ->setBcc('webmaster@becowo.com')
-        ->setContentType("text/html")
-        ->setBody($converter->generateStyledHTML());
+      $emailTemplate = "New-dme-resa";
+      $emailParams = array('user' => $booking->getMember()->getFirstname() . ' ' . $booking->getMember()->getName(),
+                     'booking' => $booking);
+      $emailTag = "Demande réservation";
+      $to = $emailManager;
+      $subject = "Becowo - Nouvelle demande de réservation - " . $booking_ref;
 
-      try{
-        $this->get('mailer')->send($message);
-      }catch(Exception $e){
-        echo "error sending email : ",  $e->getMessage(), "\n";
-      }
+      $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
       //Puis on envoi un mail au coworker pour l'informer que le paiement est valide
-      // $converter = $this->get('css_to_inline_email_converter');
-      $converter->setCSS($this->get('kernel')->getRootDir().'/../web/css/emails.css');
-      
-      $converter->setHTMLByView('CommonViews/Mail/Coworker-ResaPayee.html.twig',
-                  array('booking' => $booking));
-            
-      $message = \Swift_Message::newInstance()
-        ->setSubject("Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref)
-        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-        ->setTo($booking->getMember()->getEmail())
-        ->setBcc('webmaster@becowo.com')
-        ->setContentType("text/html")
-        ->setBody($converter->generateStyledHTML());
+      $emailTemplate = "Coworker-ResaPayee";
+      $emailParams = array('booking' => $booking);
+      $emailTag = "Coworker Réservation payée";
+      $to = $booking->getMember()->getEmail();
+      $subject = "Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref;
 
-      try{
-        $this->get('mailer')->send($message);
-      }catch(Exception $e){
-        echo "error sending email : ",  $e->getMessage(), "\n";
-      }
+      $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
     }
     else
     {
@@ -269,15 +243,13 @@ class PaiementController extends Controller
       $booking->setStatus($status);
       $em->persist($booking);
 
-      $message = \Swift_Message::newInstance()
-        ->setSubject("Becowo - Transaction refusée " . $booking_ref)
-        ->setFrom(array('contact@becowo.com' => 'Contact Becowo'))
-        ->setTo('contact@becowo.com') 
-        ->setBcc('webmaster@becowo.com')
-        ->setContentType("text/html")
-        ->setBody('Transaction refusée pour le booking N° : ' . $booking_ref);
+      $emailTemplate = "Admin-TransactionRefusee";
+      $emailParams = array('booking' => $booking);
+      $emailTag = "Admin,Transaction Refusée";
+      $to = 'contact@becowo.com';
+      $subject = "Becowo - Transaction refusée " . $booking_ref;
 
-      $this->get('mailer')->send($message);
+      $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
     }
     
 

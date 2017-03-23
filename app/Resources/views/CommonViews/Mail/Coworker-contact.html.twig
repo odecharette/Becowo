@@ -1,0 +1,23 @@
+{% extends 'CommonViews/Mail/layout-email.html.twig' %}
+
+{% block emailTitle %}
+	Becowo - Contact entre coworkers
+{% endblock emailTitle %}
+
+{% block emailContent %}
+
+Bonjour,  <br>
+<br>
+Message envoyé par le coworker : <br>
+<br>
+Nom : {{ name }} <br>
+Email : {{ email }} <br>
+Sujet : {{ subject }} <br>
+<br>
+<br>
+A l'attention de : <br>
+Nom : {{destinataire}} <br>
+<br>
+Message : {{ message|nl2br }} <br> #}
+
+{% endblock emailContent %}
