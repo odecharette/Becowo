@@ -53,7 +53,7 @@ class EmailService
 		curl_setopt($curl,CURLOPT_HTTPAUTH,CURLAUTH_BASIC);
 		curl_setopt($curl,CURLOPT_CUSTOMREQUEST,"POST");
 		curl_setopt($curl,CURLOPT_POSTFIELDS,$postfields);
-		// curl_setopt($curl,CURLOPT_URL,$url . $params);
+		curl_setopt($curl,CURLOPT_CAINFO, $this->container->getParameter('cacert'));
 
 		$response = curl_exec($curl);
 		if($response){
@@ -81,6 +81,7 @@ class EmailService
     	// Doc API : https://documentation.mailgun.com/api-events.html
     	// Good to know : j'ai du indiquer l'emplacement du fichier cacert.pem dans les fichier php.ini (WEB, PHP 5, PHP 7)
     	// curl.cainfo="C:/wamp64/cacert.pem"
+    	// Finallement j'utilise le fichier cacert.pem en local (copié ds dossier web) sinon ca ne marche pas sur le serveur
 
     	$this->logger->notice('getEmailEvents : Start');
 
@@ -106,6 +107,7 @@ class EmailService
 			$this->container->getParameter('mailgun.username') . ":" . $this->container->getParameter('mailgun.password'));
 		curl_setopt($curl,CURLOPT_HTTPAUTH,CURLAUTH_BASIC);
 		curl_setopt($curl,CURLOPT_CUSTOMREQUEST,"GET");
+		curl_setopt($curl,CURLOPT_CAINFO, $this->container->getParameter('cacert'));
 		curl_setopt($curl,CURLOPT_RETURNTRANSFER,true); // CURLOPT_RETURNTRANSFER tells PHP to store the response in a variable instead of printing it to the page, so $response will contain your response
 
 		$response = curl_exec($curl);
