@@ -41,9 +41,8 @@ class EmailService
 
 		$postfields = array(
 		    'html' => $body,
-		    'o:tag' => $emailTag //A single message may be marked with up to 3 tags.
+	    	'o:tag' => $this->container->get('kernel')->getEnvironment() . ',' . $emailTag
 		);
-		
 
 		curl_setopt($curl,CURLOPT_URL,$url . $params); 
 		curl_setopt($curl,CURLOPT_USERPWD,

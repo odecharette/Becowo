@@ -86,6 +86,10 @@ services:
         tags:
           - { name: monolog.logger, channel: mailer_logger }
 
+    app.FOSUser.mailer:
+        class:     Becowo\MemberBundle\Services\MyFOSUserSendEmailService
+        arguments: ['@app.email', '@router']
+
     app.member.sendEmailNewUsers :
         class: Becowo\MemberBundle\Controller\MemberController
         arguments: ['@doctrine.orm.entity_manager', '@mailer', '@templating', '@app.member', '@css_to_inline_email_converter'] 
@@ -94,7 +98,7 @@ services:
         class: Becowo\ApiBundle\Controller\EventsController
         arguments: ['@doctrine.orm.entity_manager', '@app.api'] 
 
-    app.mailer.logger :
+    app.mailer.logger : # TO BE DELETED
         class:  Becowo\CoreBundle\Services\MailerLoggerService
         arguments: ["@logger"]
         tags:

@@ -66,7 +66,7 @@ class DebugController extends Controller
                   'email' => 'prenom@test.com',
                   'subject' => 'test debug',
                   'message' => 'message');
-  	$emailTag = "Footer contact";
+  	$emailTag = "test debug 2";
   	$to = "odecharette@gmail.com";
   	$subject = "test app.email";
 

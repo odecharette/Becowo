@@ -153,7 +153,8 @@ fos_user:
     registration:
         confirmation:
             enabled:    true
-
+    service:
+        mailer: app.FOSUser.mailer
 
 # EasyAdmin bundle
 easy_admin:

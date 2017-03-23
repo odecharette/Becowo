@@ -1,0 +1,15 @@
+{% extends 'CommonViews/Mail/layout-email.html.twig' %}
+
+{% block emailTitle %}
+	Bienvenue {{username}} !
+{% endblock emailTitle %}
+
+{% block emailContent %}
+
+Bonjour {{username}}, <br>
+<br>
+Pour valider votre compte utilisateur, merci de vous rendre sur {{confirmationUrl}} <br>
+
+
+{% endblock emailContent %}
+
