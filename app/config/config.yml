@@ -121,24 +121,6 @@ doctrine:
             month: DoctrineExtensions\Query\Mysql\Month
             dateadd: DoctrineExtensions\Query\Mysql\DateAdd
 
-# Bundle pour Mailgun
-# https://mailgun.com/app/domains/mailgun.becowo.com
-cspoo_swiftmailer_mailgun:
-    key: "key-xxx"
-    domain: "mailgun.becowo.com"
-
-# Swiftmailer Configuration
-swiftmailer:
-    transport: "%mailer_transport%"
-    auth_mode: "%mailer_auth_mode%"
-    host:      "%mailer_host%"
-    port:      "%mailer_port%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    # encryption: "%mailer_encryption%"
-    spool:     { type: memory }
-
-
 # FOSUser configuration
 fos_user:
     db_driver:     orm                              # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début

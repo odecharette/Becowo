@@ -82,14 +82,13 @@ class MemberController extends Controller
   		$nbMembers++;
   		if($member->getEmail() !== null)
   		{
-        $emailService = $this->get('app.email');
         $emailTemplate = "NewMember";
         $emailParams = array('member' => $member);
         $emailTag = "Mail de bienvenue";
         $to = $member->getEmail();
         $subject = "Becowo - Intégrez notre communauté";
 
-        $resultEmail = $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
+        $resultEmail = $this->mailer->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
             
         if($resultEmail)
         {

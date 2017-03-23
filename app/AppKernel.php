@@ -12,7 +12,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Becowo\CoreBundle\BecowoCoreBundle(),
@@ -31,7 +30,6 @@ class AppKernel extends Kernel
             new Becowo\CronBundle\BecowoCronBundle(),
             new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
             new RobertoTru\ToInlineStyleEmailBundle\RobertoTruToInlineStyleEmailBundle(),
-            new cspoo\Swiftmailer\MailgunBundle\cspooSwiftmailerMailgunBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'demo'], true)) {
