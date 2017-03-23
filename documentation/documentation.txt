@@ -29,6 +29,8 @@ lier price à ws has office
 		Algolia
 /****************************************************/
 
+https://www.algolia.com/dashboard
+
 Forcer l'indexation 
 
 1/ en ligne de cmd :
@@ -47,6 +49,18 @@ php bin/console algolia:reindex BecowoMemberBundle:Member
       $this->get('algolia.indexer')->getManualIndexer($em)->index($m);
     }
 // fin temporaire
+
+/****************************************************/
+		Mail gun
+/****************************************************/
+
+https://mailgun.com/app/dashboard
+
+Plus aucun email ne passe par swiftMailer
+On utliser mailgun et on envoi les emails via l'API
+
+Voir sur OVH : mailgun.becowo.com
+
 
 /****************************************************/
 		Exec cmd depuis navitateur
