@@ -15,7 +15,9 @@ web_profiler:
 monolog:
     handlers:
         main:
-            type: stream
+            # 1 file per day; keep 10 last day files
+            type:  rotating_file
+            max_files: 10
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
             channels: [!event]

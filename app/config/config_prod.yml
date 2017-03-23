@@ -17,11 +17,13 @@ imports:
 monolog:
     handlers:
         main:
-            type:         fingers_crossed
+            type:         fingers_crossed   #It stores all log messages during a request but only passes them to a second handler if one of the messages reaches an action_level
             action_level: error
             handler:      nested
         nested:
-            type:  stream
+            # 1 file per day; keep 10 last day files
+            type:  rotating_file
+            max_files: 10
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
         console:
