@@ -118,4 +118,6 @@ depuis le composer update du 18/03/17 le dossier Propal n'existe plus
 /****************************************************/
 
 Pour voir ou est le php.ini : ds la toolbar, sur la version à droite, view php info
-local : C:\wamp64\bin\apache\apache2.4.17\bin\php.ini
+local WEB : C:\wamp64\bin\apache\apache2.4.17\bin\php.ini
+local PHP 5 : C:\wamp64\bin\php\php5.6.16
+local PHP 7 : C:\wamp64\bin\php\php7.0.0

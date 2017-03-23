@@ -82,7 +82,7 @@ services:
 
     app.email :
         class: Becowo\ApiBundle\Services\EmailService
-        arguments: ['@css_to_inline_email_converter', '@service_container', '@logger']
+        arguments: ['@css_to_inline_email_converter', '@service_container', '@logger', '@doctrine.orm.entity_manager']
         tags:
           - { name: monolog.logger, channel: mailer_logger }
 
