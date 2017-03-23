@@ -76,7 +76,7 @@ class WorkspaceController extends Controller
                     'email' => $managerContactForm->get('email')->getData(),
                     'subject' => $managerContactForm->get('subject')->getData(),
                     'message' => $managerContactForm->get('message')->getData(),
-                    'wsName' => $ws->getName()));
+                    'wsName' => $ws->getName());
       $emailTag = "Coworker contact manager";
       $to = "contact@becowo.com";
       $subject = 'Becowo - Nouveau message d\'un coworker';
