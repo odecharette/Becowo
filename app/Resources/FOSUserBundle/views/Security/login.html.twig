@@ -49,18 +49,18 @@
 	    <div class="form-group">
 	        <input type="text" id="username" name="_username"  placeholder="Email ou Nom d'utilisateur" value="{{ last_username }}" />
 	    
-	        <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" />
+	        <input type="password" id="password" name="_password" placeholder="Mot de passe" />
 	    </div>
 
 	    <div class="row text-center" id="remember">
 	    	<div class="col-lg-6 col-md-6" style="padding-right:0;">
 	       		<label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-	       		{{ 'security.login.remember_me'|trans }}</label>
+	       		Se souvenir de moi</label>
 	    	</div>
 	    	<div class="col-lg-6 col-md-6" style="padding-left:0;">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-            	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            	Connecté en tant que {{ app.user.username }} |
+            	<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
             {% else %}
             	<a data-toggle="modal" data-target="#myModalMDP" data-dismiss="modal">Mot de passe oublié ?</a>
             	{# <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a> #}
@@ -68,7 +68,7 @@
 	    	</div>
 		</div>
 
-	    <button type="submit" class="btn" id="_submit" name="_submit"> {{ 'security.login.submit'|trans }}</button>
+	    <button type="submit" class="btn" id="_submit" name="_submit">Connexion</button>
 		</form>
 	</div>
 	<hr>

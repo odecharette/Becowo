@@ -4,14 +4,12 @@
 
 {% block fos_user_content %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-
 <div class="container-fluid form-box" style="padding: 0;">
 	<div class="row text-center">
 		<div class="col-lg-12">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            	{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-            	<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            	Connecté en tant que {{ app.user.username }} |
+            	<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
         	{% endif %}
         	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('linkedin')}}" id="li">
         		<i class="fa fa-linkedin"></i> Inscription avec LinkedIn
@@ -30,16 +28,16 @@
 			{{form_start(form, {'method': 'POST', 'action': path("fos_user_registration_register"), 'attr':{'class': 'register', 'id' : 'formRegister'}})}}
 
 			<div class="form-group">
-			  	{{ form_widget(form.username, {'required': false, 'attr': {'placeholder': 'form.username'|trans}}) }}
+			  	{{ form_widget(form.username, {'required': false, 'attr': {'placeholder': 'Pseudo'}}) }}
 			    {{ form_errors(form.username) }}
 			
-		    	{{ form_widget(form.email, {'required': false, 'attr': {'placeholder': 'form.email'|trans}}) }}
+		    	{{ form_widget(form.email, {'required': false, 'attr': {'placeholder': 'Adresse e-mail'}}) }}
 		    	{{ form_errors(form.email) }}
 		    
-		    	{{ form_widget(form.plainPassword.first, {'required': false, 'attr': {'placeholder': 'form.password'|trans}}) }}
+		    	{{ form_widget(form.plainPassword.first, {'required': false, 'attr': {'placeholder': 'Mot de passe'}}) }}
 		    	{{ form_errors(form.plainPassword.first) }}
 		    
-		    	{{ form_widget(form.plainPassword.second, {'required': false, 'attr': {'placeholder': 'form.password_confirmation'|trans}}) }}
+		    	{{ form_widget(form.plainPassword.second, {'required': false, 'attr': {'placeholder': 'Confirmer le mot de passe'}}) }}
 		    	{{ form_errors(form.plainPassword.second) }}
 
 		    	{{ form_widget(form.sendNewsletter) }}
@@ -47,7 +45,7 @@
 
 		    	En créant un compte, j'accepte les <a href="{{ path('becowo_core_cgu') }}">conditions générales d'utilisation</a> de Becowo.
 		    </div>
-			<button type="submit" class="btn" id="_submit" name="_submit"> {{ 'registration.submit'|trans }}</button>
+			<button type="submit" class="btn" id="_submit" name="_submit">Créer un compte</button>
 				  
 			{{ form_end(form) }}
 		</div>
