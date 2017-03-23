@@ -32,8 +32,9 @@ class ResettingController extends BaseController
         }
 
         if ($user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
+            $request->getSession()->getFlashBag()->add('danger', 'Une demande de réinitialisation a déjà été envoyée');
             return $this->render('FOSUserBundle:Resetting:request.html.twig', array(
-                'error' => 'Une demande de réinitialisation a déjà été envoyée'
+                'error' => ''
             ));
         }
 
@@ -47,7 +48,7 @@ class ResettingController extends BaseController
         $user->setPasswordRequestedAt(new \DateTime());
         $this->get('fos_user.user_manager')->updateUser($user);
 
-        $request->getSession()->getFlashBag()->add('success', 'Un e-mail a été envoyé à ' . $this->getObfuscatedEmail($user) . '. Il contient un lien afin de réinitialiser votre mot de passe.');
+        $request->getSession()->getFlashBag()->add('success', 'Un e-mail a été envoyé à ' . $user->getEmail() . '. Il contient un lien afin de réinitialiser votre mot de passe.');
 
          return $this->render('FOSUserBundle:Resetting:request.html.twig', array(
                 'error' => ''

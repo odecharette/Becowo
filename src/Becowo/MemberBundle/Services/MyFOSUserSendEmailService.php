@@ -34,7 +34,7 @@ class MyFOSUserSendEmailService implements MailerInterface
         $to = $user->getEmail();
         $subject = "[Becowo] Bienvenue " . $user->getUsername() . " !";
 
-        $result = $this->emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);    	
+        $this->emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);    	
     }
 
     /**
@@ -44,7 +44,15 @@ class MyFOSUserSendEmailService implements MailerInterface
      */
     function sendResettingEmailMessage(UserInterface $user)
     {
-    	// Not used 
-    	// $url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
+        $emailTemplate = "FOS-resetPassword";
+        $url = $url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
+
+        $emailParams = array('username' => $user->getUsername(),
+                          'confirmationUrl' => $url);
+        $emailTag = "Coworker - Reset password";
+        $to = $user->getEmail();
+        $subject = "[Becowo] Réinitialisation de votre mot de passe";
+
+        $this->emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject); 
     }
 }
