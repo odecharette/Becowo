@@ -48,25 +48,6 @@ $('#filtre-bureaux').on('change', function() {
     }).show();
 });
 
-// Home page viewMore button
-$('#viewMore').bind('click', function (e) {
-  var elements = document.getElementsByClassName("list-item");
-console.log($('#viewMore').text());
-
-  if($('#viewMore').text() == 'Voir plus'){
-
-    for(var i=0; i<elements.length; i++) {
-      elements[i].style.display = 'inline-block';
-    }
-    $('#viewMore').text('Voir moins');
-  }else{
-    for(var i=6; i<elements.length; i++) {
-      elements[i].style.display = 'none';
-    }
-    $('#viewMore').text('Voir plus');
-  }
-
-});
 
 console.log('width de l\'écran : ' + window.innerWidth);
 
