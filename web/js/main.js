@@ -129,7 +129,7 @@ $("#formRegister").submit(function (e){
         }
     });
 });
-// PopIn MDP via AJAX
+// PopIn MDP oublié via AJAX
 $("#formMDP").submit(function (e){
     e.preventDefault();
     $form = $(e.target);

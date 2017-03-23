@@ -3,5 +3,37 @@
 {% block title %} J'ai oublié mon mot de passe{% endblock %}
 
 {% block fos_user_content %}
-{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+<div class="container-fluid form-box" style="padding: 0;">
+	<div class="row text-center">
+		<div class="col-lg-12">
+            <h3>Mot de passe oublié</h3>
+            <br>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                Connecté en tant que {{ app.user.username }} |
+                <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+            {% endif %}
+
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request" id="formMDP">
+
+            <div class="form-group">
+                {% if error is defined and error != '' %}
+                    <span class="help-block">
+                        <ul class="list-unstyled">
+                            <li><span class="glyphicon glyphicon-exclamation-sign"></span> 
+                                {{ error }}
+                            </li>
+                        </ul>
+                    </span>
+                {% endif %}
+                <input type="text" id="username" name="username" required="required" placeholder="Nom d'utilisateur ou adresse e-mail" />
+
+            </div>
+
+
+            <button type="submit" class="btn" id="_submit" name="_submit"> Réinitialiser le mot de passe</button>
+              
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock fos_user_content %}
