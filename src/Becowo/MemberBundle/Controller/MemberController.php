@@ -37,8 +37,13 @@ class MemberController extends Controller
     $listCommunityNetwork = array_unique($WsService->getCommunityNetworkByMember($member));
 
     $contact = new Contact();
-    $contact->setName($this->getUser()->getFirstname() . ' ' . $this->getUser()->getName());
-    $contact->setEmail($this->getUser()->getEMail());
+    if($this->getUser() != null){
+      $prenom = $this->getUser()->getFirstname() == null ? '' : $this->getUser()->getFirstname();
+      $nom = $this->getUser()->getName() == null ? '' : $this->getUser()->getName();
+      $mail = $this->getUser()->getEmail() == null ? '' : $this->getUser()->getEmail();
+      $contact->setName($prenom . ' ' . $nom);
+      $contact->setEmail($mail);
+    }
 
     $form = $this->createForm(ContactType::class, $contact);
 

@@ -91,7 +91,7 @@
 	        	else
 	        		picture = '{{ asset("images/ProfilePictures/")}}' + data.urlProfilePicture
 	        	}else{
-	        		picture = 'avatar.png'};
+	        		picture = '{{ asset("images/ProfilePictures/")}}avatar.png'};
 	        var bio = '';
 	        if(data.description !== null){bio = data.description}else{bio = ''};
 	        var society = '';
