@@ -61,8 +61,8 @@ class ProfileController extends Controller
         ->add('facebookLink',   TextType::class, array('required' => false))
         ->add('twitterLink',   TextType::class, array('required' => false))
         ->add('instagramLink',   TextType::class, array('required' => false))
-        ->add('amenitiesDesc',   TextareaType::class, array('required' => false))
-        ->add('arrivalDesc',   TextareaType::class, array('required' => false))
+        ->add('amenitiesDesc',   TextareaType::class, array('required' => false, 'label' => false))
+        ->add('arrivalDesc',   TextareaType::class, array('required' => false, 'label' => false))
     ;
     $form = $formBuilder->getForm();
 

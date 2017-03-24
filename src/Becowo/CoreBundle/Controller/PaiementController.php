@@ -69,6 +69,8 @@ class PaiementController extends Controller
   {
     // On retire le booking de la session
     $session = $request->getSession();
+
+    $session->remove('_csrf/booking');
     $session->remove('booking');
 
     $WsService = $this->get('app.workspace');
@@ -83,6 +85,7 @@ class PaiementController extends Controller
   {
     // On retire le booking de la session
     $session = $request->getSession();
+    $session->remove('_csrf/booking');
     $session->remove('booking');
 
     $error_code = $request->get('erreur'); 
@@ -103,6 +106,7 @@ class PaiementController extends Controller
   {
     // On retire le booking de la session
     $session = $request->getSession();
+    $session->remove('_csrf/booking');
     $session->remove('booking');
 
     $error_code = $request->get('erreur'); 
@@ -216,6 +220,7 @@ class PaiementController extends Controller
       $em->persist($booking);
 
       //Puis on envoi un mail au manager pour valider la résa
+      $emailService = $this->get('app.email');
       $emailTemplate = "New-dme-resa";
       $emailParams = array('user' => $booking->getMember()->getFirstname() . ' ' . $booking->getMember()->getName(),
                      'booking' => $booking);
@@ -243,6 +248,7 @@ class PaiementController extends Controller
       $booking->setStatus($status);
       $em->persist($booking);
 
+      $emailService = $this->get('app.email');
       $emailTemplate = "Admin-TransactionRefusee";
       $emailParams = array('booking' => $booking);
       $emailTag = "Admin,Transaction Refusée";

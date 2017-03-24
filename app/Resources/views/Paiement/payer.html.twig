@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block body %} 
+<div id="bookingStatus" hidden="true">{{booking.status.id}}</div> {# to access via JS #}
 
 <div id="bookingGuy">
 	<img src="{{ asset('images/icons/booking-guy.png') }}" alt="Réservation">
@@ -108,6 +109,10 @@
 	<script>
 	// Si profil incomplet on bloque le bouton de confirmation
 	if(document.getElementById('email-error') != null){
+		document.getElementById('payer').disabled = true;
+	}
+
+	if(document.getElementById('bookingStatus').innerHTML != "1"){
 		document.getElementById('payer').disabled = true;
 	}
 	</script>

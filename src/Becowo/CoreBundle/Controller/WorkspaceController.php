@@ -54,18 +54,12 @@ class WorkspaceController extends Controller
 
     $WsService = $this->get('app.workspace');
     $ws = $WsService->getWorkspaceByName($name);
-    // Pour le moment, on recoit les emails puis FW aux manager, afin de contrôler le flux
-    // $wsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
-
-    // $emailManager = "";
-    // if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
-    // {
-    //   $emailManager = 'olivia.decharette@becowo.com';
-    // }else{
-    //   foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
-    //     $emailManager = $emailManager . "," . $wsHasTeamMember->getTeamMember()->getEmail();
-    //   }
-    // }
+    
+    $wsHasTeamMembers = $WsService->getWsHasTeamMemberByWorkspace($ws);
+    $emailManager = "";
+    foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
+      $emailManager = $emailManager . "," . $wsHasTeamMember->getTeamMember()->getEmail();
+    }
     
       // On vérifie que c'est bien le form de contact manager qui est envoyé
     if ($request->isMethod('POST') && $managerContactForm->handleRequest($request)->isValid() && $request->request->has('manager-contact-form')) {
@@ -76,8 +70,10 @@ class WorkspaceController extends Controller
                     'email' => $managerContactForm->get('email')->getData(),
                     'subject' => $managerContactForm->get('subject')->getData(),
                     'message' => $managerContactForm->get('message')->getData(),
-                    'wsName' => $ws->getName());
+                    'wsName' => $ws->getName(),
+                    'forwardTo' => $emailManager);
       $emailTag = "Coworker contact manager";
+      // Pour le moment, on recoit les emails puis FW aux manager, afin de contrôler le flux
       $to = "contact@becowo.com";
       $subject = 'Becowo - Nouveau message d\'un coworker';
 

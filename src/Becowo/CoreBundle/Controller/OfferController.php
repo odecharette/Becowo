@@ -30,7 +30,7 @@ class OfferController extends Controller
                         'comments' => $form->get('comments')->getData());
         $emailTag = "Prospect offer contact";
         $to = "contact@becowo.com";
-        $subject = "[Becowo] - Nouveaux contact d\'un espace de coworking";
+        $subject = "[Becowo] - Nouveaux contact d'un espace de coworking";
 
         $result = $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 

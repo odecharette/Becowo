@@ -60,8 +60,8 @@
 					{% endif %}
 
 					{% if prices.priceMonth != null %}
-						{% set nbDuration = nbDuration + 1  or booking.duration == 'Mois' %}
-							{% if nbDuration == 1 %}
+						{% set nbDuration = nbDuration + 1 %}
+							{% if nbDuration == 1 or booking.duration == 'Mois' %}
 								<input type="radio" name="booking-duration" id="booking-duration-Month" value="Mois" checked="true">
 							{% else %}
 								<input type="radio" name="booking-duration" id="booking-duration-Month" value="Mois">

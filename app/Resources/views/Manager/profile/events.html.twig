@@ -15,7 +15,7 @@
 
 {####################################################### Bureaux #####################################################}
 
- <table class="table">
+<table class="table table-striped table-bordered" id="table">
 	<thead>
 		<tr>
 			<th>Titre</th>
@@ -80,5 +80,25 @@
 	<script>
 
 	goRead("events");
+
+	// Design <table> : sort, filter... https://datatables.net
+	$('#table').DataTable({
+    "language": {
+        "lengthMenu": "Afficher _MENU_ éléments par page",
+        "zeroRecords": "Aucun enregistrement trouvé",
+        "emptyTable": "Aucun enregistrement trouvé",
+        "info": "Page _PAGE_ / _PAGES_",
+        "infoEmpty": "Aucune correspondance",
+        "infoFiltered": "",
+        "search": "Filtrer",
+        "paginate": {
+	        "first":      "Premier",
+	        "last":       "Dernier",
+	        "next":       "Suivant",
+	        "previous":   "Précédent"
+	    	}
+    }
+    });
 	</script>
 {% endblock %}
+

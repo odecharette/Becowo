@@ -19,7 +19,7 @@ class ContactOfferType extends AbstractType
         $builder
             ->add('contactName', TextType::class, array('label' => false, 'required' => false))
             ->add('offer', ChoiceType::class, array(
-                'choices' => array('Link' => 'Link', 'Zen' => 'Zen', 'Option Data' => 'Option Data', 'Visite à 360°' => 'Visite à 360°'),
+                'choices' => array('Link' => 'Link', 'Zen' => 'Zen', 'Visite à 360°' => 'Visite à 360°'),
                 'label' => false, 
                 'required' => false))
             ->add('wsName', TextType::class, array('label' => false))

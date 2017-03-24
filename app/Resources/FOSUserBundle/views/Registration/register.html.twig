@@ -5,12 +5,14 @@
 {% block fos_user_content %}
 
 <div class="container-fluid form-box" style="padding: 0;">
+	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+		<div class="row text-center">
+    		Vous êtes déjà connecté en tant que {{ app.user.username }} <br>
+    		<a href="{{ path('fos_user_security_logout') }}" style="color:black;">Déconnexion</a>
+    	</div>
+    {% else %}
 	<div class="row text-center">
 		<div class="col-lg-12">
-			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            	Connecté en tant que {{ app.user.username }} |
-            	<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-        	{% endif %}
         	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('linkedin')}}" id="li">
         		<i class="fa fa-linkedin"></i> Inscription avec LinkedIn
         	</a><br>
@@ -43,7 +45,7 @@
 		    	{{ form_widget(form.sendNewsletter) }}
 		    	{{ form_errors(form.sendNewsletter) }}
 
-		    	En créant un compte, j'accepte les <a href="{{ path('becowo_core_cgu') }}">conditions générales d'utilisation</a> de Becowo.
+		    	En créant un compte, j'accepte les <a href="{{ path('becowo_core_cgu') }}" style="color:black;">conditions générales d'utilisation</a> de Becowo.
 		    </div>
 			<button type="submit" class="btn" id="_submit" name="_submit">Créer un compte</button>
 				  
@@ -57,6 +59,7 @@
 			<button type="button" data-toggle="modal" data-target="#myModalLogin" data-dismiss="modal">Connexion</button>
 		</div>
 	</div>
+	{% endif %}
 </div>
 
 

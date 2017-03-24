@@ -79,9 +79,11 @@ class BookingRepository extends EntityRepository
 		   ->leftJoin('BecowoCoreBundle:WorkspaceHasOffice', 'who', 'WITH', 'b.workspacehasoffice = who')
 		   ->leftJoin('BecowoCoreBundle:Workspace', 'w', 'WITH', 'who.workspace = w')
 		   ->leftJoin('BecowoCoreBundle:Region', 'r', 'WITH', 'w.region = r')
-			->where('m.id = :id')
-			->setParameter('id', $id)
-			->groupBy('w.name') ;
+		   ->where('m.id = :id')
+		   ->andWhere('w.isDeleted = false')
+		   ->andWhere('w.isVisible = true')
+		   ->setParameter('id', $id)
+		   ->groupBy('w.name') ;
 
 		return $qb->getQuery()->getResult();
 	}

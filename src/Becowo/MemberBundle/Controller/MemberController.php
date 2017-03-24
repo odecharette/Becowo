@@ -34,11 +34,11 @@ class MemberController extends Controller
   	$WsService = $this->get('app.workspace');
   	$wsBooked = $WsService->getWsBookedByMemberId($id);
 
-    $listCommunityNetwork = $WsService->getCommunityNetworkByMember($member);
+    $listCommunityNetwork = array_unique($WsService->getCommunityNetworkByMember($member));
 
     $contact = new Contact();
-    $contact->setName($member->getFirstname() . ' ' . $member->getName());
-    $contact->setEmail($member->getEMail());
+    $contact->setName($this->getUser()->getFirstname() . ' ' . $this->getUser()->getName());
+    $contact->setEmail($this->getUser()->getEMail());
 
     $form = $this->createForm(ContactType::class, $contact);
 
@@ -48,7 +48,7 @@ class MemberController extends Controller
         $emailParams = array('name' => $form->get('name')->getData(),
                         'email' => $form->get('email')->getData(),
                         'subject' => $form->get('subject')->getData(),
-                        'destinataire' => $member->getFirstname() . ' ' . $member->getName() . ' (' . $member->getId() . ')',
+                        'destinataire' => $member->getFirstname() . ' ' . $member->getName() . ' (' . $member->getEmail() . ')',
                         'message' => $form->get('message')->getData());
         $emailTag = "Coworker contact";
         $to = "contact@becowo.com";

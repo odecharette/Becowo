@@ -52,7 +52,7 @@
             	Connecté en tant que {{ app.user.username }} |
             	<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
             {% else %}
-            	<a data-toggle="modal" data-target="#myModalMDP" data-dismiss="modal">Mot de passe oublié ?</a>
+            	<a data-toggle="modal" data-target="#myModalMDP" data-dismiss="modal" style="color:black;">Mot de passe oublié ?</a>
             	{# <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a> #}
         	{% endif %}
 	    	</div>

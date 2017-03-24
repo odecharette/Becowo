@@ -105,4 +105,9 @@ class CommunityNetworkHasMember
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->communityNetwork->getName();
+    }
 }

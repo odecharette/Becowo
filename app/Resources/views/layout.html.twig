@@ -18,7 +18,12 @@
 	{% endblock %}
 
 </head>
-<body>
+{% if app.request.get('_route') == 'becowo_core_booking' %}
+	{# On force la page à se recharger sinon si le user paye puis fait back avec le navigateur, il récup le mauvais booking en session #}
+	<body onunload="">
+{% else %}
+	<body>
+{% endif %}
 
 {% include "CommonViews/flashMessage.html.twig" %}
 

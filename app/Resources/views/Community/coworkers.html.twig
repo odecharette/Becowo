@@ -95,7 +95,7 @@
 	        var bio = '';
 	        if(data.description !== null){bio = data.description}else{bio = ''};
 	        var society = '';
-	        if(data.society !== null){society = ' chez ' + data.society}else{society = ''};
+	        if(data.society !== null && data.society !== ''){society = ' chez ' + data.society}else{society = ''};
 	        var id = data.id;
 	        var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
 			url = url.replace("paramCity", cityUrl.replace('-', ' '));

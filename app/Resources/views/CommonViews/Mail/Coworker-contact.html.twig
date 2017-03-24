@@ -12,12 +12,12 @@ Message envoyé par le coworker : <br>
 <br>
 Nom : {{ name }} <br>
 Email : {{ email }} <br>
+<br>
+<br>
+A l'attention de : {{destinataire}} <br>
+<br>
 Sujet : {{ subject }} <br>
-<br>
-<br>
-A l'attention de : <br>
-Nom : {{destinataire}} <br>
-<br>
-Message : {{ message|nl2br }} <br> #}
+Message : <br>
+{{ message|nl2br }} <br>
 
 {% endblock emailContent %}

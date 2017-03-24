@@ -47,7 +47,13 @@
 				<i class="fa fa-building-o" aria-hidden="true"></i> {{member.society}} <br>
 				<i class="fa fa-briefcase" aria-hidden="true"></i> {{member.job}} <br>
 				<i class="fa fa-home" aria-hidden="true"></i> {{member.city}} <br>
-				<i class="fa fa-external-link" aria-hidden="true"></i> <a href="{{member.website}}" target="_blank">{{member.website}}</a>	<br>
+				<i class="fa fa-external-link" aria-hidden="true"></i> 
+					{% if member.website starts with 'http' %}
+						<a href="{{member.website}}" target="_blank">{{member.website}}</a>	
+					{% else %}
+						<a href="http://{{member.website}}" target="_blank">{{member.website}}</a>	
+					{% endif %}
+					<br>
 				{% if member.emailIsPublic %}
 					<i class="fa fa-envelope" aria-hidden="true"></i> {{member.email}}
 				{% else %}
@@ -164,5 +170,5 @@
 		</div>
 	</div>
 </div>
-
+<br><br>
 {% endblock %}

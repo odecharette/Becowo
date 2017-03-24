@@ -56,6 +56,7 @@ body {
 
 a, a:hover, a:active, a:focus, button{
   outline: none !important;
+  color: transparent;
 }
 .container-fluid{
   padding-right: 0px;
@@ -489,6 +490,7 @@ footer{
   display: table-cell;
   vertical-align: middle;
   line-height: 35px;
+  padding: 0;
 }
 #contact-form input{
   height: 35px;
@@ -1007,6 +1009,7 @@ footer{
 #community .sortBox button{
   background-color: transparent;
   border: none; 
+  color: white;
 }
 #community em{
   font-style: normal;
@@ -1670,6 +1673,9 @@ footer{
   background-color: var(--my-blue);
   line-height: 2em;
 }
+a[id^="goToContact-"]{
+  color: var(--my-blue);
+}
 #map{
   /*Pour que la google map s'affiche correctement*/
   width: 100%;
@@ -2236,6 +2242,9 @@ color: var(--my-blue) !important;
   font-size: 14pt;
   color: var(--my-black);
 }
+#question a{
+  color: var(--my-blue);
+}
 #m{
   width: 20px;
 }
@@ -2265,6 +2274,9 @@ color: var(--my-blue) !important;
 #myModalOffres .modal-footer .btn{
   font-size: 12pt;
   margin: 10px 10px 10px 10px !important;
+}
+#myModalOffres .modal-footer .btn-inverse{
+  color: var(--my-black);
 }
 /**************************************************************************************/
 

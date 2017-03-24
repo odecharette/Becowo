@@ -115,7 +115,7 @@ class MemberRepository extends EntityRepository
 			->setParameter('name', $name);
 		}
 		if($city){
-			$qp->andWhere('m.city = :city')
+			$qb->andWhere('m.city = :city')
 			->setParameter('city', $city);
 		}
 

@@ -32,6 +32,7 @@
 			{% else %}
 				le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
 			{% endif %}
+			<strong>Nombre de coworker(s) :</strong>  {{booking.nbPeople}} <br>
 			<strong>Montant HT :</strong> {{booking.priceExclTax }} € <br>
 			<strong>Montant TTC :</strong> {{booking.priceInclTax }} € <br>
 			<br>
