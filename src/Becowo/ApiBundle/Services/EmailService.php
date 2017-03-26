@@ -82,24 +82,25 @@ class EmailService
     	// Good to know : j'ai du indiquer l'emplacement du fichier cacert.pem dans les fichier php.ini (WEB, PHP 5, PHP 7)
     	// curl.cainfo="C:/wamp64/cacert.pem"
     	// Finallement j'utilise le fichier cacert.pem en local (copié ds dossier web) sinon ca ne marche pas sur le serveur
+    	// To traverse the entire range, you should keep requesting the next page URLs returned until an empty result page is reached.
 
-    	$this->logger->notice('getEmailEvents : Start');
-
-	    $curl = curl_init();
-
-		$url = $this->container->getParameter('mailgun.urlApigetEvents');
-
-		$yesterdayMorning = strtotime("yesterday 00:00:01");
-		$yesterdayEvening = strtotime("yesterday 23:59:59");
-		$params = "begin=" . $yesterdayMorning . "&end=" . $yesterdayEvening;
-
-		$this->logger->notice('getEmailEvents : begin= ' . $yesterdayMorning . ' end= ' . $yesterdayEvening);
+		$curl = curl_init();
 
 		if($nextPage == null)
 		{
+    		$this->logger->notice('getEmailEvents : Start');
+			
+			$url = $this->container->getParameter('mailgun.urlApigetEvents');
+			$yesterdayMorning = strtotime("yesterday 00:00:01");
+			// $params = "begin=" . $yesterdayMorning . "&limit=100&ascending=no";
+			$params = "limit=100";
+
+			$this->logger->notice('getEmailEvents : limit=100 ');
+
 			curl_setopt($curl,CURLOPT_URL,$url . "?" . $params); 
 		}else
 		{
+    		$this->logger->notice('getEmailEvents : read nextPage');
 			curl_setopt($curl,CURLOPT_URL,$nextPage);
 		}
 		
@@ -113,10 +114,27 @@ class EmailService
 		$response = curl_exec($curl);
 
 		if($response){
-			$this->logger->notice('getEmailEvents : Response OK : ');
-		}else{
-			$this->logger->error('getEmailEvents : Response failed : ' . $response);
+			$this->logger->notice('getEmailEvents : Response OK');
+
+			$responseJson = json_decode($response);
+			$nbItems = count($responseJson->items);
+
+			// Save emailEvents in db then go on the next page
+			$this->saveEmailEventsInDb($responseJson);
+
+			$this->logger->notice('getEmailEvents : ' . $nbItems . ' found');
+
+			if($nbItems > 0)
+			{
+				return $responseJson->paging->next;
+			}else
+			{
+				curl_close($curl);
+				$this->logger->notice('getEmailEvents : End');
+				return null;
+			}
 		}
+
 
 		$err = curl_error($curl);
 		if ($err) {
@@ -126,38 +144,15 @@ class EmailService
 		curl_close($curl);
 		$this->logger->notice('getEmailEvents : End');
 
-		// Save emailEvents in db then go on the next page
-		/************ paging not working, ticket sent to mailgun ******/
-		$this->saveEmailEventsInDb($response);
-
-		// $paging = json_decode($response)->paging;
-		// dump($paging);
-		// $i = 1;
-		// if($paging->next != null)
-		// {
-		// 	echo '*************************************go next ' . $paging->next . "\n";
-		// 	$i++;
-		// 	$this->getEmailEvents($paging->next);
-		// }
-		// if($paging->next != $paging->last)
-		// {
-		// 	return $paging->next;
-		// }else
-		// {
-		// 	return null;
-		// }
-		return '';
-
+		return null;
     }
 
-    public function saveEmailEventsInDb($data)
+    public function saveEmailEventsInDb($responseJson)
     {
-    	// $data est le JSON renvoyé par getEmailEvents() via l'API de mailgun
-
     	$this->logger->notice('saveEmailEventsInDb - Start');
 
-		$json_data = json_decode($data);
-		$items = $json_data->items;
+		$items = $responseJson->items;
+		$j=0;
 		foreach ($items as $item) {
 
 			$repo = $this->em->getRepository('BecowoApiBundle:EmailEvents');
@@ -186,11 +181,13 @@ class EmailService
 				$event->setSubject($subject);
 				$event->setEvent($item->event);
 				$this->em->persist($event);
+				$j++;
 			}
 		}
 
 		$this->em->flush();
 		$this->logger->notice('saveEmailEventsInDb - ' . count($items) . " items found \n");
+		$this->logger->notice('saveEmailEventsInDb - ' . $j . " items saved in DB \n");
 		echo "************ " . count($items) . " items found \n";
 
     	return "";

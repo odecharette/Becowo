@@ -24,12 +24,13 @@ class GetEmailEventsCommand extends ContainerAwareCommand
      	// access the container using getContainer()
         $service = $this->getContainer()->get('app.email');
         $nextPage = $service->getEmailEvents();
-        // while($nextPage != null)
-        // {
-            // $nextPage = $service->getEmailEvents($nextPage);
-        // }
-        // $results = $service->saveEmailEventsInDb($data);
+        $i = 0;
+        while($nextPage != null)
+        {
+            $nextPage = $service->getEmailEvents($nextPage);
+            $i++;
+        }
 
-        $output->writeln($nextPage);
+        $output->writeln($i . ' pages lues. Fin de la commande');
     }
 }
