@@ -181,7 +181,7 @@ $("#goToFilters").unbind("click").click(function(e){
 
 
 $('[id^="goToResa-"]').click(function() {
-  $('#myTab a[href="#Réservation"]').tab('show');
+  $('#myTab a[href="#Reservation"]').tab('show');
 });
 
 $('[id^="goToContact"]').click(function() {
@@ -270,19 +270,20 @@ console.log('PC et tablette');
 $(function(){
   
   var hash = window.location.hash;
-  if(hash != '')
+
+  if(hash == '' || hash == '#!') // #! quand on se connecte via linkedin
   {
-    hash = hash.substring(1, hash.length);
-    console.log(hash);
-    var e = document.getElementById(hash);
+    $('.nav-tabs a[href="#Description"]').tab('show')
+    var e = document.getElementById('Description');
     if(e){
       e.classList.add("active");
       e.classList.add("in");
     };
   }
   else{
-    $('.nav-tabs a[href="#Description"]').tab('show')
-    var e = document.getElementById('Description');
+    hash = hash.substring(1, hash.length);
+    console.log(hash);
+    var e = document.getElementById(hash);
     if(e){
       e.classList.add("active");
       e.classList.add("in");

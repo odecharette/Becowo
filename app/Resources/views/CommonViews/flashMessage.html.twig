@@ -7,7 +7,7 @@
       </button>
       {% if app.session.get('booking') != null %}
       		{{ flash }} / 
-      		<a href="{{ path('becowo_core_booking', {id: app.session.get('booking').workspacehasoffice.id}) }}">Retourner à ma réservation</a>
+      		<a href="{{ path('becowo_core_booking', {id: app.session.get('booking').workspacehasoffice.id}) }}" style="color: green;">Retourner à ma réservation</a>
       {% else %}
         	{{ flash }}
       {% endif %}

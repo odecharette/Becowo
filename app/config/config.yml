@@ -280,7 +280,7 @@ hwi_oauth:
     # previous URL was stored in the session (i.e. no resource was requested).
     # This is similar to the behaviour of
     # [using the referring URL for form login](http://symfony.com/doc/2.0/cookbook/security/form_login.html#using-the-referring-url).
-    # use_referer: true
+    use_referer: true
     
     connect:
         account_connector: app.HWIOAuth.user_provider

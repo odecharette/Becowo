@@ -4,7 +4,7 @@
     <li><a data-toggle="tab" href="#Services">Services</a></li>
     <li><a data-toggle="tab" href="#Evènements">Evènements</a></li>
     <li><a data-toggle="tab" href="#Contact">Contact</a></li>
-    <li id="resa"><a data-toggle="tab" href="#Réservation">Réservation</a></li>
+    <li id="resa"><a data-toggle="tab" href="#Reservation">Réservation</a></li>
 </ul>
 <div class="tab-content" id="myTabContent">
 {############################ Description ############################}
@@ -17,7 +17,7 @@
 	         {% for priceandoffice in pricesAndOffices %}
 	         	{% if loop.index < 6 %} {# on n'affiche que les 5 premiers bureaux #}
          		
-	        		<a href="#Réservation" id="goToResa-{{priceandoffice.WorkspaceHasOffice.id}}">
+	        		<a href="#Reservation" id="goToResa-{{priceandoffice.WorkspaceHasOffice.id}}">
 		        	<div id="office">
 		        		{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
 		        			<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
@@ -164,7 +164,7 @@
         <br>
     </div>
 {############################ Réserver ############################}
-    <div id="Réservation" class="tab-pane fade">
+    <div id="Reservation" class="tab-pane fade">
     	{# On passe par quantityByOfficeType pour ne générer le filtre qu'il y a des bureaux de ce type dans ce WS #}
     	<h2 style="color:var(--my-blue);">Choisissez votre espace et cliquez sur le bouton "Réserver" associé</h2>
     	<br><center>
