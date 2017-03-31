@@ -28,13 +28,13 @@
 	background-image: none !important;
 	background: transparent;
 	opacity: 1;
-	color: var(--my-green) !important;
+	color: rgb(0, 161, 154) !important;
 }
 
 /* --------- END --------- */
 
 .carousel a:hover, .carousel a:active, .carousel a{
-	color: var(--my-green) !important;
+	color: rgb(0, 161, 154) !important;
     display: inline-block;
 }
 .span3{

@@ -543,6 +543,10 @@ footer{
 #page-simple li{
   color: rgb(140, 142, 144);
 }
+#page-simple a{
+  color: rgb(140, 142, 144);
+  text-decoration: underline;
+}
 .navbar{
   margin-bottom: 0;
   border-radius: 0;
@@ -610,8 +614,13 @@ footer{
   text-align: left;
   font-size: 12pt;
 }
-#FAQ .panel-title a:hover{
+#FAQ .cat-1 .panel-title a:hover, #FAQ .cat-1 .panel-title a, #FAQ .cat-1 .panel-title a:focus, #FAQ .cat-3 .panel-title a:hover, #FAQ .cat-3 .panel-title a, #FAQ .cat-3 .panel-title a:focus{
   text-decoration: none;
+  color: white;
+}
+#FAQ .cat-2 .panel-title a:hover, #FAQ .cat-2 .panel-title a, #FAQ .cat-2 .panel-title a:focus{
+  text-decoration: none;
+  color: rgb(32, 56, 94);
 }
 #FAQ .panel-body{
   font-family: "aniversregular", Helvetica, Arial, sans-serif;
@@ -626,6 +635,14 @@ footer{
 }
 #FAQ .cat-2 .panel-body{
   color: rgb(32, 56, 94);
+}
+#FAQ .cat-1 a, #FAQ .cat-3 a{
+  color: white;
+  text-decoration: underline;
+}
+#FAQ .cat-2 a{
+  color: rgb(32, 56, 94);
+  text-decoration: underline;
 }
 /********************************** Bouton de retour haut de page *************************************/
 #top-link-block i{
@@ -868,6 +885,7 @@ footer{
 #filters, label {
   padding-left: 5px;
   padding-right: 10px;
+  font-weight: normal;
 }
 
 #declare{
@@ -984,6 +1002,7 @@ footer{
   width: 80%;
   outline: none;
   color: rgb(140, 142, 144);
+  height: 40px; 
 }
 #community .searchBox i{
   position: relative;
@@ -1416,7 +1435,7 @@ footer{
 }
 #wsHeader #OfficeQuantity .txt{
   margin-bottom: 20px;
-  width: 99%;
+  padding: 0 5px 0 5px;
 }
 #wsHeader #OfficeQuantity .callToActionResa{
   margin-bottom: -15px;
@@ -1488,7 +1507,7 @@ footer{
     border-radius: 5px;
     text-decoration: none !important;
 }
-#Description, #Services, #Contact, #Réservation{
+#Description, #Services, #Contact, #Reservation{
   color: rgb(140, 142, 144);
   font-size: 16px;
   text-align: justify;
@@ -1702,23 +1721,23 @@ a[id^="goToContact-"]{
 #time a:hover{
   font-weight: bold;
 }
-#Réservation .office-name{
+#Reservation .office-name{
   font-size: 16pt;
   font-weight: bold;
   color: rgb(231, 46, 70);
 }
-#Réservation .capacity{
+#Reservation .capacity{
   font-size: 14pt;
 }
-#Réservation #formules{
+#Reservation #formules{
   padding-left: 0px;
   font-size: 14pt;
 }
-#Réservation i{
+#Reservation i{
   color: rgb(32, 56, 94);
   font-size: 16pt;
 }
-#Réservation #btnResa{
+#Reservation #btnResa{
   color: white;
   display: block;
   text-decoration: none;
@@ -1729,7 +1748,7 @@ a[id^="goToContact-"]{
   text-align: center;
 }
 @media (min-width: 992px){
- #Réservation #btnResa{
+ #Reservation #btnResa{
   width: 150%;
   padding-left: 10px;
   padding-right: 10px;
@@ -1738,11 +1757,11 @@ a[id^="goToContact-"]{
   }
 }
 @media (min-width: 1200px){
-  #Réservation #btnResa{
+  #Reservation #btnResa{
   width: 80%;
   }
 }
-#Réservation #btnResa:hover {
+#Reservation #btnResa:hover {
   border: solid 1px rgb(0, 161, 154);
   text-decoration: none;
 }

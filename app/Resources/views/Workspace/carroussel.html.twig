@@ -19,7 +19,6 @@
                 	{% for picture in pictures %}
                 		{% if loop.index < 7 %}
                 			{% if loop.index % 2 != 0 %}<div class="span3">{% endif %}
-                        	
                         		{% if loop.last %}
                         			<a href="#x" class="small-thumbnail" style="width:45%">
                         		{% else %}
@@ -34,12 +33,12 @@
                   </div><!--/row-fluid-->
                 </div><!--/item-->
 
+                {% if pictures|length >= 7 %}
                 <div class="item">
                   <div class="row-fluid">
                 	{% for picture in pictures %}
                 		{% if loop.index >= 7 and loop.index < 13 %}
                 			{% if loop.index % 2 != 0 or loop.index == 7 %}<div class="span3">{% endif %}
-                        	
 	                        	{% if loop.last %}
                         			<a href="#x" class="small-thumbnail" style="width:45%;">
                         		{% else %}
@@ -53,13 +52,14 @@
                 	{% endfor %}
                   </div><!--/row-fluid-->
                 </div><!--/item-->
+              {% endif %}
 
+                {% if pictures|length >= 13 %}
                 <div class="item">
                   <div class="row-fluid">
                   {% for picture in pictures %}
                     {% if loop.index >= 13  and loop.index < 19 %}
                       {% if loop.index % 2 != 0 or loop.index == 13 %}<div class="span3">{% endif %}
-                          
                             {% if loop.last %}
                               <a href="#x" class="small-thumbnail" style="width:45%;">
                             {% else %}
@@ -73,26 +73,28 @@
                   {% endfor %}
                   </div><!--/row-fluid-->
                 </div><!--/item-->
+              {% endif %}
 
+                {% if pictures|length >= 19 %}
                 <div class="item">
                   <div class="row-fluid">
-                  {% for picture in pictures %}
-                    {% if loop.index >= 19 %}
-                      {% if loop.index % 2 != 0 or loop.index == 13 %}<div class="span3">{% endif %}
-                          
-                            {% if loop.last %}
-                              <a href="#x" class="small-thumbnail" style="width:45%;">
-                            {% else %}
-                              <a href="#x" class="small-thumbnail">
-                            {% endif %}
-                            {# {{ loop.index }} #}
-                              <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="width:100px;height: 70px;">
-                            </a>
-                          {% if loop.index % 2 == 0 or loop.last %}</div>{% endif %}
-                      {% endif %}
-                  {% endfor %}
+                {% for picture in pictures %}
+                  {% if loop.index >= 19 %}
+                    {% if loop.index % 2 != 0 or loop.index == 13 %}<div class="span3">{% endif %}
+                          {% if loop.last %}
+                            <a href="#x" class="small-thumbnail" style="width:45%;">
+                          {% else %}
+                            <a href="#x" class="small-thumbnail">
+                          {% endif %}
+                          {# {{ loop.index }} #}
+                            <img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" alt="{{picture.alt}}" data-display="{{ asset('images/Workspaces/') }}{{ws.name}}/{{picture.url}}" style="width:100px;height: 70px;">
+                          </a>
+                        {% if loop.index % 2 == 0 or loop.last %}</div>{% endif %}
+                    {% endif %}
+                {% endfor %}
                   </div><!--/row-fluid-->
                 </div><!--/item-->
+              {% endif %}
 
               {% if pictures|length > 6 %}
                 <a class="right carousel-control" href="#myCarousel" data-slide="next">

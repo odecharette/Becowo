@@ -272,8 +272,8 @@
   }
 
   var thisMorning = Math.round(new Date(Date.now()).setHours(1) / 1000);
-  var endOfWeek = Math.round(new Date(lastdayOfWeek).getTime() / 1000);
-  var endOfMonth = Math.round(new Date(lastDayOfMonth).getTime() / 1000);
+  var endOfWeek = Math.round(new Date(lastdayOfWeek.setHours(23)).getTime() / 1000);
+  var endOfMonth = Math.round(new Date(lastDayOfMonth.setHours(23)).getTime() / 1000);
   var beginOfNextMonth = Math.round(new Date(nextMonth).getTime() / 1000);
 
   search.addWidget(

@@ -885,6 +885,7 @@ footer{
 #filters, label {
   padding-left: 5px;
   padding-right: 10px;
+  font-weight: normal;
 }
 
 #declare{
@@ -1001,6 +1002,7 @@ footer{
   width: 80%;
   outline: none;
   color: var(--my-grey);
+  height: 40px; 
 }
 #community .searchBox i{
   position: relative;

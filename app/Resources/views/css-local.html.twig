@@ -5,9 +5,13 @@
 {% if 'MSIE' in app.request.server.get("HTTP_USER_AGENT") or 'Trident/' in app.request.server.get("HTTP_USER_AGENT") or 'Edge/' in app.request.server.get("HTTP_USER_AGENT") %}
   <link rel="stylesheet" type="text/css" href="{{ asset('css/mainForIE.css') }}">
   <link rel="stylesheet" href="{{ asset('css/form-elementsForIE.css') }}">
+    {# WS slider #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sliderForIE.css') }}" />
 {% else %}
    <link rel="stylesheet" type="text/css" href='{{ asset('css/main.css') }}'>
    <link rel="stylesheet" href="{{ asset('css/form-elements.css') }}">
+    {# WS slider #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/slider.css') }}" />
 {% endif %}
 
 
@@ -15,8 +19,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.min.css') }}" />
     {# booking slider #}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-slider.min.css') }}" />
-    {# WS slider #}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/slider.css') }}" />
     {# WS network slider #}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.bxslider.css') }}" />
 
