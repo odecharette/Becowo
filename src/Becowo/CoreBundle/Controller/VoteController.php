@@ -29,6 +29,8 @@ class VoteController extends Controller
       $em->persist($vote);
       $em->flush();
 
+      $this->addFlash('success', 'Merci ! Vote comptabilisé.');
+
       return $this->redirectToRoute('becowo_core_vote_zen', array('id' => $request->get('id')));
     }
 
