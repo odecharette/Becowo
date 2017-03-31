@@ -86,8 +86,15 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     $user->setLinkedinLink($infos['publicProfileUrl']);
 
                     $repo = $this->properties['em']->getRepository('BecowoCoreBundle:Job');
-                    $linkedinJob = $infos['positions']['values'][0]['title'];
-                    if($linkedinJob == ''){$linkedinJob = $infos['headline'];};
+                    $linkedinJob = '';
+                    if(isset($infos['positions']['values'][0]['title'])){
+                        $linkedinJob = $infos['positions']['values'][0]['title'];
+                    }
+                    if($linkedinJob == ''){
+                        if(isset($infos['headline'])){
+                            $linkedinJob = $infos['headline'];
+                        }
+                    }
                     $existingJob = $repo->findOneBy(array('name' => $linkedinJob));
 
                     if($existingJob !== null)
@@ -100,13 +107,24 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                         $this->properties['em']->persist($job);
                     }
 
-                    
-                    $user->setCity($infos['location']['name']);
-                    $user->setFirstName($infos['firstName']);
-                    $user->setName($infos['lastName']);
-                    $user->setSociety($infos['positions']['values'][0]['company']['name']);
-                    $user->setDescription($infos['positions']['values'][0]['summary']);
-                    $user->setUrlProfilePicture($infos['pictureUrl']);
+                    if(isset($infos['location']['name'])){
+                        $user->setCity($infos['location']['name']);
+                    }
+                    if(isset($infos['firstName'])){
+                        $user->setFirstName($infos['firstName']);
+                    }
+                    if(isset($infos['lastName'])){
+                        $user->setName($infos['lastName']);
+                    }
+                    if(isset($infos['positions']['values'][0]['company']['name'])){
+                        $user->setSociety($infos['positions']['values'][0]['company']['name']);
+                    }
+                    if(isset($infos['positions']['values'][0]['summary'])){
+                        $user->setDescription($infos['positions']['values'][0]['summary']);
+                    }
+                    if(isset($infos['pictureUrl'])){
+                        $user->setUrlProfilePicture($infos['pictureUrl']);
+                    }
 
                     break;
                 case 'twitter':
