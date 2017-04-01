@@ -154,8 +154,9 @@
 				{% if listCommunityNetwork|length > 0 %}
 				<h2>Mes Réseaux</h2>
 					{% for network in listCommunityNetwork %}
-						<a href="{{ path('becowo_core_community', { 'communityNetwork':network.communityNetwork.name }) }}">
-						{{network.communityNetwork.name}} </a><br>
+						{# <a href="{{ path('becowo_core_community', { 'communityNetwork':network.communityNetwork.name }) }}"> #}
+						{{network.communityNetwork.name}}<br>
+						 {# </a> #}
 					{% endfor %}
 				{% endif %}
 			</div>
