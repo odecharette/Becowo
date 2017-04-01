@@ -192,4 +192,85 @@ class EmailService
 
     	return "";
     }
+
+        public function getEmailStats()
+    {
+		$curl = curl_init();
+
+		$this->logger->notice('getEmailStats : Start');
+		
+		$url = $this->container->getParameter('mailgun.urlApigetStats');
+		$params = "duration=2m&event=accepted&event=delivered&event=failed&event=opened&event=clicked&event=unsubscribed&event=complained&event=stored";
+
+		$this->logger->notice('getEmailStats : duration=2m&event=accepted&event=delivered&event=failed&event=opened&event=clicked&event=unsubscribed&event=complained&event=stored ');
+
+		curl_setopt($curl,CURLOPT_URL,$url . $params); 
+		
+		curl_setopt($curl,CURLOPT_USERPWD,
+			$this->container->getParameter('mailgun.username') . ":" . $this->container->getParameter('mailgun.password'));
+		curl_setopt($curl,CURLOPT_HTTPAUTH,CURLAUTH_BASIC);
+		curl_setopt($curl,CURLOPT_CUSTOMREQUEST,"GET");
+		curl_setopt($curl,CURLOPT_CAINFO, $this->container->getParameter('cacert'));
+		curl_setopt($curl,CURLOPT_RETURNTRANSFER,true); // CURLOPT_RETURNTRANSFER tells PHP to store the response in a variable instead of printing it to the page, so $response will contain your response
+
+		$response = curl_exec($curl);
+
+		if($response){
+			$this->logger->notice('getEmailStats : Response OK');
+
+			$responseJson = json_decode($response);
+
+			// Save emailStats in db
+			$this->saveEmailStatsInDb($responseJson);
+		}
+
+		$err = curl_error($curl);
+		if ($err) {
+			$this->logger->error('getEmailStats FAILED : ' . $err);
+		}
+
+		curl_close($curl);
+		$this->logger->notice('getEmailStats : End');
+
+		return null;
+    }
+
+    public function saveEmailStatsInDb($responseJson)
+    {
+    	$this->logger->notice('saveEmailStatsInDb - Start');
+
+		$items = $responseJson->stats;
+		foreach ($items as $item) {
+
+			$repo = $this->em->getRepository('BecowoApiBundle:EmailStats');
+   			$existingID = $repo->findBy(array('statTime' => $item->time));
+
+			if(!$existingID)
+			{
+				$stat = new EmailStats();
+				$stat->setStatTime($item->time->format('d/m/Y'));
+				$stat->setAcceptedIncoming($item->accepted->incoming);
+				$stat->setAcceptedOutgoing($item->accepted->outgoing);
+				$stat->setDelivered($item->delivered->total);
+				$stat->setFailedTempEsp($item->failed->temporary->espblock);
+				$stat->setFailedPermanentSuppressBounce(get_object_vars($item->failed->permanent->espblock)['suppress-bounce']);
+				$stat->setFailedPermanentSuppressUnsubscribe(get_object_vars($item->failed->permanent->espblock)['suppress-unsubscribe']);
+				$stat->setFailedPermanentSuppressComplaint(get_object_vars($item->failed->permanent->espblock)['suppress-complaint']);
+				$stat->setFailedPermanentBounce($item->failed->permanent->bounce);
+				$stat->setFailedPermanentTotal($item->failed->permanent->total);
+				$stat->setStored($item->stored->total);
+				$stat->setOpened($item->opened->total);
+				$stat->setClicked($item->clicked->total);
+				$stat->setUnsuscribed($item->unsuscribed->total);
+				$stat->setComplained($item->complained->total);
+
+				$this->em->persist($stat);
+			}
+		}
+
+		$this->em->flush();
+		$this->logger->notice('saveEmailStatsInDb - End');
+
+    	return "";
+    }
 }

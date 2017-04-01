@@ -36,39 +36,31 @@ class ApiService
 
         // Construction de l'URL à appeler pour récupérer une APP access_token
         $url = $FB_API_GRAPH_URL.'/oauth/access_token?client_id='.$this->FB_API_ID.'&client_secret='.$this->FB_API_SECRET.'&grant_type=client_credentials';
+
         // Appel à l'API
-        $response = \Httpful\Request::get($url)->parseWith(function($body) {
-            $access_token = str_replace("access_token=", "", $body); 
-            // on parse au préalable le résultat récupéré qui est sous la forme "access_token=<access_token>"
-            return $access_token;
-        })->send();
+        $response = \Httpful\Request::get($url)->send();
 
         $events = null;
-        // Si on récupère quelque chose
-        if (isset($response->body) && !empty($response->body)) {
-            
-            $access_token =$response->body;
-            
-            if (!empty($access_token)) {
-                $this->logger->notice('getFacebookPageEvents -Token OK for FB_ID : ' . $FB_PAGE_ID);
 
-                // Construction de l'URL à appeler pour récupérer les évènements de la page depuis le 01/01/2017
-                $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json&since=2017-01-01';
-                // Appel à l'API
-                $response = \Httpful\Request::get($url)->send();
-                // si data existe, c'est un array() qui contient tous les évènements relatifs à cette page
-                if (isset($response->body->data)) {
-                    // affichage des données récupérées
-                    $events = $response->body->data;
-                    $this->logger->notice('getFacebookPageEvents - ' . count($events) . ' events found for FB_ID : ' . $FB_PAGE_ID);                  
-                }else if(isset($response->body->error)){
-                    $this->logger->critical('getFacebookPageEvents - issue with FB_ID : ' . $FB_PAGE_ID . ' : ' . $response->body->error->message);
-                }
-            }
-            else {
-                $this->logger->critical('getFacebookPageEvents - No token for FB_ID : ' . $FB_PAGE_ID);
+        $jsonResponse =json_decode($response);
+        $access_token = $jsonResponse->access_token;
 
-                $events = null;
+        if ($access_token != "") {
+            
+            $this->logger->notice('getFacebookPageEvents -Token OK for FB_ID : ' . $FB_PAGE_ID);
+
+            // Construction de l'URL à appeler pour récupérer les évènements de la page depuis le 01/01/2017
+            $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/events?access_token='.$access_token.'&format=json&since=2017-01-01';
+            // Appel à l'API
+            $response = \Httpful\Request::get($url)->send();
+
+            // si data existe, c'est un array() qui contient tous les évènements relatifs à cette page
+            if (isset($response->body->data)) {
+                $events = $response->body->data;
+
+                $this->logger->notice('getFacebookPageEvents - ' . count($events) . ' events found for FB_ID : ' . $FB_PAGE_ID);                  
+            }else if(isset($response->body->error)){
+                $this->logger->critical('getFacebookPageEvents - issue with FB_ID : ' . $FB_PAGE_ID . ' : ' . $response->body->error->message);
             }
         }
         else {
@@ -77,8 +69,7 @@ class ApiService
 
             $events = null;
         }
-        return $events;
-            
+        return $events;   
     }
 
     public function saveFacebookPageEvents($events, $facebookPageId, $ws)
@@ -86,14 +77,21 @@ class ApiService
 
         foreach($events as $e)
         {
+            
             $existingEvent = $this->WsService->getEventByFacebookId($e->id);
 
             // On créer l'event en BDD que s'il n'existe pas déjà
             if($existingEvent == null)
             {
+
                 $event = New Event();
                 $event->setTitle($e->name);
-                $event->setDescription(preg_replace('/[^\p{L}0-9\-]/u', ' ', $e->description));
+                // $event->setDescription(preg_replace('/[^\p{L}0-9\-]/u', ' ', $e->description));
+                $desc = mb_convert_encoding($e->description, 'UTF-8', 'UTF-8');
+                $desc = str_replace("\xF0\x9F\x8E\x89", "", $desc);
+                
+                $event->setDescription($desc);
+                
                 $event->setStartDate(new \DateTime($e->start_time));
                 $event->setEndDate(new \DateTime($e->end_time));
                 $event->setFacebookId($e->id);
@@ -132,31 +130,22 @@ class ApiService
         $FB_API_GRAPH_URL = 'https://graph.facebook.com';
 
         $url = $FB_API_GRAPH_URL.'/oauth/access_token?client_id='.$this->FB_API_ID.'&client_secret='.$this->FB_API_SECRET.'&grant_type=client_credentials';
-        $response = \Httpful\Request::get($url)->parseWith(function($body) {
-            $access_token = str_replace("access_token=", "", $body); 
-            return $access_token;
-        })->send();
+        $response = \Httpful\Request::get($url)->send();
+
+        $jsonResponse =json_decode($response);
+        $access_token = $jsonResponse->access_token;
 
         $picture = null;
-        if (isset($response->body) && !empty($response->body)) {
+        if ($access_token != "") {
             
             $this->logger->notice('getFacebookEventPicture -Token OK');
-
-            $access_token =$response->body;
             
-            if (!empty($access_token)) {
-                $url = $FB_API_GRAPH_URL.'/'.$eventId.'?access_token='.$access_token.'&format=json&fields=cover';
-                $response = \Httpful\Request::get($url)->send();
+            $url = $FB_API_GRAPH_URL.'/'.$eventId.'?access_token='.$access_token.'&format=json&fields=cover';
+            $response = \Httpful\Request::get($url)->send();
 
-                if (isset($response->body->cover)) {
-                    $picture = $response->body->cover;
-                    $this->logger->notice('getFacebookEventPicture - picture found for eventId ' . $eventId);
-                }
-            }
-            else {
-                $this->logger->critical('getFacebookEventPicture - No token');
-                $picture = null;
-
+            if (isset($response->body->cover)) {
+                $picture = $response->body->cover;
+                $this->logger->notice('getFacebookEventPicture - picture found for eventId ' . $eventId);
             }
         }
         else {
