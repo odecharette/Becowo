@@ -180,6 +180,10 @@ class EmailService
 				$event->setRecipient($item->recipient);
 				$event->setSubject($subject);
 				$event->setEvent($item->event);
+				if($item->event == "clicked")
+				{
+					$event->setUrlClicked($item->url);
+				}
 				$this->em->persist($event);
 				$j++;
 			}

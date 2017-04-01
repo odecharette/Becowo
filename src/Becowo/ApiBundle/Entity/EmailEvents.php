@@ -72,6 +72,14 @@ class EmailEvents
      */
     private $event;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_clicked", type="string", nullable=true)
+     */
+    private $urlClicked;
+
     /**
      * Constructor
      */
@@ -267,6 +275,31 @@ class EmailEvents
     public function setEvent($event)
     {
         $this->event = $event;
+
+        return $this;
+    }
+
+
+    /**
+     * Gets the value of urlClicked.
+     *
+     * @return string
+     */
+    public function getUrlClicked()
+    {
+        return $this->urlClicked;
+    }
+
+    /**
+     * Sets the value of urlClicked.
+     *
+     * @param string $urlClicked the url clicked
+     *
+     * @return self
+     */
+    public function setUrlClicked($urlClicked)
+    {
+        $this->urlClicked = $urlClicked;
 
         return $this;
     }
