@@ -5,6 +5,7 @@ namespace Becowo\ApiBundle\Services;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\Container;
 use Becowo\ApiBundle\Entity\EmailEvents;
+use Becowo\ApiBundle\Entity\EmailStats;
 
 class EmailService
 {
@@ -197,7 +198,7 @@ class EmailService
     	return "";
     }
 
-        public function getEmailStats()
+    public function getEmailStats()
     {
 		$curl = curl_init();
 
@@ -247,29 +248,40 @@ class EmailService
 		foreach ($items as $item) {
 
 			$repo = $this->em->getRepository('BecowoApiBundle:EmailStats');
-   			$existingID = $repo->findBy(array('statTime' => $item->time));
+
+   			$existingID = $repo->findOneBy(array('statTime' => $item->time));
 
 			if(!$existingID)
 			{
 				$stat = new EmailStats();
-				$stat->setStatTime($item->time->format('d/m/Y'));
-				$stat->setAcceptedIncoming($item->accepted->incoming);
-				$stat->setAcceptedOutgoing($item->accepted->outgoing);
-				$stat->setDelivered($item->delivered->total);
+				$stat->setStatTime($item->time);
+			}else{
+				$stat = $existingID;
+			}
+
+			$stat->setAcceptedIncoming($item->accepted->incoming);
+			$stat->setAcceptedOutgoing($item->accepted->outgoing);
+			$stat->setDelivered($item->delivered->total);
+			if(isset($item->failed->temporary->espblock)){
 				$stat->setFailedTempEsp($item->failed->temporary->espblock);
+			}
+			if(isset($item->failed->permanent->espblock))
+			{
 				$stat->setFailedPermanentSuppressBounce(get_object_vars($item->failed->permanent->espblock)['suppress-bounce']);
 				$stat->setFailedPermanentSuppressUnsubscribe(get_object_vars($item->failed->permanent->espblock)['suppress-unsubscribe']);
 				$stat->setFailedPermanentSuppressComplaint(get_object_vars($item->failed->permanent->espblock)['suppress-complaint']);
-				$stat->setFailedPermanentBounce($item->failed->permanent->bounce);
-				$stat->setFailedPermanentTotal($item->failed->permanent->total);
-				$stat->setStored($item->stored->total);
-				$stat->setOpened($item->opened->total);
-				$stat->setClicked($item->clicked->total);
-				$stat->setUnsuscribed($item->unsuscribed->total);
-				$stat->setComplained($item->complained->total);
-
-				$this->em->persist($stat);
 			}
+			
+			$stat->setFailedPermanentBounce($item->failed->permanent->bounce);
+			$stat->setFailedPermanentTotal($item->failed->permanent->total);
+			$stat->setNbStored($item->stored->total);
+			$stat->setOpened($item->opened->total);
+			$stat->setClicked($item->clicked->total);
+			if(isset($item->unsuscribed->total))
+				$stat->setUnsuscribed($item->unsuscribed->total);
+			$stat->setComplained($item->complained->total);
+
+			$this->em->persist($stat);
 		}
 
 		$this->em->flush();
