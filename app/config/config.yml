@@ -309,7 +309,7 @@ hwi_oauth:
             type:           linkedin
             client_id:      "%linkedin_client_id%"
             client_secret:  "%linkedin_client_secret%"
-            infos_url:      "https://api.linkedin.com/v1/people/~:(id,formatted-name,first-name,last-name,location,positions,headline,email-address,public-profile-url,picture-url)?format=json"
+            infos_url:      "https://api.linkedin.com/v1/people/~:(id,formatted-name,first-name,last-name,location,positions,headline,email-address,public-profile-url,picture-urls::(original))?format=json"
             scope:          r_emailaddress r_basicprofile
         twitter:
             type:                twitter

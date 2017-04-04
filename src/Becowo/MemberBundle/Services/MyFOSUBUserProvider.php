@@ -122,8 +122,8 @@ class MyFOSUBUserProvider extends BaseFOSUBProvider
                     if(isset($infos['positions']['values'][0]['summary'])){
                         $user->setDescription($infos['positions']['values'][0]['summary']);
                     }
-                    if(isset($infos['pictureUrl'])){
-                        $user->setUrlProfilePicture($infos['pictureUrl']);
+                    if(isset($infos['pictureUrls']['values'][0])){
+                        $user->setUrlProfilePicture($infos['pictureUrls']['values'][0]);
                     }
 
                     break;
