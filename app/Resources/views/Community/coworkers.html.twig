@@ -71,7 +71,6 @@
 	    hitsPerPage: 10,
 	    templates: {
 	      item: function(data) {
-	      	console.log(data);
 	      	
 	      	var skills = getTab('listSkills', data);
 	      	var hobbies = getTab('listHobbies', data);
@@ -124,7 +123,6 @@
 					'</div>' 
 	      },
 	      empty: function(data) {
-	      	console.log(data);
 	        return '<p>Désolé ! Aucun coworker trouvé pour la recherche <em>' + data.query + '</em>.</p>'
 	      }
 	    }
