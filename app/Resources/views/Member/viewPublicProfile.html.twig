@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class="col-lg-3 col-md-3">
 			<div class="picture">
-				{% if member.urlProfilePicture is defined %}
+				{% if member.urlProfilePicture is defined and member.urlProfilePicture != null %}
 					{% if 'http' in member.urlProfilePicture %}
 						<div style="background-image:url('{{member.urlProfilePicture}}'); 
 					    width:200px; 
