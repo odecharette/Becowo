@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:og="http://ogp.me/ns#">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>{% block title %}Becowo{% endblock %}</title>
@@ -8,6 +8,12 @@
 	<meta name="language" content="fr">
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0"> {# Pour Google Map #}
+	<meta property="og:title" content="Becowo" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://www.becowo.com" />
+	<meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />
+	<meta property="og:description" content="Réservez un espace de travail et intégrez une communauté de coworkers" />
+	<meta property="og:locale" content="fr_FR" />
 	
     {% include 'css-CDN.html.twig' %}
     {# {% include 'css-local.html.twig' %}  #}
