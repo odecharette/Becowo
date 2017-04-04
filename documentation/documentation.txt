@@ -5,6 +5,7 @@
 Envoyer un email aux nouveaux membre de la communauté : app:send-email-new-users
 Récupérer les events des pages FB listés dans la table api_events : app:get-facebook-events
 Récupérer les logs des emails via mailgun : app:get-email-events
+Récupérer les stats des emails via mailgun : app:get-stats-email-events
 
 /****************************************************/
 		Ajouter un espace de coworking

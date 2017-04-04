@@ -20,7 +20,9 @@
 				</li>
 			</ul>
 			<p class="texte1">Vous trouverez ici les membres de la communauté Becowo, n'hésitez pas à aller jeter un œil à leur profil et à les contacter</p>
-			
+			{% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			<p class="texte2" style="background-color:#F49302;color:white;text-align: center;padding: 10px;">Prêt à rejoindre la communauté ? <br> <a data-toggle="modal" href="#myModalRegister" style="color:white;text-decoration:underline">Créez votre profil</a> dès maintenant !</p>
+			{% endif %}
 
 			<div class="fb-page" data-href="https://www.facebook.com/becowo/" data-height="150" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" style="min-height: 150px;"><blockquote cite="https://www.facebook.com/becowo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/becowo/">Becowo</a></blockquote></div>
 

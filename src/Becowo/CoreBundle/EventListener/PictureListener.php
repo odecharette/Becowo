@@ -19,12 +19,9 @@ class PictureListener
 
 // Le nom de la methode definit sont moment d'execution
   public function postUpdate(Picture $picture, LifecycleEventArgs $event) 
-  {
-dump('test'); 
+  { 
     $em = $event->getEntityManager();
     $ws = $picture->getWorkspace();
-
-
 
     $repo = $em->getRepository('BecowoCoreBundle:Picture');
     $favoriteUrl = $repo->findByWsFavoriteUrl($ws);

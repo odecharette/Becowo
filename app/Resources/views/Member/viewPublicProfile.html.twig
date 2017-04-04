@@ -23,12 +23,21 @@
 		<div class="col-lg-3 col-md-3">
 			<div class="picture">
 				{% if member.urlProfilePicture is defined %}
-					<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.urlProfilePicture}}'); 
-				    width:200px; 
-				    height:200px; 
-				    background-position:center;
-				    background-size: cover;
-				    margin: 0 auto;">&nbsp;</div>
+					{% if 'http' in member.urlProfilePicture %}
+						<div style="background-image:url('{{member.urlProfilePicture}}'); 
+					    width:200px; 
+					    height:200px; 
+					    background-position:center;
+					    background-size: cover;
+					    margin: 0 auto;">&nbsp;</div>
+				    {% else %}
+						<div style="background-image:url('{{ asset('images/ProfilePictures/')}}{{member.urlProfilePicture}}'); 
+					    width:200px; 
+					    height:200px; 
+					    background-position:center;
+					    background-size: cover;
+					    margin: 0 auto;">&nbsp;</div>
+					{% endif %}
 			    {% else %}
 					<div style="background-image:url('{{ asset('images/ProfilePictures/avatar.png')}}'); 
 				    width:200px; 
