@@ -8,11 +8,14 @@
 	<meta name="language" content="fr">
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0"> {# Pour Google Map #}
-	<meta property="og:title" content="Becowo" />
+
+	{% block metaOG %}
+		<meta property="og:title" content="Becowo" />
+		<meta property="og:url" content="https://www.becowo.com" />
+		<meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />
+		<meta property="og:description" content="Réservez un espace de travail et intégrez une communauté de coworkers" />
+	{% endblock %}
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="https://www.becowo.com" />
-	<meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />
-	<meta property="og:description" content="Réservez un espace de travail et intégrez une communauté de coworkers" />
 	<meta property="og:locale" content="fr_FR" />
 	
     {% include 'css-CDN.html.twig' %}
@@ -21,6 +24,15 @@
 	{% block stylesheets %}
 		
 	{% endblock %}
+
+	{# https://heapanalytics.com/app/install : follow click events #}
+	<script type="text/javascript">
+	    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+	      heap.load({{heapProjectNumber}});
+	      {% if app.user.email is defined %}
+	      	heap.identify("{{app.user.email}}");
+	      {% endif %}
+	</script>
 
 </head>
 {% if app.request.get('_route') == 'becowo_core_booking' %}
@@ -93,6 +105,9 @@
 						<li>
 							<a href="{{ path('easyadmin') }}" target="_blank"><i class="fa fa-lock"></i> Espace Admin</a>
 						</li>
+						{# <li>
+							<a href="{{ path('becowo_manager_mep') }}" target="_blank"><i class="fa fa-lock"></i> MEP</a>
+						</li> #}
 					{% endif %}
 				    <li>
 				    	<a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a>
