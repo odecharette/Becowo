@@ -2,7 +2,8 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 
 {# Change CSS file for IE compatibility  #}
-{% if 'MSIE' in app.request.server.get("HTTP_USER_AGENT") or 'Trident/' in app.request.server.get("HTTP_USER_AGENT") or 'Edge/' in app.request.server.get("HTTP_USER_AGENT") %}
+{% if 'MSIE' in app.request.server.get("HTTP_USER_AGENT") or 'Trident/' in app.request.server.get("HTTP_USER_AGENT") or 'Edge/' in app.request.server.get("HTTP_USER_AGENT")%}
+{#  or ('Safari' in app.request.server.get("HTTP_USER_AGENT") and 'Chrome' not in app.request.server.get("HTTP_USER_AGENT"))  #}
   <link rel="stylesheet" type="text/css" href="{{ asset('css/mainForIE.css') }}">
   <link rel="stylesheet" href="{{ asset('css/form-elementsForIE.css') }}">
     {# WS slider #}
