@@ -48,19 +48,6 @@ $('#filtre-bureaux').on('change', function() {
     }).show();
 });
 
-
-console.log('width de l\'écran : ' + window.innerWidth);
-
-if(window.innerWidth >= 1100) // PC
-{
-console.log('grand ecran');
-
-
-// Charge la mini carte google dans la page d'un WS, selon son adresse dynamique
-var q=encodeURIComponent($('#address_ws').text());
-       $('#map_ws')
-        .attr('src','https://www.google.com/maps/embed/v1/place?key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&q='+q);
-
 // Page d'un WS, envoye le formulaire de contact manager en AJAX
 $("#manager-contact-form").submit(function (e){
     e.preventDefault();
@@ -162,6 +149,84 @@ $("#formChangeMDP").submit(function (e){
     });
 });
 
+
+console.log('width de l\'écran : ' + window.innerWidth);
+
+if(window.innerWidth >= 1100) // PC
+{
+  console.log('grand ecran');
+}
+
+if(window.innerWidth >= 900) // PC & tablette
+{
+console.log('PC et tablette');
+// Gestion des URL distincts pour chaque onglet dans page d'un WS
+$(function(){
+  
+  var hash = window.location.hash;
+
+  if(hash == '' || hash == '#!') // #! quand on se connecte via linkedin
+  {
+    $('.nav-tabs a[href="#Description"]').tab('show')
+    var e = document.getElementById('Description');
+    if(e){
+      e.classList.add("active");
+      e.classList.add("in");
+    };
+  }
+  else{
+    hash = hash.substring(1, hash.length);
+    console.log(hash);
+    var e = document.getElementById(hash);
+    if(e){
+      e.classList.add("active");
+      e.classList.add("in");
+    };
+}
+
+  // Qd clic sur un onglet, Change URL et onglet + décale de 33px l'ancre 
+  $('.nav-tabs a').on('shown.bs.tab', function(event){                 
+      window.location.hash = $(event.target).text();
+      $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
+  });
+
+});
+
+/****************** Page d'un WS, caroussel ****************/
+$(document).ready(function () {
+  $('#myCarousel').carousel({
+    interval: false
+            //interval: 2000
+  });
+  $('.small-thumbnail img').click(function () {
+    $('#DataDisplay').attr("src", $(this).attr("data-display"));
+  });
+
+  // Modif Olivia sinon le slider ajoute l'image dans l'image et ca casse mes onglets
+  $('#myCarousel').bind('click', function (e) {
+    e.preventDefault();
+  });
+
+});
+
+  /****************** Page d'un WS, slider liste de WS en réseau ****************/
+  $(document).ready(function(){
+    $('#sliderNetwork').bxSlider({
+      slideWidth: 400,
+      minSlides: 2,
+      maxSlides: 3,
+      moveSlides: 1,
+      slideMargin: 20
+    });
+  });
+
+  
+// Charge la mini carte google dans la page d'un WS, selon son adresse dynamique
+var q=encodeURIComponent($('#address_ws').text());
+       $('#map_ws')
+        .attr('src','https://www.google.com/maps/embed/v1/place?key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&q='+q);
+
+
 /* Bouton Back to top */
 
 if ( ($(window).height() + 100) < $(document).height() ) {
@@ -170,7 +235,6 @@ $('#top-link-block').removeClass('hidden').affix({
     offset: {top:100}
 });
 }
-
 
 
 // Smooth scrolling for home button
@@ -232,70 +296,6 @@ $(function(){
 });
 /***************** fin rating.js ****************************/
 
-
-}
-if(window.innerWidth >= 900) // PC & tablette
-{
-console.log('PC et tablette');
-// Gestion des URL distincts pour chaque onglet dans page d'un WS
-$(function(){
-  
-  var hash = window.location.hash;
-
-  if(hash == '' || hash == '#!') // #! quand on se connecte via linkedin
-  {
-    $('.nav-tabs a[href="#Description"]').tab('show')
-    var e = document.getElementById('Description');
-    if(e){
-      e.classList.add("active");
-      e.classList.add("in");
-    };
-  }
-  else{
-    hash = hash.substring(1, hash.length);
-    console.log(hash);
-    var e = document.getElementById(hash);
-    if(e){
-      e.classList.add("active");
-      e.classList.add("in");
-    };
-}
-
-  // Qd clic sur un onglet, Change URL et onglet + décale de 33px l'ancre 
-  $('.nav-tabs a').on('shown.bs.tab', function(event){                 
-      window.location.hash = $(event.target).text();
-      $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
-  });
-
-});
-
-/****************** Page d'un WS, caroussel ****************/
-$(document).ready(function () {
-  $('#myCarousel').carousel({
-    interval: false
-            //interval: 2000
-  });
-  $('.small-thumbnail img').click(function () {
-    $('#DataDisplay').attr("src", $(this).attr("data-display"));
-  });
-
-  // Modif Olivia sinon le slider ajoute l'image dans l'image et ca casse mes onglets
-  $('#myCarousel').bind('click', function (e) {
-    e.preventDefault();
-  });
-
-});
-
-/****************** Page d'un WS, slider liste de WS en réseau ****************/
-$(document).ready(function(){
-  $('#sliderNetwork').bxSlider({
-    slideWidth: 400,
-    minSlides: 2,
-    maxSlides: 3,
-    moveSlides: 1,
-    slideMargin: 20
-  });
-});
 
 }else
 { ///////////////////////////////////////////////////////////////////////////// JS for mobile only
