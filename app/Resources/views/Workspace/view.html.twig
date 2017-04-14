@@ -4,6 +4,13 @@
   {{ws.name}}
 {% endblock %}
 
+{% block metaOG %}
+	<meta property="og:title" content="Becowo - {{ws.name}}" />
+	<meta property="og:url" content="{{ app.request.uri }}" />
+	<meta property="og:image" content="https://becowo.com/images/Workspaces/{{ws.name}}/{{ws.favoritePictureUrl}}" />
+	<meta property="og:description" content="{{ws.descriptionBonus}} {{ws.description}}" />
+{% endblock %}
+
 {% block stylesheets %}
 	
 {% endblock %}
