@@ -306,6 +306,8 @@ console.log('mobile');
 $(document).ready(function(){
   $('#slider-mobile').bxSlider({
     slideWidth: window.innerWidth,
+    adaptiveHeight: true,
+    pager: false,
     minSlides: 1,
     maxSlides: 1,
     moveSlides: 1,

@@ -7,7 +7,7 @@
 {% block content %}
 <h1>Les coworkers</h1>
 
-	<div class="row" id="filtersBar">
+	<div class="row hidden-xs" id="filtersBar">
 		<div class="row">
 	        <div class="col-lg-9 col-md-9 col-sm-9 searchBox">
 		    	<div id="search-input"></div>
@@ -112,7 +112,7 @@
 						    'background-size: cover;' +
 						    'margin-left: 15px;">&nbsp;</div>' +
 						'<span>' + firstname + ' ' + name + '</span>' +
-						'<div class="info">' +
+						'<div class="info hidden-xs">' +
 							'<i class="fa fa-briefcase" aria-hidden="true"></i> ' + job + society + '<br>' +
 							'<i class="fa fa-thumb-tack" aria-hidden="true"></i> ' + TextAbstract(skills, 57, false) + '<br>' + 
 							'<i class="fa fa-users" aria-hidden="true"></i> ' + TextAbstract(wishes, 57, false) + '<br>' +

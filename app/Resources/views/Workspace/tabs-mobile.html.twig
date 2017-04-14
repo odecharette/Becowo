@@ -2,7 +2,6 @@
 ul{
 	list-style-type: none;
     padding-left: 0;
-    margin: 0 -20px 0 -20px;
 }
 #amenities li{
 	width: 50%;
@@ -10,14 +9,14 @@ ul{
 	display:inline;
     margin-bottom: 15px;
 }
-button{
+.btn{
 	background-color: var(--my-green);
 	color: white;
 	width: 100%;
     border-color: var(--my-green);
     line-height: 30px !important;
 }
-button i{
+.btn i{
 	margin-right: 5px;
 }
 #filtre-bureaux {
@@ -37,29 +36,27 @@ button i{
 
 <div class="container-fluid">
 	<div class="row">
-		<h1>Description</h1>
-		<p>{{ws.description|raw|nl2br}}</p>
+		<div class="col-xs-12">
+			<h1>Description</h1>
+			<p>{{ws.description|raw|nl2br}}</p>
+		</div>
 	</div>
 	<div class="row" id="amenities">
-		<h1>Services</h1>
-        <p>{{ws.amenitiesDesc}}</p>
-        <ul>
-			{% for WsHasAmenity in WsHasAmenities %}
-				<li>
-					<table>
-						<tr>
-							<td><img src="{{ asset('images/icons/amenities/Bleu/') }}{{WsHasAmenity.amenities.urlLogo}}" alt="{{WsHasAmenity.amenities.name}}" width="40px"> </td>
-							<td style="line-height: 20px;">
-								{{WsHasAmenity.amenities.name}}<br>
-								<div class="label label-info">{{WsHasAmenity.label}}</div> <br>
-							</td>
-						</tr>
-					</table>
-				</li>
-			{% endfor %}
-        </ul>
+		<div class="col-xs-12">
+			<h1>Services</h1>
+	        <p>{{ws.amenitiesDesc}}</p>
+	        <ul>
+				{% for WsHasAmenity in WsHasAmenities %}
+					<li>
+						<img src="{{ asset('images/icons/amenities/Bleu/') }}{{WsHasAmenity.amenities.urlLogo}}" alt="{{WsHasAmenity.amenities.name}}" width="40px">
+						{{WsHasAmenity.amenities.name}}<br>
+						<div class="label label-info">{{WsHasAmenity.label}}</div> <br>
+					</li>
+				{% endfor %}
+	        </ul>
+	    </div>
 	</div>
-	<div class="row">
+{# 	<div class="row">
 		<h1>Evènements</h1>
 		{% if listEvents|length > 0 %}
         	{% include 'Workspace/events.html.twig' %}
@@ -81,11 +78,10 @@ button i{
 			<center><i class="fa fa-globe fa-2x" aria-hidden="true"></i></center>
 			<a href="{{ws.website}}" target="_blank">{{ws.name}}</a>
 		</div>
-	</div>
-	<div class="row text-center">
+	</div> #}
+{# 	<div class="row text-center">
 		<button type="button" data-toggle="modal" class="btn btn-lg" data-target="#myModalManagerContact" id="contactManager"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contacter le Manager</button> <br>
 
-		{# Modal #}
 		<div class="modal fade" id="myModalManagerContact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
 		        <div class="modal-content">
@@ -99,42 +95,13 @@ button i{
 		        </div>
 		    </div>
 		</div>
-		{# Fin modal #}
-	</div>
-	<div class="row text-center">
-		<h1>Suivre {{ws.name}}</h1>
-		{% if ws.facebookLink != '' %}
-			<a href="{{ws.facebookLink}}" target="_blank">
-				<img src="{{ asset('images/RS/facebook.png') }}" alt="Profile facebook" width="40px">
-			</a>
-		{% endif %}
-		{% if ws.twitterLink != '' %}
-			<a href="{{ws.twitterLink}}" target="_blank">
-				<img src="{{ asset('images/RS/twitter.png') }}" alt="Profile Twitter" width="40px">
-			</a>
-		{% endif %}
-		{% if ws.instagramLink != '' %}
-			<a href="{{ws.instagramLink}}" target="_blank">
-				<img src="{{ asset('images/RS/instagram.png') }}" alt="Profile Instagram" width="40px">
-			</a>
-		{% endif %}
-	</div>
+	</div> #}
+	{% if ws.category.name != 'Café Wifi' %}
 	<div class="row">
 		<h1>Réserver</h1>
 		<p>Choisissez votre espace et cliquez sur le bouton "Réserver" associé</p>
-		<center>
-    	<div class="segmented-control" id="filtre-bureaux">
-		  <input type="radio" name="filtre-bureaux" id="choice1" value="" checked>
-		  <input type="radio" name="filtre-bureaux" id="choice2" value="Open space">
-		  <input type="radio" name="filtre-bureaux" id="choice3" value="Bureau" >
-		  <input type="radio" name="filtre-bureaux" id="choice4" value="Réunion" >
-		  <label for="choice1" data-value="Tous">Tous</label>
-		  <label for="choice2" data-value="Open space">Open space</label>
-		  <label for="choice3" data-value="Bureau">Bureau</label>
-		  <label for="choice4" data-value="Réunion">Réunion</label>
-		</div>
-		</center>
 		{{ render(controller('BecowoCoreBundle:Booking:bookingList', {name: ws.name})) }}
 	</div>
+	{% endif %}
 </div>
 

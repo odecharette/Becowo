@@ -120,18 +120,18 @@
 			{% endif %}      
 		</div>  
 	</div>
-	{# screen SM and XS only #}
+	{# screen SM only #}
 	<div class="row text-center">
-		<div class="hidden-lg hidden-md col-sm-2">
+		<div class="hidden-lg hidden-md col-sm-2 hidden-xs">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
 		        <img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo">
 		    </a>
 		</div>
-		<div class="hidden-lg hidden-md col-sm-4 identity">
+		<div class="hidden-lg hidden-md col-sm-4 hidden-xs identity">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
 			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
         </div>
-        <div class="hidden-lg hidden-md col-sm-4 menu">
+        <div class="hidden-lg hidden-md col-sm-4 hidden-xs menu">
 		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <br>
 			<a title="La communauté" href="{{ path('becowo_core_community') }}">communauté </a>	<br>
 			<div class="btn-group">
@@ -150,7 +150,7 @@
 			    </ul>
 			</div>
 		</div>    
-		<div class="hidden-lg hidden-md col-sm-2 connectMenu">
+		<div class="hidden-lg hidden-md col-sm-2 hidden-xs connectMenu">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}	
 				<div class="btn-group loginMenu">
 		          <a href="" data-toggle="dropdown" class="log-menu">
@@ -191,6 +191,45 @@
 			{% endif %}      
 		</div>  
 	</div>
+	{# screen XS only #}
+	<nav class="navbar navbar-default navbar-static-top visible-xs" role="navigation">
+	    <div class="container">
+	        <div class="navbar-header">
+	        	<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
+			        <img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo">
+			    </a>
+			    <a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo</a>
+	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	        </div>
+
+	        <!-- Collect the nav links, forms, and other content for toggling -->
+	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	            <ul class="nav navbar-nav">
+	                Becowo
+	                <li><a href="{{ path('becowo_core_homepage') }}">Accueil</a></li>
+	                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	                	<li><a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
+	                	<li><a href="{{ path('fos_user_security_logout') }}">Me déconnecter</a></li>
+	                {% else %}
+	                	<li><a data-toggle="modal" href="#myModalLogin">CONNEXION / INSCRIPTION</a></li>
+	                {% endif %}
+	                <li><a href="http://www.blog.becowo.com" target="_blank">Découvrir le blog</a></li>
+	                La communauté
+	                <li><a href="{{ path('becowo_core_community') }}">Les coworkers</a></li>
+	                <li><a href="{{ path('becowo_core_community_events') }}">Les évènements</a></li>
+	                Comment ça marche ?
+	                <li><a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">Pour les coworkers</a></li>
+	                <li><a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_espaces') }}">Pour les espaces</a></li>
+	                <li><a title="Proposer un espace" href="{{ path('becowo_core_offers') }}" >Proposer un espace</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
 
 
 {# Les modal doivent se charger en même temps pour pouvoir passer de l'une à l'autre #}
@@ -269,7 +308,11 @@
 			<br>
 			<strong>BECOWO ET VOUS</strong>
 			<br>
-			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
+			{% if is_mobile() and not is_tablet() %}
+				{% include 'CommonViews/RS/all_RS_mobile.html.twig' %}
+			{% else %}
+				{% include 'CommonViews/RS/all_RS_small.html.twig' %}
+			{% endif %}
 			<ul> 
 			    <li><a href="http://www.blog.becowo.com/" target="_blank">Le blog</a></li>
 			    <li><a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a></li>
@@ -277,7 +320,7 @@
 			    <li><a href="{{ path('becowo_core_paiement') }}">Paiement en ligne by <img src="{{ asset('images/icons/creditAgricole/ca.png') }}" alt="Crédit Agricole"></a></li>
 			</ul>
 		</div>
-		<div id="footer_menu" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+		<div id="footer_menu" class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
 			<br>
 			<strong>LES VILLES</strong>
 			<br><br>

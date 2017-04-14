@@ -21,9 +21,9 @@
 
 <div class="container-fluid form-box" id="contact-form">
   <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1">
+    <div class="col-lg-10 col-lg-offset-1 col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1 col-xs-12">
       <div class="row" id="">
-        <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
           <h3>Contactez notre équipe</h3>
           <br>
           {{ form_start(form) }}
@@ -67,16 +67,20 @@
           </div>
    
           </div>
-        <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
           <div class="row text-center">
             <img src="{{ asset('images/icons/Logo_becowo.png') }}" id="logo">
             <br>
             <img src="{{ asset('images/icons/VR.png') }}" id="vr">
           </div>
         </div>
-        <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
           <div class="row">
-              {% include 'CommonViews/RS/all_RS_small.html.twig' %}
+              {% if is_mobile() and not is_tablet() %}
+                {% include 'CommonViews/RS/all_RS_mobile.html.twig' %}
+              {% else %}
+                {% include 'CommonViews/RS/all_RS_small.html.twig' %}
+              {% endif %}
           </div>
           <div class="row">
             <i class="fa fa-home" aria-hidden="true"></i> Imaginarium - Plaine Images<br>
