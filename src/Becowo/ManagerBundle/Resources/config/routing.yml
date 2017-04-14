@@ -112,3 +112,8 @@ becowo_manager_community:
     path:     /{id}/community/{networkId}
     defaults: { _controller: BecowoManagerBundle:Community:network }
     methods: GET|POST
+
+becowo_manager_mep:
+    path:     /mep
+    defaults: { _controller: BecowoManagerBundle:Mep:copyWS }
+    methods: GET|POST
