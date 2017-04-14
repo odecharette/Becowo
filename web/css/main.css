@@ -2883,6 +2883,13 @@ Sert ds la page d'un WS, pour le design du radio bouton booking-duration pour ch
   height: 580px;
   }
 }
+#bookingPage .panelRecap{
+    background-color: white;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  border: none;
+  padding-top: 10px;
+}
 #bookingPage .panelForm, #paiementPage .panelForm, #paiementPage .panelRecap{
   background-color: white;
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.1);
