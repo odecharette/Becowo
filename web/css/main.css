@@ -2139,9 +2139,18 @@ color: var(--my-blue) !important;
   padding-left: 0;
 }
 /*********************************** offers ****************************************/
+@media (min-width: 992px){
+  #top-image{
+    height: 1820px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
+  }
+}
+@media (max-width: 991px){
+  #top-image{
+    height: 1900px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
+  }
+}
 #top-image{
   position: relative;
-  height: 1820px; /* TO DO : crado de forcer la taille mais sinon le footer se balade*/
   overflow: hidden;
 }
 #offres{
@@ -2156,11 +2165,20 @@ color: var(--my-blue) !important;
     top: 10%;
   }
 }
+@media (min-width: 992px){
+  #top-image .tagline{
+    font-size: 38px;
+  }
+}
+@media (max-width: 991px){
+  #top-image .tagline{
+    font-size: 34px;
+  }
+}
 #top-image .tagline{
   position: absolute;
   top: 3%;
   color: white;
-  font-size: 38px;
   width: 100%;
   text-align: center;
 }
@@ -2204,10 +2222,19 @@ color: var(--my-blue) !important;
 #offres .panel i{
   color: var(--my-blue);
 }
+@media (min-width: 992px){
+  #offres .panel-body{
+    height: 410px;
+  }
+}
+@media (max-width: 991px){
+  #offres .panel-body{
+    height: 430px;
+  }
+}
 #offres .panel-body
 {
   padding: 0 10px 10px 10px;
-  height: 410px;
 }
 #offres #logo{
   text-align: center;
@@ -2262,9 +2289,18 @@ color: var(--my-blue) !important;
   text-align: center;
   margin-bottom: 15px;
 }
+@media (min-width: 992px){
+  #offres #services ul{
+    padding-left: 70px;
+  }
+}
+@media (max-width: 991px){
+  #offres #services ul{
+    padding-left: 40px;
+  }
+}
 #offres #services ul{
-  padding-left: 70px;
- list-style-type: none;
+  list-style-type: none;
 }
 @media (min-width: 992px) and (max-width: 1200px){
   #offres #services ul{
