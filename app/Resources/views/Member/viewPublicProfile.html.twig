@@ -20,7 +20,7 @@
 		{% endif %}
 	</div>
 	<div class="row">
-		<div class="col-lg-3 col-md-3">
+		<div class="col-lg-3 col-md-3 col-sm-3">
 			<div class="picture">
 				{% if member.urlProfilePicture is defined and member.urlProfilePicture != null %}
 					{% if 'http' in member.urlProfilePicture %}
@@ -97,7 +97,7 @@
 				{% endif %}
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 middle" >
+		<div class="col-lg-6 col-md-6 col-sm-6 middle" >
 			<div class="bio">
 				<h2>Bio</h2>
 				<p>{{member.description|nl2br}}</p>
@@ -121,7 +121,7 @@
 				{% endfor %}
 			</div>
 		</div>
-		<div class="col-lg-3 col-md-3">
+		<div class="col-lg-3 col-md-3 col-md-3">
 			<div class="rs">
 				{% if member.facebookLink == '' and member.linkedinLink == '' and member.twitterLink == '' and member.instagramLink == '' %} 
 				{% else %}

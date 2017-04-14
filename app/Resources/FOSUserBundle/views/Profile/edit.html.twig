@@ -26,11 +26,11 @@
 
     {# Les erreurs générales du formulaire. #}
   <div class="row head">
-    <div class="col-lg-8 col-md-8">
+    <div class="col-lg-8 col-md-8 col-sm-8">
         <h1>Pourquoi remplir mon profil ?</h1>
         <p>Remplissez votre profil pour vous faire remarquer dans la <a href="{{ path('becowo_core_community') }}"><u>communauté</u></a> Becowo. N'hésitez pas à indiquer vos compétences et vos centres d'intérêt afin de nous aider à vous mettre en relation avec des personnes qui ont les mêmes préoccupations que vous. Ainsi vous pourrez vous entraider ! N'hésitez pas également à nous dire ce que Becowo pourrait vous proposer, ce que vous aimeriez trouver sur le site, les types de rencontres etc...</p>
     </div>
-    <div class="col-lg-4 col-md-4 taux">
+    <div class="col-lg-4 col-md-4 col-sm-4 taux">
       <p>Taux de remplissage</p>
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow="{{ form.vars.value.fillRate }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ form.vars.value.fillRate }}%;">
@@ -44,7 +44,7 @@
   <div class="row">
     {{ form_errors(form) }} {#Affiche les erreur dans un flash msg #}
 
-    <div class="col-lg-3 col-md-3">
+    <div class="col-lg-3 col-md-3 col-sm-3">
       <div class="picture">
           {% if app.user.urlProfilePicture != null %}
             {% if form.vars.data.signedUpWith == null %}
@@ -92,7 +92,7 @@
         </div>
     </div>
   </div>
-    <div class="col-lg-6 col-md-6 middle" >
+    <div class="col-lg-6 col-md-6 col-sm-6 middle" >
       <div class="bio">
         <h2>Bio</h2>
         {{ form_row(form.description) }}
@@ -116,7 +116,7 @@
           </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-3">
+    <div class="col-lg-3 col-md-3 col-sm-3">
       <div class="rs">
         <h2>Suivez-moi !</h2>
           <div>

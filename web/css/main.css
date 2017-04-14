@@ -1380,8 +1380,10 @@ footer{
 .rs img{
   margin-right: 5px;
 }
-.rs input{
-  width: 250px;
+@media (min-width: 992px){
+  .rs input{
+    width: 250px;
+  }
 }
 .skills .label-info, .hobbies .label-info, .wishes .label-info{
   background-color: var(--my-pink);
