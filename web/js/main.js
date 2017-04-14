@@ -193,18 +193,6 @@ $('[id^="goToContact-"]').click(function() {
   $('#myModalManagerContact').modal({});
 });
 
-/****************** Page d'un WS, slider liste de WS en réseau ****************/
-$(document).ready(function(){
-  $('#sliderNetwork').bxSlider({
-    slideWidth: 400,
-    minSlides: 2,
-    maxSlides: 3,
-    moveSlides: 1,
-    slideMargin: 20
-  });
-});
-
-
 /************************ blackknight467/star-rating-bundle    rating.js *************************/
 
 $(function(){
@@ -296,6 +284,17 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+});
+
+/****************** Page d'un WS, slider liste de WS en réseau ****************/
+$(document).ready(function(){
+  $('#sliderNetwork').bxSlider({
+    slideWidth: 400,
+    minSlides: 2,
+    maxSlides: 3,
+    moveSlides: 1,
+    slideMargin: 20
+  });
 });
 
 }else
