@@ -193,23 +193,6 @@ $('[id^="goToContact-"]').click(function() {
   $('#myModalManagerContact').modal({});
 });
 
-/****************** Page d'un WS, caroussel ****************/
-$(document).ready(function () {
-  $('#myCarousel').carousel({
-    interval: false
-            //interval: 2000
-  });
-  $('.small-thumbnail img').click(function () {
-    $('#DataDisplay').attr("src", $(this).attr("data-display"));
-  });
-
-  // Modif Olivia sinon le slider ajoute l'image dans l'image et ca casse mes onglets
-  $('#myCarousel').bind('click', function (e) {
-    e.preventDefault();
-  });
-
-});
-
 /****************** Page d'un WS, slider liste de WS en réseau ****************/
 $(document).ready(function(){
   $('#sliderNetwork').bxSlider({
@@ -290,17 +273,48 @@ $(function(){
     };
 }
 
-// Qd clic sur un onglet, Change URL et onglet + décale de 33px l'ancre 
-$('.nav-tabs a').on('shown.bs.tab', function(event){                 
-    window.location.hash = $(event.target).text();
-    $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
+  // Qd clic sur un onglet, Change URL et onglet + décale de 33px l'ancre 
+  $('.nav-tabs a').on('shown.bs.tab', function(event){                 
+      window.location.hash = $(event.target).text();
+      $('html, body').animate({scrollTop: $(event.target).offset().top - 33}, 0);
+  });
+
 });
+
+/****************** Page d'un WS, caroussel ****************/
+$(document).ready(function () {
+  $('#myCarousel').carousel({
+    interval: false
+            //interval: 2000
+  });
+  $('.small-thumbnail img').click(function () {
+    $('#DataDisplay').attr("src", $(this).attr("data-display"));
+  });
+
+  // Modif Olivia sinon le slider ajoute l'image dans l'image et ca casse mes onglets
+  $('#myCarousel').bind('click', function (e) {
+    e.preventDefault();
+  });
 
 });
 
 }else
 { ///////////////////////////////////////////////////////////////////////////// JS for mobile only
 console.log('mobile');
+
+/****************** slider des images d'un WS ****************/
+// http://bxslider.com/
+$(document).ready(function(){
+  $('#slider-mobile').bxSlider({
+    slideWidth: window.innerWidth,
+    minSlides: 1,
+    maxSlides: 1,
+    moveSlides: 1,
+    slideMargin: 0
+  });
+});
+
+
 // /***************** filtre sur home page *************************/
 // $('#filtre-mobile').on('change', function() { 
 //   console.log('OK');
@@ -313,18 +327,6 @@ console.log('mobile');
 
 }
 
-if(window.innerWidth >= 900 && window.innerWidth < 1200 ) // Tablet et mobile but no PC
-/****************** slider des images d'un WS ****************/
-// http://bxslider.com/
-$(document).ready(function(){
-  $('#slider-mobile').bxSlider({
-    slideWidth: window.innerWidth,
-    minSlides: 1,
-    maxSlides: 1,
-    moveSlides: 1,
-    slideMargin: 0
-  });
-});
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();

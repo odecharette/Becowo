@@ -50,7 +50,7 @@
 {############################ Services ############################}
     <div id="Services" class="tab-pane fade">
     	<div class="row">
-    		<div class="col-lg-8 col-md-8" style="padding: 0;">
+    		<div class="col-lg-8 col-md-8 col-sm-8" style="padding: 0;">
 		        <p>Les services disponibles chez {{ws.name}}</p>
 		        <p>{{ws.amenitiesDesc}}</p>
 		        <br>
@@ -75,7 +75,7 @@
 					{% endfor %}
 		        </ul>
     		</div>
-			<div class="col-lg-4 col-md-4">
+			<div class="col-lg-4 col-md-4 col-sm-4">
 				{% include 'Workspace/teamMembers.html.twig' %} 
     		</div>
     	</div>
@@ -101,7 +101,7 @@
     <div id="Contact" class="tab-pane fade">
 
     	<div class="row text-center">
-    		<div class="col-lg-6 col-md-6">
+    		<div class="col-lg-6 col-md-6 col-sm-6">
 				<div id="time">
 					<center><i class="fa fa-map-signs fa-2x" aria-hidden="true"></i></center>
 					{{ws.street|capitalize}} <br>
@@ -130,7 +130,7 @@
 				{# Fin modal #}
 
     		</div>
-    		<div class="col-lg-6 col-md-6">
+    		<div class="col-lg-6 col-md-6 col-sm-6">
 		        {# La taille de la carte joue sur les options affichées : itinéraire... #}
 				<div id="map">
 					<iframe frameborder="0" style="border:0;width: inherit;height: inherit;" src="https://www.google.com/maps/embed/v1/place?q={{ws.name|replace({'&': "and"})}} {{ws.street}} {{ws.postcode}} {{ws.city}}&key=AIzaSyACES16ClzyOdiVa9Ohd-_unkM5rvvbo7o&zoom=15" ></iframe>

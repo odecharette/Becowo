@@ -24,7 +24,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		        			<img src="{{ asset('images/icons/offices/BsurN/') }}{{priceandoffice.WorkspaceHasOffice.office.name}}.png" alt="{{priceandoffice.WorkspaceHasOffice.office.name}}">
 		        		{% endif %}
 		    		{% else %}
-		    		<div class="col-lg-6 col-md-7">
+		    		<div class="col-lg-6 col-md-7 col-sm-7">
 						{% if priceandoffice.WorkspaceHasOffice.UrlProfilePicture != '' %}
 			        		<div id="image" style="background-image: url('{{ asset('images/Workspaces/') }}{{ws.name|url_encode}}/{{priceandoffice.WorkspaceHasOffice.UrlProfilePicture}}');
 			        		background-size: cover;
@@ -39,7 +39,7 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		        		{% endif %}
 		    		</div>
 		    		{% endif %}
-		    		<div class="col-lg-6 col-md-5 col-xs-12">
+		    		<div class="col-lg-6 col-md-5 col-sm-5 col-xs-12">
 		    			<span class="office-name" id="{{priceandoffice.workspaceHasOffice.name}}">{{priceandoffice.workspaceHasOffice.name}}</span> - 
 		    			{% if priceandoffice.WorkspaceHasOffice.office.id == 1 %}
 			    			<span class="capacity">Quantité : {{priceandoffice.workspaceHasOffice.deskQty}} </span>
@@ -53,14 +53,14 @@ priceandoffice.WorkspaceHasOffice.office.name = type de bureau (open space, bure
 		    			<br><br>
 		    			{% if priceandoffice.priceHour > 0 or priceandoffice.priceHalfDay > 0 or priceandoffice.priceDay > 0 or priceandoffice.priceMonth > 0 %}
 			    			<div class="row">
-			    				<div class="col-lg-6 col-md-8 col-xs-12" id="formules">
+			    				<div class="col-lg-6 col-md-8 col-sm-8 col-xs-12" id="formules">
 				    					<strong><i class="fa fa-money" aria-hidden="true"></i> Nos formules : </strong><br>
 						    			{% if priceandoffice.priceHour > 0 %} {{priceandoffice.priceHour|round(2)}} € HT / heure<br> {% endif %}
 					    				{% if priceandoffice.priceHalfDay > 0 %} {{priceandoffice.priceHalfDay|round(2)}} € HT / demi journée<br> {% endif %}
 				    					{% if priceandoffice.priceDay > 0 %} {{priceandoffice.priceDay|round(2)}} € HT / jour<br> {% endif %}
 										{% if priceandoffice.priceMonth > 0 %} {{priceandoffice.priceMonth|round(2)}} € HT / mois<br> {% endif %}
 			    				</div>
-			    				<div class="col-lg-6 col-md-4 col-xs-12">
+			    				<div class="col-lg-6 col-md-4 col-sm-4 col-xs-12" style="padding: 0;">
 		    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				    				<a href="{{ path('becowo_core_booking', {'id': priceandoffice.workspaceHasOffice.id}) }}" id="btnResa">Réserver</a>
 				    			{% else %}

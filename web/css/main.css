@@ -1441,7 +1441,7 @@ footer{
 .rating{
   display: inline;
 }
-@media (min-width: 1200px){
+@media (min-width: 768px){
   #wsHeader #OfficeQuantity{
     margin-top: -80px;
   }
