@@ -26,7 +26,7 @@
 					{% for booking in bookings %}
 				        <tr>
 				        	<td>{{booking.bookingRef}}</td>
-				            <td><a href="{{ path('becowo_core_workspace', { 'region':booking.workspacehasoffice.workspace.region.name, 'ville' : booking.workspacehasoffice.workspace.city, 'name': booking.workspacehasoffice.workspace.name }) }}">{{booking.workspacehasoffice.workspace.name}}</a></td>
+				            <td><strong><a href="{{ path('becowo_core_workspace', { 'region':booking.workspacehasoffice.workspace.region.name, 'ville' : booking.workspacehasoffice.workspace.city, 'name': booking.workspacehasoffice.workspace.name }) }}" style="color:black">{{booking.workspacehasoffice.workspace.name}}</a></strong></td>
 				            <td>{{booking.workspacehasoffice.name}}</td>
 				            <td>{{booking.duration}}</td>
 				            <td>{{booking.startDate|date("d/m/Y")}}</td>
