@@ -1137,8 +1137,8 @@ footer{
 }
 /********************************** Events (community & workspace/tab events) *************************************/
 #Evènements{
-  width: 90%;
-  margin-left: 10%;
+  width: 95%;
+  margin-left: 5%;
 }
 .event{
   position: relative;
@@ -1180,7 +1180,6 @@ footer{
   position: absolute;
   right: 30px;
   font-size: 16pt;
-  bottom: 10px;
 }
 .event .modal .participate{
   position: relative;
