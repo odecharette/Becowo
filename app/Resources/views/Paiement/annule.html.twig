@@ -15,7 +15,7 @@
 		<h1><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Votre paiement a été annulé <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h1>
 	</div>
 	<div class="row">
-		<div class="col-lg-6 col-md-6">
+		<div class="col-lg-6 col-md-6 col-sm-6">
 			<p>Le paiement de votre réservation N° {{app.request.get('Ref')}} a été annulé <br>
 			<br>
 			<strong>Détails du paiement : </strong><br>
@@ -25,7 +25,7 @@
 			{% if error_msg is defined %}Message d'erreur :  {{error_msg}} {% endif %} <br>
 			</p>
 		</div>
-		<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2">
+		<div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2">
 			<br><br>
 			<img src="{{ asset('images/icons/creditAgricole/e-transactions.png') }}" alt="e-transactions">
 		</div>

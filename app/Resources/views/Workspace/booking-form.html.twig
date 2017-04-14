@@ -18,7 +18,7 @@
 		{{ form_start(bookingForm) }}
 	{# Le contenu de la form est construit dans booking.js #}
 		<div class="row">
-			<div class="col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2 col-xs-12 col-xs-offset-0 panelForm">
+			<div class="col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-2 col-xs-12 col-xs-offset-0 panelForm">
 				
 				<center><h3>Choisir un créneau de réservation</h3></center>
 				<br>
@@ -161,7 +161,7 @@
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}
 			</div>
-			<div class="col-lg-3 col-md-3 hidden-xs panelRecap">
+			<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs panelRecap">
 
 				<center><strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
 				{{ws.street|capitalize}} <br> 
