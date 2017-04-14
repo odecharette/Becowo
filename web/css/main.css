@@ -1075,7 +1075,7 @@ footer{
   padding: 10px 20px 20px 10px;
   background-color: #F5F5F5;
   height: 200px;
-  width: 80%;
+  width: 95%;
   box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.1);
   margin-left: 20px;
   margin-bottom: 30px;
@@ -1099,7 +1099,7 @@ footer{
   color: var(--my-grey);
 }
 #community .coworker p{
-  width: 450px;
+  width: 98%;
 }
 #community .coworker i{
   width: 18px;
@@ -1153,23 +1153,28 @@ footer{
 }
 .event{
   position: relative;
-  padding: 10px 20px 20px 10px;
+  padding: 10px 0 0 0;
   background-color: #F5F5F5;
-  height: 200px;
-  width: 90%;
+  width: 95%;
   box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.1);
   margin-left: 20px;
   margin-bottom: 30px;
 }
+@media (min-width: 992px){
+  .event .title{
+    font-size: 14pt;
+  }
+}
+@media (max-width: 991px){
+  .event .title{
+    font-size: 12pt;
+  }
+}
 .event .title{
   text-align: center;
   color: var(--my-green);
-  font-size: 14pt;
 }
 .event .info{
-  position: absolute;
-  top: 10px;
-  left: 250px;
   color: var(--my-grey);
 }
 .event i{    
@@ -1188,16 +1193,12 @@ footer{
   color: var(--my-blue);
 }
 .event .participate{
-  position: absolute;
-  right: 30px;
   font-size: 16pt;
+  line-height: 40px;
 }
-.event .modal .participate{
+.event .modal .participate {
   position: relative;
-  bottom: 0;
-}
-.event .modal-footer{
-  line-height: 50px;
+  left: 40%;
 }
 /********************************** Public profile *************************************/
 

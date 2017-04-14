@@ -8,19 +8,19 @@
 <h1>Les Evènements</h1>
 <div id="filtersBar">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-md-3 col-sm-3">
         <h3>Région</h3>
         <div id="workspaceRegion" class="facet"></div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-md-3 col-sm-3">
         <h3>Ville</h3>
         <div id="workspaceCity" class="facet"></div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-md-3 col-sm-3">
       <h3>Coworking</h3>
       <div id="workspaceName" class="facet"></div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-md-3 col-sm-3">
       <h3 style="margin-left:0;">Date</h3>
         <div id="eventDate"></div>
     </div>  
@@ -88,7 +88,7 @@
           var picture = '';
           if(data.picture !== null){ picture = data.picture }else{ picture = ''};
 
-          var vignette = '<div class="event">';
+          var vignette = '<div class="event"><div class="row"><div class="col-lg-3 col-md-4 col-sm-4">';
 
           if(category != '')
           {
@@ -101,8 +101,8 @@
               'height:150px;' +
               'background-position:center;' +
               'background-size: cover;' +
-              'margin-left: 15px;' +
-              'margin-top: 10px;">&nbsp;</div>';
+              'margin-top: 20px;">&nbsp;</div>' + 
+              '</div>';
 
           vignette = vignette + divPhoto;
 
@@ -112,6 +112,7 @@
           url = url.replace("paramName", wsName);
 
           vignette = vignette + 
+            '<div class="col-lg-9 col-md-8 col-sm-8">' +
             '<div class="info">' +
               '<span class="title">' + title + '</span><br>' +
                 '<span class="place">' +
@@ -120,21 +121,22 @@
                   '</a>' +
                 '</span><br>' +
                 '<span class="time">' +
-                  '<i class="fa fa-calendar-check-o" aria-hidden="true"></i>' +
+                  '<i class="fa fa-calendar" aria-hidden="true"></i>' +
                   afficheDate(startDate, endDate) +
                 '</span><br><br>' +
                 '<p>' + 
                   TextAbstract(nl2br(description), 200) +
                   '<a href="#" data-toggle="modal" data-target="#myModalEvent-' + id + '">[voir plus]</a>' + 
                 '</p>' +
+            '</div>' +
             '</div>';
 
             linkFB = '';
             if(facebookId != ''){
-              linkFB = '<a href="http://facebook.com/' + facebookId + '" class="participate" target="_blank"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a>'; 
+              linkFB = '<hr style="margin: 0;"> <a href="http://facebook.com/' + facebookId + '" class="participate" target="_blank"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Participer</a>'; 
             }
 
-            vignette = vignette + linkFB;
+            vignette = vignette + '</div><div class="row text-center">' + linkFB + '</div>' ;
             
             var modal = '<div class="modal fade modalEvent" id="myModalEvent-' + id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
               '<div class="modal-dialog">' +
@@ -144,7 +146,10 @@
                       '<h4 class="modal-title">' + title + '</h4>' +
                   '</div>' +
                   '<div class="modal-body" style="overflow-y: scroll;">' +
+                  '<div class="row">' +
+                  '<div class="col-lg-5 col-md-5 col-sm-5">' +
                     divPhoto +
+                    '<div class="col-lg-7 col-md-7 col-sm-7">' +
                     '<div class="info"><br>' +
                       '<span class="title">' + title + '</span><br>' +
                       '<span class="place">' +
@@ -153,21 +158,21 @@
                         '</a>' +
                       '</span><br>' +
                       '<span class="time">' +
-                        '<i class="fa fa-calendar-check-o" aria-hidden="true"></i>' +
+                        '<i class="fa fa-calendar" aria-hidden="true"></i>' +
                         afficheDate(startDate, endDate) +
                       '</span><br><br>' +
                     '</div>' +
-                    '<br><br>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="row">' +
                       '<p>' + nl2br(description) + '</p>' +
-                  '</div>' +
-                  '<div class="modal-footer">' +
-                    '<center>' +
                       linkFB +
-                    '</center>' +
+                  '</div>' +
+                  '</div>' +
                   '</div>' +
                 '</div>' +
               '</div>' +
-          '</div>';
+          '</div></div>';
 
           return vignette + ' ' + modal;
         },
