@@ -12,7 +12,7 @@
     	</div>
     {% else %}
 	<div class="row text-center">
-		<div class="col-lg-12">
+		<div class="col-lg-12 col-md-12 col-sm-12">
         	<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('linkedin')}}" id="li">
         		<i class="fa fa-linkedin"></i> Inscription avec LinkedIn
         	</a><br>
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 	<div class="row text-center">
-		<div class="col-lg-12">
+		<div class="col-lg-12 col-md-12 col-sm-12">
 			{{form_start(form, {'method': 'POST', 'action': path("fos_user_registration_register"), 'attr':{'class': 'register', 'id' : 'formRegister'}})}}
 
 			<div class="form-group">
@@ -45,7 +45,7 @@
 		    	{{ form_widget(form.sendNewsletter) }}
 		    	{{ form_errors(form.sendNewsletter) }}
 
-		    	En créant un compte, j'accepte les <a href="{{ path('becowo_core_cgu') }}" style="color:black;">conditions générales d'utilisation</a> de Becowo.
+		    	En créant un compte, j'accepte les <strong><a href="{{ path('becowo_core_cgu') }}" style="color:black;">conditions générales d'utilisation</a></strong> de Becowo.
 		    </div>
 			<button type="submit" class="btn" id="_submit" name="_submit">Créer un compte</button>
 				  
@@ -54,8 +54,8 @@
 	</div>
 	<hr>
 	<div class="row" style="line-height: 50px;">
-		<div class="col-lg-8" style="padding:0;">Vous êtes déjà inscrit ?</div>
-		<div class="col-lg-4" id="lienRegister" style="padding-left: 0;">
+		<div class="col-lg-8 col-md-7 col-sm-7" style="padding:0;">Vous êtes déjà inscrit ?</div>
+		<div class="col-lg-4 col-md-5 col-sm-5" id="lienRegister" style="padding-left: 0;">
 			<button type="button" data-toggle="modal" data-target="#myModalLogin" data-dismiss="modal">Connexion</button>
 		</div>
 	</div>

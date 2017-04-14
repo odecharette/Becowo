@@ -185,12 +185,23 @@ background-color: transparent;
 #commentEspace mark{
   color: var(--my-orange);
 }
-#myModalLogin .modal-dialog, 
-#myModalRegister .modal-dialog, 
-#myModalMDP .modal-dialog, 
-[id^=myModalConnect-] .modal-dialog,
-#myModalChangeMDP .modal-dialog{
-  width: 30%;
+@media (min-width: 992px){
+  #myModalLogin .modal-dialog, 
+  #myModalRegister .modal-dialog, 
+  #myModalMDP .modal-dialog, 
+  [id^=myModalConnect-] .modal-dialog,
+  #myModalChangeMDP .modal-dialog{
+    width: 30%;
+  }
+}
+@media (max-width: 991px){
+  #myModalLogin .modal-dialog, 
+  #myModalRegister .modal-dialog, 
+  #myModalMDP .modal-dialog, 
+  [id^=myModalConnect-] .modal-dialog,
+  #myModalChangeMDP .modal-dialog{
+    width: 40%;
+  }
 }
 #myModalRegister {
     overflow-x: hidden;
@@ -1995,6 +2006,9 @@ color: var(--my-blue) !important;
   font-size: 14pt;
   color: var(--my-blue);
 }
+#CommentResults{
+  margin-bottom: 20px;
+}
 #CommentResults p{
   font-size: 12pt;
   text-align: justify;
@@ -2037,7 +2051,6 @@ color: var(--my-blue) !important;
   color: white;
   border: none;
   line-height: 50px;
-  margin-top: 10px;
   width: 100px;
   float: left;
   border-radius: 4px;

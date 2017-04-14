@@ -8,7 +8,7 @@
 
 <div class="container-fluid form-box">
 	<div class="row text-center">
-		<div class="col-lg-12">
+		<div class="col-lg-12 col-md-12 col-sm-12">
 			<a class="btn btn-link-2" href="{{ hwi_oauth_login_url('linkedin')}}" id="li">
 				<i class="fa fa-linkedin"></i> Connexion avec LinkedIn
 			</a><br>
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="row text-center">
-		<div class="col-lg-12">
+		<div class="col-lg-12 col-md-12 col-sm-12">
 			{% if error %}
 			<span class="help-block">
 			<ul class="list-unstyled">
@@ -32,39 +32,39 @@
 			</ul>
 			</span>
 			{% endif %}
+			<form action="{{ path("fos_user_security_check") }}" method="post" id="formLogin">
+		    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+		    <div class="form-group">
+		        <input type="text" id="username" name="_username"  placeholder="Email ou Nom d'utilisateur" value="{{ last_username }}" />
+		    
+		        <input type="password" id="password" name="_password" placeholder="Mot de passe" />
+		    </div>
+
+		    <div class="row text-center" id="remember">
+		    	<div class="col-lg-6 col-md-6 col-sm-6" style="padding:0;">
+		       		<label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+		       		Se souvenir de moi</label>
+		    	</div>
+		    	<div class="col-lg-6 col-md-6 col-sm-6" style="padding:0;">
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	            	Connecté en tant que {{ app.user.username }} |
+	            	<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+	            {% else %}
+	            	<a data-toggle="modal" data-target="#myModalMDP" data-dismiss="modal" style="color:black;">Mot de passe oublié ?</a>
+	            	{# <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a> #}
+	        	{% endif %}
+		    	</div>
+			</div>
+
+		    <button type="submit" class="btn" id="_submit" name="_submit">Connexion</button>
+			</form>
 		</div>
-		<form action="{{ path("fos_user_security_check") }}" method="post" id="formLogin">
-	    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-	    <div class="form-group">
-	        <input type="text" id="username" name="_username"  placeholder="Email ou Nom d'utilisateur" value="{{ last_username }}" />
-	    
-	        <input type="password" id="password" name="_password" placeholder="Mot de passe" />
-	    </div>
-
-	    <div class="row text-center" id="remember">
-	    	<div class="col-lg-6 col-md-6" style="padding-right:0;">
-	       		<label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-	       		Se souvenir de moi</label>
-	    	</div>
-	    	<div class="col-lg-6 col-md-6" style="padding-left:0;">
-			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            	Connecté en tant que {{ app.user.username }} |
-            	<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-            {% else %}
-            	<a data-toggle="modal" data-target="#myModalMDP" data-dismiss="modal" style="color:black;">Mot de passe oublié ?</a>
-            	{# <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a> #}
-        	{% endif %}
-	    	</div>
-		</div>
-
-	    <button type="submit" class="btn" id="_submit" name="_submit">Connexion</button>
-		</form>
 	</div>
 	<hr>
 	<div class="row" style="line-height: 50px;">
-		<div class="col-lg-8" style="padding:0;">Vous n'avez pas de compte ?</div>
-		<div class="col-lg-4" id="lienRegister" style="padding-left: 0;">
+		<div class="col-lg-8 col-md-8 col-sm-8" style="padding:0;">Vous n'avez pas de compte ?</div>
+		<div class="col-lg-4 col-md-4 col-sm-4" id="lienRegister" style="padding-left: 0;">
 			<button type="button" data-toggle="modal" data-target="#myModalRegister" data-dismiss="modal">Inscription</button>
 		</div>
 	</div>
