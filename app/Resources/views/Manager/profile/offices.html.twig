@@ -19,6 +19,7 @@
 		<tr>
 			<th>Type de bureau</th>
 			<th>Nom</th>
+			<th>Description</th>
 			<th>Photo</th>
 			<th>Capacité</th>
 			<th>Actions</th>
@@ -29,6 +30,7 @@
 			<tr>
 			 	<td>{{office.office.name}}</td>
 			 	<td>{{office.name}}</td>
+			 	<td>{{office.description}}</td>
 			 	{% if office.urlProfilePicture != '' %}
 					<td><img src="{{ asset('images/Workspaces/') }}{{workspace.name}}/{{office.urlProfilePicture}}" alt="{{office.office.name}}" width="80px" height="50px"></td>
 				{% else %}

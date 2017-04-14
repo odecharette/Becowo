@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
@@ -24,6 +25,7 @@ class WorkspaceHasOfficeType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Bureau'))
             ->add('name', TextType::class)
+            ->add('description', TextareaType::class)
             ->add('file', FileType::class, array('multiple' => false, 'label' => 'Photo du bureau'))
             ->add('desk_qty', NumberType::class, array('label' => 'Capacité', 'scale' => 0))
         ;
