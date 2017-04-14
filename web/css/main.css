@@ -877,12 +877,20 @@ footer{
   padding-top: 10px;
 }
 .vignette #listeLogo img{
-  width: 35px;
-  height: 35px;
   margin: 0 2px;
 }
-
-
+@media (min-width: 992px){
+  .vignette #listeLogo img{
+    width: 35px;
+    height: 35px;
+  }
+}
+@media (max-width: 991px){
+  .vignette #listeLogo img{
+    width: 30px;
+    height: 30px;
+  }
+}
 #btn_comment{
   background-color: var(--my-green);
   border: var(--my-green);
