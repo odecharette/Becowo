@@ -49,17 +49,18 @@
 <div id="google_analytics_ID" hidden="true">{{google_analytics_ID}}</div>
 
 <header>
+	{# screen LG and MD only #}
 	<div class="row text-center">
-		<div class="col-lg-1 col-md-1 col-xs-12">
+		<div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
 		        <img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo">
 		    </a>
 		</div>
-		<div class="col-lg-4 col-md-3 col-xs-12 identity">
+		<div class="col-lg-4 col-md-3 hidden-sm hidden-xs identity">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
 			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
         </div>
-        <div class="col-lg-5 col-md-6 col-xs-12 menu">
+        <div class="col-lg-5 col-md-6 hidden-sm hidden-xs menu">
 		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <i class="fa fa-circle" aria-hidden="true"></i>
 			<a title="La communauté" href="{{ path('becowo_core_community') }}">communauté </a>	<i class="fa fa-circle" aria-hidden="true"></i>
 			<div class="btn-group">
@@ -78,7 +79,7 @@
 			    </ul>
 			</div>
 		</div>    
-		<div class="col-lg-2 col-md-2 col-xs-12 connectMenu">
+		<div class="col-lg-2 col-md-2 hidden-sm hidden-xs connectMenu">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}	
 				<div class="btn-group loginMenu">
 		          <a href="" data-toggle="dropdown" class="log-menu">
@@ -119,6 +120,78 @@
 			{% endif %}      
 		</div>  
 	</div>
+	{# screen SM and XS only #}
+	<div class="row text-center">
+		<div class="hidden-lg hidden-md col-sm-2">
+			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
+		        <img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo">
+		    </a>
+		</div>
+		<div class="hidden-lg hidden-md col-sm-4 identity">
+			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
+			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
+        </div>
+        <div class="hidden-lg hidden-md col-sm-4 menu">
+		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <br>
+			<a title="La communauté" href="{{ path('becowo_core_community') }}">communauté </a>	<br>
+			<div class="btn-group">
+				<a href="" data-toggle="dropdown">Comment ça marche ? </a> 
+				<ul role="menu" class="dropdown-menu dropdown-menu-default">
+			        <li>
+			            <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">Pour les coworkers</a>
+				    </li>
+				    <li>
+			            <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_espaces') }}">Pour les espaces</a>
+				    </li>
+				    <li class="divider"></li>
+				    <li>
+			            <a title="Proposer un espace" href="{{ path('becowo_core_offers') }}" >Proposer un espace</a>
+				    </li>
+			    </ul>
+			</div>
+		</div>    
+		<div class="hidden-lg hidden-md col-sm-2 connectMenu">
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}	
+				<div class="btn-group loginMenu">
+		          <a href="" data-toggle="dropdown" class="log-menu">
+		          	Bonjour <i class="fa fa-caret-down" aria-hidden="true"></i>
+		          </a>
+		          <ul class="dropdown-menu log-menu-content">
+		            <li>
+		            	<a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a>
+		            </li>
+		            {% if app.user.signedUpWith == null %}
+				    <li>
+				    	<a data-toggle="modal" href="#myModalChangeMDP"><i class="fa fa-key"></i> Changer mon mot de passe</a>
+				    </li>
+					{% endif %}
+				    <li>
+				    	<a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a>
+				    </li>
+				    {% if is_granted('ROLE_MANAGER') %}
+						<li>
+							<a href="{{ path('becowo_manager_profile_identite', {id: app.user.workspaces[0].id}) }}" target="_blank"><i class="fa fa-wrench"></i> Espace Manager</a>
+						</li>
+					{% endif %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li>
+							<a href="{{ path('easyadmin') }}" target="_blank"><i class="fa fa-lock"></i> Espace Admin</a>
+						</li>
+						{# <li>
+							<a href="{{ path('becowo_manager_mep') }}" target="_blank"><i class="fa fa-lock"></i> MEP</a>
+						</li> #}
+					{% endif %}
+				    <li>
+				    	<a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Me déconnecter</a>
+				    </li>
+		          </ul>
+		        </div>
+	        {% else %}
+				<a data-toggle="modal" href="#myModalLogin" class="log">Connexion</a> 
+			{% endif %}      
+		</div>  
+	</div>
+
 
 {# Les modal doivent se charger en même temps pour pouvoir passer de l'une à l'autre #}
 <!-- Modale Login -->
