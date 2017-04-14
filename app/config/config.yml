@@ -65,6 +65,7 @@ twig:
         site_url: '%site_url%'
         blogRSS: '%blogRSS%'
         google_analytics_ID: '%google_analytics_ID%'
+        heapProjectNumber: '%heapProjectNumber%'
         algolia:
             application_id: '%algolia.application_id%'
             search_api_key: '%algolia.search_api_key%'
