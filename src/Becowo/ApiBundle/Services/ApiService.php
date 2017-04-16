@@ -207,28 +207,55 @@ class ApiService
                     //     echo $age . " : " . $nb . "\n";
                     // }
                     break;
-                case 'page_fans_country':
-                    // echo $d->title . " : ";
-                    $items = get_object_vars($d->values[0]->value);
-                    $statCountries = array();
-                    foreach ($items as $country => $nb) {
-                        // Get Country name
-                        $url = $this->FB_API_GRAPH_URL.'/search?type=adgeolocation&location_types=country&match_country_code=true&q=' . $country . '&access_token=' . $pageToken;
-                        $response = \Httpful\Request::get($url)->send();
-                        // echo $response->body->data[0]->name . " : " . $nb . "\n";
-                        $statCountries[$response->body->data[0]->name] = $nb;
-                    }
-                    $tab = array();
-                    $tab[$d->title] = $statCountries;
-                    array_push($results, $tab);
-                    break;
+                // case 'page_fans_country':
+                //     $items = get_object_vars($d->values[0]->value);
+                //     $statCountries = array();
+                //     foreach ($items as $country => $nb) {
+                //         // Get Country name
+                //         $url = $this->FB_API_GRAPH_URL.'/search?type=adgeolocation&location_types=country&match_country_code=true&q=' . $country . '&access_token=' . $pageToken;
+                //         $response = \Httpful\Request::get($url)->send();
+                //         $statCountries[$response->body->data[0]->name] = $nb;
+                //     }
+                //     $tab = array();
+                //     $tab[$d->title] = $statCountries;
+                //     array_push($results, $tab);
+                //     break;
                 case 'page_fans_city':
-                    // echo $d->title . " : ";
                     $items = get_object_vars($d->values[0]->value);
                     $statCities = array();
                     foreach ($items as $city => $nb) {
-                        // echo $city . " : " . $nb . "\n";
-                        $statCities[$city] = $nb;
+
+                        $temp = explode(",", $city);
+                        if(count($temp) == 4)
+                        {
+                            $pays = $temp[3];
+                            $region = $temp[2];
+                            $ville = $temp[0];
+                        }
+                        elseif(count($temp) == 3)
+                        {
+                            $pays = $temp[2];
+                            $region = $temp[1];
+                            $ville = $temp[0];
+                        }else{
+                            $pays = $temp[1];
+                            $region = "Toutes";
+                            $ville = $temp[0];
+                        }
+
+                        // $p = array();
+                        // $r = array();
+                        // $v = array();
+                        // $v[$ville] = $nb;
+                        // $r[$region] = $v;
+                        // $p[$pays] = $r;
+                        $tab = array();
+                        $tab['country'] = $pays;
+                        $tab['region'] = $region;
+                        $tab['city'] = $ville;
+                        $tab['nb'] = $nb;
+                        array_push($statCities, $tab);
+                        
                     }
                     $tab = array();
                     $tab[$d->title] = $statCities;

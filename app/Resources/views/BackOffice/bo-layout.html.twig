@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Becowo - BackOffice</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    {# https://datatables.net/  Sort & filter HTML tables #}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    
+
+{# Change CSS file for IE compatibility  #}
+{% if 'MSIE' in app.request.server.get("HTTP_USER_AGENT") or 'Trident/' in app.request.server.get("HTTP_USER_AGENT") or 'Edge/' in app.request.server.get("HTTP_USER_AGENT") %}
+    <link href="{{ asset('css/manager/profileForIE.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/manager/sb-adminForIE.css') }}" rel="stylesheet">
+{% else %}
+    <link href="{{ asset('css/manager/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/manager/sb-admin.css') }}" rel="stylesheet">
+{% endif %}
+
+    {% block css %}
+    {% endblock css %}
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+        {% include "CommonViews/flashMessage.html.twig" %}
+
+        {% block page %}
+        {% endblock page %}
+    </div>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {# https://datatables.net/  Sort & filter HTML tables #}
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+    {% block javascripts %}
+    {% endblock %}
+</body>
+
+</html>
