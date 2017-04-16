@@ -1,3 +1,7 @@
+becowo_back_office:
+    resource: "@BecowoBackOfficeBundle/Resources/config/routing.yml"
+    prefix:   /
+
 becowo_cron:
     resource: "@BecowoCronBundle/Resources/config/routing.yml"
     prefix:   /
@@ -41,6 +45,10 @@ becowo_member:
     resource: "@BecowoMemberBundle/Resources/config/routing.yml"
     prefix:   /member/
 
+becowo_backOffice:
+    resource: "@BecowoBackOfficeBundle/Resources/config/routing.yml"
+    prefix:   /backOffice/
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
@@ -68,3 +76,4 @@ easy_admin_bundle:
 coresphere_console:
     resource: .
     type: extra
+

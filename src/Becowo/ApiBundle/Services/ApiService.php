@@ -21,6 +21,7 @@ class ApiService
         $this->FB_API_SECRET = $FB_API_SECRET;
         $this->WsService = $WsService;
         $this->logger = $logger;
+        $this->FB_API_GRAPH_URL = 'https://graph.facebook.com';
     }
 
     public function getApiEventsParam()
@@ -155,120 +156,83 @@ class ApiService
         return $picture;
     }
 
-    public function getFacebookInsights($FB_PAGE_ID)
+    public function getFacebookPageToken($FB_PAGE_ID)
     {
-        $FB_API_GRAPH_URL = 'https://graph.facebook.com';
-
-        // Construction de l'URL à appeler pour récupérer une APP access_token
-        // $url = $FB_API_GRAPH_URL.'/oauth/access_token?client_id='.$this->FB_API_ID.'&client_secret='.$this->FB_API_SECRET.'&grant_type=client_credentials&scope=manage_pages';
-        // echo $url . "\n";
-        // // Appel à l'API
-        // $response = \Httpful\Request::get($url)->send();
-        // echo $response;
-
-        // echo "\n\n";
-
-        // $jsonResponse =json_decode($response);
-        // $access_token = $jsonResponse->access_token;
-        // // Construction de l'URL à appeler pour récupérer une PAGE access_token
-        // $url = $FB_API_GRAPH_URL. '/' . $FB_PAGE_ID.'?fields=access_token&access_token='.$access_token;
-        // echo $url . "\n";
-        // // Appel à l'API
-        // $response = \Httpful\Request::get($url)->send();
-        // echo "page access \n";
-        // echo $response;
-
-        // $jsonResponse =json_decode($response);
-        // $access_token = $jsonResponse->access_token;
-
-
         // Construction de l'URL à appeler pour récupérer une PAGE access_token
         // l'access token de l'URL est généré via https://smashballoon.com/custom-facebook-feed/docs/get-extended-facebook-user-access-token/ A priori il est permanent
-        $url = $FB_API_GRAPH_URL. '/me/accounts?fields=access_token,id,name&access_token=EAALgwfIjMTIBAO8jluUtiHPXpo5wYUSztGlmnz9cOiDZBdCj85A02mIySgAZBrlaANKehDP7MzF7qt43k0Xw20cZAb7R9ZBuSCmG0ZB7w3h0zHZAluyOKx2XTKPbHEZBBQXSK4nruq5Fcz8rgKVMOHhk4N5jZB3d3KUZD';
-
-
-        ////////// token V1 : EAALgwfIjMTIBAIZCA3DEDPnhroRhZAUlO6W7yhpZAbVoAY4oZBrB5hDISckTaFrOQayLHIDYewZACeIzeruKkS3U9Oz19cvR1U0OpXDuQ2UYt1wXSifO8K8pQoU4fnznxkQVebFZCzxslio03hUoDg
-
-        ///////// token V2 : EAALgwfIjMTIBAO8jluUtiHPXpo5wYUSztGlmnz9cOiDZBdCj85A02mIySgAZBrlaANKehDP7MzF7qt43k0Xw20cZAb7R9ZBuSCmG0ZB7w3h0zHZAluyOKx2XTKPbHEZBBQXSK4nruq5Fcz8rgKVMOHhk4N5jZB3d3KUZD
-
-        // echo $url . "\n";
-        // Appel à l'API
+        $url = $this->FB_API_GRAPH_URL. '/me/accounts?fields=access_token,id,name&access_token=EAALgwfIjMTIBAO8jluUtiHPXpo5wYUSztGlmnz9cOiDZBdCj85A02mIySgAZBrlaANKehDP7MzF7qt43k0Xw20cZAb7R9ZBuSCmG0ZB7w3h0zHZAluyOKx2XTKPbHEZBBQXSK4nruq5Fcz8rgKVMOHhk4N5jZB3d3KUZD';
         $response = \Httpful\Request::get($url)->send();
-        // echo "page access \n";
-        // dump($response);
 
-        $stats = null;
+        $rep = $response->body->data;
+        foreach ($rep as $r) {
+            if($r->name == "Becowo")
+            {
+                $pageToken = $r->access_token;
+            }
+        }
+        return $pageToken;
+    }
 
-        $jsonResponse =json_decode($response);
-//         $access_token = $jsonResponse->access_token;
+    public function getFacebookInsightsPerDay($FB_PAGE_ID, $pageToken)
+    {
+        // LAST 28 days STATS
+        $url = $this->FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/insights?access_token=' . $pageToken . '&metric=page_stories_by_story_type&period=day';
+        $response = \Httpful\Request::get($url)->send();
 
-//         if ($access_token != "") {
-            
-//             $this->logger->notice('getFacebookInsights -Token OK for FB_ID : ' . $FB_PAGE_ID);
+        return $response->body->data;
+    }
 
-//             // Construction de l'URL à appeler pour récupérer les stats de la page
-//             $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/insights?access_token=EAACEdEose0cBAOYPhtjXZB3jVG7RBJbRJdTRVX4BPHOMJqxpTZApV5UWv7zBp0hBzJ0vW5HJZBZAp6GlqwifLkNFjDUdZAqwbcAR4Ke1h8C3pAjJ7jokFutYMVk74G29LteKpG0C8qD3YPGCXS9cSldVnQJB3a2DSej9FeEFWO8eXtFWAFrqujny0pKQ0YCkZD' . '&metric=page_fans,page_stories';
-//             // Appel à l'API
-//             $response = \Httpful\Request::get($url)->send();
-// echo $response . "\n\n";
-//             // si data existe, c'est un array() qui contient tous les stats relatifs à cette page
-//            if (isset($response->body->data)) {
-                $rep = $response->body->data;
-                // dump($rep);
-                foreach ($rep as $r) {
-                    if($r->name == "Becowo")
-                    {
-                        $pageToken = $r->access_token;
-                        // echo $pageToken . "\n";
-                    }
-                }
-            // echo "\n\npage token : \n";
-            // echo $pageToken;
+    public function getFacebookInsightsLifetime($FB_PAGE_ID, $pageToken)
+    {
+        // LIFETIME STATS
+        $url = $this->FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/insights?access_token=' . $pageToken . '&metric=page_fans,page_fans_city,page_fans_country,page_fans_gender_age&since=yesterday';
+        $response = \Httpful\Request::get($url)->send();
 
-            // Construction de l'URL à appeler pour récupérer les stats de la page
-            // LAST 28 days STATS
-            $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/insights?access_token=' . $pageToken . '&metric=page_stories_by_story_type&period=day';
-            // Appel à l'API
-            $response = \Httpful\Request::get($url)->send();
-
-            dump($response->body->data);
-
-            // LIFETIME STATS
-            $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/insights?access_token=' . $pageToken . '&metric=page_fans,page_fans_city,page_fans_country,page_fans_gender_age&since=yesterday';
-            // Appel à l'API
-            $response = \Httpful\Request::get($url)->send();
-
-             // dump($response->body->data);
-            foreach ($response->body->data as $d) {
-            // dump($d);
+        $results = array();
+        foreach ($response->body->data as $d) {
             switch ($d->name) {
                 case 'page_fans':
-                    echo $d->title . " : " . $d->values[0]->value ;
+                    // echo $d->title . " : " . $d->values[0]->value ;
+                    $tab = array();
+                    $tab[$d->title] = $d->values[0]->value;
+                    array_push($results, $tab);
                     break;
                 case 'page_fans_gender_age':
-                    echo $d->title . " : ";
+                    // echo $d->title . " : ";
                     $items = get_object_vars($d->values[0]->value);
-                    foreach ($items as $age => $nb) {
-                        echo $age . " : " . $nb . "\n";
-                    }
+                    $tab = array();
+                    $tab[$d->title] = $items;
+                    array_push($results, $tab);
+                    // foreach ($items as $age => $nb) {
+                    //     echo $age . " : " . $nb . "\n";
+                    // }
                     break;
                 case 'page_fans_country':
-                    echo $d->title . " : ";
+                    // echo $d->title . " : ";
                     $items = get_object_vars($d->values[0]->value);
+                    $statCountries = array();
                     foreach ($items as $country => $nb) {
                         // Get Country name
-                        $url = $FB_API_GRAPH_URL.'/search?type=adgeolocation&location_types=country&match_country_code=true&q=' . $country . '&access_token=' . $pageToken;
+                        $url = $this->FB_API_GRAPH_URL.'/search?type=adgeolocation&location_types=country&match_country_code=true&q=' . $country . '&access_token=' . $pageToken;
                         $response = \Httpful\Request::get($url)->send();
-                        echo $response->body->data[0]->name . " : " . $nb . "\n";
+                        // echo $response->body->data[0]->name . " : " . $nb . "\n";
+                        $statCountries[$response->body->data[0]->name] = $nb;
                     }
+                    $tab = array();
+                    $tab[$d->title] = $statCountries;
+                    array_push($results, $tab);
                     break;
                 case 'page_fans_city':
-                    echo $d->title . " : ";
+                    // echo $d->title . " : ";
                     $items = get_object_vars($d->values[0]->value);
+                    $statCities = array();
                     foreach ($items as $city => $nb) {
-                        echo $city . " : " . $nb . "\n";
+                        // echo $city . " : " . $nb . "\n";
+                        $statCities[$city] = $nb;
                     }
-                    echo "\n";
+                    $tab = array();
+                    $tab[$d->title] = $statCities;
+                    array_push($results, $tab);
 
                     break;
                default:
@@ -276,57 +240,62 @@ class ApiService
                    break;
             }
         }
-echo "\n\n\n\n";
+        return $results;
+    }
 
+    public function getFacebookPostsInsights($FB_PAGE_ID, $pageToken)
+    {
 
-            // POSTS STATS
-            $url = $FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/posts?access_token=' . $pageToken;
-            // Appel à l'API
+        // POSTS STATS
+        $url = $this->FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/posts?access_token=' . $pageToken;
+        $response = \Httpful\Request::get($url)->send();
+
+        $results = array();
+        $tab = array();
+        $tab['totalPosts'] = count($response->body->data);
+        array_push($results, $tab);
+        // echo "\n nb de posts : " . count($response->body->data) . "\n";
+
+        $post = array();
+        foreach ($response->body->data as $d) {
+            $url = $this->FB_API_GRAPH_URL.'/'. $d->id .'?fields=message,story,shares,name,permalink_url,type&access_token=' . $pageToken;
             $response = \Httpful\Request::get($url)->send();
-            echo "\n nb de posts : " . count($response->body->data) . "\n";
-        //    dump($response->body->data);
 
-            foreach ($response->body->data as $d) {
-                $url = $FB_API_GRAPH_URL.'/'. $d->id .'?fields=message,story,shares,name,permalink_url,type&access_token=' . $pageToken;
-                $response = \Httpful\Request::get($url)->send();
+            if(isset($response->body->message)){
+                $post['message'] = $response->body->message;
+                // echo "message : " . $response->body->message . "\n";
+            }elseif(isset($response->body->story)){
+                $post['story'] = $response->body->story;
+                // echo "story : " . $response->body->story . "\n";
+            };
+            $post['nom'] = $response->body->name;
+            $post['type'] = $response->body->type;
+            $post['link'] = $response->body->permalink_url;
+            // echo "nom : " . $response->body->name . "\n";
+            // echo "type : " . $response->body->type . "\n";
+            // echo "link : " . $response->body->permalink_url . "\n";
+            // echo "nb shares : ";
+            if(isset($response->body->shares))
+            {
 
-                //dump($response->body);
-                if(isset($response->body->message)){
-                    echo "message : " . $response->body->message . "\n";
-                }elseif(isset($response->body->story)){
-                    echo "story : " . $response->body->story . "\n";
-                };
-                echo "nom : " . $response->body->name . "\n";
-                echo "type : " . $response->body->type . "\n";
-                echo "link : " . $response->body->permalink_url . "\n";
-                echo "nb shares : ";
-                if(isset($response->body->shares))
-                {
-                    echo $response->body->shares->count;
-                }else{
-                    echo "0";
-                }
-                echo "\n";
-
-                $url = $FB_API_GRAPH_URL.'/'. $d->id .'/likes?fields=total_count&summary=true&access_token=' . $pageToken;
-                $response = \Httpful\Request::get($url)->send();
-                echo "Nb de likes : ";
-                echo $response->body->summary->total_count . "\n";
-
+                $post['shares'] = $response->body->shares->count;
+                // echo $response->body->shares->count;
+            }else{
+                $post['shares'] = "0";
+                // echo "0";
             }
+            // echo "\n";
 
-                // $this->logger->notice('getFacebookInsights - ' . count($stats) . ' stats found for FB_ID : ' . $FB_PAGE_ID);                  
-            // }else if(isset($response->body->error)){
-            //     $this->logger->critical('getFacebookInsights - issue with FB_ID : ' . $FB_PAGE_ID . ' : ' . $response->body->error->message);
-            // }
-        // }
-        // else {
+            $url = $this->FB_API_GRAPH_URL.'/'. $d->id .'/likes?fields=total_count&summary=true&access_token=' . $pageToken;
+            $response = \Httpful\Request::get($url)->send();
+            // echo "Nb de likes : ";
+            // echo $response->body->summary->total_count . "\n";
+            $post['likes'] = $response->body->summary->total_count;
 
-        //     $this->logger->critical('getFacebookInsights - Bad access token for FB_ID : ' . $FB_PAGE_ID);
+            array_push($results, $post);
+        }
 
-        //     $stats = null;
-        // }
-        return $stats;
+        return $results;
 
     }
 

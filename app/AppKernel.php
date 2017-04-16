@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Becowo\CronBundle\BecowoCronBundle(),
             new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
             new RobertoTru\ToInlineStyleEmailBundle\RobertoTruToInlineStyleEmailBundle(),
+            new Becowo\BackOfficeBundle\BecowoBackOfficeBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'demo'], true)) {
