@@ -46,10 +46,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <h2 style="color:white;">Bienvenue dans le back-office de Becowo</h2>
             </div>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+                    <h3>Les réseaux sociaux</h3>
+                        {% if app.request.attributes.get('_route') == 'becowo_back_office_RS_overview' %}<li class="active">{% else %}<li>{% endif %}
+                            <a href="{{ path('becowo_back_office_RS_overview') }}"> Overview</a>
+                        </li>
+                        {% if app.request.attributes.get('_route') == 'becowo_back_office_RS_facebook' %}<li class="active">{% else %}<li>{% endif %}
+                            <a href="{{ path('becowo_back_office_RS_facebook') }}"> Facebook</a>
+                        </li>
+                        {% if app.request.attributes.get('_route') == 'becowo_back_office_RS_twitter' %}<li class="active">{% else %}<li>{% endif %}
+                        <a href="{{ path('becowo_back_office_RS_twitter') }}"> Twitter</a>
+                        </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

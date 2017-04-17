@@ -1,3 +1,15 @@
 becowo_back_office_homepage:
     path:     /home
     defaults: { _controller: BecowoBackOfficeBundle:Home:home }
+
+becowo_back_office_RS_overview:
+    path:     /RS/overview
+    defaults: { _controller: BecowoBackOfficeBundle:RS:overview }
+
+becowo_back_office_RS_facebook:
+    path:     /RS/facebook
+    defaults: { _controller: BecowoBackOfficeBundle:RS:facebook }
+
+becowo_back_office_RS_twitter:
+    path:     /RS/twitter
+    defaults: { _controller: BecowoBackOfficeBundle:RS:twitter }

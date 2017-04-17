@@ -1,0 +1,99 @@
+{% extends 'BackOffice/bo-layout.html.twig' %}
+
+{% block page %}
+
+
+{{dump(FBinsightsPerDay)}}
+{{dump(FBPostInsights)}}
+
+<div class="container-fluid">
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Facebook
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+	<h2>Nombre de likes par ville</h2>
+	{% for item in FBinsightsLifetime[0]["Lifetime Likes by City"] %}
+		{{item.country}} - {{item.region}} - {{item.city}} : {{item.nb}} <br>
+	{% endfor %}
+	{# {% set countryList = [] %}
+	{% set regionList = [] %}
+	{% set cityList = [] %}
+ 	{% for items in FBinsightsLifetime[0]["Lifetime Likes by City"] %}
+ 		{% for key,item in items %}
+			<ul>
+				{% if key not in countryList %}
+					{% set countryList = countryList|merge([key]) %}
+			    	<li>{{key}}</li>
+			    {% endif %}
+			    {% for key2, item2 in item  %}
+			    <ul>
+			        {% if key2 not in regionList %}
+						{% set regionList = regionList|merge([key2]) %}
+			    		<li>{{key2}}</li>
+			    	{% endif %}
+			    	{% for key3, item3 in item2 if key3 == key2 %}
+			    		<ul>
+			    		    {% if key3 not in cityList %}
+								{% set cityList = cityList|merge([key3]) %}
+					    		<li>{{key3}} : {{item3}}</li>
+					    	{% endif %}
+			    		</ul>
+			    	{% endfor %}
+			    </ul>
+				{% endfor %}
+			</ul>
+		{% endfor %}
+	{% endfor %} #}
+</div>
+
+<div class="row">
+	<h2>Page activity</h2>
+	<table class="table">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Other</th>
+			<th>page post</th>
+			<th>user post</th>
+			<th>checkin</th>
+			<th>fan</th>
+			<th>question</th>
+			<th>coupon</th>
+			<th>event</th>
+			<th>mention</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in FBinsightsPerDay[0].values %}
+			<tr>
+				<td>{{item.end_time|date_modify("-1 day")|date("d/m/Y")}}</td>
+			 	<td>{{item.value.other}}</td>
+			 	<td>{{attribute(item.value,'page post')}}</td>
+				<td>{{attribute(item.value,'user post')}}</td>
+				<td>{{item.value.checkin}}</td>
+				<td>{{item.value.fan}}</td>
+				<td>{{item.value.question}}</td>
+				<td>{{item.value.coupon}}</td>
+				<td>{{item.value.event}}</td>
+				<td>{{item.value.mention}}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	</table> 
+
+</div>
+
+</div>
+
+{% endblock page %}
+
+{% block javascripts %}
+{% endblock %}
+
