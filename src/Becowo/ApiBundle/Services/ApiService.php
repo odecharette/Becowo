@@ -13,8 +13,11 @@ class ApiService
     private $FB_API_SECRET = null;
     private $WsService = null;
     private $logger = null;
+    private $twitter_base64_token = null;
+    private $twitter_screen_name = null;
+    private $facebook_page_id = null;
 
-    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService, $logger, $twitter_base64_token)
+    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService, $logger, $twitter_base64_token, $twitter_screen_name, $facebook_page_id)
     {
         $this->em = $em;
         $this->FB_API_ID = $FB_API_ID;
@@ -22,6 +25,8 @@ class ApiService
         $this->WsService = $WsService;
         $this->logger = $logger;
         $this->twitter_base64_token = $twitter_base64_token;
+        $this->twitter_screen_name = $twitter_screen_name;
+        $this->facebook_page_id = $facebook_page_id;
         $this->FB_API_GRAPH_URL = 'https://graph.facebook.com';
     }
 
@@ -157,7 +162,7 @@ class ApiService
         return $picture;
     }
 
-    public function getFacebookPageToken($FB_PAGE_ID)
+    public function getFacebookPageToken()
     {
         // Construction de l'URL à appeler pour récupérer une PAGE access_token
         // l'access token de l'URL est généré via https://smashballoon.com/custom-facebook-feed/docs/get-extended-facebook-user-access-token/ A priori il est permanent
@@ -174,19 +179,19 @@ class ApiService
         return $pageToken;
     }
 
-    public function getFacebookInsightsPerDay($FB_PAGE_ID, $pageToken)
+    public function getFacebookInsightsPerDay($pageToken)
     {
         // LAST 28 days STATS
-        $url = $this->FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/insights?access_token=' . $pageToken . '&metric=page_stories_by_story_type&period=day';
+        $url = $this->FB_API_GRAPH_URL.'/'. $this->facebook_page_id .'/insights?access_token=' . $pageToken . '&metric=page_stories_by_story_type&period=day';
         $response = \Httpful\Request::get($url)->send();
 
         return $response->body->data;
     }
 
-    public function getFacebookInsightsLifetime($FB_PAGE_ID, $pageToken)
+    public function getFacebookInsightsLifetime($pageToken)
     {
         // LIFETIME STATS
-        $url = $this->FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/insights?access_token=' . $pageToken . '&metric=page_fans,page_fans_city,page_fans_country,page_fans_gender_age&since=yesterday';
+        $url = $this->FB_API_GRAPH_URL.'/'. $this->facebook_page_id .'/insights?access_token=' . $pageToken . '&metric=page_fans,page_fans_city,page_fans_country,page_fans_gender_age&since=yesterday';
         $response = \Httpful\Request::get($url)->send();
 
         $results = array();
@@ -266,18 +271,17 @@ class ApiService
         return $results;
     }
 
-    public function getFacebookPostsInsights($FB_PAGE_ID, $pageToken)
+    public function getFacebookPostsInsights($pageToken)
     {
 
         // POSTS STATS
-        $url = $this->FB_API_GRAPH_URL.'/'.$FB_PAGE_ID.'/posts?access_token=' . $pageToken;
+        $url = $this->FB_API_GRAPH_URL.'/'. $this->facebook_page_id .'/posts?access_token=' . $pageToken;
         $response = \Httpful\Request::get($url)->send();
 
         $results = array();
         $tab = array();
         $tab['totalPosts'] = count($response->body->data);
         array_push($results, $tab);
-        // echo "\n nb de posts : " . count($response->body->data) . "\n";
 
         $post = array();
         foreach ($response->body->data as $d) {
@@ -286,33 +290,22 @@ class ApiService
 
             if(isset($response->body->message)){
                 $post['message'] = $response->body->message;
-                // echo "message : " . $response->body->message . "\n";
             }elseif(isset($response->body->story)){
                 $post['story'] = $response->body->story;
-                // echo "story : " . $response->body->story . "\n";
             };
             $post['nom'] = $response->body->name;
             $post['type'] = $response->body->type;
             $post['link'] = $response->body->permalink_url;
-            // echo "nom : " . $response->body->name . "\n";
-            // echo "type : " . $response->body->type . "\n";
-            // echo "link : " . $response->body->permalink_url . "\n";
-            // echo "nb shares : ";
             if(isset($response->body->shares))
             {
 
                 $post['shares'] = $response->body->shares->count;
-                // echo $response->body->shares->count;
             }else{
                 $post['shares'] = "0";
-                // echo "0";
             }
-            // echo "\n";
 
             $url = $this->FB_API_GRAPH_URL.'/'. $d->id .'/likes?fields=total_count&summary=true&access_token=' . $pageToken;
             $response = \Httpful\Request::get($url)->send();
-            // echo "Nb de likes : ";
-            // echo $response->body->summary->total_count . "\n";
             $post['likes'] = $response->body->summary->total_count;
 
             array_push($results, $post);
@@ -337,6 +330,17 @@ class ApiService
             ->send();
 
         return $response->body->access_token;
+    }
+
+    public function getTwitterAccountInfo($tokenTwitter)
+    {
+        $url = "https://api.twitter.com/1.1/users/show.json?screen_name=" . $this->twitter_screen_name . "&include_entities=false";
+
+        $response = \Httpful\Request::get($url)
+            ->addHeader('Authorization', 'Bearer ' . $tokenTwitter)
+            ->send();
+
+        return $response->body;
     }
 
 }

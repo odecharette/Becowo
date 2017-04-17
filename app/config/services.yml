@@ -78,7 +78,7 @@ services:
 
     app.api :
         class: Becowo\ApiBundle\Services\ApiService
-        arguments: ['@doctrine.orm.entity_manager', '%facebook_client_id%', '%facebook_client_secret%', '@app.workspace', '@logger', '%twitter_base64_token%'] 
+        arguments: ['@doctrine.orm.entity_manager', '%facebook_client_id%', '%facebook_client_secret%', '@app.workspace', '@logger', '%twitter_base64_token%', '%twitter_screen_name%', '%facebook_page_id%'] 
 
     app.email :
         class: Becowo\ApiBundle\Services\EmailService
