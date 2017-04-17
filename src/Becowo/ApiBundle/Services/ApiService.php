@@ -14,13 +14,14 @@ class ApiService
     private $WsService = null;
     private $logger = null;
 
-    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService, $logger)
+    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService, $logger, $twitter_base64_token)
     {
         $this->em = $em;
         $this->FB_API_ID = $FB_API_ID;
         $this->FB_API_SECRET = $FB_API_SECRET;
         $this->WsService = $WsService;
         $this->logger = $logger;
+        $this->twitter_base64_token = $twitter_base64_token;
         $this->FB_API_GRAPH_URL = 'https://graph.facebook.com';
     }
 
@@ -192,34 +193,29 @@ class ApiService
         foreach ($response->body->data as $d) {
             switch ($d->name) {
                 case 'page_fans':
-                    // echo $d->title . " : " . $d->values[0]->value ;
                     $tab = array();
                     $tab[$d->title] = $d->values[0]->value;
                     array_push($results, $tab);
                     break;
                 case 'page_fans_gender_age':
-                    // echo $d->title . " : ";
                     $items = get_object_vars($d->values[0]->value);
                     $tab = array();
                     $tab[$d->title] = $items;
                     array_push($results, $tab);
-                    // foreach ($items as $age => $nb) {
-                    //     echo $age . " : " . $nb . "\n";
-                    // }
                     break;
-                // case 'page_fans_country':
-                //     $items = get_object_vars($d->values[0]->value);
-                //     $statCountries = array();
-                //     foreach ($items as $country => $nb) {
-                //         // Get Country name
-                //         $url = $this->FB_API_GRAPH_URL.'/search?type=adgeolocation&location_types=country&match_country_code=true&q=' . $country . '&access_token=' . $pageToken;
-                //         $response = \Httpful\Request::get($url)->send();
-                //         $statCountries[$response->body->data[0]->name] = $nb;
-                //     }
-                //     $tab = array();
-                //     $tab[$d->title] = $statCountries;
-                //     array_push($results, $tab);
-                //     break;
+                case 'page_fans_country':
+                    $items = get_object_vars($d->values[0]->value);
+                    $statCountries = array();
+                    foreach ($items as $country => $nb) {
+                        // Get Country name
+                        $url = $this->FB_API_GRAPH_URL.'/search?type=adgeolocation&location_types=country&match_country_code=true&q=' . $country . '&access_token=' . $pageToken;
+                        $response = \Httpful\Request::get($url)->send();
+                        $statCountries[$response->body->data[0]->name] = $nb;
+                    }
+                    $tab = array();
+                    $tab[$d->title] = $statCountries;
+                    array_push($results, $tab);
+                    break;
                 case 'page_fans_city':
                     $items = get_object_vars($d->values[0]->value);
                     $statCities = array();
@@ -324,6 +320,23 @@ class ApiService
 
         return $results;
 
+    }
+
+    public function getTwitterToken()
+    {
+        // https://dev.twitter.com/oauth/application-only
+
+        $url = "https://api.twitter.com/oauth2/token";
+
+        $response = \Httpful\Request::post($url)
+            ->body('grant_type=client_credentials')
+            ->addHeaders(array(
+                'Authorization' => 'Basic ' . $this->twitter_base64_token,
+                'Content-Type' => 'application/x-www-form-urlencoded;charset=UTF-8',
+            ))
+            ->send();
+
+        return $response->body->access_token;
     }
 
 }
