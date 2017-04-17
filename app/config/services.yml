@@ -24,6 +24,10 @@ services:
         class: Becowo\CoreBundle\Services\WorkspaceService
         arguments: ['@doctrine.orm.entity_manager']
 
+    app.stat:
+        class: Becowo\CoreBundle\Services\StatService
+        arguments: ['@doctrine.orm.entity_manager']
+
     app.comment:
         class: Becowo\CoreBundle\Services\CommentService
         arguments: ['@doctrine.orm.entity_manager']

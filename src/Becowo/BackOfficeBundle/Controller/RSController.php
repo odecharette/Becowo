@@ -34,9 +34,4 @@ class RSController extends Controller
     return $this->render('BackOffice/RS/facebook.html.twig', array('FBinsightsPerDay' => $FBinsightsPerDay, 'FBPostInsights' => $FBPostInsights,'FBinsightsLifetime' => $FBinsightsLifetime));
   }
 
-  public function twitterAction(Request $request)
-  {
-
-    return $this->render('BackOffice/RS/twitter.html.twig');
-  }
 }

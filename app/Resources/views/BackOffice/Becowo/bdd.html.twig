@@ -1,0 +1,110 @@
+{% extends 'BackOffice/bo-layout.html.twig' %}
+
+{% block page %}
+
+
+
+<div class="container-fluid">
+
+	<!-- Page Heading -->
+	<div class="row">
+	    <div class="col-lg-12">
+	        <h1 class="page-header">
+	            La base de données
+	        </h1>
+	    </div>
+	</div>
+
+	<div class="row">
+	    <div class="col-lg-12">
+	    	<h2>Les espaces de travail</h2>
+	    	<br>
+	    	<div class="row">
+			    <div class="col-lg-3 col-md-6">
+			        <div class="panel panel-primary">
+			            <div class="panel-heading">
+			                <div class="row">
+			                    <div class="col-xs-3">
+			                        <i class="fa fa-area-chart fa-5x"></i>
+			                    </div>
+			                    <div class="col-xs-9 text-right">
+			                        <div class="huge">{{activeWs}}</div>
+			                        <div>Nb espace</div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="col-lg-9">
+			    	<strong>Répartition par offre</strong> : <br>
+			    	{% for offer in activeWsByOffer %}
+			    		{{offer.name}} : {{offer.nb}} <br>
+			    	{% endfor %}
+			    </div>
+			</div>
+	    	<br>
+	    	<h2>La communauté</h2>
+	    	<br>
+	    	<div class="row">
+			    <div class="col-lg-3 col-md-6">
+			        <div class="panel panel-yellow">
+			            <div class="panel-heading">
+			                <div class="row">
+			                    <div class="col-xs-3">
+			                        <i class="fa fa-area-chart fa-5x"></i>
+			                    </div>
+			                    <div class="col-xs-9 text-right">
+			                        <div class="huge">{{activeMembers}}</div>
+			                        <div>Nb coworkers</div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="col-lg-9">
+			    	<strong>Répartition par Connecteur</strong> : <br>
+			    	{% for connector in activeMembersBySignedUpWith %}
+			    		{% if connector.signedUpWith == null %}
+			    			Email : {{connector.nb}} <br>
+			    		{% else %}
+			    			{{connector.signedUpWith}} : {{connector.nb}} <br>
+			    		{% endif %}
+			    	{% endfor %}
+			    </div>
+			</div>
+	    	<br>
+	    	<h2>Les évènements</h2>
+	    	<br>
+	    	<div class="row">
+			    <div class="col-lg-3 col-md-6">
+			        <div class="panel panel-green">
+			            <div class="panel-heading">
+			                <div class="row">
+			                    <div class="col-xs-3">
+			                        <i class="fa fa-area-chart fa-5x"></i>
+			                    </div>
+			                    <div class="col-xs-9 text-right">
+			                        <div class="huge">{{events}}</div>
+			                        <div>Nb évènements</div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="col-lg-9">
+			    	<strong>Répartition par Espace</strong> : <br>
+			    	{% for event in eventsByWorkspace %}
+		    			{{event.name}} : {{event.nb}} <br>
+			    	{% endfor %}
+			    </div>
+			</div>
+	    </div>
+	</div>
+
+</div>
+
+{% endblock page %}
+
+{% block javascripts %}
+{% endblock %}
+

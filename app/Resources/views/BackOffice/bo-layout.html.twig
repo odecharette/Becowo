@@ -58,8 +58,9 @@
                         {% if app.request.attributes.get('_route') == 'becowo_back_office_RS_facebook' %}<li class="active">{% else %}<li>{% endif %}
                             <a href="{{ path('becowo_back_office_RS_facebook') }}"> Facebook</a>
                         </li>
-                        {% if app.request.attributes.get('_route') == 'becowo_back_office_RS_twitter' %}<li class="active">{% else %}<li>{% endif %}
-                        <a href="{{ path('becowo_back_office_RS_twitter') }}"> Twitter</a>
+                    <h3>Becowo</h3>
+                        {% if app.request.attributes.get('_route') == 'becowo_back_office_becowo_bdd' %}<li class="active">{% else %}<li>{% endif %}
+                            <a href="{{ path('becowo_back_office_becowo_bdd') }}"> Le site (BDD)</a>
                         </li>
                 </ul>
             </div>

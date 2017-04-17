@@ -13,3 +13,7 @@ becowo_back_office_RS_facebook:
 becowo_back_office_RS_twitter:
     path:     /RS/twitter
     defaults: { _controller: BecowoBackOfficeBundle:RS:twitter }
+
+becowo_back_office_becowo_bdd:
+    path:     /becowo/bdd
+    defaults: { _controller: BecowoBackOfficeBundle:Becowo:bdd }
