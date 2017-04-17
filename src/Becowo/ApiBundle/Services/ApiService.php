@@ -16,8 +16,9 @@ class ApiService
     private $twitter_base64_token = null;
     private $twitter_screen_name = null;
     private $facebook_page_id = null;
+    private $instagram_token = null;
 
-    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService, $logger, $twitter_base64_token, $twitter_screen_name, $facebook_page_id)
+    public function __construct(EntityManager $em, $FB_API_ID, $FB_API_SECRET, $WsService, $logger, $twitter_base64_token, $twitter_screen_name, $facebook_page_id, $instagram_token)
     {
         $this->em = $em;
         $this->FB_API_ID = $FB_API_ID;
@@ -27,6 +28,7 @@ class ApiService
         $this->twitter_base64_token = $twitter_base64_token;
         $this->twitter_screen_name = $twitter_screen_name;
         $this->facebook_page_id = $facebook_page_id;
+        $this->instagram_token = $instagram_token;
         $this->FB_API_GRAPH_URL = 'https://graph.facebook.com';
     }
 
@@ -341,6 +343,19 @@ class ApiService
             ->send();
 
         return $response->body;
+    }
+
+    public function getInstagramAccountInfo()
+    {
+        // https://www.instagram.com/developer/endpoints/users/#get_users_self
+        // Generate access token : http://jelled.com/instagram/access-token
+
+        $url = "https://api.instagram.com/v1/users/self/?access_token=" . $this->instagram_token;
+
+        $response = \Httpful\Request::get($url)->send();
+        dump($response);
+
+        return $response->body->data;
     }
 
 }

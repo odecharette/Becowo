@@ -17,7 +17,9 @@ class RSController extends Controller
     $tokenTwitter = $service->getTwitterToken();
     $twitterAccountInfo = $service->getTwitterAccountInfo($tokenTwitter);
 
-    return $this->render('BackOffice/RS/overview.html.twig', array('FBinsightsLifetime' => $FBinsightsLifetime, 'twitterAccountInfo' => $twitterAccountInfo));
+    $instagramAccountInfo = $service->getInstagramAccountInfo();
+
+    return $this->render('BackOffice/RS/overview.html.twig', array('FBinsightsLifetime' => $FBinsightsLifetime, 'twitterAccountInfo' => $twitterAccountInfo, 'instagramAccountInfo' => $instagramAccountInfo));
   }
 
   public function facebookAction(Request $request)
