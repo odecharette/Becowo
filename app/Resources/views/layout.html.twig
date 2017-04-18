@@ -91,7 +91,7 @@
 		          </a>
 		          <ul class="dropdown-menu log-menu-content">
 		            <li>
-		            	<a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user"></i> Modifier mon profil</a>
+		            	<a href="{{ path('fos_user_profile_edit') }}" rel="nofollow"><i class="fa fa-user"></i> Modifier mon profil</a>
 		            </li>
 		            {% if app.user.signedUpWith == null %}
 				    <li>
@@ -99,19 +99,19 @@
 				    </li>
 					{% endif %}
 				    <li>
-				    	<a href="{{ path('becowo_core_booking_myreservations') }}"><i class="fa fa-bookmark"></i> Mes réservations</a>
+				    	<a href="{{ path('becowo_core_booking_myreservations') }}" rel="nofollow"><i class="fa fa-bookmark"></i> Mes réservations</a>
 				    </li>
 				    {% if is_granted('ROLE_MANAGER') %}
 						<li>
-							<a href="{{ path('becowo_manager_profile_identite', {id: app.user.workspaces[0].id}) }}" target="_blank"><i class="fa fa-wrench"></i> Espace Manager</a>
+							<a href="{{ path('becowo_manager_profile_identite', {id: app.user.workspaces[0].id}) }}" target="_blank" rel="nofollow"><i class="fa fa-wrench"></i> Espace Manager</a>
 						</li>
 					{% endif %}
 					{% if is_granted('ROLE_ADMIN') %}
 						<li>
-							<a href="{{ path('easyadmin') }}" target="_blank"><i class="fa fa-lock"></i> Espace Admin</a>
+							<a href="{{ path('easyadmin') }}" target="_blank" rel="nofollow"><i class="fa fa-lock"></i> Espace Admin</a>
 						</li>
 						<li>
-							<a href="{{ path('becowo_back_office_homepage') }}" target="_blank"><i class="fa fa-lock"></i> Back Office</a>
+							<a href="{{ path('becowo_back_office_homepage') }}" target="_blank" rel="nofollow"><i class="fa fa-lock"></i> Back Office</a>
 						</li>
 						{# <li>
 							<a href="{{ path('becowo_manager_mep') }}" target="_blank"><i class="fa fa-lock"></i> MEP</a>
@@ -304,11 +304,11 @@
 			<br><br>
 			<ul>
 			    <li><a href="{{ path('becowo_core_quisommesnous') }}">Qui sommes nous ?</a></li>
-			    <li><a href="{{ path('becowo_core_contact') }}">Contactez-nous</a></li>
-			    <li><a href="{{ path('becowo_core_faq') }}">FAQ</a></li>
-			    <li><a href="{{ path('becowo_core_cgu') }}">CGU</a></li>
-				<li><a href="{{ path('becowo_core_mentions') }}">Mentions légales</a></li>
-			    <li><a href="{{ path('becowo_core_cookies') }}">Gestion des cookies</a></li>
+			    <li><a href="{{ path('becowo_core_contact') }}" rel="nofollow">Contactez-nous</a></li>
+			    <li><a href="{{ path('becowo_core_faq') }}" rel="nofollow">FAQ</a></li>
+			    <li><a href="{{ path('becowo_core_cgu') }}" rel="nofollow">CGU</a></li>
+				<li><a href="{{ path('becowo_core_mentions') }}" rel="nofollow">Mentions légales</a></li>
+			    <li><a href="{{ path('becowo_core_cookies') }}" rel="nofollow">Gestion des cookies</a></li>
 			</ul>
 		</div>
 		<div id="footer_menu" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -324,7 +324,7 @@
 			    <li><a href="http://www.blog.becowo.com/" target="_blank">Le blog</a></li>
 			    <li><a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a></li>
 			    <li><a href="http://m.me/becowo" target="_blank">Tchater via messenger</a></li>
-			    <li><a href="{{ path('becowo_core_paiement') }}">Paiement en ligne by <img src="{{ asset('images/icons/creditAgricole/ca.png') }}" alt="Crédit Agricole"></a></li>
+			    <li><a href="{{ path('becowo_core_paiement') }}" rel="nofollow">Paiement en ligne by <img src="{{ asset('images/icons/creditAgricole/ca.png') }}" alt="Crédit Agricole"></a></li>
 			</ul>
 		</div>
 		<div id="footer_menu" class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
@@ -333,10 +333,10 @@
 			<br><br>
 			<ul>
                	<li>
-               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lille&is_v=1#filtersBar">LILLE</a> <br>
-               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Roubaix&is_v=1#filtersBar">ROUBAIX</a> <br>
-               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Paris&is_v=1#filtersBar">PARIS</a> <br>
-               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lyon&is_v=1#filtersBar">LYON</a> <br>               	
+               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lille&is_v=1#filtersBar" rel="nofollow">LILLE</a> <br>
+               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Roubaix&is_v=1#filtersBar" rel="nofollow">ROUBAIX</a> <br>
+               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Paris&is_v=1#filtersBar" rel="nofollow">PARIS</a> <br>
+               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lyon&is_v=1#filtersBar" rel="nofollow">LYON</a> <br>               	
                	</li>
 			</ul>
 		</div>
