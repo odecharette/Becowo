@@ -1,1 +1,8 @@
-<iframe id="video" width="100%" height="320" src="https://www.youtube.com/embed/zfShS1sG2rc" async="true" frameborder="0" allowfullscreen origin="{{site_url}}"></iframe>
+{% if 'Safari' in app.request.server.get("HTTP_USER_AGENT") and 'Chrome' not in app.request.server.get("HTTP_USER_AGENT") %}
+	<object>
+	    <param name="movie" value="https://youtu.be/zfShS1sG2rc"></param>
+	    <embed src="https://youtu.be/zfShS1sG2rc" type="application/x-shockwave-flash" style="width:100%;height:320px"></embed>
+	</object>
+{% else %}
+	<iframe id="video" width="100%" height="320" src="https://www.youtube.com/embed/zfShS1sG2rc" async="true" frameborder="0" allowfullscreen origin="{{site_url}}"></iframe>
+{% endif %}
