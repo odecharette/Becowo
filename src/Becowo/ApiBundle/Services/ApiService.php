@@ -353,7 +353,6 @@ class ApiService
         $url = "https://api.instagram.com/v1/users/self/?access_token=" . $this->instagram_token;
 
         $response = \Httpful\Request::get($url)->send();
-        dump($response);
 
         return $response->body->data;
     }
