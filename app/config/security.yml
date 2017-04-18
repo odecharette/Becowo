@@ -58,6 +58,7 @@ security:
     - { path: ^/booking, roles: ROLE_USER }
     - { path: ^/bank, roles: ROLE_USER }
     - { path: ^/debug, roles: ROLE_ADMIN }
+    - { path: ^/_console, roles: ROLE_ADMIN }
     # - { path: ^/login, roles: ROLE_ADMIN }
     # - { path: ^/register, roles: ROLE_ADMIN}
     #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
