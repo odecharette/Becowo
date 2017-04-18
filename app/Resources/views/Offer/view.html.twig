@@ -1,7 +1,13 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}
-  Nos offres
+{% block title %}  Nos offres {% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Découvrez les offres proposées par Becowo pour référencer votre espace de coworking et vos salles de réunions">
+    <meta property="og:title" content="Becowo - Nos offres" />
+    <meta property="og:url" content="{{ app.request.uri }}" />
+    <meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />
+    <meta property="og:description" content="Découvrez les offres proposées par Becowo pour référencer votre espace de coworking et vos salles de réunions" />
 {% endblock %}
 
 {% block body %}

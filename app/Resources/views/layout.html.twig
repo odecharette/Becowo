@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:og="http://ogp.me/ns#">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>{% block title %}Becowo{% endblock %}</title>
-	<meta name="description" content="Réservez un espace de travail et intégrez une communauté de coworkers">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="coworking, coworker, bureau, salle, reunion, conference, tiers-lieux">
 	<meta name="language" content="fr">
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0"> {# Pour Google Map #}
 
-	{% block metaOG %}
+	{% if app.environment != 'prod' %}
+		<meta name="robots" content="noindex,nofollow" />
+	{% endif %}
+
+	{% block meta %}
+		<meta name="description" content="Réservez un espace de travail et intégrez une communauté de coworkers">
 		<meta property="og:title" content="Becowo" />
 		<meta property="og:url" content="https://www.becowo.com" />
 		<meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />

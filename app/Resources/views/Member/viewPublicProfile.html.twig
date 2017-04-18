@@ -1,12 +1,26 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}
-  Profil - {{member.firstname}} {{member.name}}
+{% block title %}  Profil - {{member.firstname}} {{member.name}} {% endblock %}
+
+{% block meta %}
+	<meta name="description" content="Découvrez le profil Becowo de {{member.firstname}} {{member.name}}">
+	<meta property="og:title" content="Becowo - Profil de {{member.firstname}} {{member.name}}" />
+	<meta property="og:url" content="{{ app.request.uri }}" />
+
+	{% if member.urlProfilePicture is defined and member.urlProfilePicture != null %}
+		{% if 'http' in member.urlProfilePicture %}
+			<meta property="og:image" content="{{member.urlProfilePicture}}" />
+	    {% else %}
+			<meta property="og:image" content="https://becowo.com/images/ProfilePictures/{{member.urlProfilePicture}}" />
+		{% endif %}
+    {% else %}
+		<meta property="og:image" content="https://becowo.com/images/ProfilePictures/avatar.png" />
+	{% endif %}
+	
+	<meta property="og:description" content="Découvrez le profil Becowo de {{member.firstname}} {{member.name}}" />
 {% endblock %}
 
 {% block body %}
-
-
 
 <div class="container-fluid" id="PublicProfile">
 	<div class="row name">

@@ -1,7 +1,13 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}
-  Comment ça marche - espaces
+{% block title %}  Comment ça marche - espaces {% endblock %}
+
+{% block meta %}
+	<meta name="description" content="Commet ça marche pour les espaces de coworking">
+	<meta property="og:title" content="Becowo - Comment ça marche pour les espaces de coworking" />
+	<meta property="og:url" content="{{ app.request.uri }}" />
+	<meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />
+	<meta property="og:description" content="Commet ça marche pour les espaces de coworking" />
 {% endblock %}
 
 {% block body %}

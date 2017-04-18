@@ -1,7 +1,13 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}
-  Comment ça marche - coworkers
+{% block title %}  Comment ça marche - coworkers {% endblock %}
+
+{% block meta %}
+	<meta name="description" content="Commet ça marche pour les coworkers">
+	<meta property="og:title" content="Becowo - Comment ça marche pour les coworkers" />
+	<meta property="og:url" content="{{ app.request.uri }}" />
+	<meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />
+	<meta property="og:description" content="Commet ça marche pour les coworkers" />
 {% endblock %}
 
 {% block body %}

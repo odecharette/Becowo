@@ -1,7 +1,13 @@
 {% extends "Community/layout.html.twig" %}
 
-{% block title %}
-  Communauté - coworkers
+{% block title %}  Communauté - coworkers {% endblock %}
+
+{% block meta %}
+	<meta name="description" content="Rencontrez les membres de la communauté Becowo : freelance, indépendant, auto entrepreneur...">
+	<meta property="og:title" content="Becowo - La communauté" />
+	<meta property="og:url" content="{{ app.request.uri }}" />
+	<meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />
+	<meta property="og:description" content="Rencontrez les membres de la communauté Becowo : freelance, indépendant, auto entrepreneur..." />
 {% endblock %}
 
 {% block content %}
