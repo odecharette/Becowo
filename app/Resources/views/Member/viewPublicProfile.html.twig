@@ -31,7 +31,7 @@
 			<a href="{{ path('becowo_core_community') }}">La communauté</a> / {{member.firstname}} {{member.name}}
 		{% endif %}
 		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user.id == member.id %}
-			<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i> <a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></span>
+			<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i> <a href="{{ path('fos_user_profile_edit') }}" rel="nofollow">Modifier mon profil</a></span>
 		{% endif %}
 	</div>
 	<div class="row">
@@ -73,9 +73,9 @@
 				<i class="fa fa-home" aria-hidden="true"></i> {{member.city}} <br>
 				<i class="fa fa-external-link" aria-hidden="true"></i> 
 					{% if member.website starts with 'http' %}
-						<a href="{{member.website}}" target="_blank">{{member.website}}</a>	
+						<a href="{{member.website}}" target="_blank" rel="nofollow">{{member.website}}</a>	
 					{% else %}
-						<a href="http://{{member.website}}" target="_blank">{{member.website}}</a>	
+						<a href="http://{{member.website}}" target="_blank" rel="nofollow">{{member.website}}</a>	
 					{% endif %}
 					<br>
 				{% if member.emailIsPublic %}
@@ -143,25 +143,25 @@
 					<h2>Suivez-moi !</h2>
 				{% endif %}
 				{% if member.facebookLink != '' %} 
-					<a href="{{member.facebookLink}}" target="_blank">
+					<a href="{{member.facebookLink}}" target="_blank" rel="nofollow">
 						<img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook">
 					</a>
 				{% endif %}
 
 				{% if member.linkedinLink != '' %} 
-					<a href="{{member.linkedinLink}}" target="_blank">
+					<a href="{{member.linkedinLink}}" target="_blank" rel="nofollow">
 						<img src="{{ asset('images/RS/linkedin.png') }}" alt="LinkedIn">
 					</a>
 				{% endif %}
 
 				{% if member.twitterLink != '' %} 
-					<a href="{{member.twitterLink}}" target="_blank">
+					<a href="{{member.twitterLink}}" target="_blank" rel="nofollow">
 						<img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter">
 					</a>
 				{% endif %}
 
 				{% if member.instagramLink != '' %} 
-					<a href="{{member.instagramLink}}" target="_blank">
+					<a href="{{member.instagramLink}}" target="_blank" rel="nofollow">
 						<img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram">
 					</a>
 				{% endif %}
