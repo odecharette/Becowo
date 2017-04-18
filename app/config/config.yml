@@ -11,6 +11,7 @@ parameters:
     locale: fr
     tva: 20
     blogRSS: http://www.blog.becowo.com/feed/
+    site_url: '%site_url%'
     # config pour le paiement via e-transactions du Crédit Agricole
     # TO DO URL de prod : https://tpeweb.e-transactions.fr/cgi/MYchoix_pagepaiement.cgi
     # TO DO URL mobile : https://tpeweb.e-transactions.fr/cgi/ChoixPaiementMobile.cgi

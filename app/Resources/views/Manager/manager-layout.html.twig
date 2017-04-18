@@ -19,7 +19,7 @@
     
 
 {# Change CSS file for IE compatibility  #}
-{% if 'MSIE' in app.request.server.get("HTTP_USER_AGENT") or 'Trident/' in app.request.server.get("HTTP_USER_AGENT") or 'Edge/' in app.request.server.get("HTTP_USER_AGENT") %}
+{% if 'MSIE' in app.request.server.get("HTTP_USER_AGENT") or 'Trident/' in app.request.server.get("HTTP_USER_AGENT") or 'Edge/' in app.request.server.get("HTTP_USER_AGENT") or ('Safari' in app.request.server.get("HTTP_USER_AGENT") and 'Chrome' not in app.request.server.get("HTTP_USER_AGENT")) %}
     <link href="{{ asset('css/manager/profileForIE.css') }}" rel="stylesheet">
     <link href="{{ asset('css/manager/sb-adminForIE.css') }}" rel="stylesheet">
 {% else %}

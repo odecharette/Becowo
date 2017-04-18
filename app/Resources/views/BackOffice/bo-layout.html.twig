@@ -10,22 +10,11 @@
 
     <title>Becowo - BackOffice</title>
 
-    <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- Fonts -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    {# https://datatables.net/  Sort & filter HTML tables #}
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-    
-
-{# Change CSS file for IE compatibility  #}
-{% if 'MSIE' in app.request.server.get("HTTP_USER_AGENT") or 'Trident/' in app.request.server.get("HTTP_USER_AGENT") or 'Edge/' in app.request.server.get("HTTP_USER_AGENT") %}
-    <link href="{{ asset('css/manager/profileForIE.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/manager/sb-adminForIE.css') }}" rel="stylesheet">
-{% else %}
     <link href="{{ asset('css/manager/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/manager/sb-admin.css') }}" rel="stylesheet">
-{% endif %}
 
     {% block css %}
     {% endblock css %}
