@@ -1,2 +1,4 @@
-
+becowo_api_google_calendar:
+    path: /googlecalendar
+    defaults: { _controller: BecowoApiBundle:GoogleCalendar:view }
 

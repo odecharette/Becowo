@@ -123,3 +123,5 @@ Pour voir ou est le php.ini : ds la toolbar, sur la version à droite, view php 
 local WEB : C:\wamp64\bin\apache\apache2.4.17\bin\php.ini
 local PHP 5 : C:\wamp64\bin\php\php5.6.16
 local PHP 7 : C:\wamp64\bin\php\php7.0.0
+
+

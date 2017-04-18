@@ -102,3 +102,7 @@ services:
         class: Becowo\ApiBundle\Controller\EventsController
         arguments: ['@doctrine.orm.entity_manager', '@app.api'] 
 
+    app.googleCalendar :
+        class: Becowo\ApiBundle\Services\GoogleCalendarService
+        arguments: ['%googleCalendarAPI%'] 
+

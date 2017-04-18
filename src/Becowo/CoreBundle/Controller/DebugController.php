@@ -5,9 +5,6 @@ namespace Becowo\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Httpful\Mime;
-use \Firebase\JWT\JWT;
-use Jose\Factory\JWKFactory;
-use Jose\Factory\JWSFactory;
 
 class DebugController extends Controller
 {
@@ -50,7 +47,7 @@ class DebugController extends Controller
         "iat" => $now
     )));
     
-    // L'énome clé vient du fichier généré par google lors de la création d'un compte de service dans la console google : https://console.developers.google.com/apis/credentials?project=protean-keyword-132623
+    // L'énorme clé vient du fichier généré par google lors de la création d'un compte de service dans la console google : https://console.developers.google.com/apis/credentials?project=protean-keyword-132623
     openssl_sign(
         $jwtHeader.".".$jwtClaim,
         $jwtSig,
