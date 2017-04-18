@@ -33,79 +33,15 @@ class DebugController extends Controller
 
     // 1. Création d'un JWT valable 1 heure : 
     // https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatingjwt
-    // Use bundle firebase/php-jwt
-    // $key = "BecowoAnnapurna2017Google";
-    // $now = time();
-    // $token = array(
-    //     "iss" => "becowo@protean-keyword-132623.iam.gserviceaccount.com",
-    //     "scope" => "https://www.googleapis.com/auth/devstorage.readonly",
-    //     "aud" => "https://www.googleapis.com/oauth2/v4/token",
-    //     "iat" => $now,
-    //     "exp" => $now + 3600 // JWT valable 1 heure
-    // );
-
-    // $JWT = JWT::encode($token, $key);
-    // $decoded = JWT::decode($JWT, $key, array('HS256'));
-    // $contentToDump = $JWT;
-    // dump($decoded);
-
-    // 1BIS. Création d'un JWT valable 1 heure : 
-    // https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatingjwt
-    // Use bundle Spomky-Labs/jose
-    // https://github.com/Spomky-Labs/jose/blob/master/doc/operation/Sign.md
-
-//     $jws = JWSFactory::createJWS([
-//       'iss' => 'becowo@protean-keyword-132623.iam.gserviceaccount.com',
-//       'scope' => 'https://www.googleapis.com/auth/devstorage.readonly',
-//       'aud' => 'https://www.googleapis.com/oauth2/v4/token',
-//       'exp' => time()+3600,
-//       'iat' => time()
-//     ]);
-// dump($jws->toJSON());
-    // 2. Request access token with generated JWT : 
-    // https://developers.google.com/identity/protocols/OAuth2ServiceAccount#makingrequest
-
-
-    // 1.TER https://github.com/Spomky-Labs/jose/blob/master/doc/operation/Sign.md
-/*    $key = JWKFactory::createFromKeyFile(
-    '/Path/To/My/RSA/private.encrypted.key',
-    'Password',
-    [
-        'kid' => 'My Private RSA key',
-        'alg' => 'RS256',
-        'use' => 'sig',
-    ]
-    );
-
-    // We want to sign the following claims
-    $claims = [
-        'nbf'     => time(),        // Not before
-        'iat'     => time(),        // Issued at
-        'exp'     => time() + 3600, // Expires at
-        'iss'     => 'Me',          // Issuer
-        'aud'     => 'You',         // Audience
-        'sub'     => 'My friend',   // Subject
-        'is_root' => true           // Custom claim
-    ];
-
-    $jws = JWSFactory::createJWSToCompactJSON(
-        $claims,                      // The payload or claims to sign
-        $key,                         // The key used to sign
-        [                             // Protected headers. Muse contains at least the algorithm
-            'crit' => ['exp', 'aud'],
-            'alg'  => 'RS256',
-        ]
-    );
-*/
-
-    //////SOlution sans bundle
-    //{Base64url encoded JSON header}
+    // solution sans bundle
+    
     $jwtHeader = $this->base64url_encode(json_encode(array(
         "alg" => "RS256",
         "typ" => "JWT"
     )));
-    //{Base64url encoded JSON claim set}
+    
     $now = time();
+    // "iss" vient du fichier généré par google lors de la création d'un compte de service dans la console google : https://console.developers.google.com/apis/credentials?project=protean-keyword-132623
     $jwtClaim = $this->base64url_encode(json_encode(array(
         "iss" => "becowo@protean-keyword-132623.iam.gserviceaccount.com",
         "scope" => "https://www.googleapis.com/auth/calendar",
@@ -113,7 +49,8 @@ class DebugController extends Controller
         "exp" => $now + 3600,
         "iat" => $now
     )));
-    //The base string for the signature: {Base64url encoded JSON header}.{Base64url encoded JSON claim set}
+    
+    // L'énome clé vient du fichier généré par google lors de la création d'un compte de service dans la console google : https://console.developers.google.com/apis/credentials?project=protean-keyword-132623
     openssl_sign(
         $jwtHeader.".".$jwtClaim,
         $jwtSig,
@@ -124,12 +61,9 @@ class DebugController extends Controller
 
     //{Base64url encoded JSON header}.{Base64url encoded JSON claim set}.{Base64url encoded signature}
     $jwtAssertion = $jwtHeader.".".$jwtClaim.".".$jwtSign;
-dump($jwtHeader);
-dump($jwtClaim);
-dump($jwtSign);
-dump($jwtAssertion);
-/////////////////////////:
 
+
+    // 2. On POST le $JWT crée en étape 1 pour obtenir un token d'accès à l'API de google (valable 1 heure)
 
     $url = "https://www.googleapis.com/oauth2/v4/token";
 
@@ -140,7 +74,22 @@ dump($jwtAssertion);
         ))
         ->send();
 
-    $contentToDump = $response;
+    $access_token = $response->body->access_token;
+dump($access_token);
+
+
+    // 3. On accède au calendar via l'API
+
+    // IMPORTANT ; pour accéder à un calendrier user, il doit être partagé avec l'email becowo@protean-keyword-132623.iam.gserviceaccount.com
+    // cet email correspond au compte de service crée dans la console google de becowo@gmail.com
+    $userCalendarID = "calendartestbecowo%40gmail.com";
+    $url = "https://www.googleapis.com/calendar/v3/calendars/" . $userCalendarID . "/events";
+
+    $response = \Httpful\Request::get($url)
+        ->addHeader('Authorization', 'Bearer ' . $access_token)
+        ->send();
+
+dump($response);
 
     return $this->render('Debug/view.html.twig', array('content' => $content, 'contentToDump' => $contentToDump));
 
