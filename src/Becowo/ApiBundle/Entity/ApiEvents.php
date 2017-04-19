@@ -42,6 +42,13 @@ class ApiEvents
     private $facebookPageId;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="google_calendar_id", type="string")
+     */
+    private $googleCalendarId;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -122,5 +129,27 @@ class ApiEvents
         return $this;
     }
 
+    /**
+     * Gets the value of googleCalendarId.
+     *
+     * @return string
+     */
+    public function getGoogleCalendarId()
+    {
+        return $this->googleCalendarId;
+    }
 
+    /**
+     * Sets the value of googleCalendarId.
+     *
+     * @param string $googleCalendarId the google calendar id
+     *
+     * @return self
+     */
+    public function setGoogleCalendarId($googleCalendarId)
+    {
+        $this->googleCalendarId = $googleCalendarId;
+
+        return $this;
+    }
 }

@@ -26,7 +26,6 @@ class GoogleCalendarController extends Controller
     		$session->set('googleAccessToken', $access_token);
     	}
    
-
     	$googleCalendarService->createEventInCalendar($userCalendarID, $access_token);
     	$events = $googleCalendarService->getGoogleCalendarEvents($userCalendarID, $access_token);
 
