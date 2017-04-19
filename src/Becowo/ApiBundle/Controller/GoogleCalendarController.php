@@ -16,7 +16,10 @@ class GoogleCalendarController extends Controller
 
     	$jwt = $googleCalendarService->createJWT();
     	$access_token = $googleCalendarService->createAccessToken($jwt);
+    	
+    	$googleCalendarService->createEventInCalendar($userCalendarID, $access_token);
     	$events = $googleCalendarService->getGoogleCalendarEvents($userCalendarID, $access_token);
+
 
     	return $this->render('Api/googleCalendar.html.twig', array('events' => $events));
 	}

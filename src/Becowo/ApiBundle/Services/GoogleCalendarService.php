@@ -62,8 +62,7 @@ class GoogleCalendarService
                 'Content-Type' => 'application/x-www-form-urlencoded',
             ))
             ->send();
-
-        return $response->body->access_token;
+        return get_object_vars($response->body)['access_token'];
 
     }  
 
@@ -81,6 +80,41 @@ class GoogleCalendarService
 
         return $response->body->items;
     } 
+
+    public function createEventInCalendar($userCalendarID, $access_token)
+    {
+        $url = "https://www.googleapis.com/calendar/v3/calendars/" . $userCalendarID . "/events";
+
+        $eventObject = array(
+              'location' => '800 Howard St., San Francisco, CA 94103',
+              'description' => 'test création event from becowo',
+              'start' => array(
+                'dateTime' => '2017-04-19T15:00:00-07:00',
+                'timeZone' => 'Europe/Paris',
+              ),
+              'end' => array(
+                'dateTime' => '2017-04-19T17:00:00-07:00',
+                'timeZone' => 'Europe/Paris',
+              ),
+              'attendees' => array(
+                array('email' => 'odecharette@gmail.com'),
+                // array('email' => 'sbrin@example.com'),
+              ),
+              'reminders' => array(
+                'useDefault' => true,
+              )
+            );
+    dump(json_encode($eventObject));    
+        $response = \Httpful\Request::post($url)
+            ->body(json_encode($eventObject))
+            ->addHeaders(array(
+                'Authorization' => 'Bearer ' . $access_token,
+                'Content-Type' => 'application/json'))
+            ->send();
+
+        dump($response);
+        return null;
+    }
 
     public function base64url_encode($data) 
     { 
