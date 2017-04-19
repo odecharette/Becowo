@@ -66,6 +66,19 @@ class GoogleCalendarService
 
     }  
 
+    public function checkAccessTokenIsValid($access_token)
+    {
+        $url = "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=" . $access_token;
+
+        $response = \Httpful\Request::get($url)
+            ->send();
+
+        if(isset($response->body->expires_in))
+            return true;
+        else
+            return false;
+    }
+
     public function getGoogleCalendarEvents($userCalendarID, $access_token)
     {
         // 3. On accède au calendar via l'API
@@ -104,7 +117,7 @@ class GoogleCalendarService
                 'useDefault' => true,
               )
             );
-    dump(json_encode($eventObject));    
+
         $response = \Httpful\Request::post($url)
             ->body(json_encode($eventObject))
             ->addHeaders(array(
@@ -112,7 +125,6 @@ class GoogleCalendarService
                 'Content-Type' => 'application/json'))
             ->send();
 
-        dump($response);
         return null;
     }
 
