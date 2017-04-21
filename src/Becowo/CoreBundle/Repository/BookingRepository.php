@@ -125,4 +125,18 @@ class BookingRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findFirstFreeBookingValidatedByMemberByWs($member, $ws)
+	{
+		$qb = $this->createQueryBuilder('b');
+		$qb->select('b')
+			->where('b.member = :member')
+			->andWhere('b.workspace = :ws')
+			->andWhere('b.isFirstBookFree = true')
+			->andWhere('b.status = 4')
+			->setParameter('member', $member)
+			->setParameter('ws', $ws);
+
+		return $qb->getQuery()->getResult();
+	}
+
 }

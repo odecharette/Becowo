@@ -494,4 +494,10 @@ class WorkspaceService
         }
         return $finalDate;
     }
+
+    public function getFirstFreeBookingValidatedByMemberByWs($member, $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        return $repo->findFirstFreeBookingValidatedByMemberByWs($member, $ws);
+    }
 }

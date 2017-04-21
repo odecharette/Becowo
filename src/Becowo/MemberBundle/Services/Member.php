@@ -48,10 +48,11 @@ class Member
         return $repo->findMembersHasNotReceivedMailNewUser();
     }
 
-     public function getActiveMembersByFillRate($rate)
+    public function getActiveMembersByFillRate($rate)
     {
         $repo = $this->em->getRepository('BecowoMemberBundle:Member');
         return $repo->findActiveMembersByFillRate($rate);
     }
+
 
 }

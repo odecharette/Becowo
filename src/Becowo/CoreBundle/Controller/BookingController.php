@@ -120,75 +120,85 @@ class BookingController extends Controller
     $WsService = $this->get('app.workspace');
     $session = $request->getSession();
 
+    $currentUser = $this->getUser();
     $workspace = $WsService->getWorkspaceById($ws);
-    $times = $WsService->getTimesByWorkspace($workspace);
-    $closedDates = $WsService->getClosedDatesByWorkspace($workspace);
-    $averageVote = $WsService->getAverageVoteByWorkspace($workspace);
-    $em = $this->getDoctrine()->getManager();
 
-    if($session->get('bookingFree') !== null)
+    $existingFreeBooking = $WsService->getFirstFreeBookingValidatedByMemberByWs($currentUser, $workspace);
+
+    if(count($existingFreeBooking) > 0)
     {
-      // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
-      $booking = $WsService->getBookingByRef($session->get('bookingFree')->getBookingRef());
-
-    }else{
-      $booking = new Booking();
-      // Par défaut le booking est crée sur la prochaine date ouvert (selon samedi, dimanche, closeddates)
-      $booking->setStartDate($WsService->getNextOpenDateByWorkspace($workspace));
-      $booking->setIsFirstBookFree(true);
-    }
-    $bookingForm = $this->createForm(BookingType::class, $booking);
- 
-    if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
+      $request->getSession()->getFlashBag()->add('danger', 'Vous avez déjà bénéficié d\'une réservation gratuite chez ' . $workspace->getName());
+      return $this->redirectToRoute('becowo_core_workspace', array('region' => $workspace->getRegion(), 'ville' => $workspace->getCity(), 'name' => $workspace->getName()));
+    }else
     {
-      //SAVE le booking en cours en BDD
+      $times = $WsService->getTimesByWorkspace($workspace);
+      $closedDates = $WsService->getClosedDatesByWorkspace($workspace);
+      $averageVote = $WsService->getAverageVoteByWorkspace($workspace);
+      $em = $this->getDoctrine()->getManager();
 
-      $startDate = $request->get('booking-calendar');
-      $startDate = str_replace('/', '-', $startDate);
-
-      $currentUser = $this->getUser();
-
-      $status = $WsService->getStatusById(1); // "Id 1 : En cours"
-
-      $booking->setWorkspace($workspace);
-      $booking->setMember($currentUser);
-      $booking->setStatus($status);
-      $booking->setNbPeople(1);
-      $booking->setStartDate(New \DateTime($startDate));
-      $booking->setEndDate(New \DateTime($startDate));
-      $booking->setMessage($bookingForm->get('message')->getData());
-
-      $em->persist($booking);
-      $em->flush();
-      
-      $session->set('bookingFree', $booking);
-
-      //Puis on envoi un mail au manager pour valider la résa gratuite
-      $wsHasTeamMembers = $WsService->getWsHasTeamMemberForEmailBookingByWorkspace($workspace);
-
-      $emailManager = "";
-      if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
+      if($session->get('bookingFree') !== null)
       {
-        $emailManager = 'olivia.decharette@becowo.com';
+        // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
+        $booking = $WsService->getBookingByRef($session->get('bookingFree')->getBookingRef());
+
       }else{
-        foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
-          $emailManager = $emailManager . "," . $wsHasTeamMember->getTeamMember()->getEmail();
-        }
+        $booking = new Booking();
+        // Par défaut le booking est crée sur la prochaine date ouvert (selon samedi, dimanche, closeddates)
+        $booking->setStartDate($WsService->getNextOpenDateByWorkspace($workspace));
+        $booking->setIsFirstBookFree(true);
       }
+      $bookingForm = $this->createForm(BookingType::class, $booking);
+   
+      if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
+      {
+        //SAVE le booking en cours en BDD
 
-      $emailService = $this->get('app.email');
-      $emailTemplate = "New-dme-resa-gratuite";
-      $emailParams = array('user' => $currentUser->getFirstname() . ' ' . $currentUser->getName(),
-                     'booking' => $booking);
-      $emailTag = "Demande réservation gratuite";
-      $to = $emailManager;
-      $subject = "Becowo - Nouvelle demande de réservation gratuite - " . $booking->getBookingRef();
+        $startDate = $request->get('booking-calendar');
+        $startDate = str_replace('/', '-', $startDate);
 
-      $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
+        $status = $WsService->getStatusById(1); // "Id 1 : En cours"
+
+        $booking->setWorkspace($workspace);
+        $booking->setMember($currentUser);
+        $booking->setStatus($status);
+        $booking->setNbPeople(1);
+        $booking->setStartDate(New \DateTime($startDate));
+        $booking->setEndDate(New \DateTime($startDate));
+        $booking->setMessage($bookingForm->get('message')->getData());
+
+        $em->persist($booking);
+        $em->flush();
+        
+        $session->set('bookingFree', $booking);
+
+        //Puis on envoi un mail au manager pour valider la résa gratuite
+        $wsHasTeamMembers = $WsService->getWsHasTeamMemberForEmailBookingByWorkspace($workspace);
+
+        $emailManager = "";
+        if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
+        {
+          $emailManager = 'olivia.decharette@becowo.com';
+        }else{
+          foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
+            $emailManager = $emailManager . "," . $wsHasTeamMember->getTeamMember()->getEmail();
+          }
+        }
+
+        $emailService = $this->get('app.email');
+        $emailTemplate = "New-dme-resa-gratuite";
+        $emailParams = array('user' => $currentUser->getFirstname() . ' ' . $currentUser->getName(),
+                       'booking' => $booking);
+        $emailTag = "Demande réservation gratuite";
+        $to = $emailManager;
+        $subject = "Becowo - Nouvelle demande de réservation gratuite - " . $booking->getBookingRef();
+
+        $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
       return $this->redirectToRoute('becowo_core_booking_free_validated', array(
         'bookRef' => $booking->getBookingRef(), 
         'id' => $ws));
+    }
+
     }
 
 
@@ -202,7 +212,7 @@ class BookingController extends Controller
       $workspace = $WsService->getWorkspaceById($id);
       $booking = $WsService->getBookingByRef($bookRef);
       $session = $request->getSession();
-      
+
       $session->remove('_csrf/bookingFree');
       $session->remove('bookingFree');
 
