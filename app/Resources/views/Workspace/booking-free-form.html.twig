@@ -1,0 +1,77 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Réservation gratuite
+{% endblock %}
+
+{% block stylesheets %}
+	
+{% endblock %}
+
+{% block body %} 
+
+<div id="bookingGuy">
+	<img src="{{ asset('images/icons/booking-guy.png') }}" alt="Réservation">
+
+
+	<div class="container-fluid" id="bookingPage">
+		{{ form_start(bookingForm) }}
+	{# Le contenu de la form est construit dans booking.js #}
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-2 col-xs-12 col-xs-offset-0 panelForm">
+				
+				<center><h3>Choisir une date pour votre essai gratuit</h3></center>
+				<br>
+				
+				<div id="isOpenSaturday" style="display:none">{{times.isOpenSaturday}}</div>
+				<div id="isOpenSunday" style="display:none">{{times.isOpenSunday}}</div> 
+				<div id="closedDates" style="display:none">{% for d in closedDates %}{{- d.closedDate.date|date("d/m/Y") -}},{% endfor %}</div>
+				<br><br>
+
+				{# CALENDAR #}
+				<div id='calendarContainer'>
+					<strong class="hidden-xs">Date : </strong><input type="text" name="booking-calendar" id="booking-calendar" value="{{ booking.startDate|date("d/m/Y") }}" />
+				</div>
+				<br><br>
+				<span id="calendar-error"></span>
+
+				
+				{# msg #}
+				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
+				{{form_row(bookingForm.message)}}
+				<br>
+				{{form_row(bookingForm.confirmer)}}
+
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 panelRecap">
+				<div class="hidden-xs">
+					<center><strong>{{ws.name}}</strong> {% if averageVote > 0 %} {{averageVote|rating}} {% endif %}<br>
+					{{ws.street|capitalize}} <br> 
+					{{ws.postCode}} {{ws.city|capitalize}} </center><br>
+						<br>
+					<span id="votreResa">VOTRE RESERVATION N° {{ bookingForm.bookingRef.vars.value }}</span>
+					<br>
+					{% if ws.favoritePictureUrl != null %}
+					<center>
+						<img src="{{ asset('images/Workspaces/') }}{{ws.name}}/{{ws.favoritePictureUrl}}" alt="{{ws.name}}" width="200px" height="120px">
+					</center>
+					{% endif %}
+				</div>
+			</div>
+		</div>	
+
+		{{ form_rest(bookingForm) }}
+		{{ form_end(bookingForm) }}
+	</div>
+<br><br>
+</div>
+
+{% endblock body %}
+
+{% block javascripts %}    
+	<script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.daterangepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/booking-free.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/date-fr-FR.js') }}"></script>
+	
+{% endblock javascripts %} 

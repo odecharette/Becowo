@@ -2,8 +2,16 @@
 /				MEP 2.1						  /
 /*********************************************/
 
+Refaire pour CSS et JS
+	- Minimize
+	- Remettre dans les fichier xxx-CDN
+
 branch "connect-google-agenda"
 	d:s:u becowo_api_events (google_calendar_id)
 	renseigner les google_calendar_id
 
-
+branch "firs-booking-free"
+	d:s:u becowo_workspace (firstBookingFreeDesc)
+	d:s:u becowo_booking (isFirstBookingFree, duration can be null)
+	Renseigner firstBookingFree et firstBookingFreeDesc
+	Algolia : reindex Workspace

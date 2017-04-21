@@ -116,6 +116,16 @@ becowo_core_booking:
     defaults: { _controller: BecowoCoreBundle:Booking:book }
     methods: GET|POST
 
+becowo_core_booking_free:
+    path:     /booking-free/{ws}
+    defaults: { _controller: BecowoCoreBundle:Booking:bookFree }
+    methods: GET|POST
+
+becowo_core_booking_free_validated:
+    path:     /booking-free/validated/{id}/{bookRef}
+    defaults: { _controller: BecowoCoreBundle:Booking:bookFreeValidated }
+    methods: GET
+
 becowo_core_booking_validated:
     path:     /book/validated/{bookRef}
     defaults: { _controller: BecowoCoreBundle:Booking:validate }

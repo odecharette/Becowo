@@ -145,6 +145,12 @@
         	}else{
         		id = ''};
 
+	        var firstBookingFree = '';
+	      	if(data.firstBookingFree !== null){
+        		firstBookingFree = data.firstBookingFree;
+        	}else{
+        		firstBookingFree = ''};
+
 	        var descriptionBonus = '';
 	      	if(data.descriptionBonus !== null){
         		descriptionBonus = data.descriptionBonus;
@@ -199,6 +205,14 @@
 								{
 									vignette = vignette + 
 									'<img src="{{ asset("images/icons/star")}}' + voteAverage + '.png" alt="Vote">';
+								}
+							vignette = vignette + 
+							'</div>' +
+							'<div id="firstBookingFree">';
+								if(firstBookingFree)
+								{
+									vignette = vignette + 
+									'<img src="{{ asset("images/icons/essai-gratuit.png")}}" alt="Essai gratuit">';
 								}
 							vignette = vignette + 
 							'</div>' +

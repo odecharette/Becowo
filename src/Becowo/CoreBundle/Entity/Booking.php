@@ -66,7 +66,7 @@ class Booking
     /**
      * @var string
      *
-     * @ORM\Column(name="duration", type="string", length=30, nullable=false)
+     * @ORM\Column(name="duration", type="string", length=30, nullable=true)
      */
     private $duration;
 
@@ -130,6 +130,13 @@ class Booking
      * @ORM\Column(name="message", type="string", length=255, nullable=true)
      */
     private $message;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_first_book_free", type="boolean", nullable=true)
+     */
+    private $isFirstBookFree;
 
     /**
      * Constructor
@@ -500,5 +507,30 @@ class Booking
 
         return $this;
     }
+
+    /**
+     * Gets the value of isFirstBookFree.
+     *
+     * @return boolean
+     */
+    public function getIsFirstBookFree()
+    {
+        return $this->isFirstBookFree;
+    }
+
+    /**
+     * Sets the value of isFirstBookFree.
+     *
+     * @param boolean $isFirstBookFree the is first book
+     *
+     * @return self
+     */
+    public function setIsFirstBookFree($isFirstBookFree)
+    {
+        $this->isFirstBookFree = $isFirstBookFree;
+
+        return $this;
+    }
+
 }
 

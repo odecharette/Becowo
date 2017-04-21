@@ -105,6 +105,35 @@
 		</div>
 	</div>
 </div>
+{############################################### First Booking Free #################################################}
+<br>
+<div class="row">
+	<div class="col-lg-12">
+    	<div class="read-firstBookingFree">
+    		<h4>Réservation découverte gratuite <br>
+    			<small>Indiquez si vous autorisez une journée de découverte gratuite pour nos coworkers et indiquez les conditions d'accueil. </small>
+    			<button type="button" class="btn btn-primary btn-xs fa fa-pencil" onclick="goWrite('firstBookingFree')"></button>
+			</h4><div class="well well-sm">
+			Réservation gratuite autorisée : 
+			{% if workspace.isAlwaysOpen %} 
+				<img src={{ asset('/images/icons/box_checked.gif')}} alt="checked">
+			{% else %}
+				<img src={{ asset('/images/icons/box_unchecked.gif')}} alt="unchecked">
+			{% endif %}  <br>
+			Description : <br>
+			{{workspace.firstBookingFreeDesc|nl2br}}<br>
+			</div></div>
+		<div class="write-firstBookingFree">
+    		<h4>Réservation découverte gratuite <br>
+    			<small>Indiquez si vous autorisez une journée de découverte gratuite pour nos coworkers et indiquez les conditions d'accueil.</small>
+		    	<button type="submit" class="btn btn-success btn-xs fa fa-check"></button>
+				<button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="goRead('firstBookingFree')"></button> 
+			</h4>
+			{{ form_row(form.firstBookingFree) }} <br>
+		    {{ form_row(form.firstBookingFreeDesc) }}	
+		</div>
+	</div>
+</div>
 {############################################### Description pour l'arrivée #################################################}
 <br>
 <div class="row">
@@ -141,6 +170,7 @@
 	goRead("adresse");
 	goRead("sites");
 	goRead("amenitiesDesc");
+	goRead("firstBookingFree");
 	goRead("arrivalDesc");
 	</script>
 {% endblock %}

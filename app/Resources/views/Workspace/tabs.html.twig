@@ -4,7 +4,7 @@
     <li><a data-toggle="tab" href="#Services">Services</a></li>
     <li><a data-toggle="tab" href="#Evènements">Evènements</a></li>
     <li><a data-toggle="tab" href="#Contact">Contact</a></li>
-    <li id="resa"><a data-toggle="tab" href="#Reservation">Réservation</a></li>
+    <li id="resa"><a data-toggle="tab" href="#Reservation">Réservation {% if ws.firstBookingFree %} <img src="{{ asset('images/icons/essai-gratuit.png') }}" alt="Essai gratuit"> {% endif %}</a></li>
 </ul>
 <div class="tab-content" id="myTabContent">
 {############################ Description ############################}
@@ -167,7 +167,43 @@
     <div id="Reservation" class="tab-pane fade">
     	{# On passe par quantityByOfficeType pour ne générer le filtre qu'il y a des bureaux de ce type dans ce WS #}
     	<h2 style="color:var(--my-blue);">Choisissez votre espace et cliquez sur le bouton "Réserver" associé</h2>
-    	<br><center>
+    	<center>
+    	{% if ws.firstBookingFree %} 
+    		<br>
+	    	<div class="firstBookingFreeInfo vCenter">
+	    		<div class="row">
+		    		<div class="col-lg-2">
+		    			<img src="{{ asset('images/icons/essai-gratuit.png') }}" alt="Essai gratuit">
+		    		</div>
+		    		<div class="col-lg-7">
+		    			{{ws.firstBookingFreeDesc|nl2br}}
+		    		</div>
+		    		<div class="col-lg-3">
+		    			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+		    				<div class="resaFree">
+		    					<a href="{{ path('becowo_core_booking_free', {'ws': ws.id}) }}">Réserver <br> un essai gratuit</a>
+		    				</div>
+		    			{% else %}
+		    				<button type="button" data-toggle="modal" data-target="#myModalConnect-free">Réserver <br> un essai gratuit</button>
+		    					<div class="modal fade" id="myModalConnect-free" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					    			<div class="modal-dialog">
+					        			<div class="modal-content">
+								            <div class="modal-header modal-header-danger">
+								                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+								                <h4 class="modal-title">Réservation</h4>
+								            </div>
+								            <div class="modal-body">
+								                <p>Pour réserver un essai gratuit, vous devez être <a data-toggle="modal" href="#myModalLogin" data-dismiss="modal" style="color:black;">connecté</a></p>
+								            </div>
+					        			</div>
+					    			</div>
+								</div>
+		    			{% endif %}
+		    		</div>
+		    	</div>
+	    	</div>
+	    {% endif %}
+    	<br><br>
     	<div class="segmented-control" id="filtre-bureaux">
 		  	<input type="radio" name="filtre-bureaux" id="choice" value="" checked>
 		  	{% for q in quantityByOfficeType %}

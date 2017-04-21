@@ -130,8 +130,16 @@ class Workspace
      * @var boolean
      *
      * @ORM\Column(name="first_booking_free", type="boolean", nullable=true)
+     * @Algolia\Attribute
      */
     private $firstBookingFree;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_booking_free_desc", type="string", nullable=true)
+     */
+    private $firstBookingFreeDesc;
 
     /**
      * @var string
@@ -663,6 +671,30 @@ class Workspace
     public function getFirstBookingFree()
     {
         return $this->firstBookingFree;
+    }
+
+    /**
+     * Set firstBookingFreeDesc
+     *
+     * @param string $firstBookingFreeDesc
+     *
+     * @return Workspace
+     */
+    public function setFirstBookingFreeDesc($firstBookingFreeDesc)
+    {
+        $this->firstBookingFreeDesc = $firstBookingFreeDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get firstBookingFree
+     *
+     * @return string
+     */
+    public function getFirstBookingFreeDesc()
+    {
+        return $this->firstBookingFreeDesc;
     }
 
     /**

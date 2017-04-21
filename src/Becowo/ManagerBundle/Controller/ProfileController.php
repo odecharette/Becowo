@@ -62,6 +62,8 @@ class ProfileController extends Controller
         ->add('twitterLink',   TextType::class, array('required' => false))
         ->add('instagramLink',   TextType::class, array('required' => false))
         ->add('amenitiesDesc',   TextareaType::class, array('required' => false, 'label' => false))
+        ->add('firstBookingFree',   CheckboxType::class, array('required' => false, 'label' => 'Réservation gratuite autorisée'))
+        ->add('firstBookingFreeDesc',   TextareaType::class, array('required' => false, 'label' => 'Description de l\'offre gratuite (lieu, durée, etc)'))
         ->add('arrivalDesc',   TextareaType::class, array('required' => false, 'label' => false))
     ;
     $form = $formBuilder->getForm();

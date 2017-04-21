@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Réservation gratuite validée
+{% endblock %}
+
+{% block meta %}
+    <meta name="robots" content="noindex,nofollow" />
+{% endblock %}
+
+{% block stylesheets %}
+	
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid paiement">
+	<div class="row">
+		<h1>Votre réservation gratuite est validée</h1>
+	</div>
+	<div class="row">
+		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+			<p>Merci pour votre réservation ! <br>
+			<br>
+			<strong>Réservation N°</strong> {{bookRef}} <br>
+			<strong>Nom : </strong> {{ws.name}} <br>
+			<strong>Adresse : </strong> {{ws.street}} {{ws.postCode}} {{ws.city}} <br>
+			<strong>Date : </strong> Le {{booking.startDate|date("d/m/Y")}}<br>
+			<br>
+			{{ws.name}} a désormais 24H pour confirmer votre réservation et vous fournir les détails de cet essai gratuit. <br>
+			Nous vous tiendrons informé par email.
+			</p>
+		</div>
+	</div>
+	<hr>
+	{% include "CommonViews/bandeauQuestion.html.twig" %}
+</div>
+
+{% endblock body %}
+
+

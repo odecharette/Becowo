@@ -85,6 +85,7 @@ class BookingController extends Controller
 
     	$status = $WsService->getStatusById(1); // "Id 1 : En cours"
 
+      $booking->setIsFirstBookFree(false);
     	$booking->setWorkspaceHasOffice($WsHasOffice);
     	$booking->setMember($currentUser);
     	$booking->setStatus($status);
@@ -112,6 +113,72 @@ class BookingController extends Controller
     return $this->render('Workspace/booking-form.html.twig', 
       array('booking' => $booking, 'bookingForm' => $bookingForm->createView(),'id' =>$id, 'WsHasOffice' => $WsHasOffice, 'ws' => $ws, 'prices' => $prices[0], 'times' => $times[0], 'closedDates' => $closedDates, 'pictures' => $pictures, 'averageVote' => $averageVote));
   }
+
+  public function bookFreeAction($ws, Request $request)
+  {
+    $WsService = $this->get('app.workspace');
+    $session = $request->getSession();
+
+    $workspace = $WsService->getWorkspaceById($ws);
+    $times = $WsService->getTimesByWorkspace($workspace);
+    $closedDates = $WsService->getClosedDatesByWorkspace($workspace);
+    $averageVote = $WsService->getAverageVoteByWorkspace($workspace);
+    $em = $this->getDoctrine()->getManager();
+
+    if($session->get('bookingFree') !== null)
+    {
+      // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
+      $booking = $WsService->getBookingByRef($session->get('bookingFree')->getBookingRef());
+
+    }else{
+      $booking = new Booking();
+      // Par défaut le booking est crée sur la prochaine date ouvert (selon samedi, dimanche, closeddates)
+      $booking->setStartDate($WsService->getNextOpenDateByWorkspace($workspace));
+      $booking->setIsFirstBookFree(true);
+    }
+    $bookingForm = $this->createForm(BookingType::class, $booking);
+ 
+    if ($request->isMethod('POST') && $bookingForm->handleRequest($request)->isValid())
+    {
+      //SAVE le booking en cours en BDD
+
+      $startDate = $request->get('booking-calendar');
+      $startDate = str_replace('/', '-', $startDate);
+
+      $currentUser = $this->getUser();
+
+      $status = $WsService->getStatusById(1); // "Id 1 : En cours"
+
+      $booking->setMember($currentUser);
+      $booking->setStatus($status);
+      $booking->setNbPeople(1);
+      $booking->setStartDate(New \DateTime($startDate));
+      $booking->setEndDate(New \DateTime($startDate));
+      $booking->setMessage($bookingForm->get('message')->getData());
+
+      $em->persist($booking);
+      $em->flush();
+      
+      $session->set('bookingFree', $booking);
+
+      return $this->redirectToRoute('becowo_core_booking_free_validated', array(
+        'bookRef' => $booking->getBookingRef(), 
+        'id' => $ws));
+    }
+
+
+    return $this->render('Workspace/booking-free-form.html.twig', 
+      array('booking' => $booking, 'bookingForm' => $bookingForm->createView(),'ws' => $workspace, 'times' => $times[0], 'closedDates' => $closedDates, 'averageVote' => $averageVote));
+  }
+
+    public function bookFreeValidatedAction($id, $bookRef)
+    {
+      $WsService = $this->get('app.workspace');
+      $workspace = $WsService->getWorkspaceById($id);
+      $booking = $WsService->getBookingByRef($bookRef);
+
+      return $this->render('Workspace/booking-free-validated.html.twig', array('bookRef' => $bookRef, 'ws' => $workspace, 'booking' => $booking));
+    }
 
   	public function validateAction($bookRef, Request $request)
   	{
