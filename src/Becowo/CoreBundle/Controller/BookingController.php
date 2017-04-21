@@ -85,6 +85,7 @@ class BookingController extends Controller
 
     	$status = $WsService->getStatusById(1); // "Id 1 : En cours"
 
+      $booking->setWorkspace($ws);
       $booking->setIsFirstBookFree(false);
     	$booking->setWorkspaceHasOffice($WsHasOffice);
     	$booking->setMember($currentUser);
@@ -149,6 +150,7 @@ class BookingController extends Controller
 
       $status = $WsService->getStatusById(1); // "Id 1 : En cours"
 
+      $booking->setWorkspace($workspace);
       $booking->setMember($currentUser);
       $booking->setStatus($status);
       $booking->setNbPeople(1);
@@ -161,6 +163,29 @@ class BookingController extends Controller
       
       $session->set('bookingFree', $booking);
 
+      //Puis on envoi un mail au manager pour valider la résa gratuite
+      $wsHasTeamMembers = $WsService->getWsHasTeamMemberForEmailBookingByWorkspace($workspace);
+
+      $emailManager = "";
+      if($wsHasTeamMembers == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
+      {
+        $emailManager = 'olivia.decharette@becowo.com';
+      }else{
+        foreach ($wsHasTeamMembers as $wsHasTeamMember ) {
+          $emailManager = $emailManager . "," . $wsHasTeamMember->getTeamMember()->getEmail();
+        }
+      }
+
+      $emailService = $this->get('app.email');
+      $emailTemplate = "New-dme-resa-gratuite";
+      $emailParams = array('user' => $currentUser->getFirstname() . ' ' . $currentUser->getName(),
+                     'booking' => $booking);
+      $emailTag = "Demande réservation gratuite";
+      $to = $emailManager;
+      $subject = "Becowo - Nouvelle demande de réservation gratuite - " . $booking->getBookingRef();
+
+      $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
+
       return $this->redirectToRoute('becowo_core_booking_free_validated', array(
         'bookRef' => $booking->getBookingRef(), 
         'id' => $ws));
@@ -171,11 +196,15 @@ class BookingController extends Controller
       array('booking' => $booking, 'bookingForm' => $bookingForm->createView(),'ws' => $workspace, 'times' => $times[0], 'closedDates' => $closedDates, 'averageVote' => $averageVote));
   }
 
-    public function bookFreeValidatedAction($id, $bookRef)
+    public function bookFreeValidatedAction($id, $bookRef, Request $request)
     {
       $WsService = $this->get('app.workspace');
       $workspace = $WsService->getWorkspaceById($id);
       $booking = $WsService->getBookingByRef($bookRef);
+      $session = $request->getSession();
+      
+      $session->remove('_csrf/bookingFree');
+      $session->remove('bookingFree');
 
       return $this->render('Workspace/booking-free-validated.html.twig', array('bookRef' => $bookRef, 'ws' => $workspace, 'booking' => $booking));
     }
@@ -199,7 +228,15 @@ class BookingController extends Controller
   		  //On envoi un mail au coworker pour l'informer que la résa est confirmée
 
         $emailService = $this->get('app.email');
-        $emailTemplate = "Coworker-ResaValidee";
+
+        if($booking->getIsFirstBookFree())
+        {
+          $emailTemplate = "Coworker-ResaFreeValidee";
+        }else
+        {
+          $emailTemplate = "Coworker-ResaValidee";
+        }
+        $emailParams = array('booking' => $booking);
         $emailParams = array('booking' => $booking);
         $emailTag = "Coworker - Réservation validée";
         $to = $booking->getMember()->getEmail();
@@ -234,7 +271,13 @@ class BookingController extends Controller
 
 		    //On envoi un mail au coworker pour l'informer que la résa est refusée
         $emailService = $this->get('app.email');
-        $emailTemplate = "Coworker-ResaRefusee";
+        if($booking->getIsFirstBookFree())
+        {
+          $emailTemplate = "Coworker-ResaFreeRefusee";
+        }else
+        {
+          $emailTemplate = "Coworker-ResaRefusee";
+        }
         $emailParams = array('booking' => $booking);
         $emailTag = "Coworker - Réservation refusée";
         $to = $booking->getMember()->getEmail();
@@ -242,15 +285,18 @@ class BookingController extends Controller
 
         $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
 
-      	//Puis on envoi un mail à l'admin de Becowo pour procéder au remboursement
-        $emailService = $this->get('app.email');
-        $emailTemplate = "Admin-Rembourser";
-        $emailParams = array('booking' => $booking);
-        $emailTag = "Admin - Rembourser réservation";
-        $to = "contact@becowo.com";
-        $subject = "Becowo - Rembourser réservation N°" . $bookRef;
+        if(!$booking->getIsFirstBookFree())
+        {
+        	//Puis on envoi un mail à l'admin de Becowo pour procéder au remboursement
+          $emailService = $this->get('app.email');
+          $emailTemplate = "Admin-Rembourser";
+          $emailParams = array('booking' => $booking);
+          $emailTag = "Admin - Rembourser réservation";
+          $to = "contact@becowo.com";
+          $subject = "Becowo - Rembourser réservation N°" . $bookRef;
 
-        $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
+          $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
+        }
 
         $msg = "Réservation refusée, merci.";
       }

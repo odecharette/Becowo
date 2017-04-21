@@ -95,6 +95,17 @@ class Booking
      */
     private $workspacehasoffice;
 
+
+    /**
+     * @var \Workspace
+     *
+     * @ORM\ManyToOne(targetEntity="Workspace")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Workspace_id", referencedColumnName="id")
+     * })
+     */
+    private $workspace;
+
     /**
      * @var \Status
      *
@@ -408,6 +419,30 @@ class Booking
     public function setWorkspaceHasOffice(\Becowo\CoreBundle\Entity\WorkspaceHasOffice $workspacehasoffice)
     {
         $this->workspacehasoffice = $workspacehasoffice;
+
+        return $this;
+    }
+
+    /**
+     * Gets the }).
+     *
+     * @return Becowo\CoreBundle\Entity\Workspace
+     */
+    public function getWorkspace()
+    {
+        return $this->workspace;
+    }
+
+    /**
+     * Sets the workspace
+     *
+     * @param \Becowo\CoreBundle\Entity\Workspace $workspace
+     *
+     * @return self
+     */
+    public function setWorkspace(\Becowo\CoreBundle\Entity\Workspace $workspace)
+    {
+        $this->workspace = $workspace;
 
         return $this;
     }

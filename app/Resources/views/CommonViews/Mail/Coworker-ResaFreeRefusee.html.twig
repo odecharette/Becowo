@@ -1,0 +1,21 @@
+{% extends 'CommonViews/Mail/layout-email.html.twig' %}
+
+{% block emailTitle %}
+	Réservation refusée :(
+{% endblock emailTitle %}
+
+{% block emailContent %}
+	Bonjour {{ booking.member.firstname }} {{ booking.member.name }}, <br>
+<br>
+Votre réservation gratuite N° {{booking.bookingRef}} a été refusée par {{booking.workspace.name}}. <br>
+<br>
+Nous nous excusons de ce désagrément et nous vous invitons à procéder à une nouvelle réservation sur <a href="http://www.becowo.com">Becowo</a>.
+<br><br>
+<u>Rappel de votre réservation</u> : <br>
+<br>
+Espace : {{booking.workspace.name}} <br>
+Adresse : {{booking.workspace.street}} {{booking.workspace.postCode}} {{booking.workspace.city}}<br>
+Date : le {{booking.startDate|date("d/m/Y")}} <br>
+
+<br>
+{% endblock emailContent %}

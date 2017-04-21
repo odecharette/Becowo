@@ -1,0 +1,27 @@
+{% extends 'CommonViews/Mail/layout-email.html.twig' %}
+
+{% block emailTitle %}
+	Réservation validée !
+{% endblock emailTitle %}
+
+{% block emailContent %}
+
+Bonjour {{ booking.member.firstname }} {{ booking.member.name }}, <br>
+<br>
+Votre réservation N° {{booking.bookingRef}} est validée ! <br>
+<br>
+Voici un rappel de votre réservation : <br>
+<br>
+Espace : {{booking.workspace.name}} <br>
+Adresse : {{booking.workspace.street}} {{booking.workspace.postCode}} {{booking.workspace.city}}<br>
+Date : le {{booking.startDate|date("d/m/Y")}}  <br>
+<br>
+Vous bénéficiez d'un premier essai gratuit chez {{booking.workspace.name}} et nous espérons que vous serez satisfait !
+
+<br>
+{% if booking.workspace.arrivalDesc != null %}
+Pour faciliter votre arrivée chez {{booking.workspace.name}} : <br>
+{{booking.workspace.arrivalDesc|raw}}
+{% endif %}
+<br>
+{% endblock emailContent %}
