@@ -197,7 +197,7 @@
 								    
 								    <ul role="menu" class="dropdown-menu dropdown-menu-default OfferChoice">
 								    	{% for partnerOffer in partnerOffers %}
-									      <li class="{{partnerOffer.name}}-{{partnerOffer.id}}-{{partnerOffer.priceExcludedTax}}">
+									      <li class="{{partnerOffer.name}}-{{partnerOffer.priceExcludedTax}}">
 									        	<div class="row" id="partnerOffer-{{partnerOffer.id}}">
 								            		<div class="col-lg-3">
 								            			<img src="{{ asset('images/Partners/') }}{{partnerOffer.partner.name}}/{{partnerOffer.urlPicture}}" alt="{{partnerOffer.name}}" width="100px" height="80px">
@@ -213,7 +213,7 @@
 									    {% endfor %}
 								    </ul>
 								  	</div>
-								  	<span id="temp" hidden="true"></span>
+								  	{# <span id="temp" hidden="true"></span> #}
 								  	<span id="prestaPrice" hidden="true"></span>
 								  	Nombre de personnes : <input type="number" name="prestaNbPers" id="prestaNbPers">
 								  	
@@ -225,7 +225,9 @@
 		    			</div>
 					</div>
 				{% endif %}
-
+				Prestation(s) commandée(s) : <br>
+				<div id="listPartnerOffers"></div>
+				{# <input type="text" name="IDsPartnerOffers" id="IDsPartnerOffers" hidden="true"> #}
 				{# msg #}
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}
@@ -248,9 +250,6 @@
 					{{WsHasOffice.name}}
 					<br>
 					<span id="recapDate"></span> <br>
-					Prestation(s) commandée(s) : <br>
-					<span id="listPartnerOffers"></span>
-					<input type="text" name="IDsPartnerOffers" id="IDsPartnerOffers" hidden="true">
 
 					<input type="text" name="dateEnd" id="dateEnd" hidden="true">
 					<br>

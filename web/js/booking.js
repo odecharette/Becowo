@@ -266,14 +266,20 @@ $('.PartnerChoice li').click(function(e){
 $('.OfferChoice li').click(function(e){
 	var txtTab = this.className.split('-');
     $('.OfferChoiceBtn').text(txtTab[0]);
-    document.getElementById('temp').innerHTML = txtTab[1];
-    document.getElementById('prestaPrice').innerHTML = txtTab[2];
+//    document.getElementById('temp').innerHTML = txtTab[1];
+    document.getElementById('prestaPrice').innerHTML = txtTab[1];
 });
 
 $('#addPartnerOffer').click(function(e){
 	e.preventDefault();
-	document.getElementById('listPartnerOffers').innerHTML += $('.OfferChoiceBtn').text() + '<br>';
-	document.getElementById('IDsPartnerOffers').value += document.getElementById('temp').innerHTML + ',';
+	$('#listPartnerOffers').append( 
+			'<div>' +
+			$('.OfferChoiceBtn').text() + 
+			'<a href="#" class="itemToDelete" style="color:red">' + 
+			' <i class="fa fa-trash" aria-hidden="true"></i></a>' + 
+			'<br>'+
+			'</div>');
+//	document.getElementById('IDsPartnerOffers').value += document.getElementById('temp').innerHTML + ',';
 	$('#myModalPresta').modal('hide');
 
 	// Add Offer price to total price
@@ -289,4 +295,9 @@ $('#addPartnerOffer').click(function(e){
 	document.getElementById('price-incl-tax').value = totTTC;
     document.getElementById('price-excl-tax-div').innerHTML = totHT;
     document.getElementById('price-incl-tax-div').innerHTML = totTTC;
+});
+
+$(document).on('click','.itemToDelete',function(e){
+	e.preventDefault();
+    $(this).parent().remove();
 });
