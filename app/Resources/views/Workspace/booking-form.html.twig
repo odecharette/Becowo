@@ -228,6 +228,7 @@
 				Prestation(s) commandée(s) : <br>
 				<div id="listPartnerOffers"></div>
 				{# <input type="text" name="IDsPartnerOffers" id="IDsPartnerOffers" hidden="true"> #}
+
 				{# msg #}
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}
@@ -265,6 +266,7 @@
 				{# J'ai besoin que le price soit dans un input pour le récupérer depuis le controller #}
 				<input id="price-excl-tax" type="number" step="any" name="price-excl-tax" value="" hidden="true">
 				<input id="price-incl-tax" type="number" step="any" name="price-incl-tax" value="" hidden="true">
+				<span id="booking-price-excl-tax" hidden="true"></span>
 				<span id="price"><span id="price-excl-tax-div"></span> € HT (soit <span id="price-incl-tax-div"></span> € TTC)</span>
 				{{form_row(bookingForm.confirmer)}}
 			</div>

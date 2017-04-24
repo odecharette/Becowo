@@ -176,6 +176,7 @@ function loadPrice(duree){
 	document.getElementById('price-incl-tax').value = totTTC;
     document.getElementById('price-excl-tax-div').innerHTML = tot;
     document.getElementById('price-incl-tax-div').innerHTML = totTTC;
+    document.getElementById('booking-price-excl-tax').innerHTML = tot;
 
 }
 
@@ -266,38 +267,55 @@ $('.PartnerChoice li').click(function(e){
 $('.OfferChoice li').click(function(e){
 	var txtTab = this.className.split('-');
     $('.OfferChoiceBtn').text(txtTab[0]);
-//    document.getElementById('temp').innerHTML = txtTab[1];
     document.getElementById('prestaPrice').innerHTML = txtTab[1];
 });
 
 $('#addPartnerOffer').click(function(e){
 	e.preventDefault();
+	// On crée une liste avec en class le prix, et en value le nom de la presta choisie
 	$('#listPartnerOffers').append( 
-			'<div>' +
+			'<div class="' + document.getElementById('prestaPrice').innerHTML +
+			'" name="' + $('.OfferChoiceBtn').text() +
+			'">' +
 			$('.OfferChoiceBtn').text() + 
 			'<a href="#" class="itemToDelete" style="color:red">' + 
 			' <i class="fa fa-trash" aria-hidden="true"></i></a>' + 
 			'<br>'+
 			'</div>');
-//	document.getElementById('IDsPartnerOffers').value += document.getElementById('temp').innerHTML + ',';
 	$('#myModalPresta').modal('hide');
 
-	// Add Offer price to total price
+	calculatePriceWithPresta();
 
-	var prestaPrice = document.getElementById('prestaPrice').innerHTML;
-	var nbPers = document.getElementById('prestaNbPers').value;
-	var totPresta = prestaPrice * nbPers;
-
-	var tva = document.getElementById('tva').innerHTML;
-	var totHT = precise_round(parseFloat(document.getElementById('price-excl-tax').value) + totPresta, 2);
-	var totTTC = precise_round(totHT * (1 + tva/100), 2);
-	document.getElementById('price-excl-tax').value = totHT;
-	document.getElementById('price-incl-tax').value = totTTC;
-    document.getElementById('price-excl-tax-div').innerHTML = totHT;
-    document.getElementById('price-incl-tax-div').innerHTML = totTTC;
 });
 
 $(document).on('click','.itemToDelete',function(e){
 	e.preventDefault();
     $(this).parent().remove();
+
+    calculatePriceWithPresta();
 });
+
+function calculatePriceWithPresta()
+{
+	console.log('$$$$$$ calculatePriceWithPresta()');
+	// Add Offer price to total price
+
+	var nbPers = document.getElementById('prestaNbPers').value;
+	var tva = document.getElementById('tva').innerHTML;
+	var totPresta = 0;
+	$("#listPartnerOffers>div").each(function(index, value){
+     	// pour chaque div item dans la liste :
+     	// alert( index + ": " + value );
+     	var price = value.className;
+     	var name = value.getAttribute('name');
+		totPresta += (parseFloat(price) * nbPers);
+ 	});
+
+	var existingBookingPrice = document.getElementById('booking-price-excl-tax').innerHTML;
+	var totHT = precise_round(parseFloat(existingBookingPrice) + totPresta, 2);
+	var totTTC = precise_round(totHT * (1 + tva/100), 2);
+	document.getElementById('price-excl-tax').value = totHT;
+	document.getElementById('price-incl-tax').value = totTTC;
+    document.getElementById('price-excl-tax-div').innerHTML = totHT;
+    document.getElementById('price-incl-tax-div').innerHTML = totTTC;
+}
