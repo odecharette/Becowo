@@ -169,13 +169,13 @@
 					            </div>
 					            <div class="modal-body">
 					                <div class="btn-group" style="width:100%">
-								    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Choisir un prestaire <span class="caret"></span></button>
+								    <button type="button" class="btn btn-default dropdown-toggle PartnerChoiceBtn" data-toggle="dropdown">Choisir un prestataire<span class="caret"></span></button>
 								    
-								    <ul role="menu" class="dropdown-menu dropdown-menu-default">
+								    <ul role="menu" class="dropdown-menu dropdown-menu-default PartnerChoice">
 								    	{% set partner = [] %}
 								    	{% for partnerOffer in partnerOffers %}
 								    	{% if partnerOffer.partner.name not in partner %}
-									    <li>
+									    <li class="{{partnerOffer.partner.name}}">
 								        	<div class="row" id="partnerOffer-{{partnerOffer.id}}">
 							            		<div class="col-lg-3">
 							            			<img src="{{ asset('images/Partners/') }}{{partnerOffer.partner.name}}/{{partnerOffer.partner.urlLogo}}" alt="{{partnerOffer.partner.name}}" width="100px" height="80px">
@@ -193,11 +193,11 @@
 					                <br>
 
 								  	<div class="btn-group" style="width:100%">
-								    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Choisir une prestation <span class="caret"></span></button>
+								    <button type="button" class="btn btn-default dropdown-toggle OfferChoiceBtn" data-toggle="dropdown">Choisir une prestation <span class="caret"></span></button>
 								    
-								    <ul role="menu" class="dropdown-menu dropdown-menu-default">
+								    <ul role="menu" class="dropdown-menu dropdown-menu-default OfferChoice">
 								    	{% for partnerOffer in partnerOffers %}
-									      <li>
+									      <li class="{{partnerOffer.name}}-{{partnerOffer.id}}-{{partnerOffer.priceExcludedTax}}">
 									        	<div class="row" id="partnerOffer-{{partnerOffer.id}}">
 								            		<div class="col-lg-3">
 								            			<img src="{{ asset('images/Partners/') }}{{partnerOffer.partner.name}}/{{partnerOffer.urlPicture}}" alt="{{partnerOffer.name}}" width="100px" height="80px">
@@ -213,16 +213,19 @@
 									    {% endfor %}
 								    </ul>
 								  	</div>
-
-								  	Nombre de personnes : <input type="number" name="prestaNbPers">
+								  	<span id="temp" hidden="true"></span>
+								  	<span id="prestaPrice" hidden="true"></span>
+								  	Nombre de personnes : <input type="number" name="prestaNbPers" id="prestaNbPers">
+								  	
 					            </div>
 					            <div class="modal-footer">
-					                <button>Ajouter</button>
+					                <button type="button" class="btn btn-primary" id="addPartnerOffer">Ajouter</button> 
 					            </div>
 		        			</div>
 		    			</div>
 					</div>
 				{% endif %}
+
 				{# msg #}
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}
@@ -245,6 +248,10 @@
 					{{WsHasOffice.name}}
 					<br>
 					<span id="recapDate"></span> <br>
+					Prestation(s) commandée(s) : <br>
+					<span id="listPartnerOffers"></span>
+					<input type="text" name="IDsPartnerOffers" id="IDsPartnerOffers" hidden="true">
+
 					<input type="text" name="dateEnd" id="dateEnd" hidden="true">
 					<br>
 					{# Prices #}

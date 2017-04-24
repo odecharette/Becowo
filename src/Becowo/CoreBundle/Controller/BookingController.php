@@ -85,6 +85,9 @@ class BookingController extends Controller
     	$bookingDurationDay = $request->get('booking-duration-day');
     	$bookingPeople = $request->get('booking-people');
 
+      //$request->get('IDsPartnerOffers');
+      //$request->get('prestaNbPers');
+
     	$currentUser = $this->getUser();
 
     	$status = $WsService->getStatusById(1); // "Id 1 : En cours"

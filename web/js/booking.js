@@ -258,3 +258,35 @@ function getDuree()
 	return document.querySelector('input[name="booking-duration"]:checked').value;
 }
 
+// Gestion des prestations
+
+$('.PartnerChoice li').click(function(e){
+    $('.PartnerChoiceBtn').text(this.className);
+});
+$('.OfferChoice li').click(function(e){
+	var txtTab = this.className.split('-');
+    $('.OfferChoiceBtn').text(txtTab[0]);
+    document.getElementById('temp').innerHTML = txtTab[1];
+    document.getElementById('prestaPrice').innerHTML = txtTab[2];
+});
+
+$('#addPartnerOffer').click(function(e){
+	e.preventDefault();
+	document.getElementById('listPartnerOffers').innerHTML += $('.OfferChoiceBtn').text() + '<br>';
+	document.getElementById('IDsPartnerOffers').value += document.getElementById('temp').innerHTML + ',';
+	$('#myModalPresta').modal('hide');
+
+	// Add Offer price to total price
+
+	var prestaPrice = document.getElementById('prestaPrice').innerHTML;
+	var nbPers = document.getElementById('prestaNbPers').value;
+	var totPresta = prestaPrice * nbPers;
+
+	var tva = document.getElementById('tva').innerHTML;
+	var totHT = precise_round(parseFloat(document.getElementById('price-excl-tax').value) + totPresta, 2);
+	var totTTC = precise_round(totHT * (1 + tva/100), 2);
+	document.getElementById('price-excl-tax').value = totHT;
+	document.getElementById('price-incl-tax').value = totTTC;
+    document.getElementById('price-excl-tax-div').innerHTML = totHT;
+    document.getElementById('price-incl-tax-div').innerHTML = totTTC;
+});
