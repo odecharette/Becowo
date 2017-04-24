@@ -297,19 +297,20 @@ $(document).on('click','.itemToDelete',function(e){
 
 function calculatePriceWithPresta()
 {
-	console.log('$$$$$$ calculatePriceWithPresta()');
-	// Add Offer price to total price
+	// Add or remove Offer price to booking price
 
 	var nbPers = document.getElementById('prestaNbPers').value;
 	var tva = document.getElementById('tva').innerHTML;
 	var totPresta = 0;
+	var list = "";
 	$("#listPartnerOffers>div").each(function(index, value){
-     	// pour chaque div item dans la liste :
-     	// alert( index + ": " + value );
+     	// pour chaque div item dans la liste : on récup le prix et le nom
      	var price = value.className;
-     	var name = value.getAttribute('name');
 		totPresta += (parseFloat(price) * nbPers);
+		// on réunit l'input pour passer la liste au controller
+     	list += value.getAttribute('name') + ',';
  	});
+	document.getElementById('listPartnerOffersToReserve').value = list;
 
 	var existingBookingPrice = document.getElementById('booking-price-excl-tax').innerHTML;
 	var totHT = precise_round(parseFloat(existingBookingPrice) + totPresta, 2);
