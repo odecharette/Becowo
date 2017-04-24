@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PartnerOffer
  *
  * @ORM\Table(name="becowo_partner_offer", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_category_id_idx", columns={"category_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Becowo\CoreBundle\Repository\PartnerOfferRepository")
  */
 class PartnerOffer
 {
@@ -44,9 +44,9 @@ class PartnerOffer
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasOffice")
+     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\Workspace")
      */
-    private $workspaceHasOffice;
+    private $workspace;
 
     /**
      * @var string
@@ -87,7 +87,7 @@ class PartnerOffer
 
     public function __construct()
     {
-        $this->workspacesHasOffice = new ArrayCollection();
+        $this->workspace = new ArrayCollection();
     }
 
     /**
@@ -149,20 +149,20 @@ class PartnerOffer
         return $this;
     }
 
-    public function addWorkspaceHasOffice(\Becowo\CoreBundle\Entity\WorkspaceHasOffice $who)
+    public function addWorkspace(\Becowo\CoreBundle\Entity\Workspace $w)
     {
         
-        $this->workspaceHasOffice[] = $who;
+        $this->workspace[] = $w;
     }
 
-    public function removeWorkspaceHasOffice(\Becowo\CoreBundle\Entity\WorkspaceHasOffice $who)
+    public function removeWorkspace(\Becowo\CoreBundle\Entity\Workspace $w)
     {
-        $this->workspaceHasOffice->removeElement($who);
+        $this->workspace->removeElement($w);
     }
 
-    public function getWorkspaceHasOffices()
+    public function getWorkspaces()
     {
-        return $this->workspaceHasOffice;
+        return $this->workspace;
     }
 
     /**
@@ -284,7 +284,7 @@ class PartnerOffer
 
         return $this;
     }
-    
+
     public function __toString()
     {
         return $this->name;

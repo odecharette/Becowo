@@ -132,12 +132,20 @@ class Booking
     private $message;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Becowo\CoreBundle\Entity\PartnerOffer")
+     */
+    private $partnerOffer;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->createdOn = new \DateTime();
         $this->bookingRef = uniqid();
+        $this->partnerOffer = new ArrayCollection();
     }
 
     /**
@@ -499,6 +507,22 @@ class Booking
         $this->message = $message;
 
         return $this;
+    }
+
+    public function addPartnerOffer(\Becowo\CoreBundle\Entity\PartnerOffer $partnerOffer)
+    {
+        
+        $this->partnerOffer[] = $partnerOffer;
+    }
+
+    public function removePartnerOffer(\Becowo\CoreBundle\Entity\PartnerOffer $partnerOffer)
+    {
+        $this->partnerOffer->removeElement($partnerOffer);
+    }
+
+    public function getPartnerOffers()
+    {
+        return $this->partnerOffer;
     }
 }
 

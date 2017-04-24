@@ -157,6 +157,72 @@
 				<span id="nbPeople" hidden="true"></span>
 
 				<br><br>
+				{# Prestation #}
+				{% if partnerOffers|length > 0 %}
+					<button type="button" id="btnAddPresta" data-toggle="modal" data-target="#myModalPresta">Ajouter une prestation</button>
+					<div class="modal fade" id="myModalPresta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    			<div class="modal-dialog">
+		        			<div class="modal-content">
+					            <div class="modal-header modal-header-danger">
+					                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+					                <h4 class="modal-title">Ajouter une prestation</h4>
+					            </div>
+					            <div class="modal-body">
+					                <div class="btn-group" style="width:100%">
+								    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Choisir un prestaire <span class="caret"></span></button>
+								    
+								    <ul role="menu" class="dropdown-menu dropdown-menu-default">
+								    	{% set partner = [] %}
+								    	{% for partnerOffer in partnerOffers %}
+								    	{% if partnerOffer.partner.name not in partner %}
+									    <li>
+								        	<div class="row" id="partnerOffer-{{partnerOffer.id}}">
+							            		<div class="col-lg-3">
+							            			<img src="{{ asset('images/Partners/') }}{{partnerOffer.partner.name}}/{{partnerOffer.partner.urlLogo}}" alt="{{partnerOffer.partner.name}}" width="100px" height="80px">
+							            		</div>
+							            		<div class="col-lg-9">
+							                		{{partnerOffer.partner.name}} : {{partnerOffer.category.name}}
+							            		</div>
+							            	</div>
+							            	{% set partner = partner|merge([partnerOffer.partner.name]) %}
+									    </li>
+									    {% endif %}
+									    {% endfor %}
+								    </ul>
+								  	</div>
+					                <br>
+
+								  	<div class="btn-group" style="width:100%">
+								    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Choisir une prestation <span class="caret"></span></button>
+								    
+								    <ul role="menu" class="dropdown-menu dropdown-menu-default">
+								    	{% for partnerOffer in partnerOffers %}
+									      <li>
+									        	<div class="row" id="partnerOffer-{{partnerOffer.id}}">
+								            		<div class="col-lg-3">
+								            			<img src="{{ asset('images/Partners/') }}{{partnerOffer.partner.name}}/{{partnerOffer.urlPicture}}" alt="{{partnerOffer.name}}" width="100px" height="80px">
+								            		</div>
+								            		<div class="col-lg-9">
+								                		<span class="name">{{partnerOffer.name}}</span> - <span class="price">{{partnerOffer.priceExcludedTax}}</span> € HT 
+								                		{% if partnerOffer.isPricePerCoworker %} / personne {% endif %}		
+								                		<br>
+								                		<span class="desc">{{partnerOffer.description|raw}}</span>
+								            		</div>
+								            	</div>
+									      </li>
+									    {% endfor %}
+								    </ul>
+								  	</div>
+
+								  	Nombre de personnes : <input type="number" name="prestaNbPers">
+					            </div>
+					            <div class="modal-footer">
+					                <button>Ajouter</button>
+					            </div>
+		        			</div>
+		    			</div>
+					</div>
+				{% endif %}
 				{# msg #}
 				<strong>Vous pouvez adresser ici un message à {{ws.name}} : </strong><br>
 				{{form_row(bookingForm.message)}}

@@ -25,9 +25,12 @@ class BookingController extends Controller
   	$WsService = $this->get('app.workspace');
   	$ws = $WsService->getWorkspaceByName($name);
     $pricesAndOffices = $WsService->getPricesByWorkspace($ws);
+    $nbPartnerOffers = $WsService->getCountPartnerOffersByWorkspace($ws);
 
   	return $this->render('Workspace/booking-list.html.twig', array(
-        'pricesAndOffices' => $pricesAndOffices,'ws' => $ws));
+        'pricesAndOffices' => $pricesAndOffices,
+        'ws' => $ws,
+        'nbPartnerOffers' => $nbPartnerOffers));
   }
 
   public function bookAction($id, Request $request)
@@ -43,6 +46,7 @@ class BookingController extends Controller
     $pictures = $WsService->getPicturesByWorkspace($ws->getName());
     $averageVote = $WsService->getAverageVoteByWorkspace($ws);
     $em = $this->getDoctrine()->getManager();
+    $partnerOffers = $WsService->getPartnerOffersByWorkspace($ws);
 
     if($session->get('booking') !== null)
     {
@@ -109,8 +113,18 @@ class BookingController extends Controller
     }
 
 
-    return $this->render('Workspace/booking-form.html.twig', 
-      array('booking' => $booking, 'bookingForm' => $bookingForm->createView(),'id' =>$id, 'WsHasOffice' => $WsHasOffice, 'ws' => $ws, 'prices' => $prices[0], 'times' => $times[0], 'closedDates' => $closedDates, 'pictures' => $pictures, 'averageVote' => $averageVote));
+    return $this->render('Workspace/booking-form.html.twig', array(
+      'booking' => $booking, 
+      'bookingForm' => $bookingForm->createView(),
+      'id' =>$id, 
+      'WsHasOffice' => $WsHasOffice, 
+      'ws' => $ws, 
+      'prices' => $prices[0], 
+      'times' => $times[0], 
+      'closedDates' => $closedDates, 
+      'pictures' => $pictures, 
+      'averageVote' => $averageVote,
+      'partnerOffers' => $partnerOffers));
   }
 
   	public function validateAction($bookRef, Request $request)

@@ -494,4 +494,16 @@ class WorkspaceService
         }
         return $finalDate;
     }
+
+    public function getPartnerOffersByWorkspace($ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:PartnerOffer');
+        return $repo->findPartnerOffersByWorkspace($ws);
+    }
+
+    public function getCountPartnerOffersByWorkspace($ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:PartnerOffer');
+        return $repo->findCountPartnerOffersByWorkspace($ws);
+    }
 }
