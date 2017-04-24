@@ -506,4 +506,10 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:PartnerOffer');
         return $repo->findCountPartnerOffersByWorkspace($ws);
     }
+
+    public function getPartnerOffersByName($name)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:PartnerOffer');
+        return $repo->findOneBy(array('name' => $name));
+    }
 }

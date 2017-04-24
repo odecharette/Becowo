@@ -5,6 +5,7 @@ namespace Becowo\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Entity\Booking;
+use Becowo\CoreBundle\Entity\BookingHasPartnerOffer;
 use Becowo\CoreBundle\Entity\Status;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,9 +86,6 @@ class BookingController extends Controller
     	$bookingDurationDay = $request->get('booking-duration-day');
     	$bookingPeople = $request->get('booking-people');
 
-      //$request->get('IDsPartnerOffers');
-      //$request->get('prestaNbPers');
-
     	$currentUser = $this->getUser();
 
     	$status = $WsService->getStatusById(1); // "Id 1 : En cours"
@@ -107,6 +105,23 @@ class BookingController extends Controller
 
     	
     	$em->persist($booking);
+
+      // On sauvegarde les prestations liées au booking
+
+      $tabListPartnerOffersToReserve = explode(',',$request->get('listPartnerOffersToReserve'));
+
+      foreach ($tabListPartnerOffersToReserve as $offer) {
+        if($offer != "")
+        {
+          $bookingHasPartnerOffer = new BookingHasPartnerOffer();
+          $bookingHasPartnerOffer->setBooking($booking);
+          $bookingHasPartnerOffer->setPartnerOffer($WsService->getPartnerOffersByName($offer));
+          $bookingHasPartnerOffer->setQuantity($request->get('prestaNbPers'));
+          $em->persist($bookingHasPartnerOffer);
+        }
+      }
+
+
   	  $em->flush();
 
       
