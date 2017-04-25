@@ -49,15 +49,23 @@ class BookingController extends Controller
     $em = $this->getDoctrine()->getManager();
     $partnerOffers = $WsService->getPartnerOffersByWorkspace($ws);
 
-    if($session->get('booking') !== null)
+    if(isset($session->get('basket')['booking']))
     {
       // Il faut récupérer le booking via le repositiry et directement l'objet en session sinon le Update ne marche pas
-      $booking = $WsService->getBookingByRef($session->get('booking')->getBookingRef());
+      $booking = $WsService->getBookingByRef($session->get('basket')['booking']->getBookingRef());
 
+      if(isset($session->get('basket')['partnerOffers']))
+      {
+        $bookedPartnerOffers = $session->get('basket')['partnerOffers'];
+      }else
+      {
+        $bookedPartnerOffers = array();
+      }
     }else{
       $booking = new Booking();
       // Par défaut le booking est crée sur la prochaine date ouvert (selon samedi, dimanche, closeddates)
       $booking->setStartDate($WsService->getNextOpenDateByWorkspace($ws));
+      $bookedPartnerOffers = array();
     }
     $bookingForm = $this->createForm(BookingType::class, $booking);
  
@@ -109,7 +117,7 @@ class BookingController extends Controller
       // On sauvegarde les prestations liées au booking
 
       $tabListPartnerOffersToReserve = explode(',',$request->get('listPartnerOffersToReserve'));
-
+      $bookingPartnerOffers = array();
       foreach ($tabListPartnerOffersToReserve as $offer) {
         if($offer != "")
         {
@@ -118,14 +126,18 @@ class BookingController extends Controller
           $bookingHasPartnerOffer->setPartnerOffer($WsService->getPartnerOffersByName($offer));
           $bookingHasPartnerOffer->setQuantity($request->get('prestaNbPersToReserve'));
           $em->persist($bookingHasPartnerOffer);
+          array_push($bookingPartnerOffers, $bookingHasPartnerOffer);
         }
       }
 
 
   	  $em->flush();
 
-      
-      $session->set('booking', $booking);
+      // On met le panier en cours en session
+      $basket = array();
+      $basket['booking'] = $booking;
+      $basket['partnerOffers'] = $bookingPartnerOffers;
+      $session->set('basket', $basket);
 
       return $this->redirectToRoute('becowo_core_paiement_call_bank');
     }
@@ -142,7 +154,8 @@ class BookingController extends Controller
       'closedDates' => $closedDates, 
       'pictures' => $pictures, 
       'averageVote' => $averageVote,
-      'partnerOffers' => $partnerOffers));
+      'partnerOffers' => $partnerOffers,
+      'bookedPartnerOffers' => $bookedPartnerOffers));
   }
 
   	public function validateAction($bookRef, Request $request)

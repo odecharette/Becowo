@@ -95,7 +95,7 @@ function loadTime(duree){
 
     // on doit reset le slider à chaque fois sinon ca bug et donc réinitialiser le nbHeures
     $("#booking-time-slider").slider().data('slider').destroy();
-	document.getElementById('nbHeures').innerHTML = 1;
+// document.getElementById('nbHeures').innerHTML = 1;
 
 	if(duree == 'Heure'){ 
 		document.getElementById('calendar-halftime').style.display = 'none';
@@ -178,6 +178,7 @@ function loadPrice(duree){
     document.getElementById('price-incl-tax-div').innerHTML = totTTC;
     document.getElementById('booking-price-excl-tax').innerHTML = tot;
 
+    calculatePriceWithPresta();
 }
 
 function transformSliderValuesIntoHourMinute(valeurs)

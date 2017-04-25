@@ -114,7 +114,13 @@
 				    	data-slider-step="60"/>
 				    </span>
 				    <strong><span id="time-max"></span></strong>
-				    <span id="nbHeures" hidden="true">1</span>
+				    <span id="nbHeures" hidden="true">
+				    	{% if booking.endDate != null %}
+				    		{{ booking.endDate|date('H') - booking.startDate|date('H') }}
+			    		{% else %}
+			    			1
+			    		{% endif %}
+				    </span>
 				    <br><br>
 				</span>
 				{# 1/2 JOURNEE #}
@@ -187,9 +193,19 @@
 	                <br>
 
 				Prestation(s) commandée(s) : <br>
-				<div id="listPartnerOffers"></div>
-				<input type="text" name="listPartnerOffersToReserve" id="listPartnerOffersToReserve" hidden="true">
-				<input type="number" name="prestaNbPersToReserve" id="prestaNbPersToReserve" hidden="true">
+				{# On rempli la liste depuis le basket en session #}
+				<div id="listPartnerOffers">
+					{% for bpo in bookedPartnerOffers %}
+					<div class="{{bpo.partnerOffer.priceExcludedTax}}" name="{{bpo.partnerOffer.name}}">
+					{{bpo.partnerOffer.name}}
+					<a href="#" class="itemToDelete" style="color:red">
+					<i class="fa fa-trash" aria-hidden="true"></i></a>
+					<br>
+					</div>
+					{% endfor %}
+				</div>
+				<input type="text" name="listPartnerOffersToReserve" id="listPartnerOffersToReserve" hidden="true" value="{% for bpo in bookedPartnerOffers %} {{bpo.partnerOffer.name}}, {% endfor %}">
+				<input type="number" name="prestaNbPersToReserve" id="prestaNbPersToReserve" hidden="true" value="{% if  bookedPartnerOffers != null %}{{bookedPartnerOffers[0].quantity}}{% endif %}">
 				<br>
 				{% endif %}
 
@@ -282,7 +298,12 @@
 			  	<select id="prestaNbPers">
 			  		<option value=""></option>
 			  		{% for q in 1..WsHasOffice.deskQty %}
-			  			<option value="{{q}}">{{q}}</option>
+			  			{# On select la bonne option si en session #}
+			  			{% if bookedPartnerOffers[0].quantity == q  %}
+			  				<option value="{{q}}" selected="selected">{{q}}</option>
+			  			{% else %}
+			  				<option value="{{q}}">{{q}}</option>
+			  			{% endif %}
 			  		{% endfor %}
 			  	</select>
 			

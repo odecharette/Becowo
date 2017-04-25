@@ -48,6 +48,17 @@
 					le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
 				{% endif %}
 				<strong>Nombre de coworker(s) :</strong> {{booking.nbPeople}} <br>
+
+				{% if partnerOffers|length > 0 %}
+				<br>
+					<strong>Prestation(s) :</strong> <br>
+					{% for po in partnerOffers %}
+						{{po.partnerOffer.category.name}} : {{po.partnerOffer.name}} <br>
+					{% endfor %}
+					Quantité : {{partnerOffers[0].quantity}} <br>
+				<br>
+				{% endif %}
+
 				<strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>
 				<strong>Prix TTC :</strong> {{booking.priceInclTax|number_format(2)}} € <br>
 				</p>
@@ -72,7 +83,7 @@
 					<input type="hidden" name="PBX_HASH" value="{{creditAgricole.PBX_HASH}}"> 
 					<input type="hidden" name="PBX_TIME" value="{{dateISO}}">
 					<input type="hidden" name="PBX_HMAC" value="{{hmacCalculated}}">
-					<a href="{{ path('becowo_core_booking', {id: app.session.get('booking').workspacehasoffice.id}) }}" id="cancel" class="hidden-xs"> Modifier</a>
+					<a href="{{ path('becowo_core_booking', {id: app.session.get('basket')['booking'].workspacehasoffice.id}) }}" id="cancel" class="hidden-xs"> Modifier</a>
 					<input type="submit" value="Procéder au paiement" id="payer"> 
 				</form> 
 				</center>
