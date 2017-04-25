@@ -1,0 +1,44 @@
+{% extends 'CommonViews/Mail/layout-email.html.twig' %}
+
+{% block emailTitle %}
+	Becowo - Commande de prestation
+{% endblock emailTitle %}
+
+{% block emailContent %}
+
+Bonjour,  <br>
+<br>
+Un client de Becowo souhaite réserver une prestation : <br>
+<br>
+<u>Informations sur le client </u>: <br>
+<br>
+Prénom : {{booking.member.Firstname}} <br>
+Nom : {{booking.member.name}} <br>
+<br>
+
+<u>Contenu de la commande </u>: <br>
+<br>
+{% for bpo in bookingHasPartnerOffer %}
+	{{bpo.partnerOffer.name}} <br>
+	<i> {{bpo.partnerOffer.description|raw}} </i><br>
+{% endfor %}
+Quantité : {{bookingHasPartnerOffer[0].quantity}} <br>
+
+<br>
+<u>Lieu de livraison </u>: <br>
+Nom : {{booking.workspacehasoffice.workspace.name}} <br>
+Adresse : {{booking.workspacehasoffice.workspace.street}} {{booking.workspacehasoffice.workspace.postCode}} {{booking.workspacehasoffice.workspace.city}}<br>
+Date de la réunion : {% if booking.duration == 'Mois' %}
+le {{booking.startDate|date("d/m/Y")}} <br>
+{% elseif booking.duration == 'Journée' %}
+le {{booking.startDate|date("d/m/Y")}}<br>
+{% elseif booking.duration == 'Demi journée' %}
+le {{booking.startDate|date("d/m/Y")}} {{booking.durationDay}}<br>
+{% else %}
+le {{booking.startDate|date("d/m/Y")}} à {{booking.startDate|date("H:i")}} <br>
+{% endif %}
+<br><br>
+<strong>Merci de livrer au moins 15 minutes avant le début de la réunion</strong>
+
+
+{% endblock emailContent %}

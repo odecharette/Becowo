@@ -38,7 +38,21 @@ Job : {{booking.member.job}} <br>
 	Le coworker vous laisse le message suivant : <br>
 	<i>" {{booking.message|nl2br}} "</i>
 {% endif %}
-<br><br>
+<br>
+{% if bookingHasPartnerOffer|length > 0 %}
+<br>
+<u>Pour information, le coworker a commandé les prestations suivantes (prises en charge par Becowo) </u>: <br>
+<br>
+{% for bpo in bookingHasPartnerOffer %}
+  {{bpo.partnerOffer.name}} (réalisé par {{bpo.partnerOffer.partner.name}}) <br>
+  <i> {{bpo.partnerOffer.description|raw}} </i><br>
+{% endfor %}
+Quantité : {{bookingHasPartnerOffer[0].quantity}} <br>
+<br>
+Le prestataire effectuera sa livraison au minimum 15 minutes avant le début de la réunion.
+<br>
+{% endif %}
+<br>
 
 <table style="margin: 5px 0 16px 0;">
   <tr>

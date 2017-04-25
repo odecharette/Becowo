@@ -178,17 +178,39 @@ class BookingController extends Controller
       	$em = $this->getDoctrine()->getManager();
     		$em->persist($booking);
   		  $em->flush();
+        
+        $bookingHasPartnerOffer = $WsService->getBookingHasPartnerOfferByBooking($booking);
 
   		  //On envoi un mail au coworker pour l'informer que la résa est confirmée
 
         $emailService = $this->get('app.email');
         $emailTemplate = "Coworker-ResaValidee";
-        $emailParams = array('booking' => $booking);
+        $emailParams = array('booking' => $booking, 'bookingHasPartnerOffer' => $bookingHasPartnerOffer);
         $emailTag = "Coworker - Réservation validée";
         $to = $booking->getMember()->getEmail();
         $subject = "Becowo - Réservation N°" . $bookRef . " validée";
 
         $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
+
+
+        //Puis on envoi un mail aux prestataires pour passer commande
+
+        foreach ($bookingHasPartnerOffer as $bpo) {
+
+          if($bpo->getPartnerOffer()->getPartner()->getContactEmail() == null || $this->container->get( 'kernel' )->getEnvironment() !== 'prod')
+          {
+            $to = 'olivia.decharette@becowo.com';
+          }else{
+            $to = $bpo->getPartnerOffer()->getPartner()->getContactEmail();
+          }
+
+          $emailTemplate = "Partner-CmdOffer";
+          $emailParams = array('booking' => $booking, 'bookingHasPartnerOffer' => $bookingHasPartnerOffer);
+          $emailTag = "Commande prestataire";
+          $subject = "Becowo - Nouvelle commande";
+
+          $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
+        }
 
         $msg = "Réservation validée, merci !";
       }

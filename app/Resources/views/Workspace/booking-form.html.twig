@@ -299,7 +299,7 @@
 			  		<option value=""></option>
 			  		{% for q in 1..WsHasOffice.deskQty %}
 			  			{# On select la bonne option si en session #}
-			  			{% if bookedPartnerOffers[0].quantity == q  %}
+			  			{% if bookedPartnerOffers[0] is defined and bookedPartnerOffers[0].quantity == q  %}
 			  				<option value="{{q}}" selected="selected">{{q}}</option>
 			  			{% else %}
 			  				<option value="{{q}}">{{q}}</option>

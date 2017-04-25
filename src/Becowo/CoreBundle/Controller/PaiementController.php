@@ -221,8 +221,8 @@ class PaiementController extends Controller
     // * $trusted_Signature = true
 
     // ************* if désactivé juste pour tester l'envoi de l'email
-   if($error_code = "00000" && $authorization_number !== null && $trusted_IP && $trusted_Signature)
-    // if(true)
+    // if($error_code = "00000" && $authorization_number !== null && $trusted_IP && $trusted_Signature)
+    if(true)
     {
       $transaction_valide = true;
 
@@ -230,12 +230,14 @@ class PaiementController extends Controller
       $status = $WsService->getStatusById(2); // "Id 2 : Paiement validé"
       $booking->setStatus($status);
       $em->persist($booking);
+      $bookingHasPartnerOffer = $WsService->getBookingHasPartnerOfferByBooking($booking);
 
       //Puis on envoi un mail au manager pour valider la résa
       $emailService = $this->get('app.email');
       $emailTemplate = "New-dme-resa";
       $emailParams = array('user' => $booking->getMember()->getFirstname() . ' ' . $booking->getMember()->getName(),
-                     'booking' => $booking);
+                     'booking' => $booking,
+                     'bookingHasPartnerOffer' => $bookingHasPartnerOffer);
       $emailTag = "Demande réservation";
       $to = $emailManager;
       $subject = "Becowo - Nouvelle demande de réservation - " . $booking_ref;
@@ -244,12 +246,14 @@ class PaiementController extends Controller
 
       //Puis on envoi un mail au coworker pour l'informer que le paiement est valide
       $emailTemplate = "Coworker-ResaPayee";
-      $emailParams = array('booking' => $booking);
+      $emailParams = array('booking' => $booking, 'bookingHasPartnerOffer' => $bookingHasPartnerOffer);
       $emailTag = "Coworker Réservation payée";
       $to = $booking->getMember()->getEmail();
       $subject = "Becowo - Paiement en ligne confirmé - Réservation N°" . $booking_ref;
 
       $emailService->sendEmail($emailTemplate, $emailParams, $emailTag, $to, $subject);
+
+
     }
     else
     {
@@ -262,7 +266,7 @@ class PaiementController extends Controller
 
       $emailService = $this->get('app.email');
       $emailTemplate = "Admin-TransactionRefusee";
-      $emailParams = array('booking' => $booking);
+      $emailParams = array('booking' => $booking, 'clientIP' => $clientIP);
       $emailTag = "Admin,Transaction Refusée";
       $to = 'contact@becowo.com';
       $subject = "Becowo - Transaction refusée " . $booking_ref;

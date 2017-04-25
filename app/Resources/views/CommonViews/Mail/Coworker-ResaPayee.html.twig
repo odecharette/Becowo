@@ -31,6 +31,20 @@ le {{booking.startDate|date("d/m/Y")}} {{booking.durationDay}}<br>
 le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
 {% endif %}
 Nombre de coworker(s) : {{booking.nbPeople}} <br>
+
+{% if bookingHasPartnerOffer|length > 0 %}
+<br>
+<u>Prestation(s) supplémentaire(s) </u>: <br>
+<br>
+{% for bpo in bookingHasPartnerOffer %}
+	{{bpo.partnerOffer.name}} (réalisé par {{bpo.partnerOffer.partner.name}}) <br>
+	<i> {{bpo.partnerOffer.description|raw}} </i><br>
+{% endfor %}
+Quantité : {{bookingHasPartnerOffer[0].quantity}} <br>
+
+<br>
+{% endif %}
+
 Montant HT : {{booking.priceExclTax}} € <br>
 Montant TTC : {{booking.priceInclTax}} € <br>
 <br>
