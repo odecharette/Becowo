@@ -189,6 +189,7 @@
 				Prestation(s) commandée(s) : <br>
 				<div id="listPartnerOffers"></div>
 				<input type="text" name="listPartnerOffersToReserve" id="listPartnerOffersToReserve" hidden="true">
+				<input type="number" name="prestaNbPersToReserve" id="prestaNbPersToReserve" hidden="true">
 				<br>
 				{% endif %}
 
@@ -235,8 +236,6 @@
 			</div>
 		</div>	
 
-		{{ form_rest(bookingForm) }}
-		{{ form_end(bookingForm) }}
 	</div>
 <br><br>
 </div>
@@ -279,7 +278,14 @@
 			  	</div>
 			  	<span id="prestaName" hidden="true"></span>
 			  	<span id="prestaPrice" hidden="true"></span>
-			  	Nombre de personnes : <input type="number" name="prestaNbPers" id="prestaNbPers">
+			  	Nombre de personnes : 
+			  	<select id="prestaNbPers">
+			  		<option value=""></option>
+			  		{% for q in 1..WsHasOffice.deskQty %}
+			  			<option value="{{q}}">{{q}}</option>
+			  		{% endfor %}
+			  	</select>
+			
 			  	<span id="prestaNbPersError" hidden="true" style="color:red">Veuillez remplir ce champ</span>
             </div>
             <div class="modal-footer">
@@ -288,9 +294,14 @@
 		</div>
 	</div>
 </div>
+{% set partner = partner|merge([partnerOffer.partner.name]) %}
 
 {% endif %}
 {% endfor %}
+
+
+{{ form_rest(bookingForm) }}
+{{ form_end(bookingForm) }}
 
 {% endblock body %}
 

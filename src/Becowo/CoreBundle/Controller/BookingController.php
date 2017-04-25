@@ -116,7 +116,7 @@ class BookingController extends Controller
           $bookingHasPartnerOffer = new BookingHasPartnerOffer();
           $bookingHasPartnerOffer->setBooking($booking);
           $bookingHasPartnerOffer->setPartnerOffer($WsService->getPartnerOffersByName($offer));
-          $bookingHasPartnerOffer->setQuantity($request->get('prestaNbPers'));
+          $bookingHasPartnerOffer->setQuantity($request->get('prestaNbPersToReserve'));
           $em->persist($bookingHasPartnerOffer);
         }
       }

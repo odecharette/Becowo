@@ -313,8 +313,8 @@ function calculatePriceWithPresta()
 {
 	// Add or remove Offer price to booking price
 
-	var nbPers = document.getElementById('prestaNbPers').value;
-	var tva = document.getElementById('tva').innerHTML;
+	var nbPers = $('#prestaNbPers').val();
+	var tva = $('#tva').text();
 	var totPresta = 0;
 	var list = "";
 	$("#listPartnerOffers>div").each(function(index, value){
@@ -324,13 +324,14 @@ function calculatePriceWithPresta()
 		// on réunit l'input pour passer la liste au controller
      	list += value.getAttribute('name') + ',';
  	});
-	document.getElementById('listPartnerOffersToReserve').value = list;
+	$('#listPartnerOffersToReserve').val(list);
+	$('#prestaNbPersToReserve').val(nbPers);
 
-	var existingBookingPrice = document.getElementById('booking-price-excl-tax').innerHTML;
+	var existingBookingPrice = $('#booking-price-excl-tax').text();
 	var totHT = precise_round(parseFloat(existingBookingPrice) + totPresta, 2);
 	var totTTC = precise_round(totHT * (1 + tva/100), 2);
-	document.getElementById('price-excl-tax').value = totHT;
-	document.getElementById('price-incl-tax').value = totTTC;
-    document.getElementById('price-excl-tax-div').innerHTML = totHT;
-    document.getElementById('price-incl-tax-div').innerHTML = totTTC;
+	$('#price-excl-tax').val(totHT);
+	$('#price-incl-tax').val(totTTC);
+    $('#price-excl-tax-div').text(totHT);
+    $('#price-incl-tax-div').text(totTTC);
 }
