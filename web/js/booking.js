@@ -261,30 +261,44 @@ function getDuree()
 
 // Gestion des prestations
 
-$('.PartnerChoice li').click(function(e){
-    $('.PartnerChoiceBtn').text(this.className);
-});
+// $('.PartnerChoice li').click(function(e){
+//     $('.PartnerChoiceBtn').text(this.className);
+// });
 $('.OfferChoice li').click(function(e){
 	var txtTab = this.className.split('-');
-    $('.OfferChoiceBtn').text(txtTab[0]);
-    document.getElementById('prestaPrice').innerHTML = txtTab[1];
+	$('.OfferChoiceBtn').text(txtTab[0]);
+    $('#prestaName').text(txtTab[0]);
+    $('#prestaPrice').text(txtTab[1]);
 });
 
 $('#addPartnerOffer').click(function(e){
 	e.preventDefault();
-	// On crée une liste avec en class le prix, et en value le nom de la presta choisie
-	$('#listPartnerOffers').append( 
-			'<div class="' + document.getElementById('prestaPrice').innerHTML +
-			'" name="' + $('.OfferChoiceBtn').text() +
-			'">' +
-			$('.OfferChoiceBtn').text() + 
-			'<a href="#" class="itemToDelete" style="color:red">' + 
-			' <i class="fa fa-trash" aria-hidden="true"></i></a>' + 
-			'<br>'+
-			'</div>');
-	$('#myModalPresta').modal('hide');
 
-	calculatePriceWithPresta();
+	if($('.OfferChoiceBtn').text().indexOf('Choisir') == 0 ) 
+	{
+		$('#OfferChoiceError').show();
+	}else if($('#prestaNbPers').val() < 1 || $('#prestaNbPers').val() == '' )
+	{
+		$('#prestaNbPersError').show();
+		$('#OfferChoiceError').hide();
+	}else
+	{
+		$('#prestaNbPersError').hide();
+		$('#OfferChoiceError').hide();
+		// On crée une liste avec en class le prix, et en value le nom de la presta choisie
+		$('#listPartnerOffers').append( 
+				'<div class="' + $('#prestaPrice').text() +
+				'" name="' + $('#prestaName').text() +
+				'">' +
+				$('#prestaName').text() + 
+				'<a href="#" class="itemToDelete" style="color:red">' + 
+				' <i class="fa fa-trash" aria-hidden="true"></i></a>' + 
+				'<br>'+
+				'</div>');
+		$('[id^=myModalPresta]').modal('hide');
+
+		calculatePriceWithPresta();
+	};
 
 });
 
