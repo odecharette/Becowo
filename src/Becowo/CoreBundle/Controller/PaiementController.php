@@ -85,8 +85,12 @@ class PaiementController extends Controller
     $booking = $WsService->getBookingByRef($request->get('Ref'));  
     $who = $WsService->getWsHasOfficeById($booking->getWorkspaceHasOffice()); 
     $ws = $WsService->getWorkspaceById($who->getWorkspace()); 
+    $bookingHasPartnerOffers = $WsService->getBookingHasPartnerOfferByBooking($booking);
 
-    return $this->render('Paiement/effectue.html.twig', array('booking' => $booking, 'ws' => $ws));
+    return $this->render('Paiement/effectue.html.twig', array(
+      'booking' => $booking, 
+      'ws' => $ws,
+      'bookingHasPartnerOffers' => $bookingHasPartnerOffers));
   }
 
   public function annuleAction(Request $request)

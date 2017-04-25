@@ -114,6 +114,11 @@ class BookingController extends Controller
     	
     	$em->persist($booking);
 
+      // On reste les prestation liées au booking (si user fait un retour arrière et recommence)
+      $temp = $WsService->getBookingHasPartnerOfferByBooking($booking);
+      foreach ($temp as $t) {
+        $em->remove($t);
+      }
       // On sauvegarde les prestations liées au booking
 
       $tabListPartnerOffersToReserve = explode(',',$request->get('listPartnerOffersToReserve'));
