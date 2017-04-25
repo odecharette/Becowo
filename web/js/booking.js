@@ -272,6 +272,7 @@ $('.OfferChoice li').click(function(e){
     $('#prestaPrice').text(txtTab[1]);
 });
 
+// Validate pop'in prestation
 $('#addPartnerOffer').click(function(e){
 	e.preventDefault();
 
@@ -282,10 +283,15 @@ $('#addPartnerOffer').click(function(e){
 	{
 		$('#prestaNbPersError').show();
 		$('#OfferChoiceError').hide();
+	}else if($('#prestaNbPersIncorrect').is(":hidden") && $('#prestaNbPers').val() != $('#nbPeople').text())
+	{
+		$('#prestaNbPersError').hide();
+		$('#prestaNbPersIncorrect').show();
 	}else
 	{
 		$('#prestaNbPersError').hide();
 		$('#OfferChoiceError').hide();
+		$('#prestaNbPersIncorrect').hide();
 		// On crée une liste avec en class le prix, et en value le nom de la presta choisie
 		$('#listPartnerOffers').append( 
 				'<div class="' + $('#prestaPrice').text() +
