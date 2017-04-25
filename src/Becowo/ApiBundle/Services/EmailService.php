@@ -40,7 +40,15 @@ class EmailService
 		$from = urlencode($this->container->getParameter('mailgun.from'));
 		$to = urlencode($to); //You can use commas to separate multiple recipients.
 		$bcc = urlencode($this->container->getParameter('mailgun.bcc'));
-		$subject = urlencode($subject);
+
+		if($this->container->get('kernel')->getEnvironment() != "prod")
+		{
+			$subject = urlencode("!! " . $this->container->get('kernel')->getEnvironment() . " !! " . $subject);
+		}else
+		{
+			$subject = urlencode($subject);
+		}
+
 		$params = "from=" . $from . "&to=" . $to . "&subject=" . $subject . "&bcc=" . $bcc;
 
 		$postfields = array(
