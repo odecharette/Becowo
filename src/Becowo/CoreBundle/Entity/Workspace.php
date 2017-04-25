@@ -262,7 +262,7 @@ class Workspace
     /**
      * @var string
      *
-     * @ORM\Column(name="amenities_desc", type="string", length=255, nullable=true)
+     * @ORM\Column(name="amenities_desc", type="text", nullable=true)
      *
      */
     private $amenitiesDesc;
