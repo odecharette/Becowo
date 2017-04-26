@@ -38,7 +38,7 @@ class BookingManagerType extends AbstractType
             ->add('endDate', DateTimeType::class, array('label' => 'Date de fin', 'html5' => false,'widget' => 'single_text'))
             ->add('priceExclTax', NumberType::class, array(
                 'scale' => 2,
-                'label' => 'Prix € HC'))
+                'label' => 'Prix € HT'))
             ->add('priceInclTax', NumberType::class, array(
                 'scale' => 2,
                 'label' => 'Prix € TTC'))

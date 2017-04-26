@@ -88,12 +88,12 @@ a, a:hover, a:active, a:focus, button{
 .filters{
     margin-top: 5px;
 }
-#myModalCreateBooking .form-group{
+.form-group{
     display: inline-flex;
     margin-left: 10px;
     width: 90%;
 }
-#myModalCreateBooking label{
+.form-group label{
     margin-right: 20px;
     width: 50%;
 }
@@ -309,7 +309,6 @@ $(document).ready(function() {
             var newContent = currentContent.replace("#myModalEditBooking-", "#myModalEditBooking-" + calEvent.id);
             mymodal.find('.modal-footer').html(newContent);
             
-
             mymodal.modal('show');
            
 
