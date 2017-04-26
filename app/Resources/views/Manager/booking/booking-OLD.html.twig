@@ -1,0 +1,85 @@
+{% extends 'Manager/manager-layout.html.twig' %}
+
+{% block page %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>Les réservations</h1>
+        <hr>
+    </div>
+</div>
+
+<table class="table table-striped table-bordered" id="table">
+
+	<thead>
+	    <tr>
+	        <th>Date de début</th>
+	        <th>Date de fin</th>
+            <th>Bureau</th>
+            <th>Coworker</th>
+	        <th>Statut</th>
+	        <th>Total € HT</th>
+	        <th>Total € TTC</th>
+	    </tr>
+	</thead>
+	<tbody>
+	{% for booking in bookings %}
+		
+        <tr>
+            <td>{{booking.startDate|date("d/m/Y")}}</td>
+            <td>{{booking.endDate|date("d/m/Y")}}</td>
+            <td>{{booking.workspaceHasOffice.name}}</td>
+            <td>
+                {% if booking.member != null %}
+                    <a href="{{ path('becowo_member_community_coworker', {city: booking.member.city|replace({'-':' '})|default('ville') , job: booking.member.job|replace({'-':' ', '/':' '})|default('job') ,id: booking.member.id}) }}" target="_blank">{{booking.member.firstname}} {{booking.member.name}}</a></td>
+                {% else %}
+                    Réservation interne
+                {% endif %}
+            {% if booking.status.name == 'Réservation validée' %}
+                <td class="StatusGreen">{{booking.status.name}}</td>
+            {% elseif booking.status.name == 'Paiement validé' %}
+                <td class="StatusGreenTxt">{{booking.status.name}}</td>
+            {% elseif 'refus' in booking.status.name %}
+                <td class="StatusRed">{{booking.status.name}}</td>
+            {% else %}
+                <td>{{booking.status.name}}</td>
+            {% endif %}
+            <td>{{booking.priceExclTax}}</td>
+            <td>{{booking.priceInclTax}}</td>
+        </tr>
+	{% else %}
+		<p>Vous n'avez encore aucune réservation.</p>
+	{% endfor %}
+
+	</tbody>
+</table>
+
+<br><br>
+Les statuts suivent l'ordre suivant : <br>
+<img src="{{ asset('images/icons/becowo status process.jpg')}}" alt="Process réservation Becowo">
+
+{% endblock page%}
+
+{% block javascripts %}
+	<script>
+	// Design <table> : sort, filter... https://datatables.net
+    	$('#table').DataTable({
+        "language": {
+            "lengthMenu": "Afficher _MENU_ éléments par page",
+            "zeroRecords": "Aucun enregistrement trouvé",
+            "emptyTable": "Aucun enregistrement trouvé",
+            "info": "Page _PAGE_ / _PAGES_",
+            "infoEmpty": "Aucune correspondance",
+            "infoFiltered": "",
+            "search": "Filtrer",
+            "paginate": {
+		        "first":      "Premier",
+		        "last":       "Dernier",
+		        "next":       "Suivant",
+		        "previous":   "Précédent"
+		    	}
+        }
+    });
+
+    </script>
+{% endblock %}
