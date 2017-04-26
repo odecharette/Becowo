@@ -192,6 +192,7 @@ a, a:hover, a:active, a:focus, button{
             </div>
             <div class="modal-footer">
                 <button class="btn modify" type="button" data-toggle="modal" data-target="#myModalEditBooking-" data-dismiss="modal" id="btnModify"><i class="glyphicon glyphicon-pencil icon-lg"></i> Modifier</button>
+                <a data-toggle="modal" href="#myModalDelete-" class="btn btn-danger" id="btnDelete"><i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer</a>
                 <button class="btn" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
             </div>
         </div>
@@ -226,6 +227,24 @@ a, a:hover, a:active, a:focus, button{
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="myModalDelete-{{internalBook.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width: 30%;">
+                    <div class="modal-content">
+                        <div class="modal-header btn-danger">
+                            <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                            <h4 class="modal-title">Supprimer</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Etes vous sûr de vouloir supprimer ? </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ path('becowo_manager_booking_remove', {wsId: workspace.id, bookId: internalBook.id }) }}" class="btn btn-danger"><i class="icon icon-check icon-lg"></i> Supprimer</a>
+                            <button class="btn btn-inverse" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 {% endfor %}
 
 {% endblock page%}
@@ -310,8 +329,9 @@ $(document).ready(function() {
             }
 
 
-            // on modifie la modal à appeler en JS avec l'id du booking de la popin ouverte
+            // on modifie les modal à appeler en JS avec l'id du booking de la popin ouverte
             $('#btnModify').attr('data-target','#myModalEditBooking-' + calEvent.id);
+            $('#btnDelete').attr('href','#myModalDelete-' + calEvent.id);
             
             mymodal.modal('show');
            

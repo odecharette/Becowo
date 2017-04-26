@@ -78,5 +78,20 @@ class BookingController extends Controller
     return $this->render('Manager/booking/addBooking.html.twig', array('form' => $form->createView(), 'workspace' => $workspace));
   }
 
+  public function removeAction(Request $request, $wsId, $bookId)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $booking = $em->getRepository('BecowoCoreBundle:Booking')->find($bookId);
+
+    if (!$booking) {
+        throw $this->createNotFoundException('No booking found for id '.$bookId);
+    }
+
+    $em->remove($booking);
+    $em->flush();
+
+    return $this->redirectToRoute('becowo_manager_booking', array('id' => $wsId));
+  }
+
 
 }

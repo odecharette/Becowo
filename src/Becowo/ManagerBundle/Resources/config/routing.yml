@@ -104,6 +104,11 @@ becowo_manager_booking_edit:
     defaults: { _controller: BecowoManagerBundle:Booking:edit}
     methods: GET|POST
 
+becowo_manager_booking_remove:
+    path:     /{wsId}/booking/remove/{bookId}
+    defaults: { _controller: BecowoManagerBundle:Booking:remove}
+    methods: GET|POST
+
 becowo_manager_contracts:
     path:     /{id}/contracts
     defaults: { _controller: BecowoManagerBundle:Contracts:view }
