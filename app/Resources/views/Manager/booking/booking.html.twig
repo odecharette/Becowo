@@ -187,6 +187,7 @@ a, a:hover, a:active, a:focus, button{
                 Email : <span class="memberEmail"></span> <br>
             </div>
             <div class="modal-footer">
+                <button class="btn modify" type="button" data-dismiss="modal"><i class="glyphicon glyphicon-pencil icon-lg"></i> Modifier</button>
                 <button class="btn" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
             </div>
         </div>
@@ -282,6 +283,11 @@ $(document).ready(function() {
                 url = url.replace("paramId", calEvent.memberId);
 
                 mymodal.find('a[id="url_coworker"]').attr('href', url);
+
+                mymodal.find('.modify').hide();
+            }else
+            {
+                mymodal.find('.modify').show();
             }
             
 
