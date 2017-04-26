@@ -494,4 +494,10 @@ class WorkspaceService
         }
         return $finalDate;
     }
+
+    public function getJsonReservationsByWorkspaceByDates($wsId, $start, $end)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        return $repo->findJsonReservationsByWorkspaceByDates($wsId, $start, $end);
+    }
 }

@@ -4,7 +4,7 @@ namespace Becowo\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BookingRepository extends EntityRepository
 {
@@ -123,6 +123,50 @@ class BookingRepository extends EntityRepository
 			->orderBy('b.startDate') ;
 
 		return $qb->getQuery()->getResult();
+	}
+
+	public function findJsonReservationsByWorkspaceByDates($wsId, $start, $end)
+	{
+		// PURE SQL
+
+		$sql = "SELECT 
+			b.id AS id, 
+			who.name AS title, 
+			DATE_FORMAT(b.start_Date,'%Y-%m-%dT%H:%i') AS start, 
+			DATE_FORMAT(b.end_Date,'%Y-%m-%dT%H:%i') AS 'end',
+			CASE 
+		      WHEN who.office_id = 1 THEN 'openspace'
+		      WHEN who.office_id = 2 THEN 'desk'
+		      WHEN who.office_id = 3 THEN 'meeting'
+		      WHEN who.office_id = 4 THEN 'conference'
+		      ELSE ''
+		    END AS className,
+		    b.duration,
+		    b.duration_day,
+		    b.price_incl_tax,
+		    b.price_excl_tax,
+		    b.nb_people,
+		    b.message,
+		    m.firstname AS memberFirstname,
+		    m.name AS memberName,
+		    m.email AS memberEmail,
+		    m.city AS memberCity,
+		    m.id AS memberId,
+		    j.name AS memberJob
+			FROM becowo_booking b
+			LEFT JOIN becowo_workspace_has_office who ON who.id = b.WorkspaceHasOffice_id 
+			LEFT JOIN becowo_member m ON b.member_id = m.id
+			LEFT JOIN becowo_job j ON m.job_id = j.id
+			WHERE who.workspace_id = :wsId 
+			AND b.start_date BETWEEN :startD AND :endD ";
+
+		$params = array('wsId' => $wsId, 'startD' => $start, 'endD' => $end);
+
+		$result = $this->getEntityManager()->getConnection()->executeQuery($sql, $params)->fetchAll();
+
+  		dump($result);
+
+		return new JsonResponse($result);
 	}
 
 }

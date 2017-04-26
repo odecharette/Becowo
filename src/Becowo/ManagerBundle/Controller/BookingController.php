@@ -14,9 +14,24 @@ class BookingController extends Controller
   	$WsService = $this->get('app.workspace');
     $workspace = $WsService->getWorkspaceById($id);
 
-  	$bookings = $WsService->getReservationsByWorkspace($workspace);
+  	//$bookings = $WsService->getReservationsByWorkspace($workspace);
 
-  	return $this->render('Manager/booking/booking.html.twig', array('bookings' => $bookings, 'workspace' => $workspace));
+  	return $this->render('Manager/booking/booking.html.twig', array('workspace' => $workspace));
+  }
+
+  public function getBookingForCalendarAction(Request $request, $id)
+  {
+    $WsService = $this->get('app.workspace');
+    // $workspace = $WsService->getWorkspaceById($id);
+
+    //POST parameters
+    $start = $request->request->get('start');
+    $end = $request->request->get('end');
+
+    $bookings = $WsService->getJsonReservationsByWorkspaceByDates($id, $start, $end);
+
+dump($bookings);
+    return $bookings;
   }
 
   public function addAction(Request $request, $id)

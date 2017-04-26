@@ -3,6 +3,26 @@
 {% block css %}
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css">
 
+<style>
+
+.openspace{
+    background-color: yellow;
+    color: black;
+}
+.desk{
+    background-color: blue;
+    color: white;
+}
+.meeting{
+    background-color: green;
+    color: black;
+}
+.conference{
+    background-color: pink;
+    color: black;
+}
+
+</style>
 {% endblock css %}
 
 {% block page %}
@@ -16,6 +36,29 @@
 
 <div id='calendar'></div>
 
+<div class="modal fade" id="myModalBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                Date : <span class="debut"></span> - <span class="fin"></span> <br>
+                Durée : <span class="duration"></span> <span class="duration_day"></span> <br>
+                Prix : <span class="price_excl_tax"></span> € HT (soit <span class="price_incl_tax"></span> € TTC) <br>
+                Nombre de coworker(s) : <span class="nb_people"></span> <br>
+                Message : <span class="message"></span> <br>
+                <br>
+                Identité du <a href="#" target="_blank" id="url_coworker">coworker</a> : <br>
+                Prénom : <span class="memberFirstname"></span> <br>
+                Nom : <span class="memberName"></span> <br>
+                Email : <span class="memberEmail"></span> <br>
+            </div>
+        </div>
+    </div>
+</div>
+
 <br><br>
 Les statuts suivent l'ordre suivant : <br>
 <img src="{{ asset('images/icons/becowo status process.jpg')}}" alt="Process réservation Becowo">
@@ -26,13 +69,26 @@ Les statuts suivent l'ordre suivant : <br>
  
 <script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script> 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/locale/fr.js"></script> 
 
 <script>
         
 $(document).ready(function() {
 
     $('#calendar').fullCalendar({
-        // put your options and callbacks here
+        // get events
+        events: {
+            url: "{{ path('becowo_manager_get_booking', {id: workspace.id}) }}",
+            type: 'POST',
+            data: {
+                // custom_param1: 'something',
+                // custom_param2: 'somethingelse'
+            },
+            error: function() {
+                alert('there was an error while fetching events!');
+            }
+        },
+        // settings
         header:
             {
                 center: 'month,agendaWeek,agendaDay'
@@ -42,7 +98,35 @@ $(document).ready(function() {
                 left:   'title',
                 center: 'month,agendaWeek,agendaDay',
                 right:  'today prev,next'
-            }
+            },
+        // Clic on event
+        eventClick: function(calEvent, jsEvent, view) {
+
+            var mymodal = $('#myModalBooking');
+            mymodal.find('.modal-title').text(calEvent.title);
+            mymodal.find('.debut').text(moment(calEvent.start).format('LLLL'));
+            mymodal.find('.fin').text(moment(calEvent.end).format('LLLL'));
+            mymodal.find('.duration').text(calEvent.duration);
+            mymodal.find('.duration_day').text(calEvent.duration_day);
+            mymodal.find('.price_incl_tax').text(calEvent.price_incl_tax);
+            mymodal.find('.price_excl_tax').text(calEvent.price_excl_tax);
+            mymodal.find('.nb_people').text(calEvent.nb_people);
+            mymodal.find('.message').text(calEvent.message);
+            mymodal.find('.memberFirstname').text(calEvent.memberFirstname);
+            mymodal.find('.memberName').text(calEvent.memberName);
+            mymodal.find('.memberEmail').text(calEvent.memberEmail);
+
+            var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
+            url = url.replace("paramCity", calEvent.memberCity.replace('-', ' '));
+            url = url.replace("paramJob", calEvent.memberJob.replace('-', ' ').replace('/', ' '));
+            url = url.replace("paramId", calEvent.memberId);
+            
+            mymodal.find('a[id="url_coworker"]').attr('href', url);
+            
+
+            mymodal.modal('show');
+
+        }
     })
 
 });
