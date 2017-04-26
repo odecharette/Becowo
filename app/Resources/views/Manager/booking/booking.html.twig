@@ -95,7 +95,7 @@ a, a:hover, a:active, a:focus, button{
 }
 .form-group label{
     margin-right: 20px;
-    width: 50%;
+    width: 60%;
 }
 .fc-day:hover:after {
     content: url("{{ asset('images/icons/plus.png') }}");
@@ -115,6 +115,10 @@ a, a:hover, a:active, a:focus, button{
 .payRefused .fc-title:after, .bookRefused .fc-title:after{
     content: url("{{ asset('images/icons/dot_red.png') }}");
     margin-left: 10px;
+}
+.editBooking {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 </style>
@@ -187,7 +191,7 @@ a, a:hover, a:active, a:focus, button{
                 Email : <span class="memberEmail"></span> <br>
             </div>
             <div class="modal-footer">
-                <button class="btn modify" type="button" data-toggle="modal" data-target="#myModalEditBooking-" data-dismiss="modal"><i class="glyphicon glyphicon-pencil icon-lg"></i> Modifier</button>
+                <button class="btn modify" type="button" data-toggle="modal" data-target="#myModalEditBooking-" data-dismiss="modal" id="btnModify"><i class="glyphicon glyphicon-pencil icon-lg"></i> Modifier</button>
                 <button class="btn" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
             </div>
         </div>
@@ -209,7 +213,7 @@ a, a:hover, a:active, a:focus, button{
 </div>
 
 {% for internalBook in internalBooking %}
-    <div class="modal fade" id="myModalEditBooking-{{internalBook.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade editBooking" id="myModalEditBooking-{{internalBook.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -305,9 +309,9 @@ $(document).ready(function() {
                 mymodal.find('.modify').show();
             }
 
-            var currentContent = mymodal.find('.modal-footer').html();
-            var newContent = currentContent.replace("#myModalEditBooking-", "#myModalEditBooking-" + calEvent.id);
-            mymodal.find('.modal-footer').html(newContent);
+
+            // on modifie la modal à appeler en JS avec l'id du booking de la popin ouverte
+            $('#btnModify').attr('data-target','#myModalEditBooking-' + calEvent.id);
             
             mymodal.modal('show');
            
@@ -334,10 +338,10 @@ $(document).ready(function() {
     jQuery('#booking-add-form_endDate').datetimepicker({
         format:'Y-m-d H:i'
     });
-    jQuery('#booking-edit-form_startDate').datetimepicker({
+    jQuery('[id^="myModalEditBooking"] #booking-edit-form_startDate').datetimepicker({
         format:'Y-m-d H:i'
     });
-    jQuery('#booking-edit-form_endDate').datetimepicker({
+    jQuery('[id^="myModalEditBooking"] #booking-edit-form_endDate').datetimepicker({
         format:'Y-m-d H:i'
     });
     $.datetimepicker.setLocale('fr');
