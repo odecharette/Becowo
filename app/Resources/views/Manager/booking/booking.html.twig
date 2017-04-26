@@ -77,9 +77,15 @@
 #myModalGoogle .modal-dialog{
     width: 70%;
 }
-h3{
+h4{
     color: #2c4359;
     font-size: 12pt;
+}
+a, a:hover, a:active, a:focus, button{
+  outline: none !important;
+}
+.filters{
+    margin-top: 5px;
 }
 
 </style>
@@ -89,7 +95,7 @@ h3{
 
 
 <div class="row legende">
-    <div class="col-lg-8">
+    <div class="col-lg-8 filters">
         <label for="all" class="all"><input type="radio" name="room" id="all" value="all" checked>Tous</label>
         <label for="1" class="openspace"><input type="radio" name="room" id="1" value="1">Espace partagé</label>
         <label for="2" class="desk"><input type="radio" name="room" id="2" value="2">Bureau</label>
@@ -109,12 +115,12 @@ h3{
                     <div class="modal-body">
                         4 étapes simples pour synchroniser votre agenda google avec Becowo : <br>
                         <br>
-                        <h3><strong>Etape 1</strong> : Se connecter au google Agenda à partager </h3>
-                        <h3><strong>Etape 2</strong> : Ouvrir le menu de l’agenda et cliquer sur « Paramètres de l’agenda »</h3>
+                        <h4><strong>Etape 1</strong> : Se connecter au google Agenda à partager </h4>
+                        <h4><strong>Etape 2</strong> : Ouvrir le menu de l’agenda et cliquer sur « Paramètres de l’agenda »</h4>
                         <img src="{{ asset('images/icons/googleAgenda/etape2.png') }}" alt="Etape 2">
-                        <h3><strong>Etape 3</strong> : Noter l’ID de l’agenda pour nous le <strong>transmettre par mail</strong> puis cliquer sur « Modifier les paramètres de partage »</h3>
+                        <h4><strong>Etape 3</strong> : Noter l’ID de l’agenda pour nous le <strong>transmettre par mail</strong> puis cliquer sur « Modifier les paramètres de partage »</h4>
                         <img src="{{ asset('images/icons/googleAgenda/etape3.png') }}" alt="Etape 3">
-                        <h3><strong>Etape 4</strong> : Dans la partie « Partager avec des personnes en particulier », saisir l’adresse email « becowo@protean-keyword-132623.iam.gserviceaccount.com » et choisir « Apporter des modifications aux évènements » dans le menu déroulant, cliquer sur « Enregistrer la personne » puis enregistrer</h3>
+                        <h4><strong>Etape 4</strong> : Dans la partie « Partager avec des personnes en particulier », saisir l’adresse email « becowo@protean-keyword-132623.iam.gserviceaccount.com » et choisir « Apporter des modifications aux évènements » dans le menu déroulant, cliquer sur « Enregistrer la personne » puis enregistrer</h4>
                         <img src="{{ asset('images/icons/googleAgenda/etape4.png') }}" alt="Etape 4">
                         <br><br>
                         Nous vous préviendrons dès que la synchronisation sera en place (sous 24h).
@@ -127,7 +133,7 @@ h3{
         </div>
     </div>
 </div>
-<br>
+<br><br>
 <div id="calendar"></div>
 <div id="divLoading"></div>
 
