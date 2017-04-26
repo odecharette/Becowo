@@ -34,8 +34,8 @@ class BookingManagerType extends AbstractType
                 },
                 'choice_label' => 'name',
                 'label' => 'Bureau'))
-            ->add('startDate', DateTimeType::class, array('label' => 'Date de début', 'years' => range(date('Y'), date('Y')+2)))
-            ->add('endDate', DateTimeType::class, array('label' => 'Date de fin', 'years' => range(date('Y'), date('Y')+2)))
+            ->add('startDate', DateTimeType::class, array('label' => 'Date de début', 'html5' => false, 'widget' => 'single_text'))
+            ->add('endDate', DateTimeType::class, array('label' => 'Date de fin', 'html5' => false,'widget' => 'single_text'))
             ->add('priceExclTax', NumberType::class, array(
                 'scale' => 2,
                 'label' => 'Prix € HC'))
@@ -64,7 +64,6 @@ class BookingManagerType extends AbstractType
                 'class' => 'BecowoCoreBundle:Status',
                 'choice_label' => 'name',
                 'label' => 'Statut'))
-            ->add('Ajouter', SubmitType::class)
             ;
     }
     /**
@@ -74,6 +73,7 @@ class BookingManagerType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Becowo\CoreBundle\Entity\Booking',
+            'attr' => ['id' => 'manager_add_booking_form'],
             'idWs' => null,
         ));
     }

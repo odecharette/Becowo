@@ -14,8 +14,6 @@ class BookingController extends Controller
   	$WsService = $this->get('app.workspace');
     $workspace = $WsService->getWorkspaceById($id);
 
-  	//$bookings = $WsService->getReservationsByWorkspace($workspace);
-
   	return $this->render('Manager/booking/booking.html.twig', array('workspace' => $workspace));
   }
 
@@ -39,16 +37,18 @@ class BookingController extends Controller
 
   	$booking = new Booking();
   	$booking->setMember(null); // booking interne, pas de member
-  	$form = $this->get('form.factory')->create(BookingManagerType::class, $booking, array('idWs' => $id));
+  	$form = $this->get('form.factory')->createNamedBuilder('booking-add-form', BookingManagerType::class, $booking, array('idWs' => $id))
+      ->setAction($this->generateUrl('becowo_manager_booking_add', array('id' => $id)))
+      ->setMethod('POST')
+      ->getForm();
 
-  	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+  	if ($request->isMethod('POST')  && $form->handleRequest($request)->isValid()) {
+
       $em = $this->getDoctrine()->getManager();
       $em->persist($booking);
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('success', 'Modifications bien enregistrées.');
-
-      return $this->redirectToRoute('becowo_manager_booking_add', array('id' => $id));
+      return $this->redirectToRoute('becowo_manager_booking', array('id' => $id));
     }
 
   	return $this->render('Manager/booking/addBooking.html.twig', array('form' => $form->createView(), 'workspace' => $workspace));

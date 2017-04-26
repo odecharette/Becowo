@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/manager/jquery-ui.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/manager/jquery-ui.structure.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/manager/jquery-ui.theme.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/manager/jquery.datetimepicker.min.css') }}">
 <style>
 
 .all{
@@ -77,7 +78,7 @@
 #myModalGoogle .modal-dialog{
     width: 70%;
 }
-h4{
+#myModalGoogle .modal-body h4{
     color: #2c4359;
     font-size: 12pt;
 }
@@ -86,6 +87,22 @@ a, a:hover, a:active, a:focus, button{
 }
 .filters{
     margin-top: 5px;
+}
+#myModalCreateBooking .form-group{
+    display: inline-flex;
+    margin-left: 10px;
+    width: 90%;
+}
+#myModalCreateBooking label{
+    margin-right: 20px;
+    width: 50%;
+}
+.fc-day:hover:after {
+    content: url("{{ asset('images/icons/plus.png') }}");
+    display: block;
+    cursor: pointer;
+    margin-top: 40%;
+    margin-left: 40%;
 }
 
 </style>
@@ -164,6 +181,20 @@ a, a:hover, a:active, a:focus, button{
     </div>
 </div>
 
+<div class="modal fade" id="myModalCreateBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Ajouter une réservation</h4>
+            </div>
+            <div class="modal-body" id="manager_add_booking_form_body">
+                {{ render(controller('BecowoManagerBundle:Booking:add', {id: workspace.id})) }}
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {% endblock page%}
 
@@ -172,6 +203,7 @@ a, a:hover, a:active, a:focus, button{
 <script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script> 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/locale/fr.js"></script> 
+<script type="text/javascript" src="{{ asset('js/manager/jquery.datetimepicker.full.min.js') }}"></script>
 
 <script>
         
@@ -244,16 +276,33 @@ $(document).ready(function() {
             mymodal.modal('show');
 
         },
+        // pour le filtre
         eventRender: function eventRender( event, element, view ) {
             return ['all', event.officeId].indexOf($('input:radio[name=room]:checked').val()) >= 0
+        },
+        // clic sur une case vide
+        dayClick: function(date, jsEvent, view, resourceObj) {
+
+            // alert('Date: ' + date.format());
+            $('#myModalCreateBooking').modal('show');
+
         }
+    })
+
+    jQuery('#booking-add-form_startDate').datetimepicker({
+        format:'Y-m-d H:i'
+    });
+    jQuery('#booking-add-form_endDate').datetimepicker({
+        format:'Y-m-d H:i'
+    });
+    $.datetimepicker.setLocale('fr');
+
+    $('input[name="room"]:radio').change(function () {
+        $('#calendar').fullCalendar('rerenderEvents');
     })
 
 });
 
-$('input[name="room"]:radio').change(function () {
-    $('#calendar').fullCalendar('rerenderEvents');
-})
 
 </script>
 

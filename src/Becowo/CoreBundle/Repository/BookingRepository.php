@@ -159,8 +159,7 @@ class BookingRepository extends EntityRepository
 			LEFT JOIN becowo_member m ON b.member_id = m.id
 			LEFT JOIN becowo_job j ON m.job_id = j.id
 			WHERE who.workspace_id = :wsId 
-			AND b.start_date BETWEEN :startD AND :endD
-			AND b.status_id = 4";
+			AND b.start_date BETWEEN :startD AND :endD";
 
 		$params = array('wsId' => $wsId, 'startD' => $start, 'endD' => $end);
 
