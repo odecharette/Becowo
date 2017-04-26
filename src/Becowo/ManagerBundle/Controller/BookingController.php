@@ -22,7 +22,6 @@ class BookingController extends Controller
   public function getBookingForCalendarAction(Request $request, $id)
   {
     $WsService = $this->get('app.workspace');
-    // $workspace = $WsService->getWorkspaceById($id);
 
     //POST parameters
     $start = $request->request->get('start');
@@ -30,7 +29,6 @@ class BookingController extends Controller
 
     $bookings = $WsService->getJsonReservationsByWorkspaceByDates($id, $start, $end);
 
-dump($bookings);
     return $bookings;
   }
 

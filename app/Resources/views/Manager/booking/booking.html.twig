@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/manager/jquery-ui.theme.min.css') }}">
 <style>
 
+.all{
+    background-color: #737F9E;
+    border-color: #737F9E;
+    color: white;  
+}
 .openspace{
     background-color: #35414f;
     border-color: #35414f;
@@ -30,9 +35,14 @@
 .fc-time:after{
     content: "h"
 }
-.legende span{
+.legende label{
     border-radius: 3px;
     padding: 5px;
+    cursor: pointer;
+}
+.legende input{
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .modal-header, .modal-header .close, .modal-footer button{
     background-color: #35414f;
@@ -70,18 +80,13 @@
 
 {% block page %}
 
-{# <div class="row">
-    <div class="col-lg-12">
-        <h1>Les réservations</h1>
-        <hr>
-    </div>
-</div> #}
+
 <div class="row legende">
-    Légende : 
-    <span class="openspace">Espace partagé</span> 
-    <span class="desk">Bureau</span> 
-    <span class="meeting">Salle de réunion</span> 
-    <span class="conference">Salle de conférence</span>
+    <label for="all" class="all"><input type="radio" name="room" id="all" value="all" checked>Tous</label>
+    <label for="1" class="openspace"><input type="radio" name="room" id="1" value="1">Espace partagé</label>
+    <label for="2" class="desk"><input type="radio" name="room" id="2" value="2">Bureau</label>
+    <label for="3" class="meeting"><input type="radio" name="room" id="3" value="3">Salle de réunion</label>
+    <label for="4" class="conference"><input type="radio" name="room" id="4" value="4">Salle de conférence</label>
 </div>
 <br>
 <div id="calendar"></div>
@@ -114,9 +119,6 @@
     </div>
 </div>
 
-<br><br>
-Les statuts suivent l'ordre suivant : <br>
-<img src="{{ asset('images/icons/becowo status process.jpg')}}" alt="Process réservation Becowo">
 
 {% endblock page%}
 
@@ -135,10 +137,6 @@ $(document).ready(function() {
         events: {
             url: "{{ path('becowo_manager_get_booking', {id: workspace.id}) }}",
             type: 'POST',
-            data: {
-                // custom_param1: 'something',
-                // custom_param2: 'somethingelse'
-            },
             success: function() {
               $('#divLoading').hide();         
             },
@@ -168,7 +166,12 @@ $(document).ready(function() {
             mymodal.find('.debut').text(moment(calEvent.start).format('LLLL'));
             mymodal.find('.fin').text(moment(calEvent.end).format('LLLL'));
             mymodal.find('.duration').text(calEvent.duration);
-            mymodal.find('.duration_day').text(calEvent.duration_day);
+
+            if(calEvent.duration_day != null)
+            {
+                mymodal.find('.duration_day').text(calEvent.duration_day);
+            }
+
             mymodal.find('.price_incl_tax').text(calEvent.price_incl_tax);
             mymodal.find('.price_excl_tax').text(calEvent.price_excl_tax);
             mymodal.find('.nb_people').text(calEvent.nb_people);
@@ -195,10 +198,17 @@ $(document).ready(function() {
 
             mymodal.modal('show');
 
+        },
+        eventRender: function eventRender( event, element, view ) {
+            return ['all', event.officeId].indexOf($('input:radio[name=room]:checked').val()) >= 0
         }
     })
 
 });
+
+$('input[name="room"]:radio').change(function () {
+    $('#calendar').fullCalendar('rerenderEvents');
+})
 
 </script>
 

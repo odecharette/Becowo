@@ -131,7 +131,7 @@ class BookingRepository extends EntityRepository
 
 		$sql = "SELECT 
 			b.id AS id, 
-			who.name AS title, 
+			who.name AS title,
 			DATE_FORMAT(b.start_Date,'%Y-%m-%dT%H:%i') AS start, 
 			DATE_FORMAT(b.end_Date,'%Y-%m-%dT%H:%i') AS 'end',
 			CASE 
@@ -152,19 +152,19 @@ class BookingRepository extends EntityRepository
 		    m.email AS memberEmail,
 		    m.city AS memberCity,
 		    m.id AS memberId,
-		    j.name AS memberJob
+		    j.name AS memberJob,
+		    who.office_id AS officeId
 			FROM becowo_booking b
 			LEFT JOIN becowo_workspace_has_office who ON who.id = b.WorkspaceHasOffice_id 
 			LEFT JOIN becowo_member m ON b.member_id = m.id
 			LEFT JOIN becowo_job j ON m.job_id = j.id
 			WHERE who.workspace_id = :wsId 
-			AND b.start_date BETWEEN :startD AND :endD ";
+			AND b.start_date BETWEEN :startD AND :endD
+			AND b.status_id = 4";
 
 		$params = array('wsId' => $wsId, 'startD' => $start, 'endD' => $end);
 
 		$result = $this->getEntityManager()->getConnection()->executeQuery($sql, $params)->fetchAll();
-
-  		dump($result);
 
 		return new JsonResponse($result);
 	}

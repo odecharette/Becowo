@@ -89,7 +89,7 @@ becowo_manager_booking:
 
 becowo_manager_get_booking:
     path:     /{id}/getbooking
-    defaults: { _controller: BecowoManagerBundle:Booking:getBookingForCalendar }
+    defaults: { _controller: BecowoManagerBundle:Booking:getBookingForCalendar}
     methods: GET|POST
     options:
         expose: true
