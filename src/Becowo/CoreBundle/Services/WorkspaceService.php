@@ -500,4 +500,16 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
         return $repo->findJsonReservationsByWorkspaceByDates($wsId, $start, $end);
     }
+
+    public function getBookingById($id)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        return $repo->findOneBy(array('id' => $id));
+    }
+
+    public function getInternalReservationsByWorkspace(Workspace $ws)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        return $repo->findInternalBookingByWs($ws);
+    }
 }

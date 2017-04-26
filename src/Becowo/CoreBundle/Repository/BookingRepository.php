@@ -125,6 +125,18 @@ class BookingRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findInternalBookingByWs($ws)
+	{
+		$qb = $this->createQueryBuilder('b');
+		$qb->select(['b', 'who'])
+			->leftJoin('b.workspacehasoffice', 'who')
+			->where('who.workspace = :ws')
+			->andWhere($qb->expr()->isNull('b.member'))
+			->setParameter('ws', $ws);
+
+		return $qb->getQuery()->getResult();
+	}
+
 	public function findJsonReservationsByWorkspaceByDates($wsId, $start, $end)
 	{
 		// PURE SQL

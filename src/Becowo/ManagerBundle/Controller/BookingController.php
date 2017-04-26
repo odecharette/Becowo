@@ -13,8 +13,9 @@ class BookingController extends Controller
   {
   	$WsService = $this->get('app.workspace');
     $workspace = $WsService->getWorkspaceById($id);
+    $internalBooking = $WsService->getInternalReservationsByWorkspace($workspace);
 
-  	return $this->render('Manager/booking/booking.html.twig', array('workspace' => $workspace));
+  	return $this->render('Manager/booking/booking.html.twig', array('workspace' => $workspace, 'internalBooking' => $internalBooking));
   }
 
   public function getBookingForCalendarAction(Request $request, $id)
@@ -52,6 +53,29 @@ class BookingController extends Controller
     }
 
   	return $this->render('Manager/booking/addBooking.html.twig', array('form' => $form->createView(), 'workspace' => $workspace));
+  }
+
+  public function editAction(Request $request, $wsId, $bookId)
+  {
+    $WsService = $this->get('app.workspace');
+    $workspace = $WsService->getWorkspaceById($wsId);
+    $booking = $WsService->getBookingById($bookId);
+
+    $form = $this->get('form.factory')->createNamedBuilder('booking-edit-form', BookingManagerType::class, $booking, array('idWs' => $wsId))
+      ->setAction($this->generateUrl('becowo_manager_booking_edit', array('wsId' => $wsId, 'bookId' => $bookId)))
+      ->setMethod('POST')
+      ->getForm();
+
+    if ($request->isMethod('POST')  && $form->handleRequest($request)->isValid()) {
+
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($booking);
+      $em->flush();
+
+      return $this->redirectToRoute('becowo_manager_booking', array('id' => $wsId));
+    }
+
+    return $this->render('Manager/booking/addBooking.html.twig', array('form' => $form->createView(), 'workspace' => $workspace));
   }
 
 
