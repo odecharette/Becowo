@@ -153,11 +153,21 @@ class BookingRepository extends EntityRepository
 		    m.city AS memberCity,
 		    m.id AS memberId,
 		    j.name AS memberJob,
-		    who.office_id AS officeId
+		    who.office_id AS officeId,
+		    CASE 
+		      WHEN b.status_id = 1 THEN 'payWait'
+		      WHEN b.status_id = 2 THEN 'payOk'
+		      WHEN b.status_id = 3 THEN 'payRefused'
+		      WHEN b.status_id = 4 THEN 'bookOk'
+		      WHEN b.status_id = 5 THEN 'bookRefused'
+		      ELSE ''
+		    END AS statusCode,
+		    s.name AS status
 			FROM becowo_booking b
 			LEFT JOIN becowo_workspace_has_office who ON who.id = b.WorkspaceHasOffice_id 
 			LEFT JOIN becowo_member m ON b.member_id = m.id
 			LEFT JOIN becowo_job j ON m.job_id = j.id
+			LEFT JOIN becowo_status s ON b.status_id = s.id
 			WHERE who.workspace_id = :wsId 
 			AND b.start_date BETWEEN :startD AND :endD";
 

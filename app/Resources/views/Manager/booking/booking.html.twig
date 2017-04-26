@@ -104,6 +104,18 @@ a, a:hover, a:active, a:focus, button{
     margin-top: 40%;
     margin-left: 40%;
 }
+.payWait .fc-title:after, .payOk .fc-title:after{
+    content: url("{{ asset('images/icons/dot_orange.png') }}");
+    margin-left: 10px;
+}
+.bookOk .fc-title:after{
+    content: url("{{ asset('images/icons/dot_green.png') }}");
+    margin-left: 10px;
+}
+.payRefused .fc-title:after, .bookRefused .fc-title:after{
+    content: url("{{ asset('images/icons/dot_red.png') }}");
+    margin-left: 10px;
+}
 
 </style>
 {% endblock css %}
@@ -239,7 +251,7 @@ $(document).ready(function() {
         eventClick: function(calEvent, jsEvent, view) {
 
             var mymodal = $('#myModalBooking');
-            mymodal.find('.modal-title').text(calEvent.title);
+            mymodal.find('.modal-title').text(calEvent.title + ' (' + calEvent.status + ')');
             mymodal.find('.debut').text(moment(calEvent.start).format('LLLL'));
             mymodal.find('.fin').text(moment(calEvent.end).format('LLLL'));
             mymodal.find('.duration').text(calEvent.duration);
@@ -276,8 +288,10 @@ $(document).ready(function() {
             mymodal.modal('show');
 
         },
-        // pour le filtre
+        // pour le filtre et ajouter le statut en class
         eventRender: function eventRender( event, element, view ) {
+            element.addClass(event.statusCode);
+
             return ['all', event.officeId].indexOf($('input:radio[name=room]:checked').val()) >= 0
         },
         // clic sur une case vide
