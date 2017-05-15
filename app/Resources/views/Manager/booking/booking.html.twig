@@ -192,7 +192,7 @@ a, a:hover, a:active, a:focus, button{
             </div>
             <div class="modal-footer">
                 <button class="btn modify" type="button" data-toggle="modal" data-target="#myModalEditBooking-" data-dismiss="modal" id="btnModify"><i class="glyphicon glyphicon-pencil icon-lg"></i> Modifier</button>
-                <a data-toggle="modal" href="#myModalDelete-" class="btn btn-danger" id="btnDelete"><i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer</a>
+                <a data-toggle="modal" href="#myModalDelete-" class="btn btn-danger delete" id="btnDelete"><i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer</a>
                 <button class="btn" type="button" data-dismiss="modal"><i class="icon icon-times icon-lg"></i> Fermer</button>
             </div>
         </div>
@@ -315,17 +315,28 @@ $(document).ready(function() {
                 mymodal.find('.memberName').text(calEvent.memberName);
                 mymodal.find('.memberEmail').text(calEvent.memberEmail);
 
-                var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'}) }}'; 
-                url = url.replace("paramCity", calEvent.memberCity.replace('-', ' '));
-                url = url.replace("paramJob", calEvent.memberJob.replace('-', ' ').replace('/', ' '));
+                var url = '{{ path("becowo_member_community_coworker", {'city': 'paramCity', 'job': 'paramJob', 'id': 'paramId'})}}'; 
+
+                if(calEvent.memberCity != null)
+                    url = url.replace("paramCity", calEvent.memberCity.replace('-', ' '));
+                else
+                    url = url.replace("paramCity", 'city');
+
+                if(calEvent.memberJob != null)
+                    url = url.replace("paramJob", calEvent.memberJob.replace(/-/g, ' ').replace('/', ' '));
+                else
+                    url = url.replace("paramJob", 'job');
+                
                 url = url.replace("paramId", calEvent.memberId);
 
                 mymodal.find('a[id="url_coworker"]').attr('href', url);
 
                 mymodal.find('.modify').hide();
+                mymodal.find('.delete').hide();
             }else
             {
                 mymodal.find('.modify').show();
+                mymodal.find('.delete').show();
             }
 
 
