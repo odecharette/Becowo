@@ -143,7 +143,11 @@ class BookingRepository extends EntityRepository
 
 		$sql = "SELECT 
 			b.id AS id, 
-			who.name AS title,
+			CASE
+			  WHEN m.id IS NULL THEN CONCAT(who.name, ' *')
+			  WHEN m.id IS NOT NULL THEN who.name
+			END AS title,
+			-- who.name AS title,
 			DATE_FORMAT(b.start_Date,'%Y-%m-%dT%H:%i') AS start, 
 			DATE_FORMAT(b.end_Date,'%Y-%m-%dT%H:%i') AS 'end',
 			CASE 

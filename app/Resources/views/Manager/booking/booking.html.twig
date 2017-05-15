@@ -168,6 +168,17 @@ a, a:hover, a:active, a:focus, button{
 </div>
 <br><br>
 <div id="calendar"></div>
+<div class="row legende">
+    <br>
+    Légende : <br>
+    <br>
+    <img src="{{ asset('images/icons/dot_green.png') }}" alt="dot green"> Paiement validé <br>
+    <img src="{{ asset('images/icons/dot_orange.png') }}" alt="dot orange"> Paiement en attente <br>
+    <img src="{{ asset('images/icons/dot_red.png') }}" alt="dot red"> Paiement refusé <br>
+    <br>
+    * : Réservation effectuée en interne
+    <br>
+</div>
 <div id="divLoading"></div>
 
 <div class="modal fade" id="myModalBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -326,7 +337,7 @@ $(document).ready(function() {
                     url = url.replace("paramJob", calEvent.memberJob.replace(/-/g, ' ').replace('/', ' '));
                 else
                     url = url.replace("paramJob", 'job');
-                
+
                 url = url.replace("paramId", calEvent.memberId);
 
                 mymodal.find('a[id="url_coworker"]').attr('href', url);
