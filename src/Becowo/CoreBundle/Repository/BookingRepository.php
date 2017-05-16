@@ -125,4 +125,17 @@ class BookingRepository extends EntityRepository
 		return $qb->getQuery()->getResult();
 	}
 
+	public function findIfMemberAlreadyUsedReduction($member, $reduction)
+	{
+		$qb = $this->createQueryBuilder('b');
+		$qb->where('b.member = :member')
+			->andWhere('b.reduction = :reduction')
+			->andWhere($qb->expr()->neq('b.status', '3')) // différent de
+			->andWhere($qb->expr()->neq('b.status', '5')) // différent de
+		   ->setParameter('member', $member)
+		   ->setParameter('reduction', $reduction);
+
+		return $qb->getQuery()->getResult();
+	}
+
 }

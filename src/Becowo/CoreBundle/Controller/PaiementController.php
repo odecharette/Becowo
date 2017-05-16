@@ -313,7 +313,12 @@ class PaiementController extends Controller
         return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le quota du code de réduction est atteind. </span>'));
       }
 
-      
+      // Member already used code ?
+      if($WsService->checkIfMemberAlreadyUsedReduction($booking->getMember(), $reduction))
+      {
+        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Vous avez déjà utilisé ce code de réduction. </span>'));
+      }
+
       $booking->setReduction($reduction);
 
       $em->persist($booking);

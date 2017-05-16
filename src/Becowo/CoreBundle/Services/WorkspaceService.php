@@ -500,4 +500,15 @@ class WorkspaceService
         $repo = $this->em->getRepository('BecowoCoreBundle:Reduction');
         return $repo->findOneBy(array('code' => $code));
     }
+
+    public function checkIfMemberAlreadyUsedReduction($member, $reduction)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Booking');
+        $result = $repo->findIfMemberAlreadyUsedReduction($member, $reduction);
+
+        if(count($result) > 1) // 1 car au moment de la vérif le booking en cours est déjà en BDD
+            return true;
+        else
+            return false;
+    }
 }
