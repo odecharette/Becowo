@@ -47,9 +47,7 @@
 				{% else %}
 					le {{booking.startDate|date("d/m/Y")}} de {{booking.startDate|date("H:i")}} à {{booking.endDate|date("H:i")}} <br>
 				{% endif %}
-				<strong>Nombre de coworker(s) :</strong> {{booking.nbPeople}} <br>
-				<strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>
-				<strong>Prix TTC :</strong> {{booking.priceInclTax|number_format(2)}} € <br>
+				<strong>Nombre de coworker(s) :</strong> {{booking.nbPeople}} 
 				</p>
 				<br>
 				<p>Vous bénéficiez d'un code de réduction ? <br>
@@ -57,7 +55,10 @@
 						<input type="text" name="reduction_code">
 						<button type="submit" class="btn btn-primary">Appliquer</button>
 					</form>
-					<div id="Reductioncontent"></div>
+					<div id="Reductioncontent">
+						<strong>Prix HT :</strong> {{booking.priceExclTax|number_format(2)}} € <br>
+						<strong>Prix TTC :</strong> {{booking.priceInclTax|number_format(2)}} € <br>
+					</div>
 				</p>
 				<br>
 				<p>En cliquant sur "Procéder au paiement" vous allez être redirigé vers le site sécurisé du Crédit agricole pour effectuer le paiement de votre réservation. <br>
@@ -72,7 +73,8 @@
 					<input type="hidden" name="PBX_SITE" value="{{creditAgricole.PBX_SITE}}"> 
 					<input type="hidden" name="PBX_RANG" value="{{creditAgricole.PBX_RANG}}"> 
 					<input type="hidden" name="PBX_IDENTIFIANT" value="{{creditAgricole.PBX_IDENTIFIANT}}"> 
-					<input type="hidden" name="PBX_TOTAL" value="{{booking.priceInclTax * 100}}">
+					{# On prend le prix en session s'il a changé après application d'un code de réduction #}
+					<input type="hidden" name="PBX_TOTAL" value="{{app.session.get('booking').priceInclTax * 100}}">
 					<input type="hidden" name="PBX_DEVISE" value="{{creditAgricole.PBX_DEVISE}}"> 
 					<input type="hidden" name="PBX_CMD" value="{{booking.bookingRef}}">  
 					<input type="hidden" name="PBX_PORTEUR" value="{{userEmail}}">  

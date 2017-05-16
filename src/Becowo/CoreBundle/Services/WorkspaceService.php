@@ -511,4 +511,16 @@ class WorkspaceService
         else
             return false;
     }
+
+    public function applyReductionToPrice($reduction, $price)
+    {
+        if($reduction->getIsPercentage())
+        {
+            return round($price * (1 - $reduction->getPercentage() / 100), 2) ;
+        }else
+        {
+            // retourne 0 si Prix - réduction = négatif
+            return max($price - $reduction->getAmount(), 0);
+        }
+    }
 }

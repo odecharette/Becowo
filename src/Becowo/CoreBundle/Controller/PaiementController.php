@@ -292,39 +292,69 @@ class PaiementController extends Controller
       $reduction = $WsService->getReductionByCode($code);
       if($reduction == null)
       {
-        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le code de réduction n\'existe pas </span>'));
+        return new JsonResponse(array('message' => '
+          <span style="color:red;">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
+          Le code de réduction n\'existe pas </span>'));
       }
 
       // Date de début du code valide ?
       if($reduction->getValidityStart() != null && $reduction->getValidityStart() > new \Datetime('now'))
       {
-        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le code de réduction ne sera valide qu\'à partir du ' . $reduction->getValidityStart()->format('d/m/Y') . ' </span>'));
+        return new JsonResponse(array('message' => '
+          <span style="color:red;">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
+          Le code de réduction ne sera valide qu\'à partir du ' . $reduction->getValidityStart()->format('d/m/Y') . ' </span>'));
       }
 
       // Date de fin du code valide ?
       if($reduction->getValidityEnd() != null && $reduction->getValidityEnd() < new \Datetime('now'))
       {
-        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le code de réduction n\'est plus valide depuis le ' . $reduction->getValidityEnd()->format('d/m/Y') . ' </span>'));
+        return new JsonResponse(array('message' => '
+          <span style="color:red;">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
+          Le code de réduction n\'est plus valide depuis le ' . $reduction->getValidityEnd()->format('d/m/Y') . ' </span>'));
       }
 
       //Max use du code non atteint ?
       if($reduction->getAlreadyUsed() >= $reduction->getMaxUse() )
       {
-        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le quota du code de réduction est atteind. </span>'));
+        return new JsonResponse(array('message' => '
+          <span style="color:red;">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
+          Le quota du code de réduction est atteind. </span>'));
       }
 
       // Member already used code ?
       if($WsService->checkIfMemberAlreadyUsedReduction($booking->getMember(), $reduction))
       {
-        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Vous avez déjà utilisé ce code de réduction. </span>'));
+        return new JsonResponse(array('message' => '
+          <span style="color:red;">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
+          Vous avez déjà utilisé ce code de réduction. </span>'));
       }
 
+      // On applique la réduction au booking
       $booking->setReduction($reduction);
+      $prixHT = $WsService->applyReductionToPrice($reduction, $booking->getPriceExclTax());
+      $booking->setPriceExclTax($prixHT);
+      $tva = $this->container->getParameter( 'tva' );
+      $prixTTC = round($booking->getPriceExclTax() * (1 + $tva/100), 2);
+      $booking->setPriceInclTax($prixTTC);
 
       $em->persist($booking);
       $em->flush();
 
-      return new JsonResponse(array('message' => '<span style="color:green;"><i class="fa fa-check" aria-hidden="true"></i> Code valide </span>'));
+      $session = $request->getSession();
+      $session->set('booking', $booking);
+
+      return new JsonResponse(array('message' => '
+        <span style="color:green;">
+        <i class="fa fa-check" aria-hidden="true"></i> 
+        Code valide </span>
+        <br>
+        <strong>Prix HT :</strong> ' . $prixHT . '<br>
+        <strong>Prix TTC :</strong>' . $prixTTC));
     }
 
     return $this->render('Paiement/apply_reduction.html.twig');
