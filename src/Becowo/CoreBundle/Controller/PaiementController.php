@@ -288,15 +288,32 @@ class PaiementController extends Controller
     {
       $code = $request->get('reduction_code');
       
+      // Code de réduction existe ?
       $reduction = $WsService->getReductionByCode($code);
       if($reduction == null)
       {
-        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le code de réduction n\'est pas valide </span>'));
+        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le code de réduction n\'existe pas </span>'));
       }
+
+      // Date de début du code valide ?
+      if($reduction->getValidityStart() != null && $reduction->getValidityStart() > new \Datetime('now'))
+      {
+        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le code de réduction ne sera valide qu\'à partir du ' . $reduction->getValidityStart()->format('d/m/Y') . ' </span>'));
+      }
+
+      // Date de fin du code valide ?
+      if($reduction->getValidityEnd() != null && $reduction->getValidityEnd() < new \Datetime('now'))
+      {
+        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le code de réduction n\'est plus valide depuis le ' . $reduction->getValidityEnd()->format('d/m/Y') . ' </span>'));
+      }
+
+      //Max use du code non atteint ?
+      if($reduction->getAlreadyUsed() >= $reduction->getMaxUse() )
+      {
+        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le quota du code de réduction est atteind. </span>'));
+      }
+
       
-
-      // Vérifier la validité du code
-
       $booking->setReduction($reduction);
 
       $em->persist($booking);

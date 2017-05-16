@@ -81,6 +81,12 @@ class Reduction
      */
     private $maxUse;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="already_used", type="integer", nullable=true)
+     */
+    private $alreadyUsed;
 
 
     /**
@@ -295,6 +301,30 @@ class Reduction
     public function setMaxUse($maxUse)
     {
         $this->maxUse = $maxUse;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of AlreadyUsed.
+     *
+     * @return integer
+     */
+    public function getAlreadyUsed()
+    {
+        return $this->alreadyUsed;
+    }
+
+    /**
+     * Sets the value of AlreadyUsed.
+     *
+     * @param integer $maxUse the AlreadyUsed
+     *
+     * @return self
+     */
+    public function setAlreadyUsed($alreadyUsed)
+    {
+        $this->alreadyUsed = $alreadyUsed;
 
         return $this;
     }
