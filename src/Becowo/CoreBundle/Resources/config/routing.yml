@@ -153,6 +153,13 @@ becowo_core_paiement_ipn:
     defaults: { _controller: BecowoCoreBundle:Paiement:ipn }
     methods: GET
 
+becowo_core_paiement_reduction:
+    path:     /paiement/reduction/{bookingRef}
+    defaults: { _controller: BecowoCoreBundle:Paiement:applyReduction }
+    methods: GET|POST
+    options:
+        expose: true
+
 becowo_core_visit_360:
     path:     /{name}/visit-360
     defaults: { _controller: BecowoCoreBundle:Workspace:visit }

@@ -5,8 +5,10 @@ namespace Becowo\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Entity\PaiementTransaction;
+use Becowo\CoreBundle\Entity\reduction;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PaiementController extends Controller
 {
@@ -274,5 +276,36 @@ class PaiementController extends Controller
 
     // On renvoi une page HTML vide
     return $this->render('Paiement/ipn.html.twig');
+  }
+
+  public function applyReductionAction(Request $request)
+  {
+    $WsService = $this->get('app.workspace');
+    $booking = $WsService->getBookingByRef($request->get('bookingRef'));
+    $em = $this->getDoctrine()->getManager();
+
+    if($request->isXmlHttpRequest()) // pour vérifier la présence d'une requete Ajax
+    {
+      $code = $request->get('reduction_code');
+      
+      $reduction = $WsService->getReductionByCode($code);
+      if($reduction == null)
+      {
+        return new JsonResponse(array('message' => '<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Le code de réduction n\'est pas valide </span>'));
+      }
+      
+
+      // Vérifier la validité du code
+
+      $booking->setReduction($reduction);
+
+      $em->persist($booking);
+      $em->flush();
+
+      return new JsonResponse(array('message' => '<span style="color:green;"><i class="fa fa-check" aria-hidden="true"></i> Code valide </span>'));
+    }
+
+    return $this->render('Paiement/apply_reduction.html.twig');
+
   }
 }

@@ -132,6 +132,16 @@ class Booking
     private $message;
 
     /**
+     * @var \Reduction
+     *
+     * @ORM\ManyToOne(targetEntity="Reduction")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="reduction_id", referencedColumnName="id")
+     * })
+     */
+    private $reduction;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -497,6 +507,30 @@ class Booking
     public function setMessage($message)
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets the Reduction
+     *
+     * @return Becowo\CoreBundle\Entity\Reduction
+     */
+    public function getReduction()
+    {
+        return $this->reduction;
+    }
+
+    /**
+     * Sets the Reduction
+     *
+     * @param \Becowo\CoreBundle\Entity\Reduction $reduction
+     *
+     * @return self
+     */
+    public function setReduction(\Becowo\CoreBundle\Entity\Reduction $reduction)
+    {
+        $this->reduction = $reduction;
 
         return $this;
     }

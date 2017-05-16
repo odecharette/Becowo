@@ -52,6 +52,14 @@
 				<strong>Prix TTC :</strong> {{booking.priceInclTax|number_format(2)}} € <br>
 				</p>
 				<br>
+				<p>Vous bénéficiez d'un code de réduction ? <br>
+					<form id="applyReduction" method="post" action="{{ path("becowo_core_paiement_reduction", {bookingRef : booking.bookingRef }) }}">
+						<input type="text" name="reduction_code">
+						<button type="submit" class="btn btn-primary">Appliquer</button>
+					</form>
+					<div id="Reductioncontent"></div>
+				</p>
+				<br>
 				<p>En cliquant sur "Procéder au paiement" vous allez être redirigé vers le site sécurisé du Crédit agricole pour effectuer le paiement de votre réservation. <br>
 				Nous vous enverrons une facture par email sous quelques jours.</p>
 				<br><br>
@@ -117,5 +125,22 @@
 	if(document.getElementById('bookingStatus').innerHTML != "1"){
 		document.getElementById('payer').disabled = true;
 	}
+
+	//Appel du bon de réduction en AJAX
+	$("#applyReduction").submit(function (e){
+    e.preventDefault();
+    $form = $(e.target);
+    $.ajax($form.attr('action'), {
+        data: $form.serialize(),
+        type: "POST",
+        success: function(data) { 
+          $('#Reductioncontent').html(data.message);  
+        },
+        error: function() {
+          $('#Reductioncontent').html('<span style="color:red;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Une erreur est survenue. Veuillez réessayer plus tard </span>');   
+          $('#Reductioncontent').addClass("error");
+        }
+	    });
+	});
 	</script>
 {% endblock javascripts %} 

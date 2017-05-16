@@ -494,4 +494,10 @@ class WorkspaceService
         }
         return $finalDate;
     }
+
+    public function getReductionByCode($code)
+    {
+        $repo = $this->em->getRepository('BecowoCoreBundle:Reduction');
+        return $repo->findOneBy(array('code' => $code));
+    }
 }
