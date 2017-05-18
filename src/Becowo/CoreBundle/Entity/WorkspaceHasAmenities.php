@@ -21,7 +21,7 @@ class WorkspaceHasAmenities
   private $id;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
+   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="Workspace")
    * @ORM\JoinColumn(nullable=false)
    */
   private $workspace;
@@ -166,5 +166,10 @@ class WorkspaceHasAmenities
         $this->amenities = $amenities;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->description;
     }
 }

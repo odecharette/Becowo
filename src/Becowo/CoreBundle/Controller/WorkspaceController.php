@@ -7,7 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Becowo\CoreBundle\Form\Type\ManagerContactType;
 use Becowo\CoreBundle\Entity\Contact;
 use Becowo\CoreBundle\Entity\Comment;
+use Becowo\CoreBundle\Entity\Workspace;
 use Becowo\CoreBundle\Form\Type\CommentType;
+use Becowo\CoreBundle\Form\Type\CreateWorkspaceType;
 
 class WorkspaceController extends Controller
 {
@@ -89,7 +91,7 @@ class WorkspaceController extends Controller
         'ws' =>$ws));
   }
 
-   public function voteAndCommentAction($id, Request $request)
+  public function voteAndCommentAction($id, Request $request)
   {
     $WsService = $this->get('app.workspace');
     $ws = $WsService->getWorkspaceById($id);
@@ -118,5 +120,23 @@ class WorkspaceController extends Controller
     return $this->render('Workspace/comments.html.twig', array('formComment' => $formComment->createView(), 'listComments' => $listComments, 'ws' =>$ws, 'voteAlreadyDone' => $voteAlreadyDone));
   }
 
+  public function createWsFullAction(Request $request)
+  {
+    $ws = new Workspace();
+    $ws->setIsVisible(false);
+
+    $wsForm = $this->get('form.factory')->createNamedBuilder('create-ws-form', CreateWorkspaceType::class, $ws)
+      ->setMethod('POST')
+      ->getForm();
+
+    if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
+
+      $this->addFlash('success', 'Merci ! ');
+
+      return $this->redirectToRoute('becowo_core_homepage');
+    }
+
+    return $this->render('Workspace/create.html.twig', array('form' => $wsForm->createView()));
+  }
 
 }

@@ -4,6 +4,7 @@ namespace Becowo\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Workspace
@@ -314,6 +315,11 @@ class Workspace
     private $horaireCalme;
 
     /**
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasAmenities", mappedBy="Workspace")
+       */
+    private $workspaceHasAmenitiesList; 
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -326,8 +332,23 @@ class Workspace
         $this->isDeleted = false;
         $this->lowestPrice = 0;
         $this->voteAverage = 0;
+        $this->workspaceHasAmenitiesList = new ArrayCollection();
     }
 
+    public function addWorkspaceHasAmenities(WorkspaceHasAmenities $WorkspaceHasAmenities)
+      {
+        $this->workspaceHasAmenitiesList[] = $WorkspaceHasAmenities;
+      }
+
+      public function removeWorkspaceHasAmenities(workspaceHasAmenities $workspaceHasAmenities)
+      {
+        $this->workspaceHasAmenitiesList->removeElement($workspaceHasAmenities);
+      }
+
+      public function getWorkspaceHasAmenitiesList()
+      {
+        return $this->workspaceHasAmenitiesList;
+      }
 
     /**
      * Set name
