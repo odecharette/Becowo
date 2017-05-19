@@ -133,17 +133,17 @@ class WorkspaceController extends Controller
     if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
 
       $ws = $wsForm->getData();
-      dump($ws);
       $em->persist($ws);
       $em->flush();
 
-      if ($wsForm->get('draft')->isClicked()) {
+      if ($wsForm->get('draft')->isClicked() or $wsForm->get('draft2')->isClicked()) {
 
         $this->addFlash('success', 'Brouillon enregistré');
         return $this->redirectToRoute('becowo_core_workspace_edit', array('id' => $ws->getId()));
 
-      }elseif ($wsForm->get('send')->isClicked()) {
+      }elseif ($wsForm->get('send')->isClicked() or $wsForm->get('send2')->isClicked()) {
 
+        // TO DO : envoyer mail pour validation
         $this->addFlash('success', 'Formulaire envoyé');
         return $this->redirectToRoute('becowo_core_homepage');
       }
@@ -170,13 +170,14 @@ class WorkspaceController extends Controller
       $em->persist($ws);
       $em->flush();
 
-      if ($wsForm->get('draft')->isClicked()) {
+      if ($wsForm->get('draft')->isClicked() or $wsForm->get('draft2')->isClicked()) {
 
         $this->addFlash('success', 'Brouillon enregistré');
         return $this->redirectToRoute('becowo_core_workspace_edit', array('id' => $ws->getId()));
 
-      }elseif ($wsForm->get('send')->isClicked()) {
+      }elseif ($wsForm->get('send')->isClicked() or $wsForm->get('send2')->isClicked()) {
 
+        // TO DO : envoyer mail pour validation
         $this->addFlash('success', 'Formulaire envoyé');
         return $this->redirectToRoute('becowo_core_homepage');
       }

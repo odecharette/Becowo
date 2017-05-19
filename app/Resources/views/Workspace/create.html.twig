@@ -21,6 +21,11 @@
 			<br>
 			{{ form_start(form) }}
 			{{ form_errors(form) }}
+			<div class="row text-center">
+				{{form_widget(form.draft, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+				{{form_widget(form.send, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+			</div>
+			<br>
 			<div id="accordion" class="panel-group">
 			    <div class="panel panel-default">
 			    	<a href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
@@ -169,11 +174,11 @@
 				
 			{# Désactive la validation HTML et force la validation côté serveur #}
 			<div class="row text-center">
-				{{form_row(form.draft, {'attr': {'formnovalidate': 'formnovalidate'}})}}
-				{{form_row(form.send, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+				{{form_widget(form.draft2, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+				{{form_widget(form.send2, {'attr': {'formnovalidate': 'formnovalidate'}})}}
 			</div>
 				
-			
+			<br>
 			{{ form_rest(form) }}
 			{{ form_end(form) }}
 		</div>

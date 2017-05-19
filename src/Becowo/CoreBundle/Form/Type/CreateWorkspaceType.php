@@ -76,6 +76,8 @@ class CreateWorkspaceType extends AbstractType
                 'allow_delete' => true))
             ->add('draft', SubmitType::class)
             ->add('send', SubmitType::class)
+            ->add('draft2', SubmitType::class)
+            ->add('send2', SubmitType::class)
         ;
     }
     
