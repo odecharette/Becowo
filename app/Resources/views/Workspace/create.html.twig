@@ -23,12 +23,20 @@
 			{{ form_errors(form) }}
 			<h2>Identité de votre espace</h2>
 				{{form_row(form.name)}}
+				<div class="form-group">
+					<label class="col-sm-2 control-label required" for="autocomplete">Adresse *</label>
+					<div class="col-sm-10">
+						<input id="autocomplete" onFocus="geolocate()" type="text" autocomplete="off" class="form-control"></input>
+					</div>
+				</div>
+				
 				{{form_row(form.street)}}
-				{{form_row(form.postCode)}}
-				{{form_row(form.city)}}
-				{{form_row(form.country)}}
+				{{form_row(form.postCode, {'attr': {'hidden': true}})}}
+				{{form_row(form.city, {'attr': {'hidden': true}})}}
+				{{form_row(form.country, {'attr': {'hidden': true}})}}
 				{{form_row(form.isAlwaysOpen)}}
 				{{form_row(form.timetable)}}
+
 			<h2>L'équipe</h2>
 				{{form_row(form.teamMember)}}
 				<div class="row text-center">
@@ -70,16 +78,64 @@
 {% endblock body %}
 
 {% block javascripts %}
+
+	{# Gestion de la saisie de l'adrese via API google #}
+    <script type="text/javascript">
+    	var placeSearch, autocomplete;
+
+      	initAutocomplete();
+
+	    function initAutocomplete() {
+	        // Create the autocomplete object, restricting the search to geographical location types.
+	        autocomplete = new google.maps.places.Autocomplete(
+	            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+	            {types: ['geocode']});
+
+	        // When the user selects an address from the dropdown, populate the address fields in the form.
+	        autocomplete.addListener('place_changed', fillInAddress);
+	      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+        $('#create_ws_form_street').val(place.address_components[0]['long_name'] + ' ' + place.address_components[1]['long_name']);
+        $('#create_ws_form_postCode').val(place.address_components[6]['long_name']);
+        $('#create_ws_form_city').val(place.address_components[2]['long_name']);
+        $("#create_ws_form_country option").filter(function() {
+		    return this.text == place.address_components[5]['long_name']; 
+		}).attr('selected', true);
+
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
+
+	{# Gestion des sous formulaires pour les relations ManyToMany #}
 	<script type="text/javascript">
 
-	// Gestion des sous formulaires pour les relations ManyToMany
-
-  $(document).ready(function() {
+  	$(document).ready(function() {
   	
-  	manageSubForm($('div#create-ws-form_workspaceHasAmenitiesList'), $('#add_amenity'));
- 	manageSubForm($('div#create-ws-form_workspaceHasOfficeList'), $('#add_office'));
- 	manageSubForm($('div#create-ws-form_teamMember'), $('#add_teamMember'));
- 	manageSubForm($('div#create-ws-form_pictures'), $('#add_picture'));
+  	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'));
+ 	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'));
+ 	manageSubForm($('div#create_ws_form_teamMember'), $('#add_teamMember'));
+ 	manageSubForm($('div#create_ws_form_pictures'), $('#add_picture'));
 
 
     function manageSubForm($container, $btn_add){

@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -23,13 +24,14 @@ class CreateWorkspaceType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array('label' => 'Nom *', 'error_bubbling' => true))
-            ->add('street', TextType::class, array('label' => 'Rue *'))
-            ->add('postCode', NumberType::class, array('label' => 'Code postal *', 'scale' => 0))
-            ->add('city', TextType::class, array('label' => 'Ville *'))
+            ->add('street', HiddenType::class)
+            ->add('postCode', HiddenType::class)
+            ->add('city', HiddenType::class)
             ->add('country', EntityType::class, array(
                 'class' => 'BecowoCoreBundle:Country',
                 'choice_label' => 'name',
-                'placeholder' => 'Choisir un pays',
+                'label' => false,
+                'attr' => array('class' => 'hidden')
             ))
             ->add('category', EntityType::class, array(
                 'class' => 'BecowoCoreBundle:WorkspaceCategory',

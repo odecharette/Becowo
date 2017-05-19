@@ -126,7 +126,7 @@ class WorkspaceController extends Controller
     $ws->setIsVisible(false);
     $em = $this->getDoctrine()->getManager();
 
-    $wsForm = $this->get('form.factory')->createNamedBuilder('create-ws-form', CreateWorkspaceType::class, $ws)
+    $wsForm = $this->get('form.factory')->createNamedBuilder('create_ws_form', CreateWorkspaceType::class, $ws)
       ->setMethod('POST')
       ->getForm();
 
