@@ -49,7 +49,7 @@ class WorkspaceHasOffice
     private $urlProfilePicture;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="Workspace")
+   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="workspaceHasOfficeList")
    * @ORM\JoinColumn(nullable=false)
    */
   private $workspace;
@@ -65,7 +65,7 @@ class WorkspaceHasOffice
   /**
      * @var Becowo\CoreBundle\Entity\Price $price
      *
-     * @ORM\OneToOne(targetEntity = "Becowo\CoreBundle\Entity\Price", inversedBy = "WorkspaceHasOffice")
+     * @ORM\OneToOne(targetEntity = "Becowo\CoreBundle\Entity\Price", inversedBy = "workspaceHasOffice")
      */
     private $price;
   

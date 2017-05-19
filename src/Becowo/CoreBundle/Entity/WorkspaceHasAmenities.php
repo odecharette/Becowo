@@ -21,7 +21,7 @@ class WorkspaceHasAmenities
   private $id;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="Workspace")
+   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="workspaceHasAmenitiesList")
    * @ORM\JoinColumn(nullable=false)
    */
   private $workspace;

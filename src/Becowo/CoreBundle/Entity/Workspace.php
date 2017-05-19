@@ -5,6 +5,7 @@ namespace Becowo\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Workspace
@@ -28,6 +29,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @Assert\Length(min = 3, max = 25, minMessage="Le nom doit contenir entre 3 et 25 caractères", maxMessage="Le nom doit contenir entre 3 et 25 caractères")
      * @Algolia\Attribute
      */
     private $name;
@@ -315,24 +317,24 @@ class Workspace
     private $horaireCalme;
 
     /**
-       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasAmenities", mappedBy="Workspace")
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasAmenities", mappedBy="workspace")
        */
     private $workspaceHasAmenitiesList; 
 
     /**
-       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasAmenities", mappedBy="Workspace")
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasOffice", mappedBy="workspace")
        */
     private $workspaceHasOfficeList; 
 
     /**
      * @var \Becowo\CoreBundle\Entity\Timetable
      *
-     * @ORM\OneToOne(targetEntity="Becowo\CoreBundle\Entity\Timetable", inversedBy = "Workspace")
+     * @ORM\OneToOne(targetEntity="Becowo\CoreBundle\Entity\Timetable", inversedBy = "workspace")
      */
     private $timetable;
 
     /**
-       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\Picture", mappedBy="Workspace")
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\Picture", mappedBy="workspace")
        */
     private $pictures;
 

@@ -54,7 +54,7 @@ class Price
     /**
      * @var \Becowo\CoreBundle\Entity\WorkspaceHasOffice
      *
-     * @ORM\OneToOne(targetEntity="WorkspaceHasOffice", mappedBy = "Price")
+     * @ORM\OneToOne(targetEntity="WorkspaceHasOffice", mappedBy = "price")
      * @ORM\JoinColumn(name="Workspace_has_office_id", referencedColumnName="id")
      */
     private $workspaceHasOffice;

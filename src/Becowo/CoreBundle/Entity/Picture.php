@@ -55,7 +55,7 @@ class Picture
     /**
      * @var \Becowo\CoreBundle\Entity\Workspace
      *
-     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy = "Picture")
+     * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy = "pictures")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
      * })

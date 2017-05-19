@@ -24,7 +24,7 @@ class Timetable
     /**
      * @var \Becowo\CoreBundle\Entity\Workspace
      *
-     * @ORM\OneToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", mappedBy = "Timetable")
+     * @ORM\OneToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", mappedBy = "timetable")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="workspace_id", referencedColumnName="id")
      * })

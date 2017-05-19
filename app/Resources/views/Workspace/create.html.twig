@@ -18,6 +18,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
 			<h1>Référencez votre espace</h1>
+			{{form_errors(form)}}
 			<br>
 			{{ form_start(form) }}
 			<h2>Identité de votre espace</h2>
@@ -58,6 +59,8 @@
 				<div class="row text-center">
 					<a href="#" id="add_picture" class="btn btn-default">Ajouter une photo</a>
 				</div>
+			{# Désactive la validation HTML et force la validation côté serveur #}
+			{{form_row(form.Enregistrer, {'attr': {'formnovalidate': 'formnovalidate'}})}}
 			{{ form_rest(form) }}
 			{{ form_end(form) }}
 		</div>

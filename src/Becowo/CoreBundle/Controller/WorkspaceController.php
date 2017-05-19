@@ -124,12 +124,18 @@ class WorkspaceController extends Controller
   {
     $ws = new Workspace();
     $ws->setIsVisible(false);
+    $em = $this->getDoctrine()->getManager();
 
     $wsForm = $this->get('form.factory')->createNamedBuilder('create-ws-form', CreateWorkspaceType::class, $ws)
       ->setMethod('POST')
       ->getForm();
 
     if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
+
+      $ws = $wsForm->getData();
+      dump($ws);
+      $em->persist($ws);
+      $em->flush();
 
       $this->addFlash('success', 'Merci ! ');
 
