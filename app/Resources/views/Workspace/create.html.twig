@@ -27,6 +27,11 @@
 				{{form_row(form.city)}}
 				{{form_row(form.country)}}
 				{{form_row(form.timetable)}}
+			<h2>L'équipe</h2>
+				{{form_row(form.teamMember)}}
+				<div class="row text-center">
+					<a href="#" id="add_teamMember" class="btn btn-default">Ajouter un membre</a>
+				</div>
 			<h2>Votre présence sur Internet</h2>
 				{{form_row(form.website)}}
 				{{form_row(form.facebookLink)}}
@@ -64,6 +69,7 @@
   	
   	manageSubForm($('div#create-ws-form_workspaceHasAmenitiesList'), $('#add_amenity'));
  	manageSubForm($('div#create-ws-form_workspaceHasOfficeList'), $('#add_office'));
+ 	manageSubForm($('div#create-ws-form_teamMember'), $('#add_teamMember'));
 
 
     function manageSubForm($container, $btn_add){
