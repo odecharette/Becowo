@@ -166,6 +166,13 @@
 								<div class="row text-center">
 									<a href="#" id="add_picture" class="btn btn-default">Ajouter une photo</a>
 								</div>
+								<br>
+								{% for pic in form.vars.data.pictures %}
+								<div class="show-image">
+									<img src="{{ asset('images/Workspaces/') }}{{form.vars.data.name}}/{{pic.url}}" width="150px">
+									{# <a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id, wsId: workspace.id}) }}">Supprimer</a> #}
+								</div>
+								{% endfor %}
 							</div>
 				      	</div>
 				    </div>

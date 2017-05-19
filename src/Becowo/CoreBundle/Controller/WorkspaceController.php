@@ -133,6 +133,13 @@ class WorkspaceController extends Controller
     if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
 
       $ws = $wsForm->getData();
+      $pictures = $ws->getPictures();
+
+      foreach ($pictures as $pic) {
+        $pic->upload($ws->getName());
+        $pic->setWorkspace($ws);
+      }
+      
       $em->persist($ws);
       $em->flush();
 
@@ -167,6 +174,13 @@ class WorkspaceController extends Controller
     if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
 
       $ws = $wsForm->getData();
+      $pictures = $ws->getPictures();
+
+      foreach ($pictures as $pic) {
+        $pic->upload($ws->getName());
+        $pic->setWorkspace($ws);
+      }
+
       $em->persist($ws);
       $em->flush();
 

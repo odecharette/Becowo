@@ -341,7 +341,7 @@ class Workspace
     private $timetable;
 
     /**
-       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\Picture", mappedBy="workspace")
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\Picture", mappedBy="workspace", cascade={"persist"})
        */
     private $pictures;
 
