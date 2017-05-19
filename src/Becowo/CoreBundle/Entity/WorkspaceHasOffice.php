@@ -61,6 +61,13 @@ class WorkspaceHasOffice
   private $office;
   
   private $file;
+
+  /**
+     * @var Becowo\CoreBundle\Entity\Price $price
+     *
+     * @ORM\OneToOne(targetEntity = "Becowo\CoreBundle\Entity\Price", inversedBy = "WorkspaceHasOffice")
+     */
+    private $price;
   
   public function getFile()
   {
@@ -239,6 +246,31 @@ class WorkspaceHasOffice
         $this->description = $description;
 
         return $this;
+    }
+
+
+    /**
+     * Set price
+     *
+     * @param \Becowo\CoreBundle\Entity\Price $price
+     *
+     * @return Price
+     */
+    public function setPrice(\Becowo\CoreBundle\Entity\Price $price = null)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get Price
+     *
+     * @return \Becowo\CoreBundle\Entity\Price
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 
     public function __toString()

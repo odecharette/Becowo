@@ -54,7 +54,7 @@ class Price
     /**
      * @var \Becowo\CoreBundle\Entity\WorkspaceHasOffice
      *
-     * @ORM\OneToOne(targetEntity="WorkspaceHasOffice")
+     * @ORM\OneToOne(targetEntity="WorkspaceHasOffice", mappedBy = "Price")
      * @ORM\JoinColumn(name="Workspace_has_office_id", referencedColumnName="id")
      */
     private $workspaceHasOffice;
@@ -193,4 +193,8 @@ class Price
     }
 
    
+    public function __toString()
+    {
+        return $this->priceHour;
+    }
 }
