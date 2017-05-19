@@ -18,9 +18,9 @@
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
 			<h1>Référencez votre espace</h1>
-			{{form_errors(form)}}
 			<br>
 			{{ form_start(form) }}
+			{{ form_errors(form) }}
 			<h2>Identité de votre espace</h2>
 				{{form_row(form.name)}}
 				{{form_row(form.street)}}
@@ -94,14 +94,15 @@
 	    });
 
 	    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-	    if (index == 0) {
-	      addItem($container);
-	    } else {
-	      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-	      $container.children('div').each(function() {
-	        addDeleteLink($(this));
-	      });
-	    }
+//On n'ajoute pas d'item par défaut sinon on peut pas faire de save intermédiaire car la relation est required
+	    // if (index == 0) {
+	    //   addItem($container);
+	    // } else {
+	    //   // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+	    //   $container.children('div').each(function() {
+	    //     addDeleteLink($(this));
+	    //   });
+	    // }
 
 	    // La fonction qui ajoute un formulaire CategoryType
 	    function addItem($container) {

@@ -191,6 +191,6 @@ class Timetable
     
     public function __toString()
     {
-        return $this->openHour;
+        return '';
     }
 }

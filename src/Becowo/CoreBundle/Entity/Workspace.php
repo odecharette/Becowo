@@ -29,7 +29,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     * @Assert\Length(min = 3, max = 25, minMessage="Le nom doit contenir entre 3 et 25 caractères", maxMessage="Le nom doit contenir entre 3 et 25 caractères")
+     * @Assert\NotNull(message="Le nom est obligatoire")
      * @Algolia\Attribute
      */
     private $name;
@@ -329,7 +329,8 @@ class Workspace
     /**
      * @var \Becowo\CoreBundle\Entity\Timetable
      *
-     * @ORM\OneToOne(targetEntity="Becowo\CoreBundle\Entity\Timetable", inversedBy = "workspace")
+     * @ORM\OneToOne(targetEntity="Becowo\CoreBundle\Entity\Timetable", inversedBy = "workspace", cascade={"persist"})
+     * @Assert\NotNull(message="timetable obligatoire")
      */
     private $timetable;
 
