@@ -53,7 +53,7 @@ class CreateWorkspaceType extends AbstractType
             //     'entry_type' => TeamMemberType::class,
             //     'allow_add' => true,
             //     'allow_delete' => true))
-            ->add('amenitiesDesc', TextType::class, array('label' => 'Description de vos services'))
+            ->add('amenitiesDesc', TextareaType::class, array('label' => 'Description de vos services'))
             ->add('workspaceHasAmenitiesList', CollectionType::class, array(
                 'entry_type' => WorkspaceHasAmenitiesType::class,
                 'allow_add' => true,
@@ -66,7 +66,8 @@ class CreateWorkspaceType extends AbstractType
             ->add('workspaceHasOfficeList', CollectionType::class, array(
                 'entry_type' => WorkspaceHasOfficeType::class,
                 'allow_add' => true,
-                'allow_delete' => true))
+                'allow_delete' => true,
+                'label' => false))
             ->add('timetable', TimetableType::class, array('error_bubbling' => true, 'label' => false))
             ->add('teamMember', CollectionType::class, array(
                 'entry_type' => TeamMemberType::class,
@@ -77,7 +78,8 @@ class CreateWorkspaceType extends AbstractType
                 'entry_type' => PictureType::class,
                 'allow_add' => true,
                 'allow_delete' => true))
-            ->add('Enregistrer', SubmitType::class)
+            ->add('draft', SubmitType::class)
+            ->add('send', SubmitType::class)
         ;
     }
     

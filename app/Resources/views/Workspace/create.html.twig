@@ -40,7 +40,7 @@
 						<div class="form-group">
 							<div class="input-group">
 						    	<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-								<input id="autocomplete" placeholder="Sairir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control"></input>
+								<input id="autocomplete" placeholder="Saisir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control"></input>
 							</div>
 						</div>
 						
@@ -60,7 +60,7 @@
 				      	</a>
 				      	<div class="panel-collapse collapse" id="collapseTwo">
 				        	<div class="panel-body">
-				        		{{form_row(form.teamMember)}}
+				        		{{form_widget(form.teamMember)}}
 								<div class="row text-center">
 									<a href="#" id="add_teamMember" class="btn btn-default">Ajouter un membre</a>
 								</div>
@@ -125,7 +125,7 @@
 				      	<div class="panel-collapse collapse" id="collapseFive">
 				        	<div class="panel-body">
 								{{form_row(form.amenitiesDesc)}}
-								{{form_row(form.workspaceHasAmenitiesList)}}
+								{{form_widget(form.workspaceHasAmenitiesList)}}
 								<div class="row text-center">
 									<a href="#" id="add_amenity" class="btn btn-default">Ajouter un service</a>
 								</div>
@@ -140,7 +140,7 @@
 				      	</a>
 				      	<div class="panel-collapse collapse" id="collapseSix">
 				        	<div class="panel-body">
-								{{form_row(form.workspaceHasOfficeList)}}
+								{{form_widget(form.workspaceHasOfficeList)}}
 								<div class="row text-center">
 									<a href="#" id="add_office" class="btn btn-default">Ajouter un bureau</a>
 								</div>
@@ -155,7 +155,7 @@
 				      	</a>
 				      	<div class="panel-collapse collapse" id="collapseSeven">
 				        	<div class="panel-body">
-								{{form_row(form.pictures)}}
+								{{form_widget(form.pictures)}}
 								<div class="row text-center">
 									<a href="#" id="add_picture" class="btn btn-default">Ajouter une photo</a>
 								</div>
@@ -165,10 +165,13 @@
 				</div>
 			</div>
 				
-
-				
 			{# Désactive la validation HTML et force la validation côté serveur #}
-			{{form_row(form.Enregistrer, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+			<div class="row text-center">
+				{{form_row(form.draft, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+				{{form_row(form.send, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+			</div>
+				
+			
 			{{ form_rest(form) }}
 			{{ form_end(form) }}
 		</div>
@@ -249,24 +252,13 @@
 	      return false;
 	    });
 
-	    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-//On n'ajoute pas d'item par défaut sinon on peut pas faire de save intermédiaire car la relation est required
-	    // if (index == 0) {
-	    //   addItem($container);
-	    // } else {
-	    //   // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-	    //   $container.children('div').each(function() {
-	    //     addDeleteLink($(this));
-	    //   });
-	    // }
-
 	    // La fonction qui ajoute un formulaire CategoryType
 	    function addItem($container) {
 	      // Dans le contenu de l'attribut « data-prototype », on remplace :
 	      // - le texte "__name__label__" qu'il contient par le label du champ
 	      // - le texte "__name__" qu'il contient par le numéro du champ
 	      var template = $container.attr('data-prototype')
-	        .replace(/__name__label__/g, 'Item n°' + (index+1))
+	        .replace(/__name__label__/g, '') // .replace(/__name__label__/g, 'Item n°' + (index+1))
 	        .replace(/__name__/g,        index)
 	      ;
 
@@ -287,7 +279,7 @@
 
     // La fonction qui ajoute un lien de suppression
     function addDeleteLink($prototype) {
-      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+      var $deleteLink = $('<a href="#" class="btn btn-danger" style="float:right;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>');
       $prototype.append($deleteLink);
 
       // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie

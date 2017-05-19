@@ -18,12 +18,14 @@ class TimetableType extends AbstractType
         $builder->add('openHour', TimeType::class, array(
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'error_bubbling' => true
+                    'error_bubbling' => true,
+                    'label' => 'Horaire d\'ouverture'
                 ))
                 ->add('closeHour', TimeType::class, array(
                     'input'  => 'datetime',
                     'widget' => 'choice',
-                    'error_bubbling' => true
+                    'error_bubbling' => true,
+                    'label' => 'Horaire de fermeture'
                 ))
                 ->add('isOpenSaturday', CheckboxType::class, array(
                     'label'    => 'Ouvert le samedi',

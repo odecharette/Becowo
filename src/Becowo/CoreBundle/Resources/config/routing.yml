@@ -29,6 +29,11 @@ becowo_core_workspace_create:
     defaults: { _controller: BecowoCoreBundle:Workspace:createWsFull }
     methods: GET|POST
 
+becowo_core_workspace_edit:
+    path:     /espace-de-coworking/{id}
+    defaults: { _controller: BecowoCoreBundle:Workspace:editWsFull }
+    methods: GET|POST
+
 becowo_core_community:
     path:     /communaute/coworkers
     defaults: { _controller: BecowoCoreBundle:Community:community }

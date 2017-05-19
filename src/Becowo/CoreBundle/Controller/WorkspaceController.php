@@ -137,12 +137,55 @@ class WorkspaceController extends Controller
       $em->persist($ws);
       $em->flush();
 
-      $this->addFlash('success', 'Merci ! ');
+      if ($wsForm->get('draft')->isClicked()) {
 
-      return $this->redirectToRoute('becowo_core_homepage');
+        $this->addFlash('success', 'Brouillon enregistré');
+        return $this->redirectToRoute('becowo_core_workspace_edit', array('id' => $ws->getId()));
+
+      }elseif ($wsForm->get('send')->isClicked()) {
+
+        $this->addFlash('success', 'Formulaire envoyé');
+        return $this->redirectToRoute('becowo_core_homepage');
+      }
+
+      
     }
 
     return $this->render('Workspace/create.html.twig', array('form' => $wsForm->createView()));
+  }
+
+  public function editWsFullAction(Request $request)
+  {
+    $WsService = $this->get('app.workspace');
+    $ws = $WsService->getWorkspaceById($request->get('id'));
+    $em = $this->getDoctrine()->getManager();
+
+    $wsForm = $this->get('form.factory')->createNamedBuilder('create_ws_form', CreateWorkspaceType::class, $ws)
+      ->setMethod('POST')
+      ->getForm();
+
+    if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
+
+      $ws = $wsForm->getData();
+      $em->persist($ws);
+      $em->flush();
+
+      if ($wsForm->get('draft')->isClicked()) {
+
+        $this->addFlash('success', 'Brouillon enregistré');
+        return $this->redirectToRoute('becowo_core_workspace_edit', array('id' => $ws->getId()));
+
+      }elseif ($wsForm->get('send')->isClicked()) {
+
+        $this->addFlash('success', 'Formulaire envoyé');
+        return $this->redirectToRoute('becowo_core_homepage');
+      }
+
+      
+    }
+
+    return $this->render('Workspace/create.html.twig', array('form' => $wsForm->createView()));
+
   }
 
 }
