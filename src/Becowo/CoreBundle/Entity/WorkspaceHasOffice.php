@@ -49,7 +49,7 @@ class WorkspaceHasOffice
     private $urlProfilePicture;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace")
+   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="Workspace")
    * @ORM\JoinColumn(nullable=false)
    */
   private $workspace;

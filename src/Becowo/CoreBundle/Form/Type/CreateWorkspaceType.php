@@ -60,6 +60,10 @@ class CreateWorkspaceType extends AbstractType
                 'choice_label' => 'name',
                 'placeholder' => 'Choisir une offre',
             ))
+            ->add('workspaceHasOfficeList', CollectionType::class, array(
+                'entry_type' => WorkspaceHasOfficeType::class,
+                'allow_add' => true,
+                'allow_delete' => true))
             ->add('Enregistrer', SubmitType::class)
         ;
     }

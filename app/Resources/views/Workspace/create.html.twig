@@ -37,7 +37,14 @@
 			<h2>Vos services</h2>
 				{{form_row(form.amenitiesDesc)}}
 				{{form_row(form.workspaceHasAmenitiesList)}}
-				<a href="#" id="add_amenity" class="btn btn-default">Ajouter un service</a>
+				<div class="row text-center">
+					<a href="#" id="add_amenity" class="btn btn-default">Ajouter un service</a>
+				</div>
+			<h2>Les espaces à louer</h2>
+				{{form_row(form.workspaceHasOfficeList)}}
+				<div class="row text-center">
+					<a href="#" id="add_office" class="btn btn-default">Ajouter un bureau</a>
+				</div>
 
 			{{ form_rest(form) }}
 			{{ form_end(form) }}
@@ -49,66 +56,69 @@
 
 {% block javascripts %}
 	<script type="text/javascript">
+
+	// Gestion des sous formulaires pour les relations ManyToMany
+
   $(document).ready(function() {
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#create-ws-form_workspaceHasAmenitiesList');
+  	
+  	manageSubForm($('div#create-ws-form_workspaceHasAmenitiesList'), $('#add_amenity'));
+ 	manageSubForm($('div#create-ws-form_workspaceHasOfficeList'), $('#add_office'));
 
-    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-    var index = $container.find(':input').length;
 
-    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-    $('#add_amenity').click(function(e) {
-      addAmenity($container);
+    function manageSubForm($container, $btn_add){
+	    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+	    var index = $container.find(':input').length;
 
-      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-      return false;
-    });
+	    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+	    $($btn_add).click(function(e) {
+	      addItem($container);
+	      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+	      return false;
+	    });
 
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
-      addAmenity($container);
-    } else {
-      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-      $container.children('div').each(function() {
-        addDeleteLink($(this));
-      });
+	    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+	    if (index == 0) {
+	      addItem($container);
+	    } else {
+	      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+	      $container.children('div').each(function() {
+	        addDeleteLink($(this));
+	      });
+	    }
+
+	    // La fonction qui ajoute un formulaire CategoryType
+	    function addItem($container) {
+	      // Dans le contenu de l'attribut « data-prototype », on remplace :
+	      // - le texte "__name__label__" qu'il contient par le label du champ
+	      // - le texte "__name__" qu'il contient par le numéro du champ
+	      var template = $container.attr('data-prototype')
+	        .replace(/__name__label__/g, 'Item n°' + (index+1))
+	        .replace(/__name__/g,        index)
+	      ;
+
+	      // On crée un objet jquery qui contient ce template
+	      var $prototype = $(template);
+
+	      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+	      addDeleteLink($prototype);
+
+	      // On ajoute le prototype modifié à la fin de la balise <div>
+	      $container.append($prototype);
+
+	      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+	      index++;
+	    }
     }
 
-    // La fonction qui ajoute un formulaire CategoryType
-    function addAmenity($container) {
-      // Dans le contenu de l'attribut « data-prototype », on remplace :
-      // - le texte "__name__label__" qu'il contient par le label du champ
-      // - le texte "__name__" qu'il contient par le numéro du champ
-      var template = $container.attr('data-prototype')
-        .replace(/__name__label__/g, 'Service n°' + (index+1))
-        .replace(/__name__/g,        index)
-      ;
 
-      // On crée un objet jquery qui contient ce template
-      var $prototype = $(template);
-
-      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-      addDeleteLink($prototype);
-
-      // On ajoute le prototype modifié à la fin de la balise <div>
-      $container.append($prototype);
-
-      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-      index++;
-    }
-
-    // La fonction qui ajoute un lien de suppression d'une catégorie
+    // La fonction qui ajoute un lien de suppression
     function addDeleteLink($prototype) {
-      // Création du lien
       var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-
-      // Ajout du lien
       $prototype.append($deleteLink);
 
       // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
       $deleteLink.click(function(e) {
         $prototype.remove();
-
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
       });

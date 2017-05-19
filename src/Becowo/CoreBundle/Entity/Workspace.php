@@ -320,6 +320,11 @@ class Workspace
     private $workspaceHasAmenitiesList; 
 
     /**
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasAmenities", mappedBy="Workspace")
+       */
+    private $workspaceHasOfficeList; 
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -327,12 +332,12 @@ class Workspace
         $this->poi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->filterOffices = new \Doctrine\Common\Collections\ArrayCollection();
         $this->teamMember = new \Doctrine\Common\Collections\ArrayCollection();
-        // $this->amenities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->isDeleted = false;
         $this->lowestPrice = 0;
         $this->voteAverage = 0;
         $this->workspaceHasAmenitiesList = new ArrayCollection();
+        $this->workspaceHasOfficeList = new ArrayCollection();
     }
 
     public function addWorkspaceHasAmenities(WorkspaceHasAmenities $WorkspaceHasAmenities)
@@ -348,6 +353,21 @@ class Workspace
       public function getWorkspaceHasAmenitiesList()
       {
         return $this->workspaceHasAmenitiesList;
+      }
+
+    public function addWorkspaceHasOffice(WorkspaceHasOffice $WorkspaceHasOffice)
+      {
+        $this->workspaceHasOfficeList[] = $WorkspaceHasOffice;
+      }
+
+      public function removeWorkspaceHasOffice(WorkspaceHasOffice $WorkspaceHasOffice)
+      {
+        $this->workspaceHasOfficeList->removeElement($WorkspaceHasOffice);
+      }
+
+      public function getWorkspaceHasOfficeList()
+      {
+        return $this->workspaceHasOfficeList;
       }
 
     /**
