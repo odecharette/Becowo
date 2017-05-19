@@ -69,6 +69,10 @@ class CreateWorkspaceType extends AbstractType
                 'entry_type' => TeamMemberType::class,
                 'allow_add' => true,
                 'allow_delete' => true))
+            ->add('pictures', CollectionType::class, array(
+                'entry_type' => PictureType::class,
+                'allow_add' => true,
+                'allow_delete' => true))
             ->add('Enregistrer', SubmitType::class)
         ;
     }

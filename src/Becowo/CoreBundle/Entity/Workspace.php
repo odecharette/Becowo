@@ -332,6 +332,11 @@ class Workspace
     private $timetable;
 
     /**
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\Picture", mappedBy="Workspace")
+       */
+    private $pictures;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -345,7 +350,23 @@ class Workspace
         $this->voteAverage = 0;
         $this->workspaceHasAmenitiesList = new ArrayCollection();
         $this->workspaceHasOfficeList = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
+
+    public function addPicture(Picture $picture)
+      {
+        $this->pictures[] = $picture;
+      }
+
+      public function removePicture(Picture $picture)
+      {
+        $this->pictures->removeElement($picture);
+      }
+
+      public function getPictures()
+      {
+        return $this->pictures;
+      }
 
     /**
      * Set timetable
