@@ -324,7 +324,13 @@ class Workspace
     /**
        * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasOffice", mappedBy="workspace")
        */
-    private $workspaceHasOfficeList; 
+    private $workspaceHasOfficeList;
+
+
+    /**
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasTeamMember", mappedBy="workspace")
+       */
+    private $teamMember;  
 
     /**
      * @var \Becowo\CoreBundle\Entity\Timetable
