@@ -21,52 +21,152 @@
 			<br>
 			{{ form_start(form) }}
 			{{ form_errors(form) }}
-			<h2>Identité de votre espace</h2>
-				{{form_row(form.name)}}
-				<div class="form-group">
-					<label class="col-sm-2 control-label required" for="autocomplete">Adresse *</label>
-					<div class="col-sm-10">
-						<input id="autocomplete" onFocus="geolocate()" type="text" autocomplete="off" class="form-control"></input>
-					</div>
+			<div id="accordion" class="panel-group">
+			    <div class="panel panel-default">
+			    	<a href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
+			      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+			      			Identité de votre espace
+			      		</div>
+			      	</a>
+			      	<div class="panel-collapse collapse in" id="collapseOne">
+				        <div class="panel-body">
+				        	<div class="form-group">
+						 	<div class="input-group">
+							    <div class="input-group-addon"><i class="fa fa-building" aria-hidden="true"></i></div>
+							    {{form_widget(form.name)}}
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="input-group">
+						    	<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+								<input id="autocomplete" placeholder="Sairir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control"></input>
+							</div>
+						</div>
+						
+						{{form_row(form.street)}}
+						{{form_row(form.postCode, {'attr': {'hidden': true}})}}
+						{{form_row(form.city, {'attr': {'hidden': true}})}}
+						{{form_row(form.country, {'attr': {'hidden': true}})}}
+						{{form_row(form.isAlwaysOpen)}}
+						{{form_row(form.timetable)}}
+				        </div>
+			      	</div>
+			      	<div class="panel panel-default">
+				      	<a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      			L'équipe
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseTwo">
+				        	<div class="panel-body">
+				        		{{form_row(form.teamMember)}}
+								<div class="row text-center">
+									<a href="#" id="add_teamMember" class="btn btn-default">Ajouter un membre</a>
+								</div>
+				        	</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default">
+				      	<a href="#collapseThree" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      			Votre présence sur Internet
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseThree">
+				        	<div class="panel-body">
+				        		<div class="form-group">
+								  <div class="input-group">
+								    <div class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+								    {{form_widget(form.website)}}
+								  </div>
+								</div>
+								<div class="form-group">
+								  <div class="input-group">
+								    <div class="input-group-addon"><i class="fa fa-facebook-square" aria-hidden="true"></i></div>
+								    {{form_widget(form.facebookLink)}}
+								  </div>
+								</div>
+								<div class="form-group">
+								  <div class="input-group">
+								    <div class="input-group-addon"><i class="fa fa-twitter-square" aria-hidden="true"></i></div>
+								    {{form_widget(form.twitterLink)}}
+								  </div>
+								</div>
+								<div class="form-group">
+								  <div class="input-group">
+								    <div class="input-group-addon"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+								    {{form_widget(form.instagramLink)}}
+								  </div>
+								</div>
+				        	</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default">
+				      	<a href="#collapseFour" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      			Définissez votre offre
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseFour">
+				        	<div class="panel-body">
+				        		{{form_row(form.category)}}
+								{{form_row(form.offer)}}
+								{{form_row(form.firstBookingFree)}}
+				        	</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default">
+				      	<a href="#collapseFive" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      			Vos services
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseFive">
+				        	<div class="panel-body">
+								{{form_row(form.amenitiesDesc)}}
+								{{form_row(form.workspaceHasAmenitiesList)}}
+								<div class="row text-center">
+									<a href="#" id="add_amenity" class="btn btn-default">Ajouter un service</a>
+								</div>
+							</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default">
+				      	<a href="#collapseSix" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      			Les espaces à louer
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseSix">
+				        	<div class="panel-body">
+								{{form_row(form.workspaceHasOfficeList)}}
+								<div class="row text-center">
+									<a href="#" id="add_office" class="btn btn-default">Ajouter un bureau</a>
+								</div>
+							</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default">
+				      	<a href="#collapseSeven" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      			Les photos
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseSeven">
+				        	<div class="panel-body">
+								{{form_row(form.pictures)}}
+								<div class="row text-center">
+									<a href="#" id="add_picture" class="btn btn-default">Ajouter une photo</a>
+								</div>
+							</div>
+				      	</div>
+				    </div>
 				</div>
+			</div>
 				
-				{{form_row(form.street)}}
-				{{form_row(form.postCode, {'attr': {'hidden': true}})}}
-				{{form_row(form.city, {'attr': {'hidden': true}})}}
-				{{form_row(form.country, {'attr': {'hidden': true}})}}
-				{{form_row(form.isAlwaysOpen)}}
-				{{form_row(form.timetable)}}
 
-			<h2>L'équipe</h2>
-				{{form_row(form.teamMember)}}
-				<div class="row text-center">
-					<a href="#" id="add_teamMember" class="btn btn-default">Ajouter un membre</a>
-				</div>
-			<h2>Votre présence sur Internet</h2>
-				{{form_row(form.website)}}
-				{{form_row(form.facebookLink)}}
-				{{form_row(form.twitterLink)}}
-				{{form_row(form.instagramLink)}}
-			<h2>Définissez votre offre</h2>
-				{{form_row(form.category)}}
-				{{form_row(form.offer)}}
-				{{form_row(form.firstBookingFree)}}
-			<h2>Vos services</h2>
-				{{form_row(form.amenitiesDesc)}}
-				{{form_row(form.workspaceHasAmenitiesList)}}
-				<div class="row text-center">
-					<a href="#" id="add_amenity" class="btn btn-default">Ajouter un service</a>
-				</div>
-			<h2>Les espaces à louer</h2>
-				{{form_row(form.workspaceHasOfficeList)}}
-				<div class="row text-center">
-					<a href="#" id="add_office" class="btn btn-default">Ajouter un bureau</a>
-				</div>
-			<h2>Les photos</h2>
-				{{form_row(form.pictures)}}
-				<div class="row text-center">
-					<a href="#" id="add_picture" class="btn btn-default">Ajouter une photo</a>
-				</div>
+				
 			{# Désactive la validation HTML et force la validation côté serveur #}
 			{{form_row(form.Enregistrer, {'attr': {'formnovalidate': 'formnovalidate'}})}}
 			{{ form_rest(form) }}

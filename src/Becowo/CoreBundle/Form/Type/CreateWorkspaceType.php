@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -23,7 +24,7 @@ class CreateWorkspaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('label' => 'Nom *', 'error_bubbling' => true))
+            ->add('name', TextType::class, array('error_bubbling' => true, 'label' => false, 'attr' => array('placeholder' => 'Saisir un nom')))
             ->add('street', HiddenType::class)
             ->add('postCode', HiddenType::class)
             ->add('city', HiddenType::class)
@@ -40,12 +41,12 @@ class CreateWorkspaceType extends AbstractType
             ))
             // ->add('description',   TextareaType::class)
             // ->add('descriptionBonus',   TextType::class)
-            ->add('website', TextType::class, array('label' => 'Site internet', 'required' => false))
-            ->add('facebookLink', TextType::class, array('label' => 'Page Facebook', 'required' => false))
-            ->add('twitterLink', TextType::class, array('label' => 'Compte Twitter', 'required' => false))
-            ->add('instagramLink', TextType::class, array('label' => 'Compte Instagram', 'required' => false))
-            ->add('firstBookingFree')
-            ->add('isAlwaysOpen')
+            ->add('website', TextType::class, array('required' => false, 'attr' => array('placeholder' => 'http://www.monsite.com')))
+            ->add('facebookLink', TextType::class, array('required' => false, 'attr' => array('placeholder' => 'https://www.facebook.com/monProfil')))
+            ->add('twitterLink', TextType::class, array('required' => false, 'attr' => array('placeholder' => 'https://twitter.com/monProfil')))
+            ->add('instagramLink', TextType::class, array('required' => false, 'attr' => array('placeholder' => 'https://www.instagram.com/monProfil')))
+            ->add('firstBookingFree', CheckBoxType::class, array('label' => 'Première réservation gratuite'))
+            ->add('isAlwaysOpen', CheckBoxType::class, array('label' => 'Ouvert 24/24j 7/7j'))
             // ->add('longitude')
             // ->add('latitude')
             // ->add('teamMember', CollectionType::class, array(
@@ -66,11 +67,12 @@ class CreateWorkspaceType extends AbstractType
                 'entry_type' => WorkspaceHasOfficeType::class,
                 'allow_add' => true,
                 'allow_delete' => true))
-            ->add('timetable', TimetableType::class, array('error_bubbling' => true))
+            ->add('timetable', TimetableType::class, array('error_bubbling' => true, 'label' => false))
             ->add('teamMember', CollectionType::class, array(
                 'entry_type' => TeamMemberType::class,
                 'allow_add' => true,
-                'allow_delete' => true))
+                'allow_delete' => true,
+                'label' => false))
             ->add('pictures', CollectionType::class, array(
                 'entry_type' => PictureType::class,
                 'allow_add' => true,
