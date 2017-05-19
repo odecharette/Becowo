@@ -44,10 +44,10 @@
 							</div>
 						</div>
 						
-						{{form_row(form.street)}}
-						{{form_row(form.postCode, {'attr': {'hidden': true}})}}
-						{{form_row(form.city, {'attr': {'hidden': true}})}}
-						{{form_row(form.country, {'attr': {'hidden': true}})}}
+						{{form_widget(form.street)}}
+						{{form_widget(form.postCode)}}
+						{{form_widget(form.city)}}
+						{{form_widget(form.country)}}
 						{{form_row(form.isAlwaysOpen)}}
 						{{form_row(form.timetable)}}
 				        </div>
@@ -202,12 +202,26 @@
         // Get the place details from the autocomplete object.
         var place = autocomplete.getPlace();
 
-        $('#create_ws_form_street').val(place.address_components[0]['long_name'] + ' ' + place.address_components[1]['long_name']);
-        $('#create_ws_form_postCode').val(place.address_components[6]['long_name']);
-        $('#create_ws_form_city').val(place.address_components[2]['long_name']);
-        $("#create_ws_form_country option").filter(function() {
-		    return this.text == place.address_components[5]['long_name']; 
-		}).attr('selected', true);
+		for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (addressType == 'street_number') {
+            var num = place.address_components[i]['long_name'];
+          }else if (addressType == 'route') {
+            var val = place.address_components[i]['long_name'];
+            $('#create_ws_form_street').val(num + ' ' + val);
+          }else if (addressType == 'locality') {
+            var val = place.address_components[i]['long_name'];
+            $('#create_ws_form_city').val(val);
+          }else if (addressType == 'postal_code') {
+            var val = place.address_components[i]['long_name'];
+            $('#create_ws_form_postCode').val(val);
+          }else if (addressType == 'country') {
+            var val = place.address_components[i]['long_name'];
+            $("#create_ws_form_country option").filter(function() {
+			    return this.text == val; 
+			}).attr('selected', true);
+          }
+        }
 
       }
 
