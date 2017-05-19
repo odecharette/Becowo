@@ -34,6 +34,8 @@ class CreateWorkspaceType extends AbstractType
                 'label' => false,
                 'attr' => array('class' => 'hidden')
             ))
+            ->add('longitude', HiddenType::class)
+            ->add('latitude', HiddenType::class)
             ->add('category', EntityType::class, array(
                 'class' => 'BecowoCoreBundle:WorkspaceCategory',
                 'choice_label' => 'name',
@@ -47,12 +49,6 @@ class CreateWorkspaceType extends AbstractType
             ->add('instagramLink', TextType::class, array('required' => false, 'attr' => array('placeholder' => 'https://www.instagram.com/monProfil')))
             ->add('firstBookingFree', CheckBoxType::class, array('label' => 'Première réservation gratuite'))
             ->add('isAlwaysOpen', CheckBoxType::class, array('label' => 'Ouvert 24/24j 7/7j'))
-            // ->add('longitude')
-            // ->add('latitude')
-            // ->add('teamMember', CollectionType::class, array(
-            //     'entry_type' => TeamMemberType::class,
-            //     'allow_add' => true,
-            //     'allow_delete' => true))
             ->add('amenitiesDesc', TextareaType::class, array('label' => 'Description de vos services'))
             ->add('workspaceHasAmenitiesList', CollectionType::class, array(
                 'entry_type' => WorkspaceHasAmenitiesType::class,

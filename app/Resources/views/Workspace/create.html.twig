@@ -48,6 +48,8 @@
 						{{form_widget(form.postCode)}}
 						{{form_widget(form.city)}}
 						{{form_widget(form.country)}}
+						{{form_widget(form.longitude)}}
+						{{form_widget(form.latitude)}}
 						{{form_row(form.isAlwaysOpen)}}
 						{{form_row(form.timetable)}}
 				        </div>
@@ -222,6 +224,9 @@
 			}).attr('selected', true);
           }
         }
+
+        $('#create_ws_form_longitude').val(place.geometry.location.lng());
+        $('#create_ws_form_latitude').val(place.geometry.location.lat());
 
       }
 
