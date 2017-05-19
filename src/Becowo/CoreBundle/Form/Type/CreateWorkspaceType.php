@@ -64,6 +64,7 @@ class CreateWorkspaceType extends AbstractType
                 'entry_type' => WorkspaceHasOfficeType::class,
                 'allow_add' => true,
                 'allow_delete' => true))
+            ->add('timetable', TimetableType::class)
             ->add('Enregistrer', SubmitType::class)
         ;
     }

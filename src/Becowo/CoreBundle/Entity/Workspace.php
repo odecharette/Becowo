@@ -325,6 +325,13 @@ class Workspace
     private $workspaceHasOfficeList; 
 
     /**
+     * @var \Becowo\CoreBundle\Entity\Timetable
+     *
+     * @ORM\OneToOne(targetEntity="Becowo\CoreBundle\Entity\Timetable", inversedBy = "Workspace")
+     */
+    private $timetable;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -338,6 +345,30 @@ class Workspace
         $this->voteAverage = 0;
         $this->workspaceHasAmenitiesList = new ArrayCollection();
         $this->workspaceHasOfficeList = new ArrayCollection();
+    }
+
+    /**
+     * Set timetable
+     *
+     * @param \Becowo\CoreBundle\Entity\Timetable $timetable
+     *
+     * @return Price
+     */
+    public function setTimetable(\Becowo\CoreBundle\Entity\Timetable $timetable = null)
+    {
+        $this->timetable = $timetable;
+
+        return $this;
+    }
+
+    /**
+     * Get timetable
+     *
+     * @return \Becowo\CoreBundle\Entity\Timetable
+     */
+    public function getTimetable()
+    {
+        return $this->timetable;
     }
 
     public function addWorkspaceHasAmenities(WorkspaceHasAmenities $WorkspaceHasAmenities)
