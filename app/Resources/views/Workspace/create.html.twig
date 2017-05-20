@@ -119,30 +119,10 @@
 				      	</a>
 				      	<div class="panel-collapse collapse" id="collapseThree">
 				        	<div class="panel-body">
-				        		<div class="form-group">
-								  <div class="input-group">
-								    <div class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></div>
-								    {{form_widget(form.website)}}
-								  </div>
-								</div>
-								<div class="form-group">
-								  <div class="input-group">
-								    <div class="input-group-addon"><i class="fa fa-facebook-square" aria-hidden="true"></i></div>
-								    {{form_widget(form.facebookLink)}}
-								  </div>
-								</div>
-								<div class="form-group">
-								  <div class="input-group">
-								    <div class="input-group-addon"><i class="fa fa-twitter-square" aria-hidden="true"></i></div>
-								    {{form_widget(form.twitterLink)}}
-								  </div>
-								</div>
-								<div class="form-group">
-								  <div class="input-group">
-								    <div class="input-group-addon"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-								    {{form_widget(form.instagramLink)}}
-								  </div>
-								</div>
+							    {{form_row(form.website)}}
+							    {{form_row(form.facebookLink)}}
+							    {{form_row(form.twitterLink)}}
+							    {{form_row(form.instagramLink)}}
 				        	</div>
 				      	</div>
 				    </div>
@@ -169,6 +149,7 @@
 				      	<div class="panel-collapse collapse" id="collapseFive">
 				        	<div class="panel-body">
 								{{form_row(form.amenitiesDesc)}}
+								<br>
 								{{form_widget(form.workspaceHasAmenitiesList)}}
 								<div class="row text-center">
 									<a href="#" id="add_amenity" class="btn btn-default">Ajouter un service</a>
@@ -326,8 +307,6 @@
  	manageSubForm($('div#create_ws_form_pictures'), $('#add_picture'));
 
 
-
-
     function manageSubForm($container, $btn_add){
 	    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
 	    var index = $container.find(':input').length;
@@ -353,23 +332,28 @@
 
 	      // olivia : on supprime la colonne avec le label sinon ca décale tout le sous-formulaire
 		  $prototype.find('label:first').remove();
-		  $prototype.find('.col-sm-7').first().addClass('col-sm-11').removeClass('col-sm-7');
+		  $prototype.find('.col-sm-7').first().addClass('col-sm-12').removeClass('col-sm-7');
 
-	      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-	      addDeleteLink($prototype);
+
 
 	      // On ajoute le prototype modifié 
-	      $prototype.prependTo($container.parent().parent());
+	      $prototype.appendTo($container.parent().parent());
 
 	      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
 	      index++;
+
+	      // Olivia : on décale le sous-sous formulaire
+ 		  $('[id$="_price"]').appendTo($container.parent().parent());
+
+	      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+	      addDeleteLink($container.parent().parent());
 	    }
     }
 
 
     // La fonction qui ajoute un lien de suppression
     function addDeleteLink($prototype) {
-      var $deleteLink = $('<a href="#" class="btn btn-danger" style="float:right;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>');
+      var $deleteLink = $('<div class="row"><button class="btn btn-danger" style="float:right;"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>');
       $prototype.append($deleteLink);
 
       // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie

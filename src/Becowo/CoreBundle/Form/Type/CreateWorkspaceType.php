@@ -41,6 +41,7 @@ class CreateWorkspaceType extends AbstractType
                 'class' => 'BecowoCoreBundle:WorkspaceCategory',
                 'choice_label' => 'name',
                 'placeholder' => 'Choisir une catégorie',
+                'label' => 'Catégorie'
             ))
             // ->add('description',   TextareaType::class)
             // ->add('descriptionBonus',   TextType::class)
@@ -60,6 +61,7 @@ class CreateWorkspaceType extends AbstractType
                 'class' => 'BecowoCoreBundle:Offer',
                 'choice_label' => 'name',
                 'placeholder' => 'Choisir une offre',
+                'label' => 'Choisir une offre'
             ))
             ->add('workspaceHasOfficeList', CollectionType::class, array(
                 'entry_type' => WorkspaceHasOfficeType::class,
