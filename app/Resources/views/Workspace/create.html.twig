@@ -207,11 +207,22 @@
 			{{ form_end(form) }}
 		</div>
 	</div>
+<div class="dropzone my-dropzone" id="form_snippet_image" action="{{path('becowo_core_workspace_upload', {'wsId' : form.vars.data.id})}}"></div>
 </div>
 
 {% endblock body %}
 
 {% block javascripts %}
+
+	{# Gestion de dropzone : https://www.wanadev.fr/44-tuto-symfony3-et-dropzonejs/ #}
+	<script type="text/javascript">
+	//je récupère l'action où sera traité l'upload en PHP
+	var _actionToDropZone = $("#form_snippet_image").attr('action');
+
+	//je définis ma zone de drop grâce à l'ID de ma div citée plus haut.
+	Dropzone.autoDiscover = false;
+	var myDropzone = new Dropzone("#form_snippet_image", { url: _actionToDropZone });
+	</script>
 
 	{# Gestion de la saisie de l'adrese via API google #}
     <script type="text/javascript">

@@ -8,8 +8,10 @@ use Becowo\CoreBundle\Form\Type\ManagerContactType;
 use Becowo\CoreBundle\Entity\Contact;
 use Becowo\CoreBundle\Entity\Comment;
 use Becowo\CoreBundle\Entity\Workspace;
+use Becowo\CoreBundle\Entity\Picture;
 use Becowo\CoreBundle\Form\Type\CommentType;
 use Becowo\CoreBundle\Form\Type\CreateWorkspaceType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class WorkspaceController extends Controller
 {
@@ -176,6 +178,28 @@ dump($ws);
 
     return $this->render('Workspace/create.html.twig', array('form' => $wsForm->createView()));
 
+  }
+
+  public function uploadPictureDropzoneAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $WsService = $this->get('app.workspace');
+    $ws = $WsService->getWorkspaceById($request->get('wsId'));
+
+    $document = new Picture();
+    $document->setWorkspace($ws);
+    $media = $request->files->get('file');
+
+    $document->setFile($media);
+    $document->setUrl($media->getPathName());
+    // $document->setName($media->getClientOriginalName());
+    $document->upload($ws->getName());
+    $em->persist($document);
+    $em->flush();
+
+    //infos sur le document envoyé
+    //var_dump($request->files->get('file'));die;
+    return new JsonResponse(array('success' => true));
   }
 
 }
