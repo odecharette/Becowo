@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Becowo\CoreBundle\Form\Type\TeamMemberType;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class CreateWorkspaceType extends AbstractType
 {
@@ -53,7 +54,8 @@ class CreateWorkspaceType extends AbstractType
             ->add('workspaceHasAmenitiesList', CollectionType::class, array(
                 'entry_type' => WorkspaceHasAmenitiesType::class,
                 'allow_add' => true,
-                'allow_delete' => true))
+                'allow_delete' => true,
+                'constraints' => array(new Valid())))
             ->add('offer', EntityType::class, array(
                 'class' => 'BecowoCoreBundle:Offer',
                 'choice_label' => 'name',
@@ -63,17 +65,21 @@ class CreateWorkspaceType extends AbstractType
                 'entry_type' => WorkspaceHasOfficeType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'label' => false))
+                'label' => false,
+                'error_bubbling' => true,
+                'constraints' => array(new Valid())))
             ->add('timetable', TimetableType::class, array('error_bubbling' => true, 'label' => false))
-            ->add('teamMember', CollectionType::class, array(
+            ->add('teamMembers', CollectionType::class, array(
                 'entry_type' => TeamMemberType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'label' => false))
+                'label' => false,
+                'constraints' => array(new Valid())))
             ->add('pictures', CollectionType::class, array(
                 'entry_type' => PictureType::class,
                 'allow_add' => true,
-                'allow_delete' => true))
+                'allow_delete' => true,
+                'constraints' => array(new Valid())))
             ->add('draft', SubmitType::class)
             ->add('send', SubmitType::class)
             ->add('draft2', SubmitType::class)
@@ -87,7 +93,8 @@ class CreateWorkspaceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Becowo\CoreBundle\Entity\Workspace'
+            'data_class' => 'Becowo\CoreBundle\Entity\Workspace',
+            'cascade_validation' => true,   // This causes the entity constraint validation to trigger in the child types shown in the form
         ));
     }
 }

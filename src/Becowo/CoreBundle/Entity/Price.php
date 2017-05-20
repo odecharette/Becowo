@@ -195,6 +195,6 @@ class Price
    
     public function __toString()
     {
-        return $this->priceHour;
+        return (string)$this->id;
     }
 }

@@ -24,14 +24,9 @@ becowo_core_workspace_contact:
     options:
         expose: true
 
-becowo_core_workspace_create:
-    path:     /espace-de-coworking/nouveau
-    defaults: { _controller: BecowoCoreBundle:Workspace:createWsFull }
-    methods: GET|POST
-
-becowo_core_workspace_edit:
+becowo_core_workspace_edit_create:
     path:     /espace-de-coworking/{id}
-    defaults: { _controller: BecowoCoreBundle:Workspace:editWsFull }
+    defaults: { _controller: BecowoCoreBundle:Workspace:editCreateWsFull }
     methods: GET|POST
 
 becowo_core_community:

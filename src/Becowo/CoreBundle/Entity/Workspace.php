@@ -29,7 +29,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     * @Assert\NotNull(message="Le nom est obligatoire")
+     * @Assert\NotNull(message="Identité : Le nom est obligatoire")
      * @Algolia\Attribute
      */
     private $name;
@@ -317,20 +317,21 @@ class Workspace
     private $horaireCalme;
 
     /**
-       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasAmenities", mappedBy="workspace")
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasAmenities", mappedBy="workspace", cascade={"persist"})
        */
     private $workspaceHasAmenitiesList; 
 
     /**
-       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasOffice", mappedBy="workspace")
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasOffice", mappedBy="workspace", cascade={"persist"})
+       * @Assert\NotNull(message="bureau obligatoire")
        */
     private $workspaceHasOfficeList;
 
 
     /**
-       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasTeamMember", mappedBy="workspace")
+       * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasTeamMember", mappedBy="workspace", cascade={"persist"})
        */
-    private $teamMember;  
+    private $teamMembers;  
 
     /**
      * @var \Becowo\CoreBundle\Entity\Timetable
@@ -352,7 +353,7 @@ class Workspace
     {
         $this->poi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->filterOffices = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->teamMember = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->teamMembers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->isDeleted = false;
         $this->lowestPrice = 0;
@@ -1094,7 +1095,7 @@ class Workspace
      */
     public function addTeamMember(\Becowo\CoreBundle\Entity\TeamMember $teamMember)
     {
-        $this->teamMember[] = $teamMember;
+        $this->teamMembers[] = $teamMember;
 
         return $this;
     }
@@ -1106,7 +1107,7 @@ class Workspace
      */
     public function removeTeamMember(\Becowo\CoreBundle\Entity\TeamMember $teamMember)
     {
-        $this->teamMember->removeElement($teamMember);
+        $this->teamMembers->removeElement($teamMember);
     }
 
     /**
@@ -1114,9 +1115,9 @@ class Workspace
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTeamMember()
+    public function getTeamMembers()
     {
-        return $this->teamMember;
+        return $this->teamMembers;
     }
 
 

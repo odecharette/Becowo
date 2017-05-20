@@ -120,51 +120,19 @@ class WorkspaceController extends Controller
     return $this->render('Workspace/comments.html.twig', array('formComment' => $formComment->createView(), 'listComments' => $listComments, 'ws' =>$ws, 'voteAlreadyDone' => $voteAlreadyDone));
   }
 
-  public function createWsFullAction(Request $request)
-  {
-    $ws = new Workspace();
-    $ws->setIsVisible(false);
-    $em = $this->getDoctrine()->getManager();
-
-    $wsForm = $this->get('form.factory')->createNamedBuilder('create_ws_form', CreateWorkspaceType::class, $ws)
-      ->setMethod('POST')
-      ->getForm();
-
-    if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
-
-      $ws = $wsForm->getData();
-      $pictures = $ws->getPictures();
-
-      foreach ($pictures as $pic) {
-        $pic->upload($ws->getName());
-        $pic->setWorkspace($ws);
-      }
-      
-      $em->persist($ws);
-      $em->flush();
-
-      if ($wsForm->get('draft')->isClicked() or $wsForm->get('draft2')->isClicked()) {
-
-        $this->addFlash('success', 'Brouillon enregistré');
-        return $this->redirectToRoute('becowo_core_workspace_edit', array('id' => $ws->getId()));
-
-      }elseif ($wsForm->get('send')->isClicked() or $wsForm->get('send2')->isClicked()) {
-
-        // TO DO : envoyer mail pour validation
-        $this->addFlash('success', 'Formulaire envoyé');
-        return $this->redirectToRoute('becowo_core_homepage');
-      }
-
-      
-    }
-
-    return $this->render('Workspace/create.html.twig', array('form' => $wsForm->createView()));
-  }
-
-  public function editWsFullAction(Request $request)
+  public function editCreateWsFullAction(Request $request)
   {
     $WsService = $this->get('app.workspace');
-    $ws = $WsService->getWorkspaceById($request->get('id'));
+
+    if($request->get('id') == 'nouveau')
+    {
+      $ws = new Workspace();
+      $ws->setIsVisible(false);
+    }else
+    {
+      $ws = $WsService->getWorkspaceById($request->get('id'));
+    }
+    
     $em = $this->getDoctrine()->getManager();
 
     $wsForm = $this->get('form.factory')->createNamedBuilder('create_ws_form', CreateWorkspaceType::class, $ws)
@@ -174,8 +142,15 @@ class WorkspaceController extends Controller
     if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
 
       $ws = $wsForm->getData();
-      $pictures = $ws->getPictures();
+dump($ws);
+      
+      $offices = $ws->getWorkspaceHasOfficeList();
+      foreach ($offices as $office) {
+        $office->setWorkspace($ws);
+        $office->getPrice()->setWorkspaceHasOffice($office);
+      }
 
+      $pictures = $ws->getPictures();
       foreach ($pictures as $pic) {
         $pic->upload($ws->getName());
         $pic->setWorkspace($ws);
@@ -187,7 +162,7 @@ class WorkspaceController extends Controller
       if ($wsForm->get('draft')->isClicked() or $wsForm->get('draft2')->isClicked()) {
 
         $this->addFlash('success', 'Brouillon enregistré');
-        return $this->redirectToRoute('becowo_core_workspace_edit', array('id' => $ws->getId()));
+        return $this->redirectToRoute('becowo_core_workspace_edit_create', array('id' => $ws->getId()));
 
       }elseif ($wsForm->get('send')->isClicked() or $wsForm->get('send2')->isClicked()) {
 

@@ -7,6 +7,7 @@ namespace Becowo\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="becowo_workspace_has_office", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
@@ -24,6 +25,7 @@ class WorkspaceHasOffice
 
   /**
    * @ORM\Column(name="desk_qty", type="integer")
+   * @Assert\NotNull(message="Les espaces à louer - La capacité est obligatoire")
    */
   private $desk_qty;
 
@@ -65,7 +67,7 @@ class WorkspaceHasOffice
   /**
      * @var Becowo\CoreBundle\Entity\Price $price
      *
-     * @ORM\OneToOne(targetEntity = "Becowo\CoreBundle\Entity\Price", inversedBy = "workspaceHasOffice")
+     * @ORM\OneToOne(targetEntity = "Becowo\CoreBundle\Entity\Price", inversedBy = "workspaceHasOffice", cascade={"persist"})
      */
     private $price;
   
