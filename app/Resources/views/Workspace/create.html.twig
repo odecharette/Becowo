@@ -45,7 +45,7 @@
 						<div class="form-group">
 							<div class="input-group">
 						    	<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-								<input id="autocomplete" placeholder="Saisir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control"></input>
+								<input id="autocomplete" placeholder="Saisir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control" value="{% if form.vars.data.street is not null %}{{form.vars.data.street}} ,{{form.vars.data.postCode}} {{form.vars.data.city}}, {{form.vars.data.country}}{% endif %}"></input>
 							</div>
 						</div>
 						
