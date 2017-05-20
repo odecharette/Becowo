@@ -25,7 +25,7 @@ class CreateWorkspaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('label' => false, 'attr' => array('placeholder' => 'Saisir un nom')))
+            ->add('name', TextType::class, array('label' => 'Nom de l\'espace', 'attr' => array('placeholder' => 'Saisir un nom')))
             ->add('street', HiddenType::class)
             ->add('postCode', HiddenType::class)
             ->add('city', HiddenType::class)

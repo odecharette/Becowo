@@ -9,7 +9,16 @@
 {% endblock %}
 
 {% block stylesheets %}
-
+<style type="text/css">
+.panel a{
+	background-color: lightgrey;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+}
+</style>
 {% endblock %}
 
 {% block body %}
@@ -50,77 +59,65 @@
 			</div>
 			<br>
 			<div id="accordion" class="panel-group">
-			    <div class="panel panel-default identityPanel">
-			    	<a href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
-			      		<div class="panel-heading" style="text-align: center;font-weight: bold;">
-			      			Identité de votre espace
-			      		</div>
-			      	</a>
-			      	<div class="panel-collapse collapse in" id="collapseOne">
-				        <div class="panel-body">
-				        	<div class="row">
-				        		<div class="col-lg-6 control-label">
-				        			Nom de l'espace
-				        		</div>
-				        		<div class="col-lg-6">
-						        	<div class="form-group">
-									 	<div class="input-group">
-										    <div class="input-group-addon"><i class="fa fa-building" aria-hidden="true"></i></div>
-										    {{form_widget(form.name)}}
+			    	<div class="panel panel-default identityPanel">
+				    	<a href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading">
+				      			Identité de votre espace
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse in" id="collapseOne">
+					        <div class="panel-body">
+					        	{{form_row(form.name)}}
+								<div class="row">
+					        		<div class="col-lg-5 control-label">
+					        			Adresse de l'espace
+					        		</div>
+					        		<div class="col-lg-7">
+										<div class="form-group">
+											<div class="input-group">
+										    	<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+												<input id="autocomplete" placeholder="Saisir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control" value="{% if form.vars.data.street is not null %}{{form.vars.data.street}} ,{{form.vars.data.postCode}} {{form.vars.data.city}}, {{form.vars.data.country}}{% endif %}"></input>
+											</div>
 										</div>
-									    {{form_errors(form.name)}}
+							
+										{{form_widget(form.street)}}
+										{{form_widget(form.postCode)}}
+										{{form_widget(form.city)}}
+										{{form_widget(form.country)}}
+										{{form_widget(form.longitude)}}
+										{{form_widget(form.latitude)}}
 									</div>
 								</div>
-				        	</div>
-							<div class="row">
-				        		<div class="col-lg-6 control-label">
-				        			Adresse de l'espace
-				        		</div>
-				        		<div class="col-lg-6">
-									<div class="form-group">
-										<div class="input-group">
-									    	<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-											<input id="autocomplete" placeholder="Saisir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control" value="{% if form.vars.data.street is not null %}{{form.vars.data.street}} ,{{form.vars.data.postCode}} {{form.vars.data.city}}, {{form.vars.data.country}}{% endif %}"></input>
-										</div>
-									</div>
-						
-									{{form_widget(form.street)}}
-									{{form_widget(form.postCode)}}
-									{{form_widget(form.city)}}
-									{{form_widget(form.country)}}
-									{{form_widget(form.longitude)}}
-									{{form_widget(form.latitude)}}
-								</div>
-							</div>
-						{{form_widget(form.isAlwaysOpen)}}
-						{{form_widget(form.timetable.isOpenSaturday)}}
-						{{form_widget(form.timetable.isOpenSunday)}}
-						{{form_row(form.timetable.openHour)}}
-						{{form_row(form.timetable.closeHour)}}
-				        </div>
-			      	</div>
-			      	<div class="panel panel-default">
+							{{form_row(form.isAlwaysOpen)}}
+							{{form_row(form.timetable.isOpenSaturday)}}
+							{{form_row(form.timetable.isOpenSunday)}}
+							{{form_row(form.timetable.openHour)}}
+							{{form_row(form.timetable.closeHour)}}
+					        </div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default teamPanel">
 				      	<a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse">
-				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      		<div class="panel-heading">
 				      			L'équipe
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse teamPanel" id="collapseTwo">
+				      	<div class="panel-collapse collapse" id="collapseTwo">
 				        	<div class="panel-body">
-				        		{{form_widget(form.teamMembers)}}
+				        		{{form_row(form.teamMembers)}}
 								<div class="row text-center">
 									<a href="#" id="add_teamMember" class="btn btn-default">Ajouter un membre</a>
 								</div>
 				        	</div>
 				      	</div>
 				    </div>
-			      	<div class="panel panel-default">
+			      	<div class="panel panel-default internetPanel">
 				      	<a href="#collapseThree" data-parent="#accordion" data-toggle="collapse">
-				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      		<div class="panel-heading">
 				      			Votre présence sur Internet
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse internetPanel" id="collapseThree">
+				      	<div class="panel-collapse collapse" id="collapseThree">
 				        	<div class="panel-body">
 				        		<div class="form-group">
 								  <div class="input-group">
@@ -149,13 +146,13 @@
 				        	</div>
 				      	</div>
 				    </div>
-			      	<div class="panel panel-default">
+			      	<div class="panel panel-default offerPanel">
 				      	<a href="#collapseFour" data-parent="#accordion" data-toggle="collapse">
-				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      		<div class="panel-heading">
 				      			Définissez votre offre
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse offerPanel" id="collapseFour">
+				      	<div class="panel-collapse collapse" id="collapseFour">
 				        	<div class="panel-body">
 				        		{{form_row(form.category)}}
 								{{form_row(form.offer)}}
@@ -163,13 +160,13 @@
 				        	</div>
 				      	</div>
 				    </div>
-			      	<div class="panel panel-default">
+			      	<div class="panel panel-default servicePanel">
 				      	<a href="#collapseFive" data-parent="#accordion" data-toggle="collapse">
-				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      		<div class="panel-heading">
 				      			Vos services
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse servicePanel" id="collapseFive">
+				      	<div class="panel-collapse collapse" id="collapseFive">
 				        	<div class="panel-body">
 								{{form_row(form.amenitiesDesc)}}
 								{{form_widget(form.workspaceHasAmenitiesList)}}
@@ -179,13 +176,13 @@
 							</div>
 				      	</div>
 				    </div>
-			      	<div class="panel panel-default">
+			      	<div class="panel panel-default officePanel">
 				      	<a href="#collapseSix" data-parent="#accordion" data-toggle="collapse">
-				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      		<div class="panel-heading">
 				      			Les espaces à louer
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse officePanel" id="collapseSix">
+				      	<div class="panel-collapse collapse" id="collapseSix">
 				        	<div class="panel-body">
 								{{form_widget(form.workspaceHasOfficeList)}}
 								<div class="row text-center">
@@ -194,13 +191,13 @@
 							</div>
 				      	</div>
 				    </div>
-			      	<div class="panel panel-default">
+			      	<div class="panel panel-default photoPanel">
 				      	<a href="#collapseSeven" data-parent="#accordion" data-toggle="collapse">
-				      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+				      		<div class="panel-heading">
 				      			Les photos
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse photoPanel" id="collapseSeven">
+				      	<div class="panel-collapse collapse" id="collapseSeven">
 				        	<div class="panel-body">
 								{{form_widget(form.pictures)}}
 								<div class="row text-center">
@@ -215,7 +212,6 @@
 								{% endfor %}
 							</div>
 				      	</div>
-				    </div>
 				</div>
 			</div>
 				
@@ -330,6 +326,8 @@
  	manageSubForm($('div#create_ws_form_pictures'), $('#add_picture'));
 
 
+
+
     function manageSubForm($container, $btn_add){
 	    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
 	    var index = $container.find(':input').length;
@@ -347,18 +345,21 @@
 	      // - le texte "__name__label__" qu'il contient par le label du champ
 	      // - le texte "__name__" qu'il contient par le numéro du champ
 	      var template = $container.attr('data-prototype')
-	        .replace(/__name__label__/g, '') // .replace(/__name__label__/g, 'Item n°' + (index+1))
 	        .replace(/__name__/g,        index)
 	      ;
 
 	      // On crée un objet jquery qui contient ce template
 	      var $prototype = $(template);
 
+	      // olivia : on supprime la colonne avec le label sinon ca décale tout le sous-formulaire
+		  $prototype.find('label:first').remove();
+		  $prototype.find('.col-sm-7').first().addClass('col-sm-11').removeClass('col-sm-7');
+
 	      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
 	      addDeleteLink($prototype);
 
-	      // On ajoute le prototype modifié à la fin de la balise <div>
-	      $container.append($prototype);
+	      // On ajoute le prototype modifié 
+	      $prototype.prependTo($container.parent().parent());
 
 	      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
 	      index++;

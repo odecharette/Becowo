@@ -22,7 +22,7 @@ class TeamMemberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class)
+            ->add('firstname', TextType::class, array('label' => 'Prénom'))
             ->add('name', TextType::class, array('required' => false))
             ->add('email', EmailType::class)
             ->add('job', TextType::class, array('required' => false))
