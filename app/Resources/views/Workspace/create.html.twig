@@ -9,54 +9,94 @@
 {% endblock %}
 
 {% block stylesheets %}
-	
+
 {% endblock %}
 
 {% block body %}
-{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme form 'Form/bootstrap_3_horizontal_layout_modified.html.twig' %}
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
 			<h1>Référencez votre espace</h1>
 			<br>
 			{{ form_start(form) }}
-			{{ form_errors(form) }}
+			<div class="alert alert-danger" id="errors" hidden="true">
+				Le formulaire compte une ou plusieurs erreur(s)
+				{# {{form_errors(form.name)}}
+				{{form_errors(form.street)}}
+				{{form_errors(form.postCode)}}
+				{{form_errors(form.city)}}
+				{{form_errors(form.country)}}
+				{{form_errors(form.longitude)}}
+				{{form_errors(form.latitude)}}
+				{{form_errors(form.category)}}
+				{{form_errors(form.website)}}
+				{{form_errors(form.facebookLink)}}
+				{{form_errors(form.twitterLink)}}
+				{{form_errors(form.instagramLink)}}
+				{{form_errors(form.firstBookingFree)}}
+				{{form_errors(form.isAlwaysOpen)}}
+				{{form_errors(form.amenitiesDesc)}}
+				{{form_errors(form.workspaceHasAmenitiesList)}}
+				{{form_errors(form.offer)}}
+				{{form_errors(form.workspaceHasOfficeList)}}
+				{{form_errors(form.timetable)}}
+				{{form_errors(form.teamMembers)}}
+				{{form_errors(form.pictures)}} #}
+			</div>
 			<div class="row text-center">
 				{{form_widget(form.draft, {'attr': {'formnovalidate': 'formnovalidate'}})}}
 				{{form_widget(form.send, {'attr': {'formnovalidate': 'formnovalidate'}})}}
 			</div>
 			<br>
 			<div id="accordion" class="panel-group">
-			    <div class="panel panel-default">
+			    <div class="panel panel-default identityPanel">
 			    	<a href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
-			      		<div class="panel-heading" style="color: black;background-color: lightgrey;text-align: center;font-weight: bold;">
+			      		<div class="panel-heading" style="text-align: center;font-weight: bold;">
 			      			Identité de votre espace
 			      		</div>
 			      	</a>
 			      	<div class="panel-collapse collapse in" id="collapseOne">
 				        <div class="panel-body">
-				        	<div class="form-group">
-						 	<div class="input-group">
-							    <div class="input-group-addon"><i class="fa fa-building" aria-hidden="true"></i></div>
-							    {{form_widget(form.name)}}
-							</div>
-						</div>
+				        	<div class="row">
+				        		<div class="col-lg-6 control-label">
+				        			Nom de l'espace
+				        		</div>
+				        		<div class="col-lg-6">
+						        	<div class="form-group">
+									 	<div class="input-group">
+										    <div class="input-group-addon"><i class="fa fa-building" aria-hidden="true"></i></div>
+										    {{form_widget(form.name)}}
+										</div>
+									    {{form_errors(form.name)}}
+									</div>
+								</div>
+				        	</div>
+							<div class="row">
+				        		<div class="col-lg-6 control-label">
+				        			Adresse de l'espace
+				        		</div>
+				        		<div class="col-lg-6">
+									<div class="form-group">
+										<div class="input-group">
+									    	<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+											<input id="autocomplete" placeholder="Saisir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control" value="{% if form.vars.data.street is not null %}{{form.vars.data.street}} ,{{form.vars.data.postCode}} {{form.vars.data.city}}, {{form.vars.data.country}}{% endif %}"></input>
+										</div>
+									</div>
 						
-						<div class="form-group">
-							<div class="input-group">
-						    	<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-								<input id="autocomplete" placeholder="Saisir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control" value="{% if form.vars.data.street is not null %}{{form.vars.data.street}} ,{{form.vars.data.postCode}} {{form.vars.data.city}}, {{form.vars.data.country}}{% endif %}"></input>
+									{{form_widget(form.street)}}
+									{{form_widget(form.postCode)}}
+									{{form_widget(form.city)}}
+									{{form_widget(form.country)}}
+									{{form_widget(form.longitude)}}
+									{{form_widget(form.latitude)}}
+								</div>
 							</div>
-						</div>
-						
-						{{form_widget(form.street)}}
-						{{form_widget(form.postCode)}}
-						{{form_widget(form.city)}}
-						{{form_widget(form.country)}}
-						{{form_widget(form.longitude)}}
-						{{form_widget(form.latitude)}}
-						{{form_row(form.isAlwaysOpen)}}
-						{{form_row(form.timetable)}}
+						{{form_widget(form.isAlwaysOpen)}}
+						{{form_widget(form.timetable.isOpenSaturday)}}
+						{{form_widget(form.timetable.isOpenSunday)}}
+						{{form_row(form.timetable.openHour)}}
+						{{form_row(form.timetable.closeHour)}}
 				        </div>
 			      	</div>
 			      	<div class="panel panel-default">
@@ -65,7 +105,7 @@
 				      			L'équipe
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse" id="collapseTwo">
+				      	<div class="panel-collapse collapse teamPanel" id="collapseTwo">
 				        	<div class="panel-body">
 				        		{{form_widget(form.teamMembers)}}
 								<div class="row text-center">
@@ -80,7 +120,7 @@
 				      			Votre présence sur Internet
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse" id="collapseThree">
+				      	<div class="panel-collapse collapse internetPanel" id="collapseThree">
 				        	<div class="panel-body">
 				        		<div class="form-group">
 								  <div class="input-group">
@@ -115,7 +155,7 @@
 				      			Définissez votre offre
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse" id="collapseFour">
+				      	<div class="panel-collapse collapse offerPanel" id="collapseFour">
 				        	<div class="panel-body">
 				        		{{form_row(form.category)}}
 								{{form_row(form.offer)}}
@@ -129,7 +169,7 @@
 				      			Vos services
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse" id="collapseFive">
+				      	<div class="panel-collapse collapse servicePanel" id="collapseFive">
 				        	<div class="panel-body">
 								{{form_row(form.amenitiesDesc)}}
 								{{form_widget(form.workspaceHasAmenitiesList)}}
@@ -145,7 +185,7 @@
 				      			Les espaces à louer
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse" id="collapseSix">
+				      	<div class="panel-collapse collapse officePanel" id="collapseSix">
 				        	<div class="panel-body">
 								{{form_widget(form.workspaceHasOfficeList)}}
 								<div class="row text-center">
@@ -160,7 +200,7 @@
 				      			Les photos
 				      		</div>
 				      	</a>
-				      	<div class="panel-collapse collapse" id="collapseSeven">
+				      	<div class="panel-collapse collapse photoPanel" id="collapseSeven">
 				        	<div class="panel-body">
 								{{form_widget(form.pictures)}}
 								<div class="row text-center">
@@ -259,6 +299,24 @@
           });
         }
       }
+    </script>
+
+    {# Gestion de l'affichage des erreurs #}
+    <script type="text/javascript">
+    $(document).ready(function() {
+    	$('.form-group:has(.help-block)').first().addClass('has-error');
+
+    	$('.identityPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.teamPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.internetPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.offerPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.officePanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.photoPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+
+    	if ( $( ".help-block" ).length ) {
+			$( "#errors" ).show();
+ 		}
+	});
     </script>
 
 	{# Gestion des sous formulaires pour les relations ManyToMany #}

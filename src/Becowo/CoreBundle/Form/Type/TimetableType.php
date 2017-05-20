@@ -33,7 +33,7 @@ class TimetableType extends AbstractType
                     'error_bubbling' => true
                 ))
                 ->add('isOpenSunday', CheckboxType::class, array(
-                    'label'    => 'Ouvert de dimanche',
+                    'label'    => 'Ouvert le dimanche',
                     'required' => false,
                     'error_bubbling' => true
                 ))

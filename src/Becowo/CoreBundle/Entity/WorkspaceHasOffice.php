@@ -25,7 +25,7 @@ class WorkspaceHasOffice
 
   /**
    * @ORM\Column(name="desk_qty", type="integer")
-   * @Assert\NotNull(message="Les espaces à louer - La capacité est obligatoire")
+   * @Assert\NotNull(message="La capacité est obligatoire")
    */
   private $desk_qty;
 

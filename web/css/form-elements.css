@@ -110,7 +110,7 @@
 
 .error, .help-block
 {
-    color: var(--my-red);
+    color: #a94442;
     font-size: 16px;
 }
 

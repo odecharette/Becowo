@@ -25,7 +25,7 @@ class CreateWorkspaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('error_bubbling' => true, 'label' => false, 'attr' => array('placeholder' => 'Saisir un nom')))
+            ->add('name', TextType::class, array('label' => false, 'attr' => array('placeholder' => 'Saisir un nom')))
             ->add('street', HiddenType::class)
             ->add('postCode', HiddenType::class)
             ->add('city', HiddenType::class)
@@ -66,9 +66,8 @@ class CreateWorkspaceType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'label' => false,
-                'error_bubbling' => true,
                 'constraints' => array(new Valid())))
-            ->add('timetable', TimetableType::class, array('error_bubbling' => true, 'label' => false))
+            ->add('timetable', TimetableType::class, array('label' => false))
             ->add('teamMembers', CollectionType::class, array(
                 'entry_type' => TeamMemberType::class,
                 'allow_add' => true,

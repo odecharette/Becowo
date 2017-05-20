@@ -29,7 +29,7 @@ class Workspace
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     * @Assert\NotNull(message="Identité : Le nom est obligatoire")
+     * @Assert\NotNull(message="Le nom est obligatoire")
      * @Algolia\Attribute
      */
     private $name;

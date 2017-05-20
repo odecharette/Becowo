@@ -27,7 +27,7 @@ class WorkspaceHasOfficeType extends AbstractType
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
             ->add('file', FileType::class, array('multiple' => false, 'label' => 'Photo du bureau'))
-            ->add('desk_qty', NumberType::class, array('label' => 'Capacité', 'scale' => 0, 'error_bubbling' => true))
+            ->add('desk_qty', NumberType::class, array('label' => 'Capacité', 'scale' => 0))
             ->add('price', PriceInCreateWSType::class, array('label' => false))
             ;
     }
