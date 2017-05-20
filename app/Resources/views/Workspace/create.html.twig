@@ -180,7 +180,7 @@
 				      	</a>
 				      	<div class="panel-collapse collapse" id="collapseSeven">
 				        	<div class="panel-body">
-								{{form_widget(form.pictures)}}
+								{# {{form_widget(form.pictures)}}
 								<div class="row text-center">
 									<a href="#" id="add_picture" class="btn btn-default">Ajouter une photo</a>
 								</div>
@@ -188,9 +188,10 @@
 								{% for pic in form.vars.data.pictures %}
 								<div class="show-image">
 									<img src="{{ asset('images/Workspaces/') }}{{form.vars.data.name}}/{{pic.url}}" width="150px">
-									{# <a href="{{ path('becowo_manager_profile_pictures_delete', {id: pic.id, wsId: workspace.id}) }}">Supprimer</a> #}
 								</div>
-								{% endfor %}
+								{% endfor %} #}
+								<div class="dropzone my-dropzone" id="formDropzone" 
+								action="{{path('becowo_core_workspace_upload', {'wsId' : form.vars.data.id})}}"></div>
 							</div>
 				      	</div>
 				</div>
@@ -207,7 +208,7 @@
 			{{ form_end(form) }}
 		</div>
 	</div>
-<div class="dropzone my-dropzone" id="form_snippet_image" action="{{path('becowo_core_workspace_upload', {'wsId' : form.vars.data.id})}}"></div>
+
 </div>
 
 {% endblock body %}
@@ -217,11 +218,20 @@
 	{# Gestion de dropzone : https://www.wanadev.fr/44-tuto-symfony3-et-dropzonejs/ #}
 	<script type="text/javascript">
 	//je récupère l'action où sera traité l'upload en PHP
-	var _actionToDropZone = $("#form_snippet_image").attr('action');
+	var _actionToDropZone = $("#formDropzone").attr('action');
 
 	//je définis ma zone de drop grâce à l'ID de ma div citée plus haut.
 	Dropzone.autoDiscover = false;
-	var myDropzone = new Dropzone("#form_snippet_image", { url: _actionToDropZone });
+
+	// to do
+	// myDropzone.createThumbnailFromUrl(file, imageUrl, callback, crossOrigin);
+
+	Dropzone.options.formDropzone = {
+		maxFilesize: 2, // MB
+	  	addRemoveLinks: true,
+	};
+	
+	var myDropzone = new Dropzone("#formDropzone", { url: _actionToDropZone });
 	</script>
 
 	{# Gestion de la saisie de l'adrese via API google #}
@@ -315,7 +325,7 @@
   	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'));
  	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'));
  	manageSubForm($('div#create_ws_form_teamMembers'), $('#add_teamMember'));
- 	manageSubForm($('div#create_ws_form_pictures'), $('#add_picture'));
+ 	// manageSubForm($('div#create_ws_form_pictures'), $('#add_picture'));
 
 
     function manageSubForm($container, $btn_add){

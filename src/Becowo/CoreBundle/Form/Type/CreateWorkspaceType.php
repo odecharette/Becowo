@@ -76,11 +76,11 @@ class CreateWorkspaceType extends AbstractType
                 'allow_delete' => true,
                 'label' => false,
                 'constraints' => array(new Valid())))
-            ->add('pictures', CollectionType::class, array(
-                'entry_type' => PictureType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'constraints' => array(new Valid())))
+            // ->add('pictures', CollectionType::class, array(
+            //     'entry_type' => PictureType::class,
+            //     'allow_add' => true,
+            //     'allow_delete' => true,
+            //     'constraints' => array(new Valid())))
             ->add('draft', SubmitType::class)
             ->add('send', SubmitType::class)
             ->add('draft2', SubmitType::class)

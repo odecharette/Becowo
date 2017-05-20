@@ -144,7 +144,6 @@ class WorkspaceController extends Controller
     if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
 
       $ws = $wsForm->getData();
-dump($ws);
       
       $offices = $ws->getWorkspaceHasOfficeList();
       foreach ($offices as $office) {
@@ -152,11 +151,11 @@ dump($ws);
         $office->getPrice()->setWorkspaceHasOffice($office);
       }
 
-      $pictures = $ws->getPictures();
-      foreach ($pictures as $pic) {
-        $pic->upload($ws->getName());
-        $pic->setWorkspace($ws);
-      }
+      // $pictures = $ws->getPictures();
+      // foreach ($pictures as $pic) {
+      //   $pic->upload($ws->getName());
+      //   $pic->setWorkspace($ws);
+      // }
 
       $em->persist($ws);
       $em->flush();

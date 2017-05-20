@@ -55,8 +55,7 @@
 }
 .dropzone .dz-preview .dz-details,
 .dropzone-previews .dz-preview .dz-details {
-  width: 100px;
-  height: 100px;
+  height: 28px;
   position: relative;
   background: #ebebeb;
   padding: 5px;
@@ -701,4 +700,7 @@
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.dz-success-mark>svg{
+  display: none;
 }
