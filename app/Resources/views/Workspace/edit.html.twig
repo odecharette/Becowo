@@ -105,7 +105,7 @@
 				      	</a>
 				      	<div class="panel-collapse collapse" id="collapseTwo">
 				        	<div class="panel-body">
-				        		{{form_row(form.teamMembers)}}
+				        		{{form_widget(form.teamMembers)}}
 								<div class="row text-center">
 									<a href="#" id="add_teamMember" class="btn btn-default">Ajouter un membre</a>
 								</div>
@@ -333,6 +333,9 @@
  	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'), true);
  	manageSubForm($('div#create_ws_form_teamMembers'), $('#add_teamMember'), false);
 
+ 	$('div#create_ws_form_teamMembers').find('> .form-group > label').remove();
+ 	$('div#create_ws_form_teamMembers').find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
+
     function manageSubForm($container, $btn_add, isOffice){
 	    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
 	    var index = $container.find(':input').length;
@@ -350,6 +353,7 @@
 	      // - le texte "__name__label__" qu'il contient par le label du champ
 	      // - le texte "__name__" qu'il contient par le numéro du champ
 	      var template = $container.attr('data-prototype')
+	        .replace(/__name__label__/g,        'delete')
 	        .replace(/__name__/g,        index)
 	      ;
 

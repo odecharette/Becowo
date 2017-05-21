@@ -27,6 +27,7 @@ class TeamMember
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=45, nullable=true)
+     * @Assert\NotNull(message="Le prénom est obligatoire")
      */
     private $firstname;
 

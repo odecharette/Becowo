@@ -161,6 +161,7 @@ class WorkspaceController extends Controller
     if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
 
       $ws = $wsForm->getData();
+      dump($ws);
       
       $offices = $ws->getWorkspaceHasOfficeList();
       foreach ($offices as $office) {
