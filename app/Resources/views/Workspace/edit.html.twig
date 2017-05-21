@@ -309,7 +309,7 @@
     {# Gestion de l'affichage des erreurs #}
     <script type="text/javascript">
     $(document).ready(function() {
-    	$('.form-group:has(.help-block)').first().addClass('has-error');
+    	$('.form-group:has(> .help-block)').addClass('has-error');
 
     	$('.identityPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
     	$('.teamPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
@@ -332,6 +332,12 @@
   	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'), false);
  	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'), true);
  	manageSubForm($('div#create_ws_form_teamMembers'), $('#add_teamMember'), false);
+
+ 	$('div#create_ws_form_workspaceHasAmenitiesList').find('> .form-group > label').remove();
+ 	$('div#create_ws_form_workspaceHasAmenitiesList').find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
+
+ 	$('div#create_ws_form_workspaceHasOfficeList').find('> .form-group > label').remove();
+ 	$('div#create_ws_form_workspaceHasOfficeList').find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
 
  	$('div#create_ws_form_teamMembers').find('> .form-group > label').remove();
  	$('div#create_ws_form_teamMembers').find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
