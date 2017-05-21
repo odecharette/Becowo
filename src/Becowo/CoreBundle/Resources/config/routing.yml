@@ -24,15 +24,22 @@ becowo_core_workspace_contact:
     options:
         expose: true
 
-becowo_core_workspace_edit_create:
+becowo_core_workspace_create:
+    path:     /espace-de-coworking/nouveau
+    defaults: { _controller: BecowoCoreBundle:Workspace:createWs }
+    methods: GET|POST
+
+becowo_core_workspace_edit:
     path:     /espace-de-coworking/{id}
-    defaults: { _controller: BecowoCoreBundle:Workspace:editCreateWsFull }
+    defaults: { _controller: BecowoCoreBundle:Workspace:editWsFull }
     methods: GET|POST
 
 becowo_core_workspace_upload_pictures:
     path:     /espace-de-coworking/upload/{wsId}
     defaults: { _controller: BecowoCoreBundle:Workspace:uploadPictureDropzone }
     methods: GET|POST
+    options:
+        expose: true
 
 becowo_core_workspace_delete_picture_uploaded:
     path:     /espace-de-coworking/upload/delete/{wsId}/{pictureName}

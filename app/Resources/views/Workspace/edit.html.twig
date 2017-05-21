@@ -1,0 +1,395 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Référencer un espace de coworking
+{% endblock %}
+
+{% block meta %}
+	<meta name="robots" content="noindex,nofollow" />
+{% endblock %}
+
+{% block stylesheets %}
+<style type="text/css">
+.panel a{
+	background-color: lightgrey;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+{% form_theme form 'Form/bootstrap_3_horizontal_layout_modified.html.twig' %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+			<h1>Référencez votre espace</h1>
+			<br>
+			{{ form_start(form) }}
+			<div class="alert alert-danger" id="errors" hidden="true">
+				Le formulaire compte une ou plusieurs erreur(s)
+				{# {{form_errors(form.name)}}
+				{{form_errors(form.street)}}
+				{{form_errors(form.postCode)}}
+				{{form_errors(form.city)}}
+				{{form_errors(form.country)}}
+				{{form_errors(form.longitude)}}
+				{{form_errors(form.latitude)}}
+				{{form_errors(form.category)}}
+				{{form_errors(form.website)}}
+				{{form_errors(form.facebookLink)}}
+				{{form_errors(form.twitterLink)}}
+				{{form_errors(form.instagramLink)}}
+				{{form_errors(form.firstBookingFree)}}
+				{{form_errors(form.isAlwaysOpen)}}
+				{{form_errors(form.amenitiesDesc)}}
+				{{form_errors(form.workspaceHasAmenitiesList)}}
+				{{form_errors(form.offer)}}
+				{{form_errors(form.workspaceHasOfficeList)}}
+				{{form_errors(form.timetable)}}
+				{{form_errors(form.teamMembers)}}
+				{{form_errors(form.pictures)}} #}
+			</div>
+			<div class="row text-center">
+				{{form_widget(form.draft, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+				{{form_widget(form.send, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+			</div>
+			<br>
+			<div id="accordion" class="panel-group">
+			    	<div class="panel panel-default identityPanel">
+				    	<a href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading">
+				      			Identité de votre espace
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse in" id="collapseOne">
+					        <div class="panel-body">
+					        	<input type="hidden" name="wsId" id="wsId" value="{{form.vars.data.id|default(0)}}"></input>
+					        	{{form_row(form.name)}}
+								<div class="row">
+					        		<div class="col-lg-5 control-label">
+					        			Adresse de l'espace
+					        		</div>
+					        		<div class="col-lg-7">
+										<div class="form-group">
+											<div class="input-group">
+										    	<div class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+												<input id="autocomplete" placeholder="Saisir une adresse" onFocus="geolocate()" type="text" autocomplete="off" class="form-control" value="{% if form.vars.data.street is not null %}{{form.vars.data.street}} ,{{form.vars.data.postCode}} {{form.vars.data.city}}, {{form.vars.data.country}}{% endif %}"></input>
+											</div>
+										</div>
+							
+										{{form_widget(form.street)}}
+										{{form_widget(form.postCode)}}
+										{{form_widget(form.city)}}
+										{{form_widget(form.country)}}
+										{{form_widget(form.longitude)}}
+										{{form_widget(form.latitude)}}
+									</div>
+								</div>
+							{{form_row(form.isAlwaysOpen)}}
+							{{form_row(form.timetable.isOpenSaturday)}}
+							{{form_row(form.timetable.isOpenSunday)}}
+							{{form_row(form.timetable.openHour)}}
+							{{form_row(form.timetable.closeHour)}}
+					        </div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default teamPanel">
+				      	<a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading">
+				      			L'équipe
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseTwo">
+				        	<div class="panel-body">
+				        		{{form_row(form.teamMembers)}}
+								<div class="row text-center">
+									<a href="#" id="add_teamMember" class="btn btn-default">Ajouter un membre</a>
+								</div>
+				        	</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default internetPanel">
+				      	<a href="#collapseThree" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading">
+				      			Votre présence sur Internet
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseThree">
+				        	<div class="panel-body">
+							    {{form_row(form.website)}}
+							    {{form_row(form.facebookLink)}}
+							    {{form_row(form.twitterLink)}}
+							    {{form_row(form.instagramLink)}}
+				        	</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default offerPanel">
+				      	<a href="#collapseFour" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading">
+				      			Définissez votre offre
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseFour">
+				        	<div class="panel-body">
+				        		{{form_row(form.category)}}
+								{{form_row(form.offer)}}
+								{{form_row(form.firstBookingFree)}}
+				        	</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default servicePanel">
+				      	<a href="#collapseFive" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading">
+				      			Vos services
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseFive">
+				        	<div class="panel-body">
+								{{form_row(form.amenitiesDesc)}}
+								<br>
+								{{form_widget(form.workspaceHasAmenitiesList)}}
+								<div class="row text-center">
+									<a href="#" id="add_amenity" class="btn btn-default">Ajouter un service</a>
+								</div>
+							</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default officePanel">
+				      	<a href="#collapseSix" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading">
+				      			Les espaces à louer
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseSix">
+				        	<div class="panel-body">
+								{{form_widget(form.workspaceHasOfficeList)}}
+								<div class="row text-center">
+									<a href="#" id="add_office" class="btn btn-default">Ajouter un bureau</a>
+								</div>
+							</div>
+				      	</div>
+				    </div>
+			      	<div class="panel panel-default photoPanel">
+				      	<a href="#collapseSeven" data-parent="#accordion" data-toggle="collapse">
+				      		<div class="panel-heading">
+				      			Les photos
+				      		</div>
+				      	</a>
+				      	<div class="panel-collapse collapse" id="collapseSeven">
+				        	<div class="panel-body">
+								{# {{form_widget(form.pictures)}}
+								<div class="row text-center">
+									<a href="#" id="add_picture" class="btn btn-default">Ajouter une photo</a>
+								</div>
+								<br>
+								{% for pic in form.vars.data.pictures %}
+								<div class="show-image">
+									<img src="{{ asset('images/Workspaces/') }}{{form.vars.data.name}}/{{pic.url}}" width="150px">
+								</div>
+								{% endfor %} #}
+								<div class="dropzone my-dropzone" id="formDropzone"></div>
+							</div>
+				      	</div>
+				</div>
+			</div>
+				
+			{# Désactive la validation HTML et force la validation côté serveur #}
+			<div class="row text-center">
+				{{form_widget(form.draft2, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+				{{form_widget(form.send2, {'attr': {'formnovalidate': 'formnovalidate'}})}}
+			</div>
+				
+			<br>
+			{{ form_rest(form) }}
+			{{ form_end(form) }}
+		</div>
+	</div>
+
+</div>
+
+{% endblock body %}
+
+{% block javascripts %}
+
+	{# Gestion de dropzone : https://www.wanadev.fr/44-tuto-symfony3-et-dropzonejs/ #}
+	<script type="text/javascript">
+
+	var _actionToDropZone = Routing.generate('becowo_core_workspace_upload_pictures', {'wsId' : $('#wsId').val()});
+
+	//je définis ma zone de drop grâce à l'ID de ma div citée plus haut.
+	Dropzone.autoDiscover = false;
+
+	// to do
+	// myDropzone.createThumbnailFromUrl(file, imageUrl, callback, crossOrigin);
+
+	Dropzone.options.formDropzone = {
+		maxFilesize: 2, // MB
+	  	addRemoveLinks: true,
+	  	init: function() {
+		    this.on("removedfile", function(file) { 
+		    	// alert("removed file." + file); 
+		    	$.get(Routing.generate('becowo_core_workspace_delete_picture_uploaded', { 'wsId' : $('#wsId').val(), 'pictureName' : file.name}));
+		    });
+		  }
+	};
+
+	var myDropzone = new Dropzone("#formDropzone", { url: _actionToDropZone });
+	</script>
+
+	{# Gestion de la saisie de l'adrese via API google #}
+    <script type="text/javascript">
+    	var placeSearch, autocomplete;
+
+      	initAutocomplete();
+
+	    function initAutocomplete() {
+	        // Create the autocomplete object, restricting the search to geographical location types.
+	        autocomplete = new google.maps.places.Autocomplete(
+	            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+	            {types: ['geocode']});
+
+	        // When the user selects an address from the dropdown, populate the address fields in the form.
+	        autocomplete.addListener('place_changed', fillInAddress);
+	      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+		for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (addressType == 'street_number') {
+            var num = place.address_components[i]['long_name'];
+          }else if (addressType == 'route') {
+            var val = place.address_components[i]['long_name'];
+            $('#create_ws_form_street').val(num + ' ' + val);
+          }else if (addressType == 'locality') {
+            var val = place.address_components[i]['long_name'];
+            $('#create_ws_form_city').val(val);
+          }else if (addressType == 'postal_code') {
+            var val = place.address_components[i]['long_name'];
+            $('#create_ws_form_postCode').val(val);
+          }else if (addressType == 'country') {
+            var val = place.address_components[i]['long_name'];
+            $("#create_ws_form_country option").filter(function() {
+			    return this.text == val; 
+			}).attr('selected', true);
+          }
+        }
+
+        $('#create_ws_form_longitude').val(place.geometry.location.lng());
+        $('#create_ws_form_latitude').val(place.geometry.location.lat());
+
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
+
+    {# Gestion de l'affichage des erreurs #}
+    <script type="text/javascript">
+    $(document).ready(function() {
+    	$('.form-group:has(.help-block)').first().addClass('has-error');
+
+    	$('.identityPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.teamPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.internetPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.offerPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.officePanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+    	$('.photoPanel:has(.help-block)').find('.panel-heading').addClass('alert-danger');
+
+    	if ( $( ".help-block" ).length ) {
+			$( "#errors" ).show();
+ 		}
+	});
+    </script>
+
+	{# Gestion des sous formulaires pour les relations ManyToMany #}
+	<script type="text/javascript">
+
+  	$(document).ready(function() {
+  	
+  	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'));
+ 	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'));
+ 	manageSubForm($('div#create_ws_form_teamMembers'), $('#add_teamMember'));
+ 	// manageSubForm($('div#create_ws_form_pictures'), $('#add_picture'));
+
+
+    function manageSubForm($container, $btn_add){
+	    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+	    var index = $container.find(':input').length;
+
+	    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+	    $($btn_add).click(function(e) {
+	      addItem($container);
+	      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+	      return false;
+	    });
+
+	    // La fonction qui ajoute un formulaire CategoryType
+	    function addItem($container) {
+	      // Dans le contenu de l'attribut « data-prototype », on remplace :
+	      // - le texte "__name__label__" qu'il contient par le label du champ
+	      // - le texte "__name__" qu'il contient par le numéro du champ
+	      var template = $container.attr('data-prototype')
+	        .replace(/__name__/g,        index)
+	      ;
+
+	      // On crée un objet jquery qui contient ce template
+	      var $prototype = $(template);
+
+	      // olivia : on supprime la colonne avec le label sinon ca décale tout le sous-formulaire
+		  $prototype.find('label:first').remove();
+		  $prototype.find('.col-sm-7').first().addClass('col-sm-12').removeClass('col-sm-7');
+
+
+
+	      // On ajoute le prototype modifié 
+	      $prototype.appendTo($container.parent().parent());
+
+	      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+	      index++;
+
+	      // Olivia : on décale le sous-sous formulaire
+ 		  $('[id$="_price"]').appendTo($container.parent().parent());
+
+	      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+	      addDeleteLink($container.parent().parent());
+	    }
+    }
+
+
+    // La fonction qui ajoute un lien de suppression
+    function addDeleteLink($prototype) {
+      var $deleteLink = $('<div class="row"><button class="btn btn-danger" style="float:right;"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>');
+      $prototype.append($deleteLink);
+
+      // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+      $deleteLink.click(function(e) {
+        $prototype.remove();
+        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        return false;
+      });
+    }
+  });
+</script>
+{% endblock javascripts %}

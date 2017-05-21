@@ -337,7 +337,6 @@ class Workspace
      * @var \Becowo\CoreBundle\Entity\Timetable
      *
      * @ORM\OneToOne(targetEntity="Becowo\CoreBundle\Entity\Timetable", inversedBy = "workspace", cascade={"persist"})
-     * @Assert\NotNull(message="timetable obligatoire")
      */
     private $timetable;
 

@@ -11,6 +11,7 @@ use Becowo\CoreBundle\Entity\Workspace;
 use Becowo\CoreBundle\Entity\Picture;
 use Becowo\CoreBundle\Form\Type\CommentType;
 use Becowo\CoreBundle\Form\Type\CreateWorkspaceType;
+use Becowo\CoreBundle\Form\Type\EditWorkspaceType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -123,22 +124,37 @@ class WorkspaceController extends Controller
     return $this->render('Workspace/comments.html.twig', array('formComment' => $formComment->createView(), 'listComments' => $listComments, 'ws' =>$ws, 'voteAlreadyDone' => $voteAlreadyDone));
   }
 
-  public function editCreateWsFullAction(Request $request)
+  public function createWsAction(Request $request)
   {
     $WsService = $this->get('app.workspace');
-
-    if($request->get('id') == 'nouveau')
-    {
-      $ws = new Workspace();
-      $ws->setIsVisible(false);
-    }else
-    {
-      $ws = $WsService->getWorkspaceById($request->get('id'));
-    }
-    
     $em = $this->getDoctrine()->getManager();
 
+    $ws = new Workspace();
+    $ws->setIsVisible(false);
+
     $wsForm = $this->get('form.factory')->createNamedBuilder('create_ws_form', CreateWorkspaceType::class, $ws)
+      ->setMethod('POST')
+      ->getForm();
+
+    if ($request->isMethod('POST') && $wsForm->handleRequest($request)->isValid()) {
+      $em->persist($ws);
+      $em->flush();
+
+      return $this->redirectToRoute('becowo_core_workspace_edit', array('id' => $ws->getId())); 
+    }
+
+    return $this->render('Workspace/create.html.twig', array('form' => $wsForm->createView()));
+  }
+
+  public function editWsFullAction(Request $request)
+  {
+    $WsService = $this->get('app.workspace');
+    $em = $this->getDoctrine()->getManager();
+
+    $ws = $WsService->getWorkspaceById($request->get('id'));
+        
+
+    $wsForm = $this->get('form.factory')->createNamedBuilder('create_ws_form', EditWorkspaceType::class, $ws)
       ->setMethod('POST')
       ->getForm();
 
@@ -152,19 +168,13 @@ class WorkspaceController extends Controller
         $office->getPrice()->setWorkspaceHasOffice($office);
       }
 
-      // $pictures = $ws->getPictures();
-      // foreach ($pictures as $pic) {
-      //   $pic->upload($ws->getName());
-      //   $pic->setWorkspace($ws);
-      // }
-
       $em->persist($ws);
       $em->flush();
 
       if ($wsForm->get('draft')->isClicked() or $wsForm->get('draft2')->isClicked()) {
 
         $this->addFlash('success', 'Brouillon enregistré');
-        return $this->redirectToRoute('becowo_core_workspace_edit_create', array('id' => $ws->getId()));
+        return $this->redirectToRoute('becowo_core_workspace_edit', array('id' => $ws->getId()));
 
       }elseif ($wsForm->get('send')->isClicked() or $wsForm->get('send2')->isClicked()) {
 
@@ -176,7 +186,7 @@ class WorkspaceController extends Controller
       
     }
 
-    return $this->render('Workspace/create.html.twig', array('form' => $wsForm->createView()));
+    return $this->render('Workspace/edit.html.twig', array('form' => $wsForm->createView()));
 
   }
 
@@ -192,13 +202,10 @@ class WorkspaceController extends Controller
 
     $document->setFile($media);
     $document->setUrl($media->getPathName());
-    // $document->setName($media->getClientOriginalName());
     $document->upload($ws->getName());
     $em->persist($document);
     $em->flush();
 
-    //infos sur le document envoyé
-    //var_dump($request->files->get('file'));die;
     return new JsonResponse(array('success' => true));
   }
 
