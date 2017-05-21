@@ -67,6 +67,7 @@
 				      	</a>
 				      	<div class="panel-collapse collapse in" id="collapseOne">
 					        <div class="panel-body">
+					        	<input type="hidden" name="wsId" id="wsId" value="{{form.vars.data.id}}"></input>
 					        	{{form_row(form.name)}}
 								<div class="row">
 					        		<div class="col-lg-5 control-label">
@@ -191,7 +192,7 @@
 								</div>
 								{% endfor %} #}
 								<div class="dropzone my-dropzone" id="formDropzone" 
-								action="{{path('becowo_core_workspace_upload', {'wsId' : form.vars.data.id})}}"></div>
+								action="{{path('becowo_core_workspace_upload_pictures', {'wsId' : form.vars.data.id})}}"></div>
 							</div>
 				      	</div>
 				</div>
@@ -229,8 +230,14 @@
 	Dropzone.options.formDropzone = {
 		maxFilesize: 2, // MB
 	  	addRemoveLinks: true,
+	  	init: function() {
+		    this.on("removedfile", function(file) { 
+		    	// alert("removed file." + file); 
+		    	$.get(Routing.generate('becowo_core_workspace_delete_picture_uploaded', { 'wsId' : $('#wsId').val(), 'pictureName' : file.name}));
+		    });
+		  }
 	};
-	
+
 	var myDropzone = new Dropzone("#formDropzone", { url: _actionToDropZone });
 	</script>
 

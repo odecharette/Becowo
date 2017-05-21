@@ -29,10 +29,17 @@ becowo_core_workspace_edit_create:
     defaults: { _controller: BecowoCoreBundle:Workspace:editCreateWsFull }
     methods: GET|POST
 
-becowo_core_workspace_upload:
+becowo_core_workspace_upload_pictures:
     path:     /espace-de-coworking/upload/{wsId}
     defaults: { _controller: BecowoCoreBundle:Workspace:uploadPictureDropzone }
     methods: GET|POST
+
+becowo_core_workspace_delete_picture_uploaded:
+    path:     /espace-de-coworking/upload/delete/{wsId}/{pictureName}
+    defaults: { _controller: BecowoCoreBundle:Workspace:deletePictureUploaded }
+    methods: GET|POST
+    options:
+        expose: true
 
 becowo_core_community:
     path:     /communaute/coworkers

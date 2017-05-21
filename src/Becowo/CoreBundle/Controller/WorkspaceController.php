@@ -12,6 +12,7 @@ use Becowo\CoreBundle\Entity\Picture;
 use Becowo\CoreBundle\Form\Type\CommentType;
 use Becowo\CoreBundle\Form\Type\CreateWorkspaceType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Filesystem\Filesystem;
 
 class WorkspaceController extends Controller
 {
@@ -198,6 +199,31 @@ class WorkspaceController extends Controller
 
     //infos sur le document envoyé
     //var_dump($request->files->get('file'));die;
+    return new JsonResponse(array('success' => true));
+  }
+
+  public function deletePictureUploadedAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getEntityManager();
+    $WsService = $this->get('app.workspace');
+    $ws = $WsService->getWorkspaceById($request->get('wsId'));
+    $picture = $em->getRepository('BecowoCoreBundle:Picture')->findOneBy(array('workspace' => $ws));
+
+    if (!$picture) {
+        throw $this->createNotFoundException('No picture found for WS id '. $request->get('wsId'));
+    }
+
+    $kernel = $this->container->get('kernel');
+    $path = $kernel->getRootDir() . '/../web/images/Workspaces/' . $ws->getName() . '/' . $request->get('pictureName');
+    $fs = new Filesystem();
+
+    if ($fs->exists($path)) {
+        $fs->remove($path);
+    }
+
+    $em->remove($picture);
+    $em->flush();
+
     return new JsonResponse(array('success' => true));
   }
 
