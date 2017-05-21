@@ -191,6 +191,7 @@
 									<img src="{{ asset('images/Workspaces/') }}{{form.vars.data.name}}/{{pic.url}}" width="150px">
 								</div>
 								{% endfor %} #}
+								Chargez votre photo principale en premier <br>
 								<div class="dropzone my-dropzone" id="formDropzone"></div>
 							</div>
 				      	</div>
@@ -328,13 +329,11 @@
 
   	$(document).ready(function() {
   	
-  	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'));
- 	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'));
- 	manageSubForm($('div#create_ws_form_teamMembers'), $('#add_teamMember'));
- 	// manageSubForm($('div#create_ws_form_pictures'), $('#add_picture'));
+  	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'), false);
+ 	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'), true);
+ 	manageSubForm($('div#create_ws_form_teamMembers'), $('#add_teamMember'), false);
 
-
-    function manageSubForm($container, $btn_add){
+    function manageSubForm($container, $btn_add, isOffice){
 	    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
 	    var index = $container.find(':input').length;
 
@@ -361,8 +360,6 @@
 		  $prototype.find('label:first').remove();
 		  $prototype.find('.col-sm-7').first().addClass('col-sm-12').removeClass('col-sm-7');
 
-
-
 	      // On ajoute le prototype modifié 
 	      $prototype.appendTo($container.parent().parent());
 
@@ -370,7 +367,8 @@
 	      index++;
 
 	      // Olivia : on décale le sous-sous formulaire
- 		  $('[id$="_price"]').appendTo($container.parent().parent());
+	      if(isOffice)
+ 		  	$('[id$="_price"]').appendTo($container.parent().parent());
 
 	      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
 	      addDeleteLink($container.parent().parent());
