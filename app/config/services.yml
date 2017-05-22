@@ -102,3 +102,8 @@ services:
         class: Becowo\ApiBundle\Controller\EventsController
         arguments: ['@doctrine.orm.entity_manager', '@app.api'] 
 
+    app.image_type_extension:
+        class: Becowo\CoreBundle\Form\Extension\ImageTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }
+

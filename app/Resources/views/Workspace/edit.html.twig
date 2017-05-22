@@ -22,7 +22,8 @@
 {% endblock %}
 
 {% block body %}
-{% form_theme form 'Form/bootstrap_3_horizontal_layout_modified.html.twig' %}
+{% form_theme form with ['Form/bootstrap_3_horizontal_layout_modified.html.twig', 'Form/fileImageWidget.html.twig'] %}
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
@@ -333,14 +334,17 @@
  	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'), true);
  	manageSubForm($('div#create_ws_form_teamMembers'), $('#add_teamMember'), false);
 
- 	$('div#create_ws_form_workspaceHasAmenitiesList').find('> .form-group > label').remove();
- 	$('div#create_ws_form_workspaceHasAmenitiesList').find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
+ 	cleanSubForm($('div#create_ws_form_workspaceHasAmenitiesList'));
+ 	cleanSubForm($('div#create_ws_form_workspaceHasOfficeList'));
+ 	cleanSubForm($('div#create_ws_form_teamMembers'));
 
- 	$('div#create_ws_form_workspaceHasOfficeList').find('> .form-group > label').remove();
- 	$('div#create_ws_form_workspaceHasOfficeList').find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
+ 	$('[id$="_price"]').appendTo($('[id$="_price"]').parent().parent());
 
- 	$('div#create_ws_form_teamMembers').find('> .form-group > label').remove();
- 	$('div#create_ws_form_teamMembers').find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
+ 	function cleanSubForm($container)
+ 	{
+ 		$container.find('> .form-group > label').remove();
+ 		$container.find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
+ 	}
 
     function manageSubForm($container, $btn_add, isOffice){
 	    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement

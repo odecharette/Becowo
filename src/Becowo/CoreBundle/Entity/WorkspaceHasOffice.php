@@ -275,6 +275,12 @@ class WorkspaceHasOffice
         return $this->price;
     }
 
+    public function getFullPathProfilePicture()
+    {
+        $parent = $this->getWorkspace()->getName();
+        return 'images/Workspaces/' . $parent . '/' . $this->urlProfilePicture;
+    }
+
     public function __toString()
     {
         return $this->name;

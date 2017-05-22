@@ -1,0 +1,13 @@
+{% extends 'Form/bootstrap_3_horizontal_layout_modified.html.twig' %}
+
+{% block file_widget %}
+    {% spaceless %}
+
+    {{ block('form_widget') }}
+    {% if image_url is defined and image_url is not null %}
+        <img src="{{ asset(image_url) }}" width="150px" /> <br>
+        <div class="well well-sm">{{image_url|split('/')|last}}</div>
+    {% endif %}
+
+    {% endspaceless %}
+{% endblock %}
