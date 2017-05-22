@@ -333,7 +333,7 @@ class Workspace
     /**
        * @ORM\OneToMany(targetEntity="Becowo\CoreBundle\Entity\WorkspaceHasTeamMember", mappedBy="workspace", cascade={"persist"})
        */
-    private $teamMembers;  
+    private $workspaceHasTeamMemberList;  
 
     /**
      * @var \Becowo\CoreBundle\Entity\Timetable
@@ -354,13 +354,13 @@ class Workspace
     {
         $this->poi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->filterOffices = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->teamMembers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->isDeleted = false;
         $this->lowestPrice = 0;
         $this->voteAverage = 0;
         $this->workspaceHasAmenitiesList = new ArrayCollection();
         $this->workspaceHasOfficeList = new ArrayCollection();
+        $this->workspaceHasTeamMemberList = new ArrayCollection();
         $this->pictures = new ArrayCollection();
     }
 
@@ -432,6 +432,21 @@ class Workspace
       {
         return $this->workspaceHasOfficeList;
       }
+
+    public function addWorkspaceHasTeamMemberList(WorkspaceHasTeamMember $WorkspaceHasTeamMember)
+    {
+        $this->workspaceHasTeamMemberList[] = $WorkspaceHasTeamMember;
+    }
+
+    public function removeTeamMember(WorkspaceHasTeamMemberList $WorkspaceHasTeamMember)
+    {
+        $this->workspaceHasTeamMemberList->removeElement($WorkspaceHasTeamMember);
+    }
+
+    public function getWorkspaceHasTeamMemberList()
+    {
+        return $this->workspaceHasTeamMemberList;
+    }
 
     /**
      * Set name
@@ -1085,40 +1100,6 @@ class Workspace
     public function getFilterOffices()
     {
         return $this->filterOffices;
-    }
-
-    /**
-     * Add teamMember
-     *
-     * @param \Becowo\CoreBundle\Entity\TeamMember $teamMember
-     *
-     * @return Workspace
-     */
-    public function addTeamMember(\Becowo\CoreBundle\Entity\TeamMember $teamMember)
-    {
-        $this->teamMembers[] = $teamMember;
-
-        return $this;
-    }
-
-    /**
-     * Remove teamMember
-     *
-     * @param \Becowo\CoreBundle\Entity\TeamMember $teamMember
-     */
-    public function removeTeamMember(\Becowo\CoreBundle\Entity\TeamMember $teamMember)
-    {
-        $this->teamMembers->removeElement($teamMember);
-    }
-
-    /**
-     * Get teamMember
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTeamMembers()
-    {
-        return $this->teamMembers;
     }
 
 

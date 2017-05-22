@@ -106,7 +106,7 @@
 				      	</a>
 				      	<div class="panel-collapse collapse" id="collapseTwo">
 				        	<div class="panel-body">
-				        		{{form_widget(form.teamMembers)}}
+				        		{{form_widget(form.workspaceHasTeamMemberList)}}
 								<div class="row text-center">
 									<a href="#" id="add_teamMember" class="btn btn-default">Ajouter un membre</a>
 								</div>
@@ -332,11 +332,11 @@
   	
   	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'), false);
  	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'), true);
- 	manageSubForm($('div#create_ws_form_teamMembers'), $('#add_teamMember'), false);
+ 	manageSubForm($('[id^="create_ws_form_workspaceHasTeamMemberList"]'), $('#add_teamMember'), false);
 
  	cleanSubForm($('div#create_ws_form_workspaceHasAmenitiesList'));
  	cleanSubForm($('div#create_ws_form_workspaceHasOfficeList'));
- 	cleanSubForm($('div#create_ws_form_teamMembers'));
+ 	cleanSubForm($('[id^="create_ws_form_workspaceHasTeamMemberList"]'));
 
  	$('[id$="_price"]').appendTo($('[id$="_price"]').parent().parent());
 

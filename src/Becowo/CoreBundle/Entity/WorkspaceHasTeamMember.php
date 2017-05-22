@@ -21,7 +21,7 @@ class WorkspaceHasTeamMember
   private $id;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="teamMembers")
+   * @ORM\ManyToOne(targetEntity="Becowo\CoreBundle\Entity\Workspace", inversedBy="workspaceHasTeamMemberList")
    * @ORM\JoinColumn(nullable=false)
    */
   private $workspace;

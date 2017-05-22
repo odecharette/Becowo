@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Becowo\CoreBundle\Form\Type\TeamMemberType;
 use Symfony\Component\Validator\Constraints\Valid;
 
 class EditWorkspaceType extends AbstractType
@@ -70,8 +69,8 @@ class EditWorkspaceType extends AbstractType
                 'label' => false,
                 'constraints' => array(new Valid())))
             ->add('timetable', TimetableType::class, array('label' => false))
-            ->add('teamMembers', CollectionType::class, array(
-                'entry_type' => TeamMemberType::class,
+            ->add('workspaceHasTeamMemberList', CollectionType::class, array(
+                'entry_type' => WorkspaceHasTeamMemberType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'label' => false,

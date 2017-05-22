@@ -169,15 +169,23 @@ class WorkspaceController extends Controller
         $office->getPrice()->setWorkspaceHasOffice($office);
 
         $file = $office->getFile();
-        $filename =  $file->getClientOriginalName();
-        $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/Workspaces/' .$ws->getName() . '/';
-        $file->move($dir, $filename);
-        $office->setUrlProfilePicture($filename);
+        if($file)
+        {
+          $filename =  $file->getClientOriginalName();
+          $dir = $this->container->getParameter('kernel.root_dir') . '/../web/images/Workspaces/' .$ws->getName() . '/';
+          $file->move($dir, $filename);
+          $office->setUrlProfilePicture($filename);
+        }
       }
 
       $amenities = $ws->getWorkspaceHasAmenitiesList();
       foreach ($amenities as $amenity) {
         $amenity->setWorkspace($ws);
+      }
+
+      $teamMembers = $ws->getWorkspaceHasTeamMemberList();
+      foreach ($teamMembers as $teamMember) {
+        $teamMember->setWorkspace($ws);
       }
 
       $em->persist($ws);
