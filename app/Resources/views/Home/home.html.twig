@@ -16,9 +16,17 @@
 
 {% block body %}
 
-
-{% include 'Home/home-image.html.twig' %} 
-
+<section id="home-image">
+	<img src="{{ asset('images/Becowo-Header.jpg') }}" alt="Becowo">
+	<h1>
+		Réservez un <strong>espace de travail</strong> et <br><span>intégrez une <strong>communauté</strong> de coworkers</span>
+	</h1>
+	<div class="homeButtons hidden-xs">
+		<a href="#filtersBar" id="goToFilters"><h2><strong>Réserver</strong> <br> un espace de travail</h2></a>
+		<a href="{{ path('becowo_core_community') }}" class="deux"><h2><strong>Rencontrer</strong> <br> la communauté</h2></a>
+		<a href="http://www.blog.becowo.com" target="_blank"><h2><strong>Découvrir</strong> <br>le blog Becowo</h2></a>
+	</div>
+</section>
 <div class="row" id="filtersBar">
 	<div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-12">
 		<h3>Région</h3>
@@ -71,7 +79,7 @@
 
 {% endblock body %}
 
-{% block javascripts %}
+{# {% block javascripts %}
 <script>
 	// Documentation : https://www.algolia.com/doc/guides/search/instant-search/
 
@@ -370,6 +378,6 @@
 
 
 </script>
-{% endblock javascripts %}
+{% endblock javascripts %} #}
 
 

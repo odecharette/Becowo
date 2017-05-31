@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('../css/font/Roboto-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('../css/font/Roboto-Medium.ttf') format('truetype');
+}
+
+header{
+	padding: 20px;
+}
+#home-image img{
+	width: 100%;
+	position: absolute;
+}
+#home-image, #home-image a{
+	font-family: "Roboto-Light", Helvetica, Arial, sans-serif;
+	color: white;
+}
+#home-image strong{
+	font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
+}
+#home-image h1{
+	font-size: 25pt;
+	position: relative;
+    top: 40px;
+    left: 20%;
+}
+#home-image h1 span{
+	margin-left: 20%;
+}
+#home-image a h2{
+	font-size: 22pt;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+#home-image #homeButtons{
+	position: relative;
+	top: 100px;
+}

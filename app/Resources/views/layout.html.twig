@@ -52,13 +52,9 @@
 	<div class="row text-center">
 		<div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
-		        <img src="{{ asset('images/icons/Logo-becowo.jpg') }}" alt="Becowo">
+		        <img src="{{ asset('images/icons/logo-becowo.png') }}" alt="Becowo">
 		    </a>
 		</div>
-		<div class="col-lg-4 col-md-3 hidden-sm hidden-xs identity">
-			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
-			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
-        </div>
         <div class="col-lg-5 col-md-6 hidden-sm hidden-xs menu">
 		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <i class="fa fa-circle" aria-hidden="true"></i>
 			<a title="La communauté" href="{{ path('becowo_core_community') }}">communauté </a>	<i class="fa fa-circle" aria-hidden="true"></i>
@@ -234,47 +230,6 @@
 	</nav>
 
 
-{# Les modal doivent se charger en même temps pour pouvoir passer de l'une à l'autre #}
-<!-- Modale Login -->
-<div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-     <div class="modal-dialog"> 
-        <div class="modal-content">
-            <div class="modal-body" id="myModalLoginBody">
-                {{ render(url('fos_user_security_login')) }}
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modale Register -->
-<div class="modal-open modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-     <div class="modal-dialog"> 
-        <div class="modal-content">
-            <div class="modal-body" id="myModalRegisterBody">
-                {{ render(url('fos_user_registration_register')) }}
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modale MDP oublié -->
-<div class="modal fade" id="myModalMDP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-     <div class="modal-dialog"> 
-        <div class="modal-content">
-            <div class="modal-body"  id="myModalMDPBody">
-                {{ render(url('fos_user_resetting_request')) }}
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modale change MDP -->
-<div class="modal fade" id="myModalChangeMDP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-     <div class="modal-dialog"> 
-        <div class="modal-content">
-            <div class="modal-body"  id="myModalChangeMDPBody">
-                {{ render(url('fos_user_change_password')) }}
-            </div>
-        </div>
-    </div>
-</div>
 </header>
 
 
