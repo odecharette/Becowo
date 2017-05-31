@@ -79,3 +79,48 @@ col-sm-5
 {% block form_group_class -%}
 col-sm-7
 {%- endblock form_group_class %}
+
+{% block collection_widget %}
+{% spaceless %}
+    <div class="collection">
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for rows in form %}
+                {% for row in rows %}
+                    {% if row.children %}
+                        {% for subrow in row.children %}
+                            {{ form_row(subrow) }}
+                        {% endfor %}
+                    {% else %}
+                        {{ form_row(row) }}
+                    {% endif %}
+                {% endfor %} 
+            {% endfor %}
+        </div>
+        {% set remove_item_javascript %}
+            $(function() {
+            console.log('remove');
+            if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
+
+            var containerDiv = $('#{{ id }}').parents('.form-group:first');
+           containerDiv.remove();
+            });
+        {% endset %}
+
+        <div class="form-group field-collection-item-action">
+            <a href="#" onclick="{{ remove_item_javascript|raw }}" class="pull-right text-danger">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+{% spaceless %}
+    {% for row in prototype %}
+        {{ form_widget(row) }}
+    {% endfor %}
+{% endspaceless %}
+{% endblock collection_item_widget %}

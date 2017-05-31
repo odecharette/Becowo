@@ -210,7 +210,6 @@
 			{{ form_end(form) }}
 		</div>
 	</div>
-
 </div>
 
 {% endblock body %}
@@ -330,29 +329,20 @@
 
   	$(document).ready(function() {
   	
-  	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'), false);
- 	manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'), true);
- 	manageSubForm($('[id^="create_ws_form_workspaceHasTeamMemberList"]'), $('#add_teamMember'), false);
+  // 	manageSubForm($('div#create_ws_form_workspaceHasAmenitiesList'), $('#add_amenity'), false);
+ 	// manageSubForm($('div#create_ws_form_workspaceHasOfficeList'), $('#add_office'), true);
+ 	manageSubForm($('div#create_ws_form_workspaceHasTeamMemberList'), $('#add_teamMember'));
 
- 	cleanSubForm($('div#create_ws_form_workspaceHasAmenitiesList'));
- 	cleanSubForm($('div#create_ws_form_workspaceHasOfficeList'));
- 	cleanSubForm($('[id^="create_ws_form_workspaceHasTeamMemberList"]'));
+ 	// $('[id$="_price"]').appendTo($('[id$="_price"]').parent().parent());
 
- 	$('[id$="_price"]').appendTo($('[id$="_price"]').parent().parent());
-
- 	function cleanSubForm($container)
- 	{
- 		$container.find('> .form-group > label').remove();
- 		$container.find('> .form-group > .col-sm-7').addClass('col-sm-12').removeClass('col-sm-7');
- 	}
-
-    function manageSubForm($container, $btn_add, isOffice){
+    function manageSubForm($container, $btn_add){
 	    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
 	    var index = $container.find(':input').length;
 
 	    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
 	    $($btn_add).click(function(e) {
 	      addItem($container);
+	      // addDeleteLink($container);
 	      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
 	      return false;
 	    });
@@ -363,29 +353,17 @@
 	      // - le texte "__name__label__" qu'il contient par le label du champ
 	      // - le texte "__name__" qu'il contient par le numéro du champ
 	      var template = $container.attr('data-prototype')
-	        .replace(/__name__label__/g,        'delete')
 	        .replace(/__name__/g,        index)
 	      ;
 
 	      // On crée un objet jquery qui contient ce template
 	      var $prototype = $(template);
 
-	      // olivia : on supprime la colonne avec le label sinon ca décale tout le sous-formulaire
-		  $prototype.find('label:first').remove();
-		  $prototype.find('.col-sm-7').first().addClass('col-sm-12').removeClass('col-sm-7');
-
 	      // On ajoute le prototype modifié 
-	      $prototype.appendTo($container.parent().parent());
+	      $prototype.appendTo($container);
 
 	      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
 	      index++;
-
-	      // Olivia : on décale le sous-sous formulaire
-	      if(isOffice)
- 		  	$('[id$="_price"]').appendTo($container.parent().parent());
-
-	      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-	      addDeleteLink($container.parent().parent());
 	    }
     }
 
