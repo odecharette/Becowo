@@ -72,7 +72,6 @@ header .log{
 	font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
 	font-size: 14pt;
 	border: none;
-	padding: 0 15px 0 15px;
 	text-transform: uppercase;
 	padding: 0 20px;
 }
@@ -167,8 +166,19 @@ footer a:hover, footer a:focus{
 	float: left;
     margin-right: 5px;
 }
+#filtersBar .btnGreen{
+	padding: 20px;
+    line-height: 60px;
+}
+#hits{
+  overflow: hidden;
+}
 .vignette{
     margin-bottom: 20px;
+    width: 29%;
+    display: inline-block;
+  	margin: 20px 2%;
+  	vertical-align: top;
 }
 .vignette #pic{
   position: relative;
@@ -200,6 +210,8 @@ footer a:hover, footer a:focus{
 }
 .vignette .bonus{
 	font-family: "Roboto-LightItalic", Helvetica, Arial, sans-serif;
+	height: 40px;
+    vertical-align: top;
 }
 .vignette .btnGreen{
 	width: 100%;
@@ -207,12 +219,16 @@ footer a:hover, footer a:focus{
 }
 .vignette .adresse{
     line-height: 40px;
+    padding-right: 0;
 }
 .vignette .listeLogo{
 	text-align: right;
 }
 .vignette .listeLogo img{
 	margin: 2px 5px;
+}
+#pagination{
+	text-align: center;
 }
 #pagination .pagination>li:first-child>a, .pagination>li:first-child>span, .pagination>li:last-child>a, .pagination>li:last-child>span{
 	border: none !important;

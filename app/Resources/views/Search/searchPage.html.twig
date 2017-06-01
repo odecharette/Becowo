@@ -1,0 +1,374 @@
+{% extends "layout.html.twig" %}
+
+{% block title %} Becowo - Chercher un espace de travail {% endblock %}
+
+{% block meta %}
+	<meta name="description" content="Réservez un espace de travail (coworking, salle de réunion, bureau privé, salle de conférence) et intégrez une communauté de coworkers">
+	<meta name="keywords" content="coworking, coworker, bureau, salle, reunion, conference, tiers-lieux">
+	<meta property="og:title" content="Becowo" />
+	<meta property="og:url" content="https://www.becowo.com" />
+	<meta property="og:image" content="https://becowo.com/images/Emails/Logo_becowo.png" />
+	<meta property="og:description" content="Réservez un espace de travail (coworking, salle de réunion, bureau privé, salle de conférence) et intégrez une communauté de coworkers" />
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block body %}
+
+<div class="container-fluid">
+
+<section>
+	<div class="row" id="filtersBar">
+		<h3>Trouvez une salle de coworking près de chez vous</h3>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+			<h4>Région</h4>
+	        <div id="regions" class="facet"></div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	   		<h4>Ville</h4>
+	    	<div id="cities" class="facet"></div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	    	<h4>Bureau</h4>
+	        <div id="filterOffices" class="facet"></div>
+		</div>	
+	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	    	<a class="btnGreen">Chercher sur la carte</a>
+	    	<div id="clear-all"></div>
+	    </div>
+	</div>
+</section>
+
+<article>
+<div class="row">
+	<div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+		<div id="hits">
+			<center>Chargement en cours <img src="{{ asset('images/icons/loading.gif') }}" alt="loading"></center>
+		</div>
+    	<div id="pagination"></div>
+	</div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+    	<div id="map"></div>
+    </div>
+</div>
+
+</article>
+</div>
+
+{% endblock body %}
+
+{% block javascripts %}
+<script>
+	// Documentation : https://www.algolia.com/doc/guides/search/instant-search/
+
+	var search = instantsearch({
+	  appId: "{{ algolia.application_id }}",
+	  apiKey: "{{ algolia.search_api_key }}", // search only API key, no ADMIN key
+	  indexName: "{{ algolia.index_workspace }}",
+	  urlSync: true
+	});
+
+	search.addWidget(
+	  instantsearch.widgets.hits({
+	    container: '#hits',
+	    hitsPerPage: 2,
+	    cssClasses: {
+	    	item: 'vignette'
+	    },
+	    templates: {
+	      item: function(data) {
+	      	
+	      	var name = '';
+	      	if(data.name !== null){
+        		name = data.name
+        	}else{
+        		name = ''};
+	        var favoritePictureUrl = '';
+	      	if(data.favoritePictureUrl !== null){
+        		favoritePictureUrl = '<img src="{{ asset("images/Workspaces/")}}' + name + '/' + data.favoritePictureUrl + '" alt=' + name + '>';
+        	}else{
+        		favoritePictureUrl = ''};
+	      	
+	        var category = '';
+	      	if(data.category !== null){
+        		category = data.category.name;
+        	}else{
+        		category = ''};
+
+	        var lowestPrice = '';
+	      	if(data.lowestPrice !== null){
+        		lowestPrice = data.lowestPrice;
+        	}else{
+        		lowestPrice = ''};
+
+	        var voteAverage = '';
+	      	if(data.voteAverage !== null){
+        		voteAverage = Math.round(data.voteAverage);
+        	}else{
+        		voteAverage = ''};
+
+	        var region = '';
+	      	if(data.region !== null){
+        		region = data.region.name;
+        	}else{
+        		region = ''};
+
+	        var city = '';
+	      	if(data.city !== null){
+        		city = data.city;
+        	}else{
+        		city = ''};
+
+	        var offer = '';
+	      	if(data.offer !== null){
+        		offer = data.offer.name;
+        	}else{
+        		offer = ''};
+
+	        var id = '';
+	      	if(data.id !== null){
+        		id = data.id;
+        	}else{
+        		id = ''};
+
+	        var descriptionBonus = '';
+	      	if(data.descriptionBonus !== null){
+        		descriptionBonus = data.descriptionBonus;
+        	}else{
+        		descriptionBonus = ''};
+
+	        var link = '';
+	        if(data.offer.name != 'Link')
+	        { 
+	        	link = '<a href="{{ path("becowo_core_workspace", { 'region': 'paramRegion', 'ville' : 'paramCity', 'name': 'paramName' }) }}">';
+	        	link = link.replace("paramRegion", region);
+	        	link = link.replace("paramCity", city);
+	        	link = link.replace("paramName", name);
+	        }else{
+	        	link='';
+	        }
+	        var filterOffices = '';
+			if(data.filterOffices !== null){
+				tab = data.filterOffices;
+				tab.forEach(function(e) {
+					filterOffices = filterOffices + 
+									'<span class="tooltips">' +
+										'<img src="{{ asset("images/icons/offices/")}}' + e.name + '.png" alt="' + e.name + '">' +
+										'<span>' + e.name + '</span>' +
+									'</span>';
+				});
+			}else{
+				filterOffices = ''};
+			
+
+	        var vignette = '<div>' + 
+			        		link + 
+			        		'<div id="pic">' + 
+								'<div id="favoritePicture">' +
+									favoritePictureUrl + 
+								'</div>' +
+								'<div id="price">';
+								if(category == 'Café Wifi')
+								{
+									vignette = vignette + 'Gratuit';
+								}else{
+									vignette = vignette + 'A partir de ' + lowestPrice;
+									// if(offer == 'Zen')
+									// {
+									// 	vignette = vignette + ' <i class="fa fa-bolt" aria-hidden="true"></i>';
+									// }
+								}
+							vignette = vignette + 
+							'</div>' +
+							'<div id="stars">';
+								if(voteAverage > 0)
+								{
+									vignette = vignette + 
+									'<img src="{{ asset("images/icons/star")}}' + voteAverage + '.png" alt="Vote">';
+								}
+							vignette = vignette + 
+							'</div>' +
+							'</div>';
+							if(offer != 'Link')
+							{
+								vignette = vignette + '</a>';
+							}
+							vignette = vignette + 
+							'<div class="row">' +
+								'<div class="col-lg-6 adresse">' +
+									'<strong>' + name + '</strong>' +
+									' - ' + city +
+								'</div>' +
+								'<div class="col-lg-6 listeLogo">' +
+									filterOffices +
+								'</div>' +
+							'</div>' +
+							'<div class="bonus">"' +
+								descriptionBonus + 
+							'"</div>';
+							vignette = vignette +
+							'<div id="btn_decouvrir">';
+								if(offer == 'Link')
+								{
+									vignette = vignette + '<button type="button" class="btnGreen" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>';
+								}else{
+									vignette = vignette + '<button type="button" class="btnGreen">Découvrir</button>';
+								}
+							vignette = vignette + 
+							'</div>';
+
+			var modal = 
+				'<div class="modal fade" id="myModalVote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' + 
+					'<div class="modal-dialog">' +
+						'<div class="modal-content">' +
+				            '<div class="modal-header modal-header-info">' +
+				                '<button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>' +
+				                '<h4 class="modal-title">Réclamer cet espace</h4>' +
+				            '</div>' +
+						'<form method="POST" action="{{ path("becowo_core_vote_zen", { 'id' : 'varID'}) }}" id="form_voteZen">' +
+			            '<div class="modal-body">' +
+			                '<p>La réservation en ligne n\'est malheureusement pas disponible chez ' + name + '. <br>' +
+			                'Mais vous pouvez réclamer cet espace afin de leur indiquer que vous auriez aimé pouvoir réserver en ligne, nous le ferons savoir à ' + name + ' car ce sont eux qui décident si la réservation en ligne est possible ou non sur notre plateforme. <br>Si comme nous vous trouvez ça dommage, alors cliquez sur : "Je réclame !"' +
+							'</p>' +
+							'Votre email * : <input type="email" name="emailVote" required="true" width="200px">' +
+							'<p>Nous vous préviendrons dès que ' + name + ' sera disponible sur Becowo.</p>' +
+							'<div id="error-varID"></div>' +
+			            '</div>' +
+			            '<div class="modal-footer">' +
+							'<button type="submit" id="voteZen-varID" class="modal_valid">Je réclame !</button>' +
+			            '</div>' +
+						'</form>' +
+					'</div>' +
+				'</div>' +
+			'</div>';
+			modal = modal.replace(/varID/g, id);
+
+			return vignette + ' ' + modal;
+	      },
+	      empty: function(data) {
+	        return '<p>Désolé ! Aucun espace de travail trouvé pour la recherche <strong>' + data.query + '</strong>.</p>'
+	      }
+	    }
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.pagination({
+	    container: '#pagination',
+	    showFirstLast: false,
+	    scrollTo: false,
+	    cssClasses: {
+	    	root: 'pagination',
+	    	active: 'active'
+	    }
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#regions',
+	    attributeName: 'region.name',
+	    limit: 3,
+	    sortBy: ['count:desc'],
+	    operator: 'or',
+	    autoHideContainer: false,
+	    showMore: {
+	    	limit : 10,
+	    	templates: {
+	    		active: '<i class="fa fa-minus-square" aria-hidden="true"></i> Voir moins',
+	    		inactive: '<i class="fa fa-plus-square" aria-hidden="true"></i> Voir plus'
+	    	}
+	    },
+	    templates: {
+	    	item: function(data) {
+	    		return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+	    		'<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+	    		'<span></span>' +
+              	'</label>'
+	    	}
+	    }
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#cities',
+	    attributeName: 'city',
+	    limit: 3,
+	    sortBy: ['count:desc'],
+	    operator: 'or',
+	    autoHideContainer: false,
+	    showMore: {
+	    	limit : 10,
+	    	templates: {
+	    		active: '<i class="fa fa-minus-square" aria-hidden="true"></i> Voir moins',
+	    		inactive: '<i class="fa fa-plus-square" aria-hidden="true"></i> Voir plus'
+	    	}
+	    },
+	    templates: {
+	    	item: function(data) {
+	    		return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+	    		'<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+	    		'<span></span>' +
+              	'</label>'
+	    	}
+	    }
+	  })
+	);
+	
+	search.addWidget(
+	  instantsearch.widgets.refinementList({
+	    container: '#filterOffices',
+	    attributeName: 'filterOffices.name',
+	    limit: 3,
+	    sortBy: ['count:desc'],
+	    operator: 'or',
+	    autoHideContainer: false,
+	    showMore: {
+	    	limit : 10,
+	    	templates: {
+	    		active: '<i class="fa fa-minus-square" aria-hidden="true"></i> Voir moins',
+	    		inactive: '<i class="fa fa-plus-square" aria-hidden="true"></i> Voir plus'
+	    	}
+	    },
+	    templates: {
+	    	item: function(data) {
+	    		return '<label for="' + data.name + '" class="ais-refinement-list--label">' + data.name + ' (' + data.count + ')' +
+	    		'<input id="' + data.name + '" type="checkbox" value="' + data.name + '" class="ais-refinement-list--checkbox" />' +
+	    		'<span></span>' +
+              	'</label>'
+	    	}
+	    }
+	  })
+	);
+
+	search.addWidget(
+	  instantsearch.widgets.googleMaps({
+	    container: document.querySelector('#map'),
+	 //    prepareMarkerData(hit, index, hits) {
+		//   return {
+		//     label: hit.name,
+		//     title: hit.city
+		//   }
+		// }
+	  })
+	);
+	
+	search.addWidget(
+  	instantsearch.widgets.clearAll({
+    container: '#clear-all',
+    templates: {
+      link: 'Effacer les filtres'
+    },
+	    autoHideContainer: false
+	  })
+	);
+
+	search.start();
+
+
+
+</script>
+{% endblock javascripts %}
+
