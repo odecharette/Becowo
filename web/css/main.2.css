@@ -6,6 +6,10 @@
     font-family: 'Roboto-Medium';
     src: url('../css/font/Roboto-Medium.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'Roboto-Black';
+    src: url('../css/font/Roboto-Black.ttf') format('truetype');
+}
 :root {
 
 --my-green: rgb(77, 185, 167); /* #4db9a7 */
@@ -112,6 +116,46 @@ footer a:hover, footer a:focus{
 }
 #filtersBar h4{
 	font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
+}
+#BlogTwitter{
+	background-color: #eeeeee;
+    padding: 40px 0;
+}
+#BlogTwitter h4{
+	color: #9d9d9c;
+	text-transform: uppercase;
+	font-family: "Roboto-Black", Helvetica, Arial, sans-serif;
+	font-size: 34px;
+}
+#BlogTwitter h5{
+	color: var(--my-green);
+	text-transform: uppercase;
+	font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
+	font-size: 17px;
+}
+#BlogTwitter p{
+	color: #9d9d9c;
+	text-align: justify;
+	font-size: 12pt;
+}
+#BlogTwitter p a{
+	color: var(--my-green);
+	font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
+}
+#BlogTwitter .btnBlog{
+	font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
+	color: #9d9d9c;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 10px 0;
+    border: solid 1px #9d9d9c;
+    display: block;
+}
+#BlogTwitter .btnBlog:hover{
+	text-decoration: none;
+}
+.quoideneuf{
+	margin-bottom: -20px;
 }
 #declare{
 	position: relative;

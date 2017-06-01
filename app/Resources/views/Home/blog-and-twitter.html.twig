@@ -1,16 +1,12 @@
-<div class="row" id="actu">
-	<div class="col-lg-2 hidden-md hidden-sm hidden-xs vCenter">
-		<center><img src="{{ asset('images/icons/rss.png') }}" alt="RSS blog" class="center-block" width="100%"></center>
-	</div>
-	<div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 vCenter" style="vertical-align: top">
-		<h4>Quoi de neuf sur notre blog ?</h4>
-		<br>
+<img src="{{ asset('images/icons/QuoiDeNeuf.png') }}" alt="Quoi de neuf sur notre blog" class="quoideneuf">
+<div class="row" id="BlogTwitter">
+	<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12">
+		<h4>sur le blog</h4>
 		{{ render(controller('BecowoCoreBundle:Blog:viewLastArticle', {nbArticles: 2})) }}
+		<a href="https://www.blog.becowo.com/" target="_blank" class="btnBlog">Les autres articles sur notre blog</a>
 	</div>
-	<div class="col-lg-1 col-md-1 col-sm-1 hidden-xs vCenter" id="separateur"></div>
-	<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 vCenter" id="Twitter">
-		<h4>Quoi de neuf sur notre Twitter ?</h4>
-		<br>
-		<a class="twitter-timeline" data-lang="fr" data-width="350" data-height="310" data-theme="light" href="https://twitter.com/Becowo_and_you"></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12">
+		<h4>Vue sur Twitter</h4>
+		<a class="twitter-timeline" data-lang="fr" data-width="350" data-height="400" data-theme="light" href="https://twitter.com/Becowo_and_you"></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>

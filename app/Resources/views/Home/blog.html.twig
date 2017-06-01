@@ -1,7 +1,7 @@
 {% for article in articles %}
 	{% if article.url != "" %}
-		<a href="{{article.url}}" target="_blank">{{article.titre}} <i class="fa fa-external-link" aria-hidden="true"></i></a>
+		<a href="{{article.url}}" target="_blank"><h5>{{article.titre}} <i class="fa fa-external-link" aria-hidden="true"></i></h5></a>
 	{% endif %}
-	<p>{{article.description|raw}}</p>
+	<p>{{article.description|raw}} <a href="{{article.url}}" target="_blank">Lire +</a></p>
 	<br>
 {% endfor %}
