@@ -75,9 +75,23 @@
 
 {% include 'Home/blog-and-twitter.html.twig' %} 
 
-
-{% include 'CommonViews/declarerEspace.html.twig' %} 
-
+<section id="declare">
+	<img src="{{ asset('images/icons/DeclarerEspace.png') }}" alt="declarer votre espace">
+	<div class="row text-center">
+		<h2>Comment ajouter votre espace sur Becowo ?</h2>
+		<br>
+		<p>Vous souhaitez : <br>
+			<br>
+			<strong>Partager</strong> les valeurs de Becowo : <strong>échange, collaboration et bienveillance</strong> <br>
+			Toucher une <strong>communauté de coworkers</strong> située hors de vos murs <br>
+			Intégrer un <strong>réseau d'espaces de coworking</strong> et partager votre expérience  <br>
+			<br>
+			Alors, <strong>découvrez</strong> dès maintenant <strong>nos offres</strong> en cliquant sur le bouton ci-dessous. 
+		</p>
+		<br>
+		<a href="{{ path('becowo_core_offers') }}" class="btnGreen">Découvrir nos offres</a>
+	</div>
+</section>
 
 </div>
 
