@@ -51,15 +51,21 @@
 	    </div>
 	</div>
 </section>
+
+<article>
 <div class="row">
-    <div id="hits"><center>Chargement en cours <img src="{{ asset('images/icons/loading.gif') }}" alt="loading"></center></div>
+	<div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+		<div id="hits">
+			<center>Chargement en cours <img src="{{ asset('images/icons/loading.gif') }}" alt="loading"></center>
+		</div>
+    	<div id="pagination"></div>
+	</div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+    	MAP ici
+    </div>
 </div>
 
-<div class="row text-center">
-    <div id="pagination"></div>
-</div>
-
-
+</article>
 
 {% if is_mobile() %}
 	<div class="row text-center">
@@ -100,7 +106,7 @@
 
 {% endblock body %}
 
-{# {% block javascripts %}
+{% block javascripts %}
 <script>
 	// Documentation : https://www.algolia.com/doc/guides/search/instant-search/
 
@@ -114,7 +120,7 @@
 	search.addWidget(
 	  instantsearch.widgets.hits({
 	    container: '#hits',
-	    hitsPerPage: 6,
+	    hitsPerPage: 2,
 	    cssClasses: {
 	    	item: 'vignette'
 	    },
@@ -231,32 +237,33 @@
 								}
 							vignette = vignette + 
 							'</div>' +
-							'<div id="btn_decouvrir">';
-								if(offer == 'Link')
-								{
-									vignette = vignette + '<button type="button" class="btn_vignette" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>';
-								}else{
-									vignette = vignette + '<button type="button" class="btn_vignette">Découvrir</button>';
-								}
-							vignette = vignette + 
-							'</div>' +
 							'</div>';
 							if(offer != 'Link')
 							{
 								vignette = vignette + '</a>';
 							}
 							vignette = vignette + 
-							'<table>' +
-								'<td id="address">' +
-									'<strong id="WSname">' + name + '</strong> <br>' +
-									'<span class="city">' + city + '</span>' +
-								'</td>' +
-								'<td id="listeLogo">' +
+							'<div class="row">' +
+								'<div class="col-lg-6 adresse">' +
+									'<strong>' + name + '</strong>' +
+									' - ' + city +
+								'</div>' +
+								'<div class="col-lg-6 listeLogo">' +
 									filterOffices +
-								'</td>' +
-							'</table>' +
-							'<div id="bonus">' +
+								'</div>' +
+							'</div>' +
+							'<div class="bonus">"' +
 								descriptionBonus + 
+							'"</div>';
+							vignette = vignette +
+							'<div id="btn_decouvrir">';
+								if(offer == 'Link')
+								{
+									vignette = vignette + '<button type="button" class="btnGreen" data-toggle="modal" data-target="#myModalVote">Réclamer cet espace</button>';
+								}else{
+									vignette = vignette + '<button type="button" class="btnGreen">Découvrir</button>';
+								}
+							vignette = vignette + 
 							'</div>';
 
 			var modal = 
@@ -399,6 +406,6 @@
 
 
 </script>
-{% endblock javascripts %} #}
+{% endblock javascripts %}
 
 

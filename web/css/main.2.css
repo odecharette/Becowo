@@ -10,6 +10,10 @@
     font-family: 'Roboto-Black';
     src: url('../css/font/Roboto-Black.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'Roboto-LightItalic';
+    src: url('../css/font/Roboto-LightItalic.ttf') format('truetype');
+}
 :root {
 
 --my-green: rgb(77, 185, 167); /* #4db9a7 */
@@ -117,6 +121,70 @@ footer a:hover, footer a:focus{
 #filtersBar h4{
 	font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
 }
+.vignette{
+    margin-bottom: 20px;
+}
+.vignette #pic{
+  position: relative;
+  width: 100%;
+}
+.vignette #favoritePicture img{
+  width: 100%;
+  height: 220px;
+}
+.vignette #price{
+  background-color: rgba(45,45,45,0.6);
+  color: white;
+  font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
+  position: absolute;
+  top: 5%;
+  left: 0%;
+  font-size: 10pt;
+  padding: 0 10px;
+  font-weight: bold;
+  line-height: 40px;
+}
+.vignette #price i{
+  color: var(--my-orange);
+}
+.vignette #stars{
+  position: absolute;
+  top: 5%;
+  right: 5px;
+}
+.vignette .bonus{
+	font-family: "Roboto-LightItalic", Helvetica, Arial, sans-serif;
+}
+.vignette .btnGreen{
+	width: 100%;
+	margin-top: 5px;
+}
+.vignette .adresse{
+    line-height: 40px;
+}
+.vignette .listeLogo{
+	text-align: right;
+}
+.vignette .listeLogo img{
+	margin: 2px 5px;
+}
+#pagination .pagination>li:first-child>a, .pagination>li:first-child>span, .pagination>li:last-child>a, .pagination>li:last-child>span{
+	border: none !important;
+    font-weight: bold;
+    font-size: 14pt;
+}
+#pagination .pagination>li>a, .pagination>li>span {
+    color: #646363;
+    border: 1px solid #a0a0a0;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+#pagination .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+	background-color: var(--my-green);
+    border-color: var(--my-green);
+    font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
+    color: white;
+}
 #BlogTwitter{
 	background-color: #eeeeee;
     padding: 40px 0;
@@ -179,4 +247,43 @@ footer a:hover, footer a:focus{
 }
 #declare img{
 	width: 100%;
+}
+
+
+/*Personalized tooltip*/
+/*http://www.cssportal.com/css-tooltip-generator/*/
+
+label.tooltips, span.tooltips {
+  position: relative;
+  display: inline;
+}
+label.tooltips span, span.tooltips span  {
+  position: absolute;
+  width:170px;
+  color: white;
+  background: var(--my-black);
+  text-align: center;
+  visibility: hidden;
+  border-radius: 6px;
+  font-size: 12pt;
+  padding: 5px;
+}
+label.tooltips span:after, span.tooltips span:after{
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-bottom: 8px solid #24262E;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+label:hover.tooltips span, span:hover.tooltips span {
+  visibility: visible;
+  opacity: 0.8;
+  top: 30px;
+  left: 50%;
+  margin-left: -76px;
+  z-index: 999;
 }
