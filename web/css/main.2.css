@@ -55,6 +55,17 @@ header .menuBox{
 header .btn-group{
 	vertical-align: baseline;
 }
+header .connectMenu{
+	line-height: 50px;
+    text-align: center;
+}
+header .log{
+    color: var(--my-green);
+    text-transform: uppercase;
+    border: solid 1px var(--my-green);
+    padding: 10px 30px;
+    font-size: 12pt;
+}
 .btnGreen{
 	background-color: var(--my-green);
 	color: white;
