@@ -32,19 +32,19 @@
 <div class="container-fluid">
 
 <section>
-	<div class="row text-center" id="filtersBar">
+	<div class="row" id="filtersBar">
 		<h3>Trouvez une salle de coworking près de chez vous</h3>
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-			<h4>1. Région</h4>
+			<h4>Région</h4>
 	        <div id="regions" class="facet"></div>
 	    </div>
 	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	   		<h4>2. Ville</h4>
+	   		<h4>Ville</h4>
 	    	<div id="cities" class="facet"></div>
 	    </div>
 	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	    	<h4>3. Bureau</h4>
-	        <div id="filterOffices"></div>
+	    	<h4>Bureau</h4>
+	        <div id="filterOffices" class="facet"></div>
 		</div>	
 	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 	    	<button type="button" class="btnGreen">OK</button>
@@ -295,7 +295,7 @@
 			return vignette + ' ' + modal;
 	      },
 	      empty: function(data) {
-	        return '<p>Désolé ! Aucun espace de travail trouvé pour la recherche <em>' + data.query + '</em>.</p>'
+	        return '<p>Désolé ! Aucun espace de travail trouvé pour la recherche <strong>' + data.query + '</strong>.</p>'
 	      }
 	    }
 	  })
@@ -324,8 +324,8 @@
 	    showMore: {
 	    	limit : 10,
 	    	templates: {
-	    		active: 'Voir moins',
-	    		inactive: 'Voir plus'
+	    		active: '<i class="fa fa-minus-square" aria-hidden="true"></i> Voir moins',
+	    		inactive: '<i class="fa fa-plus-square" aria-hidden="true"></i> Voir plus'
 	    	}
 	    },
 	    templates: {
@@ -350,8 +350,8 @@
 	    showMore: {
 	    	limit : 10,
 	    	templates: {
-	    		active: 'Voir moins',
-	    		inactive: 'Voir plus'
+	    		active: '<i class="fa fa-minus-square" aria-hidden="true"></i> Voir moins',
+	    		inactive: '<i class="fa fa-plus-square" aria-hidden="true"></i> Voir plus'
 	    	}
 	    },
 	    templates: {
@@ -376,8 +376,8 @@
 	    showMore: {
 	    	limit : 10,
 	    	templates: {
-	    		active: '<Voir moins',
-	    		inactive: 'Voir plus'
+	    		active: '<i class="fa fa-minus-square" aria-hidden="true"></i> Voir moins',
+	    		inactive: '<i class="fa fa-plus-square" aria-hidden="true"></i> Voir plus'
 	    	}
 	    },
 	    templates: {

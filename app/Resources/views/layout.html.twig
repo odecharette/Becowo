@@ -49,17 +49,17 @@
 
 <header>
 	{# screen LG and MD only #}
-	<div class="row text-center">
-		<div class="col-lg-1 col-md-1 hidden-sm hidden-xs">
+	<div class="row">
+		<div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
 		        <img src="{{ asset('images/icons/logo-becowo.png') }}" alt="Becowo">
 		    </a>
 		</div>
-        <div class="col-lg-5 col-md-6 hidden-sm hidden-xs menu">
-		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <i class="fa fa-circle" aria-hidden="true"></i>
-			<a title="La communauté" href="{{ path('becowo_core_community') }}">communauté </a>	<i class="fa fa-circle" aria-hidden="true"></i>
+        <div class="col-lg-8 col-md-8 hidden-sm hidden-xs menu">
+        	<div class="menuBox"><a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a></div>
+			<div class="menuBox"><a title="La communauté" href="{{ path('becowo_core_community') }}">Communauté </a></div>
 			<div class="btn-group">
-				<a href="" data-toggle="dropdown">Comment ça marche ? </a> 
+				<div class="menuBox"><a href="" data-toggle="dropdown">Comment ça marche ? </a> </div>
 				<ul role="menu" class="dropdown-menu dropdown-menu-default">
 			        <li>
 			            <a title="Comment ça marche" href="{{ path('becowo_core_comment_ca_marche_coworkers') }}">Pour les coworkers</a>
