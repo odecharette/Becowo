@@ -28,23 +28,29 @@
 		<div class="col-lg-4"><a href="https://www.blog.becowo.com" target="_blank"><h2><strong>Découvrir</strong> <br>le blog Becowo</h2></a></div>
 	</div>
 </section>
-<div class="row" id="filtersBar">
-	<div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-12">
-		<h3>Région</h3>
-        <div id="regions" class="facet"></div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-   		<h3>Ville</h3>
-    	<div id="cities" class="facet"></div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-    	<h3>Bureau</h3>
-        <div id="filterOffices"></div>
-	</div>	
-	{#<div class="col-lg-2">
-		 <div id="clear-all"></div> 
-	</div>#}
-</div>
+
+<div class="container-fluid">
+
+<section>
+	<div class="row text-center" id="filtersBar">
+		<h3>Trouvez une salle de coworking près de chez vous</h3>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+			<h4>1. Région</h4>
+	        <div id="regions" class="facet"></div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	   		<h4>2. Ville</h4>
+	    	<div id="cities" class="facet"></div>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	    	<h4>3. Bureau</h4>
+	        <div id="filterOffices"></div>
+		</div>	
+	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	    	<button type="button" class="btnGreen">OK</button>
+	    </div>
+	</div>
+</section>
 <div class="row">
     <div id="hits"><center>Chargement en cours <img src="{{ asset('images/icons/loading.gif') }}" alt="loading"></center></div>
 </div>
@@ -54,8 +60,6 @@
 </div>
 
 
-
-<div class="container-fluid">
 
 {% if is_mobile() %}
 	<div class="row text-center">
