@@ -48,6 +48,7 @@
 		</div>	
 	    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 	    	<button type="button" class="btnGreen">OK</button>
+	    	<div id="clear-all"></div>
 	    </div>
 	</div>
 </section>
@@ -61,7 +62,7 @@
     	<div id="pagination"></div>
 	</div>
     <div class="col-lg-6 col-md-6 col-sm-6">
-    	MAP ici
+    	<div id="map"></div>
     </div>
 </div>
 
@@ -390,16 +391,28 @@
 	    }
 	  })
 	);
+
+	search.addWidget(
+	  instantsearch.widgets.googleMaps({
+	    container: document.querySelector('#map'),
+	 //    prepareMarkerData(hit, index, hits) {
+		//   return {
+		//     label: hit.name,
+		//     title: hit.city
+		//   }
+		// }
+	  })
+	);
 	
-	// search.addWidget(
- //  	instantsearch.widgets.clearAll({
- //    container: '#clear-all',
- //    templates: {
- //      link: 'Effacer les filtres'
- //    },
-	//     autoHideContainer: false
-	//   })
-	// );
+	search.addWidget(
+  	instantsearch.widgets.clearAll({
+    container: '#clear-all',
+    templates: {
+      link: 'Effacer les filtres'
+    },
+	    autoHideContainer: false
+	  })
+	);
 
 	search.start();
 

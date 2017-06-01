@@ -231,6 +231,9 @@ footer a:hover, footer a:focus{
     font-family: "Roboto-Medium", Helvetica, Arial, sans-serif;
     color: white;
 }
+#map{
+	height: 300px;
+}
 #BlogTwitter{
 	background-color: #eeeeee;
     padding: 40px 0;

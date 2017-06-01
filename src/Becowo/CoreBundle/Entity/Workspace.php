@@ -1217,6 +1217,13 @@ class Workspace
         return $this->name;
     }
 
+    /**
+     * @Algolia\Attribute
+     */
+    public function _geoloc()
+    {
+        return array("lat" => $this->latitude, "lng" => $this->longitude);
+    }
 
     /**
      * @Algolia\IndexIf
