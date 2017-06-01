@@ -12,6 +12,9 @@ class HomeController extends Controller
     return $this->render('Home/home.html.twig');
   }
 
-
+  public function searchAction(Request $request)
+  {
+    return $this->render('Search/searchPage.html.twig');
+  }
 
 }

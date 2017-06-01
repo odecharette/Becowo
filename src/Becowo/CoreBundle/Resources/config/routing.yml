@@ -17,6 +17,11 @@ becowo_core_workspace:
     options:
         expose: true
 
+becowo_core_workspace_search:
+    path:     /espace-de-coworking/rechercher
+    defaults: { _controller: BecowoCoreBundle:Home:search }
+    methods: GET
+
 becowo_core_workspace_contact:
     path:     /contact/{name}
     defaults: { _controller: BecowoCoreBundle:Workspace:contact }
