@@ -122,12 +122,11 @@
 	<div class="row text-center">
 		<div class="hidden-lg hidden-md col-sm-2 hidden-xs">
 			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
-		        <img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo">
+		        <img src="{{ asset('images/icons/logo-becowo.png') }}" alt="Becowo">
 		    </a>
 		</div>
 		<div class="hidden-lg hidden-md col-sm-4 hidden-xs identity">
-			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo <div class="beta">Bêta</div></a> <br>
-			{% include 'CommonViews/RS/all_RS_small.html.twig' %}
+			<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo</a> <br>
         </div>
         <div class="hidden-lg hidden-md col-sm-4 hidden-xs menu">
 		    <a title="Accueil" href="{{ path('becowo_core_homepage') }}">Accueil</a> <br>
@@ -194,7 +193,7 @@
 	    <div class="container">
 	        <div class="navbar-header">
 	        	<a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="logo">
-			        <img src="{{ asset('images/icons/Logo_becowo.png') }}" alt="Becowo">
+			        <img src="{{ asset('images/icons/logo-becowo.png') }}" alt="Becowo">
 			    </a>
 			    <a title="Accueil" href="{{ path('becowo_core_homepage') }}" class="title">Becowo</a>
 	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -245,54 +244,49 @@
 
 {######################################################Footer ######################################################}
     
-	<footer class="navbar">
-		<div class="container-fluid">
-		<div class="row">
-		<div id="footer_menu" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0">
-			<br>
-			<strong>A PROPOS DE BECOWO</strong>
-			<br><br>
-			<ul>
-			    <li><a href="{{ path('becowo_core_quisommesnous') }}">Qui sommes nous ?</a></li>
-			    <li><a href="{{ path('becowo_core_contact') }}" rel="nofollow">Contactez-nous</a></li>
-			    <li><a href="{{ path('becowo_core_faq') }}" rel="nofollow">FAQ</a></li>
-			    <li><a href="{{ path('becowo_core_cgu') }}" rel="nofollow">CGU</a></li>
-				<li><a href="{{ path('becowo_core_mentions') }}" rel="nofollow">Mentions légales</a></li>
-			    <li><a href="{{ path('becowo_core_cookies') }}" rel="nofollow">Gestion des cookies</a></li>
-			</ul>
+<footer>
+	<div class="container-fluid">
+		<div class="row footerLogo">
+			<img src="{{ asset('images/icons/logo-becowo.png') }}" alt="Becowo">
 		</div>
-		<div id="footer_menu" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-			<br>
-			<strong>BECOWO ET VOUS</strong>
-			<br>
-			{% if is_mobile() and not is_tablet() %}
-				{% include 'CommonViews/RS/all_RS_mobile.html.twig' %}
-			{% else %}
-				{% include 'CommonViews/RS/all_RS_small.html.twig' %}
-			{% endif %}
-			<ul> 
-			    <li><a href="http://www.blog.becowo.com/" target="_blank">Le blog</a></li>
-			    <li><a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a></li>
-			    <li><a href="http://m.me/becowo" target="_blank">Tchater via messenger</a></li>
-			    <li><a href="{{ path('becowo_core_paiement') }}" rel="nofollow">Paiement en ligne by <img src="{{ asset('images/icons/creditAgricole/ca.png') }}" alt="Crédit Agricole"></a></li>
-			</ul>
+		<div class="row footerMenu">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<h6>à propos de Becowo</h6>
+				<a href="{{ path('becowo_core_quisommesnous') }}">Qui sommes nous ?</a> <br>
+				<a href="{{ path('becowo_core_contact') }}" rel="nofollow">Contactez-nous</a> <br>
+				<a href="{{ path('becowo_core_faq') }}" rel="nofollow">FAQ</a> <br>
+				<a href="{{ path('becowo_core_cookies') }}" rel="nofollow">Gestion des cookies</a> <br>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<h6>Becowo et vous</h6>
+				<a href="http://www.blog.becowo.com/" target="_blank">Le blog</a> <br>
+				<a href="{{ path('becowo_core_offers') }}">Manager, découvrez nos offres</a> <br>
+				<a href="http://m.me/becowo" target="_blank">Tchater via messenger</a> <br>
+				<a href="{{ path('becowo_core_paiement') }}" rel="nofollow">Paiement en ligne by <strong>Crédit Agricole</strong></a> <br>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<h6>Suivez-nous sur les réseaux</h6>
+				<div id="liensRS">
+					<a href="https://www.facebook.com/becowo" target="_blank"><img src="{{ asset('images/RS/facebook.png') }}" alt="Facebook"></a>
+					<a href="https://www.instagram.com/becowo_and_you/" target="_blank"><img src="{{ asset('images/RS/instagram.png') }}" alt="Instagram"></a>
+					<a href="https://www.linkedin.com/company/becowo"  target="_blank"><img src="{{ asset('images/RS/linkedin.png') }}" alt="Linkedin"></a>
+					<a href="https://twitter.com/becowo_and_you" target="_blank"><img src="{{ asset('images/RS/twitter.png') }}" alt="Twitter"></a>
+				</div>
+				<br>
+				<h6>Les villes</h6>
+		           	<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lille&is_v=1#filtersBar" rel="nofollow">Lille</a>, 
+		           	<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Roubaix&is_v=1#filtersBar" rel="nofollow">Roubaix</a>, 
+		           	<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Paris&is_v=1#filtersBar" rel="nofollow">Paris</a>, 
+		           	<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lyon&is_v=1#filtersBar" rel="nofollow">Lyon</a>              	
+			</div>
 		</div>
-		<div id="footer_menu" class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
-			<br>
-			<strong>LES VILLES</strong>
-			<br><br>
-			<ul>
-               	<li>
-               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lille&is_v=1#filtersBar" rel="nofollow">LILLE</a> <br>
-               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Roubaix&is_v=1#filtersBar" rel="nofollow">ROUBAIX</a> <br>
-               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Paris&is_v=1#filtersBar" rel="nofollow">PARIS</a> <br>
-               		<a href="{{ path('becowo_core_homepage') }}?q=&hPP=6&idx={{algolia.index_workspace}}&p=0&dFR%5Bcity%5D%5B0%5D=Lyon&is_v=1#filtersBar" rel="nofollow">LYON</a> <br>               	
-               	</li>
-			</ul>
-		</div>
+		<div class="row text-center footerMenu">
+			<strong>©Becowo 2017 - </strong>
+			<a href="{{ path('becowo_core_cgu') }}" rel="nofollow">CGU</a> - 
+			<a href="{{ path('becowo_core_mentions') }}" rel="nofollow">Mentions légales</a>
 		</div>
 	</div>
-	</footer>
+</footer>
 
 
     
