@@ -6,13 +6,18 @@
     font-family: 'Roboto-Medium';
     src: url('../css/font/Roboto-Medium.ttf') format('truetype');
 }
+:root {
+
+--my-green: rgb(77, 185, 167); /* #4db9a7 */
+
+}
 
 header{
 	padding: 20px;
 }
 #home-image img{
 	width: 100%;
-	position: absolute;
+	position: relative;
 }
 #home-image, #home-image a{
 	font-family: "Roboto-Light", Helvetica, Arial, sans-serif;
@@ -23,19 +28,28 @@ header{
 }
 #home-image h1{
 	font-size: 25pt;
-	position: relative;
-    top: 40px;
+	position: absolute;
+    top: 30%;
     left: 20%;
+    width: inherit;
 }
 #home-image h1 span{
 	margin-left: 20%;
 }
-#home-image a h2{
-	font-size: 22pt;
-	text-transform: uppercase;
+#home-image a{
 	text-decoration: none;
 }
-#home-image #homeButtons{
-	position: relative;
-	top: 100px;
+#home-image a h2{
+	font-size: 16pt;
+	text-transform: uppercase;
+	background-color: var(--my-green);
+	opacity: 0.8;
+    margin: 0 15% 0 15%;
+    padding: 10px;
+}
+#home-image h2:hover, #home-image h2:focus{
+	opacity: 1;
+}
+#home-image .homeButtons{
+    margin: -10% 0 5% 0;
 }
