@@ -71,7 +71,7 @@
 	search.addWidget(
 	  instantsearch.widgets.hits({
 	    container: '#hits',
-	    hitsPerPage: 10,
+	    hitsPerPage: 9,
 	    cssClasses: {
 	    	item: 'vignette'
 	    },
@@ -352,6 +352,40 @@
 	  })
 	);
 
+	// https://snazzymaps.com/style/61/blue-essence
+	var styledMapType = new google.maps.StyledMapType(
+		[
+		    {
+		        "featureType": "landscape.natural",
+		        "elementType": "geometry.fill",
+		        "stylers": [{"visibility": "on"},{"color": "#e0efef"}]
+		    },
+		    {
+		        "featureType": "poi",
+		        "elementType": "geometry.fill",
+		        "stylers": [{"visibility": "on"},{"hue": "#1900ff"}, {"color": "#c0e8e8"}]
+		    },
+		    {
+		        "featureType": "road",
+		        "elementType": "geometry",
+		        "stylers": [{"lightness": 100},{"visibility": "simplified"}]
+		    },
+		    {
+		        "featureType": "road",
+		        "elementType": "labels",
+		        "stylers": [{"visibility": "off"}]
+		    },
+		    {
+		        "featureType": "transit.line",
+		        "elementType": "geometry",
+		        "stylers": [ {"visibility": "on"}, { "lightness": 700}]
+		    },
+		    {
+		        "featureType": "water",
+		        "elementType": "all",
+		        "stylers": [{"color": "#7dcdcd"}]
+		    }
+		]);
 
 	var customMapWidget = {
 	  _mapContainer: document.querySelector('#map'),
@@ -367,7 +401,8 @@
 	      position: {lat: hit._geoloc.lat, lng: hit._geoloc.lng},
 	      map: this._map,
 	      // label: hit.name,
-	      title: hit.name
+	      title: hit.name,
+	      icon : "{{ asset('/images/icons/marker.png') }}"
 	    });
 	    marker.addListener('click', function() {
 		    infowindow.open(map, marker);
@@ -376,7 +411,16 @@
 	  },
 	  init: function(params) {
 	  	this._helper = params.helper;
-	    this._map = new google.maps.Map(this._mapContainer, {zoom: 1, center: new google.maps.LatLng(0, 0)});
+	    this._map = new google.maps.Map(this._mapContainer, {
+	    	zoom: 1, 
+	    	center: new google.maps.LatLng(0, 0),
+	    	mapTypeControlOptions: {
+	            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+	                    'styled_map']
+	        }
+	    });
+	    this._map.mapTypes.set('styled_map', styledMapType);
+	    this._map.setMapTypeId('styled_map');
 	  },
 	  render: function(params) {
 	    var markers = params.results.hits.map(this._hitToMarker.bind(this));
